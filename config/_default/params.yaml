@@ -1,0 +1,96 @@
+logo: '/images/logo.webp'
+description: ''
+color_scheme: auto
+author:
+  author__name: Jonathan Búcaro
+  author__bio: >-
+    Ingeniero en Sistemas, Planeswalker. Escribo sobre mis experiencias en la industria de la tecnología, momentos que capturan el aprendizaje significativo que ha moldeado mi crecimiento profesional.
+  author__avatar: '/images/perfil.webp'
+social:
+  - icon: ion-logo-twitter
+    name: Twitter
+    link: 'https://twitter.com/jebucaro'
+  - icon: ion-logo-instagram
+    name: Instagram
+    link: 'https://instagram.com/jebucaro'
+  - icon: ion-logo-github
+    name: Github
+    link: 'https://github.com/jebucaro'
+hero:
+  enable: true
+  hero__title: 'Soy Jonathan 🤓'
+  hero__subtitle: '¡Crearé servicios que te brinden valor!'
+  hero__description: >-
+    Como Ingeniero experimentado en C# y Python, estoy comprometido a ofrecer soluciones de primera calidad que superarán tus expectativas.
+  hero__image: '/images/perfil.webp'
+mailchimp:
+  enable: false
+  mailchimp__identifier: >-
+    frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
+  mailchimp__input__text: 'Correo electrónico...'
+  mailchimp__button__text: Recibir actualizaciones
+projects:
+  enable: false
+  projects__title: Proyectos Recientes
+  projects__description: >-
+    Presento proyectos creados con pasión, simplicidad e innovación, mostrando lo mejor en este espacio dedicado a la excelencia.
+testimonials:
+  enable: false
+  testimonial__title: Testimonios
+  testimonial__description: ''
+testimonial_item:
+  - name: Aspen Carder
+    image: 'https://via.placeholder.com/200x200'
+    designation: Lettering Artist
+    link: 'https://twitter.com/'
+    content: >-
+      Keeping your eye on the ball while performing a deep dive on the
+      start-up mentality to derive convergence on cross-platform integration
+  - name: Lydia Siphron
+    image: 'https://via.placeholder.com/200x200'
+    designation: Designer
+    link: 'https://facebook.com/'
+    content: >-
+      Keeping your eye on the ball while performing a deep dive on the
+      start-up mentality to derive convergence on cross-platform integration
+  - name: Craig Vaccaro
+    image: 'https://via.placeholder.com/200x200'
+    designation: Web developer
+    link: 'https://twitter.com/'
+    content: >-
+      Keeping your eye on the ball while performing a deep dive on the
+      start-up mentality to derive convergence on cross-platform integration
+  - name: Anika Calzoni
+    image: 'https://via.placeholder.com/200x200'
+    designation: Lettering Artist
+    link: 'https://facebook.com/'
+    content: >-
+      Keeping your eye on the ball while performing a deep dive on the
+      start-up mentality to derive convergence on cross-platform integration
+  - name: Marcus Botosh
+    image: 'https://via.placeholder.com/200x200'
+    designation: Full Stack Designer
+    link: 'https://twitter.com/'
+    content: >-
+      Keeping your eye on the ball while performing a deep dive on the
+      start-up mentality to derive convergence on cross-platform integration
+blog:
+  enable: true
+  blog__title: Publicaciones Recientes
+  blog__description: ''
+gallery:
+  enable: false
+gallery_image:
+  - image_alt: Rest
+    image_url: 'https://via.placeholder.com/800x800'
+  - image_alt: Lifestyle
+    image_url: 'https://via.placeholder.com/800x800'
+  - image_alt: Hobby
+    image_url: 'https://via.placeholder.com/800x800'
+  - image_alt: Notes
+    image_url: 'https://via.placeholder.com/800x800'
+contact:
+  contact__email: hola@jonathanbucaro.com
+disqus:
+  enable: false
+  disqusShortname: anvodstudio-demo
