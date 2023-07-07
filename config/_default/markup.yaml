@@ -1,0 +1,7 @@
+goldmark:
+  renderer:
+    unsafe: true
+highlight:
+  codeFences: true
+  guessSyntax: true
+  noClasses: false
