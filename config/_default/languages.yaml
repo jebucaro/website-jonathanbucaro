@@ -1,0 +1,26 @@
+es:
+  weight: 1
+  params:
+    formats:
+      date:
+        long: 2 de January de 2006
+        short: 2/1/06
+      time:
+        long: '3:04:05 PM'
+        short: '3:04 PM'
+      datetime:
+        long: 'el Monday 2 de January de 2006 3:04:05 PM'
+        short: '2/1/06 3:04 PM'
+#en:
+#  weight: 2
+#  params:
+#    formats:
+#      date:
+#        long: 'Monday, January 2, 2006'
+#        short: 1/2/06
+#      time:
+#        long: '3:04:05 PM'
+#        short: '3:04 PM'
+#      datetime:
+#        long: 'Monday, January 2, 2006 3:04:05 PM'
+#        short: '1/2/06 3:04 PM'
