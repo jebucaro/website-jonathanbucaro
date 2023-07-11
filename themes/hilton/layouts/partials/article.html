@@ -21,7 +21,7 @@
 
   <div class="article__meta">
     <div class="article-info">
-      <a href="/acerca-de/" class="article__author-link">{{.Site.Params.author.author__name}}</a> – <time class="article__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long) }}</time>
+      <time class="article__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long) }}</time>
     </div>
   </div>
 
