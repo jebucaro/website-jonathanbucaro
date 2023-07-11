@@ -2,8 +2,7 @@
 title: "Hola Mundo"
 date: 2023-07-09T17:31:43-06:00
 image: "/blog/hola-mundo/images/cover.webp"
-tags: []
-categories: [personal]
+tags: [personal]
 draft: false
 description: El inicio de esta aventura surge con la decisión de migrar mi sitio personal en Wordpress a uno estático utilizando Hugo.
 ---
