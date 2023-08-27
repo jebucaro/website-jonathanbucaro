@@ -1,6 +1,6 @@
 baseURL: 'https://jonathanbucaro.com/'
 defaultContentLanguage: es
 languageCode: es-gt
-title: Sitio personal de Jonathan Búcaro
+title: Sitio de Jonathan Búcaro
 theme: hilton
 paginate: 6
