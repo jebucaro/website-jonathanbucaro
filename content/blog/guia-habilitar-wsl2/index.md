@@ -23,7 +23,7 @@ Adicionalmente WSL2 requiere que el soporte a la virtualización de hardware se 
 ## 🛠 Configuración e Instalación
 
 ### Instala Windows Terminal
-Este paso no es extrictamente necesario, sin embargo, será de utilidad en el futuro. Puedes descargar la terminal de Windows desde la <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701" target="_blank" rel="nofollow, noindex, noreferrer">Tienda de Microsoft</a>.
+Este paso no es extrictamente necesario, sin embargo, será de utilidad en el futuro. Puedes descargar la terminal de Windows desde la <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701" target="_blank" rel="nofollow, noreferrer">Tienda de Microsoft</a>.
 
 ### Instala WSL
 Según la guía de <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" target="_blank">Microsoft</a>, es necesario habilitar las opciones `Virtual Machine Platform` y `Windows Subsystem for Linux`. Puedes acceder a estas configuraciones desde el `Panel de control` en la sección de `Programas` y en la opción `Activar o desactivar las características de Windows`.
@@ -82,5 +82,5 @@ code .
 ```
 
 ---
-Foto de <a href="https://unsplash.com/es/@eiskonen?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"  target="_blank" rel="nofollow, noindex, noreferrer">Hans Eiskonen</a> en <a href="https://unsplash.com/es/fotos/PotGJdsW06k?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@eiskonen?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"  target="_blank" rel="nofollow, noreferrer">Hans Eiskonen</a> en <a href="https://unsplash.com/es/fotos/PotGJdsW06k?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   

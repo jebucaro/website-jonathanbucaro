@@ -23,7 +23,7 @@ diskmgmt.msc
 
 Si existiera espacio entre la partición de sistema y la partición C, puedes dar clic derecho a la partición de sistema y en el menú contextual, seleccionar la opción `extender volumen…`.
 
-En mi caso no existía espacio entre la partición del sistema y la partición `C`, por lo que tuve que reducir el espacio de la partición `C` en 512 MB (más vale prevenir) y luego utilizar la herramienta <a href="http://www.partitionwizard.com/download.html" rel="nofollow, noindex, noreferrer">MiniTool Parition Wizard Free</a> para extender la partición del sistema con el espació no asignado que obtuve de reducir la particion `C`.
+En mi caso no existía espacio entre la partición del sistema y la partición `C`, por lo que tuve que reducir el espacio de la partición `C` en 512 MB (más vale prevenir) y luego utilizar la herramienta <a href="http://www.partitionwizard.com/download.html" rel="nofollow, noreferrer">MiniTool Parition Wizard Free</a> para extender la partición del sistema con el espació no asignado que obtuve de reducir la particion `C`.
 
 > ¡Advertencia, realiza el siguiente procedimiento bajo tu propio riesgo!
 
@@ -47,5 +47,5 @@ Una vez finalizado el proceso, verifica el tamaño de la partición del sistema 
 Finalizados estos pasos, podrás renaudar la instalación de Windows 10 por medio de la actualización de tu sistema operativo.
 
 ---
-Foto de <a href="https://unsplash.com/es/@jsycra?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"  rel="nofollow, noindex, noreferrer">Siyuan</a> en <a href="https://unsplash.com/es/fotos/R6anqQkl3hE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@jsycra?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Siyuan</a> en <a href="https://unsplash.com/es/fotos/R6anqQkl3hE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   

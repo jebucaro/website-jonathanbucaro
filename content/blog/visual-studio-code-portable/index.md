@@ -69,5 +69,5 @@ Windows Registry Editor Version 5.00
 ```
 
 ---
-Foto de <a href="https://unsplash.com/es/@jonasjacobsson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Jonas Jacobsson</a> en <a href="https://unsplash.com/es/fotos/1iTKoFJvJ6E?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@jonasjacobsson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Jonas Jacobsson</a> en <a href="https://unsplash.com/es/fotos/1iTKoFJvJ6E?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   

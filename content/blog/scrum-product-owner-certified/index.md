@@ -43,5 +43,5 @@ Actualmente desempeño el puesto de Ingeniero de Desarrollo Senior y puedo obser
 2. **Conflictos de roles**: Puede haber conflictos de roles si el desarrollador senior también está actuando como propietario del producto, ya que estos roles tienen responsabilidades diferentes.
 
 ---
-Foto de <a href="https://unsplash.com/@sunday_digital?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Nastuh Abootalebi</a> en <a href="https://unsplash.com/es/fotos/eHD8Y1Znfpk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/@sunday_digital?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Nastuh Abootalebi</a> en <a href="https://unsplash.com/es/fotos/eHD8Y1Znfpk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   
