@@ -19,5 +19,5 @@ En los beneficios puedo mencionar la facilidad de escribir en Markdown, la reduc
 Me he comprometido a un año con este experimento y estoy emocionado por lo que vendrá. ¿Quién sabe qué herramienta probaré después? Hasta entonces, sigue visitando mi sitio para actualizaciones y más.
 
 ---
-Foto de <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Joanna Kosinska</a> en <a href="https://unsplash.com/es/fotos/LAaSoL0LrYs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Joanna Kosinska</a> en <a href="https://unsplash.com/es/fotos/LAaSoL0LrYs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   

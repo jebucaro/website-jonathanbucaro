@@ -25,5 +25,5 @@ Una vez terminada la instalación, puedes regresar la configuración del formato
 En Windows 10 cambia la categoría en el Panel de Control. Dirigete a la categoría **Reloj y región**, selecciona la opción **Cambiar formatos de fecha, hora o número**. Los demás pasos continuan iguales.
 
 ---
-Foto de <a href="https://unsplash.com/@tompodmore86?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Tom Podmore</a> en <a href="https://unsplash.com/es/fotos/3mEK924ZuTs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/@tompodmore86?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Tom Podmore</a> en <a href="https://unsplash.com/es/fotos/3mEK924ZuTs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   
