@@ -79,5 +79,5 @@ This is JFlex 1.8.2
 ```
 
 ---
-Foto de <a href="https://unsplash.com/es/@egorghetto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" rel="nofollow, noindex, noreferrer">Eduardo Gorghetto</a> en <a href="https://unsplash.com/es/fotos/vJ3KldG86Eo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@egorghetto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Eduardo Gorghetto</a> en <a href="https://unsplash.com/es/fotos/vJ3KldG86Eo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   
