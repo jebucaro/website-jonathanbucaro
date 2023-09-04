@@ -37,5 +37,5 @@ He renovado la certificación SMC al haber aprobado el exámen de Scrum Product 
 </div>
 
 ---
-Foto de <a href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" rel="nofollow, noindex, noreferrer">İrfan Simsar</a> en <a href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noindex, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">İrfan Simsar</a> en <a href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
   
