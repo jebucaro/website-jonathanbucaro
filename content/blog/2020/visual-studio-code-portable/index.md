@@ -14,7 +14,7 @@ Los pasos son los siguientes:
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/blog/visual-studio-code-portable/images/descargar-zip.webp" loading="lazy" alt="Descargar Visual Studio Code, la opción que dice .ZIP">
+    <img src="images/descargar-zip.webp" loading="lazy" alt="Descargar Visual Studio Code, la opción que dice .ZIP">
   </div>
   <em>Descarga la versión .ZIP de Visual Studio Code</em>
 </div>

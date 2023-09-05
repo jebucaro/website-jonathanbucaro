@@ -1,7 +1,7 @@
 ---
 title: "No se pudo actualizar la partición reservada del sistema"
 date: 2015-08-05T19:19:41-06:00
-image: "blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/images/cover.webp"
+image: "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/images/cover.webp"
 tags: [windows]
 draft: false
 description: "Resuelve este mensaje de error al momento de actualizar tu sistema operativo a Windows 10."
