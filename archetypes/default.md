@@ -1,9 +1,8 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-image: "/images/"
+image: "/blog/{{ .Name }}/images/cover.webp"
 tags: []
 draft: true
-description: 
+description: ""
 ---
-
