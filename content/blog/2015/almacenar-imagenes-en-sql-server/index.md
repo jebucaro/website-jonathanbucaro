@@ -2,7 +2,7 @@
 title: "Almacenar Imágenes en SQL Server"
 date: 2015-09-23T08:19:33-06:00
 image: "/blog/almacenar-imagenes-en-sql-server/images/cover.webp"
-tags: [NET, CSHARP]
+tags: [net, csharp, mssql]
 draft: false
 description: "Aprende el concepto de cómo guardar una imagen en una base de datos MS SQL Server y posteriormente acceder a su contenido usando C#."
 ---
