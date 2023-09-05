@@ -10,7 +10,7 @@ Windows Subsystem for Linux (WSL) es una característica introducida en Windows 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/blog/guia-habilitar-wsl2/images/wsl2-ubuntu-lts.webp" loading="lazy" alt="Panel de Control">
+    <img src="images/wsl2-ubuntu-lts.webp" loading="lazy" alt="Panel de Control">
   </div>
   <em>Ubuntu 22.04 LTS en WSL2</em>
 </div>
@@ -32,7 +32,7 @@ Marca las casillas `Plataforma de máquina virtual` y `Subsistema de Windows par
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/blog/guia-habilitar-wsl2/images/wsl-panel-de-control-caracteristicas-windows.webp" loading="lazy" alt="Panel de Control">
+    <img src="images/wsl-panel-de-control-caracteristicas-windows.webp" loading="lazy" alt="Panel de Control">
   </div>
   <em>Panel de Control - Activar o desactivar las características de Windows</em>
 </div>
@@ -44,7 +44,7 @@ Reinicia tu equipo para completar la instalación de WSL.
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/blog/guia-habilitar-wsl2/images/wsl-kernel-update.webp" loading="lazy" alt="Windows Subsystem for Linux Update Setup">
+    <img src="images/wsl-kernel-update.webp" loading="lazy" alt="Windows Subsystem for Linux Update Setup">
   </div>
   <em>Actualización del kernel de WSL</em>
 </div>
@@ -59,7 +59,7 @@ wsl --set-default-version 2
 ## Instala una distribución de tu elección
 Puedes instalar desde la Tienda de Microsoft una distribución de Linux. Existen diversas versiones incluyendo <a href="https://apps.microsoft.com/store/detail/debian/9MSVKQC78PK6">Debian ➡</a>, <a href="https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW">Ubuntu  ➡</a>, <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">Kali ➡</a> entre otras.
 
-![Ubuntu LTS in the Microsoft Store](/blog/guia-habilitar-wsl2/images/microsoft-store-ubuntu-lts.webp)
+![Ubuntu LTS in the Microsoft Store](images/microsoft-store-ubuntu-lts.webp)
 
 La primera vez que ejecutes una distribución de Linux, una ventana de consola aparecerá y te pedirá que esperes unos minutos mientras se finaliza la instalación. Posteriormente te indicará que ingreses los datos para crear un nuevo usuario y contraseña.
 
@@ -68,7 +68,7 @@ La extensión permite abrir cualquier directorio dentro de WSL y tomar ventaja d
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/blog/guia-habilitar-wsl2/images/wsl-extension.webp" loading="lazy" alt="WSL Extension - VS Code">
+    <img src="images/wsl-extension.webp" loading="lazy" alt="WSL Extension - VS Code">
   </div>
   <em>Extensión WSL de Microsoft para VS Code</em>
 </div>
