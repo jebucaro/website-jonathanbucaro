@@ -4,7 +4,7 @@ date: 2019-01-06T18:09:27-06:00
 image: "/blog/scrum-master-certified/images/cover.webp"
 tags: [personal, scrum]
 draft: false
-description: Primera certificación de Scrum lograda con éxito. He sido acreditado como Scrum Master Certified.
+description: "Primera certificación de Scrum lograda con éxito. He sido acreditado como Scrum Master Certified."
 ---
 El año 2019 lo inicié con el logro de mi primera certificación, obtuve Scrum Master Certified extendida por <a href="https://www.scrumstudy.com/">SCRUMstudy ➡</a>.
 
