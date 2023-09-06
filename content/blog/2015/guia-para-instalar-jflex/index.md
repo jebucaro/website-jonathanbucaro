@@ -4,7 +4,7 @@ date: 2015-04-11T10:01:20-06:00
 image: "/blog/guia-para-instalar-jflex/images/cover.webp"
 tags: [java]
 draft: false
-description: "JFlex es una herramienta que ofrece una gran cantidad de características para ayudar a crear analizadores léxicos de manera rápida y eficiente"
+description: "JFlex es una herramienta que ofrece una gran cantidad de características para ayudar a crear analizadores léxicos de manera rápida y eficiente."
 ---
 JFlex es una herramienta de análisis léxico para Java y escrito en Java. Está diseñada para generar analizadores léxicos a partir de una descripción de lenguaje léxico en formato de cadena. El proceso de instalación es bastante sencillo, a continuación se detallan los pasos para poder realizar una instalación exitosa.
 

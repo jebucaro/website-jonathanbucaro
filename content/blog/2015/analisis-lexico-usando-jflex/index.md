@@ -4,7 +4,7 @@ date: 2015-04-26T17:37:28-06:00
 image: "/blog/analisis-lexico-usando-jflex/images/cover.webp"
 tags: [java]
 draft: false
-description: "Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo definir expresiones regulares y tokens personalizados"
+description: "Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo definir expresiones regulares y tokens personalizados."
 ---
 Cuando era estudiante de la Universidad en un semestre tenía asignado una tarea sobre el Análisis Léxico, necesitaba un ejemplo en donde se pudiera apreciar la parte de análisis léxico sin incluir la parte correspondiente al análisis sintáctico.
 

@@ -4,7 +4,7 @@ date: 2021-01-30T06:37:04-06:00
 image: "/blog/scrum-product-owner-certified/images/cover.webp"
 tags: [personal, scrum]
 draft: false
-description: Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC.
+description: "Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC."
 ---
 Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Owner Certified avalada por Scrumstudy. ¿Todavía es enero verdad 😉?
 
