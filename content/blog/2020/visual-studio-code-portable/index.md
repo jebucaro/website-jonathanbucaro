@@ -4,7 +4,7 @@ date: 2020-03-22T15:38:29-06:00
 image: "/blog/visual-studio-code-portable/images/cover.webp"
 tags: [visual-studio-code]
 draft: false
-description: Configura Visual Studio Code y sus extensiones para su uso en un equipo o servidor sin acceso a Internet 
+description: "Configura Visual Studio Code y sus extensiones para su uso en un equipo o servidor sin acceso a Internet."
 ---
 Recientemente me vi en la necesidad de instalar Visual Studio Code en un servidor Windows Server sin conexión a Internet. Tomando en cuenta que Visual Studio Code puede extender su funcionalidad por medio de la descarga de extensiones, poder descargarlas y configurarlas previamente para su uso fuera de línea.
 

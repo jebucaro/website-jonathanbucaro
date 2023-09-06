@@ -4,7 +4,7 @@ date: 2020-09-14T19:56:03-06:00
 image: "/blog/guia-habilitar-wsl2/images/cover.webp"
 tags: [windows, wsl]
 draft: false
-description: "Descubre como instalar WSL2 en tu PC Windows y experimenta con las funcionalidades de un sistema Linux en tu escritorio"
+description: "Descubre como instalar WSL2 en tu PC Windows y experimenta con las funcionalidades de un sistema Linux en tu escritorio."
 ---
 Windows Subsystem for Linux (WSL) es una característica introducida en Windows 10 que permite ejecutar aplicaciones de Linux directamente en Windows mediante el uso de una capa intermedia. WSL2 ofrece mejoras significativas en comparación con la primera versión, como por ejemplo, una mayor velocidad y compatibilidad con aplicaciones de Linux más complejas.
 
