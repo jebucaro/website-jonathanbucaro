@@ -19,6 +19,10 @@ main:
     name: Acerca de
     url: /acerca-de/
     weight: 10
+  - parent: pages
+    name: Lista Imposible
+    url: /mi-lista-imposible/
+    weight: 20
   # - parent: pages
   #   name: Contacto
   #   url: /contact/
@@ -40,6 +44,10 @@ footer:
     name: Acerca de
     url: /acerca-de/
     weight: 40
+  - identifier: impossible
+    name: Lista Imposible
+    url: /mi-lista-imposible/
+    weight: 50
   # - identifier: contact
   #   name: Contacto
   #   url: /contact/
