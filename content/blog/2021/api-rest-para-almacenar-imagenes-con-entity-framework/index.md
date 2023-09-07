@@ -4,7 +4,7 @@ date: 2021-08-19T06:51:49-06:00
 image: "/blog/api-rest-para-almacenar-imagenes-con-entity-framework/images/cover.webp"
 tags: [net, csharp, mssql]
 draft: false
-description: ""
+description: "Utiliza Entity Framework para guardar una imagen en una base de datos MS SQL Server en una API REST en C#."
 ---
 Almacenar una imagen en base de datos siempre ha sido un tema de controversia en distintos sitios y foros, sin embargo este tema es el más solicitado en mi blog.
 
