@@ -9,8 +9,8 @@ description: "Descubre cómo configurar un entorno Python en Ubuntu en WSL2. Apr
 
 ## 📌 Requisitos
 
-+ <a href="/blog/guia-habilitar-wsl2">Poseer WSL2 instalado preferiblemente la distribución Ubuntu LTS</a>, al momento de la escritura de este artículo es la 20.04. Esta guía fue verificada contra la nueva versión LTS 22.04.
-+ Visual Studio Code instalado en Windows con la extensión <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">Remote – WSL Extension</a>.
++ <a href="/blog/guia-habilitar-wsl2">Poseer WSL2 instalado preferiblemente la distribución Ubuntu LTS ➡</a>, al momento de la escritura de este artículo es la 20.04. Esta guía fue verificada contra la nueva versión LTS 22.04.
++ Visual Studio Code instalado en Windows con la extensión <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">Remote – WSL Extension ➡</a>.
 + Ingresa a tu distribución WSL y actualiza los repositorios e instalar las últimas actualizaciones.
 
 ```bash
@@ -113,7 +113,7 @@ git config --list
 
 El archivo `.gitignore` actúa como un archivo de configuración, el cual le indica a `Git` que excluya ciertos tipos de archivos o carpetas en el control de versiones. Uno de estos directorios debería ser el correspondiente al ambiente virtual creado con el comando `venv`.
 
-En <a href="https://github.com/github/gitignore" target="_blank">GitHub existe un repositorio</a> de archivos `.gitignore` en donde la configuración correspondiente a <a href="https://github.com/github/gitignore/blob/master/Python.gitignore" target="_blank">Python</a> toma en consideración diversos nombres de carpetas estándar para ambientes virtuales, entre ellos la carpeta `.venv`.
+En <a href="https://github.com/github/gitignore" target="_blank">GitHub existe un repositorio ➡</a> de archivos `.gitignore` en donde la configuración correspondiente a <a href="https://github.com/github/gitignore/blob/master/Python.gitignore" target="_blank">Python ➡</a> toma en consideración diversos nombres de carpetas estándar para ambientes virtuales, entre ellos la carpeta `.venv`.
 
 Manualmente, puedes descargar el archivo con el siguiente comando.
 
@@ -126,7 +126,7 @@ En caso prefieras usar `wget` usa el siguiente comando en vez.
 wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
 ```
 
-Existe una extensión de Visual Studio Code llamada <a href="https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore" target="_blank">gitignore por CodeZombie</a> para poder descargar el archivo `.gitignore` de algún lenguaje que se encuentre en el repositorio de GitHub, esto con el comando `Ctrl+Shift+P` y luego empezar a escribir `Add gitignore`.
+Existe una extensión de Visual Studio Code llamada <a href="https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore" target="_blank">gitignore por CodeZombie ➡</a> para poder descargar el archivo `.gitignore` de algún lenguaje que se encuentre en el repositorio de GitHub, esto con el comando `Ctrl+Shift+P` y luego empezar a escribir `Add gitignore`.
 
 <div class="gallery-box">
   <div class="gallery">
@@ -183,7 +183,7 @@ La nueva estructura del proyecto será similar a la siguiente:
         +--README.md
 ```
 
-Crea tu primer `commit`, el cual corresponderá al inicio del proyecto. En mi caso me es de mucho agrado utilizar la convención <a href="https://gitmoji.dev/" target="_blank">Gitmoji</a>, por lo que esta será la utilizada para el mensaje del `commit` inicial.
+Crea tu primer `commit`, el cual corresponderá al inicio del proyecto. En mi caso me es de mucho agrado utilizar la convención <a href="https://gitmoji.dev/" target="_blank">Gitmoji ➡</a>, por lo que esta será la utilizada para el mensaje del `commit` inicial.
 
 Procede a agregar los archivos `.gitignore`, `README.md` y `__main__.py`.
 
@@ -209,7 +209,7 @@ Se abrirá el editor Visual Studio Code mostrando el contenido de la carpeta del
 
 #### Instalar extensiones
 
-Instala el pack de extensiones <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python</a> de `Microsoft` asegurandote de instalar dentro de WSL2. La instrucción dirá algo simiar a `Install in WSL: Ubuntu-20.04` o `Install in WSL: Ubuntu-22.04`, por ejemplo.  
+Instala el pack de extensiones <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python ➡</a> de `Microsoft` asegurandote de instalar dentro de WSL2. La instrucción dirá algo simiar a `Install in WSL: Ubuntu-20.04` o `Install in WSL: Ubuntu-22.04`, por ejemplo.  
 
 <div class="gallery-box">
   <div class="gallery">
