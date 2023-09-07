@@ -24,7 +24,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
 Si java se encuentra instalado y configurado correctamente, el resultado de mostrará la información de la versión de java instalada en el equipo. De lo contrario deberás verificar la instalación. Normalmente se debe a que no se ha agregado la carpeta bin de java al path de las variables de entorno.
 
 ## 📦 Descargar JFlex
-Visita el sitio de JFlex y <a href="https://jflex.de/download.html" target="_blank" rel="nofollow" title="Sitio de descargas de JFlex">descarga</a> el archivo comprimido correspondiente a la última versión de JFlex.
+Visita el sitio de JFlex y <a href="https://jflex.de/download.html" target="_blank" rel="nofollow" title="Sitio de descargas de JFlex">descarga ➡</a> el archivo comprimido correspondiente a la última versión de JFlex.
 
 ## 🔧 Configurar JFlex
 Extrae el contenido del archivo a un directorio la cual será considerado como el directorio de instalación. En este ejemplo se utilizará el drive C. El contenido de la versión descargada en este ejemplo es la 1.8.2.
