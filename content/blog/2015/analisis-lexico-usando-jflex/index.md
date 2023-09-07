@@ -9,7 +9,7 @@ description: "Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo de
 Cuando era estudiante de la Universidad en un semestre tenía asignado una tarea sobre el Análisis Léxico, necesitaba un ejemplo en donde se pudiera apreciar la parte de análisis léxico sin incluir la parte correspondiente al análisis sintáctico.
 
 ## 📌 Requisitos
-Para proceder es necesario tener Java y <a href="/blog/guia-para-instalar-jflex">JFlex instalado y configurado</a> adecuadamente.
+Para proceder es necesario tener Java y <a href="/blog/guia-para-instalar-jflex">JFlex instalado y configurado ➡</a> adecuadamente.
 
 ## 🤖 Código
 ### CustomYytoken

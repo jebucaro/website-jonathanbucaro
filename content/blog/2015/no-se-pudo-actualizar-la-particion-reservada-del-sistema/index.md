@@ -23,7 +23,7 @@ diskmgmt.msc
 
 Si existiera espacio entre la partición de sistema y la partición C, puedes dar clic derecho a la partición de sistema y en el menú contextual, seleccionar la opción `extender volumen…`.
 
-En mi caso no existía espacio entre la partición del sistema y la partición `C`, por lo que tuve que reducir el espacio de la partición `C` en 512 MB (más vale prevenir) y luego utilizar la herramienta <a href="http://www.partitionwizard.com/download.html" rel="nofollow, noreferrer">MiniTool Parition Wizard Free</a> para extender la partición del sistema con el espació no asignado que obtuve de reducir la particion `C`.
+En mi caso no existía espacio entre la partición del sistema y la partición `C`, por lo que tuve que reducir el espacio de la partición `C` en 512 MB (más vale prevenir) y luego utilizar la herramienta <a href="http://www.partitionwizard.com/download.html" rel="nofollow, noreferrer">MiniTool Parition Wizard Free ➡</a> para extender la partición del sistema con el espació no asignado que obtuve de reducir la particion `C`.
 
 > ¡Advertencia, realiza el siguiente procedimiento bajo tu propio riesgo!
 
