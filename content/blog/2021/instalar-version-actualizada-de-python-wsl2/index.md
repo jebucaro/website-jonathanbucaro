@@ -71,7 +71,7 @@ Ahora ya dispones de la última versión estable de Python en WSL2 usuando Ubunt
 
 ## ⚠️ Consideraciones Adicionales
 
-Según la descripción en el <a href="https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa" target="_blank">PPA de deadsnakes</a>, los paquetes proveídos poseen algunas modificacioens. Los paquetes siguen los patrones de debian y a menudo no incluyen una distribución completa de python con solo `apt install python#.#`. Aquí hay una lista de paquetes que pueden ser útiles junto con la instalación predeterminada:
+Según la descripción en el <a href="https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa" target="_blank">PPA de deadsnakes ➡</a>, los paquetes proveídos poseen algunas modificacioens. Los paquetes siguen los patrones de debian y a menudo no incluyen una distribución completa de python con solo `apt install python#.#`. Aquí hay una lista de paquetes que pueden ser útiles junto con la instalación predeterminada:
 
 + `python#.#-dev`: incluye encabezados de desarrollo para construir extensiones de C
 + `python#.#-venv`: provee la librería estandar, modulo `venv`

@@ -23,10 +23,10 @@ Adicionalmente WSL2 requiere que el soporte a la virtualización de hardware se 
 ## 🛠 Configuración e Instalación
 
 ### Instala Windows Terminal
-Este paso no es extrictamente necesario, sin embargo, será de utilidad en el futuro. Puedes descargar la terminal de Windows desde la <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701" target="_blank" rel="nofollow, noreferrer">Tienda de Microsoft</a>.
+Este paso no es extrictamente necesario, sin embargo, será de utilidad en el futuro. Puedes descargar la terminal de Windows desde la <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701" target="_blank" rel="nofollow, noreferrer">Tienda de Microsoft ➡</a>.
 
 ### Instala WSL
-Según la guía de <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" target="_blank">Microsoft</a>, es necesario habilitar las opciones `Virtual Machine Platform` y `Windows Subsystem for Linux`. Puedes acceder a estas configuraciones desde el `Panel de control` en la sección de `Programas` y en la opción `Activar o desactivar las características de Windows`.
+Según la guía de <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" target="_blank">Microsoft ➡</a>, es necesario habilitar las opciones `Virtual Machine Platform` y `Windows Subsystem for Linux`. Puedes acceder a estas configuraciones desde el `Panel de control` en la sección de `Programas` y en la opción `Activar o desactivar las características de Windows`.
 
 Marca las casillas `Plataforma de máquina virtual` y `Subsistema de Windows para Linux` y da clic en el botón Aceptar.
 
@@ -40,7 +40,7 @@ Marca las casillas `Plataforma de máquina virtual` y `Subsistema de Windows par
 Reinicia tu equipo para completar la instalación de WSL.
 
 ### Paquete de actualización del kernel de Linux
-<a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package" target="_blank">Descarga</a> la última versión del kernel de Linux de acuerdo a la arquitectura de tu procesador, x64 o ARM64.
+<a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package" target="_blank">Descarga ➡</a> la última versión del kernel de Linux de acuerdo a la arquitectura de tu procesador, x64 o ARM64.
 
 <div class="gallery-box">
   <div class="gallery">
