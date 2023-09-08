@@ -28,7 +28,17 @@
         "type": 301
       },
       {
+        "source": "/2020/10/21/configura-un-ambiente-de-python-en-wsl2/comment-page-1/",
+        "destination": "/blog/configura-un-ambiente-python-en-wsl2/",
+        "type": 301
+      },
+      {
         "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/",
+        "destination": "/blog/almacenar-imagenes-en-sql-server/",
+        "type": 301
+      },
+      {
+        "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/comment-page-1/",
         "destination": "/blog/almacenar-imagenes-en-sql-server/",
         "type": 301
       },
@@ -53,7 +63,17 @@
         "type": 301
       },
       {
+        "source": "/2015/04/26/analisis-lexico-usando-jflex/comment-page-1/",
+        "destination": "/blog/analisis-lexico-usando-jflex/",
+        "type": 301
+      },
+      {
         "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/",
+        "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
+        "type": 301
+      },
+      {
+        "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/comment-page-1/",
         "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
         "type": 301
       },
@@ -64,6 +84,11 @@
       },
       {
         "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
+        "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
+        "type": 301
+      },
+      {
+        "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/comment-page-1/",
         "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
         "type": 301
       },
@@ -82,12 +107,39 @@
       {
         "source": "**",
         "headers" : [
-          { "key" : "Content-Security-Policy", "value" : "default-src 'self' www.googletagmanager.com; style-src 'unsafe-inline' unpkg.com fonts.googleapis.com; script-src: 'unsafe-inline'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content" }, 
+          { "key" : "Content-Security-Policy", "value" : "default-src 'self' https:; style-src 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content" }, 
           { "key" : "X-Frame-Options", "value" : "SAMEORIGIN" }, 
           { "key" : "X-Content-Type-Options", "value" : "nosniff" }, 
           { "key" : "Referrer-Policy", "value" : "strict-origin-when-cross-origin" }, 
           { "key" : "Permissions-Policy", "value" : "geolocation=()" }, 
           { "key" : "Cache-Control", "value" : "public, max-age=3600" }
+        ]
+      },
+      {
+        "source": "/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=180, public"
+          }
+        ]
+      },
+      {
+        "source": "/**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600, public"
+          }
+        ]
+      },
+      {
+        "source": "/js/*.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=604800, public"
+          }
         ]
       }
     ]
