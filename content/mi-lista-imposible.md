@@ -15,6 +15,7 @@ Mi lista imposible, una lista de experiencias y logros que evolucionarán confor
 
 + ~~Aprender a cocinar~~.   
 Completado el día 12 de junio del 2017, finalicé el curso de NuChef **Curso de Cocina de Inexperto a Experto**.
++ Bajar de peso y mantenerlo. Actualmente peso 195 lbs, mi peso ideal es 180 lbs.
 + Aprender a nadar.
 
 ## 👨‍🎓 Educación
@@ -27,26 +28,32 @@ Completado el 11 de octubre del 2018.
 Completado el 20 de octubre del 2019.
 + ~~Obtener la certificación de Scrum Master Certified~~.   
 Completado el día 06 de enero del 2019.   
-Certificación renovada el día 29 de enero del 2021. <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367">Licencia 678367</a>.
+Certificación renovada el día 29 de enero del 2021. <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank">Licencia 678367 ➡</a>.
 + ~~Graduarme de Ingeniero en Sistemas~~.   
 Completado el día 20 de enero del 2023.
 + ~~Inscribirme en el Colegio de Ingenieros~~.   
-Completado el día 23 de junio del 2023. Colegiado No. 21467.
+Completado el día 23 de junio del 2023. <a href="https://colegiado.cig.org.gt/Reports/EstadoColegiado" target="_blank">Colegiado No. 21467 ➡</a>.
 + ~~Obtener la certificación Product Owner Certified de Scrumstudy~~.   
-Completado el día 29 de enero del 2021. <a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364">Licencia 775364</a>.
+Completado el día 29 de enero del 2021. <a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">Licencia 775364 ➡</a>.
 + ~~Completar el curso Kubernetes and Cloud Native Essentials~~.   
-Completado el día 26 de agosto del 2023. <a href="https://www.credly.com/badges/d0856a29-39e8-4b82-8cd5-47eebcd64186">Certificado LF-m9de4gh8ve</a>.
+Completado el día 26 de agosto del 2023. <a href="https://www.credly.com/badges/d0856a29-39e8-4b82-8cd5-47eebcd64186" target="_blank">Certificado LF-m9de4gh8ve ➡</a>.
++ Obtener la certificación Kubernetes and Cloud Native Associate (KCNA).
 + Obtener una certificación de desarrollo en la nube.
 
 ## ⚒️ Trabajo
 
 + ~~Cerrar un capítulo de 15 años~~.   
-Presenté mi renuncia el viernes 18 de agosto del 2023, mi último día fue el 1 de septiembre del 2023.
-+ Trabajar remoto para una empresa en el extranjero.
+Presenté mi renuncia a Banco G&T Continental el viernes 18 de agosto del 2023, mi último día fue el 1 de septiembre del 2023.
++ ~~Trabajar remoto para una empresa del extranjero~~.   
+Obtuve un trabajo como contratista en <a href="https://www.linkedin.com/company/cognits" target="_blank">Cognits ➡ </a> como Full Stack Engineer el 16 de octubre del 2023.  
++ Obtener una mejora salarial o un nuevo empleo.
++ Trabajar en una empresa que me permita viajar por el mundo.
+
 
 ## 🕴️ Emprendimiento
 
-+ Publicar una nueva versión de mi sitio personal.
++ ~~Publicar una nueva versión de mi sitio personal~~.   
+He migrado de usar wordpress a nuevo sitio utiliza goHugo.io el 7 de septiembre del 2023.   
 + Crear mi propia agencia.
 + Crear un curso en línea.
 + Publicar un libro electrónico.
