@@ -4,18 +4,21 @@ color_scheme: auto
 author:
   author__name: Jonathan Búcaro
   author__bio: >-
-    Ingeniero en Sistemas, Planeswalker. Escribo sobre mis experiencias en la industria de la tecnología, momentos que capturan el aprendizaje significativo que ha moldeado mi crecimiento profesional.
+    Ingeniero en Sistemas, Planeswalker. Escribo sobre mi experiencia en la industria de la tecnología, momentos que capturan el aprendizaje que ha moldeado mi crecimiento profesional.
   author__avatar: '/images/perfil.webp'
 social:
+  - icon: ion-logo-linkedin
+    name: LinkedIn
+    link: 'https://www.linkedin.com/in/jonathanbucaro/'
+  - icon: ion-logo-github
+    name: Github
+    link: 'https://github.com/jebucaro'
   - icon: ion-logo-twitter
     name: Twitter
     link: 'https://twitter.com/jebucaro'
   - icon: ion-logo-instagram
     name: Instagram
     link: 'https://instagram.com/jebucaro'
-  - icon: ion-logo-github
-    name: Github
-    link: 'https://github.com/jebucaro'
 hero:
   enable: true
   hero__title: 'Soy Jonathan 🤓'
