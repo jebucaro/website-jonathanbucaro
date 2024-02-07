@@ -4,18 +4,20 @@ date: 2023-07-09T11:08:22-06:00
 draft: false
 ---
 
-¡Hola! Soy Jonathan Búcaro, un Ingeniero en Sistemas que actualmente reside en Guatemala 🇬🇹.
+¡Hola! Mi nombre es Jonathan Búcaro, soy un Ingeniero en Sistemas que actualmente reside en Guatemala 🇬🇹.
 
-Mi viaje profesional me ha llevado a explorar el mundo de las instituciones bancarias durante más de trece años, desempeñando distintos roles desde contribuyente individual hasta convertirme en líder técnico. Me especializo en los lenguajes C# y Python, creando principalmente soluciones de back-end como servicios, automatización de procesos, ETLs y tareas en segundo plano.
+Laboré en **Banco G&T Continental** por un período de trece años en el área de tecnología. Tuve la oportunidad de crecer en diferentes roles y puestos de trabajo, iniciando como programador hasta llegar al rol de Líder Técnico en el puesto de Ingeniero de Desarrollo Senior.
 
-Como Líder Técnico, he tenido el privilegio de colaborar con diversos equipos de desarrollo de software. Asimismo, he dedicado mi tiempo a la capacitación de nuevos empleados, lo cual ha ocasionado una disminución significativa del lapso de formación y un aumento en la eficiencia en general.
+Como líder técnico, he tenido el privilegio de colaborar con diversos equipos de desarrollo de software. Adicionalmente, fui asignado a la capacitación de nuevo personal, logrando una reducción significativa del período de adaptación y un aumento en la eficiencia en general.
 
-Disfruto seguir aprendiendo y adquirir nuevas habilidades, considero de importancia poner a prueba constantemente mis conocimientos.
+Me especializo en los lenguajes `C#` y `Python`, creando principalmente soluciones de back-end como APIs, automatización de procesos, ETLs y tareas en segundo plano.
+
+Disfruto del aprendizaje continuo y de adquirir nuevas habilidades. Considero que es importante poner a prueba constantemente mis conocimientos 🤓.
 
 > El mayor enemigo del conocimiento no es la ignorancia, es la ilusión del conocimiento
 >
 > <cite>– Daniel J. Boorstin</cite>
 
-Recientemente, he estado fascinado por el desarrollo de chatbots, realizando desarrollos personalizados e integración con otros servicios, principalmente en la plataforma ManyChat.
+Actualmente laboro como contratista en **Cognits**, desarrollando aplicaciones como Windows Services en `C#` y crando APIs en `Java Spring Boot` en AWS.
 
 Conversa conmigo en <a href="https://twitter.com/jebucaro" target="_blank" rel="nofollow" title="Sígueme en Twitter">@jebucaro</a>
