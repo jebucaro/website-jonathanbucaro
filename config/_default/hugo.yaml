@@ -4,3 +4,12 @@ languageCode: es-gt
 title: Sitio de Jonathan Búcaro
 theme: hilton
 paginate: 6
+build:
+  writeStats: true
+  processing:
+    css:
+      minify: true
+      postcss: true
+    sass:
+      enable: true
+      outputStyle: compressed
