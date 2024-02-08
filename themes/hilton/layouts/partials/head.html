@@ -56,8 +56,10 @@
   </script>
 
   <!-- CSS -->
-  {{ with resources.Get "sass/main.scss" | toCSS | minify }}
-  <style>{{ .Content | safeCSS }}</style>
+  {{ $css := resources.Get "sass/main.scss" | toCSS | minify }}
+  {{ if $css }}
+    <link rel="stylesheet" href="{{ $css.Permalink }}">
   {{ end }}
+
 
 </head>
