@@ -1,2 +1,10 @@
 <!-- Redirect to homepage -->
-<script>window.location.replace("{{ site.BaseURL | relLangURL }}");</script>
+{{ $redirectjs := resources.Get "js/redirect.js.html" }}
+{{ $data := dict "Site" .Site }}
+{{ $template := $redirectjs | resources.ExecuteAsTemplate "redirect.js.html" $data }}
+{{ $redirectjsContent := $template | resources.Minify | resources.Fingerprint }}
+{{ if hugo.IsServer }}
+<script>{{ $redirectjsContent.Content | safeJS }}</script>
+{{ else }}
+<script src="{{ $redirectjsContent.Permalink }}"></script>
+{{ end }}

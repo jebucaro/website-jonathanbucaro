@@ -35,26 +35,13 @@
 
   <link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet">
 
-  <script>
-    {{ if eq .Site.Params.color_scheme "auto" }}
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add('dark-mode');
-    }
-    {{ else if eq .Site.Params.color_scheme "light" }}
-      document.documentElement.setAttribute("light", "");
-      document.documentElement.classList.add('light-mode');
-    {{ else if eq .Site.Params.color_scheme "dark" }}
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add('dark-mode');
-    {{ else }}
-    if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.setAttribute("dark", "");
-      document.documentElement.classList.add('dark-mode');
-    }
-    {{ end }}
-  </script>
-
+  {{ $themejs := resources.Get "js/theme.js" }}
+  {{ if hugo.IsServer }}
+  <script src="{{ $themejs.Permalink }}"></script>
+  {{ else }}
+  <script src="{{ ($themejs | minify | fingerprint).RelPermalink }}"></script>
+  {{ end }}
+  
   <!-- CSS -->
   {{ $css := resources.Get "sass/main.scss" | toCSS | minify }}
   {{ if $css }}
