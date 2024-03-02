@@ -232,6 +232,22 @@
         background-color: darken(#bd081c, 10%);
       }
     }
+
+    &.share__linkedin {
+      background-color: #0077b5;
+
+      &:hover {
+        background-color: darken(#0077b5, 10%);
+      }
+    }
+
+    &.share__whatsapp {
+      background-color: #128c7e;
+
+      &:hover {
+        background-color: darken(#128c7e, 10%);
+      }
+    }
   }
 
   @media only screen and (max-width: $mobile) {
