@@ -1,7 +1,7 @@
 ---
 title: "Gestiona diferentes versiones de Java con SDKMAN"
 date: 2024-03-19T13:40:42-06:00
-image: "/blog/sdkman/images/cover.webp"
+image: "/blog/gestiona-versiones-de-java-con-sdkman/images/cover.webp"
 tags: [java]
 draft: false
 description: "Piensa en SDKMAN como tu amigable herramienta de trabajo, lista para simplificar la gestión de SDK para ti."
