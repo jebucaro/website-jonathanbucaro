@@ -3,7 +3,7 @@ title: "Instala múltiples versiones de Python con pyenv"
 date: 2024-03-29T09:32:54-06:00
 image: "/blog/instala-multiples-versiones-de-python-con-pyenv/images/cover.webp"
 tags: [windows, linux, python]
-draft: true
+draft: false
 description: "pyenv es una herramienta simple y discreta que permite cambiar fácilmente entre multiples versiones de Python."
 ---
 
