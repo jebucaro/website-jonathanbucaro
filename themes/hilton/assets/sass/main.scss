@@ -22,7 +22,8 @@
 :: 3-Modules
     3.1-Header
     3.2-Pagination
-    3.3-Buttons
+    3.3.1-Logos
+    3.3.2-Buttons
     3.4-Gallery
     3.5-Hero
     3.6-Article
@@ -77,7 +78,9 @@
 @import '3-modules/header';
 /* >>>>>>>>>>>>>> :: 3.2-Pagination <<<<<<<<<<<<<<< */
 @import '3-modules/pagination';
-/* >>>>>>>>>>>>>> :: 3.3-Buttons <<<<<<<<<<<<<<< */
+/* >>>>>>>>>>>>>> :: 3.3.1-Logos <<<<<<<<<<<<<<< */
+@import '3-modules/logos';
+/* >>>>>>>>>>>>>> :: 3.3.2-Buttons <<<<<<<<<<<<<<< */
 @import '3-modules/buttons';
 /* >>>>>>>>>>>>>> :: 3.4-Gallery <<<<<<<<<<<<<<< */
 @import '3-modules/gallery';
