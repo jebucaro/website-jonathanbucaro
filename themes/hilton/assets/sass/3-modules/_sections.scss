@@ -8,6 +8,11 @@
   }
 }
 
+.section-small {
+  max-width: 840px;
+  margin: 0 auto;
+}
+
 .section__info {
   max-width: 530px;
   margin: 0 auto 48px;
@@ -26,6 +31,14 @@
   @media only screen and (max-width: $mobile) {
     font-size: 36px;
   }
+}
+
+.section__small__title {
+  margin-bottom: 20px;
+  font-size: 21px;
+  font-weight: normal;
+  text-align: center;
+  color: var(--text-alt-color-2);
 }
 
 .section__description {

@@ -24,7 +24,7 @@ hero:
   hero__title: 'Soy Jonathan 🤓'
   hero__subtitle: '¡Crearé servicios que te brinden valor!'
   hero__description: >-
-    Como Ingeniero experimentado en C# y Python, estoy comprometido a ofrecer soluciones de primera calidad que superarán tus expectativas.
+    Como Ingeniero en Sistemas experimentado en C# y Python, estoy comprometido a ofrecer soluciones de primera calidad que superarán tus expectativas.
   hero__image: '/images/perfil.webp'
 mailchimp:
   enable: false
@@ -97,3 +97,13 @@ contact:
 disqus:
   enable: false
   disqusShortname: anvodstudio-demo
+logos:
+  enable: true
+  logos__title: "Mi experiencia profesional incluye colaboraciones con las siguientes compañías:"
+logo_item:
+  - name: "Banco G&T Continental"
+    link: "https://gtc.com.gt/"
+    image: "/images/gyt-logo.webp"
+  - name: "Cognits"
+    link: "https://cognits.co/"
+    image: "/images/cognits-logo.webp"

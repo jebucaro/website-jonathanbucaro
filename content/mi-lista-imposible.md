@@ -50,6 +50,8 @@ Completado el día 29 de enero del 2024. <a href="https://www.scrumstudy.com/cer
 Presenté mi renuncia a <a href="https://www.linkedin.com/company/banco-g-t-continental/" target="_blank">Banco G&T Continental ➡ </a> el viernes 18 de agosto del 2023, mi último día fue el 1 de septiembre del 2023.
 + ~~Trabajar remoto para una empresa del extranjero~~.   
 Obtuve un trabajo como contratista en <a href="https://www.linkedin.com/company/cognits" target="_blank">Cognits ➡ </a> como Full Stack Engineer el 16 de octubre del 2023.  
++ ~~Obtener una mejora salarial o un nuevo empleo.~~   
+Obtuve una mejora salarial a los seis meses de iniciar a laborar en Cognits.
 + Obtener una mejora salarial o un nuevo empleo.
 + Trabajar en una empresa que me permita viajar por el mundo.
 
@@ -57,7 +59,7 @@ Obtuve un trabajo como contratista en <a href="https://www.linkedin.com/company/
 ## 🕴️ Emprendimiento
 
 + ~~Publicar una nueva versión de mi sitio personal~~.   
-He migrado de usar wordpress a nuevo sitio utiliza goHugo.io el 7 de septiembre del 2023.   
+He migrado de usar `wordpress` a nuevo sitio utiliza la tecnología de `gohugo.io` el 7 de septiembre del 2023.   
 + Crear mi propia agencia.
 + Crear un curso en línea.
 + Publicar un libro electrónico.
