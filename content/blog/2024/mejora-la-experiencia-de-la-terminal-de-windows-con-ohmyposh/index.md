@@ -267,6 +267,7 @@ Con la configuración anterior tendrás `PSReadLine` activo con los siguientes b
 + El cursor se desplazará al final de la instrucción cuando navegas por el historial.
 + Podrás navegar por el historial con las teclas del cursor arriba y abajo, es decir que si ya escribiste algún texto, buscará el texto ingresado mientras navegas en el historial.
 + Presionando la tecla `Ctrl` y las teclas del cursor derecha o izquierda, puedes desplazarte por las palabras de la instrucción.
++ Presionando la combinación de teclas `Ctrl + l` puedes limpiar la pantalla de la terminal.
 
 Puedes validar las combinaciones de teclas por defecto con el siguiente comando.
 
