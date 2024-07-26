@@ -243,7 +243,7 @@ Una vez instalada, actualiza tu perfil para activar el módulo.
 code $PROFILE
 ```
 
-Coloca al inicio del archivo la siguiente configuración. Te permitirá adicionalmente mover el cursor al final de la instrucción cuando navegas por el historial, navegar por el historial con las teclas de cursor arriba y abajo, sin embargo, si ya escribiste algún texto buscará el texto ingresado mientras navegas en el historial.
+Coloca al inicio del archivo la siguiente configuración, guarda los cambios.
 
 ```powershell
 Import-Module PSReadLine
@@ -259,7 +259,16 @@ Una vez guardados los cambios, refresca tu perfil.
 . $PROFILE
 ```
 
-Con la configuración anterior tendrás `PSReadLine` activo. Tu terminal tendrá colores de sintaxis para los comandos y sus argumentos, historia de comandos, búsqueda, completado de comandos y combinaciones de teclas configurables. Puedes validar las combinaciones de teclas por defecto con el siguiente comando.
+Con la configuración anterior tendrás `PSReadLine` activo con los siguientes beneficios:
+
++ Tu terminal tendrá colores de sintaxis para los comandos y sus argumentos.
++ Historial y completado de comandos.
++ Combinaciones de teclas configurables.
++ El cursor se desplazará al final de la instrucción cuando navegas por el historial.
++ Podrás navegar por el historial con las teclas del cursor arriba y abajo, es decir que si ya escribiste algún texto, buscará el texto ingresado mientras navegas en el historial.
++ Presionando la tecla `Ctrl` y las teclas del cursor derecha o izquierda, puedes desplazarte por las palabras de la instrucción.
+
+Puedes validar las combinaciones de teclas por defecto con el siguiente comando.
 
 ```powershell
 Get-PSReadLineKeyHandler
