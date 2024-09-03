@@ -1,11 +1,12 @@
 ---
-title: "Scrum Product Owner"
+title: 'Scrum Product Owner'
 date: 2021-01-30T06:37:04-06:00
-image: "/blog/scrum-product-owner-certified/images/cover.webp"
+image: '/blog/scrum-product-owner-certified/images/cover.webp'
 tags: [personal, scrum]
 draft: false
-description: "Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC."
+description: 'Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC.'
 ---
+
 Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Owner Certified avalada por Scrumstudy. ¿Todavía es enero verdad 😉?
 
 <div class="gallery-box">
@@ -16,6 +17,7 @@ Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Ow
 </div>
 
 ## 🤔 ¿Por qué Product Owner?
+
 Antes de iniciar formalmente mi carrera en la tecnología, trabajé como receptor pagador por dos años aproximadamente. Conocer el negocio fue un factor significativo que me permitió ser seleccionado para desarrollar proyectos prioritarios o de gran visibilidad para el grupo financiero.
 
 Actualmente desempeño el puesto de Ingeniero de Desarrollo Senior y puedo observar que cada día codifico menos, incluso al capacitar al nuevo personal me enfoco en que comprendan los procesos del negocio.
@@ -43,5 +45,5 @@ Actualmente desempeño el puesto de Ingeniero de Desarrollo Senior y puedo obser
 2. **Conflictos de roles**: Puede haber conflictos de roles si el desarrollador senior también está actuando como propietario del producto, ya que estos roles tienen responsabilidades diferentes.
 
 ---
+
 Foto de <a href="https://unsplash.com/@sunday_digital?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Nastuh Abootalebi</a> en <a href="https://unsplash.com/es/fotos/eHD8Y1Znfpk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  

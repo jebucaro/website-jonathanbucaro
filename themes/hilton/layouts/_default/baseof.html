@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" data-color-scheme="{{ .Site.Params.color_scheme }}">
+<!doctype html>
+<html
+  lang="{{ .Site.LanguageCode }}"
+  data-color-scheme="{{ .Site.Params.color_scheme }}"
+>
+  {{ partial "head.html" . }}
 
-{{ partial "head.html" . }}
 
   <body>
-
     {{ template "_internal/google_analytics.html" . }}
 
     {{ partial "header.html" . }}
+
 
     <!-- begin content -->
     <main class="content" aria-label="Content">
@@ -18,7 +21,5 @@
     {{ partial "footer.html" . }}
 
     {{ partial "javascripts.html" . }}
-
   </body>
-
 </html>
