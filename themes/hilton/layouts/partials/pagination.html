@@ -6,20 +6,35 @@
       <div class="col col-12">
         <nav class="pagination animate" aria-label="Page navigation">
           <div class="pagination__list">
-
             <!-- Previous page. -->
             {{ if $paginator.HasPrev }}
-              <a href="{{ $paginator.Prev.URL }}" class="pagination__link previous-link">&laquo;</a>
+              <a
+                href="{{ $paginator.Prev.URL }}"
+                class="pagination__link previous-link"
+                >&laquo;</a
+              >
             {{ end }}
+
 
             <!-- Page numbers. -->
             {{ range $paginator.Pagers }}
-              <a href="{{ .URL }}" class="pagination__link{{ if eq . $paginator }} active-link{{ end }}">{{ .PageNumber }}</a>
+              <a
+                href="{{ .URL }}"
+                class="pagination__link{{ if eq . $paginator }}
+                  active-link
+                {{ end }}"
+                >{{ .PageNumber }}</a
+              >
             {{ end }}
+
 
             <!-- Next page. -->
             {{ if $paginator.HasNext }}
-              <a href="{{ $paginator.Next.URL }}" class="pagination__link next-link">&raquo;</a>
+              <a
+                href="{{ $paginator.Next.URL }}"
+                class="pagination__link next-link"
+                >&raquo;</a
+              >
             {{ end }}
 
           </div>

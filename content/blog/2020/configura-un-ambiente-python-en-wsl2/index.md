@@ -1,30 +1,30 @@
 ---
-title: "Configura un ambiente Python en WSL2"
+title: 'Configura un ambiente Python en WSL2'
 date: 2020-10-21T09:23:46-06:00
-image: "/blog/configura-un-ambiente-python-en-wsl2/images/cover.webp"
+image: '/blog/configura-un-ambiente-python-en-wsl2/images/cover.webp'
 tags: [windows, wsl, python]
 draft: false
-description: "Descubre cómo configurar un entorno Python en Ubuntu en WSL2. Aprende a instalar, configurar y utilizar Python eficientemente en WSL2."
+description: 'Descubre cómo configurar un entorno Python en Ubuntu en WSL2. Aprende a instalar, configurar y utilizar Python eficientemente en WSL2.'
 ---
 
 ## 📌 Requisitos
 
-+ <a href="/blog/guia-habilitar-wsl2">Poseer WSL2 instalado preferiblemente la distribución Ubuntu LTS ➡</a>, al momento de la escritura de este artículo es la 20.04. Esta guía fue verificada contra la nueva versión LTS 22.04.
-+ Visual Studio Code instalado en Windows con la extensión <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">Remote – WSL Extension ➡</a>.
-+ Ingresa a tu distribución WSL y actualiza los repositorios e instalar las últimas actualizaciones.
+- <a href="/blog/guia-habilitar-wsl2">Poseer WSL2 instalado preferiblemente la distribución Ubuntu LTS ➡</a>, al momento de la escritura de este artículo es la 20.04. Esta guía fue verificada contra la nueva versión LTS 22.04.
+- Visual Studio Code instalado en Windows con la extensión <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank">Remote – WSL Extension ➡</a>.
+- Ingresa a tu distribución WSL y actualiza los repositorios e instalar las últimas actualizaciones.
 
 ```bash
 sudo apt update
 sudo apt upgrade -y
 ```
 
-+ La distribución de Ubuntu ya tiene Python instalado, por lo que solo es necesario instalar pip.
+- La distribución de Ubuntu ya tiene Python instalado, por lo que solo es necesario instalar pip.
 
 ```bash
 sudo apt install -y python3-pip
 ```
 
-+ Asegurate de tener instalado Git.
+- Asegurate de tener instalado Git.
 
 ```bash
 sudo apt install -y git
@@ -43,12 +43,14 @@ Tomo como referencia el video de YouTube de Corey Schafer titulado **Tutorial de
 Personalmente, prefiero crear el ambiente virtual dentro de la carpeta de mi proyecto y asignarle el nombre .venv
 
 Ventajas:
-+ Ambiente aislado para cada proyecto.
-+ No es necesario recordar que ambiente posee que paquete o versión.
-+ Facilita la detección del intérprete en Visual Studio Code.
+
+- Ambiente aislado para cada proyecto.
+- No es necesario recordar que ambiente posee que paquete o versión.
+- Facilita la detección del intérprete en Visual Studio Code.
 
 Desventajas:
-+ Se debe de repetir el proceso en cada proyecto.
+
+- Se debe de repetir el proceso en cada proyecto.
 
 Para poder conocer cómo es que funciona el uso de venv, ingresa al directorio Home y crea una nueva carpeta llamada `hello-world`, esta será la carpeta del proyecto.
 
@@ -122,6 +124,7 @@ curl https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore 
 ```
 
 En caso prefieras usar `wget` usa el siguiente comando en vez.
+
 ```bash
 wget -O .gitignore https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
 ```
@@ -209,7 +212,7 @@ Se abrirá el editor Visual Studio Code mostrando el contenido de la carpeta del
 
 #### Instalar extensiones
 
-Instala el pack de extensiones <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python ➡</a> de `Microsoft` asegurandote de instalar dentro de WSL2. La instrucción dirá algo simiar a `Install in WSL: Ubuntu-20.04` o `Install in WSL: Ubuntu-22.04`, por ejemplo.  
+Instala el pack de extensiones <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python ➡</a> de `Microsoft` asegurandote de instalar dentro de WSL2. La instrucción dirá algo simiar a `Install in WSL: Ubuntu-20.04` o `Install in WSL: Ubuntu-22.04`, por ejemplo.
 
 <div class="gallery-box">
   <div class="gallery">
@@ -256,19 +259,19 @@ Visual Studio Code solicitará el nombre del módulo, en este caso ingresa el te
 
 ```json
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: Module",
-            "type": "python",
-            "request": "launch",
-            "module": "hello_world",
-            "justMyCode": true
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Module",
+      "type": "python",
+      "request": "launch",
+      "module": "hello_world",
+      "justMyCode": true
+    }
+  ]
 }
 ```
 
@@ -299,4 +302,5 @@ git commit -m ":wrench: Debug config for Visual Studio Code"
 Felicidades, has logrado configurar un ambiente de Python en WSL2 🎉.
 
 ---
+
 Foto de <a href="https://unsplash.com/es/@davidclode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">David Clode</a> en <a href="https://unsplash.com/es/fotos/vb-3qEe3rg8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>

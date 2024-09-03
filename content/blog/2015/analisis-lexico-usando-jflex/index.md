@@ -1,18 +1,22 @@
 ---
-title: "Análisis Léxico usando JFlex"
+title: 'Análisis Léxico usando JFlex'
 date: 2015-04-26T17:37:28-06:00
-image: "/blog/analisis-lexico-usando-jflex/images/cover.webp"
+image: '/blog/analisis-lexico-usando-jflex/images/cover.webp'
 tags: [java]
 draft: false
-description: "Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo definir expresiones regulares y tokens personalizados."
+description: 'Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo definir expresiones regulares y tokens personalizados.'
 ---
+
 Cuando era estudiante de la Universidad en un semestre tenía asignado una tarea sobre el Análisis Léxico, necesitaba un ejemplo en donde se pudiera apreciar la parte de análisis léxico sin incluir la parte correspondiente al análisis sintáctico.
 
 ## 📌 Requisitos
+
 Para proceder es necesario tener Java y <a href="/blog/guia-para-instalar-jflex">JFlex instalado y configurado ➡</a> adecuadamente.
 
 ## 🤖 Código
+
 ### CustomYytoken
+
 La clase CustomYytoken será utilizada para obtener diversos datos que devolverá el análisis léxico. Adicionalmente se concatenarán los valores de los campos de la clase para la divulgación del contenido.
 
 ```java
@@ -39,8 +43,8 @@ class CustomYytoken {
 ```
 
 ### CustomLexer
-El archivo `CustomLexer.jflex` contendrá la estructura de un archivo JFlex en donde se establecerán las reglas del Análisis Léxico. Se detallarán las expresiones regulares de los tokens que se deseen reconocer, así como lo que sucederá al reconocerlos.
 
+El archivo `CustomLexer.jflex` contendrá la estructura de un archivo JFlex en donde se establecerán las reglas del Análisis Léxico. Se detallarán las expresiones regulares de los tokens que se deseen reconocer, así como lo que sucederá al reconocerlos.
 
 ```java
 %%
@@ -79,21 +83,21 @@ El archivo `CustomLexer.jflex` contendrá la estructura de un archivo JFlex en d
     counter++;
     return new CustomYytoken(counter, yytext(), "NUMBER", yyline, yychar);
 }
- 
+
 {WORD} {
     counter++;
     return new CustomYytoken(counter, yytext(), "WORD", yyline, yychar);
 }
- 
+
 {SYMBOL} {
     counter++;
     return new CustomYytoken(counter, yytext(), "SYMBOL", yyline, yychar);
 }
- 
+
 {SPACE} {
     // Ignore when it's a space
 }
- 
+
 {NEWLINE} {
     counter++;
     return new CustomYytoken(counter, " ", "NEWLINE", yyline, yychar);
@@ -118,6 +122,7 @@ Writing code to ".\CustomLexer.java"
 ```
 
 ### test.txt
+
 Crea un archivo de prueba con nombre `test.txt` en el mismo directorio que los otros archivos con el siguiente contenido.
 
 ```
@@ -134,14 +139,15 @@ JFlex
 ```
 
 ### Main
+
 Por último necesitamos un archivo de java para la implementación del código anterior. En este archivo se hará uso de las clases `CustomYytoken` y `CustomLexer`.
 
 ```java
 import java.io.BufferedReader;
 import java.io.FileReader;
- 
+
 public class Main {
- 
+
   public static void main(String[] args) {
 
     try {
@@ -181,6 +187,7 @@ java Main
 ```
 
 Te devolverá un resultado similar al siguiente:
+
 ```
 Counter: 1 Text: 1777 Keyword: NUMBER LineNumber: 0 CharNumber: 0
 Counter: 2 Text: * Keyword: SYMBOL LineNumber: 0 CharNumber: 4
@@ -215,6 +222,7 @@ Counter: 30 Text: JFlex Keyword: WORD LineNumber: 9 CharNumber: 69
 ```
 
 El código anterior fue probado con las siguientes versiones de Java y JFlex.
+
 ```
 java 19.0.1 2022-10-18
 Java(TM) SE Runtime Environment (build 19.0.1+10-21)
@@ -228,5 +236,5 @@ This is JFlex 1.8.2
 De esta forma se ha logrado mostrar el funcionamiento de un analizador léxico creado usando JFlex.
 
 ---
+
 Foto de <a href="https://unsplash.com/es/@egorghetto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Eduardo Gorghetto</a> en <a href="https://unsplash.com/es/fotos/vJ3KldG86Eo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  

@@ -1,10 +1,10 @@
 ---
-title: "Mejora la terminal de Windows con Oh My Posh"
+title: 'Mejora la terminal de Windows con Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
-image: "/blog/mejora-la-experiencia-de-la-terminal-de-windows-con-ohmyposh/images/cover.webp"
+image: '/blog/mejora-la-experiencia-de-la-terminal-de-windows-con-ohmyposh/images/cover.webp'
 tags: [windows, powershell]
 draft: false
-description: "Te orientaré a través del proceso de configuración de la terminal de Windows y Oh My Posh"
+description: 'Te orientaré a través del proceso de configuración de la terminal de Windows y Oh My Posh'
 ---
 
 Personalizar el entorno de trabajo puede marcar una gran diferencia en la productividad y comodidad de un desarrollador. Una de las herramientas más populares para personalizar el prompt del terminal en Windows es `Oh My Posh`. Esta herramienta permite añadir temas visuales atractivos y funcionales a `PowerShell` y `Windows Terminal`, mejorando no solo el aspecto visual, sino también la funcionalidad del terminal.
@@ -13,22 +13,20 @@ En este artículo, te guiaré paso a paso sobre cómo instalar y configurar `Oh 
 
 ## 📜 Tabla de Contenido
 
-+ [💾 Instala PowerShell](#instala-powershell)
-+ [💻 Configura Windows Terminal](#configura-windows-terminal)
-  + [Establece Windows Terminal como la aplicación de terminal por defecto](#terminal-por-defecto)
-  + [Configura la política de ejecución de scripts de PowerShell](#ejecucion-de-scripts)
-+ [🤖 Instala y configura Oh My Posh](#instala-y-configura-ohmyposh)
-  + [Instala una fuente](#instala-una-fuente)
-  + [Configura Windows Terminal para usar una Nerd Font](#configura-windows-terminal-nerd-font)
-  + [Configura la terminal de Visual Studio Code para usar una Nerd Font](#configura-visual-studio-code-nerd-font)
-  + [Configura PowerShell para hacer uso de Oh My Posh](#configura-powershell-ohmyposh)
-  + [Configura un tema](#configura-un-tema-ohmyposh)
-+ [🔝 Sube de nivel con estos módulos y aplicaciones](#sube-de-nivel)
-  + [📦 PSReadLine](#psreadline)
-  + [📦 Terminal-Icons](#terminal-icons)
-  + [📦 bat](#bat)
-
-
+- [💾 Instala PowerShell](#instala-powershell)
+- [💻 Configura Windows Terminal](#configura-windows-terminal)
+  - [Establece Windows Terminal como la aplicación de terminal por defecto](#terminal-por-defecto)
+  - [Configura la política de ejecución de scripts de PowerShell](#ejecucion-de-scripts)
+- [🤖 Instala y configura Oh My Posh](#instala-y-configura-ohmyposh)
+  - [Instala una fuente](#instala-una-fuente)
+  - [Configura Windows Terminal para usar una Nerd Font](#configura-windows-terminal-nerd-font)
+  - [Configura la terminal de Visual Studio Code para usar una Nerd Font](#configura-visual-studio-code-nerd-font)
+  - [Configura PowerShell para hacer uso de Oh My Posh](#configura-powershell-ohmyposh)
+  - [Configura un tema](#configura-un-tema-ohmyposh)
+- [🔝 Sube de nivel con estos módulos y aplicaciones](#sube-de-nivel)
+  - [📦 PSReadLine](#psreadline)
+  - [📦 Terminal-Icons](#terminal-icons)
+  - [📦 bat](#bat)
 
 <span id="instala-powershell"></span>
 
@@ -138,16 +136,13 @@ Una vez instalada la `Nerd Font`, debes configurar la `Terminal de Windows` para
 
 ```json
 {
-    "profiles":
-    {
-        "defaults":
-        {
-            "font":
-            {
-                "face": "MesloLGM Nerd Font"
-            }
-        }
+  "profiles": {
+    "defaults": {
+      "font": {
+        "face": "MesloLGM Nerd Font"
+      }
     }
+  }
 }
 ```
 
@@ -173,7 +168,7 @@ Agrega la siguiente instrucción y guarda los cambios.
 oh-my-posh init pwsh | Invoke-Expression
 ```
 
-Una vez guardados los cambios, recarga  el perfil para hacer efecto los cambios realizados.
+Una vez guardados los cambios, recarga el perfil para hacer efecto los cambios realizados.
 
 ```powershell
 . $PROFILE
@@ -203,7 +198,7 @@ Por ejemplo, para configurar el tema minimalista `zash`, el cual muestra únicam
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
 ```
 
-Una vez guardados los cambios, recarga  el perfil para hacer efecto los cambios realizados.
+Una vez guardados los cambios, recarga el perfil para hacer efecto los cambios realizados.
 
 ```powershell
 . $PROFILE
@@ -261,13 +256,13 @@ Una vez guardados los cambios, refresca tu perfil.
 
 Con la configuración anterior tendrás `PSReadLine` activo con los siguientes beneficios:
 
-+ Tu terminal tendrá colores de sintaxis para los comandos y sus argumentos.
-+ Historial y completado de comandos.
-+ Combinaciones de teclas configurables.
-+ El cursor se desplazará al final de la instrucción cuando navegas por el historial.
-+ Podrás navegar por el historial con las teclas del cursor arriba y abajo, es decir que si ya escribiste algún texto, buscará el texto ingresado mientras navegas en el historial.
-+ Presionando la tecla `Ctrl` y las teclas del cursor derecha o izquierda, puedes desplazarte por las palabras de la instrucción.
-+ Presionando la combinación de teclas `Ctrl + l` puedes limpiar la pantalla de la terminal.
+- Tu terminal tendrá colores de sintaxis para los comandos y sus argumentos.
+- Historial y completado de comandos.
+- Combinaciones de teclas configurables.
+- El cursor se desplazará al final de la instrucción cuando navegas por el historial.
+- Podrás navegar por el historial con las teclas del cursor arriba y abajo, es decir que si ya escribiste algún texto, buscará el texto ingresado mientras navegas en el historial.
+- Presionando la tecla `Ctrl` y las teclas del cursor derecha o izquierda, puedes desplazarte por las palabras de la instrucción.
+- Presionando la combinación de teclas `Ctrl + l` puedes limpiar la pantalla de la terminal.
 
 Puedes validar las combinaciones de teclas por defecto con el siguiente comando.
 
