@@ -46,10 +46,10 @@
 
       .arrow-right {
         will-change: transform;
-        transition: all .2s;
+        transition: all 0.2s;
       }
     }
-  
+
     .project__nav-title {
       margin-bottom: 28px;
       font-size: 36px;
@@ -87,7 +87,6 @@
     }
   }
 
-
   @media only screen and (max-width: $mobile) {
     margin: 0 auto 80px;
 
@@ -96,6 +95,5 @@
         margin-bottom: 24px;
       }
     }
-
   }
 }

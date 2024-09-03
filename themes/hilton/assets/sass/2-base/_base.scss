@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -13,7 +15,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   &.disable-animation {
-    *, *::after, *::before {
+    *,
+    *::after,
+    *::before {
       transition: none !important;
     }
   }
@@ -79,7 +83,7 @@ blockquote {
   color: var(--heading-font-color);
 
   &::after {
-    content: '\201C';
+    content: "\201C";
     position: absolute;
     top: 0.15em;
     left: 0;
@@ -102,7 +106,6 @@ blockquote {
     font-weight: 500;
     font-style: normal;
     color: var(--heading-font-color);
-
   }
 
   @media only screen and (max-width: $mobile) {
@@ -132,7 +135,7 @@ img,
 img,
 .lightense-wrap,
 .gallery {
-  &+em {
+  & + em {
     display: block;
     margin-top: 20px;
     font-size: 12px;
@@ -141,7 +144,7 @@ img,
     font-weight: normal;
     text-align: center;
     color: var(--text-alt-color);
-  
+
     a {
       font-weight: 500;
       border-bottom: 1px solid var(--border-color);
@@ -152,7 +155,7 @@ img,
         border-color: var(--link-color-hover);
       }
     }
-  
+
     @media only screen and (max-width: $mobile) {
       margin-top: 16px;
     }
@@ -205,7 +208,7 @@ table th {
 
 table tr {
   background-color: var(--tr-color);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   &:nth-child(even) {
     background-color: transparent;
   }
