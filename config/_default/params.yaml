@@ -99,11 +99,11 @@ disqus:
   disqusShortname: anvodstudio-demo
 logos:
   enable: true
-  logos__title: "Mi experiencia profesional incluye colaboraciones con las siguientes compañías:"
+  logos__title: 'Mi experiencia profesional incluye colaboraciones con las siguientes compañías:'
 logo_item:
-  - name: "Banco G&T Continental"
-    link: "https://gtc.com.gt/"
-    image: "/images/gyt-logo.webp"
-  - name: "Cognits"
-    link: "https://cognits.co/"
-    image: "/images/cognits-logo.webp"
+  - name: 'Banco G&T Continental'
+    link: 'https://gtc.com.gt/'
+    image: '/images/gyt-logo.webp'
+  - name: 'Cognits'
+    link: 'https://cognits.co/'
+    image: '/images/cognits-logo.webp'

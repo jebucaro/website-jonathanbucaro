@@ -6,5 +6,5 @@
 {{ if hugo.IsServer }}
 <script>{{ $redirectjsContent.Content | safeJS }}</script>
 {{ else }}
-<script src="{{ $redirectjsContent.Permalink }}"></script>
+  <script src="{{ $redirectjsContent.Permalink }}"></script>
 {{ end }}

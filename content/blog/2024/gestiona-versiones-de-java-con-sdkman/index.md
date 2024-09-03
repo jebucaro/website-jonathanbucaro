@@ -1,10 +1,10 @@
 ---
-title: "Gestiona diferentes versiones de Java con SDKMAN"
+title: 'Gestiona diferentes versiones de Java con SDKMAN'
 date: 2024-03-19T13:40:42-06:00
-image: "/blog/gestiona-versiones-de-java-con-sdkman/images/cover.webp"
+image: '/blog/gestiona-versiones-de-java-con-sdkman/images/cover.webp'
 tags: [java]
 draft: false
-description: "Piensa en SDKMAN como tu amigable herramienta de trabajo, lista para simplificar la gesti贸n de SDK para ti."
+description: 'Piensa en SDKMAN como tu amigable herramienta de trabajo, lista para simplificar la gesti贸n de SDK para ti.'
 ---
 
 Ha llegado el d铆a en el que debo trabajar con Java. Adiconalmente me he visto en la necesidad de alternar entre distintas versiones, buscando, me he encontrado con esta 煤til herramienta llamada SDKMAN.
@@ -28,7 +28,7 @@ sudo apt install zip unzip curl
 La instalaci贸n es bastante sencilla, ejecuta la siguiente instrucci贸n:
 
 ```bash
-curl -s "https://get.sdkman.io" | bash 
+curl -s "https://get.sdkman.io" | bash
 ```
 
 Al finalizar la instalci贸n, se solicitar谩 abrir una nueva terminal o ejecutar un comando por medio de `source`.
@@ -232,4 +232,3 @@ Considera explorar los SDKs que se encuentran disponibles en esta herramienta 馃
 ---
 
 Foto de <a href="https://unsplash.com/es/@clintmckoy?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Clint McKoy</a> en <a href="https://unsplash.com/es/fotos/bayas-redondas-verdes-y-rojas-h28p96ICizo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  

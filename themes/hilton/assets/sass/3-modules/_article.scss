@@ -2,7 +2,7 @@
 .article {
   margin-bottom: 64px;
   will-change: transform;
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: translateY(-4px);
@@ -71,8 +71,9 @@
   line-height: 1.1;
 
   a {
-    background: linear-gradient(var(--brand-color),var(--brand-color)) no-repeat bottom /100% 0%;
-    transition: background .2s ease-in-out;
+    background: linear-gradient(var(--brand-color), var(--brand-color))
+      no-repeat bottom / 100% 0%;
+    transition: background 0.2s ease-in-out;
 
     &:hover {
       background-size: 100% 22%;
@@ -97,7 +98,6 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
 }
 
 .article-info {
@@ -109,7 +109,7 @@
   line-height: 1;
 
   .article__author-link,
-  .article__date  {
+  .article__date {
     color: var(--text-color);
     transition: none;
   }

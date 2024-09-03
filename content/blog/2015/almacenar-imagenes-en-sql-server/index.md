@@ -1,15 +1,16 @@
 ---
-title: "Almacenar Imágenes en SQL Server"
+title: 'Almacenar Imágenes en SQL Server'
 date: 2015-09-23T08:19:33-06:00
-image: "/blog/almacenar-imagenes-en-sql-server/images/cover.webp"
+image: '/blog/almacenar-imagenes-en-sql-server/images/cover.webp'
 tags: [net, csharp, mssql]
 draft: false
-description: "Aprende el concepto de cómo guardar una imagen en una base de datos MS SQL Server y posteriormente acceder a su contenido usando C#."
+description: 'Aprende el concepto de cómo guardar una imagen en una base de datos MS SQL Server y posteriormente acceder a su contenido usando C#.'
 ---
+
 Existe un gran debate sobre si es correcto o no almacenar imágenes en una base de datos. Puedes consultar alguno de los siguientes artículos como referencia antes de tomar tu decisión.
 
-+ <a href="https://stackoverflow.com/questions/5613898/storing-images-in-sql-server" target="_blank" rel="nofollow"> Storing images in sql server ➡</a>
-+ <a href="https://www.microsoft.com/en-us/research/publication/to-blob-or-not-to-blob-large-object-storage-in-a-database-or-a-filesystem/?from=https://research.microsoft.com/apps/pubs/default.aspx?id=64525&type=exact" target="_blank" rel="nofollow">To Blob or not to blog ➡</a>
+- <a href="https://stackoverflow.com/questions/5613898/storing-images-in-sql-server" target="_blank" rel="nofollow"> Storing images in sql server ➡</a>
+- <a href="https://www.microsoft.com/en-us/research/publication/to-blob-or-not-to-blob-large-object-storage-in-a-database-or-a-filesystem/?from=https://research.microsoft.com/apps/pubs/default.aspx?id=64525&type=exact" target="_blank" rel="nofollow">To Blob or not to blog ➡</a>
 
 Los artículos explican que que si los objetos son de promedio mayores a un megabyte, NTFS tiene una clara ventaja sobre MS SQL Server. Es decir, es preferible guardarlo en disco que en base de datos. Si los objetos son de menos de 256 kilobytes, la base de datos tiene una clara ventaja. Dentro de este rango, depende de cuán intensa sea la carga de escritura y el tiempo de almacenamiento de una réplica típica en el sistema.
 
@@ -28,6 +29,7 @@ El ejemplo es bastante sencillo, está codificado en .NET Framework 4.8 utilizan
 Consideralo como un ejemplo básico y funcional para demostrar un concepto 😉.
 
 ## 📜 Base de Datos
+
 El siguiente script creará una base de datos en MSSQL Server llamada `Samples` y dentro de la base, una tabla llamada `Notes`. Se utilizará principalmente un campo autonumérico para el Id y un campo del tipo varbinary para contener la imagen.
 
 ```t-sql
@@ -53,7 +55,7 @@ CREATE TABLE Notes (
 
 El código inicia con la lectura del archivo de la imagen por medio de `File.ReadAllBytes` y su almacenamiento en una variable tipo arreglo de bytes. Posteriormente ejecuta un comando SQL en donde se utilizará la data de la variable tipo arreglo de bytes como parámetro para el construir el script de inserción.
 
-``` c#
+```c#
 byte[] data = File.ReadAllBytes(TxtPath.Text);
 string qry = "insert into Notes (Title, ImageData) values (@prTitle, @prImageData)";
 
@@ -85,7 +87,7 @@ finally
 
 Para obtener la imagen, primero realiza la consulta a la base de datos utilizando un valor como `Id`. De encontrar el registro, traslada la data de la base de datos a una variable tipo arreglo de bytes, la imagen será extraída del arreglo de bytes por medio de un `MemoryStream`.
 
-``` c#
+```c#
 string qry = "select Title, ImageData from Notes where Id = @prId";
 try
 {
@@ -122,14 +124,15 @@ finally
 {
     if (con.State == ConnectionState.Open)
         con.Close();
-}       
+}
 ```
 
 ### ⛳ Ejemplo
+
 He preparado un pequeño ejemplo que puedes acceder en GitHub con el código necesario para guardar y consultar una imagen en una base de datos SQL Server.
 
-<a href="https://github.com/jebucaro/csharp-guardar-imagen-base-de-datos.git" target="_blank">Descargar Ejemplo  ➡</a>
+<a href="https://github.com/jebucaro/csharp-guardar-imagen-base-de-datos.git" target="_blank">Descargar Ejemplo ➡</a>
 
 ---
+
 Foto de <a href="https://unsplash.com/es/@neom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">NEOM</a> en <a href="https://unsplash.com/es/fotos/SUIMrEKVOXc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  

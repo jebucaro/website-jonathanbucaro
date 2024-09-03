@@ -1,10 +1,10 @@
 ---
-title: "Instala múltiples versiones de Python con pyenv"
+title: 'Instala múltiples versiones de Python con pyenv'
 date: 2024-03-29T09:32:54-06:00
-image: "/blog/instala-multiples-versiones-de-python-con-pyenv/images/cover.webp"
+image: '/blog/instala-multiples-versiones-de-python-con-pyenv/images/cover.webp'
 tags: [windows, linux, python]
 draft: false
-description: "pyenv es una herramienta simple y discreta que permite cambiar fácilmente entre multiples versiones de Python."
+description: 'pyenv es una herramienta simple y discreta que permite cambiar fácilmente entre multiples versiones de Python.'
 ---
 
 Como desarrollador te verás en el escenario de trabajar en múltiples proyectos, estos proyectos puede que requieran diferentes versiones de librerías y diferentes versiones de Python. Administrar tanto el ambiente virtual como la versión de Python es una necesidad.
@@ -13,12 +13,11 @@ La herramienta que te sugiero utilizar es `pyenv` para entornos Unix o `pyenv-wi
 
 ## 📜 Tabla de Contenido
 
-+ [⚙️ Guía de Instalación](#guía-de-instalación)
-    + [🪟 Windows 11](#instalacion-en-windows-11)
-    + [🐧 Linux](#instalacion-en-linux)
-+ [🔨 Uso general de pyenv](#uso-general-de-pyenv)
-+ [👣 Siguientes pasos](#siguientes-pasos)
-
+- [⚙️ Guía de Instalación](#guía-de-instalación)
+  - [🪟 Windows 11](#instalacion-en-windows-11)
+  - [🐧 Linux](#instalacion-en-linux)
+- [🔨 Uso general de pyenv](#uso-general-de-pyenv)
+- [👣 Siguientes pasos](#siguientes-pasos)
 
 ## <span id="guia-de-instalacion"></span> ⚙️ Guía de Instalación
 
@@ -30,7 +29,7 @@ Abre una nueva ventana de PowerShell y ejecuta el siguiente comando:
 Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
 ```
 
-El comando leerá el contenido del script desde el repositorio  y lo almacenará en un archivo dentro de tu carpeta actual, por último procederá a ejecutarlo.
+El comando leerá el contenido del script desde el repositorio y lo almacenará en un archivo dentro de tu carpeta actual, por último procederá a ejecutarlo.
 
 En el caso de no tener habilitado la ejecución de scripts, abre una una nueva ventana de PowerShell con privilegios de Administrador y ejecuta la siguiente instrucción, esto te permitirá ejecutar scripts creados en tu equipo y scripts remotos únicamente si estos poseen una firma segura.
 
@@ -155,7 +154,6 @@ See `pyenv help <command>' for information on a specific command.
 For full documentation, see: https://github.com/pyenv/pyenv#readme
 ```
 
-
 ## <span id="uso-general-de-pyenv"></span> 🔨 Uso general de pyenv
 
 Lista todas las versiones de Python que puedes instalar con `pyenv`.
@@ -241,13 +239,13 @@ python3 --version
 Python 3.11.7
 ```
 
-Adicionalmente, puedes comprobar la versión que actualmente se encuentre configurada como global, se mostrará un asterisco (*) a la izquierda de la versión configurada como global.
+Adicionalmente, puedes comprobar la versión que actualmente se encuentre configurada como global, se mostrará un asterisco (\*) a la izquierda de la versión configurada como global.
 
 ```bash
 pyenv versions
 ```
 
-Windows 
+Windows
 
 ```text
 * 3.11.7 (set by C:\Users\hola\.pyenv\pyenv-win\version)
@@ -275,4 +273,3 @@ Te sugiero familiarizarte con la herramienta `pyenv` e investigar más a fondo l
 ---
 
 Foto de <a href="https://unsplash.com/es/@carlosirineu?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Carlos Irineu da Costa</a> en <a href="https://unsplash.com/es/fotos/fotografia-en-escala-de-grises-de-herramientas-metalicas-eMc0lpn1P60?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  

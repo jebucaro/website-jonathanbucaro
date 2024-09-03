@@ -1,11 +1,12 @@
 ---
-title: "Hola Mundo"
+title: 'Hola Mundo'
 date: 2023-07-09T17:31:43-06:00
-image: "/blog/hola-mundo/images/cover.webp"
+image: '/blog/hola-mundo/images/cover.webp'
 tags: [personal]
 draft: false
-description: "El inicio de esta aventura surge con la decisión de migrar mi sitio personal en Wordpress a uno estático utilizando Hugo."
+description: 'El inicio de esta aventura surge con la decisión de migrar mi sitio personal en Wordpress a uno estático utilizando Hugo.'
 ---
+
 ¡Hola, bienvenido a mi sitio personal!
 
 El inicio de esta aventura surge con la decisión de migrar mi sitio personal en Wordpress a uno estático utilizando Hugo.
@@ -19,5 +20,5 @@ En los beneficios puedo mencionar la facilidad de escribir en Markdown, la reduc
 Me he comprometido a un año con este experimento y estoy emocionado por lo que vendrá. ¿Quién sabe qué herramienta probaré después? Hasta entonces, sigue visitando mi sitio para actualizaciones y más.
 
 ---
+
 Foto de <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Joanna Kosinska</a> en <a href="https://unsplash.com/es/fotos/LAaSoL0LrYs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
-  
