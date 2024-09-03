@@ -1,0 +1,16 @@
+{
+  "name": "hugo-personal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write ."
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}
