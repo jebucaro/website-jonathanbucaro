@@ -18,7 +18,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "npm i",
+  "postCreateCommand": "npm install && git config --global --add safe.directory ${containerWorkspaceFolder}",
 
   // Configure tool-specific properties.
   "customizations": {
