@@ -4,13 +4,21 @@
   "main": "index.js",
   "scripts": {
     "format:check": "prettier --check .",
-    "format:write": "prettier --write ."
+    "format:write": "prettier --write .",
+    "prepare": "husky"
   },
   "author": "",
   "license": "UNLICENSED",
   "description": "",
   "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "prettier-plugin-go-template": "^0.0.15"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,html,css,scss,sass,less}": [
+      "prettier --write"
+    ]
   }
 }
