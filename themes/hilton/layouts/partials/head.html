@@ -119,7 +119,7 @@
 
   {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
   {{ if $css }}
-    <link rel="stylesheet" href="{{ $css.Permalink }}" />
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
   {{ end }}
 
 </head>
