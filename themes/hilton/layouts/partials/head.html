@@ -112,7 +112,12 @@
 
 
   <!-- CSS -->
-  {{ $css := resources.Get "sass/main.scss" | toCSS | minify }}
+  {{ $cssOpts := (dict "targetPath" "css/main.css") }}
+  {{ if hugo.IsServer }}
+    {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
+  {{ end }}
+
+  {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
   {{ if $css }}
     <link rel="stylesheet" href="{{ $css.Permalink }}" />
   {{ end }}
