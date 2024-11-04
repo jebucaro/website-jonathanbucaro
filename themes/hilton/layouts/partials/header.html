@@ -4,11 +4,11 @@
     <div class="row">
       <div class="header__inner col col-12">
         <div class="logo">
-          <a class="logo__link" href="{{ .Site.BaseURL }}">
+          <a class="logo__link" href="{{ "/" | relLangURL }}">
             {{ if .Site.Params.logo }}
               <img
                 class="logo__image"
-                src="{{ .Site.BaseURL }}{{ .Site.Params.logo }}"
+                src="{{ .Site.Params.logo | relLangURL }}"
                 alt="{{ .Site.Title }}"
               />
             {{ else }}
@@ -43,7 +43,7 @@
                         <a
                           href="{{ if findRE `^#` .URL }}
                             {{ if not $.IsHome }}
-                              {{ site.BaseURL | relLangURL }}
+                              {{ "/" | relLangURL }}
                             {{ end }}{{ .URL }}
                           {{ else }}
                             {{ .URL | relLangURL }}
