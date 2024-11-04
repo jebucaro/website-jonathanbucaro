@@ -3,7 +3,7 @@ title: 'Kanban Management Profesional'
 date: 2024-11-03T15:33:55-06:00
 image: '/blog/kmp/images/cover.webp'
 tags: [personal, kanban]
-draft: true
+draft: false
 description: 'Logré la certificación KMP de Kanban University: avanzando en el diseño y evolución de sistemas Kanban para mejorar la agilidad'
 ---
 
