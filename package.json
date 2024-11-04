@@ -5,6 +5,7 @@
   "scripts": {
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
+    "build": "hugo --cleanDestinationDir --minify",
     "prepare": "husky"
   },
   "author": "",
