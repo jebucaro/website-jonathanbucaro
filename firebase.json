@@ -1,7 +1,11 @@
 {
   "hosting": {
     "public": "public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "redirects": [
       {
         "source": "/2021/08/19/api-rest-para-almacenar-imagen-en-base-de-datos-con-entity-framework/",
@@ -107,14 +111,26 @@
             "key": "Content-Security-Policy",
             "value": "default-src 'self' https://sitio-personal-jb.web.app https://sitio-personal-jb.firebaseapp.com https://jonathanbucaro.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com https://jonathanbucaro.com; style-src-elem 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com https://jonathanbucaro.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; script-src 'self' https://sitio-personal-jb.web.app https://sitio-personal-jb.firebaseapp.com https://jonathanbucaro.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
           },
-          { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
           {
             "key": "Referrer-Policy",
             "value": "strict-origin-when-cross-origin"
           },
-          { "key": "Permissions-Policy", "value": "geolocation=()" },
-          { "key": "Cache-Control", "value": "public, max-age=3600" }
+          {
+            "key": "Permissions-Policy",
+            "value": "geolocation=()"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600"
+          }
         ]
       },
       {
