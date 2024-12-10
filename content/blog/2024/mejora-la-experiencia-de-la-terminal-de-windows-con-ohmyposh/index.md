@@ -25,16 +25,17 @@ En este artículo, te guiaré paso a paso sobre cómo instalar y configurar `Oh 
   - [Configura un tema](#configura-un-tema-ohmyposh)
 - [🔝 Sube de nivel con estos módulos y aplicaciones](#sube-de-nivel)
   - [📦 PSReadLine](#psreadline)
-  - [📦 Terminal-Icons](#terminal-icons)
+  - [📦 winfetch](#winfetch)
   - [📦 bat](#bat)
+  - [📦 eza](#eza)
 
 <span id="instala-powershell"></span>
 
 ## 💾 Instala PowerShell
 
-![Windows PowerShell](./images/windows-terminal-windows-powershell.webp)
+![Windows PowerShell](./images/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
 
-`Windows 11` usa por defecto `Windows PowerShell` la cual se encuentra basada en `.Net Framework`, para hacer uso de `Oh My Posh` debes instalar la versión de `PowerShell` multiplataforma. Existen diversas formas de realizar la instalación, puedes obtenerlo desde la <a href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" target="_blank" rel="nofollow">`Tienda de Windows` ➡</a> o por medio de `WinGet`. Personalmente, prefiero hacer uso de `Winget`.
+`Windows 11` usa por defecto `Windows PowerShell` la cual se encuentra basada en `.Net Framework`, para hacer uso de `Oh My Posh` debes instalar la versión de `PowerShell` multiplataforma. Existen diversas formas de realizar la instalación, puedes obtenerlo desde la <a href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" target="_blank" rel="nofollow">`Tienda de Windows` ➡</a> o por medio de `WinGet`. Personalmente, prefiero hacer uso de `Winget`, por lo que desde una ventana de `Windows PowerShell` ejecuta la siguiente instrucción.
 
 ```cmd
 winget install Microsoft.PowerShell -s winget
@@ -58,7 +59,7 @@ Una vez instalada la Terminal de Windows, puedes ingresar a las configuraciones 
 
 En las configuraciones de la terminal escoge la sección `Startup`. Del lado derecho en `Default Profile` escoge `PowerShell`. En `Default Terminal Application`, escoge la opción `Windows Terminal`. Haz clic en `Save`.
 
-![Default Terminal Application](./images/windows-terminal-startup-configuration.webp)
+![Default Terminal Application](./images/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
 
 A partir de este momento, utiliza la terminal de Windows con `PowerShell` para ejecutar todas las instrucciones.
 
@@ -90,7 +91,7 @@ RemoteSigned
 
 ## 🤖 Instala y configura Oh My Posh
 
-`Oh My Posh` es un motor de temas para el indicador de cualquier shell, muy personalizable. Puedes obtener `Oh My Posh` desde la <a href="https://apps.microsoft.com/store/detail/XP8K0HKJFRXGCK?ocid=pdpshare" target="_blank" rel="nofollow">`Tienda de Windows` ➡</a> o a través de `WinGet`.
+`Oh My Posh` es un motor de temas para el indicador de cualquier shell, muy personalizable. Puedes obtener `Oh My Posh` desde la <a href="https://apps.microsoft.com/store/detail/XP8K0HKJFRXGCK?ocid=pdpshare" target="_blank" rel="nofollow">`Tienda de Windows` ➡</a> o a través de `WinGet`. Mi preferencia personal es realizarlo por medio de `WinGet`, por lo que en una pestaña de `PowerShell` ejecuta la siguiente instrucción.
 
 ```cmd
 winget install JanDeDobbeleer.OhMyPosh -s winget
@@ -118,7 +119,7 @@ oh-my-posh font install --user
 
 Al ejecutar el comando, se desplegará una lista con diversas fuentes, `Oh My Posh` recomienda la fuente `Meslo`, la cual incluye la fuente `Meslo LGM NF`.
 
-![Install Meslo Nerd Font](./images/windows-terminal-install-nerd-font.webp)
+![Install Meslo Nerd Font](./images/windows-terminal-install-nerd-font.webp 'Install Meslo Nerd Font')
 
 Incluso puedes instalarla de forma directa.
 
@@ -176,7 +177,7 @@ Una vez guardados los cambios, recarga el perfil para hacer efecto los cambios r
 
 El resultado será similar al siguiente:
 
-![Oh My Posh](./images/windows-terminal-ohmyposh.webp)
+![Oh My Posh](./images/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
 
 <span id="configura-un-tema-ohmyposh"></span>
 
@@ -206,9 +207,15 @@ Una vez guardados los cambios, recarga el perfil para hacer efecto los cambios r
 
 El resultado será el siguiente:
 
-![Oh My Posh Zash Theme](./images/windows-terminal-ohmyposh-zash.webp)
+![Oh My Posh Zash Theme](./images/windows-terminal-ohmyposh-zash.webp 'Oh My Posh Zash Theme')
 
 Explora los diversos temas de `Oh My Posh` y configura el que mejor se adecue a tus necesidades.
+
+En caso necesites regresar al tema por defecto, reemplaza el contenido de la configuración por la siguiente:
+
+```powershell
+oh-my-posh init pwsh | Invoke-Expression
+```
 
 <span id="sube-de-nivel"></span>
 
@@ -242,7 +249,6 @@ Coloca al inicio del archivo la siguiente configuración, guarda los cambios.
 
 ```powershell
 Import-Module PSReadLine
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
@@ -259,7 +265,6 @@ Con la configuración anterior tendrás `PSReadLine` activo con los siguientes b
 - Tu terminal tendrá colores de sintaxis para los comandos y sus argumentos.
 - Historial y completado de comandos.
 - Combinaciones de teclas configurables.
-- El cursor se desplazará al final de la instrucción cuando navegas por el historial.
 - Podrás navegar por el historial con las teclas del cursor arriba y abajo, es decir que si ya escribiste algún texto, buscará el texto ingresado mientras navegas en el historial.
 - Presionando la tecla `Ctrl` y las teclas del cursor derecha o izquierda, puedes desplazarte por las palabras de la instrucción.
 - Presionando la combinación de teclas `Ctrl + l` puedes limpiar la pantalla de la terminal.
@@ -270,41 +275,29 @@ Puedes validar las combinaciones de teclas por defecto con el siguiente comando.
 Get-PSReadLineKeyHandler
 ```
 
-<span id="terminal-icons"></span>
+La documentación oficial la puedes encontrar en el <a href="https://github.com/PowerShell/PSReadLine" target="_blank" rel="nofollow">repositorio oficial de PSReadLine ➡</a>
 
-### 📦 Terminal-Icons
+<span id="winfetch"></span>
 
-`Terminal-Icons` es un módulo de `PowerShell` que muestra íconos de archivos y carpetas al listar elementos en la terminal. Para funcionar, utiliza las fuentes personalizadas que ofrece `Nerd Fonts`.
+### 📦 winfetch
 
-Para instalar `Terminal-Icons` puedes ejecutar el siguiente comando:
+`winfetch` es un script de `PowerShell` que actúa como una aplicación de línea de comandos que muestra información del sistema. `winfetch` muestra información del sistema operativo, de software y hardware de una forma estética y visualmente placentera.
 
-```powershell
-Install-Module -Name Terminal-Icons -Repository PSGallery
-```
-
-Una vez instalada, actualiza tu perfil para activar el módulo.
+Para instalar `winfetch` puedes ejecutar el siguiente comando desde una ventana de `PowerShell`:
 
 ```powershell
-code $PROFILE
+Install-Script winfetch
 ```
 
-Coloca la siguiente configuración posterior a `PSReadLine` y antes de `Oh My Posh`.
+El sistema te pedirá dos confirmaciones, la primera que el script será descargado en una ubicación y esta ubicación será agregada al `path`. La segunda confirmación consiste en si estas seguro de querer instalar el script desde la `PSGallery`. Si estas de acuerdo, procede a confirmar ambas solicitudes con `Y`.
 
-```powershell
-Import-Module -Name Terminal-Icons
-```
+Una vez terminada la instalación, ejecuta la instrucción `winfetch`.
 
-Una vez guardados los cambios, refresca tu perfil.
-
-```powershell
-. $PROFILE
-```
-
-Con la configuración anterior tendrás `Terminal-Icons` activo. Prueba ejecutar el comando `ls`.
-
-![Terminal-Icons](./images/powershell-terminal-icons.webp)
+![winfetch](./images/winfetch.webp 'winfetch')
 
 <span id="bat"></span>
+
+Mayor documentación y personalización la puedes encontrar en el <a href="https://github.com/lptstr/winfetch" target="_blank" rel="nofollow">repositorio oficial de winfetch ➡</a>
 
 ### 📦 bat
 
@@ -316,12 +309,34 @@ Puedes instalar `bat` por medio de `WinGet`.
 winget install sharkdp.bat
 ```
 
-![bat](./images/powershell-bat.webp)
+![bat](./images/bat.webp 'bat')
+
+En Windows adicionalmente deberás instalar otro paquete llamado `less`, el cual permitirá paginar el contenido cuando este sea demasiado grande para caber en la pantalla.
+
+```powershell
+winget install jftuga.less
+```
+
+Las diversas formas de utilizar `bat` las puedes encontrar en el <a href="https://github.com/sharkdp/bat" target="_blank" rel="nofollow">repositorio oficial de bat ➡</a> y en el <a href="https://github.com/jftuga/less-Windows" target="_blank" rel="nofollow">repositorio oficial de less-Windows ➡</a>.
+
+<span id="eza"></span>
+
+### 📦 eza
+
+`eza` es una alternativa moderna al programa para listar archivos `ls`. Utiliza colores para distinguir tipos de archivos y metadatos. Reconoce `symlinks`, atributos extendidos, y `Git`.
+
+Para instalar `eza` ejecuta el siguiente comando desde `PowerShell`.
+
+```powershell
+winget install eza-community.eza
+```
+
+Una vez instalado, abre una nueva pestaña de `PowerShell` para poder reconocer el nuevo comando.
+
+![eza](./images/eza.webp 'eza')
+
+Existen distintas opciones para mostrar y filtrar, la documentación la puedes encontrar en el <a href="https://github.com/eza-community/eza#command-line-options" target="_blank" rel="nofollow">repositorio oficial de eza ➡</a>.
 
 ---
 
-💬 Comenta, ¿Qué otra herramienta consideras que deba agregar al listado?
-
----
-
-Foto de <a href="https://unsplash.com/es/@ashkfor121?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Ashkan Forouzani</a> en <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Foto de <a href="https://unsplash.com/es/@sunriseking?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Sunrise Kingi</a> en <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
