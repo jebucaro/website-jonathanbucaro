@@ -12,9 +12,10 @@ jobs:
       deployments: write
       statuses: write
     steps:
-      - name: Checkout repository and update Hugo themes
+      - name: Checkout PR branch
         uses: actions/checkout@v4.2.2
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           submodules: true
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
