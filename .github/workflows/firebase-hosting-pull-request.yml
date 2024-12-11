@@ -45,3 +45,4 @@ jobs:
           projectId: sitio-personal-jb
           channelId: preview-${{ github.event.pull_request.number }}
           expires: 3d
+          disableComment: false
