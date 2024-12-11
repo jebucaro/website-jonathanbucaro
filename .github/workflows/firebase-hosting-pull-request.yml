@@ -7,6 +7,10 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+      statuses: write
     steps:
       - name: Checkout repository and update Hugo themes
         uses: actions/checkout@v4.2.2
@@ -31,7 +35,7 @@ jobs:
           cache-dependency-path: '**/package-lock.json'
 
       - run: npm ci && npm run build
-      
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
