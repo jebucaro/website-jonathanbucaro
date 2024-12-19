@@ -7,16 +7,16 @@ author:
     Ingeniero en Sistemas, Planeswalker. Escribo sobre mi experiencia en la industria de la tecnología, momentos que capturan el aprendizaje que ha moldeado mi crecimiento profesional.
   author__avatar: '/images/perfil.webp'
 social:
-  - icon: ion-logo-linkedin
+  - icon: logo-linkedin
     name: LinkedIn
     link: 'https://www.linkedin.com/in/jonathanbucaro/'
-  - icon: ion-logo-github
+  - icon: logo-github
     name: Github
     link: 'https://github.com/jebucaro'
-  - icon: ion-logo-twitter
-    name: Twitter
-    link: 'https://twitter.com/jebucaro'
-  - icon: ion-logo-instagram
+  - icon: logo-x
+    name: X
+    link: 'https://x.com/jebucaro'
+  - icon: logo-instagram
     name: Instagram
     link: 'https://instagram.com/jebucaro'
 hero:
