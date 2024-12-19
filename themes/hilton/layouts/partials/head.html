@@ -104,16 +104,15 @@
   />
 
   <!-- Ionicons -->
-  <link
-    rel="preload"
-    href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css"
-    as="style"
-  />
+  <script
+    type="module"
+    src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"
+  ></script>
 
-  <link
-    href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css"
-    rel="stylesheet"
-  />
+  <script
+    nomodule
+    src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"
+  ></script>
 
   {{ $themejs := resources.Get "js/theme.js" }}
   {{ if hugo.IsServer }}
