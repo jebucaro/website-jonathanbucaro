@@ -226,6 +226,14 @@
       }
     }
 
+    &.share__x {
+      background-color: #000000;
+
+      &:hover {
+        background-color: lighten(#000000, 10%);
+      }
+    }
+
     &.share__pinterest {
       background-color: #bd081c;
 
