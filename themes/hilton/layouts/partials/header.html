@@ -20,7 +20,7 @@
         <nav class="main-nav">
           <div class="main-nav__box">
             <div class="nav__icon-close">
-              <i class="ion ion-md-close"></i>
+              <ion-icon name="close"></ion-icon>
             </div>
             <div class="nav__title">Menu</div>
             <ul class="nav__list list-reset">
@@ -33,8 +33,7 @@
                 {{ if .HasChildren }}
                   <li class="nav__item dropdown">
                     <span class="nav__link dropdown-toggle"
-                      >{{ .Name }}
-                      <i class="ion ion-ios-arrow-down arrow-down"></i
+                      >{{ .Name }} <ion-icon name="chevron-down"></ion-icon
                     ></span>
                     <div class="dropdown-menu">
                       {{ range .Children }}
@@ -77,36 +76,36 @@
         </nav>
 
         <div class="nav-button">
-          <i class="nav__icon icon__menu ion ion-md-menu"></i>
+          <ion-icon class="nav__icon icon__menu" name="menu"></ion-icon>
 
           {{ if eq .Site.Params.color_scheme "auto" }}
             <div class="toggle-theme toggle-theme-js">
               <div class="toggle-moon" title="Enable dark mode">
-                <i class="ion ion-ios-moon"></i>
+                <ion-icon name="moon"></ion-icon>
               </div>
               <div class="toggle-sun" title="Enable light mode">
-                <i class="ion ion-ios-sunny"></i>
+                <ion-icon name="sunny"></ion-icon>
               </div>
             </div>
           {{ else if eq .Site.Params.color_scheme "light" }}
             <div class="toggle-theme theme-light">
               <div class="toggle-sun" title="Light mode">
-                <i class="ion ion-ios-sunny"></i>
+                <ion-icon name="sunny"></ion-icon>
               </div>
             </div>
           {{ else if eq .Site.Params.color_scheme "dark" }}
             <div class="toggle-theme theme-dark">
               <div class="toggle-moon" title="Dark mode">
-                <i class="ion ion-ios-moon"></i>
+                <ion-icon name="moon"></ion-icon>
               </div>
             </div>
           {{ else }}
             <div class="toggle-theme toggle-theme-js">
               <div class="toggle-moon" title="Enable dark mode">
-                <i class="ion ion-ios-moon"></i>
+                <ion-icon name="moon"></ion-icon>
               </div>
               <div class="toggle-sun" title="Enable light mode">
-                <i class="ion ion-ios-sunny"></i>
+                <ion-icon name="sunny"></ion-icon>
               </div>
             </div>
           {{ end }}
