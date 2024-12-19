@@ -20,4 +20,4 @@ Disfruto del aprendizaje continuo y de adquirir nuevas habilidades. Considero qu
 
 Actualmente laboro como contratista en **Cognits**, desarrollando aplicaciones como `Windows Services` en `C#` y creando APIs con `Java Spring Boot` y `TypeScript`, desplegados en `AWS`.
 
-Conversa conmigo en <a href="https://twitter.com/jebucaro" target="_blank" rel="nofollow" title="Sígueme en Twitter">@jebucaro</a>
+Conversa conmigo en <a href="https://x.com/jebucaro" target="_blank" rel="nofollow" title="Sígueme en X">@jebucaro</a>
