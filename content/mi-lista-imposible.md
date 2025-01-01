@@ -30,20 +30,27 @@ Mi lista imposible, una lista de experiencias y logros que evolucionarán confor
 - ~~Obtener la certificación de Scrum Master Certified~~.  
   Completado el día 06 de enero del 2019.  
   Certificación renovada el día 29 de enero del 2021.  
-  Certificación renovada el día 29 de enero del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank">Licencia 678367 ➡</a>.
+  Certificación renovada el día 29 de enero del 2024.  
+  Certificación renovada el día 28 de junio del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank">Licencia 678367 ➡</a>.
 - ~~Graduarme de Ingeniero en Sistemas~~.  
   Completado el día 20 de enero del 2023.
 - ~~Inscribirme en el Colegio de Ingenieros~~.  
   Completado el día 23 de junio del 2023. <a href="https://colegiado.cig.org.gt/Reports/EstadoColegiado" target="_blank">Colegiado No. 21467 ➡</a>.
 - ~~Obtener la certificación Product Owner Certified de Scrumstudy~~.  
   Completado el día 29 de enero del 2021.  
-  Certificación renovada el día 29 de enero del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">Licencia 775364 ➡</a>.
+  Certificación renovada el día 29 de enero del 2024.  
+  Certificación renovada el día 28 de junio del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">Licencia 775364 ➡</a>.
 - ~~Completar el curso Kubernetes and Cloud Native Essentials~~.  
   Completado el día 26 de agosto del 2023. <a href="https://www.credly.com/badges/d0856a29-39e8-4b82-8cd5-47eebcd64186" target="_blank">Certificado LF-m9de4gh8ve ➡</a>.
 - ~~Obtener la certificación Scrum Agile Master Certified de Scrumstudy~~.  
-  Completado el día 29 de enero del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SAMC&number=775087" target="_blank">Licencia 775087 ➡</a>.
+  Completado el día 29 de enero del 2024.  
+  Certificación renovada el día 28 de junio del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SAMC&number=775087" target="_blank">Licencia 775087 ➡</a>.
+- ~~Obtener la certificación Scrum Developer Certified de Scrumstudy~~.  
+  Completado el día 28 de junio del 2024. <a href="https://www.scrumstudy.com/certification/verify?type=SDC&number=827180" target="_blank">Licencia 827180 ➡</a>.
 - Obtener la certificación Kubernetes and Cloud Native Associate (KCNA).
-- Obtener una certificación de desarrollo en la nube.
+- ~~Obtener una certificación de desarrollo en la nube.~~  
+  Obtuve la certificación AWS Certified Cloud Practitioner. <a href="https://www.credly.com/badges/8650f9d6-a5f2-4217-a591-341fb5ad0623/public_url" target="_blank">Ver medalla dígital ➡</a>
+- Obtener la certifiación AWS Certified Developer – Associate.
 
 ## ⚒️ Trabajo
 
