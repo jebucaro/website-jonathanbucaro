@@ -3,7 +3,7 @@ title: 'Descubre la importancia de mantener una bitácora de trabajo'
 date: 2025-02-04T17:07:47-06:00
 image: '/blog/descubre-la-importancia-de-mantener-una-bitacora-de-trabajo/images/cover.webp'
 tags: [productividad]
-draft: true
+draft: false
 description: 'Descubre cómo llevar un registro de trabajo puede ayudarte a organizarte mejor, aumentar tu productividad y destacar en tu equipo de trabajo.'
 ---
 
@@ -57,7 +57,7 @@ Aunque sea una herramienta principalmente laboral, llevar un registro puede ayud
 
 > "Nunca memorices algo que puedes buscar".
 >
-> <a href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up">- Albert Einstein</a>
+> <a href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up" target="_blank" rel="nofollow">- Albert Einstein</a>
 
 Ese consejo aplica aquí: confiar en tus propias notas libera espacio mental y mejora tu flujo de trabajo.
 
@@ -71,20 +71,115 @@ No tienes que complicarte. Elegí una herramienta básica que te funcione: desde
 
 ## ✍️ Ejemplo de Plantilla en `Obsidian` para tu Bitácora de Trabajo
 
-`Obsidian`, tomando la descripción de su sitio oficial, es la aplicación de escritura privada y flexible que se adapta a tu forma de pensar. Es una excelente aplicación, la uso a diario, y como **Contractor**, puedo hacer uso de la licencia `De Minimis Commercial Use License`. Para uso comercial, es necesario adquirir una licencia comercial (anual). Puedes evaluar el uso de `Obsidian` para fines comerciales durante quince días.
+`Obsidian`, tomando la descripción de su sitio oficial, es la aplicación de escritura privada y flexible que se adapta a tu forma de pensar. Es una excelente aplicación, la uso a diario, y como **Contractor**, puedo hacer uso de la licencia `De Minimis Commercial Use License`. En caso trabajes en planilla, necesitas conseguir una licencia comercial si pretendes usar `Obsidian` para actividades laborales. Puedes evaluar el uso de `Obsidian` para fines comerciales durante quince días.
 
-Esta plantilla se basa en el trabajo de **Dann Berg** en su publicación <a href="">My Obsidian Daily Note Template</a>. Compartiré una adecuación de la plantilla en base a mis necesidades orientando el uso hacia una bitácora de trabajo.
-
-Consideraré que tienes instalado `Obsidian`.
+Esta plantilla se basa en el trabajo de **Dann Berg** en su publicación <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Compartiré una adecuación de la plantilla en base a mis necesidades orientando el uso hacia una bitácora de trabajo.
 
 ### ⚙️ Configuración de la Plantilla
 
+Es necesario tener instalado `Obsidian` y una bóveda que usarás para tu bitácora de trabajo.
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian.webp" loading="lazy">
+    <img src="./images/obsidian-create-vault.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Crea una bóveda</em>
+</div>
+
 #### Plugins
 
-- <a href="https://help.obsidian.md/Plugins/Daily+notes">Daily Notes</a> (Plugin incluido)
-- <a href="https://github.com/SilentVoid13/Templater">Templater</a> (Plugin de la comunidad)
+- <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="nofollow">Daily Notes</a>, plugin incluido en `Obsidian`, no es necesario instalar.
+- <a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="nofollow">Templater</a>, plugin de la comunidad. Deben ser instalados desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian</a>.
 
-Estos plugins deben ser instalados desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins">Obsidian</a>.
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-enable-community-plugins.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-enabled.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-browse.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-install-templater.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-enable-templater.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-templater-enabled.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Habilita los plugins de la comunidad, instala y habilita Templater</em>
+</div>
+
+Por el momento no realizaremos modificaciones en las configuraciones de los plugins.
+
+#### Configuración de la Plantilla
+
+Crea un nuevo directorio llamado `Templates` y dentro de este un directorio llamado `Daily Templates`. Dentro de `Daily Templates` crea una nueva nota llamada `Daily Notes Template` y copia y pega el siguiente código dentro de la nota en modo `source`. Te recomiendo que utilices `Ctrl+Shift+v` para pegar el contenido sin formato.
+
+```
+---
+created: <%tp.file.creation_date()%>
+tags:
+- Daily
+- Daily/<%tp.file.creation_date("YYYY")%>/<%tp.file.creation_date("MM-MMMM")%>
+---
+## 🗓️ Daily Questions
+
+### 📌 Tasks
+
+- [ ] <% tp.file.cursor() %>
+
+### 🎥 Meetings
+
+-
+
+### 🚧 Impediments
+
+-
+
+---
+## 📝 Notes
+
+
+```
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-folder-structure.webp" loading="lazy">
+    <img src="./images/obsidian-template-content.webp" loading="lazy">
+  </div>
+  <em>Obsildian - Estructura de directorios</em>
+</div>
+
+#### Configuración en los Plugins
+
+Ve a las configuraciones, dentro de la sección `Core plugins`, ubica las configuraciones del plugin `Daily Notes`. Asigna el siguiente valor `YYYY/MM-MMMM/YYYY-MM-DD-dddd` a la propiedad `Date Format`. Esto permitirá crear una estructura anidada de directorios (separador `/`) organizados por `año > mes > día`, facilitando la navegación. Adicionalmente asigna el valor `Daily` a la propiedad `New File Location` y `Templates/Daily Templates/Daily Note Template` a la propiedad `Template file location`. De esta manera, el plugin podrá crear una nueva nota basada en la plantilla `Daily Note Template` al dar clic en el botón `Open today's daily note` en la cinta de accesos de `Obsidian`. Opcionalmente, puedes marcar la opción `Open daily note on startup`, personalmente es algo que mantengo activo.
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-create-daily-note-configuration.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Configuración de Daily note</em>
+</div>
+
+Finalmente, en la sección de `Community plugins`, ubica las configuraciones del plugin `Templater`. Asigna el valor `Templates` en la propiedad `Template folder location`. Activa las opciones `Automatic jump to cursor` y `Trigger Templater on new file creation`. Esto permitirá que automáticamente se ejecute el código de `Templater` para asignar las etiquetas de la fecha.
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-create-templater-configuration.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Configuración de Templater</em>
+</div>
+
+### 🎬 Uso de la plantilla
+
+Haz configurado satisfactoriamente la plantilla, considérala como un punto inicial. Muchas cosas se pueden realizar con `Obsidian` y los plugins de la comunidad, sin embargo, para iniciar a registrar tu **bitácora de trabajo** es más que suficiente.
+
+En la barra lateral izquierda, puedes encontrar una cinta de accesos, una de ellas es `Open today's daily note`. Haz clic en el acceso y te creará una nueva entrada de la fecha del día o te abrirá la entrada existente con la fecha del día. De la misma esto ocurrirá al abrir `Obsidian` si marcaste la opción en las configuraciones de `Daily note`.
+
+ <div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-open-todays-daily-note.webp" loading="lazy">
+    <img src="./images/obsidian-todays-daily-note.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Crea la nota del día de hoy</em>
+</div>
+
+La búsqueda en `Obsidian` normalmente es más que suficiente, sin embargo, te recomiendo que explores `Graph view` una vez tengas unas cuantas notas agregadas 😉.
 
 ## 👌 En resumen
 
@@ -94,4 +189,4 @@ Llevar una bitácora de trabajo es más que una simple lista de tareas; es una h
 
 ---
 
-Photo by [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/person-using-track-pad-P1qyEf1g0HU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+Foto de <a href="https://unsplash.com/@glenncarstenspeters?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Glenn Carstens-Peters</a> en <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
