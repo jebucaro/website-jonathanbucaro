@@ -18,8 +18,11 @@
     "prettier-plugin-go-template": "^0.0.15"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,css,scss,sass,less,md}": [
+    "*.{js,jsx,ts,tsx,css,scss,sass,less,md}": [
       "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write --parser go-template"
     ]
   }
 }
