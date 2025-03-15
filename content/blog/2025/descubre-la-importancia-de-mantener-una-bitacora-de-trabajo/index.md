@@ -156,11 +156,12 @@ Ve a las configuraciones, dentro de la sección `Core plugins`, ubica las config
   <em>Obsidian - Configuración de Daily note</em>
 </div>
 
-Finalmente, en la sección de `Community plugins`, ubica las configuraciones del plugin `Templater`. Asigna el valor `Templates` en la propiedad `Template folder location`. Activa las opciones `Automatic jump to cursor` y `Trigger Templater on new file creation`. Esto permitirá que automáticamente se ejecute el código de `Templater` para asignar las etiquetas de la fecha.
+Finalmente, en la sección de `Community plugins`, ubica las configuraciones del plugin `Templater`. Asigna el valor `Templates` en la propiedad `Template folder location`. Activa las opciones `Automatic jump to cursor` y `Trigger Templater on new file creation`. Esto permitirá que automáticamente se ejecute el código de `Templater` para asignar las etiquetas de la fecha. Navega hacia abajo en las configuraciones de `Templater`, activa la opción `Enable folder templates`, se mostrarán dos nuevos campos, en el primero escoge la carpeta `Daily` y en la segunda escoge `Templates/Daily Templates/Daily Note Template.md`. Esto permitirá asociar la plantilla específica para la bitácora.
 
 <div class="gallery-box">
   <div class="gallery">
     <img src="./images/obsidian-create-templater-configuration.webp" loading="lazy">
+    <img src="./images/obsidian-create-templater-configuration-folder-templates.webp" loading="lazy">
   </div>
   <em>Obsidian - Configuración de Templater</em>
 </div>
