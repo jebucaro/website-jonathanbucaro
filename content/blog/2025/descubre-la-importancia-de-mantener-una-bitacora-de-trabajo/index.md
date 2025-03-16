@@ -90,18 +90,60 @@ Es necesario tener instalado `Obsidian` y una bóveda que usarás para tu bitác
 #### Plugins
 
 - <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="nofollow">Daily Notes</a>, plugin incluido en `Obsidian`, no es necesario instalar.
-- <a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="nofollow">Templater</a>, plugin de la comunidad. Deben ser instalados desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian</a>.
+- <a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="nofollow">Templater</a>, plugin de la comunidad. Debe ser instalado desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian</a>.
+- <a href="https://github.com/liamcain/obsidian-calendar-plugin" target="_blank" rel="nofollow">Calendar</a>, plugin de la comunidad. Debe ser instalado desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian</a>.
+- <a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="nofollow">Dataview</a>, plugin de la comunidad. Debe ser instalado desde <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian</a>.
+
+##### Habilita los Plugins de la comunidad
 
 <div class="gallery-box">
   <div class="gallery">
     <img src="./images/obsidian-enable-community-plugins.webp" loading="lazy">
     <img src="./images/obsidian-community-plugins-enabled.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Habilita los plugins de la comunidad</em>
+</div>
+
+Haz clic en el botón `Browse` y en la ventana desplegable, busca el nombre del plugin. En este caso, `Templater`.
+
+<div class="gallery-box">
+  <div class="gallery">
     <img src="./images/obsidian-community-plugins-browse.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Buscar Plugins</em>
+</div>
+
+##### Plugin Templater
+
+<div class="gallery-box">
+  <div class="gallery">
     <img src="./images/obsidian-community-plugins-install-templater.webp" loading="lazy">
     <img src="./images/obsidian-community-plugins-enable-templater.webp" loading="lazy">
     <img src="./images/obsidian-community-plugins-templater-enabled.webp" loading="lazy">
   </div>
-  <em>Obsidian - Habilita los plugins de la comunidad, instala y habilita Templater</em>
+  <em>Obsidian - Instala y habilita el Plugin Templater</em>
+</div>
+
+##### Plugin Calendar
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-community-plugins-install-calendar.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-calendar-enable.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-calendar-enabled.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Instala y habilita el Plugin Calendar</em>
+</div>
+
+##### Plugin Dataview
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-community-plugins-install-dataview.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-enable-dataview.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-dataview-enabled.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Instala y habilita el Plugin Dataview</em>
 </div>
 
 Por el momento no realizaremos modificaciones en las configuraciones de los plugins.
@@ -110,7 +152,7 @@ Por el momento no realizaremos modificaciones en las configuraciones de los plug
 
 Crea un nuevo directorio llamado `Templates` y dentro de este un directorio llamado `Daily Templates`. Dentro de `Daily Templates` crea una nueva nota llamada `Daily Notes Template` y copia y pega el siguiente código dentro de la nota en modo `source`. Te recomiendo que utilices `Ctrl+Shift+v` para pegar el contenido sin formato.
 
-```
+````
 ---
 created: <%tp.file.creation_date()%>
 tags:
@@ -135,7 +177,24 @@ tags:
 ## 📝 Notes
 
 
+
+
+---
+### 📖 Daily Notes Overview
+
+#### ✍️ Notes created today
+
+```dataview
+List FROM "" WHERE file.cday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.ctime asc
 ```
+
+#### 🔄️ Notes last updated today
+
+```dataview
+List FROM "" WHERE file.mday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.mtime asc
+```
+
+````
 
 <div class="gallery-box">
   <div class="gallery">
@@ -168,17 +227,39 @@ Finalmente, en la sección de `Community plugins`, ubica las configuraciones del
 
 ### 🎬 Uso de la plantilla
 
-Haz configurado satisfactoriamente la plantilla, considérala como un punto inicial. Muchas cosas se pueden realizar con `Obsidian` y los plugins de la comunidad, sin embargo, para iniciar a registrar tu **bitácora de trabajo** es más que suficiente.
+Haz configurado satisfactoriamente la plantilla, considérala como un punto inicial. Muchas cosas se pueden realizar con `Obsidian` y los plugins de la comunidad, sin embargo, para iniciar a registrar tu **bitácora de trabajo**, considero que esta configuración es más que suficiente.
 
 En la barra lateral izquierda, puedes encontrar una cinta de accesos, una de ellas es `Open today's daily note`. Haz clic en el acceso y te creará una nueva entrada de la fecha del día o te abrirá la entrada existente con la fecha del día. De la misma esto ocurrirá al abrir `Obsidian` si marcaste la opción en las configuraciones de `Daily note`.
 
- <div class="gallery-box">
+<div class="gallery-box">
   <div class="gallery">
     <img src="./images/obsidian-open-todays-daily-note.webp" loading="lazy">
     <img src="./images/obsidian-todays-daily-note.webp" loading="lazy">
   </div>
   <em>Obsidian - Crea la nota del día de hoy</em>
 </div>
+
+En la parte superior derecha, puedes encontrar el botón `Expand`. Al dar clic al botón, se mostrarán diferentes opciones entre ellas `Calendar` . La vista de calendario te permitirá poder desplazarte entre las diferentes notas diarias. Si realizar un doble clic sobre una fecha en particular, y en esta no existe una nota diaria, te mostrará un dialogo confirmando si desear crear una nota diaria para ese día. Recuerda que puedes activar o desactivar esta vista de calendario, el botón `Expand` ha sido reemplazado por uno llamado `Collapse`.
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-expand.webp" loading="lazy">
+    <img src="./images/obsidian-expand-calendar.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Vista de calendario</em>
+</div>
+
+Si te encuentras en modo edición `Source mode`, el resumen de las notas mostrará un código, sin embargo, al cambiar a la vista de lectura `Reading view`, se mostrará la lista de las notas que fueron creadas ese día, al igual las notas cuya última fecha de modificación haya sido ese día.
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="./images/obsidian-source-mode.webp" loading="lazy">
+    <img src="./images/obsidian-reading-view.webp" loading="lazy">
+  </div>
+  <em>Obsidian - Vista de edición y lectura</em>
+</div>
+
+Mi flujo normal es cambiar a edición cuando necesito revisar algo de esta vista general.
 
 La búsqueda en `Obsidian` normalmente es más que suficiente, sin embargo, te recomiendo que explores `Graph view` una vez tengas unas cuantas notas agregadas 😉.
 
