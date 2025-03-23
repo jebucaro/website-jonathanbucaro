@@ -4,46 +4,46 @@
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
 jobs:
-  build_and_preview:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      deployments: write
-      statuses: write
-      checks: write
-    steps:
-      - name: Checkout PR branch
-        uses: actions/checkout@v4.2.2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          submodules: true
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+    build_and_preview:
+        if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
+            deployments: write
+            statuses: write
+            checks: write
+        steps:
+            - name: Checkout PR branch
+              uses: actions/checkout@v4.2.2
+              with:
+                  ref: ${{ github.event.pull_request.head.ref }}
+                  submodules: true
+                  fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Install Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: 'latest'
-          extended: true
+            - name: Install Hugo
+              uses: peaceiris/actions-hugo@v3
+              with:
+                  hugo-version: 'latest'
+                  extended: true
 
-      - uses: actions/setup-node@v4.2.0
-        with:
-          node-version: 'lts/Jod'
-          cache: 'npm'
-          # The action defaults to search for the dependency file (package-lock.json,
-          # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
-          # hash as a part of the cache key.
-          # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
-          cache-dependency-path: '**/package-lock.json'
+            - uses: actions/setup-node@v4.2.0
+              with:
+                  node-version: 'lts/Jod'
+                  cache: 'npm'
+                  # The action defaults to search for the dependency file (package-lock.json,
+                  # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
+                  # hash as a part of the cache key.
+                  # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
+                  cache-dependency-path: '**/package-lock.json'
 
-      - run: npm ci && npm run build
+            - run: npm ci && npm run build
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0.9.0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SITIO_PERSONAL_JB }}'
-          projectId: sitio-personal-jb
-          channelId: preview-${{ github.event.pull_request.number }}
-          expires: 3d
-          disableComment: false
+            - uses: FirebaseExtended/action-hosting-deploy@v0.9.0
+              with:
+                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SITIO_PERSONAL_JB }}'
+                  projectId: sitio-personal-jb
+                  channelId: preview-${{ github.event.pull_request.number }}
+                  expires: 3d
+                  disableComment: false

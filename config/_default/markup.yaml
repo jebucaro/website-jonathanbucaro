@@ -1,7 +1,7 @@
 goldmark:
-  renderer:
-    unsafe: true
+    renderer:
+        unsafe: true
 highlight:
-  codeFences: true
-  guessSyntax: true
-  noClasses: false
+    codeFences: true
+    guessSyntax: true
+    noClasses: false

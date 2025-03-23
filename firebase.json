@@ -1,166 +1,166 @@
 {
-  "hosting": {
-    "public": "public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "redirects": [
-      {
-        "source": "/2021/08/19/api-rest-para-almacenar-imagen-en-base-de-datos-con-entity-framework/",
-        "destination": "/blog/api-rest-para-almacenar-imagenes-con-entity-framework/",
-        "type": 301
-      },
-      {
-        "source": "/2022/06/19/obtener-la-fecha-laboral-anterior-mas-reciente-en-python/",
-        "destination": "/blog/obtener-fecha-laboral-anterior-python/",
-        "type": 301
-      },
-      {
-        "source": "/2020/09/14/habilitar-wsl2/",
-        "destination": "/blog/guia-habilitar-wsl2/",
-        "type": 301
-      },
-      {
-        "source": "/2020/10/21/configura-un-ambiente-de-python-en-wsl2/",
-        "destination": "/blog/configura-un-ambiente-python-en-wsl2/",
-        "type": 301
-      },
-      {
-        "source": "/2020/10/21/configura-un-ambiente-de-python-en-wsl2/comment-page-1/",
-        "destination": "/blog/configura-un-ambiente-python-en-wsl2/",
-        "type": 301
-      },
-      {
-        "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/",
-        "destination": "/blog/almacenar-imagenes-en-sql-server/",
-        "type": 301
-      },
-      {
-        "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/comment-page-1/",
-        "destination": "/blog/almacenar-imagenes-en-sql-server/",
-        "type": 301
-      },
-      {
-        "source": "/2020/03/12/visual-studio-code-portable/",
-        "destination": "/blog/visual-studio-code-portable/",
-        "type": 301
-      },
-      {
-        "source": "/2021/03/05/actualizar-a-python-3-9-en-wsl2/",
-        "destination": "/blog/instalar-version-actualizada-de-python-wsl2/",
-        "type": 301
-      },
-      {
-        "source": "/2021/01/30/scrum-product-owner-certified/",
-        "destination": "/blog/scrum-product-owner-certified/",
-        "type": 301
-      },
-      {
-        "source": "/2015/04/26/analisis-lexico-usando-jflex/",
-        "destination": "/blog/analisis-lexico-usando-jflex/",
-        "type": 301
-      },
-      {
-        "source": "/2015/04/26/analisis-lexico-usando-jflex/comment-page-1/",
-        "destination": "/blog/analisis-lexico-usando-jflex/",
-        "type": 301
-      },
-      {
-        "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/",
-        "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
-        "type": 301
-      },
-      {
-        "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/comment-page-1/",
-        "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
-        "type": 301
-      },
-      {
-        "source": "/2015/02/22/sql-server-does-not-support-the-language-of-the-os/",
-        "destination": "/blog/sql-server-y-el-lenguaje-del-sistema-operativo/",
-        "type": 301
-      },
-      {
-        "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
-        "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
-        "type": 301
-      },
-      {
-        "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/comment-page-1/",
-        "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
-        "type": 301
-      },
-      {
-        "source": "/2015/04/11/instalacion-jflex/",
-        "destination": "/blog/guia-para-instalar-jflex/",
-        "type": 301
-      },
-      {
-        "source": "/2019/01/06/scrum-master-certified/",
-        "destination": "/blog/scrum-master-certified/",
-        "type": 301
-      },
-      {
-        "source": "/get-contacts-profile-picture-inside-manychat/",
-        "destination": "/blog/get-contacts-profile-picture-inside-manychat/",
-        "type": 301
-      }
-    ],
-    "headers": [
-      {
-        "source": "**",
+    "hosting": {
+        "public": "public",
+        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+        "redirects": [
+            {
+                "source": "/2021/08/19/api-rest-para-almacenar-imagen-en-base-de-datos-con-entity-framework/",
+                "destination": "/blog/api-rest-para-almacenar-imagenes-con-entity-framework/",
+                "type": 301
+            },
+            {
+                "source": "/2022/06/19/obtener-la-fecha-laboral-anterior-mas-reciente-en-python/",
+                "destination": "/blog/obtener-fecha-laboral-anterior-python/",
+                "type": 301
+            },
+            {
+                "source": "/2020/09/14/habilitar-wsl2/",
+                "destination": "/blog/guia-habilitar-wsl2/",
+                "type": 301
+            },
+            {
+                "source": "/2020/10/21/configura-un-ambiente-de-python-en-wsl2/",
+                "destination": "/blog/configura-un-ambiente-python-en-wsl2/",
+                "type": 301
+            },
+            {
+                "source": "/2020/10/21/configura-un-ambiente-de-python-en-wsl2/comment-page-1/",
+                "destination": "/blog/configura-un-ambiente-python-en-wsl2/",
+                "type": 301
+            },
+            {
+                "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/",
+                "destination": "/blog/almacenar-imagenes-en-sql-server/",
+                "type": 301
+            },
+            {
+                "source": "/2015/08/23/guardar-imagen-en-base-de-datos-de-sql-server/comment-page-1/",
+                "destination": "/blog/almacenar-imagenes-en-sql-server/",
+                "type": 301
+            },
+            {
+                "source": "/2020/03/12/visual-studio-code-portable/",
+                "destination": "/blog/visual-studio-code-portable/",
+                "type": 301
+            },
+            {
+                "source": "/2021/03/05/actualizar-a-python-3-9-en-wsl2/",
+                "destination": "/blog/instalar-version-actualizada-de-python-wsl2/",
+                "type": 301
+            },
+            {
+                "source": "/2021/01/30/scrum-product-owner-certified/",
+                "destination": "/blog/scrum-product-owner-certified/",
+                "type": 301
+            },
+            {
+                "source": "/2015/04/26/analisis-lexico-usando-jflex/",
+                "destination": "/blog/analisis-lexico-usando-jflex/",
+                "type": 301
+            },
+            {
+                "source": "/2015/04/26/analisis-lexico-usando-jflex/comment-page-1/",
+                "destination": "/blog/analisis-lexico-usando-jflex/",
+                "type": 301
+            },
+            {
+                "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/",
+                "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
+                "type": 301
+            },
+            {
+                "source": "/2020/08/05/descargar-archivo-bloqueado-en-gmail/comment-page-1/",
+                "destination": "/blog/descargar-archivo-bloqueado-en-gmail/",
+                "type": 301
+            },
+            {
+                "source": "/2015/02/22/sql-server-does-not-support-the-language-of-the-os/",
+                "destination": "/blog/sql-server-y-el-lenguaje-del-sistema-operativo/",
+                "type": 301
+            },
+            {
+                "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
+                "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
+                "type": 301
+            },
+            {
+                "source": "/2015/08/05/no-se-pudo-actualizar-la-particion-reservada-del-sistema/comment-page-1/",
+                "destination": "/blog/no-se-pudo-actualizar-la-particion-reservada-del-sistema/",
+                "type": 301
+            },
+            {
+                "source": "/2015/04/11/instalacion-jflex/",
+                "destination": "/blog/guia-para-instalar-jflex/",
+                "type": 301
+            },
+            {
+                "source": "/2019/01/06/scrum-master-certified/",
+                "destination": "/blog/scrum-master-certified/",
+                "type": 301
+            },
+            {
+                "source": "/get-contacts-profile-picture-inside-manychat/",
+                "destination": "/blog/get-contacts-profile-picture-inside-manychat/",
+                "type": 301
+            }
+        ],
         "headers": [
-          {
-            "key": "Content-Security-Policy",
-            "value": "default-src 'self'; script-src 'self' https://unpkg.com/ionicons@7.4.0/dist/; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' https://unpkg.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
-          },
-          {
-            "key": "X-Frame-Options",
-            "value": "SAMEORIGIN"
-          },
-          {
-            "key": "X-Content-Type-Options",
-            "value": "nosniff"
-          },
-          {
-            "key": "Referrer-Policy",
-            "value": "strict-origin-when-cross-origin"
-          },
-          {
-            "key": "Permissions-Policy",
-            "value": "geolocation=()"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=3600"
-          }
+            {
+                "source": "**",
+                "headers": [
+                    {
+                        "key": "Content-Security-Policy",
+                        "value": "default-src 'self'; script-src 'self' https://unpkg.com/ionicons@7.4.0/dist/; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' https://unpkg.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+                    },
+                    {
+                        "key": "X-Frame-Options",
+                        "value": "SAMEORIGIN"
+                    },
+                    {
+                        "key": "X-Content-Type-Options",
+                        "value": "nosniff"
+                    },
+                    {
+                        "key": "Referrer-Policy",
+                        "value": "strict-origin-when-cross-origin"
+                    },
+                    {
+                        "key": "Permissions-Policy",
+                        "value": "geolocation=()"
+                    },
+                    {
+                        "key": "Cache-Control",
+                        "value": "public, max-age=3600"
+                    }
+                ]
+            },
+            {
+                "source": "/index.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=180, public"
+                    }
+                ]
+            },
+            {
+                "source": "/**/*.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=3600, public"
+                    }
+                ]
+            },
+            {
+                "source": "/js/*.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=604800, public"
+                    }
+                ]
+            }
         ]
-      },
-      {
-        "source": "/index.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=180, public"
-          }
-        ]
-      },
-      {
-        "source": "/**/*.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=3600, public"
-          }
-        ]
-      },
-      {
-        "source": "/js/*.js",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=604800, public"
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
