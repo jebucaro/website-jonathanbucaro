@@ -3,7 +3,7 @@
         <li class="share__item">
             <a
                 class="share__link share__linkedin"
-                href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ .Permalink | relURL }}&amp;source={{ .Permalink | relURL }}&amp;title={{ .Title }}&amp;summary={{ .Title }}"
+                href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ .Permalink | absLangURL }}&amp;source={{ .Permalink | absLangURL }}&amp;title={{ .Title }}&amp;summary={{ .Title }}"
                 title="Compartir en LinkedIn"
                 target="_blank"
                 rel="nofollow noopener"
@@ -15,7 +15,7 @@
         <li class="share__item">
             <a
                 class="share__link share__x"
-                href="https://x.com/intent/tweet?text={{ .Title }}&url={{ .Permalink | relURL }}"
+                href="https://x.com/intent/tweet?text={{ .Title }}&url={{ .Permalink | absLangURL }}"
                 title="Compartir en X"
                 target="_blank"
                 rel="nofollow noopener"
@@ -26,7 +26,7 @@
         <li class="share__item">
             <a
                 class="share__link share__facebook"
-                href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | relURL }}"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | absLangURL }}"
                 title="Compartir en Facebook"
                 target="_blank"
                 rel="nofollow noopener"
@@ -37,7 +37,7 @@
         <li class="share__item">
             <a
                 class="share__link share__pinterest"
-                href="https://pinterest.com/pin/create/button/?url={{ .Permalink | relURL }}&amp;media={{ .Params.image | relURL }}&amp;description={{ .Title }}"
+                href="https://pinterest.com/pin/create/button/?url={{ .Permalink | absLangURL }}&amp;media={{ .Params.image | absLangURL }}&amp;description={{ .Title }}"
                 title="Compartir en Pinterest"
                 target="_blank"
                 rel="nofollow noopener"
@@ -49,7 +49,7 @@
         <li class="share__item">
             <a
                 class="share__link share__whatsapp"
-                href="whatsapp://send?text={{ .Permalink | relURL }}"
+                href="whatsapp://send?text={{ .Permalink | absLangURL }}"
                 title="Compartir en WhatsApp"
                 target="_blank"
                 rel="nofollow noopener"
