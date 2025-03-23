@@ -3,7 +3,7 @@
         <a class="article__image" href="{{ .RelPermalink }}">
             <img
                 class="lazy"
-                data-src="{{ .Params.Image | absURL }}"
+                data-src="{{ .Params.Image | relURL }}"
                 alt="{{ .Title }}"
             />
         </a>
