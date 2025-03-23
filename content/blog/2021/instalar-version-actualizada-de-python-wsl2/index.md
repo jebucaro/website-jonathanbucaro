@@ -54,7 +54,7 @@ Adicionalmente puedes comprobar la versión de Python
 python3 --version; python3.11 --version
 ```
 
-```
+```text
 Python 3.10
 Python 3.11.4
 ```

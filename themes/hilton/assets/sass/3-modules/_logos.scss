@@ -1,53 +1,53 @@
 /* Logos */
 .section.logos {
-  padding-top: 0;
-  border-top: none;
+    padding-top: 0;
+    border-top: none;
 }
 
 .logos__list {
-  display: flex;
-  // justify-content: space-between;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: -$base-spacing-unit;
+    display: flex;
+    // justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -$base-spacing-unit;
 }
 
 .logos__item {
-  // padding: $base-spacing-unit;
-  padding: $base-spacing-unit * 5;
-  margin-bottom: 0;
+    // padding: $base-spacing-unit;
+    padding: $base-spacing-unit * 5;
+    margin-bottom: 0;
 
-  @media (max-width: $mobile) {
-    padding: $base-spacing-unit;
-  }
+    @media (max-width: $mobile) {
+        padding: $base-spacing-unit;
+    }
 }
 
 .logos__link {
-  display: block;
-  transition: all 0.2s ease;
+    display: block;
+    transition: all 0.2s ease;
 
-  &:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
+    &:hover {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
 }
 
 .logos__image {
-  height: 72px;
-  // height: 36px;
-  // filter: invert(51%) sepia(4%) saturate(1703%) hue-rotate(179deg) brightness(85%) contrast(89%);
+    height: 72px;
+    // height: 36px;
+    // filter: invert(51%) sepia(4%) saturate(1703%) hue-rotate(179deg) brightness(85%) contrast(89%);
 
-  @media (max-width: $mobile) {
-    // height: 32px;
-    height: 48px;
-  }
+    @media (max-width: $mobile) {
+        // height: 32px;
+        height: 48px;
+    }
 }
 
 .dark-mode {
-  .logos__image {
-    // filter: invert(100%) sepia(32%) saturate(304%) hue-rotate(200deg) brightness(115%) contrast(88%);
-    filter: invert(100%) sepia(4%) saturate(304%) hue-rotate(200deg)
-      brightness(115%) contrast(88%);
-  }
+    .logos__image {
+        // filter: invert(100%) sepia(32%) saturate(304%) hue-rotate(200deg) brightness(115%) contrast(88%);
+        filter: invert(100%) sepia(4%) saturate(304%) hue-rotate(200deg)
+            brightness(115%) contrast(88%);
+    }
 }

@@ -4,13 +4,13 @@ languageCode: es-gt
 title: Jonathan Búcaro
 theme: hilton
 pagination:
-  pagerSize: 6
+    pagerSize: 6
 build:
-  writeStats: true
-  processing:
-    css:
-      minify: true
-      postcss: true
-    sass:
-      enable: true
-      outputStyle: compressed
+    writeStats: true
+    processing:
+        css:
+            minify: true
+            postcss: true
+        sass:
+            enable: true
+            outputStyle: compressed

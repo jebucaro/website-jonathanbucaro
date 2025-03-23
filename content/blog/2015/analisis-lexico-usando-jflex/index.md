@@ -106,13 +106,13 @@ El archivo `CustomLexer.jflex` contendrá la estructura de un archivo JFlex en d
 
 Despues de guardar, abre una terminal y utilizando el comando `jflex`, procesa el archivo `CustomLexer.jflex`
 
-```
+```cmd
 jflex .\CustomLexer.jflex
 ```
 
 Obtendrás un resultado similar al siguiente:
 
-```
+```text
 Reading ".\CustomLexer.jflex"
 Constructing NFA : 42 states in NFA
 Converting NFA to DFA :
@@ -125,7 +125,7 @@ Writing code to ".\CustomLexer.java"
 
 Crea un archivo de prueba con nombre `test.txt` en el mismo directorio que los otros archivos con el siguiente contenido.
 
-```
+```text
 1777*
 #*1
 *#06#
@@ -176,19 +176,19 @@ public class Main {
 
 Procede a compilar el código con el siguiente comando. Si todo se encuentra bien, no devolverá resultado alguno.
 
-```
+```cmd
 javac .\Main.java
 ```
 
 Una vez compilado puedes ejecutar el código con el siguiente comando.
 
-```
+```cmd
 java Main
 ```
 
 Te devolverá un resultado similar al siguiente:
 
-```
+```text
 Counter: 1 Text: 1777 Keyword: NUMBER LineNumber: 0 CharNumber: 0
 Counter: 2 Text: * Keyword: SYMBOL LineNumber: 0 CharNumber: 4
 Counter: 3 Text:   Keyword: NEWLINE LineNumber: 0 CharNumber: 5
@@ -223,13 +223,13 @@ Counter: 30 Text: JFlex Keyword: WORD LineNumber: 9 CharNumber: 69
 
 El código anterior fue probado con las siguientes versiones de Java y JFlex.
 
-```
+```text
 java 19.0.1 2022-10-18
 Java(TM) SE Runtime Environment (build 19.0.1+10-21)
 Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
 ```
 
-```
+```text
 This is JFlex 1.8.2
 ```
 

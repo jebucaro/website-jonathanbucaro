@@ -17,7 +17,7 @@ En la ventana de comando, ejecuta el siguiente comando para obtener la versión 
 java --version
 ```
 
-```
+```text
 java 19.0.1 2022-10-18
 Java(TM) SE Runtime Environment (build 19.0.1+10-21)
 Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
@@ -33,7 +33,7 @@ Visita el sitio de JFlex y <a href="https://jflex.de/download.html" target="_bla
 
 Extrae el contenido del archivo a un directorio la cual será considerado como el directorio de instalación. En este ejemplo se utilizará el drive C. El contenido de la versión descargada en este ejemplo es la 1.8.2.
 
-```
+```text
     C:\jflex\
         +--bin\                        (start scripts)
         +--doc\                        (FAQ and manual)
@@ -79,7 +79,7 @@ jflex --version
 
 Si todo se encuentra en orden, al ejecutar el comando se mostrará un mensaje indicando la versión que descargaste de JFlex. En este caso la 1.8.2.
 
-```
+```text
 This is JFlex 1.8.2
 ```
 

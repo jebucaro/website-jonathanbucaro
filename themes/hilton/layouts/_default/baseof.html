@@ -1,25 +1,29 @@
 <!doctype html>
 <html
-  lang="{{ .Site.LanguageCode }}"
-  data-color-scheme="{{ .Site.Params.color_scheme }}"
+    lang="{{ with .Params.language }}
+        {{ . }}
+    {{ else }}
+        {{ .Site.Language.Lang }}
+    {{ end }}"
+    data-color-scheme="{{ .Site.Params.color_scheme }}"
 >
-  {{ partial "head.html" . }}
+    {{ partial "head.html" . }}
 
 
-  <body>
-    {{ template "_internal/google_analytics.html" . }}
+    <body>
+        {{ template "_internal/google_analytics.html" . }}
 
-    {{ partial "header.html" . }}
+        {{ partial "header.html" . }}
 
 
-    <!-- begin content -->
-    <main class="content" aria-label="Content">
-      {{ block "main" . }}{{ end }}
-    </main>
-    <!-- end content -->
+        <!-- begin content -->
+        <main class="content" aria-label="Content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        <!-- end content -->
 
-    {{ partial "footer.html" . }}
+        {{ partial "footer.html" . }}
 
-    {{ partial "javascripts.html" . }}
-  </body>
+        {{ partial "javascripts.html" . }}
+    </body>
 </html>

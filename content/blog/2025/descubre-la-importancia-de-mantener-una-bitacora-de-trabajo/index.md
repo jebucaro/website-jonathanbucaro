@@ -71,7 +71,7 @@ No tienes que complicarte. Elegí una herramienta básica que te funcione: desde
 
 ## ✍️ Ejemplo de Plantilla en `Obsidian` para tu Bitácora de Trabajo
 
-`Obsidian`, tomando la descripción de su sitio oficial, es la aplicación de escritura privada y flexible que se adapta a tu forma de pensar. Es una excelente aplicación, la uso a diario, y como **Contractor**, puedo hacer uso de la licencia `De Minimis Commercial Use License`. En caso trabajes en planilla, necesitas conseguir una licencia comercial si pretendes usar `Obsidian` para actividades laborales. Puedes evaluar el uso de `Obsidian` para fines comerciales durante quince días.
+`Obsidian`, tomando la descripción de su sitio oficial, es la aplicación de escritura privada y flexible que se adapta a tu forma de pensar. Es una excelente aplicación, la uso a diario. Actualmente puedes hacer uso de Obsidian descargar y usar Obsidian de forma gratuita, para siempre, para cualquier propósito, incluyendo: Uso personal, Uso comercial, Organizaciones sin fines de lucro y caritativas, Instituciones educativas, Departamentos y agencias gubernamentales
 
 Esta plantilla se basa en el trabajo de **Dann Berg** en su publicación <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Compartiré una adecuación de la plantilla en base a mis necesidades orientando el uso hacia una bitácora de trabajo.
 
@@ -81,8 +81,8 @@ Es necesario tener instalado `Obsidian` y una bóveda que usarás para tu bitác
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian.webp" loading="lazy">
-    <img src="./images/obsidian-create-vault.webp" loading="lazy">
+    <img src="./images/obsidian.webp" alt="Pantalla de bienvenida de la aplicación Obsidian que muestra diversas opciones, destacando la opción de crear una nueva bóveda." loading="lazy">
+    <img src="./images/obsidian-create-vault.webp" alt="Opciones dentro de 'Crear una nueva bóveda' en la aplicación Obsidian, donde se debe especificar el nombre de la bóveda y la ubicación." loading="lazy">
   </div>
   <em>Obsidian - Crea una bóveda</em>
 </div>
@@ -98,8 +98,8 @@ Es necesario tener instalado `Obsidian` y una bóveda que usarás para tu bitác
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-enable-community-plugins.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-enabled.webp" loading="lazy">
+    <img src="./images/obsidian-enable-community-plugins.webp" alt="Configuración de Obsidian en la sección de plugins comunitarios, mostrando el botón para habilitar los plugins de la comunidad." loading="lazy">
+    <img src="./images/obsidian-community-plugins-enabled.webp" alt="Opción de habilitar los plugins de la comunidad en Obsidian, mostrando el estado activo." loading="lazy">
   </div>
   <em>Obsidian - Habilita los plugins de la comunidad</em>
 </div>
@@ -108,7 +108,7 @@ Haz clic en el botón `Browse` y en la ventana desplegable, busca el nombre del 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-community-plugins-browse.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-browse.webp" alt="Pantalla para buscar plugins dentro de los plugins de la comunidad en Obsidian, con la búsqueda del plugin 'Templater'." loading="lazy">
   </div>
   <em>Obsidian - Buscar Plugins</em>
 </div>
@@ -117,9 +117,9 @@ Haz clic en el botón `Browse` y en la ventana desplegable, busca el nombre del 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-community-plugins-install-templater.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-enable-templater.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-templater-enabled.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-install-templater.webp" alt="Resultado de la búsqueda del plugin 'Templater' en Obsidian, mostrando el botón para instalar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-enable-templater.webp" alt="Plugin 'Templater' instalado en Obsidian, mostrando el botón para habilitar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-templater-enabled.webp" alt="Plugin 'Templater' en Obsidian ya instalado y habilitado." loading="lazy">
   </div>
   <em>Obsidian - Instala y habilita el Plugin Templater</em>
 </div>
@@ -128,9 +128,9 @@ Haz clic en el botón `Browse` y en la ventana desplegable, busca el nombre del 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-community-plugins-install-calendar.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-calendar-enable.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-calendar-enabled.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-install-calendar.webp" alt="Resultado de la búsqueda del plugin 'Calendar' en Obsidian, mostrando el botón para instalar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-calendar-enable.webp" alt="Plugin 'Calendar' instalado en Obsidian, mostrando el botón para habilitar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-calendar-enabled.webp" alt="Plugin 'Calendar' en Obsidian ya instalado y habilitado." loading="lazy">
   </div>
   <em>Obsidian - Instala y habilita el Plugin Calendar</em>
 </div>
@@ -139,9 +139,9 @@ Haz clic en el botón `Browse` y en la ventana desplegable, busca el nombre del 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-community-plugins-install-dataview.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-enable-dataview.webp" loading="lazy">
-    <img src="./images/obsidian-community-plugins-dataview-enabled.webp" loading="lazy">
+    <img src="./images/obsidian-community-plugins-install-dataview.webp" alt="Resultado de la búsqueda del plugin 'Dataview' en Obsidian, mostrando el botón para instalar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-enable-dataview.webp" alt="Plugin 'Dataview' instalado en Obsidian, mostrando el botón para habilitar el plugin." loading="lazy">
+    <img src="./images/obsidian-community-plugins-dataview-enabled.webp" alt="Plugin 'Dataview' en Obsidian ya instalado y habilitado." loading="lazy">
   </div>
   <em>Obsidian - Instala y habilita el Plugin Dataview</em>
 </div>
@@ -152,13 +152,14 @@ Por el momento no realizaremos modificaciones en las configuraciones de los plug
 
 Crea un nuevo directorio llamado `Templates` y dentro de este un directorio llamado `Daily Templates`. Dentro de `Daily Templates` crea una nueva nota llamada `Daily Notes Template` y copia y pega el siguiente código dentro de la nota en modo `source`. Te recomiendo que utilices `Ctrl+Shift+v` para pegar el contenido sin formato.
 
-````
+````markdown
 ---
 created: <%tp.file.creation_date()%>
 tags:
-- Daily
-- Daily/<%tp.file.creation_date("YYYY")%>/<%tp.file.creation_date("MM-MMMM")%>
+    - Daily
+    - Daily/<%tp.file.creation_date("YYYY")%>/<%tp.file.creation_date("MM-MMMM")%>
 ---
+
 ## 🗓️ Daily Questions
 
 ### 📌 Tasks
@@ -171,15 +172,12 @@ tags:
 
 ### 🚧 Impediments
 
--
+- ***
 
----
 ## 📝 Notes
 
-
-
-
 ---
+
 ### 📖 Daily Notes Overview
 
 #### ✍️ Notes created today
@@ -193,13 +191,12 @@ List FROM "" WHERE file.cday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.c
 ```dataview
 List FROM "" WHERE file.mday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.mtime asc
 ```
-
 ````
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-folder-structure.webp" loading="lazy">
-    <img src="./images/obsidian-template-content.webp" loading="lazy">
+    <img src="./images/obsidian-folder-structure.webp" alt="Pantalla principal de Obsidian mostrando la estructura de carpetas para configurar la plantilla de notas diarias y el directorio donde se generarán." loading="lazy">
+    <img src="./images/obsidian-template-content.webp" alt="Contenido de la plantilla de notas diarias en Obsidian." loading="lazy">
   </div>
   <em>Obsildian - Estructura de directorios</em>
 </div>
@@ -210,7 +207,7 @@ Ve a las configuraciones, dentro de la sección `Core plugins`, ubica las config
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-create-daily-note-configuration.webp" loading="lazy">
+    <img src="./images/obsidian-create-daily-note-configuration.webp" alt="Configuración del plugin 'Daily Notes' en Obsidian, mostrando donde se debe configurar el formato de fecha del archivo, la ubicación y la opción para crear la nota diaria al abrir la aplicación." loading="lazy">
   </div>
   <em>Obsidian - Configuración de Daily note</em>
 </div>
@@ -219,8 +216,8 @@ Finalmente, en la sección de `Community plugins`, ubica las configuraciones del
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-create-templater-configuration.webp" loading="lazy">
-    <img src="./images/obsidian-create-templater-configuration-folder-templates.webp" loading="lazy">
+    <img src="./images/obsidian-create-templater-configuration.webp" alt="Configuración del plugin 'Templater' en Obsidian, mostrando donde se debe configurar la ubicación del directorio de plantillas, habilitar la opción para saltar el cursor a la posición configurada y activar 'Templater' en la creación de un nuevo archivo." loading="lazy">
+    <img src="./images/obsidian-create-templater-configuration-folder-templates.webp" alt="Continuación de configuraciones del plugin 'Templater' en Obsidian, donde se habilitan las plantillas de directorios y se debe configurar una pareja de ubicación y plantilla." loading="lazy">
   </div>
   <em>Obsidian - Configuración de Templater</em>
 </div>
@@ -233,8 +230,8 @@ En la barra lateral izquierda, puedes encontrar una cinta de accesos, una de ell
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-open-todays-daily-note.webp" loading="lazy">
-    <img src="./images/obsidian-todays-daily-note.webp" loading="lazy">
+    <img src="./images/obsidian-open-todays-daily-note.webp" alt="Pantalla de la aplicación Obsidian, mostrando donde debe ejecutarse la opción para crear una nota diaria." loading="lazy">
+    <img src="./images/obsidian-todays-daily-note.webp" alt="Nota diaria creada en Obsidian a partir de la plantilla configurada." loading="lazy">
   </div>
   <em>Obsidian - Crea la nota del día de hoy</em>
 </div>
@@ -243,8 +240,8 @@ En la parte superior derecha, puedes encontrar el botón `Expand`. Al dar clic a
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-expand.webp" loading="lazy">
-    <img src="./images/obsidian-expand-calendar.webp" loading="lazy">
+    <img src="./images/obsidian-expand.webp" alt="Pantalla de la aplicación Obsidian, mostrando donde debe hacer Clic en la opción para expandir diferentes vistas, principalmente para ubicar la vista de calendario." loading="lazy">
+    <img src="./images/obsidian-expand-calendar.webp" alt="Pantalla de la aplicación Obsidian, mostrando la vista de Calendario" loading="lazy">
   </div>
   <em>Obsidian - Vista de calendario</em>
 </div>
@@ -253,8 +250,8 @@ Si te encuentras en modo edición `Source mode`, el resumen de las notas mostrar
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="./images/obsidian-source-mode.webp" loading="lazy">
-    <img src="./images/obsidian-reading-view.webp" loading="lazy">
+    <img src="./images/obsidian-source-mode.webp" alt="Pantalla de la aplicación Obsidian, mostrando la vista de código fuente" loading="lazy">
+    <img src="./images/obsidian-reading-view.webp" alt="Pantalla de la aplicación Obsidian, mostrando la vista de lectura" loading="lazy">
   </div>
   <em>Obsidian - Vista de edición y lectura</em>
 </div>
