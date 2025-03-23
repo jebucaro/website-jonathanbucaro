@@ -13,9 +13,9 @@ La herramienta que te sugiero utilizar es `pyenv` para entornos Unix o `pyenv-wi
 
 ## 📜 Tabla de Contenido
 
-- [⚙️ Guía de Instalación](#guía-de-instalación)
-  - [🪟 Windows 11](#instalacion-en-windows-11)
-  - [🐧 Linux](#instalacion-en-linux)
+- [⚙️ Guía de Instalación](#guia-de-instalacion)
+    - [🪟 Windows 11](#instalacion-en-windows-11)
+    - [🐧 Linux](#instalacion-en-linux)
 - [🔨 Uso general de pyenv](#uso-general-de-pyenv)
 - [👣 Siguientes pasos](#siguientes-pasos)
 

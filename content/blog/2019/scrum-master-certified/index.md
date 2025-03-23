@@ -33,7 +33,7 @@ He renovado la certificación SMC al haber aprobado el exámen de Scrum Product 
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="images/badge-SMC.webp" loading="lazy">
+    <img src="images/badge-SMC.webp" alt="Medalla de SCRUMstudy para la certificación Scrum Master Certified" loading="lazy">
   </div>
   <em><a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank">SMC - SCRUMstudy ➡</a></em>
 </div>

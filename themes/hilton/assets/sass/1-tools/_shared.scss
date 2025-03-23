@@ -19,7 +19,7 @@ table,
 fieldset,
 figure,
 pre {
-  margin-bottom: 32px;
+    margin-bottom: 32px;
 }
 
 /**
@@ -29,13 +29,13 @@ pre {
 ul,
 ol,
 dd {
-  margin-left: $base-spacing-unit;
-  padding-left: 4px;
+    margin-left: $base-spacing-unit;
+    padding-left: 4px;
 }
 
 ul,
 ol {
-  li {
-    margin-bottom: 10px;
-  }
+    li {
+        margin-bottom: 10px;
+    }
 }

@@ -11,7 +11,7 @@ Recientemente me vi en la necesidad de instalar Visual Studio Code en un servido
 
 Los pasos son los siguientes:
 
-1. Descarga la versión `.zip` Visual Studio Code.
+- Descarga la versión `.zip` Visual Studio Code.
 
 <div class="gallery-box">
   <div class="gallery">
@@ -20,21 +20,21 @@ Los pasos son los siguientes:
   <em>Descarga la versión .ZIP de Visual Studio Code</em>
 </div>
 
-2. Descomprime el archivo `.zip` descargado anteriormente.
-3. Crear una carpeta llamada `data` dentro de la carpeta de Visual Studio Code.
+- Descomprime el archivo `.zip` descargado anteriormente.
+- Crear una carpeta llamada `data` dentro de la carpeta de Visual Studio Code.
 
 La estructura sería similar a la siguiente
 
-```txt
+```text
 |- VSCode
 |   |- Code.exe (el ejecutable de VS Code)
 |   |- data (carpeta nueva)
 |   |- ... (resto de archivos)
 ```
 
-4. Ingresar a Visual Studio Code y procede a descargar las extensiones que necesites
-5. De preferencia utiliza de alguna forma alguna de las extensiones, ya sea invocando algún comando de esta extensión o al abrir algún archivo que active el uso de la extensión, esto debido a que en ocasiones instalan dependencias en el primer uso de la extensión.
-6. Copia la carpeta de VSCode al servidor sin acceso a internet.
+- Ingresar a Visual Studio Code y procede a descargar las extensiones que necesites
+- De preferencia utiliza de alguna forma las extensiones, ya sea invocando algún comando de esta extensión o al abrir algún archivo que active el uso de la extensión, esto debido a que en ocasiones instalan dependencias en el primer uso de la extensión.
+- Copia la carpeta de VSCode al servidor sin acceso a internet.
 
 ## 🎁 Bonus - Agregar a Menú Contextual
 

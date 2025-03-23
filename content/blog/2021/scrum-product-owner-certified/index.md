@@ -11,7 +11,7 @@ Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Ow
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="images/badge-SPOC.webp" loading="lazy">
+    <img src="images/badge-SPOC.webp" alt="Medalla de SCRUMstudy para la certificación Scrum Product Owner Certified" loading="lazy">
   </div>
   <em><a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">SPOC - SCRUMstudy ➡</a></em>
 </div>

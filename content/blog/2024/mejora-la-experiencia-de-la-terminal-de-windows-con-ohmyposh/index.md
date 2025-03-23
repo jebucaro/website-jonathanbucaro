@@ -15,19 +15,19 @@ En este artículo, te guiaré paso a paso sobre cómo instalar y configurar `Oh 
 
 - [💾 Instala PowerShell](#instala-powershell)
 - [💻 Configura Windows Terminal](#configura-windows-terminal)
-  - [Establece Windows Terminal como la aplicación de terminal por defecto](#terminal-por-defecto)
-  - [Configura la política de ejecución de scripts de PowerShell](#ejecucion-de-scripts)
+    - [Establece Windows Terminal como la aplicación de terminal por defecto](#terminal-por-defecto)
+    - [Configura la política de ejecución de scripts de PowerShell](#ejecucion-de-scripts)
 - [🤖 Instala y configura Oh My Posh](#instala-y-configura-ohmyposh)
-  - [Instala una fuente](#instala-una-fuente)
-  - [Configura Windows Terminal para usar una Nerd Font](#configura-windows-terminal-nerd-font)
-  - [Configura la terminal de Visual Studio Code para usar una Nerd Font](#configura-visual-studio-code-nerd-font)
-  - [Configura PowerShell para hacer uso de Oh My Posh](#configura-powershell-ohmyposh)
-  - [Configura un tema](#configura-un-tema-ohmyposh)
+    - [Instala una fuente](#instala-una-fuente)
+    - [Configura Windows Terminal para usar una Nerd Font](#configura-windows-terminal-nerd-font)
+    - [Configura la terminal de Visual Studio Code para usar una Nerd Font](#configura-visual-studio-code-nerd-font)
+    - [Configura PowerShell para hacer uso de Oh My Posh](#configura-powershell-ohmyposh)
+    - [Configura un tema](#configura-un-tema-ohmyposh)
 - [🔝 Sube de nivel con estos módulos y aplicaciones](#sube-de-nivel)
-  - [📦 PSReadLine](#psreadline)
-  - [📦 winfetch](#winfetch)
-  - [📦 bat](#bat)
-  - [📦 eza](#eza)
+    - [📦 PSReadLine](#psreadline)
+    - [📦 winfetch](#winfetch)
+    - [📦 bat](#bat)
+    - [📦 eza](#eza)
 
 <span id="instala-powershell"></span>
 
@@ -83,7 +83,7 @@ Get-ExecutionPolicy
 
 El resultado esperado será
 
-```
+```text
 RemoteSigned
 ```
 
@@ -137,13 +137,13 @@ Una vez instalada la `Nerd Font`, debes configurar la `Terminal de Windows` para
 
 ```json
 {
-  "profiles": {
-    "defaults": {
-      "font": {
-        "face": "MesloLGM Nerd Font"
-      }
+    "profiles": {
+        "defaults": {
+            "font": {
+                "face": "MesloLGM Nerd Font"
+            }
+        }
     }
-  }
 }
 ```
 

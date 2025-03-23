@@ -1,136 +1,136 @@
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
 
-  <title>
-    {{ if not .IsHome }}
-      {{ humanize .Title }}
-    {{ else }}
-      {{ .Site.Title }}
+    <title>
+        {{ if not .IsHome }}
+            {{ humanize .Title }}
+        {{ else }}
+            {{ .Site.Title }}
+        {{ end }}
+    </title>
+    <meta
+        name="description"
+        content="{{ if .IsHome }}
+            {{ .Site.Params.description }}
+        {{ else }}
+            {{ .Description }}
+        {{ end }}"
+    />
+    <link rel="canonical" href="{{ .Permalink }}" />
+
+    {{ with .OutputFormats.Get "rss" -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
-  </title>
-  <meta
-    name="description"
-    content="{{ if .IsHome }}
-      {{ .Site.Params.description }}
-    {{ else }}
-      {{ .Description }}
-    {{ end }}"
-  />
-  <link rel="canonical" href="{{ .Permalink }}" />
-
-  {{ with .OutputFormats.Get "rss" -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-  {{ end }}
 
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta
-    name="twitter:title"
-    content="{{ if not .IsHome }}
-      {{ .Title }}
-    {{ else }}
-      {{ .Site.Title }}
-    {{ end }}"
-  />
-  <meta
-    name="twitter:description"
-    content="{{ with .Description }}
-      {{ . }}
-    {{ else }}
-      {{ if .IsPage }}
-        {{ .Summary }}
-      {{ else }}
-        {{ with .Site.Params.description }}{{ . }}{{ end }}
-      {{ end }}
-    {{ end }}"
-  />
-  {{ if .IsHome }}
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
-      name="twitter:image"
-      content="{{ .Site.Params.hero.hero__image | absURL }}"
+        name="twitter:title"
+        content="{{ if not .IsHome }}
+            {{ .Title }}
+        {{ else }}
+            {{ .Site.Title }}
+        {{ end }}"
     />
-  {{ else }}
-    <meta name="twitter:image" content="{{ .Params.Image | absURL }}" />
-  {{ end }}
-
-
-  <!-- Facebook OpenGraph -->
-  <meta
-    property="og:title"
-    content="{{ if not .IsHome }}
-      {{ .Title }}
-    {{ else }}
-      {{ .Site.Title }}
-    {{ end }}"
-  />
-  <meta
-    property="og:description"
-    content="{{ with .Description }}
-      {{ . }}
-    {{ else }}
-      {{ if .IsPage }}
-        {{ .Summary }}
-      {{ else }}
-        {{ with .Site.Params.description }}{{ . }}{{ end }}
-      {{ end }}
-    {{ end }}"
-  />
-  {{ if .IsHome }}
     <meta
-      property="og:image"
-      content="{{ .Site.Params.hero.hero__image | absURL }}"
+        name="twitter:description"
+        content="{{ with .Description }}
+            {{ . }}
+        {{ else }}
+            {{ if .IsPage }}
+                {{ .Summary }}
+            {{ else }}
+                {{ with .Site.Params.description }}{{ . }}{{ end }}
+            {{ end }}
+        {{ end }}"
     />
-  {{ else }}
-    <meta property="og:image" content="{{ .Params.Image | absURL }}" />
-  {{ end }}
+    {{ if .IsHome }}
+        <meta
+            name="twitter:image"
+            content="{{ .Site.Params.hero.hero__image | absURL }}"
+        />
+    {{ else }}
+        <meta name="twitter:image" content="{{ .Params.Image | absURL }}" />
+    {{ end }}
 
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-  <link
-    rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
-    as="style"
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Ionicons -->
-  <script
-    type="module"
-    src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"
-  ></script>
-
-  <script
-    nomodule
-    src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"
-  ></script>
-
-  {{ $themejs := resources.Get "js/theme.js" }}
-  {{ if hugo.IsServer }}
-    <script src="{{ $themejs.Permalink }}"></script>
-  {{ else }}
-    <script src="{{ ($themejs | minify | fingerprint).RelPermalink }}"></script>
-  {{ end }}
+    <!-- Facebook OpenGraph -->
+    <meta
+        property="og:title"
+        content="{{ if not .IsHome }}
+            {{ .Title }}
+        {{ else }}
+            {{ .Site.Title }}
+        {{ end }}"
+    />
+    <meta
+        property="og:description"
+        content="{{ with .Description }}
+            {{ . }}
+        {{ else }}
+            {{ if .IsPage }}
+                {{ .Summary }}
+            {{ else }}
+                {{ with .Site.Params.description }}{{ . }}{{ end }}
+            {{ end }}
+        {{ end }}"
+    />
+    {{ if .IsHome }}
+        <meta
+            property="og:image"
+            content="{{ .Site.Params.hero.hero__image | absURL }}"
+        />
+    {{ else }}
+        <meta property="og:image" content="{{ .Params.Image | absURL }}" />
+    {{ end }}
 
 
-  <!-- CSS -->
-  {{ $cssOpts := (dict "targetPath" "css/main.css") }}
-  {{ if hugo.IsServer }}
-    {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
-  {{ end }}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
-  {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
-  {{ if $css }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-  {{ end }}
+    <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
+        as="style"
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Ionicons -->
+    <script
+        type="module"
+        src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+
+    <script
+        nomodule
+        src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    {{ $themejs := resources.Get "js/theme.js" }}
+    {{ if hugo.IsServer }}
+        <script src="{{ $themejs.Permalink }}"></script>
+    {{ else }}
+        <script src="{{ ($themejs | minify | fingerprint).RelPermalink }}"></script>
+    {{ end }}
+
+
+    <!-- CSS -->
+    {{ $cssOpts := (dict "targetPath" "css/main.css") }}
+    {{ if hugo.IsServer }}
+        {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
+    {{ end }}
+
+    {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
+    {{ if $css }}
+        <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+    {{ end }}
 
 </head>

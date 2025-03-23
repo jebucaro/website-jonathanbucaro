@@ -9,7 +9,7 @@ description: 'Utiliza Entity Framework para guardar una imagen en una base de da
 
 Almacenar una imagen en base de datos siempre ha sido un tema de controversia en distintos sitios y foros, sin embargo este tema es el más solicitado en mi blog.
 
-El artículo original que publiqué hace` años` y uno de los temas que me han solicitado es la versión con Entity Framework con NET 5.
+El artículo original que publiqué hace años y uno de los temas que me han solicitado es la versión con Entity Framework con NET 5.
 
 ## 📜 Tabla de Contenido
 
@@ -86,7 +86,7 @@ public class BaseEntity
 
 Crea una nueva clase que heredará de `DbContext`, en esta clase agrega una propiedad del tipo `DbSet<Modelo>`.
 
-He colocado el código necesario para almacenar la Fecha y Hora de Creación del registro, así como el de Actualización, esto se logra al sobrescribir los métodos` SaveChanges` y SaveChangesAsync. Puedes encontrar más información en el siguiente <a href="https://stackoverflow.com/questions/14385477/adding-createddate-to-an-entity-using-entity-framework-5-code-first" target="_blank">enlace ➡</a>.
+He colocado el código necesario para almacenar la Fecha y Hora de Creación del registro, así como el de Actualización, esto se logra al sobrescribir los métodos `SaveChanges` y `SaveChangesAsync`. Puedes encontrar más información en el siguiente <a href="https://stackoverflow.com/questions/14385477/adding-createddate-to-an-entity-using-entity-framework-5-code-first" target="_blank">enlace ➡</a>.
 
 ```csharp
 public class PictureToSQLDbContext : DbContext
@@ -138,17 +138,17 @@ Ubica el archivo `appsettings.json`, crea una nueva sección para agregarar los 
 
 ```json
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost; Database=PictureToSQL; Trusted_Connection=true;"
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
-  "AllowedHosts": "*"
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=localhost; Database=PictureToSQL; Trusted_Connection=true;"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    },
+    "AllowedHosts": "*"
 }
 ```
 
@@ -294,7 +294,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### ProfilePicture
 
-Crea un nuevo controlador API con acciones de lectura y escritura, el nombre que estaré util`izando` es `ProfilePicturesController.cs`. Este paso creará una nueva clase llamada `ProfilePicturesController` con métodos` base` que utilizarás como plantilla.
+Crea un nuevo controlador API con acciones de lectura y escritura, el nombre que estaré utilizando es `ProfilePicturesController.cs`. Este paso creará una nueva clase llamada `ProfilePicturesController` con métodos `base` que utilizarás como plantilla.
 
 ```csharp
 [Route("api/[controller]")]
@@ -460,7 +460,7 @@ Al compilar el proyecto y ejecutarlo en modo debug se mostrará la siguiente pá
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="images/swagger-1.webp" loading="lazy">
+    <img src="images/swagger-1.webp" alt="SwaggerInterfaz de Swagger mostrando una lista de endpoints de API con descripciones y métodos." loading="lazy">
   </div>
   <em>Swagger - PictureToSQL</a></em>
 </div>
