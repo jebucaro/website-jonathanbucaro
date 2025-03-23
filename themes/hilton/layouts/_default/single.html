@@ -37,7 +37,7 @@
                         <div class="post-image">
                             <img
                                 class="lazy"
-                                data-src="{{ .Params.Image | absURL }}"
+                                data-src="{{ .Params.Image | relURL }}"
                                 alt="{{ .Title }}"
                             />
                         </div>
@@ -90,7 +90,7 @@
                         <div class="page-image animate">
                             <img
                                 class="lazy"
-                                data-src="{{ .Params.Image | absURL }}"
+                                data-src="{{ .Params.Image | relURL }}"
                                 alt="{{ .Title }}"
                             />
                         </div>

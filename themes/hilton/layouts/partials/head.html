@@ -51,10 +51,10 @@
     {{ if .IsHome }}
         <meta
             name="twitter:image"
-            content="{{ .Site.Params.hero.hero__image | absURL }}"
+            content="{{ .Site.Params.hero.hero__image | relURL }}"
         />
     {{ else }}
-        <meta name="twitter:image" content="{{ .Params.Image | absURL }}" />
+        <meta name="twitter:image" content="{{ .Params.Image | relURL }}" />
     {{ end }}
 
 
@@ -82,10 +82,10 @@
     {{ if .IsHome }}
         <meta
             property="og:image"
-            content="{{ .Site.Params.hero.hero__image | absURL }}"
+            content="{{ .Site.Params.hero.hero__image | relURL }}"
         />
     {{ else }}
-        <meta property="og:image" content="{{ .Params.Image | absURL }}" />
+        <meta property="og:image" content="{{ .Params.Image | relURL }}" />
     {{ end }}
 
 
