@@ -1,20 +1,23 @@
 {
-  "plugins": ["prettier-plugin-go-template"],
-  "overrides": [
-    {
-      "files": "*.html",
-      "options": {
-        "parser": "go-template"
-      }
-    },
-    {
-      "files": ["*.html", "*.css", "*.scss", "*.sass", "*.less"],
-      "options": {
-        "singleQuote": false
-      }
-    }
-  ],
-  "singleQuote": true,
-  "endOfLine": "lf",
-  "goTemplateBracketSpacing": true
+    "plugins": ["prettier-plugin-go-template"],
+    "overrides": [
+        {
+            "files": "*.html",
+            "options": {
+                "parser": "go-template",
+                "singleQuote": true
+            }
+        },
+        {
+            "files": ["*.css", "*.scss", "*.sass", "*.less"],
+            "options": {
+                "singleQuote": false
+            }
+        }
+    ],
+    "singleQuote": true,
+    "endOfLine": "lf",
+    "goTemplateBracketSpacing": true,
+    "tabWidth": 4,
+    "useTabs": false
 }
