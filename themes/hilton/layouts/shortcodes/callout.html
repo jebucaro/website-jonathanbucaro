@@ -1,3 +1,10 @@
 <div class="callout {{ .Get 0 }}">
+    <span class="sr-only">
+        {{- if eq (.Get 0) "note" -}}Note{{- end -}}
+        {{- if eq (.Get 0) "tip" -}}Tip{{- end -}}
+        {{- if eq (.Get 0) "important" -}}Important{{- end -}}
+        {{- if eq (.Get 0) "warning" -}}Warning{{- end -}}
+        {{- if eq (.Get 0) "caution" -}}Caution{{- end -}}
+    </span>
     {{ .Inner | markdownify }}
 </div>
