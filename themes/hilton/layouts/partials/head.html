@@ -87,6 +87,23 @@
     {{ else }}
         <meta property="og:image" content="{{ .Params.Image | relURL }}" />
     {{ end }}
+    <meta
+        property="og:type"
+        content="{{ if .IsHome }}
+            website
+        {{ else }}
+            article
+        {{ end }}"
+    />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+
+    <!-- Robots Meta Tag -->
+    {{ if .Params.noindex }}
+        <meta name="robots" content="noindex, nofollow" />
+    {{ else }}
+        <meta name="robots" content="index, follow" />
+    {{ end }}
 
 
     <!-- Fonts -->
