@@ -3,151 +3,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
-
-    <title>
-        {{ if not .IsHome }}
-            {{ humanize .Title }}
-        {{ else }}
-            {{ .Site.Title }}
-        {{ end }}
-    </title>
-    <meta
-        name="description"
-        content="{{ if .IsHome }}
-            {{ .Site.Params.description }}
-        {{ else }}
-            {{ .Description }}
-        {{ end }}"
-    />
+    <title>{{ if not .IsHome }}{{ humanize .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="canonical" href="{{ .Permalink }}" />
-
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
-
-
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-        name="twitter:title"
-        content="{{ if not .IsHome }}
-            {{ .Title }}
-        {{ else }}
-            {{ .Site.Title }}
-        {{ end }}"
-    />
-    <meta
-        name="twitter:description"
-        content="{{ with .Description }}
-            {{ . }}
-        {{ else }}
-            {{ if .IsPage }}
-                {{ .Summary }}
-            {{ else }}
-                {{ with .Site.Params.description }}{{ . }}{{ end }}
-            {{ end }}
-        {{ end }}"
-    />
+    <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
+    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
     {{ if .IsHome }}
-        <meta
-            name="twitter:image"
-            content="{{ .Site.Params.hero.hero__image | relURL }}"
-        />
+        <meta name="twitter:image" content="{{ .Site.Params.hero.hero__image | relURL }}" />
     {{ else }}
         <meta name="twitter:image" content="{{ .Params.Image | relURL }}" />
     {{ end }}
-
-
     <!-- Facebook OpenGraph -->
-    <meta
-        property="og:title"
-        content="{{ if not .IsHome }}
-            {{ .Title }}
-        {{ else }}
-            {{ .Site.Title }}
-        {{ end }}"
-    />
-    <meta
-        property="og:description"
-        content="{{ with .Description }}
-            {{ . }}
-        {{ else }}
-            {{ if .IsPage }}
-                {{ .Summary }}
-            {{ else }}
-                {{ with .Site.Params.description }}{{ . }}{{ end }}
-            {{ end }}
-        {{ end }}"
-    />
+    <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
+    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
     {{ if .IsHome }}
-        <meta
-            property="og:image"
-            content="{{ .Site.Params.hero.hero__image | relURL }}"
-        />
+        <meta property="og:image" content="{{ .Site.Params.hero.hero__image | relURL }}" />
     {{ else }}
         <meta property="og:image" content="{{ .Params.Image | relURL }}" />
     {{ end }}
-    <meta
-        property="og:type"
-        content="{{ if .IsHome }}
-            website
-        {{ else }}
-            article
-        {{ end }}"
-    />
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />
-
     <!-- Robots Meta Tag -->
     {{ if .Params.noindex }}
         <meta name="robots" content="noindex, nofollow" />
     {{ else }}
         <meta name="robots" content="index, follow" />
     {{ end }}
-
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-    <link
-        rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
-        as="style"
-    />
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap"
-        rel="stylesheet"
-    />
-
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
     <!-- Ionicons -->
-    <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-
-    <script
-        nomodule
-        src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"
-    ></script>
-
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
     {{ $themejs := resources.Get "js/theme.js" }}
     {{ if hugo.IsServer }}
         <script src="{{ $themejs.Permalink }}"></script>
     {{ else }}
         <script src="{{ ($themejs | minify | fingerprint).RelPermalink }}"></script>
     {{ end }}
-
-
     <!-- CSS -->
     {{ $cssOpts := (dict "targetPath" "css/main.css") }}
     {{ if hugo.IsServer }}
         {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ end }}
-
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
     {{ if $css }}
         <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
     {{ end }}
-
 </head>
