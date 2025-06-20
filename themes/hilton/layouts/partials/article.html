@@ -1,10 +1,7 @@
 <div class="article col col-4 col-d-6 col-t-12">
     {{ if .Params.Image }}
         <a class="article__image" href="{{ .RelPermalink }}">
-            <img
-                class="lazy"
-                data-src="{{ .Params.Image | relURL }}"
-                alt="{{ .Title }}"
+            <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}"
             />
         </a>
     {{ end }}
@@ -12,9 +9,7 @@
     {{ if .Params.tags }}
         <div class="article-tags__box">
             {{ range ($.GetTerms "tags") }}
-                <a href="{{ .Permalink }}" class="article__tag"
-                    >{{ .LinkTitle }}</a
-                >
+                <a href="{{ .Permalink }}" class="article__tag">{{ .LinkTitle }}</a>
             {{ end }}
         </div>
     {{ end }}
@@ -26,20 +21,9 @@
 
     <div class="article__meta">
         <div class="article-info">
-            <time
-                class="article__date"
-                datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}"
-                >{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long) }}</time
-            >
+            <time class="article__date" datetime="{{ .Date.Format " 2006-01-02T15:04:05Z07:00" }}">{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long) }}</time>
         </div>
     </div>
 
-    <p class="article__excerpt">
-        {{ if .Description }}
-            {{ .Description }}
-        {{ else }}
-            {{ truncate 250 .Summary | safeHTML }}
-        {{ end }}
-
-    </p>
+    <p class="article__excerpt">{{ if .Description }}{{ .Description }}{{ else }}{{ truncate 250 .Summary | safeHTML }}{{ end }}</p>
 </div>

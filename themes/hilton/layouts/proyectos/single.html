@@ -13,7 +13,9 @@
                 </div>
             </div>
         {{ end }}
-        <div class="project-content animate">{{ .Content }}</div>
+        <div class="project-content animate">
+            {{ .Content }}
+        </div>
         {{ if .PrevInSection }}
             <div class="project__nav animate">
                 <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
