@@ -2,3 +2,5 @@
 # ignore hugo generated files
 /public/**
 /resources/**
+themes/**/*.html
+layouts/**/*.html
