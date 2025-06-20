@@ -76,22 +76,24 @@ h6 {
 blockquote {
     position: relative;
     margin: 64px 0;
+    padding: 10px 20px;
     font-family: $heading-font-family;
-    font-size: 32px;
-    line-height: 1.6;
-    font-weight: 900;
+    font-size: 28px;
+    line-height: 1.5;
+    font-weight: 700;
+    text-align: center;
     color: var(--heading-font-color);
 
-    &::after {
+    &::before {
         content: "\201C";
-        position: absolute;
-        top: 0.15em;
-        left: 0;
-        z-index: -1;
-        font-family: $heading-font-family;
-        font-size: 6em;
-        line-height: 0;
-        opacity: 0.08;
+        display: block;
+        font-family: $heading-font-family, serif; // Ensure correct font
+        font-size: 6em; // Large size
+        font-weight: 900; // Bold
+        line-height: 0.3;
+        margin-bottom: 20px;
+        color: var(--brand-color);
+        opacity: 1; // Solid symbol
     }
 
     p {
@@ -110,7 +112,12 @@ blockquote {
 
     @media only screen and (max-width: $mobile) {
         margin: 40px 0;
-        font-size: 21px;
+        font-size: 24px;
+        padding: 0 16px;
+
+        &::before {
+            font-size: 4em;
+        }
     }
 }
 
