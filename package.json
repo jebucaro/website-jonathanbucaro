@@ -27,9 +27,6 @@
         "*.md": [
             "prettier --write",
             "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources"
-        ],
-        "*.html": [
-            "prettier --write --parser go-template"
         ]
     }
 }
