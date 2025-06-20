@@ -8,25 +8,13 @@
                         <div class="col col-12">
                             <div class="tag__info">
                                 <h1 class="tag__name">{{ humanize .Title }}</h1>
-                                <div class="tag__counter">
-                                    {{ len .Pages }}
-                                    {{ if lt (len .Pages) 2 }}
-                                        Publicaci&oacute;n
-                                    {{ else }}
-                                        Publicaciones
-                                    {{ end }}
-                                </div>
+                                <div class="tag__counter">{{ len .Pages }}{{ if lt (len .Pages) 2 }} Publicación{{ else }} Publicaciones{{ end }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="container">
-                    <div class="row animate">
-                        {{ range .Data.Pages }}
-                            {{ partial "article.html" . }}
-                        {{ end }}
-                    </div>
+                    <div class="row animate">{{ range .Data.Pages }}{{ partial "article.html" . }}{{ end }}</div>
                 </div>
             </div>
         </div>
@@ -38,25 +26,18 @@
                 <div class="col col-8 push-2 col-t-12 push-t-0">
                     <div class="page-head">
                         <h1 class="page-title">{{ .Title }}</h1>
-                        {{ if .Description }}
-                            <p class="page-description">{{ .Description }}</p>
-                        {{ end }}
+                        {{ if .Description }}<p class="page-description">{{ .Description }}</p>{{ end }}
                     </div>
                 </div>
             </div>
         </div>
         <!-- end page-head -->
-
         <div class="container animate">
             <div class="row">
                 {{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog" ) }}
-                {{ range $paginator.Pages }}
-                    {{ partial "article" . }}
-                {{ end }}
+                {{ range $paginator.Pages }}{{ partial "article" . }}{{ end }}
             </div>
         </div>
-
         {{ partial "pagination.html" . }}
     {{ end }}
-
 {{ end }}
