@@ -8,7 +8,7 @@
                     <div class="pagination__list">
                         <!-- Previous page. -->
                         {{ if $paginator.HasPrev }}
-                            <a href="{{ $paginator.Prev.URL }}" class="pagination__link previous-link">&laquo;</a>
+                            <a href="{{ .Paginator.Prev.URL }}" class="pagination__prev">{{ i18n "pagination.previous" | safeHTML }}</a>
                         {{ end }}
 
                         <!-- Page numbers. -->
@@ -19,7 +19,7 @@
 
                         <!-- Next page. -->
                         {{ if $paginator.HasNext }}
-                            <a href="{{ $paginator.Next.URL }}" class="pagination__link next-link">&raquo;</a>
+                            <a href="{{ $paginator.Next.URL }}" class="pagination__link next-link">{{ i18n "pagination.next" | safeHTML }}</a>
                         {{ end }}
 
                     </div>
