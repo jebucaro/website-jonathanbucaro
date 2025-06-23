@@ -11,14 +11,14 @@
                             </div>
                         </div>
                         <div class="hero__right">
-                            <h1 class="hero__title">{{ .Site.Params.hero.hero__title }} <br />{{ .Site.Params.hero.hero__subtitle }}</h1>
-                            <p class="hero__description">{{ .Site.Params.hero.hero__description }}</p>
+                            <h1 class="hero__title">{{ i18n "sections.hero.title" | safeHTML }} <br />{{ i18n "sections.hero.subtitle" | safeHTML }}</h1>
+                            <p class="hero__description">{{ i18n "sections.hero.description" | safeHTML }}</p>
                             {{ if .Site.Params.mailchimp.enable }}
                                 <div class="hero__subscribe">
                                     <form class="subscribe-form validate" action="{{ if .Site.Params.mailchimp.mailchimp__identifier }}//{{ .Site.Params.mailchimp.mailchimp__identifier }}{{ else }}#{{ end }}" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
-                                        <label class="screen-reader-text" for="mce-EMAIL">Correo Electrónico</label>
-                                        <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="{{ if .Site.Params.mailchimp.mailchimp__input__text }}{{ .Site.Params.mailchimp.mailchimp__input__text }}{{ else }}Correo electrónico...{{ end }}" />
-                                        <button class="button button--primary button--small subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">{{ .Site.Params.mailchimp.mailchimp__button__text }}</button>
+                                        <label class="screen-reader-text" for="mce-EMAIL">{{ i18n "ui.email" }}</label>
+                                        <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="{{ if .Site.Params.mailchimp.mailchimp__input__text }}{{ .Site.Params.mailchimp.mailchimp__input__text }}{{ else }}{{ i18n "ui.emailPlaceholder" }}{{ end }}" />
+                                        <button class="button button--primary button--small subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">{{ i18n "sections.hero.button" | safeHTML }}</button>
                                     </form>
                                 </div>
                             {{ end }}

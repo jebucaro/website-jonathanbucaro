@@ -8,7 +8,7 @@
                     <div class="col col-12">
                         <div class="tag__info">
                             <h1 class="tag__name">{{ humanize .Title }}</h1>
-                            <div class="tag__counter">{{ len .Pages }}{{ if lt (len .Pages) 2 }} Publicación{{ else }} Publicaciones{{ end }}</div>
+                            <div class="tag__counter">{{ len .Pages }} {{ i18n "content.posts" (len .Pages) }}</div>
                         </div>
                     </div>
                 </div>

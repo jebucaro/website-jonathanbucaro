@@ -1,26 +1,149 @@
 es:
+    languageName: Español
+    languageCode: es-gt
+    contentDir: content
+    weight: 2
+    params:
+        formats:
+        date:
+            long: 2 de January de 2006
+            short: 2/1/06
+        time:
+            long: '3:04:05 PM'
+            short: '3:04 PM'
+        datetime:
+            long: 'el Monday 2 de January de 2006 3:04:05 PM'
+            short: '2/1/06 3:04 PM'
+        author:
+            author__bio: >-
+              Ingeniero en Sistemas, Planeswalker. Escribo sobre mi experiencia en la industria de la tecnología, momentos que capturan el aprendizaje que ha moldeado mi crecimiento profesional.
+    menu:
+        main:
+            - identifier: home
+              name: Inicio
+              url: /
+              weight: 10
+              # - identifier: projects
+              #   name: Proyectos
+              #   url: /proyectos/
+              #   weight: 20
+            - identifier: blog
+              name: Blog
+              url: /blog/
+              weight: 30
+              hasChildren: true
+            - identifier: pages
+              name: Páginas
+              weight: 40
+            - parent: pages
+              name: Acerca de
+              url: /acerca-de/
+              weight: 10
+            - parent: pages
+              name: Lista Imposible
+              url: /mi-lista-imposible/
+              weight: 20
+              # - parent: pages
+              #   name: Contacto
+              #   url: /contact/
+              #   weight: 20
+        footer:
+            - identifier: home
+              name: Inicio
+              url: /
+              weight: 10
+              # - identifier: projects
+              #   name: Proyectos
+              #   url: /proyectos/
+              #   weight: 20
+            - identifier: blog
+              name: Blog
+              url: /blog/
+              weight: 30
+            - identifier: about
+              name: Acerca de
+              url: /acerca-de/
+              weight: 40
+            - identifier: impossible
+              name: Lista Imposible
+              url: /mi-lista-imposible/
+              weight: 50
+              # - identifier: contact
+              #   name: Contacto
+              #   url: /contact/
+              #   weight: 50
+
+en:
+    languageName: English
+    languageCode: en-us
+    contentDir: content.en
     weight: 1
     params:
         formats:
             date:
-                long: 2 de January de 2006
-                short: 2/1/06
+                long: 'Monday, January 2, 2006'
+                short: 1/2/06
             time:
                 long: '3:04:05 PM'
                 short: '3:04 PM'
             datetime:
-                long: 'el Monday 2 de January de 2006 3:04:05 PM'
-                short: '2/1/06 3:04 PM'
-# en:
-#  weight: 2
-#  params:
-#    formats:
-#      date:
-#        long: 'Monday, January 2, 2006'
-#        short: 1/2/06
-#      time:
-#        long: '3:04:05 PM'
-#        short: '3:04 PM'
-#      datetime:
-#        long: 'Monday, January 2, 2006 3:04:05 PM'
-#        short: '1/2/06 3:04 PM'
+                long: 'Monday, January 2, 2006 3:04:05 PM'
+                short: '1/2/06 3:04 PM'
+        author:
+            author__bio: >-
+              Systems Engineer, Planeswalker. I write about my experience in the technology industry, moments that capture the learning that has shaped my professional growth.
+    menu:
+        main:
+            - identifier: home
+              name: Home
+              url: /
+              weight: 10
+              # - identifier: projects
+              #   name: Proyectos
+              #   url: /proyectos/
+              #   weight: 20
+            - identifier: blog
+              name: Blog
+              url: /blog/
+              weight: 30
+              hasChildren: true
+            - identifier: pages
+              name: Pages
+              weight: 40
+            - parent: pages
+              name: About
+              url: /about/
+              weight: 10
+            - parent: pages
+              name: Impossible List
+              url: /impossible-list/
+              weight: 20
+              # - parent: pages
+              #   name: Contacto
+              #   url: /contact/
+              #   weight: 20
+        footer:
+            - identifier: home
+              name: Home
+              url: /
+              weight: 10
+              # - identifier: projects
+              #   name: Proyectos
+              #   url: /proyectos/
+              #   weight: 20
+            - identifier: blog
+              name: Blog
+              url: /blog/
+              weight: 30
+            - identifier: about
+              name: About
+              url: /about/
+              weight: 40
+            - identifier: impossible
+              name: Impossible List
+              url: /impossible-list/
+              weight: 50
+              # - identifier: contact
+              #   name: Contacto
+              #   url: /contact/
+              #   weight: 50
