@@ -1,0 +1,45 @@
+{{ define "main" }}
+    <div class="container">
+        <div class="page-head">
+            <h1 class="page-title">{{ .Title }}</h1>
+            {{ if .Params.subtitle }}<p class="project-subtitle">{{ .Params.subtitle }}</p>{{ end }}
+        </div>
+        {{ if .Params.image }}
+            <div class="row">
+                <div class="col col-12">
+                    <div class="page-image animate">
+                        <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                    </div>
+                </div>
+            </div>
+        {{ end }}
+        <div class="project-content animate">
+            {{ .Content }}
+        </div>
+        {{ if or .NextInSection .PrevInSection }}
+            <div class="project__nav animate">
+                {{ if .NextInSection }}
+                    <a class="project__prev" href="{{ .NextInSection.Permalink }}">
+                        <div class="project__box">
+                            <span class="project__nav-info">{{ i18n "projects.nextProject" }}<ion-icon name="arrow-forward"></ion-icon></span>
+                            <h2 class="project__nav-title">{{ .NextInSection.Title }}</h2>
+                        </div>
+                    </a>
+                    <a class="project__nav-image" href="{{ .NextInSection.Permalink }}">
+                        <img class="lazy" data-src="{{ .NextInSection.Params.Image }}" alt="{{ .NextInSection.Title }}" />
+                    </a>
+                {{ else if .PrevInSection }}
+                    <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
+                        <div class="project__box">
+                            <span class="project__nav-info">{{ i18n "projects.previousProject" }}<ion-icon name="arrow-forward"></ion-icon></span>
+                            <h2 class="project__nav-title">{{ .PrevInSection.Title }}</h2>
+                        </div>
+                    </a>
+                    <a class="project__nav-image" href="{{ .PrevInSection.Permalink }}">
+                        <img class="lazy" data-src="{{ .PrevInSection.Params.Image }}" alt="{{ .PrevInSection.Title }}" />
+                    </a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+{{ end }}
