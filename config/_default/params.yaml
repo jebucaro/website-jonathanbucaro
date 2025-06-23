@@ -3,8 +3,6 @@ description: ''
 color_scheme: auto
 author:
     author__name: Jonathan Búcaro
-    author__bio: >-
-        Ingeniero en Sistemas, Planeswalker. Escribo sobre mi experiencia en la industria de la tecnología, momentos que capturan el aprendizaje que ha moldeado mi crecimiento profesional.
     author__avatar: '/images/perfil.webp'
 social:
     - icon: logo-linkedin
@@ -21,10 +19,6 @@ social:
       link: 'https://instagram.com/jebucaro'
 hero:
     enable: true
-    hero__title: 'Soy Jonathan 🤓'
-    hero__subtitle: '¡Crearé servicios que te brinden valor!'
-    hero__description: >-
-        Como Ingeniero en Sistemas experimentado en C# y Python, estoy comprometido a ofrecer soluciones de primera calidad que superarán tus expectativas.
     hero__image: '/images/perfil.webp'
 mailchimp:
     enable: false
@@ -33,14 +27,9 @@ mailchimp:
     mailchimp__input__text: 'Correo electrónico...'
     mailchimp__button__text: Recibir actualizaciones
 projects:
-    enable: false
-    projects__title: Proyectos Recientes
-    projects__description: >-
-        Presento proyectos creados con pasión, simplicidad e innovación, mostrando lo mejor en este espacio dedicado a la excelencia.
+    enable: true
 testimonials:
-    enable: false
-    testimonial__title: Testimonios
-    testimonial__description: ''
+    enable: true
 testimonial_item:
     - name: Aspen Carder
       image: 'https://via.placeholder.com/200x200'
@@ -107,3 +96,8 @@ logo_item:
     - name: 'Cognits'
       link: 'https://cognits.co/'
       image: '/images/cognits-logo.webp'
+formats:
+  date:
+    long: "January 2, 2006"
+    short: "Jan 2, 2006"
+    iso: "2006-01-02"

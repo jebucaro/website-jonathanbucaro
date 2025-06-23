@@ -19,16 +19,7 @@
     {{ errorf $msg2 }}
 {{ end }}
 
-{{ $format := "" }}
-{{ with .format }}
-    {{ if eq (printf "%T" .) "string" }}
-        {{ $format = . }}
-    {{ else }}
-        {{ errorf $msg3 }}
-    {{ end }}
-{{ else }}
-    {{ errorf $msg4 }}
-{{ end }}
+{{ $format := default "January 2, 2006" .format }}
 
 {{ $monthFormat := "" }}
 {{ if in $format "January" }}
