@@ -89,3 +89,6 @@ form.sendButton: "Enviar Mensaje"
 pagination.next: "Siguiente"
 pagination.previous: "Anterior"
 pagination.of: "de"
+
+projects.nextProject: "Siguiente Proyecto"
+projects.previousProject: "Proyecto Anterior"

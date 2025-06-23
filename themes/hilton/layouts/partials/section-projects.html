@@ -13,7 +13,7 @@
                         </div>
 
                         <div class="row">
-                            {{ range (where .Site.RegularPages "Section" "proyectos" | first 6 ) }}
+                            {{ range (where .Site.RegularPages "Section" "projects" | first 6 ) }}
                                 <article class="project col col-4 col-d-6 col-t-12">
                                     <div class="project__content">
                                         <a href="{{ .RelPermalink }}" class="project__image"><img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Params.Title }}"/></a>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="section__navigation">
-            <a href="/projects" class="button button--primary section-button">{{ i18n "sections.projects.allProjects" | safeHTML }}</a>
+            <a href="{{ "/projects" | relLangURL }}" class="button button--primary section-button">{{ i18n "sections.projects.allProjects" | safeHTML }}</a>
         </div>
     </section>
     <!-- end projects -->

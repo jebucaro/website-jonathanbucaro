@@ -23,10 +23,10 @@ es:
               name: Inicio
               url: /
               weight: 10
-              # - identifier: projects
-              #   name: Proyectos
-              #   url: /proyectos/
-              #   weight: 20
+            - identifier: projects
+              name: Proyectos
+              url: /projects/
+              weight: 20
             - identifier: blog
               name: Blog
               url: /blog/
@@ -52,10 +52,10 @@ es:
               name: Inicio
               url: /
               weight: 10
-              # - identifier: projects
-              #   name: Proyectos
-              #   url: /proyectos/
-              #   weight: 20
+            - identifier: projects
+              name: Proyectos
+              url: /projects/
+              weight: 20
             - identifier: blog
               name: Blog
               url: /blog/
@@ -98,10 +98,10 @@ en:
               name: Home
               url: /
               weight: 10
-              # - identifier: projects
-              #   name: Proyectos
-              #   url: /proyectos/
-              #   weight: 20
+            - identifier: projects
+              name: Projects
+              url: /projects/
+              weight: 20
             - identifier: blog
               name: Blog
               url: /blog/
@@ -127,10 +127,10 @@ en:
               name: Home
               url: /
               weight: 10
-              # - identifier: projects
-              #   name: Proyectos
-              #   url: /proyectos/
-              #   weight: 20
+            - identifier: projects
+              name: Projects
+              url: /projects/
+              weight: 20
             - identifier: blog
               name: Blog
               url: /blog/
