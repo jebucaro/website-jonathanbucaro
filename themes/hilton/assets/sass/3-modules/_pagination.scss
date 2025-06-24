@@ -27,6 +27,8 @@
         line-height: 40px;
         border-radius: 8px;
         background: var(--background-alt-color);
+        color: var(--text-color);
+        text-decoration: none;
     }
 
     .pagination__link {
@@ -38,10 +40,12 @@
 
     .active-link {
         color: var(--heading-font-color);
-        background: none;
+        background: var(--brand-color);
+        font-weight: 600;
+
         &:hover {
             color: var(--heading-font-color);
-            background: none;
+            background: var(--brand-color);
         }
     }
 

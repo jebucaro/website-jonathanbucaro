@@ -12,7 +12,12 @@
             <article class="project col col-4 col-d-6 col-t-12">
                 <div class="project__content">
                     <a href="{{ .RelPermalink }}" class="project__image">
-                        <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Params.Title }}" />
+                        {{ $image := .Resources.GetMatch .Params.Image }}
+                        {{ if $image }}
+                            <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}" />
+                        {{ else }}
+                            <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Params.Title }}" />
+                        {{ end }}
                     </a>
                     <div class="project__info">
                         <h3 class="project__title"><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></h3>
