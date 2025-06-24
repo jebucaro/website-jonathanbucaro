@@ -86,9 +86,8 @@ form.subject: "Subject"
 form.message: "Message"
 form.sendButton: "Send Message"
 
-pagination.next: "Next"
-pagination.previous: "Previous"
-pagination.of: "of"
+pagination.next: "&raquo;"
+pagination.previous: "&laquo;"
 
 projects.nextProject: "Next Project"
 projects.previousProject: "Previous Project"
