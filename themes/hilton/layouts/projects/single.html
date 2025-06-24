@@ -8,7 +8,12 @@
             <div class="row">
                 <div class="col col-12">
                     <div class="page-image animate">
-                        <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                        {{ $image := .Resources.GetMatch .Params.Image }}
+                        {{ if $image }}
+                            <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
+                        {{ else }}
+                            <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                        {{ end }}
                     </div>
                 </div>
             </div>
@@ -26,7 +31,12 @@
                         </div>
                     </a>
                     <a class="project__nav-image" href="{{ .NextInSection.Permalink }}">
-                        <img class="lazy" data-src="{{ .NextInSection.Params.Image }}" alt="{{ .NextInSection.Title }}" />
+                        {{ $nextImage := .NextInSection.Resources.GetMatch .NextInSection.Params.Image }}
+                        {{ if $nextImage }}
+                            <img class="lazy" data-src="{{ $nextImage.RelPermalink }}" alt="{{ .NextInSection.Title }}" />
+                        {{ else }}
+                            <img class="lazy" data-src="{{ .NextInSection.Params.Image | relURL }}" alt="{{ .NextInSection.Title }}" />
+                        {{ end }}
                     </a>
                 {{ else if .PrevInSection }}
                     <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
@@ -36,7 +46,12 @@
                         </div>
                     </a>
                     <a class="project__nav-image" href="{{ .PrevInSection.Permalink }}">
-                        <img class="lazy" data-src="{{ .PrevInSection.Params.Image }}" alt="{{ .PrevInSection.Title }}" />
+                        {{ $prevImage := .PrevInSection.Resources.GetMatch .PrevInSection.Params.Image }}
+                        {{ if $prevImage }}
+                            <img class="lazy" data-src="{{ $prevImage.RelPermalink }}" alt="{{ .PrevInSection.Title }}" />
+                        {{ else }}
+                            <img class="lazy" data-src="{{ .PrevInSection.Params.Image | relURL }}" alt="{{ .PrevInSection.Title }}" />
+                        {{ end }}
                     </a>
                 {{ end }}
             </div>
