@@ -2,7 +2,7 @@
 translationKey: '2020-visual-studio-code-portable'
 title: 'Visual Studio Code Portable'
 date: 2020-03-22T15:38:29-06:00
-image: '/blog/visual-studio-code-portable/images/cover.webp'
+image: 'images/cover.webp'
 tags: [visual-studio-code]
 draft: false
 description: 'Configura Visual Studio Code y sus extensiones para su uso en un equipo o servidor sin acceso a Internet.'

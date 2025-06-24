@@ -2,7 +2,7 @@
 translationKey: '2020-download-blocked-file-in-gmail'
 title: 'Descargar archivo bloqueado en GMail'
 date: 2020-08-05T17:29:14-06:00
-image: '/blog/descargar-archivo-bloqueado-en-gmail/images/cover.webp'
+image: 'images/cover.webp'
 tags: [gmail]
 draft: false
 description: 'Aprende a descargar ese archivo que GMail bloquea debido a su tipo de contenido.'

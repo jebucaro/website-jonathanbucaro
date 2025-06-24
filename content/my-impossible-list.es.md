@@ -1,7 +1,7 @@
 ---
 title: 'Mi lista imposible'
 date: 2016-12-10T11:08:22-06:00
-image: '/images/impossible-list.webp'
+image: 'images/impossible-list.webp'
 draft: false
 description: 'Una lista en constante evolución de objetivos épicos para mi vida.'
 ---

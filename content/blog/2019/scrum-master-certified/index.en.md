@@ -2,7 +2,7 @@
 translationKey: '2019-scrum-master-certified'
 title: 'Scrum Master Certified'
 date: 2019-01-06T18:09:27-06:00
-image: '/blog/scrum-master-certified/images/cover.webp'
+image: 'images/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'Primera certificación de Scrum lograda con éxito. He sido acreditado como Scrum Master Certified.'

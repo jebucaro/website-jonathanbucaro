@@ -2,7 +2,7 @@
 translationKey: '2021-scrum-product-owner-certified'
 title: 'Scrum Product Owner'
 date: 2021-01-30T06:37:04-06:00
-image: '/blog/scrum-product-owner-certified/images/cover.webp'
+image: 'images/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC.'

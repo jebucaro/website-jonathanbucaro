@@ -2,7 +2,7 @@
 translationKey: '2015-lexical-analysis-using-jflex'
 title: 'Análisis Léxico usando JFlex'
 date: 2015-04-26T17:37:28-06:00
-image: '/blog/analisis-lexico-usando-jflex/images/cover.webp'
+image: 'images/cover.webp'
 tags: [java]
 draft: false
 description: 'Aprende a usar JFlex, con este sencillo ejemplo. Descubre cómo definir expresiones regulares y tokens personalizados.'

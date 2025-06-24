@@ -2,7 +2,7 @@
 translationKey: '2022-get-previous-working-date-python'
 title: 'Obten la fecha laboral inmediata anterior en Python'
 date: 2022-07-19T15:14:18-06:00
-image: '/blog/obtener-fecha-laboral-anterior-python/images/cover.webp'
+image: 'images/cover.webp'
 tags: [python]
 draft: false
 description: 'La fecha laboral inmediata anterior corresponde al día laboral que precede al día actual. Aprende como realizar este cálculo en Python.'
