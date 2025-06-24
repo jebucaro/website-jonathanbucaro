@@ -2,7 +2,7 @@
 translationKey: '2020-guide-enable-wsl2'
 title: 'Guía Habilitar WSL2'
 date: 2020-09-14T19:56:03-06:00
-image: '/blog/guia-habilitar-wsl2/images/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, wsl]
 draft: false
 description: 'Descubre como instalar WSL2 en tu PC Windows y experimenta con las funcionalidades de un sistema Linux en tu escritorio.'

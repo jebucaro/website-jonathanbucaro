@@ -2,7 +2,7 @@
 translationKey: '2021-rest-api-to-store-images-with-entity-framework'
 title: 'API Rest para almacenar imágenes con Entity Framework'
 date: 2021-08-19T06:51:49-06:00
-image: '/blog/api-rest-para-almacenar-imagenes-con-entity-framework/images/cover.webp'
+image: 'images/cover.webp'
 tags: [net, csharp, mssql]
 draft: false
 description: 'Utiliza Entity Framework para guardar una imagen en una base de datos MS SQL Server en una API REST en C#.'

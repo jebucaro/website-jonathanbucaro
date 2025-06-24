@@ -2,7 +2,7 @@
 translationKey: '2025-discover-the-importance-of-keeping-a-work-log'
 title: 'Descubre la importancia de mantener una bitácora de trabajo'
 date: 2025-02-04T17:07:47-06:00
-image: '/blog/descubre-la-importancia-de-mantener-una-bitacora-de-trabajo/images/cover.webp'
+image: 'images/cover.webp'
 tags: [productividad]
 draft: false
 description: 'Descubre cómo llevar un registro de trabajo puede ayudarte a organizarte mejor, aumentar tu productividad y destacar en tu equipo de trabajo.'

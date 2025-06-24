@@ -2,7 +2,7 @@
 translationKey: '2015-sql-server-and-the-operating-system-language'
 title: 'SQL Server does not support the language of the OS'
 date: 2015-02-22T20:34:55-06:00
-image: '/blog/sql-server-y-el-lenguaje-del-sistema-operativo/images/cover.webp'
+image: 'images/cover.webp'
 tags: [mssql]
 draft: false
 description: "Solventa fácilmente el error 'SQL Server does not support the language of the OS'."
