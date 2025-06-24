@@ -112,11 +112,11 @@ en:
               weight: 40
             - parent: pages
               name: About
-              url: /about/
+              url: /about-me/
               weight: 10
             - parent: pages
               name: Impossible List
-              url: /impossible-list/
+              url: /my-impossible-list/
               weight: 20
               # - parent: pages
               #   name: Contacto
@@ -137,11 +137,11 @@ en:
               weight: 30
             - identifier: about
               name: About
-              url: /about/
+              url: /about-me/
               weight: 40
             - identifier: impossible
               name: Impossible List
-              url: /impossible-list/
+              url: /my-impossible-list/
               weight: 50
               # - identifier: contact
               #   name: Contacto
