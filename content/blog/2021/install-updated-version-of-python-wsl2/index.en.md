@@ -2,7 +2,7 @@
 translationKey: '2021-install-updated-version-of-python-wsl2'
 title: 'Instala una version actualizada de Python en WSL2'
 date: 2021-03-05T16:45:06-06:00
-image: '/blog/instalar-version-actualizada-de-python-wsl2/images/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, wsl, python]
 draft: false
 description: 'Accede a una versión de Python actualizada en Ubuntu en WSL2 con estos sencillos pasos.'

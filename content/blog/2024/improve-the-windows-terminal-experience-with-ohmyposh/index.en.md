@@ -2,7 +2,7 @@
 translationKey: '2024-improve-the-windows-terminal-experience-with-ohmyposh'
 title: 'Mejora la terminal de Windows con Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
-image: '/blog/mejora-la-experiencia-de-la-terminal-de-windows-con-ohmyposh/images/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, powershell]
 draft: false
 description: 'Te orientaré a través del proceso de configuración de la terminal de Windows y Oh My Posh'

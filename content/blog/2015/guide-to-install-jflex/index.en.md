@@ -2,7 +2,7 @@
 translationKey: '2015-guide-to-install-jflex'
 title: 'Guía para instalar JFlex'
 date: 2015-04-11T10:01:20-06:00
-image: '/blog/guia-para-instalar-jflex/images/cover.webp'
+image: 'images/cover.webp'
 tags: [java]
 draft: false
 description: 'JFlex es una herramienta que ofrece una gran cantidad de características para ayudar a crear analizadores léxicos de manera rápida y eficiente.'

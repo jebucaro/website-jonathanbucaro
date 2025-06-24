@@ -2,7 +2,7 @@
 translationKey: '2020-set-up-a-python-environment-in-wsl2'
 title: 'Configura un ambiente Python en WSL2'
 date: 2020-10-21T09:23:46-06:00
-image: '/blog/configura-un-ambiente-python-en-wsl2/images/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, wsl, python]
 draft: false
 description: 'Descubre cómo configurar un entorno Python en Ubuntu en WSL2. Aprende a instalar, configurar y utilizar Python eficientemente en WSL2.'
