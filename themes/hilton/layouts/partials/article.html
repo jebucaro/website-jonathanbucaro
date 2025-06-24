@@ -1,8 +1,12 @@
 <div class="article col col-4 col-d-6 col-t-12">
     {{ if .Params.Image }}
         <a class="article__image" href="{{ .RelPermalink }}">
-            <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}"
-            />
+            {{ $image := .Resources.GetMatch .Params.Image }}
+            {{ if $image }}
+                <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
+            {{ else }}
+                <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+            {{ end }}
         </a>
     {{ end }}
 

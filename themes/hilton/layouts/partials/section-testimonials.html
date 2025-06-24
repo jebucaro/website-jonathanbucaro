@@ -21,7 +21,7 @@
                                     <div class="client-meta">
                                         {{ if .image }}
                                             <div class="image-container">
-                                                <img class="client-avatar" src="{{ .image }}" alt="{{ .name }}" loading="lazy"/>
+                                                <img class="client-avatar" src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy"/>
                                             </div>
                                         {{ end }}
                                         <div class="client-info">
