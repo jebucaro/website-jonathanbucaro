@@ -10,7 +10,8 @@
       {{ if not (hasPrefix $img "/") }}
         {{ $img = printf "/%s" $img }}
       {{ end }}
-      <img src="{{ $img | relURL }}" alt="{{ index $captions $i | default "" }}" loading="lazy">
+      {{/*  <img src="{{ $img | relURL }}" alt="{{ index $captions $i | default "" }}" loading="lazy">  */}}
+      <img src="{{ $img }}" alt="{{ index $captions $i | default "" }}" loading="lazy">
     {{ end }}
   </div>
   {{ if $caption }}
