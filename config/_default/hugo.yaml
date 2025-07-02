@@ -1,17 +1,22 @@
 baseURL: 'https://jonathanbucaro.com/'
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
-languageCode: es-us
+languageCode: en-us
 title: Jonathan Búcaro
 theme: hilton
 pagination:
     pagerSize: 6
 build:
     writeStats: true
+    useResourceCacheWhen: fallback
     processing:
         css:
             minify: true
             postcss: true
+        js:
+            minify: true
+        html:
+            minify: true
         sass:
             enable: true
             outputStyle: compressed

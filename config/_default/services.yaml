@@ -1,0 +1,46 @@
+# SEO and meta configuration
+sitemap:
+  changefreq: monthly
+  filename: sitemap.xml
+  priority: 0.5
+
+# Privacy configuration
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    disable: false
+    respectDoNotTrack: true
+    anonymizeIP: true
+    useSessionStorage: true
+  instagram:
+    disable: false
+  twitter:
+    disable: false
+    enableDNT: true
+    simple: true
+  vimeo:
+    disable: false
+    enableDNT: true
+    simple: true
+  youtube:
+    disable: false
+    privacyEnhanced: true
+
+# Caching configuration
+caches:
+  assets:
+    dir: ':resourceDir/_gen'
+    maxAge: 8760h # 1 year
+  getcsv:
+    dir: ':cacheDir/:project'
+    maxAge: 3600s # 1 hour
+  getjson:
+    dir: ':cacheDir/:project'
+    maxAge: 3600s # 1 hour
+  images:
+    dir: ':resourceDir/_gen'
+    maxAge: 8760h # 1 year
+  modules:
+    dir: ':cacheDir/modules'
+    maxAge: 8760h # 1 year

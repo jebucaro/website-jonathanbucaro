@@ -1,0 +1,18 @@
+# Security configuration
+exec:
+  allow:
+    - ^(dart-)?sass(-embedded)?$
+    - ^go$
+    - ^npx$
+    - ^postcss$
+    - ^tailwindcss$
+  osEnv:
+    - (?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_)?CACHE_HOME|YARN_CACHE_FOLDER)$
+
+funcs:
+  getenv:
+    - ^HUGO_
+    - ^CI$
+    - ^GITHUB_
+    - ^NETLIFY_
+    - ^VERCEL_

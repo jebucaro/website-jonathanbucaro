@@ -1,0 +1,13 @@
+# Production environment configuration
+baseURL: 'https://jonathanbucaro.com/'
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+params:
+    env: production
+    debug: false
+
+# Production-specific build optimizations
+minifyOutput: true
+canonifyURLs: true
