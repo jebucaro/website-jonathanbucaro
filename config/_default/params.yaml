@@ -101,3 +101,6 @@ formats:
     long: "January 2, 2006"
     short: "Jan 2, 2006"
     iso: "2006-01-02"
+twitter:
+  site: '@jebucaro'  # Twitter handle for the website (with @)
+  creator: '@jebucaro'  # Twitter handle for the content creator (with @)
