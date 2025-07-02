@@ -1,11 +1,12 @@
 ---
-translationKey: '2021-scrum-product-owner-certified'
 title: 'Scrum Product Owner'
 date: 2021-01-30T06:37:04-06:00
 image: '/images/blog/2021/scrum-product-owner-certified/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC.'
+translationKey: '2021-scrum-product-owner-certified'
+slug: 'scrum-product-owner-certified'
 ---
 
 Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Owner Certified avalada por Scrumstudy. ¿Todavía es enero verdad 😉?
@@ -21,7 +22,7 @@ Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Ow
 
 Antes de iniciar formalmente mi carrera en la tecnología, trabajé como receptor pagador por dos años aproximadamente. Conocer el negocio fue un factor significativo que me permitió ser seleccionado para desarrollar proyectos prioritarios o de gran visibilidad para el grupo financiero.
 
-Actualmente desempeño el puesto de Ingeniero de Desarrollo Senior y puedo observar que cada día codifico menos, incluso al capacitar al nuevo personal me enfoco en que comprendan los procesos del negocio.
+Al momento de escribir esta publicación, trabajo como Ingeniero de Desarrollo Senior y puedo observar que cada día programo menos, incluso al capacitar al nuevo personal me enfoco en que comprendan los procesos del negocio.
 
 ## Beneficios
 

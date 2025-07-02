@@ -1,50 +1,41 @@
 ---
-translationKey: '2021-scrum-product-owner-certified'
 title: 'Scrum Product Owner'
 date: 2021-01-30T06:37:04-06:00
 image: '/images/blog/2021/scrum-product-owner-certified/cover.webp'
 tags: [personal, scrum]
 draft: false
-description: 'Segunda certificación de Scrum. He sido acreditado como Scrum Product Owner Certified y renovado la certificación SMC.'
+description: 'My second Scrum certification. I have been accredited as Scrum Product Owner Certified and renewed the SMC certification.'
+translationKey: '2021-scrum-product-owner-certified'
+slug: 'scrum-product-owner-certified'
 ---
 
-Me llena de felicidad empezar el año 2021 con la acreditación Scrum Product Owner Certified avalada por Scrumstudy. ¿Todavía es enero verdad 😉?
+I'm really happy to kick off 2021 with the Scrum Product Owner Certified accreditation endorsed by Scrumstudy. Still January, right? 😉
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/blog/2021/scrum-product-owner-certified/badge-SPOC.webp" alt="Medalla de SCRUMstudy para la certificación Scrum Product Owner Certified" loading="lazy">
+    <img src="/images/blog/2021/scrum-product-owner-certified/badge-SPOC.webp" alt="SCRUMstudy badge for the Scrum Product Owner Certified certification" loading="lazy">
   </div>
   <em><a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">SPOC - SCRUMstudy ➡</a></em>
 </div>
 
-## 🤔 ¿Por qué Product Owner?
+## 🤔 Why Product Owner?
 
-Antes de iniciar formalmente mi carrera en la tecnología, trabajé como receptor pagador por dos años aproximadamente. Conocer el negocio fue un factor significativo que me permitió ser seleccionado para desarrollar proyectos prioritarios o de gran visibilidad para el grupo financiero.
+Before formally starting my career in technology, I worked as a cashier for about two years. Knowing the business well was a key factor that got me picked for priority and high-profile projects for the financial group.
 
-Actualmente desempeño el puesto de Ingeniero de Desarrollo Senior y puedo observar que cada día codifico menos, incluso al capacitar al nuevo personal me enfoco en que comprendan los procesos del negocio.
+At the time of writing, I work as a Senior Development Engineer, and I can see that every day I write less code. Even when training new staff, I focus on helping them understand the business processes.
 
-## Beneficios
+## Benefits
 
-1. **Expansión de oportunidades profesionales**: Aumenta las oportunidades laborales y el potencial de un salario más alto debido a la credencial adicional.
+1. **Expansion of professional opportunities**: Increases job opportunities and the potential for a higher salary due to the additional credential.
 
-2. **Mejora de habilidades y conocimientos**: Proporciona un amplio conocimiento sobre las metodologías Scrum, mejorando las habilidades de gestión de proyectos.
+2. **Improvement of skills and knowledge**: Provides comprehensive knowledge of Scrum methodologies, enhancing project management skills.
+3. **Better product management**: Equips you with the necessary skills to maximize product value and align the team’s efforts with business objectives.
+4. **Improved team collaboration**: Boosts productivity by ensuring everyone understands the project goals and their role in achieving them.
+5. **Increased project success rate**: Helps reduce project complexity and increases the success rate.
+6. **Professional development**: Demonstrates your commitment to professional growth, making you more attractive to employers.
+7. **Networking opportunities**: Offers chances to connect with other professionals in the field during seminars and training classes.
 
-3. **Mejor gestión del producto**: Te dota de las habilidades necesarias para maximizar el valor del producto y alinear los esfuerzos del equipo con los objetivos empresariales.
+## Potential Drawbacks
 
-4. **Mejora de la colaboración en equipo**: Impulsa la productividad al asegurar que todos comprendan los objetivos del proyecto y su papel en su consecución.
-
-5. **Aumento de la tasa de éxito del proyecto**: Ayuda a reducir la complejidad del proyecto y a aumentar la tasa de éxito.
-
-6. **Desarrollo profesional**: Muestra tu compromiso con el desarrollo profesional, lo que te hace más atractivo para los empleadores.
-
-7. **Oportunidades de networking**: Proporciona oportunidades para establecer contactos con otros profesionales del campo durante seminarios y clases de formación.
-
-## Posibles inconvenientes
-
-1. **Desenfoque de las habilidades técnicas**: El desempeño del rol de propietario del producto puede alejar al desarrollador senior de su enfoque principal, que es el desarrollo de software.
-
-2. **Conflictos de roles**: Puede haber conflictos de roles si el desarrollador senior también está actuando como propietario del producto, ya que estos roles tienen responsabilidades diferentes.
-
----
-
-Foto de <a href="https://unsplash.com/@sunday_digital?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Nastuh Abootalebi</a> en <a href="https://unsplash.com/es/fotos/eHD8Y1Znfpk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+1. **Shift away from technical skills**: Acting as a Product Owner may distract a senior developer from their primary focus, which is software development.
+2. **Role conflicts**: There may be role conflicts if a senior developer is also acting as the Product Owner, since these roles have different responsibilities.

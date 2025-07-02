@@ -27,9 +27,9 @@ mailchimp:
     mailchimp__input__text: 'Correo electrónico...'
     mailchimp__button__text: Recibir actualizaciones
 projects:
-    enable: true
+    enable: false
 testimonials:
-    enable: true
+    enable: false
 testimonial_item:
     - name: Aspen Carder
       image: 'https://via.placeholder.com/200x200'
