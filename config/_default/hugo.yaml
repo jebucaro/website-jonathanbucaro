@@ -15,3 +15,16 @@ build:
         sass:
             enable: true
             outputStyle: compressed
+outputFormats:
+  RobotsTXT:
+    mediaType: text/plain
+    baseName: robots
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - RobotsTXT
+    - Sitemap
