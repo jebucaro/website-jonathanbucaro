@@ -1,7 +1,33 @@
 goldmark:
     renderer:
         unsafe: true
+    parser:
+        attribute:
+            block: true
+            title: true
+        autoHeadingID: true
+        autoHeadingIDType: github
+    extensions:
+        typographer: true
+        linkify: true
+        strikethrough: true
+        table: true
+        taskList: true
+        definitionList: true
+
 highlight:
     codeFences: true
     guessSyntax: true
     noClasses: false
+    lineNos: false
+    lineNumbersInTable: false
+    style: github
+    anchorLineNos: false
+    hl_Lines: ""
+    hl_inline: false
+    tabWidth: 4
+
+tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false

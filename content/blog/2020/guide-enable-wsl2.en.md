@@ -148,8 +148,6 @@ Once installed, restart Visual Studio Code.
 
 The extension lets you run Visual Studio Code and explore the contents of your current directory in WSL by running the command:
 
-shell
-
 ```bash
 code .
 ```

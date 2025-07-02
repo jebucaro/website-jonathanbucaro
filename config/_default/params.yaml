@@ -7,7 +7,7 @@ author:
 social:
     - icon: logo-linkedin
       name: LinkedIn
-      link: 'https://www.linkedin.com/in/jonathanbucaro/'
+      link: 'https://linkedin.com/in/jonathanbucaro/'
     - icon: logo-github
       name: Github
       link: 'https://github.com/jebucaro'
@@ -85,7 +85,7 @@ contact:
     contact__email: hola@jonathanbucaro.com
 disqus:
     enable: false
-    disqusShortname: anvodstudio-demo
+    disqusShortname: jonathanbucaro-com
 logos:
     enable: true
     logos__title: 'Mi experiencia profesional incluye colaboraciones con las siguientes compañías:'
