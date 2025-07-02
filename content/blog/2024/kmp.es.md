@@ -4,7 +4,7 @@ date: 2024-11-03T15:33:55-06:00
 image: '/images/blog/2024/kmp/cover.webp'
 tags: [personal, kanban]
 draft: false
-description: 'Logré la certificación KMP de Kanban University: avanzando en el diseño y evolución de sistemas Kanban para mejorar la agilidad'
+description: 'Logré la certificación KMP de Kanban University, fortaleciendo mis habilidades en el diseño y la evolución de sistemas Kanban para potenciar la agilidad organizacional'
 slug: 'kanban-management-profesional'
 translationKey: '2024-kmp'
 ---

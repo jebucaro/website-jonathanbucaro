@@ -4,7 +4,7 @@ date: 2024-11-03T15:33:55-06:00
 image: '/images/blog/2024/kmp/cover.webp'
 tags: [personal, kanban]
 draft: false
-description: 'I earned the Kanban University KMP certification: advancing in designing and evolving Kanban systems to enhance agility.'
+description: 'I earned the Kanban University KMP certification, deepening my expertise in designing and evolving Kanban systems to boost organizational agility.'
 slug: 'kanban-management-profesional'
 translationKey: '2024-kmp'
 ---
