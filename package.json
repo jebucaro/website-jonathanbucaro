@@ -7,8 +7,12 @@
         "format:write": "prettier --write .",
         "lint:markdown": "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources",
         "build": "hugo --cleanDestinationDir --minify",
+        "build:prod": "hugo --cleanDestinationDir --minify --environment production",
         "dev": "hugo server -D --disableFastRender --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
-        "prepare": "husky"
+        "serve": "hugo server",
+        "clean": "Remove-Item -Recurse -Force public, resources",
+        "prepare": "husky",
+        "check": "npm run format:check && npm run lint:markdown"
     },
     "author": "",
     "license": "UNLICENSED",
