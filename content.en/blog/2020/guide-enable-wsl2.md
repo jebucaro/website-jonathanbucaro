@@ -1,95 +1,159 @@
 ---
-translationKey: '2020-guide-enable-wsl2'
-title: 'Guía Habilitar WSL2'
+title: 'Guide to Enable WSL2'
 date: 2020-09-14T19:56:03-06:00
 image: '/images/blog/2020/guide-enable-wsl2/cover.webp'
 tags: [windows, wsl]
 draft: false
-description: 'Descubre como instalar WSL2 en tu PC Windows y experimenta con las funcionalidades de un sistema Linux en tu escritorio.'
+description: 'Learn how to install WSL2 on your Windows PC and explore Linux system capabilities right on your desktop'
+translationKey: '2020-guide-enable-wsl2'
+slug: 'guide-enable-wsl2'
 ---
 
-Windows Subsystem for Linux (WSL) es una característica introducida en Windows 10 que permite ejecutar aplicaciones de Linux directamente en Windows mediante el uso de una capa intermedia. WSL2 ofrece mejoras significativas en comparación con la primera versión, como por ejemplo, una mayor velocidad y compatibilidad con aplicaciones de Linux más complejas.
+Windows Subsystem for Linux (WSL) is a feature introduced in Windows 10 that allows you to run Linux applications directly in Windows through an intermediate compatibility layer. WSL2 brings significant improvements over the first version, including faster performance and better compatibility with more complex Linux applications.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/blog/2020/guide-enable-wsl2/wsl2-ubuntu-lts.webp" loading="lazy" alt="Panel de Control">
-  </div>
-  <em>Ubuntu 22.04 LTS en WSL2</em>
-</div>
+{{< gallery images="/images/blog/2020/guide-enable-wsl2/wsl2-ubuntu-lts.webp" captions="Running Ubuntu inside Windows 11" caption="Ubuntu 24.04 on WSL2" >}}
 
-## 📌 Requisitos
+## 📌 Requirements
 
-Sistema operativo actualizado, como mínimo Windows 10 con la actualización Windows May 2020 cuya versión es 2004 o superior. Puedes validar este dato escogiendo la opción `Configuración` desde el ícono de la tuerca en el menú de Inicio, luego selecciona la opción `Sistema` y posteriormente `Acerca de`. En la parte inferior se encontrará un panel con las `Especificaciones de Windows`.
+An updated operating system is required, at minimum Windows 10 with the May 2020 Update (version 2004 or later), or Windows 11. You can verify this by choosing `Settings` from the gear icon in the Start menu, then selecting `System` and finally `About`. Near the bottom, you will find the `Windows specifications` panel.
 
-Adicionalmente WSL2 requiere que el soporte a la virtualización de hardware se encuentre habilitada en el Bios. Usualmente se encuentra bajo la opción llamada `Virtualization Technology` o `VTx`.
+Additionally, WSL2 requires hardware virtualization support enabled in BIOS. This option is usually labeled `Virtualization Technology` or `VTx`.
 
-## 🛠 Configuración e Instalación
+## 🛠️ Setup and Installation
 
-### Instala Windows Terminal
+### Install WSL
 
-Este paso no es extrictamente necesario, sin embargo, será de utilidad en el futuro. Puedes descargar la terminal de Windows desde la <a href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701" target="_blank" rel="nofollow, noreferrer">Tienda de Microsoft ➡</a>.
+You can now install everything needed to run WSL with a single command.
 
-### Instala WSL
+{{< callout important >}}
+Run these commands in a terminal with administrator privileges.
+{{< /callout >}}
 
-Según la guía de <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" target="_blank">Microsoft ➡</a>, es necesario habilitar las opciones `Virtual Machine Platform` y `Windows Subsystem for Linux`. Puedes acceder a estas configuraciones desde el `Panel de control` en la sección de `Programas` y en la opción `Activar o desactivar las características de Windows`.
-
-Marca las casillas `Plataforma de máquina virtual` y `Subsistema de Windows para Linux` y da clic en el botón Aceptar.
-
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/blog/2020/guide-enable-wsl2/wsl-panel-de-control-caracteristicas-windows.webp" loading="lazy" alt="Panel de Control">
-  </div>
-  <em>Panel de Control - Activar o desactivar las características de Windows</em>
-</div>
-
-Reinicia tu equipo para completar la instalación de WSL.
-
-### Paquete de actualización del kernel de Linux
-
-<a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package" target="_blank">Descarga ➡</a> la última versión del kernel de Linux de acuerdo a la arquitectura de tu procesador, x64 o ARM64.
-
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/blog/2020/guide-enable-wsl2/wsl-kernel-update.webp" loading="lazy" alt="Windows Subsystem for Linux Update Setup">
-  </div>
-  <em>Actualización del kernel de WSL</em>
-</div>
-
-### Configurar WSL 2 como la versión por defecto
-
-Abre una ventana de PowerShell y ejecuta el siguiente comando para configurar WSL 2 como la versión por defecto cuando se instale una nueva distribución Linux.
-
-```Pow erShell
-wsl --set-default-version 2
+```powershell
+wsl --install
 ```
 
-## Instala una distribución de tu elección
+This command will enable all required components to run WSL and install the Ubuntu Linux distribution by default.
 
-Puedes instalar desde la Tienda de Microsoft una distribución de Linux. Existen diversas versiones incluyendo <a href="https://apps.microsoft.com/store/detail/debian/9MSVKQC78PK6">Debian ➡</a>, <a href="https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW">Ubuntu ➡</a>, <a href="https://apps.microsoft.com/store/detail/kali-linux/9PKR34TNCV07">Kali ➡</a> entre otras.
+You must restart your computer to complete the WSL installation.
 
-![Ubuntu LTS in the Microsoft Store](/images/blog/2020/guide-enable-wsl2/microsoft-store-ubuntu-lts.webp)
+{{< callout tip >}}
+This command only works if WSL is not already installed.
+{{< /callout >}}
 
-La primera vez que ejecutes una distribución de Linux, una ventana de consola aparecerá y te pedirá que esperes unos minutos mientras se finaliza la instalación. Posteriormente te indicará que ingreses los datos para crear un nuevo usuario y contraseña.
+To view the list of available Linux distributions, run this command:
 
-## Extensión WSL de Visual Studio Code
+```powershell
+wsl --list --online
+```
 
-La extensión permite abrir cualquier directorio dentro de WSL y tomar ventaja de las características y funcionalidades de VS Code. Puedes instalar la extensión desde el <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="nofollow">Marketplace de Visual Studio ➡</a>.
+```text
+The following is a list of valid distributions that can be installed.
+Install using 'wsl.exe --install <Distro>'.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/blog/2020/guide-enable-wsl2/wsl-extension.webp" loading="lazy" alt="WSL Extension - VS Code">
-  </div>
-  <em>Extensión WSL de Microsoft para VS Code</em>
-</div>
+NAME                            FRIENDLY NAME
+AlmaLinux-8                     AlmaLinux OS 8
+AlmaLinux-9                     AlmaLinux OS 9
+AlmaLinux-Kitten-10             AlmaLinux OS Kitten 10
+AlmaLinux-10                    AlmaLinux OS 10
+Debian                          Debian GNU/Linux
+FedoraLinux-42                  Fedora Linux 42
+SUSE-Linux-Enterprise-15-SP6    SUSE Linux Enterprise 15 SP6
+SUSE-Linux-Enterprise-15-SP7    SUSE Linux Enterprise 15 SP7
+Ubuntu                          Ubuntu
+Ubuntu-24.04                    Ubuntu 24.04 LTS
+archlinux                       Arch Linux
+kali-linux                      Kali Linux Rolling
+openSUSE-Tumbleweed             openSUSE Tumbleweed
+openSUSE-Leap-15.6              openSUSE Leap 15.6
+Ubuntu-18.04                    Ubuntu 18.04 LTS
+Ubuntu-20.04                    Ubuntu 20.04 LTS
+Ubuntu-22.04                    Ubuntu 22.04 LTS
+OracleLinux_7_9                 Oracle Linux 7.9
+OracleLinux_8_7                 Oracle Linux 8.7
+OracleLinux_9_1                 Oracle Linux 9.1
+```
 
-Una vez instalada la extensión, reinicia Visual Studio Code.
+If you want to install a specific distribution, use this command:
 
-La extensión te permitirá ejecutar Visual Studio Code y explorar el contenido del directorio en el que te encuentres actualmente en WSL al ejecutar el comando:
+```powershell
+wsl --install -d <DistroName>
+```
 
-```shell
+### Set your username and password in Linux
+
+After the Linux distribution installation via WSL completes, open the distribution (Ubuntu by default) from the Start menu. You will be prompted to create a Username and Password for your Linux distribution.
+
+- This Username and Password are specific to each Linux distribution you install and are unrelated to your Windows user account.
+- Note that when typing your password, no characters will appear on screen. This “blind typing” is normal and intentional.
+- When you create your Username and Password, this account will become your default user for the distribution and will automatically log in when you launch it.
+- This account will have administrator privileges on Linux, allowing you to execute administrative commands using sudo (Super User Do).
+- Each Linux distribution running in WSL maintains its own user accounts and passwords. You must create a user account each time you add a new distribution, reinstall it, or reset it.
+
+### Change or reset your password
+
+To change or reset your password, open your Linux distribution and enter the following command:
+
+```bash
+passwd
+```
+
+You will be asked to enter your current password, then a new password, and finally to confirm the new password.
+
+If you forget your Linux distribution password:
+
+- Open PowerShell and access your default WSL distribution as root with the command:
+
+```powershell
+wsl -u root
+```
+
+- To change the password in a distribution that is not your default, replace Debian below with your target distribution’s name:
+
+```powershell
+wsl -d Debian -u root
+```
+
+- Once inside the WSL distribution as root via PowerShell, run this command to change the password:
+
+```bash
+passwd <username>
+```
+
+where `<username>` is the user account name whose password you want to reset.
+
+- You will be prompted to enter and confirm a new UNIX password. After a message confirming the password update, exit WSL inside PowerShell by running:
+
+```bash
+exit
+```
+
+## Update and upgrade packages
+
+It is recommended to regularly update and upgrade your packages using your distribution’s package manager. For Ubuntu or Debian, use:
+
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+Windows does not automatically update or upgrade your Linux distributions. This is a task most Linux users prefer to control manually.
+
+## Visual Studio Code WSL Extension
+
+This extension allows you to open any directory inside WSL and take advantage of VS Code’s features and functionality. You can install the extension from the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="nofollow">Visual Studio Marketplace ➡</a>.
+
+{{< gallery images="/images/blog/2020/guide-enable-wsl2/wsl-extension.webp" captions="Extension for Visual Studio Code to enable the integration with WSL" caption="Microsoft's extension for VS Code" >}}
+
+Once installed, restart Visual Studio Code.
+
+The extension lets you run Visual Studio Code and explore the contents of your current directory in WSL by running the command:
+
+shell
+
+```bash
 code .
 ```
 
 ---
 
-Foto de <a href="https://unsplash.com/es/@eiskonen?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"  target="_blank" rel="nofollow, noreferrer">Hans Eiskonen</a> en <a href="https://unsplash.com/es/fotos/PotGJdsW06k?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Photo by <a href="https://unsplash.com/@eiskonen" target="_blank" rel="nofollow noreferrer">Hans Eiskonen</a> on <a href="https://unsplash.com/photos/PotGJdsW06k" target="_blank" rel="nofollow noreferrer">Unsplash</a>
