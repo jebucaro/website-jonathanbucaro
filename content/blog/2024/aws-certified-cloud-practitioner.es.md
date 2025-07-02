@@ -4,7 +4,7 @@ date: 2024-12-10T09:51:06-06:00
 image: '/images/blog/2024/aws-certified-cloud-practitioner/cover.webp'
 tags: [personal, aws]
 draft: false
-description: 'Obtuve la certificación AWS Certified Cloud Practitioner: un paso fundamental en mi viaje hacia la nube y la transformación digital.'
+description: 'Obtuve la certificación AWS Certified Cloud Practitioner, un hito importante en mi camino hacia la computación en la nube y la transformación digital.'
 translationKey: '2024-aws-certified-cloud-practitioner'
 slug: 'aws-certified-cloud-practitioner'
 ---
