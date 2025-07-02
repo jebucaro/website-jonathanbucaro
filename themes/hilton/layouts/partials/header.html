@@ -6,7 +6,7 @@
                 <div class="logo">
                     <a class="logo__link" href="{{ "/" | relLangURL }}">
                     {{ if .Site.Params.logo }}
-                        <img class="logo__image" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}"/>
+                        <img class="logo__image" src="{{ .Site.Params.logo | relURL }}" alt="{{ .Site.Title }}"/>
                     {{ else }}
                         {{ .Site.Title }}
                     {{ end }}
