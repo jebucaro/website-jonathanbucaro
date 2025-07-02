@@ -1,44 +1,40 @@
 ---
-translationKey: '2019-scrum-master-certified'
 title: 'Scrum Master Certified'
 date: 2019-01-06T18:09:27-06:00
 image: '/images/blog/2019/scrum-master-certified/cover.webp'
 tags: [personal, scrum]
 draft: false
-description: 'Primera certificación de Scrum lograda con éxito. He sido acreditado como Scrum Master Certified.'
+description: 'Successfully earned my first Scrum certification, accredited as a Scrum Master Certified by SCRUMstudy'
+translationKey: '2019-scrum-master-certified'
+slug: 'scrum-master-certified'
 ---
 
-El año 2019 lo inicié con el logro de mi primera certificación, obtuve Scrum Master Certified extendida por <a href="https://www.scrumstudy.com/">SCRUMstudy ➡</a>.
+I started 2019 on a high note by achieving my first Scrum certification: **Scrum Master Certified (SMC)** issued by <a href="https://www.scrumstudy.com/">SCRUMstudy ➡</a>.
 
-Opté por esta certificación debido a que quería aprender a gestionar los proyectos bajo un marco ágil y mejorar el rendimiento de mi equipo. La posibilidad de una oportunidad laboral o mejora salarial siempre será bien recibida.
+My decision to pursue this certification was driven by a desire to deepen my understanding of Agile project management frameworks and enhance the performance of my teams. While the potential for new career opportunities and salary improvements is always welcome, my core motivation was to effectively manage projects in a faster, more collaborative way and to facilitate higher-value outcomes for stakeholders.
 
-> La posibilidad de realizar un sueño es lo que hace que la vida sea interesante
+> The possibility of realizing a dream is what makes life interesting.
 >
 > <cite>– Paulo Coelho</cite>
 
-Para validar la certificación te puedes dirigir al <a href="https://www.scrumstudy.com/certification/certification-registry" target="_blank">Registro de Certificación de SCRUMstudy ➡</a> e ingresar los siguientes datos en el formulario.
+### Sobre esta certificación – El enfoque de SCRUMstudy
 
-<div class="table-container">
-  <table>
-    <tr><th>Campo</th><th>Valor</th></tr>
-    <tr><td>Last Name</td><td>Búcaro</td></tr>
-    <tr><td>First Name</td><td>Jonathan</td></tr>
-    <tr><td>Country</td><td>Guatemala</td></tr>
-    <tr><td>Credential</td><td>SMC</td></tr>
-  </table>
-</div>
+Unlike other Scrum certifications that align closely with the **Scrum Guide** by Scrum.org or organizations like Scrum Alliance and Scrum Inc., the SCRUMstudy certification is based on the **Scrum Body of Knowledge (SBOK™ Guide)**. This framework is more prescriptive and detailed in terms of roles, processes, and management practices tailored to project environments.
 
-## Actualización 2021-01-30
+This approach provides a comprehensive understanding of Scrum principles as applied in a broad range of industries and projects, complementing the flexibility in the Scrum Guide with practical frameworks for implementation, governance, and scaling. It’s especially useful for professionals looking for structured Agile methodologies that align with organizational standards.
 
-He renovado la certificación SMC al haber aprobado el exámen de Scrum Product Owner Certified, por lo que la certificación es válida hasta el 2024.
+### Reflections on the Journey
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="/images/blog/2019/scrum-master-certified/badge-SMC.webp" alt="Medalla de SCRUMstudy para la certificación Scrum Master Certified" loading="lazy">
-  </div>
-  <em><a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank">SMC - SCRUMstudy ➡</a></em>
-</div>
+Earning the Scrum Master Certified credential represents the effort I put into learning Agile principles through a clear and structured approach. It has given me the knowledge to support teams, encourage continuous improvement, manage projects with focus, and help deliver value.
+
+The SCRUMstudy framework emphasizes clear processes and well-defined roles, and it shows how to apply Scrum concepts in real work situations. These elements are important when using Agile at a larger scale.
+
+As I continue this journey, I look forward to applying these learnings to foster collaboration, increase agility, and promote excellence within my teams and projects.
+
+{{< gallery images="/images/blog/2019/scrum-master-certified/badge-SMC.webp" captions="SCRUMstudy Badge for Scrum Master Certified" caption="Scrum Master Certified" >}}
+
+<a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank" rel="noopener">Verify SMC Credential at SCRUMstudy ➡️</a>
 
 ---
 
-Foto de <a href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">İrfan Simsar</a> en <a href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Picture by <a href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">İrfan Simsar</a> on <a href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>

@@ -1,11 +1,12 @@
 ---
-translationKey: '2024-kmp'
 title: 'Kanban Management Profesional'
 date: 2024-11-03T15:33:55-06:00
 image: '/images/blog/2024/kmp/cover.webp'
 tags: [personal, kanban]
 draft: false
 description: 'Logré la certificación KMP de Kanban University: avanzando en el diseño y evolución de sistemas Kanban para mejorar la agilidad'
+slug: 'kanban-management-profesional'
+translationKey: '2024-kmp'
 ---
 
 🎓 ¡He obtenido la certificación Kanban Management Professional (KMP) de Kanban University! 🚀
