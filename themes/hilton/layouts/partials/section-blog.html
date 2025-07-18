@@ -7,10 +7,10 @@
                     <div class="contaniner__inner">
                         <div class="section__info">
                             <div class="section__head">
-                                <h2 class="section__title">{{ i18n "sections.blog.title" | safeHTML }}</h2>
+                                <h2 class="section__title">{{ .Site.Params.strings.sections.blog.title | safeHTML }}</h2>
                             </div>
                             {{ if .Site.Params.blog.blog__description }}
-                            <p class="section__description">{{ i18n "sections.blog.description" }}</p>
+                            <p class="section__description">{{ .Site.Params.strings.sections.blog.description }}</p>
                             {{ end }}
                         </div>
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="section__navigation">
-            <a href="{{ "/blog" | relLangURL }}" class="button button--primary section-button">{{ i18n "ui.viewMore" | safeHTML }} ➡</a>
+            <a href="/blog/" class="button button--primary section-button">{{ .Site.Params.strings.ui.viewMore | safeHTML }} ➡</a>
         </div>
     </section>
     <!-- end blog -->
