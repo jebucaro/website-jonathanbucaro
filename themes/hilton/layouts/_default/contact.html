@@ -30,19 +30,19 @@
                 </div>
                 <form class="form" action="{{ if .Site.Params.contact.contact__email }}https://formspree.io/f/{{ .Site.Params.contact.contact__email }}{{ else }}#{{ end }}" method="POST">
                     <div class="form__group">
-                        <label class="form__label screen-reader-text" for="form-name">{{ i18n "ui.name" | safeHTML }}</label>
-                        <input class="form__input" id="form-name" type="text" name="name" placeholder="{{ i18n "ui.name" | safeHTML }}" required />
+                        <label class="form__label screen-reader-text" for="form-name">{{ .Site.Params.strings.ui.name | safeHTML }}</label>
+                        <input class="form__input" id="form-name" type="text" name="name" placeholder="{{ .Site.Params.strings.ui.name | safeHTML }}" required />
                     </div>
                     <div class="form__group">
-                        <label class="form__label screen-reader-text" for="form-email">{{ i18n "ui.email" | safeHTML }}</label>
-                        <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="{{ i18n "ui.email" | safeHTML }}" required />
+                        <label class="form__label screen-reader-text" for="form-email">{{ .Site.Params.strings.ui.email | safeHTML }}</label>
+                        <input class="form__input" id="form-email" type="email" name="_replyto" placeholder="{{ .Site.Params.strings.ui.email | safeHTML }}" required />
                     </div>
                     <div class="form__group">
-                        <label class="form__label screen-reader-text" for="form-text">{{ i18n "ui.message" | safeHTML }}</label>
-                        <textarea class="form__input" id="form-text" name="text" rows="10" placeholder="{{ i18n "ui.message" | safeHTML }}" required></textarea>
+                        <label class="form__label screen-reader-text" for="form-text">{{ .Site.Params.strings.ui.message | safeHTML }}</label>
+                        <textarea class="form__input" id="form-text" name="text" rows="10" placeholder="{{ .Site.Params.strings.ui.message | safeHTML }}" required></textarea>
                     </div>
                     <div class="form__group form__group-button">
-                        <button class="button button--primary" type="submit">{{ i18n "ui.sendMessage" | safeHTML }}</button>
+                        <button class="button button--primary" type="submit">{{ .Site.Params.strings.ui.sendMessage | safeHTML }}</button>
                     </div>
                 </form>
             </div>

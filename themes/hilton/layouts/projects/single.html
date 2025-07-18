@@ -26,7 +26,7 @@
                 {{ if .NextInSection }}
                     <a class="project__prev" href="{{ .NextInSection.Permalink }}">
                         <div class="project__box">
-                            <span class="project__nav-info">{{ i18n "projects.nextProject" }}<ion-icon name="arrow-forward"></ion-icon></span>
+                            <span class="project__nav-info">{{ .Site.Params.strings.projects.nextProject }}<ion-icon name="arrow-forward"></ion-icon></span>
                             <h2 class="project__nav-title">{{ .NextInSection.Title }}</h2>
                         </div>
                     </a>
@@ -41,7 +41,7 @@
                 {{ else if .PrevInSection }}
                     <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
                         <div class="project__box">
-                            <span class="project__nav-info">{{ i18n "projects.previousProject" }}<ion-icon name="arrow-forward"></ion-icon></span>
+                            <span class="project__nav-info">{{ .Site.Params.strings.projects.previousProject }}<ion-icon name="arrow-forward"></ion-icon></span>
                             <h2 class="project__nav-title">{{ .PrevInSection.Title }}</h2>
                         </div>
                     </a>
