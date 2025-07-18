@@ -35,11 +35,11 @@
 
                             <div class="col col-4 col-d-12">
                                 <div class="footer__nav">
-                                    <h3 class="footer__nav-title">{{ i18n "ui.navigation" | safeHTML }}</h3>
+                                    <h3 class="footer__nav-title">{{ .Site.Params.strings.ui.navigation | safeHTML }}</h3>
                                     <ul class="footer__nav-list list-reset">
                                         {{ range .Site.Menus.footer }}
                                             <li class="footer__nav-item">
-                                                <a href="{{ .URL | relLangURL }}" class="footer__nav-link">{{ .Name }}</a>
+                                                <a href="{{ .URL | relURL }}" class="footer__nav-link">{{ .Name }}</a>
                                             </li>
                                         {{ end }}
                                     </ul>
@@ -59,9 +59,9 @@
                     <div class="footer__info-box">
                         <div class="copyright">
                             {{ dateFormat "2006" now }} &copy;
-                            <a href="/">{{ .Site.Title }}</a>. {{ i18n "ui.allRightsReserved" }} <a href="https://gohugo.io/">Hugo</a>.
+                            <a href="/">{{ .Site.Title }}</a>. {{ .Site.Params.strings.ui.allRightsReserved }} <a href="https://gohugo.io/">Hugo</a>.
                         </div>
-                        <div class="top" title="{{ i18n "ui.backToTop" }}"><ion-icon name="chevron-up-outline"></ion-icon></div>
+                        <div class="top" title="{{ .Site.Params.strings.ui.backToTop }}"><ion-icon name="chevron-up-outline"></ion-icon></div>
                     </div>
                 </div>
             </div>

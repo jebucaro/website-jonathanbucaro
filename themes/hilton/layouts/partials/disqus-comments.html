@@ -1,7 +1,7 @@
 {{ if .Site.Params.disqus.enable }}
     <!-- begin comments -->
     <div class="show-comments">
-        <button class="button button--primary" id="show-comments-button" onclick="disqus();return false;">{{ i18n "ui.comments" }}</button>
+        <button class="button button--primary" id="show-comments-button" onclick="disqus();return false;">{{ .Site.Params.strings.ui.comments }}</button>
     </div>
 
     <div id="disqus_thread" class="post__comments">

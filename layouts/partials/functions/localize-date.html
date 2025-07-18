@@ -38,7 +38,7 @@
 {{ $dateFormatted := $date.Format $format }}
 
 {{ with $monthFormat }}
-    {{ $monthT := i18n (printf "date.month.%s.%d" $monthFormat $date.Month) }}
+    {{ $monthT := index .Site.Params.strings.date.month $monthFormat (string $date.Month) }}
     {{ if eq . "long" }}
         {{ $dateFormatted = replaceRE `January|February|March|April|May|June|July|August|September|October|November|December` $monthT $dateFormatted }}
     {{ else }}
@@ -47,7 +47,7 @@
 {{ end }}
 
 {{ with $weekdayFormat }}
-    {{ $weekdayT := i18n (printf "date.weekday.%s.%d" $weekdayFormat $date.Weekday) }}
+    {{ $weekdayT := index .Site.Params.strings.date.weekday $weekdayFormat (string $date.Weekday) }}
     {{ if eq . "long" }}
         {{ $dateFormatted = replaceRE `Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday` $weekdayT $dateFormatted }}
     {{ else }}

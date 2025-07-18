@@ -8,7 +8,7 @@
                     <div class="col col-12">
                         <div class="tag__info">
                             <h1 class="tag__name">{{ humanize .Title }}</h1>
-                            <div class="tag__counter">{{ len .Pages }} {{ i18n "content.posts" (len .Pages) }}</div>
+                            <div class="tag__counter">{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ .Site.Params.strings.content.posts.one }}{{ else }}{{ .Site.Params.strings.content.posts.other }}{{ end }}</div>
                         </div>
                     </div>
                 </div>

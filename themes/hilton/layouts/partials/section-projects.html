@@ -6,9 +6,9 @@
                 <div class="col col-12">
                     <div class="contaniner__inner animate">
                         <div class="section__info">
-                            <h2 class="section__title">{{ i18n "sections.projects.title" | safeHTML }}</h2>
+                            <h2 class="section__title">{{ .Site.Params.strings.sections.projects.title | safeHTML }}</h2>
                             {{ if .Site.Params.projects.projects__description }}
-                            <p class="section__description">{{ i18n "sections.projects.description" | safeHTML }}</p>
+                            <p class="section__description">{{ .Site.Params.strings.sections.projects.description | safeHTML }}</p>
                             {{ end }}
                         </div>
 
@@ -40,7 +40,7 @@
         </div>
 
         <div class="section__navigation">
-            <a href="{{ "/projects" | relLangURL }}" class="button button--primary section-button">{{ i18n "sections.projects.allProjects" | safeHTML }}</a>
+            <a href="/projects/" class="button button--primary section-button">{{ .Site.Params.strings.sections.projects.allProjects | safeHTML }}</a>
         </div>
     </section>
     <!-- end projects -->
