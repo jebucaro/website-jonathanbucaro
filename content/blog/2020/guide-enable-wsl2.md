@@ -5,7 +5,6 @@ image: '/images/blog/2020/guide-enable-wsl2/cover.webp'
 tags: [windows, wsl]
 draft: false
 description: 'Learn how to install WSL2 on your Windows PC and explore Linux system capabilities right on your desktop'
-translationKey: '2020-guide-enable-wsl2'
 slug: 'guide-enable-wsl2'
 ---
 

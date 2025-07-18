@@ -6,7 +6,6 @@ tags: [personal, kanban]
 draft: false
 description: 'I earned the Kanban University KMP certification, deepening my expertise in designing and evolving Kanban systems to boost organizational agility.'
 slug: 'kanban-management-profesional'
-translationKey: '2024-kmp'
 ---
 
 🎓 I’ve earned the Kanban Management Professional (KMP) certification from Kanban University! 🚀

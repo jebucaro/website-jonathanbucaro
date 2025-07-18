@@ -6,7 +6,6 @@ tags: [personal, aws]
 draft: false
 description: 'I achieved the AWS Certified Cloud Practitioner certification, marking a significant milestone in my journey toward cloud computing and digital transformation.'
 slug: 'aws-certified-cloud-practitioner'
-translationKey: '2024-aws-certified-cloud-practitioner'
 ---
 
 🎓 I’m excited to share that I have earned the AWS Certified Cloud Practitioner certification! 🚀
