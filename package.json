@@ -8,7 +8,7 @@
         "lint:markdown": "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources",
         "build": "hugo --cleanDestinationDir --minify",
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
-        "dev": "hugo server -D --disableFastRender --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
+        "dev": "hugo server -D --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
         "serve": "hugo server",
         "clean": "Remove-Item -Recurse -Force public, resources",
         "prepare": "husky",
