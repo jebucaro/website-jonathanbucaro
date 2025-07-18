@@ -82,7 +82,13 @@ This template is based on the work of **Dann Berg** in his post <a href="https:/
 
 You’ll need `Obsidian` installed and a vault to use for your work log.
 
-{{< gallery images="images/obsidian.webp,images/obsidian-create-vault.webp" captions="Welcome screen on Obsidian showing different options, highlighting the option to create a new vault.|Options inside 'Create a new vault' in Obsidian, where you set the vault name and location." caption="Obsidian - Obsidian - Create a Vault" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian.webp" alt="Welcome screen on Obsidian showing different options, highlighting the option to create a new vault." loading="lazy">
+    <img src="images/obsidian-create-vault.webp" alt="Options inside 'Create a new vault' in Obsidian, where you set the vault name and location." loading="lazy">
+  </div>
+  <em>Obsidian - Obsidian - Create a Vault</em>
+</div>
 
 #### Plugins
 
@@ -93,23 +99,55 @@ You’ll need `Obsidian` installed and a vault to use for your work log.
 
 ##### Enable Community Plugins
 
-{{< gallery images="images/obsidian-enable-community-plugins.webp,images/obsidian-community-plugins-enabled.webp" captions="Settings screen in Obsidian’s community plugins section, with the button to enable community plugins.|Option to enable community plugins in Obsidian, showing active status." caption="Obsidian - Enable Community Plugins" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-enable-community-plugins.webp" alt="Settings screen in Obsidian’s community plugins section, with the button to enable community plugins." loading="lazy">
+    <img src="images/obsidian-community-plugins-enabled.webp" alt="Option to enable community plugins in Obsidian, showing active status." loading="lazy">
+  </div>
+  <em>Obsidian - Enable Community Plugins</em>
+</div>
 
 Click on the `Browse` button and in the popup window, search for the plugin name (for example, `Templater`).
 
-{{< gallery images="images/obsidian-community-plugins-browse.webp" captions="Searching for plugins in the community plugins window in Obsidian, showing the search for 'Templater." caption="Obsidian - Search Community Plugins" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-community-plugins-browse.webp" alt="Searching for plugins in the community plugins window in Obsidian, showing the search for 'Templater." loading="lazy">
+  </div>
+  <em>Obsidian - Search Community Plugins</em>
+</div>
 
 ##### Templater Plugin Installation
 
-{{< gallery images="images/obsidian-community-plugins-install-templater.webp,images/obsidian-community-plugins-enable-templater.webp,images/obsidian-community-plugins-templater-enabled.webp" captions="Search result for 'Templater' plugin in Obsidian, showing the install button.|Templater' plugin installed in Obsidian, showing the enable button.|'Templater' plugin in Obsidian already installed and enabled." caption="Obsidian - Install and Enable Templater Plugin" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-community-plugins-install-templater.webp" alt="Search result for 'Templater' plugin in Obsidian, showing the install button." loading="lazy">
+    <img src="images/obsidian-community-plugins-enable-templater.webp" alt="Templater' plugin installed in Obsidian, showing the enable button." loading="lazy">
+    <img src="images/obsidian-community-plugins-templater-enabled.webp" alt="'Templater' plugin in Obsidian already installed and enabled." loading="lazy">
+  </div>
+  <em>Obsidian - Install and Enable Templater Plugin</em>
+</div>
 
 ##### Calendar Plugin Installation
 
-{{< gallery images="images/obsidian-community-plugins-install-calendar.webp,images/obsidian-community-plugins-calendar-enable.webp,images/obsidian-community-plugins-calendar-enabled.webp" captions="Search result for 'Calendar' plugin in Obsidian, showing the install button.|'Calendar' plugin installed and showing the enable button.|'Calendar' plugin in Obsidian already installed and enabled." caption="Obsidian - Install and Enable Calendar Plugin" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-community-plugins-install-calendar.webp" alt="Search result for 'Calendar' plugin in Obsidian, showing the install button." loading="lazy">
+    <img src="images/obsidian-community-plugins-calendar-enable.webp" alt="'Calendar' plugin installed and showing the enable button." loading="lazy">
+    <img src="images/obsidian-community-plugins-calendar-enabled.webp" alt="'Calendar' plugin in Obsidian already installed and enabled." loading="lazy">
+  </div>
+  <em>Obsidian - Install and Enable Calendar Plugin</em>
+</div>
 
 ##### Dataview Plugin Installation
 
-{{< gallery images="images/obsidian-community-plugins-install-dataview.webp,images/obsidian-community-plugins-enable-dataview.webp,images/obsidian-community-plugins-dataview-enabled.webp" captions="Search result for 'Dataview' plugin in Obsidian, showing the install button.|Dataview' plugin installed and showing the enable button.|Dataview' plugin in Obsidian already installed and enabled." caption="Obsidian - Install and Enable Dataview Plugin" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-community-plugins-install-dataview.webp" alt="Search result for 'Dataview' plugin in Obsidian, showing the install button." loading="lazy">
+    <img src="images/obsidian-community-plugins-enable-dataview.webp" alt="Dataview' plugin installed and showing the enable button." loading="lazy">
+    <img src="images/obsidian-community-plugins-dataview-enabled.webp" alt="Dataview' plugin in Obsidian already installed and enabled." loading="lazy">
+  </div>
+  <em>Obsidian - Install and Enable Dataview Plugin</em>
+</div>
 
 For now, we won't change the plugins’ default settings.
 
@@ -157,17 +195,34 @@ List FROM "" WHERE file.mday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.m
 ```
 ````
 
-{{< gallery images="images/obsidian-folder-structure.webp,images/obsidian-template-content.webp" captions="Obsidian’s main screen showing folder structure to set up daily notes template and generation folder.|Content of the daily notes template in Obsidian." caption="Obsidian - Directory Structure" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-folder-structure.webp" alt="Obsidian’s main screen showing folder structure to set up daily notes template and generation folder." loading="lazy">
+    <img src="images/obsidian-template-content.webp" alt="Content of the daily notes template in Obsidian." loading="lazy">
+  </div>
+  <em>Obsidian - Directory Structure</em>
+</div>
 
 #### Plugin Configuration
 
 Go to settings and, under `Core plugins`, find the `Daily Notes` plugin settings. Set `YYYY/MM-MMMM/YYYY-MM-DD-dddd` as the value for `Date Format`. This will nest your notes in subfolders by year > month > day, making it easier to browse. Also, set `Daily` as the value for `New File Location`, and `Templates/Daily Templates/Daily Note Template` as the `Template file location`. This way, when you hit `Open today's daily note` in the Obsidian ribbon, your new note will use the template. You may also want to enable `Open daily note on startup`, personally, I keep this turned on.
 
-{{< gallery images="images/obsidian-create-daily-note-configuration.webp" captions="Daily Notes plugin settings in Obsidian, showing settings for file date format, location, and the option to create the daily note on launch." caption="Obsidian - Daily Note Settings" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-create-daily-note-configuration.webp" alt="Daily Notes plugin settings in Obsidian, showing settings for file date format, location, and the option to create the daily note on launch." loading="lazy">
+  </div>
+  <em>Obsidian - Daily Note Settings</em>
+</div>
 
 Finally, under `Community plugins`, look for the Templater plugin settings. Set `Templates` as the `Template folder location`. Turn on `Automatic jump to cursor` and `Trigger Templater on new file creation`. This will let Templater automatically insert the date tags. Scroll down in Templater settings, enable `Enable folder templates`, and choose the `Daily` folder in the first box, and `Templates/Daily Templates/Daily Note Template.md` in the second. This will associate your daily note template with the notes you create in the log.
 
-{{< gallery images="images/obsidian-create-templater-configuration.webp,images/obsidian-create-templater-configuration-folder-templates.webp" captions="Templater plugin settings in Obsidian, showing template folder location, jump to cursor, and setting Templater to run on new file creation.|Further Templater settings showing folder templates pairing of location and template." caption="Obsidian - Templater Configuration" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-create-templater-configuration.webp" alt="Templater plugin settings in Obsidian, showing template folder location, jump to cursor, and setting Templater to run on new file creation." loading="lazy">
+    <img src="images/obsidian-create-templater-configuration-folder-templates.webp" alt="Further Templater settings showing folder templates pairing of location and template." loading="lazy">
+  </div>
+  <em>Obsidian - Templater Configuration</em>
+</div>
 
 ### 🎬 Using the template
 
@@ -175,15 +230,33 @@ Your template is now ready to go, treat it as a starting point! There’s a lot 
 
 On the left sidebar, you'll see quick access buttons, including one for `Open today's daily note`. Clicking it will create a new entry for today's date (or open the existing one, if it’s already there). The same thing happens when you launch Obsidian, if you enabled the option in Daily Note settings.
 
-{{< gallery images="images/obsidian-open-todays-daily-note.webp,images/obsidian-todays-daily-note.webp" captions="Obsidian app screen, showing where to click for your daily note.|A daily note created in Obsidian using the configured template." caption="Obsidian - Create Today's Note" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-open-todays-daily-note.webp" alt="Obsidian app screen, showing where to click for your daily note." loading="lazy">
+    <img src="images/obsidian-todays-daily-note.webp" alt="A daily note created in Obsidian using the configured template." loading="lazy">
+  </div>
+  <em>Obsidian - Create Today's Note</em>
+</div>
 
 In the top right, you’ll find the `Expand` button. Click it to show different tabs, one of which is `Calendar`. The calendar view lets you jump between different daily notes. If you double-click a date that doesn’t have a daily note yet, the app will prompt you to create one for that day. You can toggle this view on or off—when expanded, the button becomes `Collapse`.
 
-{{< gallery images="images/obsidian-expand.webp,images/obsidian-expand-calendar.webp" captions="Obsidian app, showing where to click to expand views, like the calendar view.|Obsidian app, showing the Calendar view." caption="Obsidian - Calendar View" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-expand.webp" alt="Obsidian app, showing where to click to expand views, like the calendar view." loading="lazy">
+    <img src="images/obsidian-expand-calendar.webp" alt="Obsidian app, showing the Calendar view." loading="lazy">
+  </div>
+  <em>Obsidian - Calendar View</em>
+</div>
 
 SIf you're in `Source mode`, the daily note summary will show raw code, but when you switch to `Reading view`, you’ll see a clean list of notes you created or last updated that day.
 
-{{< gallery images="images/obsidian-source-mode.webp,images/obsidian-reading-view.webp" captions="Obsidian app in source code mode.|Obsidian app, showing reading view mode." caption="Obsidian - Edit and Reading Views" >}}
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/obsidian-source-mode.webp" alt="Obsidian app in source code mode." loading="lazy">
+    <img src="images/obsidian-reading-view.webp" alt="Obsidian app, showing reading view mode." loading="lazy">
+  </div>
+  <em>Obsidian - Edit and Reading Views</em>
+</div>
 
 My usual process is to switch into editing mode when I need to review something from this overview.
 
