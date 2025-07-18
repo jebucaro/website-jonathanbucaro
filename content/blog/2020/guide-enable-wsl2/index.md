@@ -1,7 +1,7 @@
 ---
 title: 'Guide to Enable WSL2'
 date: 2020-09-14T19:56:03-06:00
-image: '/images/blog/2020/guide-enable-wsl2/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, wsl]
 draft: false
 description: 'Learn how to install WSL2 on your Windows PC and explore Linux system capabilities right on your desktop'
@@ -10,7 +10,7 @@ slug: 'guide-enable-wsl2'
 
 Windows Subsystem for Linux (WSL) is a feature introduced in Windows 10 that allows you to run Linux applications directly in Windows through an intermediate compatibility layer. WSL2 brings significant improvements over the first version, including faster performance and better compatibility with more complex Linux applications.
 
-{{< gallery images="/images/blog/2020/guide-enable-wsl2/wsl2-ubuntu-lts.webp" captions="Running Ubuntu inside Windows 11" caption="Ubuntu 24.04 on WSL2" >}}
+{{< gallery images="images/wsl2-ubuntu-lts.webp" captions="Running Ubuntu inside Windows 11" caption="Ubuntu 24.04 on WSL2" >}}
 
 ## 📌 Requirements
 
@@ -141,7 +141,7 @@ Windows does not automatically update or upgrade your Linux distributions. This 
 
 This extension allows you to open any directory inside WSL and take advantage of VS Code’s features and functionality. You can install the extension from the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="nofollow">Visual Studio Marketplace ➡</a>.
 
-{{< gallery images="/images/blog/2020/guide-enable-wsl2/wsl-extension.webp" captions="Extension for Visual Studio Code to enable the integration with WSL" caption="Microsoft's extension for VS Code" >}}
+{{< gallery images="images/wsl-extension.webp" captions="Extension for Visual Studio Code to enable the integration with WSL" caption="Microsoft's extension for VS Code" >}}
 
 Once installed, restart Visual Studio Code.
 

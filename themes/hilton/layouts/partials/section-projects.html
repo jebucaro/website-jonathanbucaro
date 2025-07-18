@@ -17,11 +17,11 @@
                                 <article class="project col col-4 col-d-6 col-t-12">
                                     <div class="project__content">
                                         <a href="{{ .RelPermalink }}" class="project__image">
-                                            {{ $image := .Resources.GetMatch .Params.Image }}
+                                            {{ $image := .Resources.GetMatch .Params.image }}
                                             {{ if $image }}
                                                 <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}"/>
                                             {{ else }}
-                                                <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Params.Title }}"/>
+                                                <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Params.Title }}"/>
                                             {{ end }}
                                         </a>
                                         <div class="project__info">

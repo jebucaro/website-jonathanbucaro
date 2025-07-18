@@ -1,7 +1,7 @@
 ---
 title: 'Scrum Master Certified'
 date: 2019-01-06T18:09:27-06:00
-image: '/images/blog/2019/scrum-master-certified/cover.webp'
+image: 'images/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'Successfully earned my first Scrum certification, accredited as a Scrum Master Certified by SCRUMstudy'
@@ -30,7 +30,7 @@ The SCRUMstudy framework emphasizes clear processes and well-defined roles, and 
 
 As I continue this journey, I look forward to applying these learnings to foster collaboration, increase agility, and promote excellence within my teams and projects.
 
-{{< gallery images="/images/blog/2019/scrum-master-certified/badge-SMC.webp" captions="SCRUMstudy Badge for Scrum Master Certified" caption="Scrum Master Certified" >}}
+{{< gallery images="images/badge-SMC.webp" captions="SCRUMstudy Badge for Scrum Master Certified" caption="Scrum Master Certified" >}}
 
 <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank" rel="noopener">Verify SMC Credential at SCRUMstudy ➡️</a>
 

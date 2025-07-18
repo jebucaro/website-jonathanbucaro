@@ -1,7 +1,7 @@
 ---
 title: 'Improve the Windows Terminal with Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
-image: '/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/cover.webp'
+image: 'images/cover.webp'
 tags: [windows, powershell]
 draft: false
 description: "I'll guide you step-by-step through the process of setting up Windows Terminal and Oh My Posh."
@@ -34,7 +34,7 @@ In this article, I’ll walk you through step-by-step on how to transform your W
 
 ## 💾 Install PowerShell
 
-![Windows PowerShell](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
+![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
 
 Are you still using the old version of PowerShell that comes with Windows? To fully benefit from Oh My Posh, it’s essential to have the latest cross-platform version.
 
@@ -66,7 +66,7 @@ Open Windows Terminal, right-click on the title bar (outside the tabs) or click 
 
 Find the **Startup** section. On the right, set **PowerShell** as the Default Profile and **Windows Terminal** as the Default Terminal Application. Click “Save.” This sets you up perfectly to continue with the best configuration.
 
-![Default Terminal Application](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
+![Default Terminal Application](images/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
 
 <span id="script-execution"></span>
 
@@ -134,7 +134,7 @@ oh-my-posh font install --user
 
 You’ll see a list of fonts; Oh My Posh recommends the “Meslo” font family, which includes “Meslo LGM NF.”
 
-![Install Meslo Nerd Font](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/windows-terminal-install-nerd-font.webp 'Install Meslo Nerd Font')
+![Install Meslo Nerd Font](images/windows-terminal-install-nerd-font.webp 'Install Meslo Nerd Font')
 
 {{< callout important >}}
 You can also install it directly by name (system-wide requires admin, user-level doesn’t).
@@ -200,7 +200,7 @@ Reload your profile:
 
 Done! You should see your prompt change immediately to something like this:
 
-![Oh My Posh](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
+![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
 
 <span id="configure-ohmyposh-theme"></span>
 
@@ -222,7 +222,7 @@ Save and reload:
 
 Enjoy your new look!
 
-![Oh My Posh Zash Theme](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/windows-terminal-ohmyposh-zash.webp 'Oh My Posh Zash Theme')
+![Oh My Posh Zash Theme](images/windows-terminal-ohmyposh-zash.webp 'Oh My Posh Zash Theme')
 
 If you want to revert to the default theme, just use:
 
@@ -308,7 +308,7 @@ Confirm both prompts by pressing `Y`. Once installed, run:
 winfetch
 ```
 
-![winfetch](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/winfetch.webp 'winfetch')
+![winfetch](images/winfetch.webp 'winfetch')
 
 <span id="bat"></span>
 
@@ -324,7 +324,7 @@ Install with:
 winget install sharkdp.bat
 ```
 
-![bat](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/bat.webp 'bat')
+![bat](images/bat.webp 'bat')
 
 In Windows, install `less` as well for paging:
 
@@ -348,7 +348,7 @@ winget install eza-community.eza
 
 Open a new PowerShell tab to start using it.
 
-![eza](/images/blog/2024/improve-the-windows-terminal-experience-with-ohmyposh/eza.webp 'eza')
+![eza](images/eza.webp 'eza')
 
 See options and docs at the <a href="https://github.com/eza-community/eza#command-line-options" target="_blank" rel="nofollow">eza GitHub repo➡</a>.
 

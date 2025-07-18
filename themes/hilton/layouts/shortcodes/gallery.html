@@ -7,11 +7,21 @@
   <div class="gallery">
     {{ range $i, $img := $images }}
       {{ $img = trim $img " " }}
-      {{ if not (hasPrefix $img "/") }}
-        {{ $img = printf "/%s" $img }}
+      {{ $imgSrc := "" }}
+      {{ if hasPrefix $img "/" }}
+        <!-- Absolute path - use as is -->
+        {{ $imgSrc = $img }}
+      {{ else }}
+        <!-- Relative path - try to find as page resource first -->
+        {{ $resource := $.Page.Resources.GetMatch $img }}
+        {{ if $resource }}
+          {{ $imgSrc = $resource.RelPermalink }}
+        {{ else }}
+          <!-- Fallback to relative URL -->
+          {{ $imgSrc = printf "/%s" $img | relURL }}
+        {{ end }}
       {{ end }}
-      {{/*  <img src="{{ $img | relURL }}" alt="{{ index $captions $i | default "" }}" loading="lazy">  */}}
-      <img src="{{ $img }}" alt="{{ index $captions $i | default "" }}" loading="lazy">
+      <img src="{{ $imgSrc }}" alt="{{ index $captions $i | default "" }}" loading="lazy">
     {{ end }}
   </div>
   {{ if $caption }}
