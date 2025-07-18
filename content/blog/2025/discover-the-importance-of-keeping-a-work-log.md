@@ -6,7 +6,6 @@ tags: [productivity]
 draft: false
 description: 'Find out how keeping a work log can help you stay organized, boost your productivity, and stand out on your team.'
 slug: 'discover-the-importance-of-keeping-a-work-log'
-translationKey: '2025-discover-the-importance-of-keeping-a-work-log'
 ---
 
 Has someone ever asked you for an update on your progress, and you had to dig deep into your memory to figure out what you last worked on? You’re not alone!

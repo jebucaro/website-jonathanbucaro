@@ -6,7 +6,6 @@ tags: [windows, powershell]
 draft: false
 description: "I'll guide you step-by-step through the process of setting up Windows Terminal and Oh My Posh."
 slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
-translationKey: '2024-improve-the-windows-terminal-experience-with-ohmyposh'
 ---
 
 Customizing your terminal can make a huge difference in your productivity and comfort as a developer. One of the most popular tools to personalize the prompt on Windows is Oh My Posh, which allows you to add attractive visual themes and extra features in both PowerShell and Windows Terminal.

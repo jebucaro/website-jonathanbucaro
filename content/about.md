@@ -2,7 +2,6 @@
 title: 'About'
 date: 2023-07-09T11:08:22-06:00
 draft: false
-translationKey: 'about'
 slug: 'about'
 ---
 
@@ -34,4 +33,4 @@ Currently, I work as a contractor at Cognits as a Full Stack Engineer. My work f
 
 To support continuous improvement, I have earned certifications in agile methodologies (Scrum, Kanban) and key technologies. These demonstrate my ability to lead projects with modern, adaptive methods that align technology with business goals.
 
-I am always open to new connections and professional opportunities. If you’d like to talk about technology projects or share experiences, you can find me on <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jonathanbucaro" target="_blank" rel="nofollow">LinkedIn</a>.
+I am always open to new connections and professional opportunities. If you'd like to talk about technology projects or share experiences, you can find me on <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jonathanbucaro" target="_blank" rel="nofollow">LinkedIn</a>.

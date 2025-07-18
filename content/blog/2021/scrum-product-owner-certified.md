@@ -5,7 +5,6 @@ image: '/images/blog/2021/scrum-product-owner-certified/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'My second Scrum certification. I have been accredited as Scrum Product Owner Certified and renewed the SMC certification.'
-translationKey: '2021-scrum-product-owner-certified'
 slug: 'scrum-product-owner-certified'
 ---
 
