@@ -1,0 +1,15 @@
+{{ define "main" }}
+    <!-- begin page -->
+    <div class="container animate">
+        <div class="row">
+            <div class="col col-12">
+                <div class="error">
+                    <h2 class="error__title">404</h2>
+                    <p class="error__text">{{ i18n "error.pageNotFound" }}</p>
+                    <p><a href="{{ .Site.Home.RelPermalink }}" class="button button--primary" style="border: none">{{ i18n "error.returnToHome" }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page -->
+{{ end }}
