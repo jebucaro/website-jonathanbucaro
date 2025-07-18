@@ -37,22 +37,4 @@
 
 {{ $dateFormatted := $date.Format $format }}
 
-{{ with $monthFormat }}
-    {{ $monthT := index .Site.Params.strings.date.month $monthFormat (string $date.Month) }}
-    {{ if eq . "long" }}
-        {{ $dateFormatted = replaceRE `January|February|March|April|May|June|July|August|September|October|November|December` $monthT $dateFormatted }}
-    {{ else }}
-        {{ $dateFormatted = replaceRE `Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec` $monthT $dateFormatted }}
-    {{ end }}
-{{ end }}
-
-{{ with $weekdayFormat }}
-    {{ $weekdayT := index .Site.Params.strings.date.weekday $weekdayFormat (string $date.Weekday) }}
-    {{ if eq . "long" }}
-        {{ $dateFormatted = replaceRE `Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday` $weekdayT $dateFormatted }}
-    {{ else }}
-        {{ $dateFormatted = replaceRE `Mon|Tue|Wed|Thu|Fri|Sat|Sun` $weekdayT $dateFormatted }}
-    {{ end }}
-{{ end }}
-
 {{ return $dateFormatted }}
