@@ -1,7 +1,7 @@
 ---
 title: 'Scrum Product Owner'
 date: 2021-01-30T06:37:04-06:00
-image: '/images/blog/2021/scrum-product-owner-certified/cover.webp'
+image: 'images/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'My second Scrum certification. I have been accredited as Scrum Product Owner Certified and renewed the SMC certification.'
@@ -12,7 +12,7 @@ I'm really happy to kick off 2021 with the Scrum Product Owner Certified accredi
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/blog/2021/scrum-product-owner-certified/badge-SPOC.webp" alt="SCRUMstudy badge for the Scrum Product Owner Certified certification" loading="lazy">
+    <img src="images/badge-SPOC.webp" alt="SCRUMstudy badge for the Scrum Product Owner Certified certification" loading="lazy">
   </div>
   <em><a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank">SPOC - SCRUMstudy ➡</a></em>
 </div>

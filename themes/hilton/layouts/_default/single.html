@@ -25,11 +25,11 @@
                 <div class="row">
                     <div class="col col-12">
                         <div class="post-image">
-                            {{ $image := .Resources.GetMatch .Params.Image }}
+                            {{ $image := .Resources.GetMatch .Params.image }}
                             {{ if $image }}
                                 <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
                             {{ else }}
-                                <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                                <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
                             {{ end }}
                         </div>
                     </div>
@@ -70,11 +70,11 @@
             {{ if .Params.image }}
                 <div class="col col-12">
                     <div class="page-image animate">
-                        {{ $image := .Resources.GetMatch .Params.Image }}
+                        {{ $image := .Resources.GetMatch .Params.image }}
                         {{ if $image }}
                             <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
                         {{ else }}
-                            <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                            <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
                         {{ end }}
                     </div>
                 </div>
