@@ -4,30 +4,26 @@
 
 ```text
 content/
-├── about.en.md           # English about page
-├── about.es.md           # Spanish about page
-├── blog/                 # Blog posts
-│   ├── _index.en.md     # Blog index (English)
-│   ├── _index.es.md     # Blog index (Spanish)
-│   ├── 2019/            # Posts by year
+├── about.md             # About page
+├── blog/                # Blog posts
+│   ├── _index.md       # Blog index
+│   ├── 2019/           # Posts by year
 │   ├── 2020/
 │   ├── 2021/
 │   ├── 2024/
 │   └── 2025/
-└── projects/            # Project portfolio
-    ├── _index.en.md     # Projects index (English)
-    ├── _index.es.md     # Projects index (Spanish)
-    ├── project-name.en.md
-    └── project-name.es.md
+└── projects/           # Project portfolio
+    ├── _index.md       # Projects index
+    └── project-name.md # Individual projects
 ```
 
 ## Content Guidelines
 
 ### File Naming Convention
 
-- Use filename suffixes for translations: `.en.md`, `.es.md`
-- Use `translationKey` in front matter to link translations
+- Use standard `.md` extension for all content
 - Use descriptive slugs in URLs
+- No language suffixes required (English-only site)
 
 ### Front Matter Structure
 
@@ -36,7 +32,6 @@ content/
 title: 'Page Title'
 date: 2025-01-01T00:00:00-06:00
 draft: false
-translationKey: 'unique-key'
 slug: 'url-slug'
 tags: ['tag1', 'tag2']
 categories: ['category']
@@ -53,7 +48,31 @@ categories: ['category']
 
 - Each project should have both English and Spanish versions
 - Include project metadata in front matter
-- Use consistent naming across languages
+- Use consistent naming and structure
+
+## Configuration
+
+### Localized Strings
+
+All user-facing strings are now stored in `config/_default/params.yaml` under the `strings` section:
+
+```yaml
+strings:
+    ui:
+        navigation: 'Navigation'
+        email: 'Email'
+        # ... other UI strings
+    sections:
+        hero:
+            title: "I'm Jonathan 🤓"
+            # ... other section strings
+```
+
+This approach provides:
+
+- Easy customization without touching theme files
+- Theme flexibility for future changes
+- Clean separation of content and presentation
 
 ## Assets and Styling
 
