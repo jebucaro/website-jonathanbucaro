@@ -5,7 +5,6 @@ image: '/images/blog/2019/scrum-master-certified/cover.webp'
 tags: [personal, scrum]
 draft: false
 description: 'Successfully earned my first Scrum certification, accredited as a Scrum Master Certified by SCRUMstudy'
-translationKey: '2019-scrum-master-certified'
 slug: 'scrum-master-certified'
 ---
 

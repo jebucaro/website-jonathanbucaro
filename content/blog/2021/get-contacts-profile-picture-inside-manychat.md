@@ -5,7 +5,6 @@ image: '/images/blog/2021/get-contacts-profile-picture-inside-manychat/cover.web
 tags: [manychat]
 draft: false
 description: 'Get the profile picture of your ManyChat contacts. One simple action, without the technical fuzz of an external request'
-translationKey: '2021-get-contacts-profile-picture-inside-manychat'
 ---
 
 ## 📖 Table of Contents
