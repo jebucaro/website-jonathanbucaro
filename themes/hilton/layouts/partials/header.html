@@ -33,14 +33,30 @@
                                             {{ range .Children }}
                                                 {{ $childURL := .URL | relURL }}
                                                 {{ $active := eq $childURL $pageURL }}
-                                                <a href="{{ if findRE `^#` .URL }}{{ if not $.IsHome }}/{{ end }}{{ .URL }}{{ else }}{{ .URL | relURL }}{{ end }}"
+                                                {{ $href := .URL | relURL }}
+                                                {{ if findRE `^#` .URL }}
+                                                    {{ if not $.IsHome }}
+                                                        {{ $href = printf "%s%s" "/" .URL }}
+                                                    {{ else }}
+                                                        {{ $href = .URL }}
+                                                    {{ end }}
+                                                {{ end }}
+                                                <a href="{{ $href }}"
                                                   class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
                                             {{ end }}
                                         </div>
                                     </li>
                                 {{ else }}
                                     <li class="nav__item">
-                                        <a href="{{ if findRE `^#` .URL }}{{ if not $.IsHome }}{{ site.BaseURL | relURL }}{{ end }}{{ .URL }}{{ else }}{{ .URL | relURL }}{{ end }}"
+                                        {{ $href := .URL | relURL }}
+                                        {{ if findRE `^#` .URL }}
+                                            {{ if not $.IsHome }}
+                                                {{ $href = printf "%s%s" "/" .URL }}
+                                            {{ else }}
+                                                {{ $href = .URL }}
+                                            {{ end }}
+                                        {{ end }}
+                                        <a href="{{ $href }}"
                                             class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
                                     </li>
                                 {{ end }}
