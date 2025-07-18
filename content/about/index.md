@@ -11,8 +11,8 @@ For thirteen years at **Banco G&T Continental**, I worked primarily in the finan
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/about/gyt-continental-top-talent-2022-2023-photo.webp" alt="On stage at Banco G&T Continental Top Talent 2022-2023" loading="lazy">
-    <img src="/images/about/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin with the Banco G&T Continental logo" loading="lazy">
+    <img src="images/gyt-continental-top-talent-2022-2023-photo.webp" alt="On stage at Banco G&T Continental Top Talent 2022-2023" loading="lazy">
+    <img src="images/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin with the Banco G&T Continental logo" loading="lazy">
   </div>
   <em>Recognitions at Banco G&T Continental, Top Talent 2022-2023</em>
 </div>
@@ -25,8 +25,8 @@ Currently, I work as a contractor at Cognits as a Full Stack Engineer. My work f
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/about/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Group photo with the Cognits team" loading="lazy">
-    <img src="/images/about/cognits-passion-to-grow-2024-q2.webp" alt="Cognits 'Passion to Grow' award" loading="lazy">
+    <img src="images/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Group photo with the Cognits team" loading="lazy">
+    <img src="images/cognits-passion-to-grow-2024-q2.webp" alt="Cognits 'Passion to Grow' award" loading="lazy">
   </div>
   <em>'Passion to Grow' award, Cognits 2024 Q2, with the team.</em>
 </div>
