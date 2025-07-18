@@ -1,0 +1,59 @@
+{{ define "main" }}
+    <!-- begin page -->
+    <div class="container animate">
+        <div class="row">
+            <div class="col col-12">
+                <div class="error">
+                    <h2 class="error__title">404</h2>
+                    <p class="error__text" id="errorText">{{ i18n "error.pageNotFound" }}</p>
+                    <p><a href="{{ .Site.Home.RelPermalink }}" class="button button--primary" style="border: none" id="homeButton">{{ i18n "error.returnToHome" }}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page -->
+
+    <script>
+        // Dynamic language detection and content switching for 404 pages
+        (function() {
+            function detectLanguage() {
+                const path = window.location.pathname;
+                if (path.startsWith('/es/')) {
+                    return 'es';
+                }
+                return 'en';
+            }
+
+            function setLanguageContent() {
+                const lang = detectLanguage();
+                const errorText = document.getElementById('errorText');
+                const homeButton = document.getElementById('homeButton');
+                
+                if (lang === 'es') {
+                    document.documentElement.lang = 'es';
+                    document.title = '404 - Página no encontrada | Jonathan Búcaro';
+                    if (errorText) errorText.textContent = 'La página solicitada no pudo ser encontrada.';
+                    if (homeButton) {
+                        homeButton.textContent = 'Regresar al Inicio';
+                        homeButton.href = '/es/';
+                    }
+                } else {
+                    document.documentElement.lang = 'en';
+                    document.title = '404 - Page Not Found | Jonathan Búcaro';
+                    if (errorText) errorText.textContent = 'The requested page could not be found.';
+                    if (homeButton) {
+                        homeButton.textContent = 'Return to Home';
+                        homeButton.href = '/';
+                    }
+                }
+            }
+
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setLanguageContent);
+            } else {
+                setLanguageContent();
+            }
+        })();
+    </script>
+{{ end }}
