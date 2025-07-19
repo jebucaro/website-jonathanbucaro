@@ -19,15 +19,15 @@ build:
             enable: true
             outputStyle: compressed
 outputFormats:
-  RobotsTXT:
-    mediaType: text/plain
-    baseName: robots
-    isPlainText: true
-    notAlternative: true
+    RobotsTXT:
+        mediaType: text/plain
+        baseName: robots
+        isPlainText: true
+        notAlternative: true
 
 outputs:
-  home:
-    - HTML
-    - RSS
-    - RobotsTXT
-    - Sitemap
+    home:
+        - HTML
+        - RSS
+        - RobotsTXT
+        - Sitemap
