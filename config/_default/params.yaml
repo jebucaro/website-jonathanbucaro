@@ -5,7 +5,7 @@ author:
     author__name: Jonathan Búcaro
     author__avatar: '/images/perfil.webp'
     author__bio: >-
-      Systems Engineer and Planeswalker. I write about my journey in technology, sharing experiences and insights that have driven my professional development.
+        Systems Engineer and Planeswalker. I write about my journey in technology, sharing experiences and insights that have driven my professional development.
 social:
     - icon: logo-linkedin
       name: LinkedIn
@@ -99,75 +99,75 @@ logo_item:
       link: 'https://cognits.co/'
       image: '/images/cognits-logo.webp'
 formats:
-  date:
-    long: "Monday, January 2, 2006"
-    short: "1/2/06"
-  time:
-    long: "3:04:05 PM"
-    short: "3:04 PM"
-  datetime:
-    long: "Monday, January 2, 2006 3:04:05 PM"
-    short: "1/2/06 3:04 PM"
+    date:
+        long: 'Monday, January 2, 2006'
+        short: '1/2/06'
+    time:
+        long: '3:04:05 PM'
+        short: '3:04 PM'
+    datetime:
+        long: 'Monday, January 2, 2006 3:04:05 PM'
+        short: '1/2/06 3:04 PM'
 twitter:
-  site: '@jebucaro'  # Twitter handle for the website (with @)
-  creator: '@jebucaro'  # Twitter handle for the content creator (with @)
+    site: '@jebucaro' # Twitter handle for the website (with @)
+    creator: '@jebucaro' # Twitter handle for the content creator (with @)
 
 # Localized strings (moved from i18n)
 strings:
-  error:
-    pageNotFound: "The requested page could not be found."
-    returnToHome: "Return to Home"
-  ui:
-    navigation: "Navigation"
-    allRightsReserved: "All Rights Reserved. Published with"
-    email: "Email"
-    emailPlaceholder: "Email address..."
-    relatedPosts: "You might be interested in"
-    name: "Name"
-    message: "Message"
-    sendMessage: "Send Message"
-    comments: "Comments"
-    viewMore: "View more"
-    backToTop: "Top"
-  content:
-    posts:
-      one: "Post"
-      other: "Posts"
-  sections:
-    hero:
-      title: "I'm Jonathan 🤓"
-      subtitle: "I'll create services that bring you value!"
-      description: "As a Systems Engineer with extensive experience in C# and Python, I'm dedicated to providing high-quality solutions that go beyond your expectations."
-      button: "Get in Touch"
-    logos:
-      title: "My professional experience includes collaborations with the following companies:"
-    blog:
-      title: "Recent Posts"
-      description: "Explore my latest articles and insights about technology, development, and more."
-      readMore: "Read More"
-    testimonials:
-      title: "Testimonials"
-      description: "What clients and colleagues say about working with me."
+    error:
+        pageNotFound: 'The requested page could not be found.'
+        returnToHome: 'Return to Home'
+    ui:
+        navigation: 'Navigation'
+        allRightsReserved: 'All Rights Reserved. Published with'
+        email: 'Email'
+        emailPlaceholder: 'Email address...'
+        relatedPosts: 'You might be interested in'
+        name: 'Name'
+        message: 'Message'
+        sendMessage: 'Send Message'
+        comments: 'Comments'
+        viewMore: 'View more'
+        backToTop: 'Top'
+    content:
+        posts:
+            one: 'Post'
+            other: 'Posts'
+    sections:
+        hero:
+            title: "I'm Jonathan 🤓"
+            subtitle: "I'll create services that bring you value!"
+            description: "As a Systems Engineer with extensive experience in C# and Python, I'm dedicated to providing high-quality solutions that go beyond your expectations."
+            button: 'Get in Touch'
+        logos:
+            title: 'My professional experience includes collaborations with the following companies:'
+        blog:
+            title: 'Recent Posts'
+            description: 'Explore my latest articles and insights about technology, development, and more.'
+            readMore: 'Read More'
+        testimonials:
+            title: 'Testimonials'
+            description: 'What clients and colleagues say about working with me.'
+        projects:
+            title: 'Selected Projects'
+            description: "A showcase of my latest work and the technologies I've mastered."
+            viewProject: 'View Project'
+            allProjects: 'All Projects'
+        contact:
+            title: 'Get in Touch'
+            description: "Have a project in mind or just want to say hello? I'd love to hear from you."
+            send: 'Send Message'
+            success: 'Your message was sent successfully!'
+            error: 'Something went wrong. Please try again.'
+    form:
+        name: 'Name'
+        email: 'Email'
+        subject: 'Subject'
+        message: 'Message'
+        sendButton: 'Send Message'
+    pagination:
+        next: '&raquo;'
+        previous: '&laquo;'
     projects:
-      title: "Selected Projects"
-      description: "A showcase of my latest work and the technologies I've mastered."
-      viewProject: "View Project"
-      allProjects: "All Projects"
-    contact:
-      title: "Get in Touch"
-      description: "Have a project in mind or just want to say hello? I'd love to hear from you."
-      send: "Send Message"
-      success: "Your message was sent successfully!"
-      error: "Something went wrong. Please try again."
-  form:
-    name: "Name"
-    email: "Email"
-    subject: "Subject"
-    message: "Message"
-    sendButton: "Send Message"
-  pagination:
-    next: "&raquo;"
-    previous: "&laquo;"
-  projects:
-    nextProject: "Next Project"
-    previousProject: "Previous Project"
+        nextProject: 'Next Project'
+        previousProject: 'Previous Project'
