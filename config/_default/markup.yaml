@@ -23,7 +23,7 @@ highlight:
     lineNumbersInTable: false
     style: github
     anchorLineNos: false
-    hl_Lines: ""
+    hl_Lines: ''
     hl_inline: false
     tabWidth: 4
 
