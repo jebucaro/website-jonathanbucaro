@@ -2,7 +2,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
     <title>{{ if not .IsHome }}{{ humanize .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="canonical" href="{{ .Permalink }}" />
@@ -55,10 +55,10 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
     {{ $themejs := resources.Get "js/theme.js" }}
-    {{ if hugo.IsServer }}<script src="{{ $themejs.Permalink }}"></script>{{ else }}<script src="{{ ($themejs | minify | fingerprint).RelPermalink }}"></script>{{ end }}
+    {{ if hugo.IsServer }}<script src="{{ $themejs.Permalink | absURL }}"></script>{{ else }}<script src="{{ ($themejs | minify | fingerprint).RelPermalink | absURL }}"></script>{{ end }}
     <!-- CSS -->
     {{ $cssOpts := (dict "targetPath" "css/main.css") }}
     {{ if hugo.IsServer }}{{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}{{ end }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
-    {{ if $css }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" />{{ end }}
+    {{ if $css }}<link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />{{ end }}
 </head>
