@@ -21,7 +21,7 @@
                                             {{ if $image }}
                                                 <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}"/>
                                             {{ else }}
-                                                <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Params.Title }}"/>
+                                                <img class="lazy" data-src="{{ .Params.image | absURL }}" alt="{{ .Params.Title }}"/>
                                             {{ end }}
                                         </a>
                                         <div class="project__info">
