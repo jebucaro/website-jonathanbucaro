@@ -7,6 +7,7 @@
         "format:write": "prettier --write .",
         "lint:markdown": "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources",
         "build": "hugo --cleanDestinationDir --minify",
+        "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
         "dev": "hugo server -D --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
         "serve": "hugo server",
