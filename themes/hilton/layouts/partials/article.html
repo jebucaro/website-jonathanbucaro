@@ -5,7 +5,7 @@
             {{ if $image }}
                 <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
             {{ else }}
-                <img class="lazy" data-src="{{ .Params.Image | relURL }}" alt="{{ .Title }}" />
+                <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" />
             {{ end }}
         </a>
     {{ end }}

@@ -12,7 +12,7 @@
     {{ if hugo.IsServer }}
         <script src="{{ $disqusjs.Permalink }}"></script>
     {{ else }}
-        <script src="{{ ($disqusjs | minify | fingerprint).RelPermalink }}"></script>
+        <script src="{{ ($disqusjs | minify | fingerprint).RelPermalink | absURL }}"></script>
     {{ end }}
 
 
