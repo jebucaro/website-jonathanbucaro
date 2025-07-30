@@ -68,20 +68,27 @@
 .article__title {
     margin-bottom: 20px;
     font-size: 32px;
+    font-weight: 700;
     line-height: 1.1;
 
     a {
+        color: inherit;
+        text-decoration: none;
         background: linear-gradient(var(--brand-color), var(--brand-color))
-            no-repeat bottom / 100% 0%;
-        transition: background 0.2s ease-in-out;
-
-        &:hover {
-            background-size: 100% 22%;
-        }
+            no-repeat left bottom / 0 2px;
+        transition:
+            background-size 0.2s,
+            color 0.2s;
+    }
+    a:hover,
+    a:focus {
+        color: inherit;
+        background-size: 100% 2px;
+        text-decoration: none;
     }
 
     @media only screen and (max-width: $desktop) {
-        font-size: 30px;
+        font-size: 28px;
     }
 }
 

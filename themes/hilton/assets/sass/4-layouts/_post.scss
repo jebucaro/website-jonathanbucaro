@@ -1,3 +1,30 @@
+// Ensure underline effect for all blog/featured post titles
+
+.post-title a,
+.article__title a,
+.featured__title a {
+    color: inherit;
+    text-decoration: none;
+    background: linear-gradient(var(--brand-color), var(--brand-color))
+        no-repeat left 100% / 0 2px;
+    transition:
+        background-size 0.2s,
+        color 0.2s;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding-bottom: 2px;
+    display: inline;
+}
+.post-title a:hover,
+.post-title a:focus,
+.article__title a:hover,
+.article__title a:focus,
+.featured__title a:hover,
+.featured__title a:focus {
+    color: inherit;
+    background-size: 100% 2px;
+    text-decoration: none;
+}
 /* Post + Page */
 .post-head,
 .page-head {
@@ -61,21 +88,40 @@
 }
 
 .post-title,
+.post-title,
 .page-title {
     margin-bottom: 32px;
-    font-size: 72px;
-    line-height: 1;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--heading-font-color);
+    transition: color 0.2s;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        background: linear-gradient(var(--brand-color), var(--brand-color))
+            no-repeat left bottom / 0 2px;
+        transition:
+            background-size 0.2s,
+            color 0.2s;
+    }
+    a:hover,
+    a:focus {
+        color: inherit;
+        background-size: 100% 2px;
+        text-decoration: none;
+    }
 
     @media only screen and (max-width: $wide) {
-        font-size: 60px;
+        font-size: 36px;
     }
 
     @media only screen and (max-width: $mobile) {
         margin-bottom: 24px;
-        font-size: 36px;
+        font-size: 24px;
     }
 }
-
 .page-description {
     max-width: 580px;
     margin: 0 auto;
@@ -203,59 +249,13 @@
         line-height: 1;
         border: none;
         border-radius: 50%;
-        color: var(--white);
+        background-color: var(--share-bg);
+        color: var(--share-text);
         transition: all 0.2s;
 
         &:hover {
-            color: var(--white);
-        }
-
-        &.share__facebook {
-            background-color: #3b5998;
-
-            &:hover {
-                background-color: darken(#3b5998, 10%);
-            }
-        }
-
-        &.share__twitter {
-            background-color: #55acee;
-
-            &:hover {
-                background-color: darken(#55acee, 10%);
-            }
-        }
-
-        &.share__x {
-            background-color: #000000;
-
-            &:hover {
-                background-color: lighten(#000000, 10%);
-            }
-        }
-
-        &.share__pinterest {
-            background-color: #bd081c;
-
-            &:hover {
-                background-color: darken(#bd081c, 10%);
-            }
-        }
-
-        &.share__linkedin {
-            background-color: #0077b5;
-
-            &:hover {
-                background-color: darken(#0077b5, 10%);
-            }
-        }
-
-        &.share__whatsapp {
-            background-color: #128c7e;
-
-            &:hover {
-                background-color: darken(#128c7e, 10%);
-            }
+            background-color: var(--share-bg-hover);
+            color: var(--share-text);
         }
     }
 
