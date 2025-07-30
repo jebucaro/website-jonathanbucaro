@@ -1,19 +1,22 @@
 <head>
-    <!-- Preconnect and Preload for Google Fonts: Lato & Outfit -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap">
-    <!-- Google Fonts: Lato (all weights, italic) & Outfit (all weights) -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Required Meta Tags -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
+
+    <!-- Title and Basic Meta -->
     <title>{{ if not .IsHome }}{{ humanize .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="canonical" href="{{ .Permalink }}" />
-    {{ with .OutputFormats.Get "rss" -}}
-        {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+
+    <!-- SEO and Robots -->
+    {{ if .Params.noindex }}
+        <meta name="robots" content="noindex, nofollow" />
+    {{ else }}
+        <meta name="robots" content="index, follow" />
     {{ end }}
+
+    <!-- Social Media Meta Tags -->
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
@@ -30,6 +33,7 @@
             <meta name="twitter:image" content="{{ .Params.image | absURL }}" />
         {{ end }}
     {{ end }}
+
     <!-- Facebook OpenGraph -->
     <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
     <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
@@ -46,18 +50,32 @@
     <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />
-    <!-- Robots Meta Tag -->
-    {{ if .Params.noindex }}
-        <meta name="robots" content="noindex, nofollow" />
-    {{ else }}
-        <meta name="robots" content="index, follow" />
+
+    <!-- RSS Feed -->
+    {{ with .OutputFormats.Get "rss" -}}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
+
+    <!-- Font Optimization -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- External Scripts -->
     <!-- Ionicons -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Theme JavaScript -->
     {{ $themejs := resources.Get "js/theme.js" }}
     {{ if hugo.IsServer }}<script src="{{ $themejs.Permalink | absURL }}"></script>{{ else }}<script src="{{ ($themejs | minify | fingerprint).RelPermalink | absURL }}"></script>{{ end }}
-    <!-- CSS -->
+
+    <!-- Stylesheets -->
     {{ $cssOpts := (dict "targetPath" "css/main.css") }}
     {{ if hugo.IsServer }}{{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}{{ end }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
