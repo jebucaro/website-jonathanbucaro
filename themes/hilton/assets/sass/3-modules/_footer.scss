@@ -125,8 +125,8 @@
 
         &:hover {
             transform: translateY(-3px);
-            color: var(--dark);
-            background-color: var(--brand-color);
+            color: var(--icon-hover-color);
+            background-color: var(--icon-hover-bg);
         }
     }
 }
@@ -229,7 +229,7 @@
     transition: all 0.25s ease;
 
     &:hover {
-        color: var(--dark);
-        background-color: var(--brand-color);
+        color: var(--icon-hover-color);
+        background-color: var(--icon-hover-bg);
     }
 }

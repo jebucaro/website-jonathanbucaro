@@ -22,31 +22,31 @@
     }
 
     &.note {
-        border-color: #4d65dc;
+        border-color: var(--callout-blue);
         &::before {
             content: "ℹ️";
         }
     }
     &.tip {
-        border-color: #2db47d;
+        border-color: var(--callout-green);
         &::before {
             content: "💡";
         }
     }
     &.important {
-        border-color: #f1c40f;
+        border-color: var(--callout-yellow);
         &::before {
             content: "❗";
         }
     }
     &.warning {
-        border-color: #e67e22;
+        border-color: var(--callout-orange);
         &::before {
             content: "⚠️";
         }
     }
     &.caution {
-        border-color: #e74c3c;
+        border-color: var(--callout-red);
         &::before {
             content: "⛔";
         }
@@ -54,6 +54,6 @@
 }
 
 .dark-mode .callout {
-    background: #23272f;
-    color: #fff;
+    background: var(--callout-bg);
+    color: var(--white);
 }

@@ -83,39 +83,23 @@
                         margin-bottom: 0;
                         font-size: 24px;
 
-                        &::after {
-                            content: none;
-                        }
+                        position: relative;
+                        color: var(--link-color);
+                        text-decoration: none;
+                        background: linear-gradient(
+                                var(--brand-color),
+                                var(--brand-color)
+                            )
+                            no-repeat left bottom / 0 2px;
+                        transition:
+                            background-size 0.2s,
+                            color 0.2s;
 
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            display: block;
-                            width: 6px;
-                            left: 50%;
-                            top: 6px;
-                            transform: translateX(-50%);
-                            height: 6px;
-                            opacity: 0;
-                            visibility: hidden;
-                            transition: all 0.2s;
-                            border-radius: 50%;
-                            background-color: var(--link-color);
-                        }
-
-                        &:hover {
-                            &::before {
-                                opacity: 1;
-                                visibility: visible;
-                            }
-                        }
-
-                        &.active-link {
-                            &::before {
-                                opacity: 1;
-                                visibility: visible;
-                                background-color: var(--brand-color);
-                            }
+                        &:hover,
+                        &:focus {
+                            color: var(--link-color);
+                            background-size: 100% 2px;
+                            text-decoration: none;
                         }
 
                         &:last-child {
