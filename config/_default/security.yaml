@@ -1,4 +1,11 @@
 # Security configuration
+## Content Security Policy for Chart.js
+csp:
+    default-src:
+        - "'self'"
+    script-src:
+        - "'self'"
+        - "https://cdn.jsdelivr.net"
 exec:
     allow:
         - ^(dart-)?sass(-embedded)?$
