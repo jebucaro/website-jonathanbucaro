@@ -1,8 +1,16 @@
 {{- if not (.Page.Scratch.Get "hasChartJS") -}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // Default color, will be updated for dark/light mode in Phase 3
-  Chart.defaults.color = '#222';
+    // Detect dark/light mode and set Chart.js default color
+    function setChartColorScheme() {
+        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        Chart.defaults.color = isDark ? '#fff' : '#222';
+        // Optionally set background color for charts
+        Chart.defaults.backgroundColor = isDark ? '#222' : '#fff';
+    }
+    setChartColorScheme();
+    // Listen for changes in color scheme
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setChartColorScheme);
 </script>
 {{- .Page.Scratch.Set "hasChartJS" true -}}
 {{- end -}}
@@ -13,8 +21,20 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        var ctx = document.getElementById('{{ $id }}')
-        var options = {{ .Inner | chomp | safeJS }};
-        new Chart(ctx, options);
+                var ctx = document.getElementById('{{ $id }}');
+                var options = {{ .Inner | chomp | safeJS }};
+                // Optionally override chart colors based on mode
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    if (options.options && options.options.plugins && options.options.plugins.legend) {
+                        options.options.plugins.legend.labels = options.options.plugins.legend.labels || {};
+                        options.options.plugins.legend.labels.color = '#fff';
+                    }
+                } else {
+                    if (options.options && options.options.plugins && options.options.plugins.legend) {
+                        options.options.plugins.legend.labels = options.options.plugins.legend.labels || {};
+                        options.options.plugins.legend.labels.color = '#222';
+                    }
+                }
+                new Chart(ctx, options);
     });
 </script>
