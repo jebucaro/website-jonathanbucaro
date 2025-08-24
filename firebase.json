@@ -75,7 +75,7 @@
                 "headers": [
                     {
                         "key": "Content-Security-Policy",
-                        "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/chart.js@4.5/dist/chart.umd.js https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ *.disqus.com *.disquscdn.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com *.disquscdn.com; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: *.disquscdn.com; connect-src 'self' https://cdn.jsdelivr.net *.disqus.com *.disquscdn.com; form-action 'self' *.disqus.com; object-src 'none'; frame-src 'self' https://www.youtube.com *.disqus.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+                        "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/chart.js@4.5/dist/chart.umd.js https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ *.disqus.com *.disquscdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com *.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: *.disquscdn.com; connect-src 'self' https://cdn.jsdelivr.net *.disqus.com *.disquscdn.com; form-action 'self' *.disqus.com; object-src 'none'; frame-src 'self' https://www.youtube.com *.disqus.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
                     },
                     {
                         "key": "X-Frame-Options",
