@@ -22,7 +22,13 @@
 }
 
 .technologies__icon {
+    /* Create a fixed icon box and size inner content relatively */
+    --icon-size: 72px;
     display: block;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    font-size: var(--icon-size); /* for font-icons using em */
+    line-height: 1; /* avoid extra line height around font icons */
     transition: all 0.2s ease;
 
     &:hover {
@@ -31,24 +37,35 @@
     }
 
     i {
-        font-size: 72px;
+        /* Tie to container via em so it matches svg size */
+        font-size: 1em;
         color: inherit;
 
         @media (max-width: $mobile) {
-            font-size: 48px;
+            font-size: 1em; /* still based on container */
         }
     }
 
     /* Inline SVG support */
     svg {
         display: block;
-        width: 72px;
-        height: 72px;
+        /* Make svg follow the container size and override inline attrs */
+        width: 1em !important;
+        height: 1em !important;
+        max-width: 100%;
+        max-height: 100%;
         fill: currentColor; /* inherit text color */
 
         @media (max-width: $mobile) {
-            width: 48px;
-            height: 48px;
+            width: 1em !important;
+            height: 1em !important;
         }
+    }
+
+    @media (max-width: $mobile) {
+        --icon-size: 48px;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        font-size: var(--icon-size);
     }
 }
