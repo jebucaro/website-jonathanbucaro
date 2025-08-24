@@ -1,0 +1,54 @@
+/* Technologies */
+.section.technologies {
+    padding-top: 0;
+    border-top: none;
+}
+
+.technologies__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: -$base-spacing-unit;
+}
+
+.technologies__item {
+    padding: $base-spacing-unit * 5;
+    margin-bottom: 0;
+
+    @media (max-width: $mobile) {
+        padding: $base-spacing-unit;
+    }
+}
+
+.technologies__icon {
+    display: block;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    i {
+        font-size: 72px;
+        color: inherit;
+
+        @media (max-width: $mobile) {
+            font-size: 48px;
+        }
+    }
+
+    /* Inline SVG support */
+    svg {
+        display: block;
+        width: 72px;
+        height: 72px;
+        fill: currentColor; /* inherit text color */
+
+        @media (max-width: $mobile) {
+            width: 48px;
+            height: 48px;
+        }
+    }
+}
