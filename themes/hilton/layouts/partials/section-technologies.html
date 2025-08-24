@@ -1,0 +1,33 @@
+{{ if .Site.Params.technologies.enable }}
+    <!-- begin technologies -->
+    <section class="section technologies animate">
+        <div class="container">
+            <div class="row">
+                <div class="col col-12">
+                    <div class="section__info">
+                        <h2 class="section__small__title">{{ .Site.Params.technologies.title | safeHTML }}</h2>
+                    </div>
+
+                    <ul class="technologies__list list-reset">
+                        {{ with .Site.Params.technologies.items }}
+                            {{ range . }}
+                                <li class="technologies__item">
+                                    <div class="technologies__icon" title="{{ .name }}" aria-label="{{ .name }}">
+                                        {{- /* Prefer inline SVG provided via params; fallback to icon class for backwards compatibility */ -}}
+                                        {{- if .svg -}}
+                                            <span class="sr-only">{{ .name }}</span>
+                                            {{ .svg | safeHTML }}
+                                        {{- else if .icon -}}
+                                            <i class="{{ .icon }}" title="{{ .name }}" aria-label="{{ .name }}"></i>
+                                        {{- end -}}
+                                    </div>
+                                </li>
+                            {{ end }}
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end technologies -->
+{{ end }}
