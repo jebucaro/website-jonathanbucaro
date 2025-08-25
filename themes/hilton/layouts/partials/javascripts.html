@@ -1,10 +1,13 @@
-{{ $script := resources.Get "js/scripts.js" }}
+{{ $vendor := resources.Get "js/vendor.js" | js.Build }}
+{{ $main := resources.Get "js/main.js" | js.Build }}
 {{ $commonJs := resources.Get "js/common.js" }}
 
 {{ if hugo.IsServer }}
-    <script src="{{ $script.Permalink | absURL }}"></script>
+    <script src="{{ $vendor.Permalink | absURL }}"></script>
+    <script src="{{ $main.Permalink | absURL }}"></script>
     <script src="{{ $commonJs.Permalink | absURL }}"></script>
 {{ else }}
-    <script src="{{ ($script | minify | fingerprint).RelPermalink | absURL }}"></script>
+    <script src="{{ ($vendor | minify | fingerprint).RelPermalink | absURL }}"></script>
+    <script src="{{ ($main | minify | fingerprint).RelPermalink | absURL }}"></script>
     <script src="{{ ($commonJs | minify | fingerprint).RelPermalink | absURL }}"></script>
 {{ end }}
