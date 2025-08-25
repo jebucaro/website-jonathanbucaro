@@ -2,8 +2,8 @@
 
 {{- if not .Page.Summary -}}
 {{- $id := substr (md5 .Inner) 0 16 -}}
-<div class="chart">
-    <canvas id="{{ $id }}" data-chart-config="{{ .Inner | chomp }}"></canvas>
+<div class="chart" data-chart-raw="{{ .Inner | chomp }}">
+    <canvas id="{{ $id }}"></canvas>
 </div>
 {{- else -}}
 <p><em>[Chart will be displayed when viewing the full post]</em></p>
