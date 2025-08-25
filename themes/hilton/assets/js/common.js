@@ -72,16 +72,19 @@ document.addEventListener('DOMContentLoaded', function () {
     /* =======================
   // Responsive Videos
   ======================= */
-    reframe(
-        '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .project-content iframe:not(.reframe-off)',
-    );
+    // Initialize reframe with a delay to ensure the library is loaded
+    setTimeout(() => {
+        if (window.reframe) {
+            reframe(
+                '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .project-content iframe:not(.reframe-off)',
+            );
+        }
+    }, 100);
 
     /* =======================
   // LazyLoad Images
   ======================= */
-    var lazyLoadInstance = new LazyLoad({
-        elements_selector: '.lazy',
-    });
+    // LazyLoad is initialized in vendor.js
 
     /* =======================
   // Zoom Image
@@ -100,43 +103,49 @@ document.addEventListener('DOMContentLoaded', function () {
             imageLink[i].classList.add('no-lightense');
     }
 
-    if (lightense) {
-        Lightense(
-            '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .project-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
-            {
-                padding: 60,
-                offset: 30,
-            },
-        );
-    }
+    // Initialize Lightense with custom settings, with a delay to ensure the library is loaded
+    setTimeout(() => {
+        if (lightense && window.Lightense) {
+            Lightense(
+                '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .project-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
+                {
+                    padding: 60,
+                    offset: 30,
+                },
+            );
+        }
+    }, 100);
 
     /* ============================
   // Testimonials Slider
   ============================ */
-    if (document.querySelector('.my-slider')) {
-        var slider = tns({
-            container: '.my-slider',
-            items: 3,
-            slideBy: 1,
-            gutter: 32,
-            nav: true,
-            mouseDrag: true,
-            autoplay: false,
-            controls: false,
-            speed: 500,
-            responsive: {
-                1024: {
-                    items: 3,
+    // Initialize tiny-slider with a delay to ensure the library is loaded
+    setTimeout(() => {
+        if (document.querySelector('.my-slider') && window.tns) {
+            var slider = tns({
+                container: '.my-slider',
+                items: 3,
+                slideBy: 1,
+                gutter: 32,
+                nav: true,
+                mouseDrag: true,
+                autoplay: false,
+                controls: false,
+                speed: 500,
+                responsive: {
+                    1024: {
+                        items: 3,
+                    },
+                    768: {
+                        items: 2,
+                    },
+                    0: {
+                        items: 1,
+                    },
                 },
-                768: {
-                    items: 2,
-                },
-                0: {
-                    items: 1,
-                },
-            },
-        });
-    }
+            });
+        }
+    }, 100);
 
     /* =================================
   // Smooth scroll to the tags page
