@@ -1,6 +1,7 @@
 var disqus_loaded = false;
 var disqus_shortname = '{{ .Site.Params.disqus.disqusShortname }}';
 var disqus_container = document.getElementById('disqus_thread');
+
 function disqus() {
     if (!disqus_loaded) {
         disqus_loaded = true;
@@ -18,3 +19,15 @@ function disqus() {
         disqus_container.classList.add('is-open');
     }
 }
+
+// Add event listener for the Disqus button
+document.addEventListener('DOMContentLoaded', function () {
+    const showCommentsButton = document.getElementById('show-comments-button');
+    if (showCommentsButton) {
+        showCommentsButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            disqus();
+            return false;
+        });
+    }
+});
