@@ -1,6 +1,6 @@
 {{- if not (.Page.Scratch.Get "hasChartJS") -}}
 {{- if not .Page.Summary -}}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5/dist/chart.umd.js"></script>
+<!-- Chart.js is now loaded via npm in vendor.js -->
 <script>
   window.chartInstances = window.chartInstances || [];
   
@@ -15,9 +15,11 @@
   }
   
   function setChartDefaults() {
-    const colors = getThemeColors();
-    Chart.defaults.color = colors.textColor;
-    Chart.defaults.backgroundColor = colors.bgColor;
+    if (typeof Chart !== 'undefined') {
+      const colors = getThemeColors();
+      Chart.defaults.color = colors.textColor;
+      Chart.defaults.backgroundColor = colors.bgColor;
+    }
   }
   
   function updateAllCharts() {
@@ -99,32 +101,47 @@
     });
   }
   
-  setChartDefaults();
+  // Initialize Chart.js when available
+  function initChartJS() {
+    if (typeof Chart !== 'undefined') {
+      setChartDefaults();
+      
+      // Listen for system color scheme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        setChartDefaults();
+        updateAllCharts();
+      });
+      
+      // Watch for theme changes in the DOM (for manual theme toggles)
+      const observer = new MutationObserver(() => {
+        setChartDefaults();
+        updateAllCharts();
+      });
+      
+      // Watch for changes to the root element's attributes (common for theme switches)
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme', 'class', 'dark']
+      });
+      
+      // Also watch for changes to the html element's dark attribute
+      if (document.documentElement.hasAttribute('dark') !== undefined) {
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['dark']
+        });
+      }
+    } else {
+      // Chart.js not ready yet, try again in 50ms
+      setTimeout(initChartJS, 50);
+    }
+  }
   
-  // Listen for system color scheme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    setChartDefaults();
-    updateAllCharts();
-  });
-  
-  // Watch for theme changes in the DOM (for manual theme toggles)
-  const observer = new MutationObserver(() => {
-    setChartDefaults();
-    updateAllCharts();
-  });
-  
-  // Watch for changes to the root element's attributes (common for theme switches)
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme', 'class', 'dark']
-  });
-  
-  // Also watch for changes to the html element's dark attribute
-  if (document.documentElement.hasAttribute('dark') !== undefined) {
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['dark']
-    });
+  // Start initialization when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChartJS);
+  } else {
+    initChartJS();
   }
 </script>
 {{- end -}}
@@ -137,10 +154,17 @@
     <canvas id="{{ $id }}"></canvas>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const ctx = document.getElementById('{{ $id }}');
-  const options = {{ .Inner | chomp | safeJS }};
-  const colors = getThemeColors();
+(function() {
+  function createChart() {
+    // Wait for Chart.js to be available
+    if (typeof Chart === 'undefined') {
+      setTimeout(createChart, 50);
+      return;
+    }
+    
+    const ctx = document.getElementById('{{ $id }}');
+    const options = {{ .Inner | chomp | safeJS }};
+    const colors = getThemeColors();
   
   if (!options.options) options.options = {};
   if (!options.options.scales) options.options.scales = {};
@@ -212,9 +236,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  const chart = new Chart(ctx, options);
-  window.chartInstances.push(chart);
-});
+    const chart = new Chart(ctx, options);
+    window.chartInstances.push(chart);
+  }
+
+  // Start chart creation when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createChart);
+  } else {
+    createChart();
+  }
+})();
 </script>
 {{- else -}}
 <p><em>[Chart will be displayed when viewing the full post]</em></p>
