@@ -33,5 +33,13 @@
             "prettier --write",
             "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources"
         ]
+    },
+    "dependencies": {
+        "chart.js": "^4.5.0",
+        "lightense-images": "^1.0.17",
+        "reframe.js": "^4.0.2",
+        "smoothscroll-polyfill": "^0.4.4",
+        "tiny-slider": "^2.9.4",
+        "vanilla-lazyload": "^19.1.3"
     }
 }
