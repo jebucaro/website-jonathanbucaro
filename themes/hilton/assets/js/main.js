@@ -1,5 +1,6 @@
 // Main application JavaScript
 // This will contain custom application logic
+import './chart-utils.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Custom application code will go here
