@@ -1,0 +1,26 @@
+{
+  "type": "bar",
+  "data": {
+    "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+    "datasets": [
+      {
+        "label": "Anthropic",
+        "data": [0, 0.24, 1.11, 0.49, 20.66, 12.91, 12.30]
+      },
+      {
+        "label": "OpenAI",
+        "data": [5.05, 9.78, 5.74, 6.05, 7.42, 2.54, 3.61]
+      }
+    ]
+  },
+  "options": {
+    "plugins": {
+      "legend": { "display": true },
+      "title": { "display": true, "text": "Consolidated Costs by Month" }
+    },
+    "scales": {
+      "x": { "stacked": true },
+      "y": { "stacked": true }
+    }
+  }
+}

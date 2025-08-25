@@ -457,34 +457,7 @@ That's when I decided to run a little experiment: **what if we used the APIs dir
 
 Here's what our actual API usage looked like over several months:
 
-{{< chart >}}
-{
-type: 'bar',
-data: {
-labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-datasets: [
-{
-label: 'Anthropic',
-data: [0, 0.24, 1.11, 0.49, 20.66, 12.91, 12.30]
-},
-{
-label: 'OpenAI',
-data: [5.05, 9.78, 5.74, 6.05, 7.42, 2.54, 3.61]
-}
-]
-},
-options: {
-plugins: {
-legend: { display: true },
-title: { display: true, text: 'Consolidated Costs by Month' }
-},
-scales: {
-x: { stacked: true },
-y: { stacked: true }
-}
-}
-}
-{{< /chart >}}
+{{< chart "monthly-costs" >}}
 
 Even in our heaviest usage month (May at ~$28 combined), we stayed well under what three subscriptions would cost us ($60/month). Most months, we're saving 60-70% compared to the subscription route.
 
