@@ -1,9 +1,30 @@
 {{- .Page.Scratch.Set "hasChartJS" true -}}
 
 {{- if not .Page.Summary -}}
-{{- $id := substr (md5 .Inner) 0 16 -}}
-<div class="chart" data-chart-raw="{{ .Inner | chomp }}">
-    <canvas id="{{ $id }}"></canvas>
+{{- $chartName := .Get 0 -}}
+{{- $id := substr (md5 $chartName) 0 16 -}}
+
+{{- $chartPath := "" -}}
+{{- $chartConfig := dict -}}
+
+{{- if $chartName -}}
+  {{- /* Look for chart file in current page directory */ -}}
+  {{- $pageDir := path.Dir .Page.File.Path -}}
+  {{- $chartPath = printf "%s/charts/%s.json" $pageDir $chartName -}}
+  
+  {{- /* Try to load chart data from file */ -}}
+  {{- $chartFile := printf "content/%s" $chartPath -}}
+  {{- if fileExists $chartFile -}}
+    {{- $chartConfig = readFile $chartFile | unmarshal -}}
+  {{- else -}}
+    {{- errorf "Chart file not found: %s" $chartFile -}}
+  {{- end -}}
+{{- else -}}
+  {{- errorf "Chart shortcode requires a chart name parameter: {{< chart \"chart-name\" >}}" -}}
+{{- end -}}
+
+<div class="chart">
+    <canvas id="{{ $id }}" data-chart-config="{{ $chartConfig | jsonify }}"></canvas>
 </div>
 {{- else -}}
 <p><em>[Chart will be displayed when viewing the full post]</em></p>
