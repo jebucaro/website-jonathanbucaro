@@ -180,18 +180,45 @@ function initChartJS() {
     }
 }
 
+// Function to decode HTML entities
+function decodeHTMLEntities(str) {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = str;
+    return textarea.value;
+}
+
+// Function to convert JavaScript object syntax to JSON
+function jsObjectToJSON(jsStr) {
+    // First decode HTML entities
+    let cleanStr = decodeHTMLEntities(jsStr);
+
+    // Simple regex-based converter for basic JS object syntax to JSON
+    // This handles the common cases in chart configurations
+    let jsonStr = cleanStr
+        // Add quotes around unquoted property names
+        .replace(/(\w+):/g, '"$1":')
+        // Handle single quotes to double quotes
+        .replace(/'/g, '"')
+        // Clean up any duplicate quotes
+        .replace(/""/g, '"');
+
+    return jsonStr;
+}
+
 // Function to create chart from data attribute
 function createChartFromData(canvasElement) {
-    if (!canvasElement.dataset.chartConfig) return;
+    const chartContainer = canvasElement.parentElement;
+    if (!chartContainer.dataset.chartRaw) return;
 
     try {
-        // The chart config is JavaScript object syntax from Hugo template
-        // We need to safely evaluate it without using eval() or inline scripts
-        const configStr = canvasElement.dataset.chartConfig.trim();
+        // Get the raw JavaScript object string
+        const configStr = chartContainer.dataset.chartRaw.trim();
 
-        // Use Function constructor to safely evaluate the JavaScript object
-        // This is CSP-compliant as it doesn't require unsafe-eval
-        const chartConfig = new Function('return (' + configStr + ')')();
+        // Convert JS object syntax to JSON
+        const jsonStr = jsObjectToJSON(configStr);
+
+        // Parse as JSON
+        const chartConfig = JSON.parse(jsonStr);
         const colors = getThemeColors();
 
         // Ensure the structure exists - chartConfig should be the full Chart.js config
@@ -302,7 +329,7 @@ function createChartFromData(canvasElement) {
         window.chartInstances.push(chart);
     } catch (error) {
         console.error('Error creating chart:', error);
-        console.error('Chart config data:', canvasElement.dataset.chartConfig);
+        console.error('Chart config data:', chartContainer.dataset.chartRaw);
     }
 }
 
@@ -313,7 +340,7 @@ function initializeChartsFromData() {
         return;
     }
 
-    const canvases = document.querySelectorAll('canvas[data-chart-config]');
+    const canvases = document.querySelectorAll('.chart[data-chart-raw] canvas');
     canvases.forEach(createChartFromData);
 }
 
