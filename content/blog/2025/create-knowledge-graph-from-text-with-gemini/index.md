@@ -2,18 +2,18 @@
 title: 'Create a Knowledge Graph From Text With Gemini'
 date: 2025-10-06T19:59:11-06:00
 image: 'images/cover.webp'
-tags: [python, streamlit, gemini]
+tags: [python, streamlit, gemini, ai-tools]
 draft: false
-description: "Learn how to build a knowledge graph extraction system using Google's Gemini AI. Transform unstructured text into visual, connected knowledge networks with Python and Streamlit, understanding the core architecture without heavy frameworks"
+description: "Learn how to build a knowledge graph extraction system using Google's Gemini AI. Transform unstructured text into visual, connected knowledge networks with Python and Streamlit"
 ---
 
 About four months ago, I discovered Thu Vu's video on extracting knowledge graphs from text using GPT-4. The concept was transformative, watching minimal code convert unstructured meeting transcriptions and podcast content into visual structured knowledge networks that made complex information instantly clearer.
 
 Think of knowledge graphs as a way to represent information the way your brain naturally organizes it, through connections and relationships. Instead of reading through pages of text to understand how concepts relate, you see a visual map where everything is connected.
 
-> "The structure of the world is not made of atoms, but of connections".
+> "from seeing the world as a machine to understanding it as a network".
 >
-> Fritjof Capra
+> <a href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" target="_blank" rel="nofollow">Fritjof Capra</a>
 
 This principle applies perfectly to knowledge management. Understanding information isn't about memorizing facts, it's about seeing how they connect.
 
@@ -86,9 +86,9 @@ Modern LLMs changed this equation. They can read text and extract structured inf
 
 This is what made that initial discovery so compelling: sophisticated knowledge extraction became accessible through relatively straightforward code.
 
-> "The gap between data and wisdom is bridged by structure, not by volume".
+> "Data isn't information. Information, unlike data, is useful. While there's a gulf between data and information, there's a wide ocean between information and knowledge. What turns the gears in our brains isn't information, but ideas, inventions, and inspiration".
 >
-> Unknown
+> <a href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" target="_blank" rel="nofollow">Clifford Stoll</a>
 
 LLMs don't just generate text, they can impose structure on chaos, turning massive text corpora into navigable knowledge networks.
 
@@ -189,6 +189,13 @@ Using deterministic color assignment (hashing node types to a color palette) ens
 **Interactive physics simulation:**
 Graph layout algorithms like ForceAtlas2 create natural-feeling visualizations where connected nodes cluster together and isolated nodes spread apart. This spatial organization often reveals patterns not obvious in the raw data.
 
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
+  </div>
+  <em>A sample knowledge graph showing entity clustering and relationship networks. Notice how connected concepts naturally group together.</em>
+</div>
+
 **Dual rendering modes:**
 Supporting both HTML string generation and file output enables flexible integration - whether embedding in web applications or generating standalone visualizations.
 
@@ -202,6 +209,13 @@ A clear interface flow reduces friction:
     - Visual graph exploration
     - Raw data inspection
     - Statistical overview
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/nodus-main-interface.webp" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." loading="lazy">
+  </div>
+  <em>The clean interface focuses on the core workflow: configure, input, extract, visualize</em>
+</div>
 
 ## 💰 Cost considerations for production use
 
@@ -229,13 +243,90 @@ For production use, implement token counting before API calls to estimate costs.
 
 ## 🚀 Getting started: Minimal setup
 
+### Get the source code
+
+```bash
+# Clone repository without downloading all files
+git clone --depth 1 --filter=blob:none --sparse git@github.com:jebucaro/blog-code.git
+
+# Navigate to repository
+cd blog-code
+
+# Download only the folder you need
+git sparse-checkout set python/2025-10-create-a-knowledge-graph-from-text-with-gemini
+```
+
+### Configure the project
+
 ```bash
 # Environment configuration
 echo "GEMINI_API_KEY=your_key_here" > .env
 uv sync
+```
 
+#### Launch the application with uv
+
+```bash
 # Launch application
 uv run streamlit run src/nodus/main.py
 ```
 
-This minimal setup demonstrates a key principle: sophisticated functionality doesn't require complex deployment infrastructure.
+#### Launch the application with Docker
+
+```bash
+# 1. Ensure Docker Desktop is running, then build the image
+docker build -t nodus:latest .
+
+# 2. Run with environment variable
+docker run -p 8501:8501 -e GEMINI_API_KEY=your_key_here nodus:latest
+
+# 3. Or use .env file
+docker run -p 8501:8501 --env-file .env nodus:latest
+
+# 4. Access the app at http://localhost:8501
+```
+
+### Results
+
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
+      <img src="images/nodus-main-interface-kg-raw.webp" alt="Nodus tab showing the details of the nodes and relationships in the knowledge graph." loading="lazy">
+      <img src="images/nodus-main-interface-kg-statistics.webp" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." loading="lazy">
+  </div>
+  <em>The results interface provides multiple perspectives: visual exploration, raw JSON for debugging, and graph statistics for analysis</em>
+</div>
+
+## 🎯 What you can build from here
+
+This implementation gives you the foundation, but the possibilities extend far beyond basic extraction:
+
+**Immediate enhancements:**
+
+- Connect to document databases for automatic knowledge extraction
+- Build query interfaces to explore your graphs conversationally
+- Implement graph merging to combine knowledge from multiple sources
+- Add temporal tracking to see how knowledge evolves over time
+
+**Real-world applications:**
+
+- Personal knowledge management from articles, videos, and notes
+- Research literature mapping and gap analysis
+- Organizational memory systems
+- Automated documentation from code and conversations
+
+## 🔗 Explore the code
+
+The complete implementation is available [on GitHub](https://github.com/jebucaro/blog-code). The codebase is intentionally minimal and well-documented, perfect for learning and adaptation.
+
+Key files to explore:
+
+- `extractor.py` - Core extraction logic and prompt engineering
+- `visualizer.py` - Graph rendering and layout algorithms
+- `app.py` - Streamlit interface and workflow orchestration
+
+## 💬 What will you extract?
+
+Knowledge graphs transform how we interact with information. Whether you're managing research, organizing meeting notes, or building AI applications, structured knowledge extraction opens new possibilities.
+
+What's the first text you'll convert into a knowledge graph? Share your use case or questions in LinkedIn.
