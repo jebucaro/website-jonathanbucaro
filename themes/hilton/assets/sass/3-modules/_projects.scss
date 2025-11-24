@@ -9,10 +9,14 @@
 
 .project {
     margin-bottom: 32px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 
     &:hover {
-        transform: translateY(-4px);
+        transform: translateY(-6px);
+
+        .project__image img {
+            transform: translate3d(0, 0, 0) scale3d(1.04, 1.04, 1);
+        }
     }
 }
 
@@ -43,6 +47,9 @@
         object-fit: cover;
         border-radius: 8px;
         pointer-events: none;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease;
     }
 }
 
@@ -83,5 +90,24 @@
         line-height: 18px;
         letter-spacing: 1.6px;
         text-transform: uppercase;
+    }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .project {
+        transition: none;
+
+        &:hover {
+            transform: none;
+
+            .project__image img {
+                transform: none;
+            }
+        }
+    }
+
+    .project__image img {
+        transition: none;
     }
 }
