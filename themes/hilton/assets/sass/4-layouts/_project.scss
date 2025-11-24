@@ -28,6 +28,10 @@
                     transform: translateX(3px);
                 }
             }
+
+            .project__nav-image img {
+                transform: translate3d(0, 0, 0) scale3d(1.04, 1.04, 1);
+            }
         }
     }
 
@@ -84,6 +88,9 @@
             object-fit: cover;
             border-radius: 8px;
             pointer-events: none;
+            transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
         }
     }
 
@@ -94,6 +101,23 @@
             .project__nav-title {
                 margin-bottom: 24px;
             }
+        }
+    }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .project__nav {
+        .project__prev {
+            &:hover {
+                .project__nav-image img {
+                    transform: none;
+                }
+            }
+        }
+
+        .project__nav-image img {
+            transition: none;
         }
     }
 }
