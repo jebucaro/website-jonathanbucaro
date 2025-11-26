@@ -181,7 +181,7 @@ strings:
         hero:
             title: "I'm Jonathan 🤓"
             subtitle: "I'll create services that bring you value!"
-            description: "As a Systems Engineer with extensive experience in C# and Python, I'm dedicated to providing high-quality solutions that go beyond your expectations."
+            description: "As a Systems Engineer experienced in C#, Python, and Generative AI technologies, I'm dedicated to crafting innovative, high-quality solutions that exceed your expectations."
             button: 'Get in Touch'
         logos:
             title: 'My professional experience includes collaborations with the following companies:'
