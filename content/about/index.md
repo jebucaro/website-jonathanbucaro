@@ -1,6 +1,7 @@
 ---
 title: 'About'
 date: 2023-07-09T11:08:22-06:00
+lastmod: 2025-11-26
 draft: false
 slug: 'about'
 ---
@@ -21,7 +22,8 @@ In various roles, I coordinated development teams, led the modernization of crit
 
 In recent years, I have expanded my experience by collaborating with companies in other sectors, including multinational food corporations and the fintech industry. This has allowed me to adapt to new challenges, integrating solutions in cloud-oriented environments and applying my expertise across different industries.
 
-Currently, I work as a contractor at Cognits as a Full Stack Engineer. My work focuses on developing services in C# with .NET, as well as APIs and microservices built with Java (Spring Boot) and TypeScript, all deployed on AWS. I have recently participated in fintech process audits and the implementation of cloud-based solutions.
+I worked as a Full Stack Engineer contractor at Cognits for two years, specializing in developing services with C# and .NET, while building APIs
+and microservices using Java (Spring Boot) and TypeScript. All applications were deployed on AWS. Recently, I contributed to fintech process audits and cloud-based solution implementations.
 
 <div class="gallery-box">
   <div class="gallery">
@@ -30,7 +32,15 @@ Currently, I work as a contractor at Cognits as a Full Stack Engineer. My work f
   </div>
   <em>'Passion to Grow' award, Cognits 2024 Q2, with the team.</em>
 </div>
+This progression led to a full-time promotion at Cognits, where I now collaborate with leadership to analyze client requirements and develop strategic business proposals. This shift from hands-on development to strategic partnership has deepened my understanding of how technology drives business value.
 
-To support continuous improvement, I have earned certifications in agile methodologies (Scrum, Kanban) and key technologies. These demonstrate my ability to lead projects with modern, adaptive methods that align technology with business goals.
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="images/cognits-becoming-fte.webp" alt="Selfie at a conference room" loading="lazy">
+  </div>
+  <em>2025 - Selfie after receiving the notice of becoming a full time employee.</em>
+</div>
 
-I am always open to new connections and professional opportunities. If you'd like to talk about technology projects or share experiences, you can find me on <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jonathanbucaro" target="_blank" rel="nofollow">LinkedIn</a>.
+To strengthen my impact in this evolved role, I've earned certifications in agile methodologies (Scrum, Kanban) and key technologies. With Cognits' recent acquisition by HTEC, I'm well-positioned to apply this expertise across a larger, dynamic organization and continue delivering meaningful solutions.
+
+I'm always open to connecting with fellow professionals. Let's discuss technology, projects, or industry insights on <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jonathanbucaro" target="_blank" rel="nofollow">LinkedIn ➡️</a>.
