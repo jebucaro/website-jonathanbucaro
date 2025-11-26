@@ -1,8 +1,9 @@
 ---
 title: 'Personal Impressions about GPT-5'
 date: 2025-08-12T19:42:37-06:00
+lastmod: 2025-11-26
 image: 'images/cover.webp'
-tags: [ai-tools, productivity]
+tags: [ai-tools, gpt-5, productivity]
 draft: false
 description: 'Sharing my GPT-5 experiences: better prompting techniques and an experiment switching from subscriptions to API usage with cost comparisons'
 ---
@@ -23,35 +24,13 @@ Turns out when your AI becomes more thoughtful, you need to be more thoughtful t
 
 - [🤔 What makes modern AI models different?](#what-makes-modern-ai-models-different)
     - [❓ Why bother with this structured approach?](#why-bother-with-this-structured-approach)
-        - [💪 It eliminates the guessing game](#it-eliminates-the-guessing-game)
-        - [⏳ It saves you from endless back-and-forth](#it-saves-you-from-endless-back-and-forth)
-        - [🔎 It handles complex trade-offs better](#it-handles-complex-trade-offs-better)
-        - [✅ It builds reliable processes](#it-builds-reliable-processes)
     - [💡 The hidden benefits you didn't expect](#the-hidden-benefits-you-didnt-expect)
     - [🛠️ Core principles for effective prompting](#core-principles-for-effective-prompting)
-        - [📝 Structure improves clarity](#structure-improves-clarity)
-        - [🧠 Include analysis phases](#include-analysis-phases)
-        - [🔍 Build in validation](#build-in-validation)
-        - [🧑‍💻 Prompting changes for developers (GPT‑5)](#prompting-changes-for-developers-gpt-5)
-            - [🎯 Be precise and avoid conflicting information](#be-precise-and-avoid-conflicting-information)
-            - [⚖️ Match reasoning effort to task complexity](#match-reasoning-effort-to-task-complexity)
-            - [📝 Structure your coding instructions with XML-like syntax](#structure-your-coding-instructions-with-xml-like-syntax)
-            - [🗣️ Tone down the firm language](#tone-down-the-firm-language)
-            - [🤔 Build in planning and self-reflection for complex projects](#build-in-planning-and-self-reflection-for-complex-projects)
-            - [🎛️ Control your coding agent's eagerness](#control-your-coding-agents-eagerness)
     - [🔧 Official resources for prompt optimization](#official-resources-for-prompt-optimization)
-        - [📚 GPT-5 prompting guide](#gpt-5-prompting-guide)
-        - [📚 GPT-5 for DEVs](#gpt-5-for-devs)
-        - [📖 Optimization cookbook](#optimization-cookbook)
-        - [🛠️ Prompt optimization tool](#prompt-optimization-tool)
-        - [🧪 Let's test it](#lets-test-it)
 - [🔄 ChatGPT automatically switches between models](#chatgpt-automatically-switches-between-models)
 - [⚡ Usage limits and practical alternatives](#usage-limits-and-practical-alternatives)
     - [🏠 Our personal journey: From subscriptions to APIs](#our-personal-journey-from-subscriptions-to-apis)
-        - [💰 The numbers don't lie](#the-numbers-dont-lie)
     - [🛠️ The API alternatives that actually work for us](#the-api-alternatives-that-actually-work-for-us)
-        - [🎯 TypingMind: The easy button](#typingmind-the-easy-button)
-        - [🆓 Open-WebUI: For the tinkerers](#open-webui-for-the-tinkerers)
     - [🤷‍♂️ The honest trade-offs](#the-honest-trade-offs)
 
 ---
@@ -81,25 +60,25 @@ Taking time to organize your requests properly can improve your experience in se
 
 <span id="it-eliminates-the-guessing-game"></span>
 
-#### 💪 It eliminates the guessing game
+#### It eliminates the guessing game
 
 When you provide clear context and constraints, you're more likely to get responses that actually fit your situation. The AI has the information it needs to give you relevant, targeted results.
 
 <span id="it-saves-you-from-endless-back-and-forth"></span>
 
-#### ⏳ It saves you from endless back-and-forth
+#### It saves you from endless back-and-forth
 
 Instead of gradually adding context through multiple follow-up prompts, a well-structured initial request often gets you comprehensive results right away. Over time, you'll also build up effective prompt patterns you can reuse.
 
 <span id="it-handles-complex-trade-offs-better"></span>
 
-#### 🔎 It handles complex trade-offs better
+#### It handles complex trade-offs better
 
 Technical decisions often involve balancing competing priorities, such as: performance vs cost, security vs usability, etc. Structured prompts help ensure the AI considers all relevant factors when analyzing these trade-offs.
 
 <span id="it-builds-reliable-processes"></span>
 
-#### ✅ It builds reliable processes
+#### It builds reliable processes
 
 When your approach is systematic, you can trust the results more and even share your methods with teammates. This creates consistency across your technical discussions and decisions.
 
@@ -122,7 +101,7 @@ The fundamentals are straightforward:
 
 <span id="structure-improves-clarity"></span>
 
-#### 📝 Structure improves clarity
+#### Structure improves clarity
 
 Organizing your requests helps AI models understand what you need. Think of it like the difference between well-documented code and a tangled mess - structure makes everything work better.
 
@@ -144,7 +123,7 @@ A basic framework that works well:
 
 <span id="include-analysis-phases"></span>
 
-#### 🧠 Include analysis phases
+#### Include analysis phases
 
 Asking the AI to analyze before recommending often leads to more thoughtful responses. It's like having someone understand the problem thoroughly before jumping to solutions.
 
@@ -160,7 +139,7 @@ Before providing recommendations:
 
 <span id="build-in-validation"></span>
 
-#### 🔍 Build in validation
+#### Build in validation
 
 You can ask the AI to review its own work against your requirements and best practices. This adds an extra quality check to the process.
 
@@ -172,7 +151,7 @@ If you're using GPT-5 for coding work, whether through the API, Cursor, or other
 
 <span id="be-precise-and-avoid-conflicting-information"></span>
 
-#### 🎯 Be precise and avoid conflicting information
+#### Be precise and avoid conflicting information
 
 GPT-5's improved instruction-following is a double-edged sword. While it's much better at doing exactly what you ask, it can struggle when your instructions contain contradictions or vague requirements.
 
@@ -210,7 +189,7 @@ GPT-5 automatically applies reasoning to solve problems, but you can control how
 
 <span id="structure-your-coding-instructions-with-xml-like-syntax"></span>
 
-#### 📝 Structure your coding instructions with XML-like syntax
+#### Structure your coding instructions with XML-like syntax
 
 Working with Cursor, OpenAI found that GPT-5 responds particularly well to XML-like structure for coding guidelines. This helps the model understand the hierarchy and relationship between different requirements.
 
@@ -238,7 +217,7 @@ Working with Cursor, OpenAI found that GPT-5 responds particularly well to XML-l
 
 <span id="tone-down-the-firm-language"></span>
 
-#### 🗣️ Tone down the firm language
+#### Tone down the firm language
 
 With previous models, you might have used emphatic language to ensure compliance. With GPT-5, this often backfires because the model naturally wants to be thorough.
 
@@ -266,7 +245,7 @@ Follow the established coding conventions.
 
 <span id="build-in-planning-and-self-reflection-for-complex-projects"></span>
 
-#### 🤔 Build in planning and self-reflection for complex projects
+#### Build in planning and self-reflection for complex projects
 
 When you're building something from scratch, giving GPT-5 space to plan and validate its approach often leads to better architectural decisions.
 
@@ -287,7 +266,7 @@ When you're building something from scratch, giving GPT-5 space to plan and vali
 
 <span id="control-your-coding-agents-eagerness"></span>
 
-#### 🎛️ Control your coding agent's eagerness
+#### Control your coding agent's eagerness
 
 By default, GPT-5 tries to be comprehensive in gathering context and understanding your codebase. Sometimes this is exactly what you want. Other times, it's overkill.
 
@@ -322,19 +301,19 @@ OpenAI has released specific guidance and tools designed to help with GPT-5 prom
 
 <span id="gpt-5-prompting-guide"></span>
 
-#### 📚 GPT-5 prompting guide
+#### GPT-5 prompting guide
 
 The <a href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" target="_blank">official GPT-5 prompting guide ➡️</a> covers best practices specifically tailored for GPT-5's capabilities. It focuses on areas where GPT-5 excels: agentic tasks, coding, and precise control over model behavior.
 
 <span id="gpt-5-for-devs"></span>
 
-#### 📚 GPT-5 for DEVs
+#### GPT-5 for DEVs
 
 In the official account of <a href="https://x.com/OpenAIDevs/status/1956438999364768225" target="_blank">OpenAI Developers on X ➡️</a>, they have shared six tips for coding with GPT-5.
 
 <span id="optimization-cookbook"></span>
 
-#### 📖 Optimization cookbook
+#### Optimization cookbook
 
 The <a href="https://cookbook.openai.com/examples/gpt-5/prompt-optimization-cookbook" target="_blank">prompt optimization cookbook ➡️</a> provides practical examples and before-and-after comparisons showing how prompt optimization can create measurable improvements.
 
@@ -342,7 +321,7 @@ Keep in mind that effective prompting varies by use case, so these tools work be
 
 <span id="prompt-optimization-tool"></span>
 
-#### 🛠️ Prompt optimization tool
+#### Prompt optimization tool
 
 OpenAI's <a href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" target="_blank">Prompt Optimizer ➡️</a> in their Playground can help improve existing prompts by identifying and fixing common issues:
 
@@ -361,7 +340,7 @@ The tool is designed to understand your specific task and apply relevant optimiz
 
 <span id="lets-test-it"></span>
 
-##### 🧪 Let's test it
+##### Let's test it
 
 This a simple prompt with no structure.
 
@@ -453,7 +432,7 @@ That's when I decided to run a little experiment: **what if we used the APIs dir
 
 <span id="the-numbers-dont-lie"></span>
 
-#### 💰 The numbers don't lie
+#### The numbers don't lie
 
 Here's what our actual API usage looked like over several months:
 
@@ -469,7 +448,7 @@ Instead of fighting usage limits, we switched to API-powered interfaces that giv
 
 <span id="typingmind-the-easy-button"></span>
 
-#### 🎯 TypingMind: The easy button
+#### TypingMind: The easy button
 
 We use <a href="https://www.typingmind.com/" target="_blank">TypingMind ➡️</a> for its clean, ChatGPT-like interface. It connects to both our OpenAI and Anthropic API keys, so we can switch between GPT-5 and Claude seamlessly.
 
@@ -492,7 +471,7 @@ I admit that currently, the TypingMind license is quite expensive, it goes for a
 
 <span id="open-webui-for-the-tinkerers"></span>
 
-#### 🆓 Open-WebUI: For the tinkerers
+#### Open-WebUI: For the tinkerers
 
 I also set up <a href="https://openwebui.com/" target="_blank">Open-WebUI ➡️</a> on our home server for when I want to experiment with different models or experimenting with Ollama.
 
