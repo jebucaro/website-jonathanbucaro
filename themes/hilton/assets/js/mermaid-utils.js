@@ -79,6 +79,17 @@ function getThemeVariables() {
 
 function initMermaid() {
     if (typeof mermaid !== 'undefined') {
+        // IMPORTANT: Store original content BEFORE Mermaid processes it
+        const mermaidElements = document.querySelectorAll('.mermaid');
+        mermaidElements.forEach((element) => {
+            if (!element.hasAttribute('data-original-content')) {
+                element.setAttribute(
+                    'data-original-content',
+                    element.textContent.trim(),
+                );
+            }
+        });
+
         const theme = getCurrentTheme();
         const themeVariables = getThemeVariables();
 
@@ -119,20 +130,15 @@ function reRenderMermaidDiagrams() {
         fontFamily: 'Noto Sans Display, sans-serif',
     });
 
-    // Find all mermaid diagrams and re-render them
+    // Find all mermaid diagrams and restore their original content
     const mermaidElements = document.querySelectorAll('.mermaid');
-    mermaidElements.forEach((element, index) => {
-        // Store the original content
+    mermaidElements.forEach((element) => {
         const originalContent = element.getAttribute('data-original-content');
         if (originalContent) {
+            // Clear the element and restore original Mermaid markup
+            element.innerHTML = '';
             element.textContent = originalContent;
             element.removeAttribute('data-processed');
-        } else {
-            // First time, store the content
-            element.setAttribute(
-                'data-original-content',
-                element.textContent.trim(),
-            );
         }
     });
 
