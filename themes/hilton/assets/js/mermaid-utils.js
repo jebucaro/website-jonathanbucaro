@@ -9,47 +9,70 @@ function getCurrentTheme() {
 }
 
 function getThemeVariables() {
+    const rootStyles = getComputedStyle(document.documentElement);
     const isDark =
         document.documentElement.hasAttribute('dark') ||
         document.documentElement.classList.contains('dark-mode');
 
+    // Read colors from CSS variables
+    const primaryColor =
+        rootStyles.getPropertyValue('--primary-color').trim() || '#ffc71d';
+    const backgroundColor = rootStyles
+        .getPropertyValue('--background-color')
+        .trim();
+    const textColor = rootStyles.getPropertyValue('--text-color').trim();
+    const headingColor = rootStyles
+        .getPropertyValue('--heading-font-color')
+        .trim();
+    const borderColor = rootStyles.getPropertyValue('--border-color').trim();
+    const calloutBlue =
+        rootStyles.getPropertyValue('--callout-blue').trim() || '#4d65dc';
+    const calloutGreen =
+        rootStyles.getPropertyValue('--callout-green').trim() || '#2db47d';
+
     if (isDark) {
         return {
-            primaryColor: '#BB2528',
+            primaryColor: primaryColor,
             primaryTextColor: '#fff',
-            primaryBorderColor: '#7C0000',
-            secondaryColor: '#006100',
+            primaryBorderColor: '#dda000',
+            secondaryColor: calloutGreen,
             secondaryTextColor: '#fff',
-            secondaryBorderColor: '#004d00',
-            background: '#1f2020',
-            mainBkg: '#1f2020',
-            textColor: '#ddd',
+            secondaryBorderColor: '#1f8f5f',
+            background: backgroundColor,
+            mainBkg: backgroundColor,
+            textColor: textColor,
             lineColor: '#999',
-            nodeBorder: '#777',
-            clusterBkg: '#2a2a2a',
-            clusterBorder: '#666',
-            titleColor: '#F8F8F8',
-            edgeLabelBackground: '#1f2020',
-            tertiaryColor: '#3a3a3a',
+            nodeBorder: '#666',
+            clusterBkg: '#22222a',
+            clusterBorder: '#444',
+            titleColor: headingColor,
+            edgeLabelBackground: backgroundColor,
+            tertiaryColor: '#2f3135',
+            noteBkgColor: '#22222a',
+            noteTextColor: textColor,
+            noteBorderColor: borderColor,
         };
     } else {
         return {
-            primaryColor: '#ffc71d',
-            primaryTextColor: '#222',
+            primaryColor: primaryColor,
+            primaryTextColor: '#111',
             primaryBorderColor: '#dda000',
-            secondaryColor: '#4CAF50',
+            secondaryColor: calloutBlue,
             secondaryTextColor: '#fff',
-            secondaryBorderColor: '#388E3C',
-            background: '#fff',
-            mainBkg: '#fff',
-            textColor: '#222',
+            secondaryBorderColor: '#3d52b8',
+            background: backgroundColor,
+            mainBkg: backgroundColor,
+            textColor: textColor,
             lineColor: '#666',
             nodeBorder: '#999',
-            clusterBkg: '#f9f9f9',
+            clusterBkg: '#f5f5f5',
             clusterBorder: '#ccc',
-            titleColor: '#222',
-            edgeLabelBackground: '#fff',
-            tertiaryColor: '#f0f0f0',
+            titleColor: headingColor,
+            edgeLabelBackground: backgroundColor,
+            tertiaryColor: '#eaecef',
+            noteBkgColor: '#eaecef',
+            noteTextColor: textColor,
+            noteBorderColor: borderColor,
         };
     }
 }
