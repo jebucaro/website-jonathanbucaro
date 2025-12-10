@@ -1,4 +1,7 @@
-<pre class="mermaid">
+<pre class="mermaid"
+  {{- with .Attributes.title }} data-diagram-title="{{ . }}"{{ end }}
+  {{- with .Attributes.theme }} data-mermaid-theme="{{ . }}"{{ end }}
+  {{- with .Attributes.class }} {{ . }}{{ end }}>
   {{- .Inner | htmlEscape | safeHTML }}
 </pre>
 {{ .Page.Store.Set "hasMermaid" true }}
