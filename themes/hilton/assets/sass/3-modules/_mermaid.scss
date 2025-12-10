@@ -1,36 +1,75 @@
 /* Mermaid Diagram Styles */
 .mermaid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: $base-spacing-unit * 2 auto;
-    padding: $base-spacing-unit;
-    background-color: var(--background-color);
+    padding: $base-spacing-unit * 1.5;
     border-radius: $global-radius;
     overflow-x: auto;
+    overflow-y: visible;
+    max-width: none;
+    position: relative;
+
+    /* Wide layout by default - extends beyond content width */
+    margin: $base-spacing-unit * 2 -100px;
+
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+
+    /* Show scrollbar hint on hover for webkit browsers */
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(128, 128, 128, 0.3);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(128, 128, 128, 0.5);
+        }
+    }
 
     /* Ensure diagrams are readable */
     svg {
-        max-width: 100%;
         height: auto;
+        display: block;
+        margin: 0 auto;
     }
 
-    /* Responsive handling for large diagrams */
-    @media only screen and (max-width: 768px) {
-        padding: $base-spacing-unit / 2;
-        font-size: 14px;
+    /* Gantt and Journey charts - center if they fit, otherwise allow scrolling */
+    svg[aria-roledescription="gantt"],
+    svg[aria-roledescription="journey"] {
+        min-width: 100%;
+        width: fit-content;
     }
-}
 
-/* Dark mode specific adjustments */
-:root[dark] .mermaid {
-    /* Ensure proper contrast in dark mode */
+    /* Proper overflow to prevent text cutoff */
+    svg[aria-roledescription="statediagram"],
+    svg[aria-roledescription="erdiagram"] {
+        overflow: visible;
+    }
+
+    /* All diagram types should allow text to breathe */
     svg {
-        /* Text in diagrams should be visible */
-        .nodeLabel,
-        .edgeLabel {
-            color: var(--text-color);
+        text {
+            overflow: visible;
         }
+    }
+
+    /* Responsive breakpoints */
+    @media only screen and (max-width: $wide) {
+        margin: $base-spacing-unit * 2 -40px;
+    }
+
+    @media only screen and (max-width: $desktop) {
+        margin: $base-spacing-unit * 2 0;
+    }
+
+    @media only screen and (max-width: 768px) {
+        margin: $base-spacing-unit 0;
+        padding: $base-spacing-unit / 2;
     }
 }
 
