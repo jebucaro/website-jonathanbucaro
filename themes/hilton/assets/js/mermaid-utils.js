@@ -60,16 +60,26 @@ function debounce(func, wait) {
 }
 
 /**
- * Store original diagram content before mermaid processes it
+ * Store original diagram content and prepare elements for rendering
  */
 function storeOriginalContent() {
     const mermaidElements = document.querySelectorAll('.mermaid');
     mermaidElements.forEach((element) => {
         if (!element.hasAttribute('data-original-content')) {
-            element.setAttribute(
-                'data-original-content',
-                element.textContent.trim(),
-            );
+            const content = element.textContent.trim();
+            element.setAttribute('data-original-content', content);
+
+            // Extract diagram title from first comment line for accessibility
+            const titleMatch = content.match(/%%\s*([^\n]+)/);
+            if (titleMatch) {
+                element.setAttribute(
+                    'data-diagram-title',
+                    titleMatch[1].trim(),
+                );
+            }
+
+            // Add loading state
+            element.classList.add('mermaid-loading');
         }
     });
 }
@@ -94,16 +104,32 @@ function showDiagramError(element, error) {
 }
 
 /**
+ * Get theme for a specific diagram element
+ * @param {HTMLElement} element - The diagram element
+ * @returns {string} Theme name
+ */
+function getDiagramTheme(element) {
+    // Check for per-diagram theme override
+    const customTheme = element.getAttribute('data-mermaid-theme');
+    if (customTheme) {
+        return customTheme;
+    }
+    // Fall back to global theme
+    return getCurrentTheme();
+}
+
+/**
  * Initialize mermaid with current theme
  * @param {boolean} startOnLoad - Whether to automatically render diagrams
+ * @param {string} theme - Optional theme override
  */
-function initializeMermaid(startOnLoad = true) {
+function initializeMermaid(startOnLoad = true, theme = null) {
     try {
-        const theme = getCurrentTheme();
+        const selectedTheme = theme || getCurrentTheme();
         mermaid.initialize({
             ...MERMAID_CONFIG,
             startOnLoad: startOnLoad,
-            theme: theme,
+            theme: selectedTheme,
         });
     } catch (error) {
         console.error('Failed to initialize mermaid:', error);
@@ -112,48 +138,117 @@ function initializeMermaid(startOnLoad = true) {
 }
 
 /**
- * Re-render all mermaid diagrams with current theme
+ * Add accessibility attributes to rendered diagram
+ * @param {HTMLElement} element - The diagram container element
  */
-function reRenderMermaidDiagrams() {
-    try {
-        // Re-initialize mermaid with new theme
-        initializeMermaid(false);
+function addAccessibilityAttributes(element) {
+    const svg = element.querySelector('svg');
+    if (!svg) return;
 
-        // Find all mermaid diagrams and restore their original content
-        const mermaidElements = document.querySelectorAll('.mermaid');
-        mermaidElements.forEach((element) => {
+    // Get title from data attribute or generate generic one
+    const title =
+        element.getAttribute('data-diagram-title') ||
+        'Diagram: ' + (svg.getAttribute('aria-roledescription') || 'Diagram');
+
+    // Add ARIA attributes
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', title);
+
+    // Add title element if not present
+    if (!svg.querySelector('title')) {
+        const titleElement = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'title',
+        );
+        titleElement.textContent = title;
+        svg.insertBefore(titleElement, svg.firstChild);
+    }
+}
+
+/**
+ * Mark diagram as rendered and add accessibility
+ * @param {HTMLElement} element - The diagram element
+ */
+function markAsRendered(element) {
+    element.classList.remove('mermaid-loading');
+    element.classList.add('mermaid-rendered');
+    addAccessibilityAttributes(element);
+}
+
+/**
+ * Render individual diagrams with custom themes
+ */
+function renderDiagramsWithCustomThemes() {
+    const mermaidElements = document.querySelectorAll('.mermaid');
+    const diagramsByTheme = new Map();
+
+    // Group diagrams by theme
+    mermaidElements.forEach((element) => {
+        const theme = getDiagramTheme(element);
+        if (!diagramsByTheme.has(theme)) {
+            diagramsByTheme.set(theme, []);
+        }
+        diagramsByTheme.get(theme).push(element);
+    });
+
+    // Render each theme group
+    const renderPromises = [];
+    diagramsByTheme.forEach((elements, theme) => {
+        // Re-initialize with this theme
+        initializeMermaid(false, theme);
+
+        // Prepare elements
+        elements.forEach((element) => {
+            element.classList.add('mermaid-loading');
+            element.classList.remove('mermaid-rendered', 'mermaid-error');
             const originalContent = element.getAttribute(
                 'data-original-content',
             );
             if (originalContent) {
-                // Clear the element and restore original Mermaid markup
                 element.innerHTML = '';
                 element.textContent = originalContent;
                 element.removeAttribute('data-processed');
-                element.classList.remove('mermaid-error');
             }
         });
 
-        // Re-run mermaid on all diagrams
-        mermaid
+        // Render this group
+        const promise = mermaid
             .run({
-                querySelector: '.mermaid',
+                nodes: elements,
+            })
+            .then(() => {
+                elements.forEach((element) => {
+                    if (element.hasAttribute('data-processed')) {
+                        markAsRendered(element);
+                    }
+                });
             })
             .catch((error) => {
-                console.error('Error during mermaid re-render:', error);
-                // Try to render individual diagrams to isolate errors
-                mermaidElements.forEach((element) => {
+                console.error(
+                    `Error rendering diagrams with theme ${theme}:`,
+                    error,
+                );
+                elements.forEach((element) => {
                     if (!element.hasAttribute('data-processed')) {
-                        try {
-                            mermaid.run({
-                                nodes: [element],
-                            });
-                        } catch (err) {
-                            showDiagramError(element, err);
-                        }
+                        showDiagramError(element, error);
                     }
                 });
             });
+
+        renderPromises.push(promise);
+    });
+
+    return Promise.all(renderPromises);
+}
+
+/**
+ * Re-render all mermaid diagrams with current theme
+ */
+function reRenderMermaidDiagrams() {
+    try {
+        renderDiagramsWithCustomThemes().catch((error) => {
+            console.error('Failed to re-render mermaid diagrams:', error);
+        });
     } catch (error) {
         console.error('Failed to re-render mermaid diagrams:', error);
     }
@@ -197,6 +292,19 @@ function initMermaid() {
 
             // Setup theme change observer
             setupThemeObserver();
+
+            // Wait for diagrams to render, then mark as complete
+            setTimeout(() => {
+                const mermaidElements = document.querySelectorAll('.mermaid');
+                mermaidElements.forEach((element) => {
+                    if (
+                        element.hasAttribute('data-processed') &&
+                        !element.classList.contains('mermaid-error')
+                    ) {
+                        markAsRendered(element);
+                    }
+                });
+            }, 100);
 
             // Reset retry count on success
             retryCount = 0;

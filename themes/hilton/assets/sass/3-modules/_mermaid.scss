@@ -13,6 +13,33 @@
     /* Smooth scrolling */
     scroll-behavior: smooth;
 
+    /* Loading state */
+    &.mermaid-loading {
+        min-height: 200px;
+        background: linear-gradient(
+            90deg,
+            rgba(128, 128, 128, 0.05) 25%,
+            rgba(128, 128, 128, 0.1) 50%,
+            rgba(128, 128, 128, 0.05) 75%
+        );
+        background-size: 200% 100%;
+        animation: mermaid-loading 1.5s ease-in-out infinite;
+
+        /* Hide content while loading */
+        & > * {
+            opacity: 0;
+        }
+    }
+
+    /* Fade-in animation when rendered */
+    &.mermaid-rendered {
+        animation: mermaid-fade-in 0.3s ease-in;
+
+        svg {
+            animation: mermaid-fade-in 0.3s ease-in;
+        }
+    }
+
     /* Show scrollbar hint on hover for webkit browsers */
     &::-webkit-scrollbar {
         height: 8px;
@@ -76,10 +103,37 @@
     }
 }
 
+/* Animations */
+@keyframes mermaid-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes mermaid-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Print styles */
 @media print {
     .mermaid {
         break-inside: avoid;
         page-break-inside: avoid;
+
+        /* Remove animations for print */
+        &.mermaid-loading,
+        &.mermaid-rendered {
+            animation: none;
+        }
     }
 }
