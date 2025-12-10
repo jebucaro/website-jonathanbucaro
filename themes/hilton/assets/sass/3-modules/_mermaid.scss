@@ -36,13 +36,16 @@
         height: auto;
         display: block;
         margin: 0 auto;
+        max-width: 100%;
     }
 
-    /* Gantt and Journey charts - center if they fit, otherwise allow scrolling */
+    /* Gantt and Journey charts - allow horizontal scrolling for wide content */
     svg[aria-roledescription="gantt"],
     svg[aria-roledescription="journey"] {
+        max-width: none;
+        width: auto;
         min-width: 100%;
-        width: fit-content;
+        margin: 0;
     }
 
     /* Proper overflow to prevent text cutoff */
