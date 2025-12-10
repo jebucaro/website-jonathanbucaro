@@ -35,11 +35,20 @@
                 ]
             },
             {
+                "source": "/js/*.min.*.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=31536000, public, immutable"
+                    }
+                ]
+            },
+            {
                 "source": "/js/*.js",
                 "headers": [
                     {
                         "key": "Cache-Control",
-                        "value": "max-age=604800, public"
+                        "value": "max-age=3600, public"
                     }
                 ]
             },
