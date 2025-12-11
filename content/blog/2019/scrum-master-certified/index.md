@@ -16,13 +16,13 @@ My decision to pursue this certification was driven by a desire to deepen my und
 >
 > <cite>– Paulo Coelho</cite>
 
-### Sobre esta certificación – El enfoque de SCRUMstudy
+## Sobre esta certificación – El enfoque de SCRUMstudy
 
 Unlike other Scrum certifications that align closely with the **Scrum Guide** by Scrum.org or organizations like Scrum Alliance and Scrum Inc., the SCRUMstudy certification is based on the **Scrum Body of Knowledge (SBOK™ Guide)**. This framework is more prescriptive and detailed in terms of roles, processes, and management practices tailored to project environments.
 
 This approach provides a comprehensive understanding of Scrum principles as applied in a broad range of industries and projects, complementing the flexibility in the Scrum Guide with practical frameworks for implementation, governance, and scaling. It’s especially useful for professionals looking for structured Agile methodologies that align with organizational standards.
 
-### Reflections on the Journey
+## Reflections on the Journey
 
 Earning the Scrum Master Certified credential represents the effort I put into learning Agile principles through a clear and structured approach. It has given me the knowledge to support teams, encourage continuous improvement, manage projects with focus, and help deliver value.
 
