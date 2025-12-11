@@ -253,7 +253,7 @@ git clone --depth 1 --filter=blob:none --sparse git@github.com:jebucaro/blog-cod
 cd blog-code
 
 # Download only the folder you need
-git sparse-checkout set python/2025-10-create-a-knowledge-graph-from-text-with-gemini
+git sparse-checkout set python/Nodus
 ```
 
 ### Configure the project
