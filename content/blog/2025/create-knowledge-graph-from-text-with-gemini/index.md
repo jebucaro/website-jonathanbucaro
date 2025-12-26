@@ -47,7 +47,7 @@ Into this structured graph:
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="images/nodus-in-action.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
+    <img src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
   </div>
   <em>A sample knowledge graph showing entity clustering and relationship networks. Notice how connected concepts naturally group together.</em>
 </div>
