@@ -4,25 +4,49 @@
 
 ```text
 content/
-├── about.md             # About page
-├── blog/                # Blog posts
-│   ├── _index.md       # Blog index
-│   ├── 2019/           # Posts by year
+├── about/              # About page bundle
+│   ├── index.md       # About page content
+│   └── images/        # About page images
+├── blog/              # Blog posts
+│   ├── _index.md      # Blog index
+│   ├── 2019/          # Posts by year
+│   │   └── scrum-master-certified/
+│   │       ├── index.md
+│   │       └── images/
 │   ├── 2020/
+│   │   └── guide-enable-wsl2/
+│   │       ├── index.md
+│   │       └── images/
 │   ├── 2021/
+│   │   ├── get-contacts-profile-picture-inside-manychat/
+│   │   └── scrum-product-owner-certified/
 │   ├── 2024/
+│   │   ├── aws-certified-cloud-practitioner/
+│   │   ├── improve-the-windows-terminal-experience-with-ohmyposh/
+│   │   └── kmp/
 │   └── 2025/
-└── projects/           # Project portfolio
-    ├── _index.md       # Projects index
-    └── project-name.md # Individual projects
+│       ├── create-knowledge-graph-from-text-with-gemini/
+│       ├── discover-the-importance-of-keeping-a-work-log/
+│       └── personal-impressions-about-gpt-5/
+│           ├── index.md
+│           ├── charts/
+│           └── images/
+└── projects/          # Project portfolio
+    ├── _index.md      # Projects index
+    └── erp-system/    # Individual project bundle
+        ├── index.md
+        └── images/
+            └── cover.jpg.placeholder
 ```
 
 ## Content Guidelines
 
 ### File Naming Convention
 
-- Use standard `.md` extension for all content
-- Use descriptive slugs in URLs
+- Use **page bundles** (directories with `index.md`) for content with associated assets
+- Use standard `.md` extension for all content files
+- Use descriptive directory names that reflect URL slugs
+- Co-locate images and resources with content in the same directory
 - No language suffixes required (English-only site)
 
 ### Front Matter Structure
@@ -40,13 +64,22 @@ categories: ['category']
 
 ### Blog Posts Organization
 
-- Organize by year in subdirectories
-- Use descriptive filenames
+- Organize by year in subdirectories (e.g., `2024/`, `2025/`)
+- Each post is a **page bundle** with its own directory containing:
+    - `index.md` - The post content
+    - `images/` - Post-specific images (co-located with content)
+    - `charts/` - Optional charts/data visualizations (when needed)
+- Use descriptive directory names that reflect the post slug
 - Include proper front matter with tags and categories
+- Images are referenced relative to the post's directory
 
 ### Projects Structure
 
-- Each project should have both English and Spanish versions
+- Each project is a **page bundle** with its own directory
+- Structure:
+    - `project-name/index.md` - Project content
+    - `project-name/images/` - Project images and assets
+    - Use `.placeholder` files for images not yet added (e.g., `cover.jpg.placeholder`)
 - Include project metadata in front matter
 - Use consistent naming and structure
 
