@@ -32,7 +32,7 @@ The GPT-5 launch has been... interesting. This meme perfectly captures what many
   <em>You vote for GPT-5 or GPT-4o via <a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank" rel="nofollow, noreferrer">Reddit</a></em>
 </div>
 
-Turns out when your AI becomes more thoughtful, you need to be more thoughtful too. After months of experimentation with GPT-5 and testing API alternatives, here's what actually works—better prompting techniques and a setup that saved us 60-70% on costs.
+Turns out when your AI becomes more thoughtful, you need to be more thoughtful too. After months of experimentation with GPT-5 and testing API alternatives, here's what actually works: better prompting techniques and a setup that saved us 60-70% on costs.
 
 ---
 
@@ -62,7 +62,7 @@ When GPT-5 launched, many users found themselves frustrated. The "smarter" model
 
 The fix isn't complicated, but it requires two shifts: better prompt structure and smarter spending.
 
-GPT-5 responds exceptionally well to structured, detailed prompts. Think of it like writing clear technical specifications—the more precise you are about requirements, constraints, and expected outcomes, the better results you get. And for the cost problem, using APIs directly instead of subscriptions gives you unlimited usage at 60-70% lower cost.
+GPT-5 responds exceptionally well to structured, detailed prompts. Think of it like writing clear technical specifications. The more precise you are about requirements, constraints, and expected outcomes, the better results you get. And for the cost problem, using APIs directly instead of subscriptions gives you unlimited usage at 60-70% lower cost.
 
 **What you get:**
 
@@ -296,7 +296,7 @@ Ask GPT-5 to review its own work against your requirements and best practices. T
 
 ### 4. 🧑‍💻 Developer-specific patterns (GPT-5 for coding)
 
-If you're using GPT-5 for coding work—whether through the API, Cursor, or other tools—these adjustments make a huge difference.
+If you're using GPT-5 for coding work (whether through the API, Cursor, or other tools), these adjustments make a huge difference.
 
 #### Be precise and avoid conflicting information
 
@@ -504,7 +504,7 @@ If you use ChatGPT casually (10 messages per week), stick with the free tier. Bu
 
 {{< callout tip>}}
 
-**Decision framework:** Try structured prompting first—it's free and improves results immediately. Switch to APIs only if you're hitting rate limits or want multi-model access.
+**Decision framework:** Try structured prompting first. It's free and improves results immediately. Switch to APIs only if you're hitting rate limits or want multi-model access.
 
 {{< /callout >}}
 
