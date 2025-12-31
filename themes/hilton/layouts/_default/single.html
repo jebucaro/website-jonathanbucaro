@@ -12,7 +12,7 @@
                             </div>
                             <h1 class="post-title">{{ .Title }}</h1>
                             <div class="post-meta">
-                                <a href="/acerca-de/" class="post-author-link">{{ .Site.Params.author.author__name }}</a> –
+                                <a href="/about/" class="post-author-link">{{ .Site.Params.author.author__name }}</a> –
                                 <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long "site" site) }}</time>
                             </div>
                         </div>
