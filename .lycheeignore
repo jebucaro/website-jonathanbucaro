@@ -1,0 +1,29 @@
+# Link Checker Exclusions
+# Domains and patterns to exclude from link checking to avoid false positives
+
+# Social media (rate-limited)
+https://twitter.com/*
+https://t.co/*
+https://x.com/*
+https://facebook.com/*
+https://linkedin.com/*
+https://instagram.com/*
+
+# CDNs and external resources
+https://cdn.jsdelivr.net/*
+https://unpkg.com/*
+https://cdnjs.cloudflare.com/*
+
+# Analytics and tracking
+https://www.google-analytics.com/*
+https://analytics.google.com/*
+
+# Comment systems
+https://disqus.com/*
+
+# Localhost and development
+http://localhost*
+http://127.0.0.1*
+
+# Mail links
+mailto:*
