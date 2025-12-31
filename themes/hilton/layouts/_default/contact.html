@@ -12,7 +12,7 @@
         {{ if .Params.image }}
             <div class="col col-12">
                 <div class="page-image animate">
-                    <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
                 </div>
             </div>
         {{ end }}

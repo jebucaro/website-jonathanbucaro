@@ -3,7 +3,6 @@ title: 'Enterprise Management System'
 subtitle: 'Complete web application for enterprise resource management'
 date: 2024-12-15
 draft: false
-image: 'images/cover.jpg'
 description: 'A complete enterprise management system developed with .NET Core and React, designed to optimize business processes.'
 tags: ['C#', '.NET Core', 'React', 'SQL Server']
 categories: ['Web Development', 'Enterprise']

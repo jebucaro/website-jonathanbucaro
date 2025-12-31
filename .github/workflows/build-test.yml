@@ -1,0 +1,67 @@
+name: Build and Test
+
+on:
+    pull_request:
+    push:
+        branches: [main]
+
+jobs:
+    build-and-validate:
+        name: Build and Validate
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6.0.1
+              with:
+                  submodules: true
+                  fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+            - name: Install Hugo
+              uses: peaceiris/actions-hugo@v3
+              with:
+                  hugo-version: 'latest'
+                  extended: true
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6.1.0
+              with:
+                  node-version: '22.x'
+                  cache: 'npm'
+                  cache-dependency-path: '**/package-lock.json'
+
+            - name: Install dependencies and build
+              run: npm ci && npm run build
+
+            - name: Validate HTML5
+              uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+              with:
+                  root: public/
+                  css: false
+                  blacklist: '.*/node_modules/.*'
+
+            - name: Check links
+              uses: lycheeverse/lychee-action@v2.7.0
+              with:
+                  args: >
+                      --verbose
+                      --no-progress
+                      --max-retries 3
+                      --timeout 10
+                      --max-concurrency 5
+                      --exclude-file .lycheeignore
+                      --exclude-path node_modules
+                      --exclude-path public/js
+                      --exclude-path public/css
+                      './public/**/*.html'
+                  fail: true
+              env:
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+            - name: Upload build artifacts on failure
+              if: failure()
+              uses: actions/upload-artifact@v6.0.0
+              with:
+                  name: build-output
+                  path: public/
+                  retention-days: 3

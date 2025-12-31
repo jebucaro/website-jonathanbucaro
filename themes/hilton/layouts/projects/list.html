@@ -14,9 +14,9 @@
                     <a href="{{ .RelPermalink }}" class="project__image">
                         {{ $image := .Resources.GetMatch .Params.image }}
                         {{ if $image }}
-                            <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}" />
                         {{ else }}
-                            <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Params.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .Params.image | relURL }}" alt="{{ .Params.Title }}" />
                         {{ end }}
                     </a>
                     <div class="project__info">
