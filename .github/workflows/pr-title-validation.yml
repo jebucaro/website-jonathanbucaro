@@ -1,0 +1,86 @@
+name: PR Title Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate-title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+
+    steps:
+      - name: Validate PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          echo "📋 Validating PR title: $PR_TITLE"
+          echo ""
+
+          # Check basic format: :<emoji>: <description>
+          if ! echo "$PR_TITLE" | grep -E '^:[a-z_]+: [a-z].*$' > /dev/null; then
+            echo "❌ PR title must match format: :<gitmoji>: <description>"
+            echo ""
+            echo "Examples:"
+            echo "  ✅ :sparkles: add search functionality"
+            echo "  ✅ :bug: fix broken navigation menu"
+            echo "  ✅ :memo: update installation guide"
+            echo ""
+            echo "Rules:"
+            echo "  • Start with :<emoji>:"
+            echo "  • Description must start with lowercase letter"
+            echo "  • Use present tense verbs (add, fix, update)"
+            echo ""
+            echo "See .github/PR_NAMING_CONVENTIONS.md for more examples"
+            exit 1
+          fi
+
+          # Check character length (72 max)
+          if [ ${#PR_TITLE} -gt 72 ]; then
+            echo "❌ PR title exceeds 72 characters (current: ${#PR_TITLE})"
+            echo ""
+            echo "Please shorten your title to 72 characters or less."
+            echo "Current title: $PR_TITLE"
+            exit 1
+          fi
+
+          # Extract emoji and validate against known list
+          EMOJI=$(echo "$PR_TITLE" | sed -n 's/^:\([^:]*\):.*/\1/p')
+
+          # List of valid Gitmojis from PR_NAMING_CONVENTIONS.md
+          VALID_EMOJIS="bento|memo|pencil2|sparkles|zap|recycle|lipstick|art|iphone|bug|adhesive_bandage|ambulance|wrench|heavy_plus_sign|arrow_up|lock|fire|green_heart"
+
+          if ! echo "$EMOJI" | grep -E "^($VALID_EMOJIS)$" > /dev/null; then
+            echo "❌ Unknown or invalid gitmoji: :$EMOJI:"
+            echo ""
+            echo "Valid gitmojis by category:"
+            echo ""
+            echo "Content & Posts:"
+            echo "  :bento: :memo: :pencil2:"
+            echo ""
+            echo "Features & Functionality:"
+            echo "  :sparkles: :zap: :recycle:"
+            echo ""
+            echo "UI & Styling:"
+            echo "  :lipstick: :art: :iphone:"
+            echo ""
+            echo "Fixes & Maintenance:"
+            echo "  :bug: :adhesive_bandage: :ambulance:"
+            echo ""
+            echo "Configuration & Dependencies:"
+            echo "  :wrench: :heavy_plus_sign: :arrow_up:"
+            echo ""
+            echo "Security & Assets:"
+            echo "  :lock: :green_heart: :fire:"
+            echo ""
+            echo "See .github/PR_NAMING_CONVENTIONS.md for detailed usage"
+            exit 1
+          fi
+
+          echo "✅ PR title is valid!"
+          echo ""
+          echo "Format: ✓"
+          echo "Length: ✓ (${#PR_TITLE}/72 characters)"
+          echo "Gitmoji: ✓ :$EMOJI:"
