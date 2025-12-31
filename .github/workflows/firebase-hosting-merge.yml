@@ -7,7 +7,25 @@ name: Deploy to Firebase Hosting on merge
         branches:
             - main
 jobs:
+    quality-gate:
+        name: Quality Gate
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6.0.1
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v6.1.0
+              with:
+                  node-version: '22.x'
+                  cache: 'npm'
+                  cache-dependency-path: '**/package-lock.json'
+
+            - name: Run quality checks
+              run: npm ci && npm run check
+
     build_and_deploy:
+        needs: quality-gate
         runs-on: ubuntu-latest
         permissions:
             contents: write
@@ -15,7 +33,7 @@ jobs:
             statuses: write
         steps:
             - name: Checkout repository and update Hugo themes
-              uses: actions/checkout@v4.2.2
+              uses: actions/checkout@v6.0.1
               with:
                   submodules: true
                   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
@@ -26,7 +44,7 @@ jobs:
                   hugo-version: 'latest'
                   extended: true
 
-            - uses: actions/setup-node@v4.2.0
+            - uses: actions/setup-node@v6.1.0
               with:
                   node-version: '22.x'
                   cache: 'npm'
@@ -38,7 +56,7 @@ jobs:
 
             - run: npm ci && npm run build
 
-            - uses: FirebaseExtended/action-hosting-deploy@v0.9.0
+            - uses: FirebaseExtended/action-hosting-deploy@v0.10.0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SITIO_PERSONAL_JB }}'
