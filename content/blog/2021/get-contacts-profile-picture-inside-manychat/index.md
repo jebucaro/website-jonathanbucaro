@@ -136,8 +136,7 @@ Here is a small basic flow on how to use Monet App.
 
 ---
 
-The official ManyChat.com website can be found at <a href
-="https://manychat.com" target="_blank" rel="nofollow">https://manychat.com/ ➡</a>
+The official ManyChat.com website can be found at <a href="https://manychat.com" target="_blank" rel="nofollow">ManyChat.com ➡</a>
 
 I have used the Urban Dictionary definition of Monet as inspiration to name the app 😆
 

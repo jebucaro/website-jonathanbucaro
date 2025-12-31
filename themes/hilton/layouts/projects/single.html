@@ -10,9 +10,9 @@
                     <div class="page-image animate">
                         {{ $image := .Resources.GetMatch .Params.image }}
                         {{ if $image }}
-                            <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
                         {{ else }}
-                            <img class="lazy" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .Params.image | relURL }}" alt="{{ .Title }}" />
                         {{ end }}
                     </div>
                 </div>
@@ -33,9 +33,9 @@
                     <a class="project__nav-image" href="{{ .NextInSection.Permalink }}">
                         {{ $nextImage := .NextInSection.Resources.GetMatch .NextInSection.Params.image }}
                         {{ if $nextImage }}
-                            <img class="lazy" data-src="{{ $nextImage.RelPermalink }}" alt="{{ .NextInSection.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ $nextImage.RelPermalink }}" alt="{{ .NextInSection.Title }}" />
                         {{ else }}
-                            <img class="lazy" data-src="{{ .NextInSection.Params.image | relURL }}" alt="{{ .NextInSection.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .NextInSection.Params.image | relURL }}" alt="{{ .NextInSection.Title }}" />
                         {{ end }}
                     </a>
                 {{ else if .PrevInSection }}
@@ -48,9 +48,9 @@
                     <a class="project__nav-image" href="{{ .PrevInSection.Permalink }}">
                         {{ $prevImage := .PrevInSection.Resources.GetMatch .PrevInSection.Params.image }}
                         {{ if $prevImage }}
-                            <img class="lazy" data-src="{{ $prevImage.RelPermalink }}" alt="{{ .PrevInSection.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ $prevImage.RelPermalink }}" alt="{{ .PrevInSection.Title }}" />
                         {{ else }}
-                            <img class="lazy" data-src="{{ .PrevInSection.Params.image | relURL }}" alt="{{ .PrevInSection.Title }}" />
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .PrevInSection.Params.image | relURL }}" alt="{{ .PrevInSection.Title }}" />
                         {{ end }}
                     </a>
                 {{ end }}
