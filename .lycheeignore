@@ -17,6 +17,16 @@ pinterest.com/pin/create/*
 https://www.instagram.com/share*
 whatsapp://send*
 
+# Social media profile URLs
+# Instagram aggressively rate-limits and blocks automated checkers
+https://instagram.com/*
+https://www.instagram.com/*
+# LinkedIn profiles often require authentication
+https://linkedin.com/in/*
+https://www.linkedin.com/in/*
+https://linkedin.com/company/*
+https://www.linkedin.com/company/*
+
 # CDNs and external resources
 https://cdn.jsdelivr.net/*
 https://unpkg.com/*
