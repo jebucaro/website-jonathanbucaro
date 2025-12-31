@@ -3,9 +3,9 @@
         <a class="article__image" href="{{ .RelPermalink }}">
             {{ $image := .Resources.GetMatch .Params.Image }}
             {{ if $image }}
-                <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Title }}" />
+                <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
             {{ else }}
-                <img class="lazy" data-src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" />
+                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" loading="lazy" />
             {{ end }}
         </a>
     {{ end }}

@@ -19,9 +19,9 @@
                                         <a href="{{ .RelPermalink }}" class="project__image">
                                             {{ $image := .Resources.GetMatch .Params.image }}
                                             {{ if $image }}
-                                                <img class="lazy" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}"/>
+                                                <img src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}" loading="lazy" />
                                             {{ else }}
-                                                <img class="lazy" data-src="{{ .Params.image | absURL }}" alt="{{ .Params.Title }}"/>
+                                                <img src="{{ .Params.image | absURL }}" alt="{{ .Params.Title }}" loading="lazy" />
                                             {{ end }}
                                         </a>
                                         <div class="project__info">

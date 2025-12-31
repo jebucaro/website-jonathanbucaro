@@ -108,8 +108,6 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 Once installed, open a new PowerShell tab so everything loads properly.
 
-<span id="install-a-font"></span>
-
 ### Install a font
 
 Oh My Posh is designed to use Nerd Fonts. Nerd Fonts are popular fonts patched to include icons, so you need to install a Nerd Font to see the special icons in Oh My Posh.

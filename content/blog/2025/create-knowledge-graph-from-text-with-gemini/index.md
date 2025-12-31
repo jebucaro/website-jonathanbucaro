@@ -378,7 +378,7 @@ The complete implementation is available [on GitHub ➡️](https://github.com/j
 
 Thu Vu's implementation demonstrates knowledge graph extraction using GPT-4 and LangChain's `LLMGraphTransformer`. The video provides valuable context for understanding how high-level abstractions simplify the extraction process:
 
-<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 Watching this implementation in action reveals both the power of abstraction layers and the questions they leave unanswered. While the code is concise and effective, understanding what happens beneath those abstractions becomes important when you need to:
 

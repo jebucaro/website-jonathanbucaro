@@ -37,7 +37,7 @@ The API usage limit is OK for most use cases, just be careful if you are doing s
     <img src="images/4-monet-flow.webp" alt="Background artwork by Monet with a laptop showing the ManyChat app flow featuring the action to retrieve the user profile picture URL." loading="lazy">
     <img src="images/5-monet-phone.webp" alt="Background artwork by Monet with a phone displaying the Messenger app showing the user's profile picture in a chatbot conversation." loading="lazy">
   </div>
-  <em>Gallery Monet</a></em>
+  <em>Gallery Monet</em>
 </div>
 
 ### 🌐 Install Monet for ManyChat
@@ -136,8 +136,7 @@ Here is a small basic flow on how to use Monet App.
 
 ---
 
-The official ManyChat.com website can be found at <a href
-="https://manychat.com" target="_blank" rel="nofollow">https://manychat.com/ ➡</a>
+The official ManyChat.com website can be found at <a href="https://manychat.com" target="_blank" rel="nofollow">ManyChat ➡</a>
 
 I have used the Urban Dictionary definition of Monet as inspiration to name the app 😆
 

@@ -5,7 +5,7 @@
     "scripts": {
         "format:check": "prettier --check .",
         "format:write": "prettier --write .",
-        "lint:markdown": "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources",
+        "lint:markdown": "markdownlint 'content/**/*.md'",
         "build": "hugo --cleanDestinationDir --minify",
         "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
@@ -29,9 +29,9 @@
         "*.{js,jsx,ts,tsx,css,scss,sass,less}": [
             "prettier --write"
         ],
-        "*.md": [
+        "content/**/*.md": [
             "prettier --write",
-            "markdownlint **/*.md --ignore node_modules --ignore public --ignore resources"
+            "markdownlint 'content/**/*.md'"
         ]
     },
     "dependencies": {

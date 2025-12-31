@@ -15,7 +15,7 @@ jobs:
             checks: write
         steps:
             - name: Checkout PR branch
-              uses: actions/checkout@v4.2.2
+              uses: actions/checkout@v6.0.1
               with:
                   ref: ${{ github.event.pull_request.head.ref }}
                   submodules: true
@@ -27,7 +27,7 @@ jobs:
                   hugo-version: 'latest'
                   extended: true
 
-            - uses: actions/setup-node@v4.2.0
+            - uses: actions/setup-node@v6.1.0
               with:
                   node-version: '22.x'
                   cache: 'npm'
@@ -42,7 +42,7 @@ jobs:
 
             - name: Deploy to Firebase Preview Channel
               if: github.actor != 'dependabot[bot]'
-              uses: FirebaseExtended/action-hosting-deploy@v0.9.0
+              uses: FirebaseExtended/action-hosting-deploy@v0.10.0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SITIO_PERSONAL_JB }}'

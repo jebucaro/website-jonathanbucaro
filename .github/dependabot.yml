@@ -6,7 +6,47 @@
 
 version: 2
 updates:
+    # DevContainer updates
     - package-ecosystem: 'devcontainers'
       directory: '/'
       schedule:
           interval: weekly
+
+    # npm dependencies
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: weekly
+          day: monday
+          time: '09:00'
+      open-pull-requests-limit: 5
+      versioning-strategy: increase
+      commit-message:
+          prefix: ':arrow_up:'
+          include: scope
+      labels:
+          - dependencies
+          - npm
+      groups:
+          development-dependencies:
+              dependency-type: development
+              update-types:
+                  - minor
+                  - patch
+          production-dependencies:
+              dependency-type: production
+              update-types:
+                  - minor
+                  - patch
+
+    # GitHub Actions updates
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: monthly
+      open-pull-requests-limit: 3
+      commit-message:
+          prefix: ':arrow_up:'
+      labels:
+          - dependencies
+          - github-actions
