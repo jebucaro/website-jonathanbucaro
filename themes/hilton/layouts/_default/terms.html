@@ -1,3 +1,4 @@
+{{ define "main" }}
 <!-- Redirect to homepage -->
 {{ $redirectjs := resources.Get "js/redirect.js.html" }}
 {{ $data := dict "Site" .Site }}
@@ -7,4 +8,5 @@
 <script>{{ $redirectjsContent.Content | safeJS }}</script>
 {{ else }}
     <script src="{{ $redirectjsContent.Permalink }}"></script>
+{{ end }}
 {{ end }}

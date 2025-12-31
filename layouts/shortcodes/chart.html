@@ -2,7 +2,8 @@
 
 {{- if not .Page.Summary -}}
 {{- $chartName := .Get 0 -}}
-{{- $id := substr (md5 $chartName) 0 16 -}}
+{{- $ordinal := .Ordinal -}}
+{{- $id := substr (md5 (printf "%s-%d" $chartName $ordinal)) 0 16 -}}
 
 {{- $chartPath := "" -}}
 {{- $chartConfig := dict -}}

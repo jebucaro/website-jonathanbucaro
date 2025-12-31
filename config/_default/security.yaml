@@ -5,7 +5,7 @@ csp:
         - "'self'"
     script-src:
         - "'self'"
-        - "https://cdn.jsdelivr.net"
+        - 'https://cdn.jsdelivr.net'
 exec:
     allow:
         - ^(dart-)?sass(-embedded)?$
