@@ -13,6 +13,7 @@ jobs:
 
         steps:
             - name: Validate PR title format
+              if: github.actor != 'dependabot[bot]'
               run: |
                   PR_TITLE="${{ github.event.pull_request.title }}"
 
