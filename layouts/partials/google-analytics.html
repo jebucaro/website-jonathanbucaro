@@ -1,0 +1,9 @@
+{{- if .Site.Config.Services.GoogleAnalytics.ID -}}
+{{- $gaID := .Site.Config.Services.GoogleAnalytics.ID -}}
+<!-- Load Google Tag Manager library -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaID }}"></script>
+<!-- Load our custom GA initialization script -->
+{{- $gaInit := resources.Get "js/ga-init.js" -}}
+{{- $gaInitProcessed := $gaInit | resources.ExecuteAsTemplate (printf "js/ga-init-%s.js" $gaID) . | minify | fingerprint -}}
+<script src="{{ $gaInitProcessed.RelPermalink | absURL }}"></script>
+{{- end -}}
