@@ -4,6 +4,11 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+# Google Analytics 4 configuration
+services:
+    googleAnalytics:
+        id: 'G-519089886'
+
 params:
     env: production
     debug: false
