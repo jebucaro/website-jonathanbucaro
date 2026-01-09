@@ -1,109 +1,113 @@
 {
-    "hosting": {
-        "public": "public",
-        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-        "redirects": [
-            {
-                "source": "/2020/09/14/habilitar-wsl2/",
-                "destination": "/blog/guide-enable-wsl2/",
-                "type": 301
-            },
-            {
-                "source": "/2021/01/30/scrum-product-owner-certified/",
-                "destination": "/blog/scrum-product-owner-certified/",
-                "type": 301
-            },
-            {
-                "source": "/2019/01/06/scrum-master-certified/",
-                "destination": "/blog/scrum-master-certified/",
-                "type": 301
-            },
-            {
-                "source": "/get-contacts-profile-picture-inside-manychat/",
-                "destination": "/blog/get-contacts-profile-picture-inside-manychat/",
-                "type": 301
-            }
-        ],
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/2020/09/14/habilitar-wsl2/",
+        "destination": "/blog/guide-enable-wsl2/",
+        "type": 301
+      },
+      {
+        "source": "/2021/01/30/scrum-product-owner-certified/",
+        "destination": "/blog/scrum-product-owner-certified/",
+        "type": 301
+      },
+      {
+        "source": "/2019/01/06/scrum-master-certified/",
+        "destination": "/blog/scrum-master-certified/",
+        "type": 301
+      },
+      {
+        "source": "/get-contacts-profile-picture-inside-manychat/",
+        "destination": "/blog/get-contacts-profile-picture-inside-manychat/",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "/index.html",
         "headers": [
-            {
-                "source": "/index.html",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=180, public"
-                    }
-                ]
-            },
-            {
-                "source": "/js/*.min.*.js",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=31536000, public, immutable"
-                    }
-                ]
-            },
-            {
-                "source": "/js/*.js",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=3600, public"
-                    }
-                ]
-            },
-            {
-                "source": "/css/*.css",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=31536000, public, immutable"
-                    }
-                ]
-            },
-            {
-                "source": "/images/**",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=31536000, public, immutable"
-                    }
-                ]
-            },
-            {
-                "source": "/**/*.html",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=3600, public"
-                    }
-                ]
-            },
-            {
-                "source": "**",
-                "headers": [
-                    {
-                        "key": "Content-Security-Policy",
-                        "value": "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ *.disqus.com *.disquscdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com *.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: *.disquscdn.com; connect-src 'self' https://cdn.jsdelivr.net *.disqus.com *.disquscdn.com; form-action 'self' *.disqus.com; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com *.disqus.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
-                    },
-                    {
-                        "key": "X-Frame-Options",
-                        "value": "SAMEORIGIN"
-                    },
-                    {
-                        "key": "X-Content-Type-Options",
-                        "value": "nosniff"
-                    },
-                    {
-                        "key": "Referrer-Policy",
-                        "value": "strict-origin-when-cross-origin"
-                    },
-                    {
-                        "key": "Permissions-Policy",
-                        "value": "geolocation=()"
-                    }
-                ]
-            }
+          {
+            "key": "Cache-Control",
+            "value": "max-age=180, public"
+          }
         ]
-    }
+      },
+      {
+        "source": "/js/*.min.*.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000, public, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/js/*.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600, public"
+          }
+        ]
+      },
+      {
+        "source": "/css/*.css",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000, public, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/images/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000, public, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600, public"
+          }
+        ]
+      },
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Content-Security-Policy",
+            "value": "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ *.disqus.com *.disquscdn.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com *.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: *.disquscdn.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://cdn.jsdelivr.net *.disqus.com *.disquscdn.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' *.disqus.com; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com *.disqus.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "strict-origin-when-cross-origin"
+          },
+          {
+            "key": "Permissions-Policy",
+            "value": "geolocation=()"
+          }
+        ]
+      }
+    ]
+  }
 }
