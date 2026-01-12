@@ -24,19 +24,11 @@ privacy:
         privacyEnhanced: true
 
 # Caching configuration
+# Build-time caches for Hugo resource processing (different from Firebase runtime caching)
 caches:
     assets:
         dir: ':resourceDir/_gen'
-        maxAge: 8760h # 1 year
-    getcsv:
-        dir: ':cacheDir/:project'
-        maxAge: 3600s # 1 hour
-    getjson:
-        dir: ':cacheDir/:project'
-        maxAge: 3600s # 1 hour
+        maxAge: 8760h # 1 year - Caches compiled SASS/CSS and processed JS
     images:
         dir: ':resourceDir/_gen'
-        maxAge: 8760h # 1 year
-    modules:
-        dir: ':cacheDir/modules'
-        maxAge: 8760h # 1 year
+        maxAge: 8760h # 1 year - Caches processed/resized images
