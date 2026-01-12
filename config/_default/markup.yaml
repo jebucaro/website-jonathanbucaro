@@ -1,33 +1,18 @@
+# Markdown rendering configuration
+# Only non-default values are included to keep configuration clean
+
 goldmark:
     renderer:
-        unsafe: true
+        unsafe: true # Allow raw HTML in markdown content
     parser:
         attribute:
-            block: true
-            title: true
-        autoHeadingID: true
-        autoHeadingIDType: github
-    extensions:
-        typographer: true
-        linkify: true
-        strikethrough: true
-        table: true
-        taskList: true
-        definitionList: true
+            block: true # Enable markdown attributes for block elements
+            title: true # Enable markdown attributes for headings
 
 highlight:
-    codeFences: true
-    guessSyntax: true
-    noClasses: false
-    lineNos: false
-    lineNumbersInTable: false
-    style: github
-    anchorLineNos: false
-    hl_Lines: ''
-    hl_inline: false
-    tabWidth: 4
+    guessSyntax: true # Auto-detect code block language
+    noClasses: false # Use CSS classes for syntax highlighting (requires external CSS)
+    style: github # Syntax highlighting color scheme
 
 tableOfContents:
-    startLevel: 2
-    endLevel: 4
-    ordered: false
+    endLevel: 4 # Include h2, h3, and h4 in table of contents

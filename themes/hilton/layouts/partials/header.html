@@ -22,8 +22,8 @@
                         <ul class="nav__list list-reset">
                             {{ $currentPage := . }}
                             {{ range.Site.Menus.main }}
-                                {{ $menuURL := .URL | relURL }}
-                                {{ $pageURL:= $currentPage.Permalink | relURL }}
+                                {{ $menuURL := .URL }}
+                                {{ $pageURL:= $currentPage.RelPermalink }}
                                 {{ $active := eq $menuURL $pageURL }}
 
                                 {{ if .HasChildren }}
@@ -31,10 +31,10 @@
                                         <span class="nav__link dropdown-toggle">{{ .Name }}<ion-icon name="chevron-down"></ion-icon></span>
                                         <div class="dropdown-menu">
                                             {{ range .Children }}
-                                                {{ $childURL := .URL | relURL }}
+                                                {{ $childURL := .URL }}
                                                 {{ $active := eq $childURL $pageURL }}
-                                                {{ $href := .URL | relURL }}
-                                                {{ if findRE `^#` .URL }}
+                                                {{ $href := .URL }}
+                                                {{ if hasPrefix .URL "#" }}
                                                     {{ if not $.IsHome }}
                                                         {{ $href = printf "%s%s" "/" .URL }}
                                                     {{ else }}
@@ -48,8 +48,8 @@
                                     </li>
                                 {{ else }}
                                     <li class="nav__item">
-                                        {{ $href := .URL | relURL }}
-                                        {{ if findRE `^#` .URL }}
+                                        {{ $href := .URL }}
+                                        {{ if hasPrefix .URL "#" }}
                                             {{ if not $.IsHome }}
                                                 {{ $href = printf "%s%s" "/" .URL }}
                                             {{ else }}

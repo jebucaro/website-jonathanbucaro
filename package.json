@@ -13,7 +13,8 @@
         "serve": "hugo server",
         "clean": "Remove-Item -Recurse -Force public, resources",
         "prepare": "husky",
-        "check": "npm run format:check && npm run lint:markdown"
+        "check": "npm run format:check && npm run lint:markdown",
+        "validate": "npm run check && npm run build"
     },
     "author": "",
     "license": "UNLICENSED",
