@@ -3,16 +3,16 @@
 
 goldmark:
     renderer:
-        unsafe: true  # Allow raw HTML in markdown content
+        unsafe: true # Allow raw HTML in markdown content
     parser:
         attribute:
-            block: true   # Enable markdown attributes for block elements
-            title: true   # Enable markdown attributes for headings
+            block: true # Enable markdown attributes for block elements
+            title: true # Enable markdown attributes for headings
 
 highlight:
-    guessSyntax: true    # Auto-detect code block language
-    noClasses: false     # Use CSS classes for syntax highlighting (requires external CSS)
-    style: github        # Syntax highlighting color scheme
+    guessSyntax: true # Auto-detect code block language
+    noClasses: false # Use CSS classes for syntax highlighting (requires external CSS)
+    style: github # Syntax highlighting color scheme
 
 tableOfContents:
-    endLevel: 4          # Include h2, h3, and h4 in table of contents
+    endLevel: 4 # Include h2, h3, and h4 in table of contents
