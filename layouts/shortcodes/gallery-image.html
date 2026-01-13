@@ -1,0 +1,26 @@
+{{- /*
+  Gallery image shortcode - used within gallery shortcode
+  Properly resolves page resources for multilingual sites
+
+  Usage:
+    {{< gallery-image src="images/photo.webp" alt="Description" >}}
+*/ -}}
+
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+
+{{- if $src -}}
+  {{- /* Try to get from page resources first */ -}}
+  {{- $resource := .Page.Resources.GetMatch $src -}}
+
+  {{- if $resource -}}
+    {{- /* Use resource's relative permalink */ -}}
+    <img src="{{ $resource.RelPermalink }}" alt="{{ $alt }}" loading="lazy">
+  {{- else -}}
+    {{- /* Fallback to relative path if resource not found */ -}}
+    {{- warnf "Image resource not found: %s in %s" $src .Page.File.Path -}}
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
+  {{- end -}}
+{{- else -}}
+  {{- errorf "gallery-image shortcode requires 'src' parameter in %s" .Page.File.Path -}}
+{{- end -}}
