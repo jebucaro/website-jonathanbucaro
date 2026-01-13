@@ -1,0 +1,44 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Defaults for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 4
+
+# HTML and template files
+[*.{html,htm}]
+indent_style = space
+indent_size = 4
+
+# CSS, SCSS, SASS files
+[*.{css,scss,sass,less}]
+indent_style = space
+indent_size = 4
+
+# JavaScript and JSON files
+[*.{js,jsx,ts,tsx,json}]
+indent_style = space
+indent_size = 4
+
+# Hugo template files
+[*.{html,xml}]
+indent_style = space
+indent_size = 4
