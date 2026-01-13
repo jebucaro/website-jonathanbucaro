@@ -1,5 +1,6 @@
 ---
 title: 'Personal Impressions about GPT-5'
+slug: 'personal-impressions-about-gpt-5'
 date: 2025-08-12T19:42:37-06:00
 lastmod: 2025-11-26
 image: 'images/cover.webp'
@@ -25,12 +26,11 @@ GPT-5 requires more structured prompting than GPT-4, but the payoff is worth it.
 
 The GPT-5 launch has been... interesting. This meme perfectly captures what many users experienced:
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/ac3wmuabekif1.webp" alt="Comparing two different GPT models and their responses in a funny meme way" loading="lazy">
-  </div>
-  <em>You vote for GPT-5 or GPT-4o via <a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank" rel="nofollow, noreferrer">Reddit</a></em>
-</div>
+{{< gallery caption="You vote for GPT-5 or GPT-4o via Reddit" >}}
+{{< gallery-image src="images/ac3wmuabekif1.webp" alt="Comparing two different GPT models and their responses in a funny meme way" >}}
+{{< /gallery >}}
+
+<a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank\" rel="nofollow, noreferrer">Reddit Post ➡️</a>
 
 Turns out when your AI becomes more thoughtful, you need to be more thoughtful too. After months of experimentation with GPT-5 and testing API alternatives, here's what actually works: better prompting techniques and a setup that saved us 60-70% on costs.
 
@@ -100,21 +100,15 @@ The optimizer adds seven key sections:
 
 No wonder people are having issues working with GPT-5 😅
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/prompt-optimizer-3-22s.gif" alt="OpenAI's Prompt Optimizer Demo." loading="lazy">
-  </div>
-  <em>Prompt Optimizer in action</em>
-</div>
+{{< gallery caption="Prompt Optimizer in action" >}}
+{{< gallery-image src="images/prompt-optimizer-3-22s.gif" alt="OpenAI's Prompt Optimizer Demo." >}}
+{{< /gallery >}}
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/optimize-for-gpt-5.webp" alt="Optimize for GPT-5 web user interface." loading="lazy">
-    <img src="images/optimized-for-gpt-5.webp" alt="Optimize for GPT-5 web showing the prompt optimized." loading="lazy">
-    <img src="images/optimized-for-gpt-5-show-changes.webp" alt="Optimize for GPT-5 web showing the prompt optimized with a description of the changes made and the reason." loading="lazy">
-  </div>
-  <em>Before, after, and explanation of changes</em>
-</div>
+{{< gallery caption="Before, after, and explanation of changes" >}}
+{{< gallery-image src="images/optimize-for-gpt-5.webp" alt="Optimize for GPT-5 web user interface." >}}
+{{< gallery-image src="images/optimized-for-gpt-5.webp" alt="Optimize for GPT-5 web showing the prompt optimized." >}}
+{{< gallery-image src="images/optimized-for-gpt-5-show-changes.webp" alt="Optimize for GPT-5 web showing the prompt optimized with a description of the changes made and the reason." >}}
+{{< /gallery >}}
 
 The good news? You don't need all seven sections for every prompt. The Quick Start section shows you the simplified approach that works for most tasks.
 
@@ -546,14 +540,11 @@ Instead of fighting usage limits, we switched to API-powered interfaces that giv
 
 We use <a href="https://www.typingmind.com/" target="_blank">TypingMind ➡️</a> for its clean, ChatGPT-like interface. It connects to both our OpenAI and Anthropic API keys, so we can switch between GPT-5 and Claude seamlessly.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/typingmind.webp" alt="Welcome screen and landing page of TypingMind." loading="lazy">
-    <img src="images/typingmind-pricing.webp" alt="TypingMind pricing page, showing the three tiers to get a lifetime license." loading="lazy">
-    <img src="images/typingmind-main.webp" alt="TypingMind main page showing a navbar, a list of chats and the main chat user interface." loading="lazy">
-  </div>
-  <em>TypingMind</em>
-</div>
+{{< gallery caption="TypingMind" >}}
+{{< gallery-image src="images/typingmind.webp" alt="Welcome screen and landing page of TypingMind." >}}
+{{< gallery-image src="images/typingmind-pricing.webp" alt="TypingMind pricing page, showing the three tiers to get a lifetime license." >}}
+{{< gallery-image src="images/typingmind-main.webp" alt="TypingMind main page showing a navbar, a list of chats and the main chat user interface." >}}
+{{< /gallery >}}
 
 I admit that currently, the TypingMind license is quite expensive. It goes for about $99 for the full version. I'm happy that I bought it for less than half the price, but even if I were going to buy it today, I could recoup the cost in six months by thinking of it as replacing the ChatGPT subscription.
 
@@ -567,13 +558,10 @@ I admit that currently, the TypingMind license is quite expensive. It goes for a
 
 I also set up <a href="https://openwebui.com/" target="_blank">Open-WebUI ➡️</a> on our home server for when I want to experiment with different models or try Ollama.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/openwebui.webp" alt="Welcome screen and landing page of Open WebUI." loading="lazy">
-    <img src="images/openwebui-main.webp" alt="Open WebUI main page showing a list of chats and the main chat user interface." loading="lazy">
-  </div>
-  <em>Open WebUI</em>
-</div>
+{{< gallery caption="Open WebUI" >}}
+{{< gallery-image src="images/openwebui.webp" alt="Welcome screen and landing page of Open WebUI." >}}
+{{< gallery-image src="images/openwebui-main.webp" alt="Open WebUI main page showing a list of chats and the main chat user interface." >}}
+{{< /gallery >}}
 
 **Why we keep both:**
 
