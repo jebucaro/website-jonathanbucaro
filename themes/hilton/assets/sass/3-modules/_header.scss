@@ -354,7 +354,7 @@
 
     .icon__menu {
         display: none;
-        margin-right: 20px;
+        margin-left: 20px;
         cursor: pointer;
     }
 
@@ -386,6 +386,7 @@
     align-items: center;
     width: 44px;
     height: 44px;
+    margin-right: 12px;
     border-radius: 50%;
     user-select: none;
     cursor: pointer;
@@ -431,5 +432,89 @@
 
     .toggle-moon {
         display: none;
+    }
+}
+
+/* Language Selector */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 20px;
+}
+
+.language-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: $heading-font-family;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--link-color);
+    background: transparent;
+    position: relative;
+
+    .flag-icon {
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .lang-code {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &:hover {
+        background: var(--background-alt-color);
+        color: var(--link-color);
+    }
+
+    &.language-current {
+        background: var(--background-alt-color);
+        cursor: default;
+
+        &::before {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background: var(--brand-color);
+            border-radius: 2px;
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile) {
+    .language-selector {
+        margin-right: 12px;
+    }
+
+    .language-link {
+        padding: 6px 10px;
+
+        .flag-icon {
+            font-size: 16px;
+        }
+
+        .lang-code {
+            font-size: 11px;
+        }
+    }
+
+    .toggle-theme {
+        margin-right: 16px;
+    }
+
+    .nav-button .icon__menu {
+        margin-left: 0;
     }
 }
