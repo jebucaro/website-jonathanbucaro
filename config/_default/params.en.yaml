@@ -1,0 +1,15 @@
+# English localized parameters
+author:
+    author__bio: >-
+        Systems Engineer and Planeswalker. I write about my journey in technology, sharing experiences and insights that have driven my professional development.
+
+blog:
+    blog__title: Recent Posts
+    blog__description: ''
+
+logos:
+    logos__title: 'My professional experience includes collaborations with the following companies:'
+
+mailchimp:
+    mailchimp__input__text: 'Email address...'
+    mailchimp__button__text: Get updates

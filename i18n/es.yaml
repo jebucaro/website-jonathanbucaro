@@ -1,0 +1,140 @@
+# Error messages
+- id: error_pageNotFound
+  translation: 'No se pudo encontrar la página solicitada.'
+
+- id: error_returnToHome
+  translation: 'Volver al Inicio'
+
+# UI strings
+- id: ui_navigation
+  translation: 'Navegación'
+
+- id: ui_allRightsReserved
+  translation: 'Todos los Derechos Reservados. Publicado con'
+
+- id: ui_email
+  translation: 'Correo electrónico'
+
+- id: ui_emailPlaceholder
+  translation: 'Dirección de correo...'
+
+- id: ui_relatedPosts
+  translation: 'Te podría interesar'
+
+- id: ui_name
+  translation: 'Nombre'
+
+- id: ui_message
+  translation: 'Mensaje'
+
+- id: ui_sendMessage
+  translation: 'Enviar Mensaje'
+
+- id: ui_comments
+  translation: 'Comentarios'
+
+- id: ui_viewMore
+  translation: 'Ver más'
+
+- id: ui_backToTop
+  translation: 'Arriba'
+
+# Content strings
+- id: content_posts_one
+  translation: 'Publicación'
+
+- id: content_posts_other
+  translation: 'Publicaciones'
+
+# Section: Hero
+- id: sections_hero_title
+  translation: 'Soy Jonathan 🤓'
+
+- id: sections_hero_subtitle
+  translation: '¡Crearé servicios que te aporten valor!'
+
+- id: sections_hero_description
+  translation: 'Como Ingeniero en Sistemas con experiencia en C#, Python y tecnologías de IA Generativa, me dedico a crear soluciones innovadoras y de alta calidad que superen tus expectativas.'
+
+- id: sections_hero_button
+  translation: 'Contáctame'
+
+# Section: Logos
+- id: sections_logos_title
+  translation: 'Mi experiencia profesional incluye colaboraciones con las siguientes empresas:'
+
+# Section: Blog
+- id: sections_blog_title
+  translation: 'Publicaciones Recientes'
+
+- id: sections_blog_description
+  translation: 'Explora mis últimos artículos e ideas sobre tecnología, desarrollo y más.'
+
+- id: sections_blog_readMore
+  translation: 'Leer Más'
+
+# Section: Testimonials
+- id: sections_testimonials_title
+  translation: 'Testimonios'
+
+- id: sections_testimonials_description
+  translation: 'Lo que clientes y colegas dicen sobre trabajar conmigo.'
+
+# Section: Projects
+- id: sections_projects_title
+  translation: 'Proyectos Seleccionados'
+
+- id: sections_projects_description
+  translation: 'Una muestra de mi trabajo más reciente y las tecnologías que domino.'
+
+- id: sections_projects_viewProject
+  translation: 'Ver Proyecto'
+
+- id: sections_projects_allProjects
+  translation: 'Todos los Proyectos'
+
+# Section: Contact
+- id: sections_contact_title
+  translation: 'Ponte en Contacto'
+
+- id: sections_contact_description
+  translation: '¿Tienes un proyecto en mente o simplemente quieres saludar? Me encantaría saber de ti.'
+
+- id: sections_contact_send
+  translation: 'Enviar Mensaje'
+
+- id: sections_contact_success
+  translation: '¡Tu mensaje fue enviado exitosamente!'
+
+- id: sections_contact_error
+  translation: 'Algo salió mal. Por favor intenta de nuevo.'
+
+# Form strings
+- id: form_name
+  translation: 'Nombre'
+
+- id: form_email
+  translation: 'Correo electrónico'
+
+- id: form_subject
+  translation: 'Asunto'
+
+- id: form_message
+  translation: 'Mensaje'
+
+- id: form_sendButton
+  translation: 'Enviar Mensaje'
+
+# Pagination
+- id: pagination_next
+  translation: '&raquo;'
+
+- id: pagination_previous
+  translation: '&laquo;'
+
+# Projects navigation
+- id: projects_nextProject
+  translation: 'Siguiente Proyecto'
+
+- id: projects_previousProject
+  translation: 'Proyecto Anterior'
