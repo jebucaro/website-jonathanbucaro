@@ -375,4 +375,4 @@ Verifica que el comando de Oh My Posh esté al final de tu archivo `$PROFILE` y 
 
 ---
 
-Photo by <a href="https://unsplash.com/es/@sunriseking?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Sunrise Kingi</a> on <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Logo de WSL por Microsoft Corporation, Dominio Público, via <a href="https://commons.wikimedia.org/wiki/File:Windows_Subsystem_for_Linux_logo.png" target="_blank" rel="nofollow, noreferrer">Wikimedia Commons</a>

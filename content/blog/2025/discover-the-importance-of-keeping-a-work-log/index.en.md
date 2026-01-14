@@ -38,19 +38,19 @@ While it may sound a bit like the `stand-up meeting` questions, the purpose of a
 
 Even if it feels tedious at first, the truth is this practice will save you time, lower your stress, and may even get you out of a tight spot more than once. Here are some key reasons to embrace it:
 
-### 💪 It gives you a clear trail of your achievements
+### It gives you a clear trail of your achievements
 
 Don’t underestimate everything you do! Documenting your progress makes sure you don’t forget your wins or the times you overcame big hurdles. During performance reviews or meetings with your manager, your log can speak for you, helping you back up your work with solid facts.
 
-### ⏳ It helps you understand how you spend your time
+### It helps you understand how you spend your time
 
 How many times have you reached the end of the day without knowing where those eight hours went? A log lets you pinpoint exactly what you worked on, including interruptions or unexpected tasks. You’ll also start to notice your most productive times: Are you more creative in the mornings? Do you focus best after a good lunch? This can help you fine-tune your schedule and cut out low-value activities.
 
-### 🔎 It eliminates ambiguity and boosts your focus
+### It eliminates ambiguity and boosts your focus
 
 Sometimes, even when you know what you need to do, that “where do I start?” question can cause stress. Logging your work at the start and end of the day gives you clarity. You can even use your log to set clear goals and reduce uncertainty when tackling big or complex tasks. Organizing your thoughts before you start helps you stay on track and avoid “winging it” as you go.
 
-### ✅ It brings closure at the end of your day
+### It brings closure at the end of your day
 
 Few things are as satisfying as crossing off completed tasks. At the end of your workday, your log lets you see what you’ve accomplished (you earned it!) and shows you what’s still left. That way, there’s no uncertainty and you can shuffle your remaining tasks to the next day, no stress required.
 
@@ -72,11 +72,11 @@ Don’t make it complicated. Choose a simple tool that works for you—anything 
 2. **During the day:** Progress, challenges, and unexpected changes (those last-minute requests).
 3. **End of the day:** A brief summary of what you accomplished and what’s left for tomorrow.
 
-## ✍️ Example: Using an `Obsidian` Template for Your Work Log
+## ✍️ Using an `Obsidian` Template for Your Work Log
 
 `Obsidian`, according to its official site, is a private and flexible writing app that adapts to your way of thinking. It’s an excellent app—I use it every day! You can download and use `Obsidian` for free, forever, for any purpose, including personal, commercial, nonprofit, educational, and even governmental use.
 
-This template is based on the work of **Dann Berg** in his post <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Below I’ll share my own adaptation, tailored for work logs.
+This simplified template is based on the work of **Dann Berg** in his post <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Below I’ll share my own adaptation, tailored for work logs.
 
 ### ⚙️ Setting Up the Template
 
@@ -90,9 +90,7 @@ You’ll need `Obsidian` installed and a vault to use for your work log.
 #### Plugins
 
 - <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="nofollow">Daily Notes</a>, included by default in Obsidian, no installation required.
-- <a href="https://github.com/SilentVoid13/Templater" target="_blank" rel="nofollow">Templater</a>, a community plugin that needs to be installed from the <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian plugin gallery</a>.
 - <a href="https://github.com/liamcain/obsidian-calendar-plugin" target="_blank" rel="nofollow">Calendar</a>, a community plugin that needs to be installed from the <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian plugin gallery</a>
-- <a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="nofollow">Dataview</a>, a community plugin that needs to be installed from the <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian plugin gallery</a>.
 
 ##### Enable Community Plugins
 
@@ -107,14 +105,6 @@ Click on the `Browse` button and in the popup window, search for the plugin name
 {{< gallery-image src="images/obsidian-community-plugins-browse.webp" alt="Searching for plugins in the community plugins window in Obsidian, showing the search for 'Templater." >}}
 {{< /gallery >}}
 
-##### Templater Plugin Installation
-
-{{< gallery caption="Obsidian - Install and Enable Templater Plugin" >}}
-{{< gallery-image src="images/obsidian-community-plugins-install-templater.webp" alt="Search result for 'Templater' plugin in Obsidian, showing the install button." >}}
-{{< gallery-image src="images/obsidian-community-plugins-enable-templater.webp" alt="Templater' plugin installed in Obsidian, showing the enable button." >}}
-{{< gallery-image src="images/obsidian-community-plugins-templater-enabled.webp" alt="'Templater' plugin in Obsidian already installed and enabled." >}}
-{{< /gallery >}}
-
 ##### Calendar Plugin Installation
 
 {{< gallery caption="Obsidian - Install and Enable Calendar Plugin" >}}
@@ -123,32 +113,22 @@ Click on the `Browse` button and in the popup window, search for the plugin name
 {{< gallery-image src="images/obsidian-community-plugins-calendar-enabled.webp" alt="'Calendar' plugin in Obsidian already installed and enabled." >}}
 {{< /gallery >}}
 
-##### Dataview Plugin Installation
-
-{{< gallery caption="Obsidian - Install and Enable Dataview Plugin" >}}
-{{< gallery-image src="images/obsidian-community-plugins-install-dataview.webp" alt="Search result for 'Dataview' plugin in Obsidian, showing the install button." >}}
-{{< gallery-image src="images/obsidian-community-plugins-enable-dataview.webp" alt="Dataview' plugin installed and showing the enable button." >}}
-{{< gallery-image src="images/obsidian-community-plugins-dataview-enabled.webp" alt="Dataview' plugin in Obsidian already installed and enabled." >}}
-{{< /gallery >}}
-
-For now, we won't change the plugins’ default settings.
-
 #### Setting Up the Template
 
-Create a new folder called `Templates` and within it, a sub-folder called `Daily Templates`. Inside `Daily Templates`, create a new note called `Daily Notes Template` and copy-paste the following snippet into the note in source mode. (Tip: Use `Ctrl+Shift+v` to paste as plain text.)
+Create a new folder called `templates` at the root of the workspace. Inside the `templates` directory, create a new note called `daily-notes-template` and copy-paste the following snippet into the note in source mode. (Tip: Use `Ctrl+Shift+v` to paste as plain text.)
 
-````markdown
+```markdown
 ---
-created: <%tp.file.creation_date()%>
+created: '{{date:YYYY-MM-DD-dddd}}'
 tags:
-    - Daily
+    - daily
 ---
 
 ## 🗓️ Daily Questions
 
 ### 📌 Tasks
 
-- [ ] <% tp.file.cursor() %>
+- [ ]
 
 ### 🎥 Meetings
 
@@ -156,26 +136,12 @@ tags:
 
 ### 🚧 Impediments
 
-- ***
+-
 
 ## 📝 Notes
-
----
-
-### 📖 Daily Notes Overview
-
-#### ✍️ Notes created today
-
-```dataview
-List FROM "" WHERE file.cday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.ctime asc
 ```
 
-#### 🔄️ Notes last updated today
-
-```dataview
-List FROM "" WHERE file.mday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.mtime asc
-```
-````
+Create a new folder called `daily` at the root of the workspace.
 
 {{< gallery caption="Obsidian - Directory Structure" >}}
 {{< gallery-image src="images/obsidian-folder-structure.webp" alt="Obsidian's main screen showing folder structure to set up daily notes template and generation folder." >}}
@@ -184,17 +150,10 @@ List FROM "" WHERE file.mday = date("<%tp.date.now("YYYY-MM-DD")%>") SORT file.m
 
 #### Plugin Configuration
 
-Go to settings and, under `Core plugins`, find the `Daily Notes` plugin settings. Set `YYYY/MM-MMMM/YYYY-MM-DD-dddd` as the value for `Date Format`. This will nest your notes in subfolders by year > month > day, making it easier to browse. Also, set `Daily` as the value for `New File Location`, and `Templates/Daily Templates/Daily Note Template` as the `Template file location`. This way, when you hit `Open today's daily note` in the Obsidian ribbon, your new note will use the template. You may also want to enable `Open daily note on startup`, personally, I keep this turned on.
+Go to settings and, under **Core plugins**, find the **Daily Notes** plugin settings. Set `YYYY/MM-MMMM/YYYY-MM-DD-dddd` as the value for **Date Format**. This will nest your notes in subfolders by _year > month > day_, making it easier to browse. Also, set `daily` as the value for **New File Location**, and `templates/daily-notes-template` as the **Template file location**. This way, when you hit **Open today's daily note** in the Obsidian ribbon, your new note will use the template. You may also want to enable **Open daily note on startup**, personally, I keep this turned on.
 
 {{< gallery caption="Obsidian - Daily Note Settings" >}}
 {{< gallery-image src="images/obsidian-create-daily-note-configuration.webp" alt="Daily Notes plugin settings in Obsidian, showing settings for file date format, location, and the option to create the daily note on launch." >}}
-{{< /gallery >}}
-
-Finally, under `Community plugins`, look for the Templater plugin settings. Set `Templates` as the `Template folder location`. Turn on `Automatic jump to cursor` and `Trigger Templater on new file creation`. This will let Templater automatically insert the date tags. Scroll down in Templater settings, enable `Enable folder templates`, and choose the `Daily` folder in the first box, and `Templates/Daily Templates/Daily Note Template.md` in the second. This will associate your daily note template with the notes you create in the log.
-
-{{< gallery caption="Obsidian - Templater Configuration" >}}
-{{< gallery-image src="images/obsidian-create-templater-configuration.webp" alt="Templater plugin settings in Obsidian, showing template folder location, jump to cursor, and setting Templater to run on new file creation." >}}
-{{< gallery-image src="images/obsidian-create-templater-configuration-folder-templates.webp" alt="Further Templater settings showing folder templates pairing of location and template." >}}
 {{< /gallery >}}
 
 ### 🎬 Using the template
@@ -208,18 +167,11 @@ On the left sidebar, you'll see quick access buttons, including one for `Open to
 {{< gallery-image src="images/obsidian-todays-daily-note.webp" alt="A daily note created in Obsidian using the configured template." >}}
 {{< /gallery >}}
 
-In the top right, you’ll find the `Expand` button. Click it to show different tabs, one of which is `Calendar`. The calendar view lets you jump between different daily notes. If you double-click a date that doesn’t have a daily note yet, the app will prompt you to create one for that day. You can toggle this view on or off—when expanded, the button becomes `Collapse`.
+In the top right, you’ll find the **Expand** button. Click it to show different tabs, one of which is **Calendar**. The calendar view lets you jump between different daily notes. If you double-click a date that doesn’t have a daily note yet, the app will prompt you to create one for that day. You can toggle this view on or off—when expanded, the button becomes **Collapse**.
 
 {{< gallery caption="Obsidian - Calendar View" >}}
 {{< gallery-image src="images/obsidian-expand.webp" alt="Obsidian app, showing where to click to expand views, like the calendar view." >}}
 {{< gallery-image src="images/obsidian-expand-calendar.webp" alt="Obsidian app, showing the Calendar view." >}}
-{{< /gallery >}}
-
-SIf you're in `Source mode`, the daily note summary will show raw code, but when you switch to `Reading view`, you’ll see a clean list of notes you created or last updated that day.
-
-{{< gallery caption="Obsidian - Edit and Reading Views" >}}
-{{< gallery-image src="images/obsidian-source-mode.webp" alt="Obsidian app in source code mode." >}}
-{{< gallery-image src="images/obsidian-reading-view.webp" alt="Obsidian app, showing reading view mode." >}}
 {{< /gallery >}}
 
 My usual process is to switch into editing mode when I need to review something from this overview.
@@ -234,4 +186,4 @@ Ready to get started? If you stick to this habit, you’ll be surprised by how m
 
 ---
 
-Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Photo by <a href="https://unsplash.com/@dsebas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Pedro Costa</a> on <a href="https://unsplash.com/photos/black-and-white-computer-keyboard-aXY5doQNZTc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
