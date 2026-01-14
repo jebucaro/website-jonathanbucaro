@@ -214,6 +214,12 @@ Elige el que te guste. Por ejemplo, si te gusta el tema minimalista “zash”, 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
 ```
 
+**ACTUALIZACIÓN:** Si has instalado Oh My Posh por medio de Winget, los temas no son descargados como archivos, sin embargo, puedes hacer referencia al tema al indicar el nombre del tema en la configuración, sin incluir la extensión.
+
+```powershell
+oh-my-posh init pwsh --config "zash" | Invoke-Expression
+```
+
 Guarda y recarga:
 
 ```powershell
