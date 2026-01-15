@@ -157,4 +157,4 @@ code .
 
 ---
 
-Foto de <a href="https://unsplash.com/@eiskonen" target="_blank" rel="nofollow noreferrer">Hans Eiskonen</a> en <a href="https://unsplash.com/photos/PotGJdsW06k" target="_blank" rel="nofollow noreferrer">Unsplash</a>
+Logo de WSL por Microsoft Corporation, Dominio Público, via <a href="https://commons.wikimedia.org/wiki/File:Windows_Subsystem_for_Linux_logo.png" target="_blank" rel="nofollow, noreferrer">Wikimedia Commons</a>

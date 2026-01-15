@@ -379,4 +379,4 @@ Check that the Oh My Posh command is at the end of your `$PROFILE` file and that
 
 ---
 
-WSL logo by Microsoft Corporation, Public domain, via <a href="https://commons.wikimedia.org/wiki/File:Windows_Subsystem_for_Linux_logo.png" target="_blank" rel="nofollow, noreferrer">Wikimedia Commons</a>
+Photo by <a href="https://unsplash.com/@imsunnyhassan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow noreferrer">Sunny Hassan</a> on <a href="https://unsplash.com/photos/a-screenshot-of-a-computer-reaKJPg2qKg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow noreferrer">Unsplash</a>
