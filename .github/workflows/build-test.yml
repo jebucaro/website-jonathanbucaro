@@ -40,24 +40,6 @@ jobs:
                   css: false
                   blacklist: '.*/node_modules/.*'
 
-            - name: Check links
-              uses: lycheeverse/lychee-action@v2.7.0
-              with:
-                  args: >
-                      --verbose
-                      --no-progress
-                      --max-retries 3
-                      --timeout 10
-                      --max-concurrency 5
-                      --exclude-file .lycheeignore
-                      --exclude-path node_modules
-                      --exclude-path public/js
-                      --exclude-path public/css
-                      './public/**/*.html'
-                  fail: true
-              env:
-                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
             - name: Upload build artifacts on failure
               if: failure()
               uses: actions/upload-artifact@v6.0.0

@@ -1,31 +1,32 @@
 main:
     - identifier: home
-      name: Home
-      url: /
+      name: Inicio
+      url: /es/
       weight: 10
     - identifier: about
-      name: About
-      url: /about/
+      name: Acerca de
+      url: /es/about/
       weight: 30
     - identifier: pages
-      name: Pages
+      name: Páginas
       weight: 40
       hasChildren: true
-    - parent: pages
+    - identifier: blog
+      parent: pages
       name: Blog
-      url: /blog/
+      url: /es/blog/
       weight: 10
 
 footer:
     - identifier: home
-      name: Home
-      url: /
+      name: Inicio
+      url: /es/
       weight: 10
     - identifier: about
-      name: About
-      url: /about/
+      name: Acerca de
+      url: /es/about/
       weight: 30
     - identifier: blog
       name: Blog
-      url: /blog/
+      url: /es/blog/
       weight: 40

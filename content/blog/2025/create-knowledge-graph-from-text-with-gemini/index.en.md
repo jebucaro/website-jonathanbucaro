@@ -1,5 +1,6 @@
 ---
 title: 'Create a Knowledge Graph From Text With Gemini'
+slug: 'create-knowledge-graph-from-text-with-gemini'
 date: 2025-10-06T19:59:11-06:00
 image: 'images/cover.webp'
 tags: [python, ai-tools, gemini]
@@ -45,12 +46,9 @@ Into this structured graph:
 - **Entities**: Sarah (person), TechCorp (organization), San Francisco (location), Michael (person), VP of Engineering (occupation)
 - **Relationships**: Sarah WORKS_AT TechCorp, TechCorp LOCATED_IN San Francisco, Sarah REPORTS_TO Michael, Michael HAS_ROLE VP of Engineering
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
-  </div>
-  <em>A sample knowledge graph showing entity clustering and relationship networks. Notice how connected concepts naturally group together.</em>
-</div>
+{{< gallery caption="A sample knowledge graph showing entity clustering and relationship networks. Notice how connected concepts naturally group together." >}}
+{{< gallery-image src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." >}}
+{{< /gallery >}}
 
 ---
 
@@ -153,15 +151,12 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 
 The interface provides four perspectives on your extracted knowledge:
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/nodus-main-interface.webp" alt="Nodus tab showing a summary from the input text." loading="lazy">
-    <img src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." loading="lazy">
-      <img src="images/nodus-main-interface-kg-raw.webp" alt="Nodus tab showing the details of the nodes and relationships in the knowledge graph." loading="lazy">
-      <img src="images/nodus-main-interface-kg-statistics.webp" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." loading="lazy">
-  </div>
-  <em>Visual exploration, raw JSON for debugging, and graph statistics for analysis</em>
-</div>
+{{< gallery caption="Visual exploration, raw JSON for debugging, and graph statistics for analysis" >}}
+{{< gallery-image src="images/nodus-main-interface.webp" alt="Nodus tab showing a summary from the input text." >}}
+{{< gallery-image src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." >}}
+{{< gallery-image src="images/nodus-main-interface-kg-raw.webp" alt="Nodus tab showing the details of the nodes and relationships in the knowledge graph." >}}
+{{< gallery-image src="images/nodus-main-interface-kg-statistics.webp" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." >}}
+{{< /gallery >}}
 
 ### What You Get
 
@@ -188,12 +183,9 @@ I designed this implementation to prioritize clarity over abstraction. Each laye
 
 The system uses four focused layers:
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/nodus-main-interface.webp" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." loading="lazy">
-  </div>
-  <em>The clean interface focuses on the core workflow: configure, input, extract, visualize</em>
-</div>
+{{< gallery caption="The clean interface focuses on the core workflow: configure, input, extract, visualize" >}}
+{{< gallery-image src="images/nodus-main-interface.webp" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." >}}
+{{< /gallery >}}
 
 ### 1. 📝 Extraction Layer: Where Structure Meets Language
 

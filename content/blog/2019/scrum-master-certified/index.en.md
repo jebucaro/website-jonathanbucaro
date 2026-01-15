@@ -30,12 +30,9 @@ The SCRUMstudy framework emphasizes clear processes and well-defined roles, and 
 
 As I continue this journey, I look forward to applying these learnings to foster collaboration, increase agility, and promote excellence within my teams and projects.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/badge-SMC.webp" alt="SCRUMstudy Badge for Scrum Master Certified" loading="lazy">
-  </div>
-  <em>Scrum Master Certified</em>
-</div>
+{{< gallery caption="Scrum Master Certified" >}}
+{{< gallery-image src="images/badge-SMC.webp" alt="SCRUMstudy Badge for Scrum Master Certified" >}}
+{{< /gallery >}}
 
 <a href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" target="_blank" rel="noopener">Verify SMC Credential at SCRUMstudy ➡️</a>
 

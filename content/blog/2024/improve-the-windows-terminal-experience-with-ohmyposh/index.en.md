@@ -212,6 +212,12 @@ Pick one you like. For example, if you like the minimalist “zash” theme, loc
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
 ```
 
+**UPDATE:** If you have installed Oh My Posh via Winget, the themes aren't donwloaded as files, but you can access them by refering to the name of the theme in the configuration with no extension.
+
+```power
+oh-my-posh init pwsh --config "zash" | Invoke-Expression
+```
+
 Save and reload:
 
 ```powershell
@@ -373,4 +379,4 @@ Check that the Oh My Posh command is at the end of your `$PROFILE` file and that
 
 ---
 
-Photo by <a href="https://unsplash.com/es/@sunriseking?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Sunrise Kingi</a> on <a href="https://unsplash.com/es/fotos/boligrafo-de-clic-plateado-mbLr6NEatMI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Photo by <a href="https://unsplash.com/@imsunnyhassan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow noreferrer">Sunny Hassan</a> on <a href="https://unsplash.com/photos/a-screenshot-of-a-computer-reaKJPg2qKg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow noreferrer">Unsplash</a>

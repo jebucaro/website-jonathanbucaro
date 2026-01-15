@@ -1,11 +1,12 @@
 {
     "default": true,
     "MD003": { "style": "atx" },
-    "MD009": { "br_spaces": 2 },
-    "MD013": false,
-    "MD033": false,
     "MD007": { "indent": 4 },
+    "MD009": { "br_spaces": 2 },
+    "MD010": { "spaces_per_tab": 4 },
+    "MD013": false,
     "MD022": false,
     "MD025": false,
+    "MD033": false,
     "MD041": false
 }

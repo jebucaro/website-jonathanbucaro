@@ -6,6 +6,7 @@
         "format:check": "prettier --check .",
         "format:write": "prettier --write .",
         "lint:markdown": "markdownlint 'content/**/*.md'",
+        "lint:markdown:fix": "markdownlint --fix 'content/**/*.md'",
         "build": "hugo --cleanDestinationDir --minify",
         "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
         "build:prod": "hugo --cleanDestinationDir --minify --environment production",
@@ -14,6 +15,7 @@
         "clean": "Remove-Item -Recurse -Force public, resources",
         "prepare": "husky",
         "check": "npm run format:check && npm run lint:markdown",
+        "fix": "npm run format:write && npm run lint:markdown:fix",
         "validate": "npm run check && npm run build"
     },
     "author": "",
@@ -32,7 +34,7 @@
         ],
         "content/**/*.md": [
             "prettier --write",
-            "markdownlint 'content/**/*.md'"
+            "markdownlint --fix"
         ]
     },
     "dependencies": {

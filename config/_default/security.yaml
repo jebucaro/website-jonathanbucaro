@@ -1,5 +1,5 @@
 # Security configuration
-## Content Security Policy for Chart.js
+## Hugo build-time security settings (commands, external resources, environment variables)
 csp:
     default-src:
         - "'self'"

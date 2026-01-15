@@ -1,0 +1,15 @@
+# Spanish localized parameters
+author:
+    author__bio: >-
+        Ingeniero en Sistemas y Planeswalker. Escribo sobre mi viaje en la tecnología, compartiendo experiencias e ideas que han impulsado mi desarrollo profesional.
+
+blog:
+    blog__title: Publicaciones Recientes
+    blog__description: ''
+
+logos:
+    logos__title: 'Mi experiencia profesional incluye colaboraciones con las siguientes empresas:'
+
+mailchimp:
+    mailchimp__input__text: 'Dirección de correo...'
+    mailchimp__button__text: Recibir actualizaciones

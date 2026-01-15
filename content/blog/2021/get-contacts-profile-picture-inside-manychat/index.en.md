@@ -1,5 +1,6 @@
 ---
 title: 'Get contact’s profile picture inside ManyChat'
+slug: 'get-contacts-profile-picture-inside-manychat'
 date: 2021-12-08T17:09:10-06:00
 image: 'images/cover.webp'
 tags: [manychat]
@@ -28,17 +29,14 @@ This App uses ManyChat’s API to get the profile picture URL of your contacts. 
 
 The API usage limit is OK for most use cases, just be careful if you are doing something massive 😉
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/0-monet-description.webp" alt="Artwork by Monet accompanied by text: 'One simple action without the technical fuzz of an external request' related to a ManyChat application." loading="lazy">
-    <img src="images/1-monet-setup.webp" alt="Background artwork by Monet with a laptop displaying the ManyChat app configuration screen for entering the API key." loading="lazy">
-    <img src="images/2-monet-actions.webp" alt="Background artwork by Monet with a laptop showing the various actions available in the ManyChat app." loading="lazy">
-    <img src="images/3-monet-expanded-actions.webp" alt="Background artwork by Monet with a laptop showing the configuration settings for retrieving the user profile picture URL in the ManyChat app." loading="lazy">
-    <img src="images/4-monet-flow.webp" alt="Background artwork by Monet with a laptop showing the ManyChat app flow featuring the action to retrieve the user profile picture URL." loading="lazy">
-    <img src="images/5-monet-phone.webp" alt="Background artwork by Monet with a phone displaying the Messenger app showing the user's profile picture in a chatbot conversation." loading="lazy">
-  </div>
-  <em>Gallery Monet</em>
-</div>
+{{< gallery caption="Gallery Monet" >}}
+{{< gallery-image src="images/0-monet-description.webp" alt="Artwork by Monet accompanied by text: 'One simple action without the technical fuzz of an external request' related to a ManyChat application." >}}
+{{< gallery-image src="images/1-monet-setup.webp" alt="Background artwork by Monet with a laptop displaying the ManyChat app configuration screen for entering the API key." >}}
+{{< gallery-image src="images/2-monet-actions.webp" alt="Background artwork by Monet with a laptop showing the various actions available in the ManyChat app." >}}
+{{< gallery-image src="images/3-monet-expanded-actions.webp" alt="Background artwork by Monet with a laptop showing the configuration settings for retrieving the user profile picture URL in the ManyChat app." >}}
+{{< gallery-image src="images/4-monet-flow.webp" alt="Background artwork by Monet with a laptop showing the ManyChat app flow featuring the action to retrieve the user profile picture URL." >}}
+{{< gallery-image src="images/5-monet-phone.webp" alt="Background artwork by Monet with a phone displaying the Messenger app showing the user's profile picture in a chatbot conversation." >}}
+{{< /gallery >}}
 
 ### 🌐 Install Monet for ManyChat
 
@@ -78,23 +76,18 @@ The «Monet App» does not track data. It’s a bridge or an interface for your 
 
 Go to your **ManyChat Settings > Extensions > API**. If you haven’t generated an API Key, clic the **Generate Your API Key** button (1) and copy the contents of the **Get API Key** field (2). If you have previusly generated your API Key, just copy it from the **Get API Key** field (2).
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/monet-setup-api-1.webp" alt="ManyChat settings screen showing the option to generate an API key." loading="lazy">
-    <img src="images/monet-setup-api-generate-1.webp" alt="Close-up of ManyChat settings highlighting the textbox for the API key and the button to generate the key." loading="lazy">
-  </div>
-  <em>ManyChat – Generate your API Key</em>
-</div>
+{{< gallery caption="ManyChat – Generate your API Key" >}}
+{{< gallery-image src="images/monet-setup-api-1.webp" alt="ManyChat settings screen showing the option to generate an API key." >}}
+{{< gallery-image src="images/monet-setup-api-generate-1.webp" alt="Close-up of ManyChat settings highlighting the textbox for the API key and the button to generate the key." >}}
+{{< /gallery >}}
 
 Now go to **ManyChat Settings > Extensions > Apps** and select the **Monet** App. Paste your API Key on the **ManyChat API Key** field (3). Clic **Save** (4). And that’s it!
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/monet-setup-app-select-1.webp" alt="ManyChat settings screen showing a list of installed apps, highlighting the Monet App." loading="lazy">
-    <img src="images/monet-setup-app-api-1.webp" alt="Focused view of the Monet App settings showing the textbox for pasting the ManyChat API key and the button to save the configuration." loading="lazy">
-  </div>
-  <em>Monet – Configure your ManyChat API Key</em>
-</div>
+{{< gallery caption="Monet – Configure your ManyChat API Key" >}}
+{{< gallery-image src="images/monet-setup-app-select-1.webp" alt="ManyChat settings screen showing a list of installed apps, highlighting the Monet App." >}}
+{{< gallery-image src="images/monet-setup-app-api-1.webp" alt="Focused view of the Monet App settings showing the textbox for pasting the ManyChat API key and the button to save the configuration." >}}
+{{< /gallery >}}
+
 <span id="actions"></span>
 
 ## ⚡ Actions
@@ -127,12 +120,9 @@ It’s safer to validate if the CUF has some value in it. If not, the following 
 
 Here is a small basic flow on how to use Monet App.
 
-<div class="gallery-box">
-  <div class="gallery">
-    <img src="images/monet-flow-sample.webp" alt="ManyChat flow diagram incorporating the Monet App, illustrating the sequence of actions." loading="lazy">
-  </div>
-  <em>Monet – Flow Sample</em>
-</div>
+{{< gallery caption="Monet – Flow Sample" >}}
+{{< gallery-image src="images/monet-flow-sample.webp" alt="ManyChat flow diagram incorporating the Monet App, illustrating the sequence of actions." >}}
+{{< /gallery >}}
 
 ---
 

@@ -1,0 +1,20 @@
+{{- /*
+  Gallery shortcode for displaying multiple images with a caption
+
+  Usage:
+    {{< gallery caption="Your caption here" >}}
+      {{< gallery-image src="images/photo1.webp" alt="Description 1" >}}
+      {{< gallery-image src="images/photo2.webp" alt="Description 2" >}}
+    {{< /gallery >}}
+*/ -}}
+
+{{- $caption := .Get "caption" -}}
+
+<div class="gallery-box">
+    <div class="gallery">
+        {{- .Inner -}}
+    </div>
+    {{- with $caption -}}
+    <em>{{ . }}</em>
+    {{- end -}}
+</div>
