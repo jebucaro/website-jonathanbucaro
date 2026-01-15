@@ -30,7 +30,7 @@ El lanzamiento de GPT-5 ha sido... interesante. Este meme captura perfecto lo qu
 {{< gallery-image src="images/ac3wmuabekif1.webp" alt="Comparación divertida entre dos modelos GPT y sus respuestas" >}}
 {{< /gallery >}}
 
-<a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank\" rel="nofollow, noreferrer">Publicación en Reddit ➡️</a>
+<a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank" rel="nofollow, noreferrer">Publicación en Reddit ➡️</a>
 
 Resulta que cuando tu IA se vuelve más reflexiva, tú también tienes que serlo. Después de meses experimentando con GPT-5 y probando alternativas por API, esto es lo que realmente funciona: mejores técnicas de prompting y una configuración que nos ahorró 60-70% en costos.
 

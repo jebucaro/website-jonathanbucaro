@@ -87,6 +87,7 @@ Now go to **ManyChat Settings > Extensions > Apps** and select the **Monet** App
 {{< gallery-image src="images/monet-setup-app-select-1.webp" alt="ManyChat settings screen showing a list of installed apps, highlighting the Monet App." >}}
 {{< gallery-image src="images/monet-setup-app-api-1.webp" alt="Focused view of the Monet App settings showing the textbox for pasting the ManyChat API key and the button to save the configuration." >}}
 {{< /gallery >}}
+
 <span id="actions"></span>
 
 ## ⚡ Actions

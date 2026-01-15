@@ -119,7 +119,7 @@ Crea una carpeta nueva llamada `templates` en la raíz del vault. Dentro de la c
 
 ```markdown
 ---
-created: "{{date:YYYY-MM-DD-dddd}}"
+created: '{{date:YYYY-MM-DD-dddd}}'
 tags:
     - daily
 ---

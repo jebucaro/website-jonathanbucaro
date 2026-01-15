@@ -25,6 +25,7 @@ Trabajé como contratista Full Stack Engineer en Cognits durante dos años, espe
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Foto grupal con el equipo de Cognits" >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2.webp" alt="Reconocimiento 'Passion to Grow' de Cognits" >}}
 {{< /gallery >}}
+
 Esta trayectoria me llevó a una promoción a tiempo completo en Cognits, donde ahora colaboro con el liderazgo para analizar requerimientos de clientes y desarrollar propuestas estratégicas de negocio. Este cambio, de un enfoque práctico de desarrollo a una alianza estratégica, profundizó mi comprensión de cómo la tecnología impulsa el valor para el negocio.
 
 {{< gallery caption="2025 - Selfie después de recibir la noticia de convertirme en empleado a tiempo completo." >}}

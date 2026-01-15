@@ -30,7 +30,7 @@ The GPT-5 launch has been... interesting. This meme perfectly captures what many
 {{< gallery-image src="images/ac3wmuabekif1.webp" alt="Comparing two different GPT models and their responses in a funny meme way" >}}
 {{< /gallery >}}
 
-<a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank\" rel="nofollow, noreferrer">Reddit Post ➡️</a>
+<a href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" target="_blank" rel="nofollow, noreferrer">Reddit Post ➡️</a>
 
 Turns out when your AI becomes more thoughtful, you need to be more thoughtful too. After months of experimentation with GPT-5 and testing API alternatives, here's what actually works: better prompting techniques and a setup that saved us 60-70% on costs.
 

@@ -26,6 +26,7 @@ and microservices using Java (Spring Boot) and TypeScript. All applications were
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Group photo with the Cognits team" >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2.webp" alt="Cognits 'Passion to Grow' award" >}}
 {{< /gallery >}}
+
 This progression led to a full-time promotion at Cognits, where I now collaborate with leadership to analyze client requirements and develop strategic business proposals. This shift from hands-on development to strategic partnership has deepened my understanding of how technology drives business value.
 
 {{< gallery caption="2025 - Selfie after receiving the notice of becoming a full time employee." >}}
