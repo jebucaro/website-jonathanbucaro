@@ -240,3 +240,7 @@ git log --show-signature
 {{< /gallery >}}
 
 Deberías ver: `Good "ssh" signature for [email] with ED25519 key ...`
+
+---
+
+Foto por {{< extlink href="<https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Bernd 📷 Dittrich{{< /extlink >}} en {{< extlink href="<https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}

@@ -25,7 +25,7 @@ description: 'Get the profile picture of your ManyChat contacts. One simple acti
 
 Hello and welcome! Thank you for your interest in Monet.
 
-This App uses ManyChat’s API to get the profile picture URL of your contacts. You will need a ManyChat Pro Account and since you are consuming ManyChat’s API directly, you have to be aware of {{< extlink href="<https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls>?" >}}ManyChat’s API limits{{< /extlink >}}. The API used my Monet App is `fb/subscriber/getInfo` which is limited up to 10 RPS (request per second).
+This App uses ManyChat’s API to get the profile picture URL of your contacts. You will need a ManyChat Pro Account and since you are consuming ManyChat’s API directly, you have to be aware of {{< extlink href="<https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls>>?" >}}ManyChat’s API limits{{< /extlink >}}. The API used my Monet App is `fb/subscriber/getInfo` which is limited up to 10 RPS (request per second).
 
 The API usage limit is OK for most use cases, just be careful if you are doing something massive 😉
 
