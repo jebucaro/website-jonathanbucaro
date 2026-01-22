@@ -235,12 +235,19 @@ To check if your setup is signing and verifying correctly, create a commit and t
 git log --show-signature
 ```
 
+{{< gallery caption="Signed commit" >}}
+{{< gallery-image src="images/1password-access-requested.webp" alt="1Password will ask to allow the use of the ssh key" >}}
+{{< gallery-image src="images/windows-hello.webp" alt="Authorize with Windows Hello" >}}
+{{< /gallery >}}
+
 {{< gallery caption="Verifying Results" >}}
 {{< gallery-image src="images/git-signature-verification-inside-dev-container.webp" alt="Example of good ssh signature" >}}
 {{< /gallery >}}
 
-You should see: `Good "ssh" signature for [email] with key ...`
+You should see: `Good "git" signature for [email] with key ...`
 
 ---
 
 Photo by {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd 📷 Dittrich{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+
+Ispired by {{< extlink href="https://xebia.com/blog/elevate-your-git-security-signing-github-commits-with-1password-in-windows-wsl-and-containers/" >}}Marius Boden article Elevate Your Git Security: Signing GitHub Commits with 1Password in Windows WSL and Containers{{< /extlink >}} on {{< extlink href="https://xebia.com/blog/" >}}Xebia{{< /extlink >}}
