@@ -35,4 +35,4 @@ This progression led to a full-time promotion at Cognits, where I now collaborat
 
 To strengthen my impact in this evolved role, I've earned certifications in agile methodologies (Scrum, Kanban) and key technologies. With Cognits' recent acquisition by HTEC, I'm well-positioned to apply this expertise across a larger, dynamic organization and continue delivering meaningful solutions.
 
-I'm always open to connecting with fellow professionals. Let's discuss technology, projects, or industry insights on {{< extlink href="<https://www.linkedin.com/in/jonathanbucaro>" >}}LinkedIn{{< /extlink >}}.
+I'm always open to connecting with fellow professionals. Let's discuss technology, projects, or industry insights on {{< extlink href="https://www.linkedin.com/in/jonathanbucaro>" >}}LinkedIn{{< /extlink >}}.

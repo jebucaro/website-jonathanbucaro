@@ -38,7 +38,7 @@ En este artículo, te guío paso a paso para transformar tu terminal de Windows 
 
 ¿Todavía estás usando la versión antigua de PowerShell que viene con Windows? Para aprovechar al máximo Oh My Posh, es clave tener la versión más reciente y multiplataforma.
 
-Mi forma favorita de instalar PowerShell es con Winget porque es rápido y fácil, pero también lo puedes obtener desde la {{< extlink href="<https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}. ¡Tú decides!
+Mi forma favorita de instalar PowerShell es con Winget porque es rápido y fácil, pero también lo puedes obtener desde la {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}. ¡Tú decides!
 
 Desde una ventana de Windows PowerShell, ejecuta:
 
@@ -50,7 +50,7 @@ winget install Microsoft.PowerShell -s winget
 
 ## 💻 Configurar Windows Terminal
 
-Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="<https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}:
+Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}:
 
 ```cmd
 winget install Microsoft.WindowsTerminal -s winget
@@ -98,7 +98,7 @@ RemoteSigned
 
 Oh My Posh es la estrella de este tutorial. Es súper personalizable, se ve increíble y tiene una comunidad enorme detrás. ¿Qué más se puede pedir?
 
-Recomiendo instalarlo con Winget, pero también está disponible en la {{< extlink href="<https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}.
+Recomiendo instalarlo con Winget, pero también está disponible en la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare>" >}}Microsoft Store{{< /extlink >}}.
 
 Desde PowerShell, ejecuta:
 
@@ -206,7 +206,7 @@ Recarga tu perfil:
 
 ### Elegir un tema
 
-Oh My Posh incluye varios temas integrados. Puedes explorarlos en la {{< extlink href="<https://ohmyposh.dev/docs/themes>" >}}documentación de temas de Oh My Posh{{< /extlink >}}.
+Oh My Posh incluye varios temas integrados. Puedes explorarlos en la {{< extlink href="https://ohmyposh.dev/docs/themes>" >}}documentación de temas de Oh My Posh{{< /extlink >}}.
 
 Elige el que te guste. Por ejemplo, si te gusta el tema minimalista “zash”, ubica el archivo `zash.omp.json` (normalmente en `$env:POSH_THEMES_PATH/zash.omp.json`) y actualiza la línea de tu perfil de PowerShell a:
 
@@ -294,7 +294,7 @@ Revisa los key bindings con:
 Get-PSReadLineKeyHandler
 ```
 
-Documentación oficial en el {{< extlink href="<https://github.com/PowerShell/PSReadLine>" >}}repo de PSReadLine en GitHub{{< /extlink >}}
+Documentación oficial en el {{< extlink href="https://github.com/PowerShell/PSReadLine>" >}}repo de PSReadLine en GitHub{{< /extlink >}}
 
 <span id="winfetch"></span>
 
@@ -318,7 +318,7 @@ winfetch
 
 <span id="bat"></span>
 
-Más info en el {{< extlink href="<https://github.com/lptstr/winfetch>" >}}repo de winfetch en GitHub{{< /extlink >}}
+Más info en el {{< extlink href="https://github.com/lptstr/winfetch>" >}}repo de winfetch en GitHub{{< /extlink >}}
 
 ### 📦 bat
 
@@ -338,7 +338,7 @@ En Windows, instala `less` también para paginar:
 winget install jftuga.less
 ```
 
-Uso y detalles en el {{< extlink href="<https://github.com/sharkdp/bat>" >}}repo de bat en GitHub{{< /extlink >}} y en el {{< extlink href="<https://github.com/jftuga/less-Windows>" >}}repo de less-Windows{{< /extlink >}}.
+Uso y detalles en el {{< extlink href="https://github.com/sharkdp/bat>" >}}repo de bat en GitHub{{< /extlink >}} y en el {{< extlink href="https://github.com/jftuga/less-Windows>" >}}repo de less-Windows{{< /extlink >}}.
 
 <span id="eza"></span>
 
@@ -356,7 +356,7 @@ Abre una nueva pestaña de PowerShell para empezar a usarlo.
 
 ![eza](images/eza.webp 'eza')
 
-Mira opciones y docs en el {{< extlink href="<https://github.com/eza-community/eza#command-line-options>" >}}repo de eza en GitHub{{< /extlink >}}.
+Mira opciones y docs en el {{< extlink href="https://github.com/eza-community/eza#command-line-options>" >}}repo de eza en GitHub{{< /extlink >}}.
 
 ---
 
@@ -381,4 +381,4 @@ Verifica que el comando de Oh My Posh esté al final de tu archivo `$PROFILE` y 
 
 ---
 
-Foto de {{< extlink href="<https://unsplash.com/@imsunnyhassan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Sunny Hassan{{< /extlink >}} en {{< extlink href="<https://unsplash.com/photos/a-screenshot-of-a-computer-reaKJPg2qKg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
+Foto de {{< extlink href="https://unsplash.com/@imsunnyhassan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Sunny Hassan{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-screenshot-of-a-computer-reaKJPg2qKg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}

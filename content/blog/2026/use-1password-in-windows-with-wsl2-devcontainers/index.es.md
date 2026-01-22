@@ -89,16 +89,16 @@ graph TD
 
 ### Prerrequisitos
 
-- Git for Windows instalado y ya configuraste tu {{< extlink href="<https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup>" >}}nombre de usuario y correo global{{< /extlink >}}
+- Git for Windows instalado y ya configuraste tu {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup>" >}}nombre de usuario y correo global{{< /extlink >}}
 - 1Password 8+ para Windows (con Windows Hello configurado).
-- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con el comando `wsl --install`, tendrás systemd habilitado por defecto; de lo contrario, puedes seguir estas instrucciones en la {{< extlink href="<https://learn.microsoft.com/en-us/windows/wsl/systemd>" >}}documentación oficial{{< /extlink >}}.
-- `npiperelay.exe` descargado y agregado a tu Windows `%PATH%`. Puedes encontrar instrucciones en el repo oficial de {{< extlink href="<https://github.com/jstarks/npiperelay>" >}}npiperelay{{< /extlink >}} o descargar el {{< extlink href="<https://github.com/jstarks/npiperelay/releases>" >}}release{{< /extlink >}} y descomprimirlo. Solo asegúrate de que quede dentro de tu Windows `%PATH%`. En este tutorial crearemos una carpeta `bin` dentro de nuestro home de Windows y extraeremos el archivo `npiperelay.exe` del zip del release en la carpeta `bin`.
+- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con el comando `wsl --install`, tendrás systemd habilitado por defecto; de lo contrario, puedes seguir estas instrucciones en la {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd>" >}}documentación oficial{{< /extlink >}}.
+- `npiperelay.exe` descargado y agregado a tu Windows `%PATH%`. Puedes encontrar instrucciones en el repo oficial de {{< extlink href="https://github.com/jstarks/npiperelay>" >}}npiperelay{{< /extlink >}} o descargar el {{< extlink href="https://github.com/jstarks/npiperelay/releases>" >}}release{{< /extlink >}} y descomprimirlo. Solo asegúrate de que quede dentro de tu Windows `%PATH%`. En este tutorial crearemos una carpeta `bin` dentro de nuestro home de Windows y extraeremos el archivo `npiperelay.exe` del zip del release en la carpeta `bin`.
 
 ### Paso 1: Configura el host de Windows
 
-En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**. Sigue la {{< extlink href="<https://developer.1password.com/docs/ssh/get-started/>" >}}guía de 1Password{{< /extlink >}}.
+En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**. Sigue la {{< extlink href="https://developer.1password.com/docs/ssh/get-started/>" >}}guía de 1Password{{< /extlink >}}.
 
-**Tip de seguridad**: En la configuración del agente, puedes restringir el acceso a bóvedas específicas para asegurar que las llaves personales no queden expuestas a tu entorno de desarrollo. Puedes seguir la {{< extlink href="<https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app>" >}}configuración del archivo del agente{{< /extlink >}}.
+**Tip de seguridad**: En la configuración del agente, puedes restringir el acceso a bóvedas específicas para asegurar que las llaves personales no queden expuestas a tu entorno de desarrollo. Puedes seguir la {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app>" >}}configuración del archivo del agente{{< /extlink >}}.
 
 Abre Windows PowerShell y verifica que el agente esté funcionando:
 
@@ -243,4 +243,4 @@ Deberías ver: `Good "ssh" signature for [email] with ED25519 key ...`
 
 ---
 
-Foto por {{< extlink href="<https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Bernd 📷 Dittrich{{< /extlink >}} en {{< extlink href="<https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
+Foto por {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Bernd 📷 Dittrich{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}

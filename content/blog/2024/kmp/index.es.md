@@ -17,4 +17,4 @@ Para lograr esta certificación, completé dos cursos clave:
 
 Esta certificación marca un paso importante en mi desarrollo profesional, permitiéndome implementar prácticas ágiles más efectivas y fortalecer la gestión de proyectos. Me emociona aplicar este conocimiento para optimizar el flujo de trabajo y aumentar la eficiencia de mi equipo. 💪
 
-{{< extlink href="<https://edu.kanban.university/user/81745/8/qualification-certificate/>" >}}Descargar certificado - KMP{{< /extlink >}}
+{{< extlink href="https://edu.kanban.university/user/81745/8/qualification-certificate/>" >}}Descargar certificado - KMP{{< /extlink >}}

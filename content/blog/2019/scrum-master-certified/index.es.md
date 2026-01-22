@@ -8,7 +8,7 @@ description: 'Obtuve mi primera certificación de Scrum: Scrum Master Certified 
 slug: 'scrum-master-certified'
 ---
 
-Empecé el 2019 con el pie derecho al obtener mi primera certificación de Scrum: **Scrum Master Certified (SMC)**, emitida por {{< extlink href="<https://www.scrumstudy.com/>" >}}SCRUMstudy{{< /extlink >}}.
+Empecé el 2019 con el pie derecho al obtener mi primera certificación de Scrum: **Scrum Master Certified (SMC)**, emitida por {{< extlink href="https://www.scrumstudy.com/>" >}}SCRUMstudy{{< /extlink >}}.
 
 Decidí buscar esta certificación porque quería profundizar en marcos de trabajo para la gestión ágil de proyectos y mejorar el desempeño de mis equipos. Aunque siempre es bienvenido que se abran nuevas oportunidades profesionales y mejoras salariales, mi motivación principal fue aprender a gestionar proyectos de una forma más rápida y colaborativa, y facilitar resultados de mayor valor para los interesados.
 
@@ -34,8 +34,8 @@ Mientras continúo este camino, me entusiasma aplicar lo aprendido para fomentar
 {{< gallery-image src="images/badge-SMC.webp" alt="Insignia de SCRUMstudy para la certificación Scrum Master Certified" >}}
 {{< /gallery >}}
 
-{{< extlink href="<https://www.scrumstudy.com/certification/verify?type=SMC&number=678367>" >}}Verificar credencial SMC en SCRUMstudy{{< /extlink >}}
+{{< extlink href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367>" >}}Verificar credencial SMC en SCRUMstudy{{< /extlink >}}
 
 ---
 
-Foto por {{< extlink href="<https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}İrfan Simsar{{< /extlink >}} en {{< extlink href="<https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
+Foto por {{< extlink href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}İrfan Simsar{{< /extlink >}} en {{< extlink href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}

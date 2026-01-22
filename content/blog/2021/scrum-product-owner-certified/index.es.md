@@ -14,7 +14,7 @@ Me alegra muchísimo iniciar el 2021 con la acreditación Scrum Product Owner Ce
 {{< gallery-image src="images/badge-SPOC.webp" alt="Insignia de SCRUMstudy para la certificación Scrum Product Owner Certified" >}}
 {{< /gallery >}}
 
-{{< extlink href="<https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364>" >}}Verificar credencial SPoC en SCRUMstudy{{< /extlink >}}
+{{< extlink href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364>" >}}Verificar credencial SPoC en SCRUMstudy{{< /extlink >}}
 
 ## 🤔 ¿Por qué Product Owner?
 
