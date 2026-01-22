@@ -42,13 +42,13 @@ The API usage limit is OK for most use cases, just be careful if you are doing s
 
 The following link will send you to the ManyChat App installation page, The only permission needed is `View contact data`, to be able to read the data of the contact's profile picture.
 
-{{< extlink href="https://manychat.com/apps/849/install>" >}}Install Monet{{< /extlink >}}
+{{< extlink href="https://manychat.com/apps/849/install" >}}Install Monet{{< /extlink >}}
 
 ### 💽 Get Monet's Source Code
 
 It has been four years since I created Monet as a simple proyect to understand how to create a small app for ManyChat. The source code is mostly a json configuration file.
 
-{{< extlink href="https://github.com/jebucaro/monet-for-manychat>" >}}Go to GitHub{{< /extlink >}}
+{{< extlink href="https://github.com/jebucaro/monet-for-manychat" >}}Go to GitHub{{< /extlink >}}
 
 ---
 
@@ -126,12 +126,12 @@ Here is a small basic flow on how to use Monet App.
 
 ---
 
-The official ManyChat.com website can be found at {{< extlink href="https://manychat.com>" >}}ManyChat{{< /extlink >}}
+The official ManyChat.com website can be found at {{< extlink href="https://manychat.com" >}}ManyChat{{< /extlink >}}
 
 I have used the Urban Dictionary definition of Monet as inspiration to name the app 😆
 
 > Like Monet’s paintings… Looks good from afar – but far from good close up
 >
-> {{< extlink href="https://www.urbandictionary.com/define.php?term=Monet>" >}}Urban Dictionary{{< /extlink >}}
+> {{< extlink href="https://www.urbandictionary.com/define.php?term=Monet" >}}Urban Dictionary{{< /extlink >}}
 
 Cloude Monet paintings are available in Public Domain.

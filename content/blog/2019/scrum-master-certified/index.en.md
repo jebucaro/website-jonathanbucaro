@@ -8,7 +8,7 @@ description: 'Successfully earned my first Scrum certification, accredited as a 
 slug: 'scrum-master-certified'
 ---
 
-I started 2019 on a high note by achieving my first Scrum certification: **Scrum Master Certified (SMC)** issued by {{< extlink href="https://www.scrumstudy.com/>" >}}SCRUMstudy{{< /extlink >}}.
+I started 2019 on a high note by achieving my first Scrum certification: **Scrum Master Certified (SMC)** issued by {{< extlink href="https://www.scrumstudy.com/" >}}SCRUMstudy{{< /extlink >}}.
 
 My decision to pursue this certification was driven by a desire to deepen my understanding of Agile project management frameworks and enhance the performance of my teams. While the potential for new career opportunities and salary improvements is always welcome, my core motivation was to effectively manage projects in a faster, more collaborative way and to facilitate higher-value outcomes for stakeholders.
 
@@ -34,8 +34,8 @@ As I continue this journey, I look forward to applying these learnings to foster
 {{< gallery-image src="images/badge-SMC.webp" alt="SCRUMstudy Badge for Scrum Master Certified" >}}
 {{< /gallery >}}
 
-{{< extlink href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367>" >}}Verify SMC Credential at SCRUMstudy{{< /extlink >}}
+{{< extlink href="https://www.scrumstudy.com/certification/verify?type=SMC&number=678367" >}}Verify SMC Credential at SCRUMstudy{{< /extlink >}}
 
 ---
 
-Picture by {{< extlink href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}İrfan Simsar{{< /extlink >}} on {{< extlink href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
+Picture by {{< extlink href="https://unsplash.com/@irfansimsar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}İrfan Simsar{{< /extlink >}} on {{< extlink href="https://unsplash.com/es/fotos/wxWulfjN-G0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}

@@ -17,4 +17,4 @@ To achieve this certification, I completed two key courses:
 
 This certification marks a significant step forward in my professional development, enabling me to implement more effective agile practices and enhance project management. I’m excited to apply this knowledge to optimize workflow and boost my team’s efficiency. 💪
 
-{{< extlink href="https://edu.kanban.university/user/81745/8/qualification-certificate/>" >}}Download Certificate - KMP{{< /extlink >}}
+{{< extlink href="https://edu.kanban.university/user/81745/8/qualification-certificate/" >}}Download Certificate - KMP{{< /extlink >}}

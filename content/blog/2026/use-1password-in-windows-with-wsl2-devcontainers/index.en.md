@@ -89,16 +89,16 @@ graph TD
 
 ### Prerequisites
 
-- Git for Windows installed and you have configured your {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup>" >}}global user name and email{{< /extlink >}}
+- Git for Windows installed and you have configured your {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" >}}global user name and email{{< /extlink >}}
 - 1Password 8+ for Windows (with Windows Hello configured).
-- WSL 2 with `systemd` enabled. If you have installed Ubuntu via the `wsl --install` command, you will have systemd enabled by default, otherwise you can follow the following instructions {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd>" >}}official documentation{{< /extlink >}}.
-- `npiperelay.exe` downloaded and added to your Windows `%PATH%`. You can find the instructions in the official repo of {{< extlink href="https://github.com/jstarks/npiperelay>" >}}npiperelay{{< /extlink >}} or download the {{< extlink href="https://github.com/jstarks/npiperelay/releases>" >}}release{{< /extlink >}} and unzip it, just make sure that it's located inside your Windows `%PATH%`. In this tutorial we will create a `bin` folder inside our Windows home folder and we will extract the file `npiperelay.exe` from the release zip in the `bin` folder.
+- WSL 2 with `systemd` enabled. If you have installed Ubuntu via the `wsl --install` command, you will have systemd enabled by default, otherwise you can follow the following instructions {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}official documentation{{< /extlink >}}.
+- `npiperelay.exe` downloaded and added to your Windows `%PATH%`. You can find the instructions in the official repo of {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} or download the {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} and unzip it, just make sure that it's located inside your Windows `%PATH%`. In this tutorial we will create a `bin` folder inside our Windows home folder and we will extract the file `npiperelay.exe` from the release zip in the `bin` folder.
 
 ### Step 1: Configure the Windows Host
 
-In 1Password, go to **Settings > Developer** and check **Use the 1Password SSH agent**. Follow the official {{< extlink href="https://developer.1password.com/docs/ssh/get-started/>" >}}1Password guide{{< /extlink >}}
+In 1Password, go to **Settings > Developer** and check **Use the 1Password SSH agent**. Follow the official {{< extlink href="https://developer.1password.com/docs/ssh/get-started/" >}}1Password guide{{< /extlink >}}
 
-**Security Tip**: Under the agent settings, you can restrict access to specific vaults to ensure personal keys aren't exposed to your dev environment. You can follow the official {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app>" >}}Agent config file{{< /extlink >}}.
+**Security Tip**: Under the agent settings, you can restrict access to specific vaults to ensure personal keys aren't exposed to your dev environment. You can follow the official {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app" >}}Agent config file{{< /extlink >}}.
 
 Open a Windows PowerShell and verify the agent is working:
 
@@ -243,4 +243,4 @@ You should see: `Good "ssh" signature for [email] with key ...`
 
 ---
 
-Photo by {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Bernd 📷 Dittrich{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
+Photo by {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd 📷 Dittrich{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}

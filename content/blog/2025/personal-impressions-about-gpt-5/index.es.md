@@ -30,7 +30,7 @@ El lanzamiento de GPT-5 ha sido... interesante. Este meme captura perfecto lo qu
 {{< gallery-image src="images/ac3wmuabekif1.webp" alt="Comparación divertida entre dos modelos GPT y sus respuestas" >}}
 {{< /gallery >}}
 
-{{< extlink href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/>" >}}Publicación en Reddit{{< /extlink >}}
+{{< extlink href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" >}}Publicación en Reddit{{< /extlink >}}
 
 Resulta que cuando tu IA se vuelve más reflexiva, tú también tienes que serlo. Después de meses experimentando con GPT-5 y probando alternativas por API, esto es lo que realmente funciona: mejores técnicas de prompting y una configuración que nos ahorró 60-70% en costos.
 
@@ -48,7 +48,7 @@ Cuando salió GPT-5, muchos usuarios terminaron frustrados. El modelo "más inte
 
 > "La primera regla de cualquier tecnología usada en un negocio es que la automatización aplicada a una operación eficiente aumentará la eficiencia."
 >
-> {{< extlink href="https://www.brainyquote.com/quotes/bill_gates_626239>" >}}Bill Gates{{< /extlink >}}
+> {{< extlink href="https://www.brainyquote.com/quotes/bill_gates_626239" >}}Bill Gates{{< /extlink >}}
 
 {{< callout warning>}}
 
@@ -163,7 +163,7 @@ Consider scalability, maintainability, and performance before recommending an ap
 
 ### Paso 3: Prueba el Prompt Optimizer
 
-El {{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true>" >}}Prompt Optimizer{{< /extlink >}} de OpenAI puede mejorar tus prompts existentes. Pega cualquier prompt que uses con frecuencia y mira cómo sugiere mejoras.
+El {{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" >}}Prompt Optimizer{{< /extlink >}} de OpenAI puede mejorar tus prompts existentes. Pega cualquier prompt que uses con frecuencia y mira cómo sugiere mejoras.
 
 Ideal para:
 
@@ -538,7 +538,7 @@ En lugar de pelear con límites, nos cambiamos a interfaces con APIs que nos dan
 
 #### TypingMind: el botón fácil
 
-Usamos {{< extlink href="https://www.typingmind.com/>" >}}TypingMind{{< /extlink >}} por su interfaz limpia, tipo ChatGPT. Se conecta a nuestras API keys de OpenAI y Anthropic, así que podemos cambiar entre GPT-5 y Claude sin fricción.
+Usamos {{< extlink href="https://www.typingmind.com/" >}}TypingMind{{< /extlink >}} por su interfaz limpia, tipo ChatGPT. Se conecta a nuestras API keys de OpenAI y Anthropic, así que podemos cambiar entre GPT-5 y Claude sin fricción.
 
 {{< gallery caption="TypingMind" >}}
 {{< gallery-image src="images/typingmind.webp" alt="Pantalla de bienvenida y landing page de TypingMind" >}}
@@ -556,7 +556,7 @@ Admito que hoy la licencia de TypingMind es bastante cara. Anda por ~$99 para la
 
 #### Open-WebUI: para los que les gusta trastear
 
-También configuré {{< extlink href="https://openwebui.com/>" >}}Open-WebUI{{< /extlink >}} en nuestro servidor de casa para cuando quiero experimentar con modelos distintos o probar Ollama.
+También configuré {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >}} en nuestro servidor de casa para cuando quiero experimentar con modelos distintos o probar Ollama.
 
 {{< gallery caption="Open WebUI" >}}
 {{< gallery-image src="images/openwebui.webp" alt="Pantalla de bienvenida y landing page de Open WebUI" >}}
@@ -612,13 +612,13 @@ OpenAI publicó guías y herramientas específicas para trabajar con GPT-5. Son 
 
 **Empieza con estos recursos oficiales:**
 
-- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide>" >}}GPT-5 Prompting Guide{{< /extlink >}}** - Buenas prácticas para GPT-5. Se enfoca en donde GPT-5 destaca: tareas agentic, programación y control preciso del comportamiento del modelo.
+- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" >}}GPT-5 Prompting Guide{{< /extlink >}}** - Buenas prácticas para GPT-5. Se enfoca en donde GPT-5 destaca: tareas agentic, programación y control preciso del comportamiento del modelo.
 
-- **{{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true>" >}}Prompt Optimizer{{< /extlink >}}** - Mejora prompts identificando contradicciones, formatos faltantes e inconsistencias. Funciona en Playground y entiende la tarea específica.
+- **{{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" >}}Prompt Optimizer{{< /extlink >}}** - Mejora prompts identificando contradicciones, formatos faltantes e inconsistencias. Funciona en Playground y entiende la tarea específica.
 
-- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/prompt-optimization-cookbook>" >}}Optimization Cookbook{{< /extlink >}}** - Ejemplos prácticos antes y después mostrando mejoras medibles. Excelente para aprender qué estructura funciona.
+- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/prompt-optimization-cookbook" >}}Optimization Cookbook{{< /extlink >}}** - Ejemplos prácticos antes y después mostrando mejoras medibles. Excelente para aprender qué estructura funciona.
 
-- **{{< extlink href="https://x.com/OpenAIDevs/status/1956438999364768225>" >}}GPT-5 for Developers{{< /extlink >}}** - Seis tips para programar con GPT-5, compartidos por OpenAI Developers en X. Referencia rápida para patrones de desarrollo.
+- **{{< extlink href="https://x.com/OpenAIDevs/status/1956438999364768225" >}}GPT-5 for Developers{{< /extlink >}}** - Seis tips para programar con GPT-5, compartidos por OpenAI Developers en X. Referencia rápida para patrones de desarrollo.
 
 **Contexto adicional:**
 
@@ -626,8 +626,8 @@ Ten presente que el prompting efectivo varía por caso de uso. Estas herramienta
 
 Para acceso por API e interfaces:
 
-- **{{< extlink href="https://www.typingmind.com/>" >}}TypingMind{{< /extlink >}}** - Interfaz tipo ChatGPT para múltiples proveedores
-- **{{< extlink href="https://openwebui.com/>" >}}Open-WebUI{{< /extlink >}}** - Interfaz open-source auto-hospedada con soporte para Ollama
+- **{{< extlink href="https://www.typingmind.com/" >}}TypingMind{{< /extlink >}}** - Interfaz tipo ChatGPT para múltiples proveedores
+- **{{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >}}** - Interfaz open-source auto-hospedada con soporte para Ollama
 
 ---
 
@@ -639,8 +639,8 @@ GPT-5 representa un cambio en cómo interactuamos con la IA. Es más capaz, pero
 
 ¿Qué te llama más? ¿Prompting estructurado para desbloquear mejores resultados, o acceso por API para eliminar límites y bajar costos? ¿O ambos?
 
-Me encantaría escuchar tu experiencia con GPT-5 y qué te está funcionando (o no). Comparte tus ideas en {{< extlink href="https://www.linkedin.com/in/jebucaro/>" >}}LinkedIn{{< /extlink >}} o prueba las técnicas de arriba y cuéntame qué descubres.
+Me encantaría escuchar tu experiencia con GPT-5 y qué te está funcionando (o no). Comparte tus ideas en {{< extlink href="https://www.linkedin.com/in/jebucaro/" >}}LinkedIn{{< /extlink >}} o prueba las técnicas de arriba y cuéntame qué descubres.
 
 ---
 
-Foto de {{< extlink href="https://unsplash.com/@seanwsinclair?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash>" >}}Sean Sinclair{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-blurry-image-of-a-rainbow-colored-background-C_NJKfnTR5A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash>" >}}Unsplash{{< /extlink >}}
+Foto de {{< extlink href="https://unsplash.com/@seanwsinclair?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" >}}Sean Sinclair{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-blurry-image-of-a-rainbow-colored-background-C_NJKfnTR5A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" >}}Unsplash{{< /extlink >}}
