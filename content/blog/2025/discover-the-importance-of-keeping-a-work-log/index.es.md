@@ -60,7 +60,7 @@ Aunque principalmente es una herramienta de trabajo, llevar un registro también
 
 > "Nunca memorices algo que puedas consultar".
 >
->  {{< extlink href="<https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up>" >}}Albert Einstein{{< /extlink >}}
+> {{< extlink href="<https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up>" >}}Albert Einstein{{< /extlink >}}
 
 Ese consejo encaja perfecto aquí: apoyarte en tus propias notas libera espacio mental y hace tu flujo de trabajo más ágil.
 

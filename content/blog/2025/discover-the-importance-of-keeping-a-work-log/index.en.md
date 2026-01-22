@@ -60,7 +60,7 @@ Even though it’s mainly a work tool, keeping a log can help you in other areas
 
 > "Never memorize something that you can look up".
 >
->  {{< extlink href="<https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up>" >}}Albert Einstein{{< /extlink >}}
+> {{< extlink href="<https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up>" >}}Albert Einstein{{< /extlink >}}
 
 That advice fits perfectly here: relying on your own notes frees up your mental space and streamlines your workflow.
 
