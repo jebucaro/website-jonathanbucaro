@@ -141,7 +141,7 @@ Windows no actualiza ni mejora automáticamente tus distribuciones de Linux. Est
 
 ## Extensión WSL de Visual Studio Code
 
-Esta extensión te permite abrir cualquier directorio dentro de WSL y aprovechar las funciones y características de VS Code. Puedes instalarla desde el <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" rel="nofollow">Visual Studio Marketplace ➡</a>.
+Esta extensión te permite abrir cualquier directorio dentro de WSL y aprovechar las funciones y características de VS Code. Puedes instalarla desde el {{< extlink href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" >}}Visual Studio Marketplace{{< /extlink >}}.
 
 {{< gallery caption="La extensión de Microsoft para VS Code" >}}
 {{< gallery-image src="images/wsl-extension.webp" alt="Extensión para Visual Studio Code que habilita la integración con WSL" >}}
@@ -157,4 +157,4 @@ code .
 
 ---
 
-Logo de WSL por Microsoft Corporation, Dominio Público, via <a href="https://commons.wikimedia.org/wiki/File:Windows_Subsystem_for_Linux_logo.png" target="_blank" rel="nofollow, noreferrer">Wikimedia Commons</a>
+Logo de WSL por Microsoft Corporation, Dominio Público, via {{< extlink href="https://commons.wikimedia.org/wiki/File:Windows_Subsystem_for_Linux_logo.png" >}}Wikimedia Commons{{< /extlink >}}

@@ -60,7 +60,7 @@ Even though it’s mainly a work tool, keeping a log can help you in other areas
 
 > "Never memorize something that you can look up".
 >
-> <a href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up" target="_blank" rel="nofollow">- Albert Einstein</a>
+> {{< extlink href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up" >}}Albert Einstein{{< /extlink >}}
 
 That advice fits perfectly here: relying on your own notes frees up your mental space and streamlines your workflow.
 
@@ -76,7 +76,7 @@ Don’t make it complicated. Choose a simple tool that works for you—anything 
 
 `Obsidian`, according to its official site, is a private and flexible writing app that adapts to your way of thinking. It’s an excellent app—I use it every day! You can download and use `Obsidian` for free, forever, for any purpose, including personal, commercial, nonprofit, educational, and even governmental use.
 
-This simplified template is based on the work of **Dann Berg** in his post <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Below I’ll share my own adaptation, tailored for work logs.
+This simplified template is based on the work of **Dann Berg** in his post {{< extlink href="https://dannb.org/blog/2022/obsidian-daily-note-template/" >}}My Obsidian Daily Note Template{{< /extlink >}}. Below I’ll share my own adaptation, tailored for work logs.
 
 ### ⚙️ Setting Up the Template
 
@@ -89,8 +89,8 @@ You’ll need `Obsidian` installed and a vault to use for your work log.
 
 #### Plugins
 
-- <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="nofollow">Daily Notes</a>, included by default in Obsidian, no installation required.
-- <a href="https://github.com/liamcain/obsidian-calendar-plugin" target="_blank" rel="nofollow">Calendar</a>, a community plugin that needs to be installed from the <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">Obsidian plugin gallery</a>
+- {{< extlink href="https://help.obsidian.md/Plugins/Daily+notes" >}}Daily Notes{{< /extlink >}}, included by default in Obsidian, no installation required.
+- {{< extlink href="https://github.com/liamcain/obsidian-calendar-plugin" >}}Calendar{{< /extlink >}}, a community plugin that needs to be installed from the {{< extlink href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" >}}Obsidian plugin gallery{{< /extlink >}}
 
 ##### Enable Community Plugins
 
@@ -186,4 +186,4 @@ Ready to get started? If you stick to this habit, you’ll be surprised by how m
 
 ---
 
-Photo by <a href="https://unsplash.com/@dsebas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Pedro Costa</a> on <a href="https://unsplash.com/photos/black-and-white-computer-keyboard-aXY5doQNZTc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Photo by {{< extlink href="https://unsplash.com/@dsebas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Pedro Costa{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/black-and-white-computer-keyboard-aXY5doQNZTc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}

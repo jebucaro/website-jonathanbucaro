@@ -29,7 +29,7 @@ Piensa en los grafos de conocimiento como una forma de representar información 
 
 > de ver el mundo como una máquina a entenderlo como una red
 >
-> <a href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" target="_blank" rel="nofollow">Fritjof Capra</a>
+> {{< extlink href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" >}}Fritjof Capra{{< /extlink >}}
 
 Este principio aplica perfecto a la gestión del conocimiento. Entender información no se trata de memorizar datos, sino de ver cómo se conectan.
 
@@ -64,7 +64,7 @@ Este es el reto fundamental: el conocimiento normalmente se crea y se guarda com
 
 > Los datos no son información. La información, a diferencia de los datos, es útil. Aunque hay un abismo entre los datos y la información, hay un océano enorme entre la información y el conocimiento. Lo que mueve los engranajes en nuestro cerebro no es la información, sino las ideas, las invenciones y la inspiración
 >
-> <a href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" target="_blank" rel="nofollow">Clifford Stoll</a>
+> {{< extlink href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" >}}Clifford Stoll{{< /extlink >}}
 
 ---
 
@@ -353,7 +353,7 @@ Aunque los ejemplos simples se entienden rápido, los grafos de conocimiento bri
 
 ## 🔗 Explora el código
 
-La implementación completa está disponible [en GitHub ➡️](https://github.com/jebucaro/blog-code). Mantuve el código intencionalmente minimal y bien documentado para que puedas entender cada pieza y adaptarla a tus necesidades.
+La implementación completa está disponible {{< extlink href="https://github.com/jebucaro/blog-code" >}}en GitHub{{< /extlink >}}. Mantuve el código intencionalmente minimal y bien documentado para que puedas entender cada pieza y adaptarla a tus necesidades.
 
 **Empieza con estos archivos:**
 

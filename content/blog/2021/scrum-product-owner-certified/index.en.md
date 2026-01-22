@@ -14,7 +14,7 @@ I'm really happy to kick off 2021 with the Scrum Product Owner Certified accredi
 {{< gallery-image src="images/badge-SPOC.webp" alt="SCRUMstudy badge for the Scrum Product Owner Certified certification" >}}
 {{< /gallery >}}
 
-<a href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" target="_blank" rel="noopener">Verify SPoC Credential at SCRUMstudy ➡️</a>
+{{< extlink href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" >}}Verify SPoC Credential at SCRUMstudy{{< /extlink >}}
 
 ## 🤔 Why Product Owner?
 
