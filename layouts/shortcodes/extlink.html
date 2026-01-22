@@ -1,0 +1,21 @@
+{{- /*
+  extlink shortcode - standardized external link rendering
+
+  Usage:
+    {{< extlink href="https://example.com" >}}Link label{{< /extlink >}}
+    {{< extlink href="https://example.com" text="Link label" >}}
+
+  Output:
+    - target="_blank"
+    - rel="nofollow noopener noreferrer"
+    - adds non-breaking space + external arrow at the end
+*/ -}}
+
+{{- $href := .Get "href" -}}
+{{- $text := .Get "text" -}}
+
+{{- if not $href -}}
+  {{- errorf "extlink shortcode requires 'href' parameter in %s" .Page.File.Path -}}
+{{- end -}}
+
+<a href="{{ $href }}" target="_blank" rel="nofollow noopener noreferrer">{{- if $text -}}{{ $text }}{{- else -}}{{ .Inner | markdownify }}{{- end -}}&nbsp;➡️</a>

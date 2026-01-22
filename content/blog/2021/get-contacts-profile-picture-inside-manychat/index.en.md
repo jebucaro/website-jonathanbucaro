@@ -25,7 +25,7 @@ description: 'Get the profile picture of your ManyChat contacts. One simple acti
 
 Hello and welcome! Thank you for your interest in Monet.
 
-This App uses ManyChat’s API to get the profile picture URL of your contacts. You will need a ManyChat Pro Account and since you are consuming ManyChat’s API directly, you have to be aware of <a href="https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls?" target="_blank" rel="nofollow">ManyChat’s API limits ➡</a>. The API used my Monet App is `fb/subscriber/getInfo` which is limited up to 10 RPS (request per second).
+This App uses ManyChat’s API to get the profile picture URL of your contacts. You will need a ManyChat Pro Account and since you are consuming ManyChat’s API directly, you have to be aware of {{< extlink href="<https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls>?" >}}ManyChat’s API limits{{< /extlink >}}. The API used my Monet App is `fb/subscriber/getInfo` which is limited up to 10 RPS (request per second).
 
 The API usage limit is OK for most use cases, just be careful if you are doing something massive 😉
 
@@ -42,13 +42,13 @@ The API usage limit is OK for most use cases, just be careful if you are doing s
 
 The following link will send you to the ManyChat App installation page, The only permission needed is `View contact data`, to be able to read the data of the contact's profile picture.
 
-<a href="https://manychat.com/apps/849/install" target="_blank" rel="nofollow">Install Monet ➡</a>
+{{< extlink href="<https://manychat.com/apps/849/install>" >}}Install Monet{{< /extlink >}}
 
 ### 💽 Get Monet's Source Code
 
 It has been four years since I created Monet as a simple proyect to understand how to create a small app for ManyChat. The source code is mostly a json configuration file.
 
-<a href="https://github.com/jebucaro/monet-for-manychat" target="_blank" rel="nofollow">Go to GitHub ➡</a>
+{{< extlink href="<https://github.com/jebucaro/monet-for-manychat>" >}}Go to GitHub{{< /extlink >}}
 
 ---
 
@@ -126,12 +126,12 @@ Here is a small basic flow on how to use Monet App.
 
 ---
 
-The official ManyChat.com website can be found at <a href="https://manychat.com" target="_blank" rel="nofollow">ManyChat ➡</a>
+The official ManyChat.com website can be found at {{< extlink href="<https://manychat.com>" >}}ManyChat{{< /extlink >}}
 
 I have used the Urban Dictionary definition of Monet as inspiration to name the app 😆
 
 > Like Monet’s paintings… Looks good from afar – but far from good close up
 >
-> <a href="https://www.urbandictionary.com/define.php?term=Monet" target="_blank" rel="nofollow">Urban Dictionary ➡</a>
+> {{< extlink href="<https://www.urbandictionary.com/define.php?term=Monet>" >}}Urban Dictionary{{< /extlink >}}
 
 Cloude Monet paintings are available in Public Domain.

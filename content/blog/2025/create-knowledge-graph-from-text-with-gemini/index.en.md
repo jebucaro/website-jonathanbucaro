@@ -29,7 +29,7 @@ Think of knowledge graphs as a way to represent information the way your brain n
 
 > from seeing the world as a machine to understanding it as a network
 >
-> <a href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" target="_blank" rel="nofollow">Fritjof Capra</a>
+> {{< extlink href="<https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/>" >}}Fritjof Capra{{< /extlink >}}
 
 This principle applies perfectly to knowledge management. Understanding information isn't about memorizing facts, it's about seeing how they connect.
 
@@ -64,7 +64,7 @@ Here's the fundamental challenge: knowledge is typically created and stored as n
 
 > Data isn't information. Information, unlike data, is useful. While there's a gulf between data and information, there's a wide ocean between information and knowledge. What turns the gears in our brains isn't information, but ideas, inventions, and inspiration
 >
-> <a href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" target="_blank" rel="nofollow">Clifford Stoll</a>
+> {{< extlink href="<https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm>" >}}Clifford Stoll{{< /extlink >}}
 
 ---
 
@@ -353,7 +353,7 @@ While simple examples are easy to grasp, knowledge graphs truly shine with scale
 
 ## 🔗 Explore the Code
 
-The complete implementation is available [on GitHub ➡️](https://github.com/jebucaro/blog-code). I've kept the codebase intentionally minimal and well-documented so you can understand every piece and adapt it to your needs.
+The complete implementation is available {{< extlink href="<https://github.com/jebucaro/blog-code>" >}}on GitHub{{< /extlink >}}. I've kept the codebase intentionally minimal and well-documented so you can understand every piece and adapt it to your needs.
 
 **Start with these files:**
 

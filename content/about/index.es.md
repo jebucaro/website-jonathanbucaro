@@ -34,4 +34,4 @@ Esta trayectoria me llevó a una promoción a tiempo completo en Cognits, donde 
 
 Para fortalecer mi impacto en este rol, he obtenido certificaciones en metodologías ágiles (Scrum, Kanban) y en tecnologías clave. Con la reciente adquisición de Cognits por parte de HTEC, estoy bien posicionado para aplicar esta experiencia en una organización más grande y dinámica, y seguir entregando soluciones con impacto.
 
-Siempre estoy abierto a conectar con otros profesionales. ¿Hablamos de tecnología, proyectos o aprendizajes de la industria en <a href="https://www.linkedin.com/in/jonathanbucaro" target="_blank" rel="nofollow">LinkedIn ➡️</a>?
+Siempre estoy abierto a conectar con otros profesionales. ¿Hablamos de tecnología, proyectos o aprendizajes de la industria en {{< extlink href="<https://www.linkedin.com/in/jonathanbucaro>" >}}LinkedIn{{< /extlink >}}?

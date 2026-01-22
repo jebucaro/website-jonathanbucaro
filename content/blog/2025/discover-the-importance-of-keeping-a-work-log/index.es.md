@@ -60,7 +60,7 @@ Aunque principalmente es una herramienta de trabajo, llevar un registro también
 
 > "Nunca memorices algo que puedas consultar".
 >
-> <a href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up" target="_blank" rel="nofollow">- Albert Einstein</a>
+>  {{< extlink href="<https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up>" >}}Albert Einstein{{< /extlink >}}
 
 Ese consejo encaja perfecto aquí: apoyarte en tus propias notas libera espacio mental y hace tu flujo de trabajo más ágil.
 
@@ -76,7 +76,7 @@ No lo compliques. Elige una herramienta simple que te funcione, por ejemplo: una
 
 `Obsidian`, según su sitio oficial, es una app de escritura privada y flexible que se adapta a tu forma de pensar. Es una app excelente, ¡yo la uso todos los días! Puedes descargar y usar `Obsidian` gratis, para siempre, para cualquier propósito, incluyendo uso personal, comercial, sin fines de lucro, educativo e incluso gubernamental.
 
-Esta plantilla simplificada está basada en el trabajo de **Dann Berg** en su post <a href="https://dannb.org/blog/2022/obsidian-daily-note-template/" target="_blank">My Obsidian Daily Note Template</a>. Abajo comparto mi propia adaptación, pensada específicamente para registros de trabajo.
+Esta plantilla simplificada está basada en el trabajo de **Dann Berg** en su post {{< extlink href="<https://dannb.org/blog/2022/obsidian-daily-note-template/>" >}}My Obsidian Daily Note Template{{< /extlink >}}. Abajo comparto mi propia adaptación, pensada específicamente para registros de trabajo.
 
 ### ⚙️ Configurando la plantilla
 
@@ -89,8 +89,8 @@ Vas a necesitar tener `Obsidian` instalado y un vault para usarlo como tu regist
 
 #### Plugins
 
-- <a href="https://help.obsidian.md/Plugins/Daily+notes" target="_blank" rel="nofollow">Daily Notes</a>, incluido por defecto en Obsidian, no requiere instalación.
-- <a href="https://github.com/liamcain/obsidian-calendar-plugin" target="_blank" rel="nofollow">Calendar</a>, un plugin de la comunidad que se instala desde la <a href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" target="_blank" rel="nofollow">galería de plugins de Obsidian</a>
+- {{< extlink href="<https://help.obsidian.md/Plugins/Daily+notes>" >}}Daily Notes{{< /extlink >}}, incluido por defecto en Obsidian, no requiere instalación.
+- {{< extlink href="<https://github.com/liamcain/obsidian-calendar-plugin>" >}}Calendar{{< /extlink >}}, un plugin de la comunidad que se instala desde la {{< extlink href="<https://help.obsidian.md/Extending+Obsidian/Community+plugins>" >}}galería de plugins de Obsidian{{< /extlink >}}
 
 ##### Habilitar plugins de la comunidad
 
@@ -186,4 +186,4 @@ Llevar un registro de trabajo es más que una lista de pendientes; es una herram
 
 ---
 
-Foto por <a href="https://unsplash.com/@dsebas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Pedro Costa</a> en <a href="https://unsplash.com/photos/black-and-white-computer-keyboard-aXY5doQNZTc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="nofollow, noreferrer">Unsplash</a>
+Foto por {{< extlink href="<https://unsplash.com/@dsebas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Pedro Costa{{< /extlink >}} en {{< extlink href="<https://unsplash.com/photos/black-and-white-computer-keyboard-aXY5doQNZTc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText>" >}}Unsplash{{< /extlink >}}
