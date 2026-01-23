@@ -1,5 +1,6 @@
 ---
 title: 'Usa 1Password en Windows con Dev Containers en WSL2'
+slug: 'use-1password-in-windows-with-wsl2-dev-containers'
 date: 2026-01-15T06:57:56-06:00
 description: 'Una guía paso a paso para configurar 1Password como tu agente unificado de SSH y firma de Git en Windows, WSL2 y VS Code Dev Containers.'
 draft: false
@@ -9,7 +10,7 @@ image: 'images/cover.webp'
 
 ## 🎯 TL;DR
 
-Mover tu desarrollo a Dev Containers ofrece muchísima flexibilidad y aislamiento, pero rompe la configuración estándar basada en el montaje de WSL para 1Password. Esta guía te muestra cómo tender un puente del agente SSH de 1Password desde Windows hacia tus contenedores usando un socket, para que la firma biométrica de Git funcione en todas partes, sin exponer tus llaves privadas.
+Mover tu desarrollo a Dev Containers ofrece muchísima flexibilidad y aislamiento, pero rompe la configuración estándar basada en el montaje de WSL para 1Password si te encuentras trabajando con Dev Containers creados desde WSL. Esta guía te muestra cómo tender un puente del agente SSH de 1Password desde Windows hacia tus contenedores usando un socket, para que la firma biométrica de Git funcione en todas partes, sin exponer tus llaves privadas.
 
 Elige tu camino:
 
