@@ -40,7 +40,7 @@
     "dependencies": {
         "chart.js": "^4.5.0",
         "lightense-images": "^1.0.17",
-        "mermaid": "^10.9.5",
+        "mermaid": "^11.12.2",
         "reframe.js": "^4.0.2",
         "smoothscroll-polyfill": "^0.4.4",
         "tiny-slider": "^2.9.4",
