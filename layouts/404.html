@@ -13,47 +13,10 @@
     </div>
     <!-- end page -->
 
-    <script>
-        // Dynamic language detection and content switching for 404 pages
-        (function() {
-            function detectLanguage() {
-                const path = window.location.pathname;
-                if (path.startsWith('/es/')) {
-                    return 'es';
-                }
-                return 'en';
-            }
-
-            function setLanguageContent() {
-                const lang = detectLanguage();
-                const errorText = document.getElementById('errorText');
-                const homeButton = document.getElementById('homeButton');
-                
-                if (lang === 'es') {
-                    document.documentElement.lang = 'es';
-                    document.title = '404 - Página no encontrada | Jonathan Búcaro';
-                    if (errorText) errorText.textContent = 'La página solicitada no pudo ser encontrada.';
-                    if (homeButton) {
-                        homeButton.textContent = 'Regresar al Inicio';
-                        homeButton.href = '/es/';
-                    }
-                } else {
-                    document.documentElement.lang = 'en';
-                    document.title = '404 - Page Not Found | Jonathan Búcaro';
-                    if (errorText) errorText.textContent = 'The requested page could not be found.';
-                    if (homeButton) {
-                        homeButton.textContent = 'Return to Home';
-                        homeButton.href = '/';
-                    }
-                }
-            }
-
-            // Initialize when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setLanguageContent);
-            } else {
-                setLanguageContent();
-            }
-        })();
-    </script>
+    {{ $notFoundJs := resources.Get "js/404-lang.js" }}
+    {{ if hugo.IsServer }}
+        <script src="{{ $notFoundJs.Permalink | absURL }}"></script>
+    {{ else }}
+        <script src="{{ ($notFoundJs | minify | fingerprint).RelPermalink | absURL }}"></script>
+    {{ end }}
 {{ end }}
