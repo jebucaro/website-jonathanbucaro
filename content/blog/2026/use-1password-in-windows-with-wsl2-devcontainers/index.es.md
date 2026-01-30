@@ -201,6 +201,15 @@ echo "$(git config --global user.email) YOUR_SSH_ED25519_PUBLIC_KEY_STRING" > ~/
 git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
+\*\*3.3 Configura el reenvío del agente
+Crea el archivo `$HOME/.ssh/config` con la siguiente configuración:
+
+```text
+Host *
+  ForwardAgent yes
+  IdentityAgent /tmp/1password-agent.sock
+```
+
 <span id="how-it-works"></span>
 
 ## 🧠 Cómo funciona (en profundidad)
