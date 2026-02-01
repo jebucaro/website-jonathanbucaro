@@ -39,6 +39,12 @@
 - id: ui_backToTop
   translation: 'Top'
 
+- id: ui_preferences
+  translation: 'Preferences'
+
+- id: ui_pages
+  translation: 'Pages'
+
 # Content strings
 - id: content_posts_one
   translation: 'Post'
