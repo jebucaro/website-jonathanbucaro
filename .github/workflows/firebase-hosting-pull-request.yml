@@ -15,7 +15,6 @@ jobs:
             ${{
               github.event.workflow_run.conclusion == 'success' &&
               github.event.workflow_run.event == 'pull_request' &&
-              github.event.workflow_run.pull_requests[0].number &&
               github.event.workflow_run.head_repository.full_name == github.repository
             }}
         runs-on: ubuntu-latest
@@ -26,7 +25,54 @@ jobs:
             statuses: write
             checks: write
         steps:
+            - name: Resolve PR number from head SHA
+              id: pr
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+                  REPO: ${{ github.repository }}
+              run: |
+                  set -euo pipefail
+
+                  pr_number=$(curl -sS -H "Authorization: Bearer $GH_TOKEN" \
+                    -H "Accept: application/vnd.github+json" \
+                    "https://api.github.com/repos/$REPO/commits/$HEAD_SHA/pulls" \
+                    | jq -r '.[0].number // empty')
+
+                  if [[ -z "$pr_number" ]]; then
+                    echo "No PR found for head SHA $HEAD_SHA. Skipping deploy."
+                    echo "pr_number=" >> "$GITHUB_OUTPUT"
+                    exit 0
+                  fi
+
+                  echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
+
+            - name: Check required workflows succeeded
+              id: gate
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+                  REPO: ${{ github.repository }}
+              run: |
+                  set -euo pipefail
+
+                  runs_json=$(curl -sS -H "Authorization: Bearer $GH_TOKEN" \
+                    -H "Accept: application/vnd.github+json" \
+                    "https://api.github.com/repos/$REPO/actions/runs?event=pull_request&head_sha=$HEAD_SHA&status=completed")
+
+                  build_status=$(echo "$runs_json" | jq -r '.workflow_runs[] | select(.name=="Build and Test") | .conclusion' | head -n 1)
+                  quality_status=$(echo "$runs_json" | jq -r '.workflow_runs[] | select(.name=="Code Quality") | .conclusion' | head -n 1)
+
+                  if [[ "$build_status" == "success" && "$quality_status" == "success" ]]; then
+                    echo "deploy_ok=true" >> "$GITHUB_OUTPUT"
+                  else
+                    echo "Build status: ${build_status:-missing}"
+                    echo "Quality status: ${quality_status:-missing}"
+                    echo "deploy_ok=false" >> "$GITHUB_OUTPUT"
+                  fi
+
             - name: Checkout PR branch
+              if: steps.gate.outputs.deploy_ok == 'true' && steps.pr.outputs.pr_number != ''
               uses: actions/checkout@v6.0.1
               with:
                   ref: ${{ github.event.workflow_run.head_sha }}
@@ -34,12 +80,14 @@ jobs:
                   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
             - name: Install Hugo
+              if: steps.gate.outputs.deploy_ok == 'true' && steps.pr.outputs.pr_number != ''
               uses: peaceiris/actions-hugo@v3
               with:
                   hugo-version: 'latest'
                   extended: true
 
             - uses: actions/setup-node@v6.1.0
+              if: steps.gate.outputs.deploy_ok == 'true' && steps.pr.outputs.pr_number != ''
               with:
                   node-version: '22.x'
                   cache: 'npm'
@@ -50,15 +98,16 @@ jobs:
                   cache-dependency-path: '**/package-lock.json'
 
             - name: Build Hugo site for staging
+              if: steps.gate.outputs.deploy_ok == 'true' && steps.pr.outputs.pr_number != ''
               run: npm ci && npm run build:staging
 
             - name: Deploy to Firebase Preview Channel
-              if: github.event.workflow_run.actor.login != 'dependabot[bot]'
+              if: github.event.workflow_run.actor.login != 'dependabot[bot]' && steps.gate.outputs.deploy_ok == 'true' && steps.pr.outputs.pr_number != ''
               uses: FirebaseExtended/action-hosting-deploy@v0.10.0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBSITE_JONATHANBUCARO }}'
                   projectId: website-jonathanbucaro
-                  channelId: preview-${{ github.event.workflow_run.pull_requests[0].number }}
+                  channelId: preview-${{ steps.pr.outputs.pr_number }}
                   expires: 3d
                   disableComment: false
