@@ -3,17 +3,31 @@
 ## Title Format
 
 ```text
-:<gitmoji>: <brief description>
+<intention> [scope?][:?] <message>
+```
+
+`<intention>` can be a unicode emoji (e.g. `⚡️`) or a gitmoji shortcode (e.g. `:zap:`).
+
+Accepted scope formats:
+
+```text
+<intention> <message>
+<intention> (scope) <message>
+<intention> (scope): <message>
+<intention> scope: <message>
 ```
 
 **Rules:**
 
 - Max 72 characters
-- Lowercase description
+- Message can start with uppercase or lowercase
 - Use present tense (add, fix, update)
 - Be specific but concise
+- Intention must match the official gitmoji list in `.github/gitmojis.json`
 
-## Gitmoji Categories
+## Gitmoji Examples (Not Exhaustive)
+
+Shortcodes and their emoji equivalents are both valid.
 
 ### Content & Posts
 
@@ -65,52 +79,54 @@
 
 ## PR Title Examples by Category
 
+Emoji shown here; shortcode equivalents are accepted.
+
 ### Blog Posts
 
 ```text
-:bento: improve GPT-5 impressions post structure and readability
-:memo: add new post about Hugo optimization tips
-:pencil2: fix typos in knowledge graph article
+🍱 improve GPT-5 impressions post structure and readability
+📝 add new post about Hugo optimization tips
+✏️ fix typos in knowledge graph article
 ```
 
 ### Website Features
 
 ```text
-:sparkles: add search functionality to blog
-:zap: optimize image loading with lazy loading
-:recycle: refactor navigation component structure
+✨ add search functionality to blog
+⚡️ optimize image loading with lazy loading
+♻️ refactor navigation component structure
 ```
 
 ### Portfolio Updates
 
 ```text
-:bento: add new project showcase with images
-:lipstick: redesign portfolio card layout
-:memo: update project descriptions and links
+🍱 add new project showcase with images
+💄 redesign portfolio card layout
+📝 update project descriptions and links
 ```
 
 ### Configuration & Tools
 
 ```text
-:wrench: configure markdownlint for ATX-style headings
-:heavy_plus_sign: add prettier for code formatting
-:arrow_up: update npm dependencies to latest versions
+🔧 configure markdownlint for ATX-style headings
+➕ add prettier for code formatting
+⬆️ update npm dependencies to latest versions
 ```
 
 ### Bug Fixes
 
 ```text
-:bug: fix broken internal links in blog posts
-:bug: resolve mobile menu toggle issue
-:adhesive_bandage: adjust footer spacing on mobile
+🐛 fix broken internal links in blog posts
+🐛 resolve mobile menu toggle issue
+🩹 adjust footer spacing on mobile
 ```
 
 ### Security & Performance
 
 ```text
-:lock: update dependencies with security vulnerabilities
-:zap: implement browser caching for static assets
-:green_heart: fix CI/CD pipeline configuration
+🔒️ update dependencies with security vulnerabilities
+⚡️ implement browser caching for static assets
+💚 fix CI/CD pipeline configuration
 ```
 
 ## Commit Message Guidelines
@@ -118,7 +134,7 @@
 ### Structure
 
 ```text
-:<gitmoji>: <brief description>
+<intention> [scope?][:?] <message>
 
 [Optional detailed explanation]
 - Bullet points for specifics
@@ -129,7 +145,7 @@
 ### Example
 
 ```text
-:sparkles: add mermaid diagram support
+✨ add mermaid diagram support
 
 Integrate mermaid.js for rendering diagrams in blog posts:
 - Add mermaid package as dependency
