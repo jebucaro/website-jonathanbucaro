@@ -5,19 +5,23 @@ document.addEventListener('DOMContentLoaded', function () {
         menuOpenIcon = document.querySelector('.icon__menu'),
         menuCloseIcon = document.querySelector('.nav__icon-close'),
         menuList = document.querySelector('.main-nav'),
-        toggleTheme = document.querySelector('.toggle-theme-js'),
+        toggleThemeButtons = document.querySelectorAll('.toggle-theme-js'),
         btnScrollToTop = document.querySelector('.top');
 
     /* =======================================================
   // Menu + Theme Switcher
   ======================================================= */
-    menuOpenIcon.addEventListener('click', () => {
-        menuOpen();
-    });
+    if (menuOpenIcon) {
+        menuOpenIcon.addEventListener('click', () => {
+            menuOpen();
+        });
+    }
 
-    menuCloseIcon.addEventListener('click', () => {
-        menuClose();
-    });
+    if (menuCloseIcon) {
+        menuCloseIcon.addEventListener('click', () => {
+            menuClose();
+        });
+    }
 
     function menuOpen() {
         menuList.classList.add('is-open');
@@ -27,9 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
         menuList.classList.remove('is-open');
     }
 
-    if (toggleTheme) {
-        toggleTheme.addEventListener('click', () => {
-            darkMode();
+    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
+        toggleThemeButtons.forEach((toggleTheme) => {
+            toggleTheme.addEventListener('click', () => {
+                darkMode();
+            });
         });
     }
 
@@ -51,22 +57,24 @@ document.addEventListener('DOMContentLoaded', function () {
   ================================================================ */
     let disableTransition;
 
-    if (toggleTheme) {
-        toggleTheme.addEventListener('click', () => {
-            stopAnimation();
+    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
+        toggleThemeButtons.forEach((toggleTheme) => {
+            toggleTheme.addEventListener('click', () => {
+                stopAnimation();
+            });
         });
+    }
 
-        window.addEventListener('resize', () => {
-            stopAnimation();
-        });
+    window.addEventListener('resize', () => {
+        stopAnimation();
+    });
 
-        function stopAnimation() {
-            document.body.classList.add('disable-animation');
-            clearTimeout(disableTransition);
-            disableTransition = setTimeout(() => {
-                document.body.classList.remove('disable-animation');
-            }, 100);
-        }
+    function stopAnimation() {
+        document.body.classList.add('disable-animation');
+        clearTimeout(disableTransition);
+        disableTransition = setTimeout(() => {
+            document.body.classList.remove('disable-animation');
+        }, 100);
     }
 
     /* =======================
