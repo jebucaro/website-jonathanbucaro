@@ -22,6 +22,21 @@
                 "source": "/get-contacts-profile-picture-inside-manychat/",
                 "destination": "/blog/get-contacts-profile-picture-inside-manychat/",
                 "type": 301
+            },
+            {
+                "source": "/blog/use-1password-in-windows-with-wsl2-devcontainers/",
+                "destination": "/blog/use-1password-in-windows-with-wsl2-dev-containers/",
+                "type": 301
+            },
+            {
+                "source": "/blog/use-1password-in-windows-with-wsl2-devcontainers",
+                "destination": "/blog/use-1password-in-windows-with-wsl2-dev-containers/",
+                "type": 301
+            },
+            {
+                "source": "/es/blog/use-1password-in-windows-with-wsl2-devcontainers/",
+                "destination": "/es/blog/use-1password-in-windows-with-wsl2-dev-containers/",
+                "type": 301
             }
         ],
         "headers": [

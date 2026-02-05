@@ -19,7 +19,103 @@
                             <ion-icon name="close"></ion-icon>
                         </div>
                         <div class="nav__title">Menu</div>
-                        <ul class="nav__list list-reset">
+
+                        <div class="nav-section nav-section--preferences">
+                            <span class="nav-section__label">{{ i18n "ui_preferences" }}</span>
+                            <div class="nav-controls nav-controls--drawer">
+                                {{- /* Language Selector */ -}}
+                                {{- if hugo.IsMultilingual -}}
+                                <div class="language-selector">
+                                    {{- /* Current language (shown first) */ -}}
+                                    <span class="language-link language-current" aria-current="page"
+                                          aria-label="Current language: {{ .Language.LanguageName }}"
+                                          title="{{ .Language.LanguageName }}">
+                                        {{- if eq .Language.Lang "en" -}}
+                                            <span class="flag-icon">🇺🇸</span>
+                                            <span class="lang-code">EN</span>
+                                        {{- else if eq .Language.Lang "es" -}}
+                                            <span class="flag-icon">🇬🇹</span>
+                                            <span class="lang-code">ES</span>
+                                        {{- end -}}
+                                    </span>
+
+                                    {{- /* Show available translations */ -}}
+                                    {{- if .IsTranslated -}}
+                                        {{- range .Translations -}}
+                                            <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
+                                               title="{{ .Language.LanguageName }}"
+                                               aria-label="Switch to {{ .Language.LanguageName }}">
+                                                {{- if eq .Language.Lang "en" -}}
+                                                    <span class="flag-icon">🇺🇸</span>
+                                                    <span class="lang-code">EN</span>
+                                                {{- else if eq .Language.Lang "es" -}}
+                                                    <span class="flag-icon">🇬🇹</span>
+                                                    <span class="lang-code">ES</span>
+                                                {{- end -}}
+                                            </a>
+                                        {{- end -}}
+                                    {{- else -}}
+                                        {{- /* No translation available, link to home page of other language */ -}}
+                                        {{- range .Site.Languages -}}
+                                            {{- if ne $.Language.Lang .Lang -}}
+                                                {{- $homeURL := "/" -}}
+                                                {{- if eq .Lang "es" -}}
+                                                    {{- $homeURL = "/es/" -}}
+                                                {{- end -}}
+                                                <a href="{{ $homeURL }}" hreflang="{{ .Lang }}" class="language-link"
+                                                   title="{{ .LanguageName }}"
+                                                   aria-label="Switch to {{ .LanguageName }}">
+                                                    {{- if eq .Lang "en" -}}
+                                                        <span class="flag-icon">🇺🇸</span>
+                                                        <span class="lang-code">EN</span>
+                                                    {{- else if eq .Lang "es" -}}
+                                                        <span class="flag-icon">🇬🇹</span>
+                                                        <span class="lang-code">ES</span>
+                                                    {{- end -}}
+                                                </a>
+                                            {{- end -}}
+                                        {{- end -}}
+                                    {{- end -}}
+                                </div>
+                                {{- end -}}
+
+                                {{ if eq .Site.Params.color_scheme "auto" }}
+                                    <div class="toggle-theme toggle-theme-js">
+                                        <div class="toggle-moon" title="Enable dark mode">
+                                            <ion-icon name="moon"></ion-icon>
+                                        </div>
+                                        <div class="toggle-sun" title="Enable light mode">
+                                            <ion-icon name="sunny"></ion-icon>
+                                        </div>
+                                    </div>
+                                {{ else if eq .Site.Params.color_scheme "light" }}
+                                    <div class="toggle-theme theme-light">
+                                        <div class="toggle-sun" title="Light mode">
+                                            <ion-icon name="sunny"></ion-icon>
+                                        </div>
+                                    </div>
+                                {{ else if eq .Site.Params.color_scheme "dark" }}
+                                    <div class="toggle-theme theme-dark">
+                                        <div class="toggle-moon" title="Dark mode">
+                                            <ion-icon name="moon"></ion-icon>
+                                        </div>
+                                    </div>
+                                {{ else }}
+                                    <div class="toggle-theme toggle-theme-js">
+                                        <div class="toggle-moon" title="Enable dark mode">
+                                            <ion-icon name="moon"></ion-icon>
+                                        </div>
+                                        <div class="toggle-sun" title="Enable light mode">
+                                            <ion-icon name="sunny"></ion-icon>
+                                        </div>
+                                    </div>
+                                {{ end }}
+                            </div>
+                        </div>
+
+                        <div class="nav-section nav-section--pages">
+                            <span class="nav-section__label">{{ i18n "ui_pages" }}</span>
+                            <ul class="nav__list list-reset">
                             {{ $currentPage := . }}
                             {{ range.Site.Menus.main }}
                                 {{ $menuURL := .URL }}
@@ -63,95 +159,101 @@
 
                             {{ end }}
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
 
                 <div class="nav-button">
-                    {{- /* Language Selector */ -}}
-                    {{- if hugo.IsMultilingual -}}
-                    <div class="language-selector">
-                        {{- /* Show available translations */ -}}
-                        {{- if .IsTranslated -}}
-                            {{- range .Translations -}}
-                                <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                   title="{{ .Language.LanguageName }}"
-                                   aria-label="Switch to {{ .Language.LanguageName }}">
-                                    {{- if eq .Language.Lang "en" -}}
-                                        <span class="flag-icon">🇺🇸</span>
-                                        <span class="lang-code">EN</span>
-                                    {{- else if eq .Language.Lang "es" -}}
-                                        <span class="flag-icon">🇬🇹</span>
-                                        <span class="lang-code">ES</span>
-                                    {{- end -}}
-                                </a>
-                            {{- end -}}
-                        {{- else -}}
-                            {{- /* No translation available, link to home page of other language */ -}}
-                            {{- range .Site.Languages -}}
-                                {{- if ne $.Language.Lang .Lang -}}
-                                    {{- $homeURL := "/" -}}
-                                    {{- if eq .Lang "es" -}}
-                                        {{- $homeURL = "/es/" -}}
-                                    {{- end -}}
-                                    <a href="{{ $homeURL }}" hreflang="{{ .Lang }}" class="language-link"
-                                       title="{{ .LanguageName }}"
-                                       aria-label="Switch to {{ .LanguageName }}">
-                                        {{- if eq .Lang "en" -}}
+                    <div class="nav-controls nav-controls--header">
+                        {{- /* Language Selector */ -}}
+                        {{- if hugo.IsMultilingual -}}
+                        <div class="language-selector">
+                            {{- /* Current language (shown first) */ -}}
+                            <span class="language-link language-current" aria-current="page"
+                                  aria-label="Current language: {{ .Language.LanguageName }}"
+                                  title="{{ .Language.LanguageName }}">
+                                {{- if eq .Language.Lang "en" -}}
+                                    <span class="flag-icon">🇺🇸</span>
+                                    <span class="lang-code">EN</span>
+                                {{- else if eq .Language.Lang "es" -}}
+                                    <span class="flag-icon">🇬🇹</span>
+                                    <span class="lang-code">ES</span>
+                                {{- end -}}
+                            </span>
+
+                            {{- /* Show available translations */ -}}
+                            {{- if .IsTranslated -}}
+                                {{- range .Translations -}}
+                                    <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
+                                       title="{{ .Language.LanguageName }}"
+                                       aria-label="Switch to {{ .Language.LanguageName }}">
+                                        {{- if eq .Language.Lang "en" -}}
                                             <span class="flag-icon">🇺🇸</span>
                                             <span class="lang-code">EN</span>
-                                        {{- else if eq .Lang "es" -}}
+                                        {{- else if eq .Language.Lang "es" -}}
                                             <span class="flag-icon">🇬🇹</span>
                                             <span class="lang-code">ES</span>
                                         {{- end -}}
                                     </a>
                                 {{- end -}}
+                            {{- else -}}
+                                {{- /* No translation available, link to home page of other language */ -}}
+                                {{- range .Site.Languages -}}
+                                    {{- if ne $.Language.Lang .Lang -}}
+                                        {{- $homeURL := "/" -}}
+                                        {{- if eq .Lang "es" -}}
+                                            {{- $homeURL = "/es/" -}}
+                                        {{- end -}}
+                                        <a href="{{ $homeURL }}" hreflang="{{ .Lang }}" class="language-link"
+                                           title="{{ .LanguageName }}"
+                                           aria-label="Switch to {{ .LanguageName }}">
+                                            {{- if eq .Lang "en" -}}
+                                                <span class="flag-icon">🇺🇸</span>
+                                                <span class="lang-code">EN</span>
+                                            {{- else if eq .Lang "es" -}}
+                                                <span class="flag-icon">🇬🇹</span>
+                                                <span class="lang-code">ES</span>
+                                            {{- end -}}
+                                        </a>
+                                    {{- end -}}
+                                {{- end -}}
                             {{- end -}}
+                        </div>
                         {{- end -}}
-                        {{- /* Current language */ -}}
-                        <span class="language-link language-current" aria-current="page">
-                            {{- if eq .Language.Lang "en" -}}
-                                <span class="flag-icon">🇺🇸</span>
-                                <span class="lang-code">EN</span>
-                            {{- else if eq .Language.Lang "es" -}}
-                                <span class="flag-icon">🇬🇹</span>
-                                <span class="lang-code">ES</span>
-                            {{- end -}}
-                        </span>
-                    </div>
-                    {{- end -}}
 
-                    {{ if eq .Site.Params.color_scheme "auto" }}
-                        <div class="toggle-theme toggle-theme-js">
-                            <div class="toggle-moon" title="Enable dark mode">
-                                <ion-icon name="moon"></ion-icon>
+                        {{ if eq .Site.Params.color_scheme "auto" }}
+                            <div class="toggle-theme toggle-theme-js">
+                                <div class="toggle-moon" title="Enable dark mode">
+                                    <ion-icon name="moon"></ion-icon>
+                                </div>
+                                <div class="toggle-sun" title="Enable light mode">
+                                    <ion-icon name="sunny"></ion-icon>
+                                </div>
                             </div>
-                            <div class="toggle-sun" title="Enable light mode">
-                                <ion-icon name="sunny"></ion-icon>
+                        {{ else if eq .Site.Params.color_scheme "light" }}
+                            <div class="toggle-theme theme-light">
+                                <div class="toggle-sun" title="Light mode">
+                                    <ion-icon name="sunny"></ion-icon>
+                                </div>
                             </div>
-                        </div>
-                    {{ else if eq .Site.Params.color_scheme "light" }}
-                        <div class="toggle-theme theme-light">
-                            <div class="toggle-sun" title="Light mode">
-                                <ion-icon name="sunny"></ion-icon>
+                        {{ else if eq .Site.Params.color_scheme "dark" }}
+                            <div class="toggle-theme theme-dark">
+                                <div class="toggle-moon" title="Dark mode">
+                                    <ion-icon name="moon"></ion-icon>
+                                </div>
                             </div>
-                        </div>
-                    {{ else if eq .Site.Params.color_scheme "dark" }}
-                        <div class="toggle-theme theme-dark">
-                            <div class="toggle-moon" title="Dark mode">
-                                <ion-icon name="moon"></ion-icon>
+                        {{ else }}
+                            <div class="toggle-theme toggle-theme-js">
+                                <div class="toggle-moon" title="Enable dark mode">
+                                    <ion-icon name="moon"></ion-icon>
+                                </div>
+                                <div class="toggle-sun" title="Enable light mode">
+                                    <ion-icon name="sunny"></ion-icon>
+                                </div>
                             </div>
-                        </div>
-                    {{ else }}
-                        <div class="toggle-theme toggle-theme-js">
-                            <div class="toggle-moon" title="Enable dark mode">
-                                <ion-icon name="moon"></ion-icon>
-                            </div>
-                            <div class="toggle-sun" title="Enable light mode">
-                                <ion-icon name="sunny"></ion-icon>
-                            </div>
-                        </div>
-                    {{ end }}
+                        {{ end }}
+                    </div>
 
                     <ion-icon class="nav__icon icon__menu" name="menu"></ion-icon>
                 </div>

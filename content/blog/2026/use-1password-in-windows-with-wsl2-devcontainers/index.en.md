@@ -201,6 +201,15 @@ echo "$(git config --global user.email) YOUR_SSH_ED25519_PUBLIC_KEY_STRING" > ~/
 git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
+**3.3 Configure Agent Forwarding**
+Create the file `$HOME/.ssh/config` and set the following configuration:
+
+```text
+Host *
+  ForwardAgent yes
+  IdentityAgent /tmp/1password-agent.sock
+```
+
 <span id="how-it-works"></span>
 
 ## 🧠 How It Works (Deep Dive)
