@@ -135,6 +135,9 @@ logo_item:
     - name: 'Cognits'
       link: 'https://cognits.co/'
       image: '/images/cognits-logo.webp'
+    - name: 'HTEC'
+      link: 'https://htec.com/'
+      image: '/images/htec-logo.webp'
 formats:
     date:
         long: 'Monday, January 2, 2006'
