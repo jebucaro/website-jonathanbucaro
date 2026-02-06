@@ -144,3 +144,16 @@
 
 - id: projects_previousProject
   translation: 'Proyecto Anterior'
+
+# Cookie consent
+- id: consent_banner_title
+  translation: 'Consentimiento de Cookies'
+
+- id: consent_banner_text
+  translation: 'Este sitio utiliza cookies para analizar el tráfico y mejorar tu experiencia. Tus datos se manejan con respeto por tu privacidad.'
+
+- id: consent_accept
+  translation: 'Aceptar'
+
+- id: consent_decline
+  translation: 'Rechazar'

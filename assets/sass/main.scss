@@ -1,8 +1,91 @@
 // Import the theme's main SCSS
 @import "themes/hilton/assets/sass/main";
 
-// Add your custom styles here
-// Example:
-// .custom-class {
-//   color: #your-color;
-// }
+// Cookie consent banner
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: calc(100% - 2rem);
+    max-width: 1300px;
+    z-index: 9999;
+    background: var(--background-alt-color);
+    color: var(--text-color);
+    border-radius: 12px;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: transform 0.35s ease;
+
+    &--visible {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    &__title {
+        margin: 0 0 0.25rem;
+        font-size: 1.1rem;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    &__btn {
+        padding: 0.6rem 1.5rem;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: opacity 0.2s ease;
+        white-space: nowrap;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        &--accept {
+            background: var(--brand-color);
+            color: #1a1a2e;
+        }
+
+        &--decline {
+            background: transparent;
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+    }
+
+    // Tablet
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+
+        &__actions {
+            justify-content: stretch;
+        }
+
+        &__btn {
+            flex: 1;
+            text-align: center;
+        }
+    }
+
+    // Mobile
+    @media (max-width: 576px) {
+        padding: 1rem 1.25rem;
+    }
+}
