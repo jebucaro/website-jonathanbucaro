@@ -10,6 +10,9 @@ languages:
         languageDirection: ltr
         weight: 1
         title: Jonathan Búcaro
+        params:
+            lang_flag: '🇺🇸'
+            lang_label: 'EN'
 
     es:
         languageCode: es-GT
@@ -17,6 +20,9 @@ languages:
         languageDirection: ltr
         weight: 2
         title: Jonathan Búcaro
+        params:
+            lang_flag: '🇬🇹'
+            lang_label: 'ES'
 theme: hilton
 pagination:
     pagerSize: 6

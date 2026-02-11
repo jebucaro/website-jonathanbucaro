@@ -3,26 +3,24 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "dev": "hugo server -D --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
+        "build": "hugo --cleanDestinationDir --minify",
+        "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
+        "clean": "node -e \"const fs = require('fs'); ['public', 'resources'].forEach(p => fs.rmSync(p, { recursive: true, force: true }))\"",
         "format:check": "prettier --check .",
         "format:write": "prettier --write .",
         "lint:markdown": "markdownlint 'content/**/*.md'",
         "lint:markdown:fix": "markdownlint --fix 'content/**/*.md'",
-        "build": "hugo --cleanDestinationDir --minify",
-        "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
-        "build:prod": "hugo --cleanDestinationDir --minify --environment production",
-        "dev": "hugo server -D --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
-        "serve": "hugo server",
-        "clean": "Remove-Item -Recurse -Force public, resources",
-        "prepare": "husky",
         "check": "npm run format:check && npm run lint:markdown",
         "fix": "npm run format:write && npm run lint:markdown:fix",
-        "validate": "npm run check && npm run build"
+        "validate": "npm run check && npm run build",
+        "prepare": "husky"
     },
     "author": "",
     "license": "UNLICENSED",
     "description": "",
     "devDependencies": {
-        "husky": "^9.1.6",
+        "husky": "^9.1.7",
         "lint-staged": "^16.2.7",
         "markdownlint-cli": "^0.47.0",
         "prettier": "^3.8.1",
@@ -38,7 +36,7 @@
         ]
     },
     "dependencies": {
-        "chart.js": "^4.5.0",
+        "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
         "mermaid": "^10.9.5",
         "reframe.js": "^4.0.2",
