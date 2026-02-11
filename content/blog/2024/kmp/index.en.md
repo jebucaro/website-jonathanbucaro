@@ -1,11 +1,11 @@
 ---
-title: 'Kanban Management Profesional'
+title: 'Kanban Management Professional'
 date: 2024-11-03T15:33:55-06:00
 image: 'images/cover.webp'
 tags: [personal, kanban]
 draft: false
 description: 'I earned the Kanban University KMP certification, deepening my expertise in designing and evolving Kanban systems to boost organizational agility.'
-slug: 'kanban-management-profesional'
+slug: 'kanban-management-professional'
 ---
 
 🎓 I’ve earned the Kanban Management Professional (KMP) certification from Kanban University! 🚀
