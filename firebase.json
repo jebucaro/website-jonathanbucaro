@@ -37,6 +37,21 @@
                 "source": "/es/blog/use-1password-in-windows-with-wsl2-devcontainers/",
                 "destination": "/es/blog/use-1password-in-windows-with-wsl2-dev-containers/",
                 "type": 301
+            },
+            {
+                "source": "/blog/create-a-knowledge-graph-from-text-with-gemini/",
+                "destination": "/es/blog/create-knowledge-graph-from-text-with-gemini/",
+                "type": 301
+            },
+            {
+                "source": "/blog/mejora-la-experiencia-de-la-terminal-de-windows-con-ohmyposh/",
+                "destination": "/es/blog/improve-the-windows-terminal-experience-with-ohmyposh/",
+                "type": 301
+            },
+            {
+                "source": "/blog/guia-habilitar-wsl2/",
+                "destination": "/es/blog/guide-enable-wsl2/",
+                "type": 301
             }
         ],
         "headers": [
