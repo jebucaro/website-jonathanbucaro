@@ -16,5 +16,3 @@ params:
 # Production-specific build optimizations
 minify:
     minifyOutput: true
-canonifyURLs: false
-relativeURLs: true
