@@ -52,6 +52,16 @@
                 "source": "/blog/guia-habilitar-wsl2/",
                 "destination": "/es/blog/guide-enable-wsl2/",
                 "type": 301
+            },
+            {
+                "source": "/blog/kanban-management-profesional/",
+                "destination": "/blog/kanban-management-professional/",
+                "type": 301
+            },
+            {
+                "source": "/es/blog/kanban-management-profesional/",
+                "destination": "/es/blog/kanban-management-professional/",
+                "type": 301
             }
         ],
         "headers": [
