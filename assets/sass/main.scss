@@ -1,8 +1,8 @@
 // Import the theme's main SCSS
 @import "themes/hilton/assets/sass/main";
 
-// Cookie consent banner
-.cookie-consent-banner {
+// Site notice (cookie consent banner)
+.site-notice {
     position: fixed;
     bottom: 1rem;
     left: 50%;
@@ -56,23 +56,30 @@
             opacity: 0.85;
         }
 
-        &--accept {
+        &--primary {
             background: var(--brand-color);
             color: #1a1a2e;
         }
 
-        &--decline {
+        &--secondary {
             background: transparent;
             color: var(--text-color);
             border-color: var(--border-color);
         }
     }
 
-    // Tablet
+    // Tablet & mobile: top positioning to avoid in-app browser bottom bars
     @media (max-width: 768px) {
+        bottom: auto;
+        top: 1rem;
+        transform: translateX(-50%) translateY(-100%);
         flex-direction: column;
         align-items: stretch;
         gap: 1rem;
+
+        &--visible {
+            transform: translateX(-50%) translateY(0);
+        }
 
         &__actions {
             justify-content: stretch;
