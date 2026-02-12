@@ -12,7 +12,7 @@
     }
 
     function hideBanner(banner) {
-        banner.classList.remove('cookie-consent-banner--visible');
+        banner.classList.remove('site-notice--visible');
         banner.addEventListener('transitionend', function handler() {
             banner.style.display = 'none';
             banner.removeEventListener('transitionend', handler);
@@ -23,12 +23,12 @@
         banner.style.display = '';
         // Force reflow so the transition triggers
         banner.offsetHeight;
-        banner.classList.add('cookie-consent-banner--visible');
+        banner.classList.add('site-notice--visible');
     }
 
     document.addEventListener('DOMContentLoaded', function () {
         var consent = localStorage.getItem(STORAGE_KEY);
-        var banner = document.getElementById('cookieConsentBanner');
+        var banner = document.getElementById('siteNotice');
 
         if (!banner) return;
 
@@ -45,7 +45,7 @@
         showBanner(banner);
 
         document
-            .getElementById('cookieAcceptBtn')
+            .getElementById('noticeAcceptBtn')
             .addEventListener('click', function () {
                 localStorage.setItem(STORAGE_KEY, 'granted');
                 updateConsent(true);
@@ -53,7 +53,7 @@
             });
 
         document
-            .getElementById('cookieDeclineBtn')
+            .getElementById('noticeDeclineBtn')
             .addEventListener('click', function () {
                 localStorage.setItem(STORAGE_KEY, 'denied');
                 updateConsent(false);

@@ -3,6 +3,11 @@
 {{ partial "head.html" . }}
     <body>
         {{ partial "google-analytics.html" . }}
+        {{- if .Site.Config.Services.GoogleAnalytics.ID -}}
+        {{ partial "site-notice.html" . }}
+        {{- $siteNotice := resources.Get "js/site-notice.js" | minify | fingerprint -}}
+        <script src="{{ $siteNotice.RelPermalink | absURL }}"></script>
+        {{- end -}}
         {{ partial "header.html" . }}
         <!-- begin content -->
         <main class="content" aria-label="Content">

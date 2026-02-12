@@ -6,9 +6,4 @@
 <script src="{{ $gaInitProcessed.RelPermalink | absURL }}"></script>
 <!-- Load Google Tag Manager library -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaID }}"></script>
-<!-- Cookie consent banner -->
-{{ partial "cookie-consent-banner.html" . }}
-<!-- Cookie consent interaction script -->
-{{- $cookieConsent := resources.Get "js/cookie-consent.js" | minify | fingerprint -}}
-<script src="{{ $cookieConsent.RelPermalink | absURL }}"></script>
 {{- end -}}
