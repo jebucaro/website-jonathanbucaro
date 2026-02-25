@@ -35,6 +35,9 @@
             "markdownlint --fix"
         ]
     },
+    "overrides": {
+        "minimatch": ">=10.1.4"
+    },
     "dependencies": {
         "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
