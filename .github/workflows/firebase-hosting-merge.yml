@@ -17,7 +17,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v6.2.0
               with:
-                  node-version: '22.x'
+                  node-version: '24.x'
                   cache: 'npm'
                   cache-dependency-path: '**/package-lock.json'
 
@@ -46,7 +46,7 @@ jobs:
 
             - uses: actions/setup-node@v6.2.0
               with:
-                  node-version: '22.x'
+                  node-version: '24.x'
                   cache: 'npm'
                   # The action defaults to search for the dependency file (package-lock.json,
                   # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
