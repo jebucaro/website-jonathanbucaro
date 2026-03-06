@@ -47,7 +47,7 @@ technologies:
               </svg>
 author:
     author__name: Jonathan Búcaro
-    author__avatar: '/images/perfil.webp'
+    author__avatar: '/images/profile.webp'
 social:
     - icon: logo-linkedin
       name: LinkedIn
@@ -63,7 +63,7 @@ social:
       link: 'https://instagram.com/jebucaro'
 hero:
     enable: true
-    hero__image: '/images/perfil.webp'
+    hero__image: '/images/profile.webp'
 mailchimp:
     enable: false
     mailchimp__identifier: >-
