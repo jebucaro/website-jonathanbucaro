@@ -1,0 +1,32 @@
+{{- /*
+  Gallery video shortcode - used within gallery shortcode
+  Renders a looping, muted, autoplay video (animated GIF replacement)
+
+  Usage:
+    {{< gallery-video src="images/video.webm" alt="Description" >}}
+  Note: mp4 fallback is derived automatically by replacing .webm with .mp4
+*/ -}}
+
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $page := .Page -}}
+{{- $resource := $page.Resources.GetMatch $src -}}
+{{- $mp4 := replace $src ".webm" ".mp4" -}}
+{{- $mp4resource := $page.Resources.GetMatch $mp4 -}}
+
+{{- if $src -}}
+<video autoplay muted loop playsinline title="{{ $alt }}" style="max-width:100%;height:auto;">
+  {{- if $resource }}
+  <source src="{{ $resource.RelPermalink }}" type="video/webm">
+  {{- else }}
+  {{- warnf "Video resource not found: %s in %s" $src $page.File.Path -}}
+  {{- end }}
+  {{- if $mp4resource }}
+  <source src="{{ $mp4resource.RelPermalink }}" type="video/mp4">
+  {{- else }}
+  {{- warnf "Video resource not found: %s in %s" $mp4 $page.File.Path -}}
+  {{- end }}
+</video>
+{{- else -}}
+  {{- errorf "gallery-video shortcode requires 'src' parameter in %s" $page.File.Path -}}
+{{- end -}}

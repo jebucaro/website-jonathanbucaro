@@ -101,7 +101,7 @@ El optimizador agrega siete secciones clave:
 Con razón mucha gente está teniendo problemas trabajando con GPT-5 😅
 
 {{< gallery caption="Prompt Optimizer en acción" >}}
-{{< gallery-image src="images/prompt-optimizer-3-22s.gif" alt="Demo del Prompt Optimizer de OpenAI" >}}
+{{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="Demo del Prompt Optimizer de OpenAI" >}}
 {{< /gallery >}}
 
 {{< gallery caption="Antes, después y explicación de los cambios" >}}
