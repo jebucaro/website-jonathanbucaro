@@ -105,9 +105,11 @@
     {{ if $css }}<link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />{{ end }}
     {{ else }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify | fingerprint }}
+    {{ $loader := resources.Get "js/css-loader.js" | minify | fingerprint }}
     {{ if $css }}
-    <link rel="preload" href="{{ $css.RelPermalink | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="{{ $css.RelPermalink | absURL }}" as="style" />
     <noscript><link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" /></noscript>
+    <script src="{{ $loader.RelPermalink | absURL }}" defer></script>
     {{ end }}
     {{ end }}
 </head>
