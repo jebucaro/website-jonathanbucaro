@@ -1,0 +1,1 @@
+{{ $svg := resources.Get (printf "icons/%s.svg" .) }}{{ if $svg }}{{ $svg.Content | safeHTML }}{{ end }}

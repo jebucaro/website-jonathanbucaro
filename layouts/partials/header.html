@@ -16,7 +16,7 @@
                 <nav class="main-nav">
                     <div class="main-nav__box">
                         <div class="nav__icon-close">
-                            <ion-icon name="close"></ion-icon>
+                            {{ partial "icon.html" "close" }}
                         </div>
                         <div class="nav__title">Menu</div>
 
@@ -63,31 +63,31 @@
                                 {{ if eq .Site.Params.color_scheme "auto" }}
                                     <div class="toggle-theme toggle-theme-js">
                                         <div class="toggle-moon" title="Enable dark mode">
-                                            <ion-icon name="moon"></ion-icon>
+                                            {{ partial "icon.html" "moon" }}
                                         </div>
                                         <div class="toggle-sun" title="Enable light mode">
-                                            <ion-icon name="sunny"></ion-icon>
+                                            {{ partial "icon.html" "sunny" }}
                                         </div>
                                     </div>
                                 {{ else if eq .Site.Params.color_scheme "light" }}
                                     <div class="toggle-theme theme-light">
                                         <div class="toggle-sun" title="Light mode">
-                                            <ion-icon name="sunny"></ion-icon>
+                                            {{ partial "icon.html" "sunny" }}
                                         </div>
                                     </div>
                                 {{ else if eq .Site.Params.color_scheme "dark" }}
                                     <div class="toggle-theme theme-dark">
                                         <div class="toggle-moon" title="Dark mode">
-                                            <ion-icon name="moon"></ion-icon>
+                                            {{ partial "icon.html" "moon" }}
                                         </div>
                                     </div>
                                 {{ else }}
                                     <div class="toggle-theme toggle-theme-js">
                                         <div class="toggle-moon" title="Enable dark mode">
-                                            <ion-icon name="moon"></ion-icon>
+                                            {{ partial "icon.html" "moon" }}
                                         </div>
                                         <div class="toggle-sun" title="Enable light mode">
-                                            <ion-icon name="sunny"></ion-icon>
+                                            {{ partial "icon.html" "sunny" }}
                                         </div>
                                     </div>
                                 {{ end }}
@@ -105,7 +105,7 @@
 
                                 {{ if .HasChildren }}
                                     <li class="nav__item dropdown">
-                                        <span class="nav__link dropdown-toggle">{{ .Name }}<ion-icon name="chevron-down"></ion-icon></span>
+                                        <span class="nav__link dropdown-toggle">{{ .Name }}{{ partial "icon.html" "chevron-down" }}</span>
                                         <div class="dropdown-menu">
                                             {{ range .Children }}
                                                 {{ $childURL := .URL }}
@@ -187,37 +187,37 @@
                         {{ if eq .Site.Params.color_scheme "auto" }}
                             <div class="toggle-theme toggle-theme-js">
                                 <div class="toggle-moon" title="Enable dark mode">
-                                    <ion-icon name="moon"></ion-icon>
+                                    {{ partial "icon.html" "moon" }}
                                 </div>
                                 <div class="toggle-sun" title="Enable light mode">
-                                    <ion-icon name="sunny"></ion-icon>
+                                    {{ partial "icon.html" "sunny" }}
                                 </div>
                             </div>
                         {{ else if eq .Site.Params.color_scheme "light" }}
                             <div class="toggle-theme theme-light">
                                 <div class="toggle-sun" title="Light mode">
-                                    <ion-icon name="sunny"></ion-icon>
+                                    {{ partial "icon.html" "sunny" }}
                                 </div>
                             </div>
                         {{ else if eq .Site.Params.color_scheme "dark" }}
                             <div class="toggle-theme theme-dark">
                                 <div class="toggle-moon" title="Dark mode">
-                                    <ion-icon name="moon"></ion-icon>
+                                    {{ partial "icon.html" "moon" }}
                                 </div>
                             </div>
                         {{ else }}
                             <div class="toggle-theme toggle-theme-js">
                                 <div class="toggle-moon" title="Enable dark mode">
-                                    <ion-icon name="moon"></ion-icon>
+                                    {{ partial "icon.html" "moon" }}
                                 </div>
                                 <div class="toggle-sun" title="Enable light mode">
-                                    <ion-icon name="sunny"></ion-icon>
+                                    {{ partial "icon.html" "sunny" }}
                                 </div>
                             </div>
                         {{ end }}
                     </div>
 
-                    <ion-icon class="nav__icon icon__menu" name="menu"></ion-icon>
+                    <span class="nav__icon icon__menu">{{ partial "icon.html" "menu" }}</span>
                 </div>
             </div>
         </div>
