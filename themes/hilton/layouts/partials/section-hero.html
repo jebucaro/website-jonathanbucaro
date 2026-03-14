@@ -7,7 +7,7 @@
                     <div class="hero__inner">
                         <div class="hero__left">
                             <div class="hero__image">
-                                <img src="{{ .Site.Params.hero.hero__image | absURL }}" alt="{{ .Site.Params.author.author__name }}'s Picture" loading="lazy" />
+                                <img src="{{ .Site.Params.hero.hero__image | absURL }}" alt="{{ .Site.Params.author.author__name }}'s Picture" fetchpriority="high" />
                             </div>
                         </div>
                         <div class="hero__right">

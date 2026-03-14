@@ -87,18 +87,27 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;600;700&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
 
-    <!-- External Scripts -->
-    <!-- Ionicons -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
-
     <!-- Theme JavaScript -->
     {{ $themejs := resources.Get "js/theme.js" }}
-    {{ if hugo.IsServer }}<script src="{{ $themejs.Permalink | absURL }}"></script>{{ else }}<script src="{{ ($themejs | minify | fingerprint).RelPermalink | absURL }}"></script>{{ end }}
+    {{ if hugo.IsServer }}
+    <script src="{{ $themejs.Permalink | absURL }}"></script>
+    {{ else }}
+    {{ $themejsProcessed := $themejs | minify | fingerprint }}
+    <link rel="preload" as="script" href="{{ $themejsProcessed.RelPermalink | absURL }}" />
+    <script src="{{ $themejsProcessed.RelPermalink | absURL }}"></script>
+    {{ end }}
 
     <!-- Stylesheets -->
-    {{ $cssOpts := (dict "targetPath" "css/main.css") }}
-    {{ if hugo.IsServer }}{{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}{{ end }}
+    {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
+    {{ if hugo.IsServer }}
+    {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
     {{ if $css }}<link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />{{ end }}
+    {{ else }}
+    {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify | fingerprint }}
+    {{ if $css }}
+    <link rel="preload" href="{{ $css.RelPermalink | absURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" /></noscript>
+    {{ end }}
+    {{ end }}
 </head>

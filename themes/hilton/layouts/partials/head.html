@@ -87,11 +87,6 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;600;700&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
 
-    <!-- External Scripts -->
-    <!-- Ionicons -->
-    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
-
     <!-- Theme JavaScript -->
     {{ $themejs := resources.Get "js/theme.js" }}
     {{ if hugo.IsServer }}<script src="{{ $themejs.Permalink | absURL }}"></script>{{ else }}<script src="{{ ($themejs | minify | fingerprint).RelPermalink | absURL }}"></script>{{ end }}
