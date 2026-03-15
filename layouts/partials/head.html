@@ -99,6 +99,9 @@
 
     <!-- Stylesheets -->
     {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
+    {{- $criticalOpts := (dict "includePaths" (slice "node_modules")) -}}
+    {{- $critical := resources.Get "sass/critical.scss" | toCSS $criticalOpts | minify -}}
+    {{- if $critical }}<style>{{ $critical.Content | safeCSS }}</style>{{ end }}
     {{ if hugo.IsServer }}
     {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
