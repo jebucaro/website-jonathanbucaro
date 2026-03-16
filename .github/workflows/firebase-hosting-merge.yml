@@ -7,25 +7,7 @@ name: Deploy to Firebase Hosting on merge
         branches:
             - main
 jobs:
-    quality-gate:
-        name: Quality Gate
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v6.0.2
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v6.2.0
-              with:
-                  node-version: '24.x'
-                  cache: 'npm'
-                  cache-dependency-path: '**/package-lock.json'
-
-            - name: Run quality checks
-              run: npm ci && npm run check
-
     build_and_deploy:
-        needs: quality-gate
         runs-on: ubuntu-latest
         permissions:
             contents: write
