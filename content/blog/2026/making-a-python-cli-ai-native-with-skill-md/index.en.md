@@ -32,8 +32,13 @@ This post is that example.
 
 I like CLIs that do one thing well, and `pokecli` is a good example of that. It has a clean command surface, clear output, and a workflow that feels natural in the terminal.
 
-{{< gallery caption="pokecli." >}}
+{{< gallery caption="pokecli help command" >}}
 {{< gallery-image src="images/pokecli-help.webp" alt="Windows Terminal showing the result of running pokecli's help command" >}}
+{{< /gallery >}}
+
+{{< gallery caption="pokecli pokemon and move commands" >}}
+{{< gallery-image src="images/pokecli-pokemon.webp" alt="Windows Terminal showing the result of running pokecli's pokemon command to get the data of Charizard" >}}
+{{< gallery-image src="images/pokecli-move.webp" alt="Windows Terminal showing the result of running pokecli's move command to ge the data of Flamethrower and Thunderbolt" >}}
 {{< /gallery >}}
 
 What I wanted to show is that you do not need to redesign a CLI to make it more useful for an AI agent. In many cases, the missing piece is a compact guide that tells the agent when to use the tool, which commands exist, and how to apply them safely.
@@ -42,7 +47,7 @@ What I wanted to show is that you do not need to redesign a CLI to make it more 
 
 ## 📸 See It In Action
 
-The end result is a small skill folder that Claude Code can load when a request matches the right trigger phrases:
+After installing pokecli and the respective skill, the end result is a small skill folder that Claude Code can load when a request matches the right trigger phrases:
 
 ```text
 pokecli-skill/
