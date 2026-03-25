@@ -565,36 +565,6 @@ That feedback loop is the real lesson. The best `SKILL.md` is not the longest on
 
 One thing I like about this project is that the repo structure maps cleanly to the final skill.
 
-```mermaid
-block-beta
-    columns 2
-
-    block:cli:2
-        pokemon["pokemon"] berry["berry"] item["item"] move["move"] image["image"] cache_cmd["cache"]
-    end
-
-    space:2
-
-    block:data:2
-        models["models"] display["display"]
-    end
-
-    space:2
-
-    block:infra:2
-        api["api/client"] cache_store["cache/store"]
-    end
-
-    space:2
-
-    ext["🌐 PokeAPI"] fs[("💾 ~/.pokecli/cache.json")]
-
-    cli --> data
-    data --> infra
-    api --> ext
-    cache_store --> fs
-```
-
 At the CLI level, the Typer app registers six top-level command groups:
 
 - `pokemon`
@@ -643,6 +613,6 @@ That is also why I wanted to turn the tech talk into a concrete example. The ide
 
 ---
 
-Photo by {{< extlink href="https://unsplash.com/@tinkerman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Immo Wegmann{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-pile-of-toothpicks-on-a-black-surface-PIp6Ikh6dEA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+Photo by {{< extlink href="https://unsplash.com/@jmanalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Jay{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/shallow-focus-photo-of-pokeball-dkFJST9zZZo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
 Pokémon and Pokémon character names are trademarks of Nintendo.

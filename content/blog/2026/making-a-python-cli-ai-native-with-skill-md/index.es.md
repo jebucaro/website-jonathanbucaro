@@ -563,36 +563,6 @@ Ese ciclo de retroalimentación es la lección real. El mejor `SKILL.md` no es e
 
 Una cosa que me gusta de este proyecto es que la estructura del repo se refleja bien en el skill final.
 
-```mermaid
-block-beta
-    columns 2
-
-    block:cli:2
-        pokemon["pokemon"] berry["berry"] item["item"] move["move"] image["image"] cache_cmd["cache"]
-    end
-
-    space:2
-
-    block:data:2
-        models["models"] display["display"]
-    end
-
-    space:2
-
-    block:infra:2
-        api["api/client"] cache_store["cache/store"]
-    end
-
-    space:2
-
-    ext["🌐 PokeAPI"] fs[("💾 ~/.pokecli/cache.json")]
-
-    cli --> data
-    data --> infra
-    api --> ext
-    cache_store --> fs
-```
-
 A nivel de CLI, la app de Typer registra seis grupos de comandos de primer nivel:
 
 - `pokemon`
@@ -641,6 +611,6 @@ Por eso también quise convertir la charla técnica en un ejemplo concreto. La i
 
 ---
 
-Foto de {{< extlink href="https://unsplash.com/@tinkerman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Immo Wegmann{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-pile-of-toothpicks-on-a-black-surface-PIp6Ikh6dEA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+Foto de {{< extlink href="https://unsplash.com/@jmanalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Jay{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/shallow-focus-photo-of-pokeball-dkFJST9zZZo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
 Pokémon y los nombres de los personajes de Pokémon son marcas registradas de Nintendo.
