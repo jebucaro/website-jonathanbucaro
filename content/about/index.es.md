@@ -11,8 +11,8 @@ slug: 'about'
 Durante trece años en **Banco G&T Continental**, trabajé principalmente en el sector financiero, participando en proyectos que exigían altos estándares de confiabilidad, escalabilidad y cumplimiento regulatorio. En ese tiempo, crecí profesionalmente: de programador a desempeñarme como Líder Técnico.
 
 {{< gallery caption="Reconocimientos en Banco G&T Continental, Top Talent 2022-2023" >}}
-{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-photo.webp" alt="En el escenario en Banco G&T Continental Top Talent 2022-2023" >}}
-{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin con el logo de Banco G&T Continental" >}}
+{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-photo.webp" alt="En el escenario en Banco G&T Continental Top Talent 2022-2023" loading="eager" >}}
+{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin con el logo de Banco G&T Continental" loading="eager" >}}
 {{< /gallery >}}
 
 En distintos roles, coordiné equipos de desarrollo, lideré la modernización de sistemas críticos y facilité la transición tecnológica desde entornos heredados hacia plataformas modernas. Me interesa especialmente optimizar procesos, automatizar tareas y asegurar que los equipos tengan el conocimiento y las herramientas adecuadas para alcanzar sus objetivos.

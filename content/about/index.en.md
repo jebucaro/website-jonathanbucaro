@@ -11,8 +11,8 @@ Hello! My name is Jonathan Búcaro, and I am a Systems Engineer based in Guatema
 For thirteen years at **Banco G&T Continental**, I worked primarily in the financial sector, participating in projects that demanded high standards of reliability, scalability, and regulatory compliance. During this time, I grew professionally from programmer to serving as a Technical Lead.
 
 {{< gallery caption="Recognitions at Banco G&T Continental, Top Talent 2022-2023" >}}
-{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-photo.webp" alt="On stage at Banco G&T Continental Top Talent 2022-2023" >}}
-{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin with the Banco G&T Continental logo" >}}
+{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-photo.webp" alt="On stage at Banco G&T Continental Top Talent 2022-2023" loading="eager" >}}
+{{< gallery-image src="images/gyt-continental-top-talent-2022-2023-pin.webp" alt="Pin with the Banco G&T Continental logo" loading="eager" >}}
 {{< /gallery >}}
 
 In various roles, I coordinated development teams, led the modernization of critical systems, and facilitated the technological transition from legacy environments to modern platforms. I have a particular interest in optimizing processes, automating tasks, and ensuring that teams have the right knowledge and tools to achieve their goals.
