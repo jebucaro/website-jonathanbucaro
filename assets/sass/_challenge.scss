@@ -1,0 +1,70 @@
+.challenge {
+    position: relative;
+    margin: 40px 0;
+    border-radius: 12px;
+    border-left: 6px solid var(--border-color);
+    background: var(--background-alt-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+
+    .challenge__label {
+        margin: 0;
+        padding: 10px 24px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    @media only screen and (max-width: $mobile) {
+        margin: 28px 0;
+    }
+}
+
+.challenge__section {
+    padding: 20px 24px;
+
+    .challenge__section-body {
+        > :last-child { margin-bottom: 0; }
+
+        .highlight,
+        pre {
+            margin-top: 16px;
+            background: var(--background-color);
+            border-radius: 8px;
+        }
+    }
+
+    + .challenge__section {
+        border-top: 1px solid var(--border-color);
+    }
+}
+
+.challenge__section-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.challenge__section--problem .challenge__section-label {
+    background: rgba(230, 126, 34, 0.12);
+    color: var(--callout-orange);
+}
+
+.challenge__section--decision .challenge__section-label {
+    background: rgba(45, 180, 125, 0.12);
+    color: var(--callout-green);
+}
+
+.dark-mode .challenge {
+    background: var(--callout-bg);
+    box-shadow: none;
+}
