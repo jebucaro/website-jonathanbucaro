@@ -1,122 +1,259 @@
 /* Testimonials */
 .testimonials {
-    padding: 100px 0 152px;
-    background-color: var(--background-alt-color);
+    padding: 60px 0 80px;
+}
+
+.client-list {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 20px 12px 12px;
+    margin-top: 40px;
+    border-radius: 100px;
+    overflow: hidden;
+    background: var(--background-alt-color);
+
+    .client-list__box {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 24px;
+    }
+
+    .client-list__image {
+        position: relative;
+        width: 52px;
+        height: 52px;
+        margin-right: -12px;
+        border: 2px solid var(--background-color);
+        border-radius: 50%;
+        background-color: var(--background-color);
+        overflow: hidden;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+        }
+    }
+
+    .client-list__meta {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .client-list__info {
+        margin-bottom: 4px;
+        font-size: 16px;
+        line-height: 1.4;
+        font-weight: 500;
+        color: var(--heading-font-color);
+    }
+
+    @media only screen and (max-width: $mobile) {
+        margin-top: 24px;
+        flex-wrap: wrap;
+        border-radius: 20px;
+
+        .client-list__box {
+            margin-right: 0;
+            margin-bottom: 12px;
+        }
+    }
+}
+
+/* Testimonials wrapper — positioning context for custom controls */
+.testimonials__wrapper {
+    position: relative;
+    margin-top: 64px;
 
     @media only screen and (max-width: $desktop) {
-        padding: 80px 0 132px;
+        margin-top: 48px;
     }
+}
+
+/* Testimonial card */
+.testimonials__slider {
+    position: relative;
 }
 
 .testimonial-content {
-    padding: 48px;
-    border-radius: 8px;
-    background-color: var(--background-color);
-
-    @media only screen and (max-width: $wide) {
-        padding: 36px;
-    }
-}
-
-.client-meta {
-    text-align: center;
-}
-
-.image-container {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    transform: translate(0);
-    background-color: var(--background-alt-color);
-
-    .client-avatar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        user-select: none;
-        object-fit: cover;
-    }
-
-    @media only screen and (max-width: $wide) {
-        margin-bottom: 16px;
-    }
-}
-
-.client-info {
-    margin-bottom: 20px;
-
-    .client-name {
-        margin-bottom: 0;
-        font-size: 21px;
-        line-height: 1;
-        font-weight: 700;
-    }
-
-    .client-designation {
-        margin-bottom: 0;
-        font-size: 12px;
-        color: var(--gray);
-    }
-
-    @media only screen and (max-width: $wide) {
-        margin-bottom: 16px;
-    }
-}
-
-.client-text {
-    position: relative;
-    margin-bottom: 20px;
-    font-size: 16px;
-
-    @media only screen and (max-width: $wide) {
-        margin-bottom: 16px;
-        font-size: 15px;
-    }
-
-    &::before {
-        content: "“";
-        position: absolute;
-        top: -32px;
-        left: -8px;
-        display: block;
-        z-index: 2;
-        font-size: 180px;
-        line-height: 1;
-        opacity: 0.08;
-        user-select: none;
-    }
-}
-
-.tns-nav {
-    position: absolute;
-    left: 50%;
-    bottom: 100px;
-    transform: translateX(-50%);
     display: flex;
+    align-items: center;
 
-    button {
-        width: 20px;
-        height: 4px;
-        margin: 0 4px;
-        border: none;
-        outline: none;
-        border-radius: 2px;
-        cursor: pointer;
-        opacity: 0.2;
-        background-color: var(--heading-font-color);
+    @media only screen and (max-width: $desktop) {
+        flex-direction: column;
     }
+}
 
-    .tns-nav-active {
-        opacity: 1;
-        background-color: var(--heading-font-color);
+.testimonial-left {
+    flex: 0 0 50%;
+
+    .client-image {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        border-radius: 32px;
+        background: var(--background-alt-color);
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+        }
     }
 
     @media only screen and (max-width: $desktop) {
-        bottom: 80px;
+        flex: none;
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+}
+
+.testimonial-right {
+    flex: 1;
+
+    .client-info {
+        padding-left: 60px;
+
+        @media only screen and (max-width: $wide) {
+            padding-left: 48px;
+        }
+    }
+
+    .client-text {
+        position: relative;
+        margin-bottom: 40px;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--heading-font-color);
+
+        &::after {
+            content: '\201C';
+            position: absolute;
+            top: 0.15em;
+            left: -0.03em;
+            z-index: -1;
+            font-size: 8em;
+            line-height: 0;
+            color: var(--brand-color);
+            opacity: 0.12;
+            user-select: none;
+        }
+
+        @media only screen and (max-width: $wide) {
+            font-size: 24px;
+        }
+
+        @media only screen and (max-width: $mobile) {
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+    }
+
+    .client-name {
+        margin-bottom: 4px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: none;
+        }
+    }
+
+    .client-designation {
+        display: block;
+        font-size: 15px;
+        line-height: 1.6;
+        color: var(--text-color);
+    }
+
+    @media only screen and (max-width: $desktop) {
+        width: 100%;
+        margin-top: 40px;
+
+        .client-info {
+            padding-left: 0;
+            text-align: center;
+        }
+    }
+}
+
+/* Custom slider controls */
+.testimonials-controls {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    width: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+
+    button {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 21px;
+        line-height: 1;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: all;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        color: var(--heading-font-color);
+        background: var(--background-color);
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        &[data-controls="prev"] {
+            transform: translateX(-50%);
+            &:hover { transform: translateX(-50%) scale(1.05); }
+        }
+
+        &[data-controls="next"] {
+            transform: translateX(50%);
+            &:hover { transform: translateX(50%) scale(1.05); }
+        }
+    }
+
+    @media only screen and (max-width: $desktop) {
+        display: none;
+    }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .client-list .client-list__image {
+        transition: none;
+        &:hover { transform: none; }
+    }
+
+    .testimonials-controls button {
+        transition: none;
+        &[data-controls="prev"], &[data-controls="prev"]:hover { transform: translateX(-50%); }
+        &[data-controls="next"], &[data-controls="next"]:hover { transform: translateX(50%); }
     }
 }

@@ -132,25 +132,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.querySelector('.my-slider') && window.tns) {
             var slider = tns({
                 container: '.my-slider',
-                items: 3,
+                items: 1,
                 slideBy: 1,
-                gutter: 32,
-                nav: true,
+                gutter: 0,
+                nav: false,
                 mouseDrag: true,
                 autoplay: false,
-                controls: false,
+                controls: true,
+                controlsContainer: '.testimonials-controls',
                 speed: 500,
-                responsive: {
-                    1024: {
-                        items: 3,
-                    },
-                    768: {
-                        items: 2,
-                    },
-                    0: {
-                        items: 1,
-                    },
-                },
+                loop: true,
             });
         }
     }, 100);

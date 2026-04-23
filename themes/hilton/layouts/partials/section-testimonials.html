@@ -4,49 +4,68 @@
     <div class="container">
         <div class="row">
             <div class="col col-12">
+
                 <div class="section__info">
-                    <div class="section__head">
-                        <h2 class="section__title">{{ i18n "sections_testimonials_title" | safeHTML }}</h2>
-                    </div>
-                {{ if .Site.Params.testimonials.testimonial__description }}
+                    <h2 class="section__title">{{ i18n "sections_testimonials_title" | safeHTML }}</h2>
+                    {{ if .Site.Params.testimonials.testimonial__description }}
                     <p class="section__description">{{ .Site.Params.testimonials.testimonial__description | safeHTML }}</p>
-                {{ end }}
+                    {{ end }}
+
+                    {{ with .Site.Params.testimonial_item }}
+                    <div class="client-list">
+                        <div class="client-list__box">
+                            {{ range . }}
+                            <div class="client-list__image">
+                                <img class="client-list__avatar" src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy">
+                            </div>
+                            {{ end }}
+                        </div>
+                        <div class="client-list__meta">
+                            {{ if $.Site.Params.testimonials.client_list__info }}
+                            <p class="client-list__info">{{ $.Site.Params.testimonials.client_list__info }}</p>
+                            {{ end }}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="108" height="20" fill="none" aria-label="5 stars"><path fill="#FFC71D" stroke="#FFC71D" stroke-linecap="round" stroke-linejoin="round" stroke-width=".68" d="m10 1.666 2.575 5.218 5.759.841-4.168 4.059.984 5.732L10 14.81l-5.15 2.707.984-5.732-4.168-4.059 5.759-.841L10 1.666Z"></path><path fill="#FFC71D" stroke="#FFC71D" stroke-linecap="round" stroke-linejoin="round" stroke-width=".68" d="m32 1.666 2.575 5.218 5.758.841-4.167 4.059.984 5.732L32 14.81l-5.15 2.707.983-5.732-4.167-4.059 5.759-.841L32 1.666Z"></path><path fill="#FFC71D" stroke="#FFC71D" stroke-linecap="round" stroke-linejoin="round" stroke-width=".68" d="m54 1.666 2.575 5.218 5.758.841-4.167 4.059.984 5.732L54 14.81l-5.15 2.707.983-5.732-4.167-4.059 5.759-.841L54 1.666Z"></path><path fill="#FFC71D" stroke="#FFC71D" stroke-linecap="round" stroke-linejoin="round" stroke-width=".68" d="m76 1.666 2.575 5.218 5.758.841-4.167 4.059.984 5.732L76 14.81l-5.15 2.707.984-5.732-4.168-4.059 5.759-.841L76 1.666Z"></path><path fill="#FFC71D" stroke="#FFC71D" stroke-linecap="round" stroke-linejoin="round" stroke-width=".68" d="m98 1.666 2.575 5.218 5.759.841-4.168 4.059.984 5.732L98 14.81l-5.15 2.707.984-5.732-4.168-4.059 5.759-.841L98 1.666Z"></path></svg>
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
 
-                <div class="testimonials__slider my-slider">
-                    {{ with .Site.Params.testimonial_item }}
-                        {{ range . }}
+                <div class="testimonials__wrapper">
+                    <div class="testimonials-controls">
+                        <button data-controls="prev" aria-label="Previous testimonial">&#8592;</button>
+                        <button data-controls="next" aria-label="Next testimonial">&#8594;</button>
+                    </div>
+
+                    <div class="testimonials__slider my-slider">
+                        {{ with .Site.Params.testimonial_item }}
+                            {{ range . }}
                             <div class="testimonial-item">
                                 <div class="testimonial-content">
-                                    <div class="client-meta">
+                                    <div class="testimonial-left">
                                         {{ if .image }}
-                                            <div class="image-container">
-                                                <img class="client-avatar" src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy"/>
-                                            </div>
-                                        {{ end }}
-                                        <div class="client-info">
-                                        {{ if .name }}
-                                            <h3 class="client-name">
-                                                {{ if .link }}
-                                                    <a href="{{ .link }}" target="_blank" rel="noopener">{{ .name }}</a>
-                                                {{ else }}
-                                                    {{ .name }}
-                                                {{ end }}
-                                            </h3>
-                                        {{ end }}
-                                        {{ if .designation }}
-                                            <p class="client-designation">{{ .designation }}</p>
-                                        {{ end }}
+                                        <div class="client-image">
+                                            <img src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy">
                                         </div>
-                                    {{ if .content }}
-                                        <p class="client-text">{{ .content }}</p>
-                                    {{ end }}
+                                        {{ end }}
+                                    </div>
+                                    <div class="testimonial-right">
+                                        <div class="client-info">
+                                            {{ if .content }}<p class="client-text">{{ .content }}</p>{{ end }}
+                                            {{ if .name }}
+                                            <h3 class="client-name">
+                                                {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+                                            </h3>
+                                            {{ end }}
+                                            {{ if .designation }}<span class="client-designation">{{ .designation }}</span>{{ end }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            {{ end }}
                         {{ end }}
-                    {{ end }}
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
