@@ -142,7 +142,7 @@
         color: var(--heading-font-color);
 
         &::after {
-            content: '\201C';
+            content: "\201C";
             position: absolute;
             top: 0.15em;
             left: -0.03em;
@@ -226,16 +226,22 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         color: var(--heading-font-color);
         background: var(--background-color);
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition:
+            transform 0.2s,
+            box-shadow 0.2s;
 
         &[data-controls="prev"] {
             transform: translateX(-50%);
-            &:hover { transform: translateX(-50%) scale(1.05); }
+            &:hover {
+                transform: translateX(-50%) scale(1.05);
+            }
         }
 
         &[data-controls="next"] {
             transform: translateX(50%);
-            &:hover { transform: translateX(50%) scale(1.05); }
+            &:hover {
+                transform: translateX(50%) scale(1.05);
+            }
         }
     }
 
@@ -248,12 +254,20 @@
 @media (prefers-reduced-motion: reduce) {
     .client-list .client-list__image {
         transition: none;
-        &:hover { transform: none; }
+        &:hover {
+            transform: none;
+        }
     }
 
     .testimonials-controls button {
         transition: none;
-        &[data-controls="prev"], &[data-controls="prev"]:hover { transform: translateX(-50%); }
-        &[data-controls="next"], &[data-controls="next"]:hover { transform: translateX(50%); }
+        &[data-controls="prev"],
+        &[data-controls="prev"]:hover {
+            transform: translateX(-50%);
+        }
+        &[data-controls="next"],
+        &[data-controls="next"]:hover {
+            transform: translateX(50%);
+        }
     }
 }

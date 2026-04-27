@@ -27,7 +27,9 @@
     padding: 20px 24px;
 
     .challenge__section-body {
-        > :last-child { margin-bottom: 0; }
+        > :last-child {
+            margin-bottom: 0;
+        }
 
         .highlight,
         pre {
