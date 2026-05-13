@@ -27,18 +27,17 @@ jobs:
                   hugo-version: 'latest'
                   extended: true
 
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+
             - uses: actions/setup-node@v6.2.0
               with:
                   node-version: '24.x'
-                  cache: 'npm'
-                  # The action defaults to search for the dependency file (package-lock.json,
-                  # npm-shrinkwrap.json or yarn.lock) in the repository root, and uses its
-                  # hash as a part of the cache key.
-                  # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
-                  cache-dependency-path: '**/package-lock.json'
+                  cache: 'pnpm'
+                  cache-dependency-path: '**/pnpm-lock.yaml'
 
             - name: Build Hugo site for staging
-              run: npm ci && npm run build:staging
+              run: pnpm install --frozen-lockfile && pnpm run build:staging
 
             - name: Deploy to Firebase Preview Channel
               if: github.actor != 'dependabot[bot]'
