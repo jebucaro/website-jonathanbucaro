@@ -91,7 +91,7 @@
   translation: 'Proyectos Seleccionados'
 
 - id: sections_projects_description
-  translation: 'Una muestra de mi trabajo más reciente y las tecnologías que domino.'
+  translation: 'Una muestra de mi trabajo más reciente y las tecnologías que domino y uso regularmente.'
 
 - id: sections_projects_viewProject
   translation: 'Ver Proyecto'
@@ -144,3 +144,25 @@
 
 - id: projects_previousProject
   translation: 'Proyecto Anterior'
+
+# Agent session shortcode
+- id: agentSession_roleUser
+  translation: 'Tú'
+
+- id: agentSession_roleAgent
+  translation: 'Agente'
+
+- id: agentSession_toolInput
+  translation: 'Entrada'
+
+- id: agentSession_toolOutput
+  translation: 'Salida'
+
+- id: agentSession_showMore
+  translation: 'Ver más'
+
+- id: agentSession_showLess
+  translation: 'Ver menos'
+
+- id: agentSession_summaryPlaceholder
+  translation: '[La sesión se mostrará al ver la publicación completa]'

@@ -91,7 +91,7 @@
   translation: 'Selected Projects'
 
 - id: sections_projects_description
-  translation: "A showcase of my latest work and the technologies I've mastered."
+  translation: "A showcase of my latest work and the technologies I've mastered and use on a regular basis."
 
 - id: sections_projects_viewProject
   translation: 'View Project'
@@ -144,3 +144,25 @@
 
 - id: projects_previousProject
   translation: 'Previous Project'
+
+# Agent session shortcode
+- id: agentSession_roleUser
+  translation: 'You'
+
+- id: agentSession_roleAgent
+  translation: 'Agent'
+
+- id: agentSession_toolInput
+  translation: 'Input'
+
+- id: agentSession_toolOutput
+  translation: 'Output'
+
+- id: agentSession_showMore
+  translation: 'Show more'
+
+- id: agentSession_showLess
+  translation: 'Show less'
+
+- id: agentSession_summaryPlaceholder
+  translation: '[Session will be displayed when viewing the full post]'
