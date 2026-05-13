@@ -1,0 +1,120 @@
+{{- if not .Page.Summary -}}
+{{- $name := .Get 0 -}}
+{{- $pageDir := path.Dir .Page.File.Path -}}
+{{- $filePath := printf "content/%s/sessions/%s.json" $pageDir $name -}}
+
+{{- if not (fileExists $filePath) -}}
+  {{- errorf "Agent session file not found: %s" $filePath -}}
+{{- end -}}
+
+{{- $session := readFile $filePath | unmarshal -}}
+
+<div class="agent-session">
+  <div class="agent-session-header">
+    <svg class="agent-session-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M4 17H20V5H4V17ZM2 4.007C2 3.45 2.455 3 2.992 3H21.008C21.556 3 22 3.449 22 4.007V17.993C22 18.55 21.545 19 21.008 19H14L10 22V19H2.992C2.444 19 2 18.551 2 17.993V4.007Z" fill="currentColor"/>
+      <path d="M7.5 9L10 12L7.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 15H16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="agent-session-tool-badge agent-session-tool-{{ $session.tool }}">{{ $session.tool | replace "_" " " | title }}</span>
+    <span class="agent-session-title">{{ $session.title }}</span>
+  </div>
+
+  <div class="agent-session-scroll">
+    {{- range $session.messages -}}
+    <div class="agent-session-message agent-session-{{ .role }}">
+      <div class="agent-session-role-badge agent-session-role-{{ .role }}">
+        {{- if eq .role "user" -}}{{ i18n "agentSession_roleUser" }}{{- else -}}{{ i18n "agentSession_roleAgent" }}{{- end -}}
+      </div>
+      <div class="agent-session-content">
+        {{- if .tool_calls -}}
+          {{- range .tool_calls -}}
+          <div class="agent-session-tool-call">
+            <button class="agent-session-tool-toggle" aria-expanded="false" type="button">
+              <span class="agent-session-chevron">▸</span>
+              <span class="tool-name tool-name-{{ .class }}">{{ .name }}</span>
+              <span class="tool-input-preview">{{ .preview }}</span>
+            </button>
+            <div class="agent-session-tool-detail" style="display:none">
+              <div class="tool-section">
+                <div class="tool-section-label">{{ i18n "agentSession_toolInput" }}</div>
+                {{- if .input_terminal -}}
+                <pre class="agent-session-pre agent-session-terminal"><code>$ {{- .input -}}</code></pre>
+                {{- else -}}
+                <pre class="agent-session-pre"><code>{{- .input -}}</code></pre>
+                {{- end -}}
+              </div>
+              {{- with .output -}}
+              <div class="tool-section">
+                <div class="tool-section-label">{{ i18n "agentSession_toolOutput" }}</div>
+                <pre class="agent-session-pre"><code>{{- . -}}</code></pre>
+              </div>
+              {{- end -}}
+            </div>
+          </div>
+          {{- end -}}
+        {{- end -}}
+        {{- $collapsible := .collapsible -}}
+        {{- with .content -}}
+          {{- if $collapsible -}}
+          <div data-collapsible="">
+            <div class="agent-session-text agent-session-text-collapse">
+              {{ . | markdownify }}
+            </div>
+            <button class="agent-session-expand-btn" type="button">{{ i18n "agentSession_showMore" }}</button>
+          </div>
+          {{- else -}}
+          <div class="agent-session-text">
+            {{ . | markdownify }}
+          </div>
+          {{- end -}}
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</div>
+
+{{- if not (.Page.Scratch.Get "hasAgentSessionJS") -}}
+{{- .Page.Scratch.Set "hasAgentSessionJS" true -}}
+<script>
+(function () {
+  function initAgentSessions() {
+    document.querySelectorAll('.agent-session:not([data-bound])').forEach(function (el) {
+      el.dataset.bound = '1';
+      el.querySelectorAll('.agent-session-tool-toggle').forEach(function (toggle) {
+        toggle.addEventListener('click', function () {
+          var detail = this.nextElementSibling;
+          var isExpanded = this.getAttribute('aria-expanded') === 'true';
+          detail.style.display = isExpanded ? 'none' : 'block';
+          this.setAttribute('aria-expanded', String(!isExpanded));
+          this.querySelector('.agent-session-chevron').textContent = isExpanded ? '▸' : '▾';
+        });
+      });
+      el.querySelectorAll('[data-collapsible]').forEach(function (wrapper) {
+        var textEl = wrapper.querySelector('.agent-session-text-collapse');
+        var btn = wrapper.querySelector('.agent-session-expand-btn');
+        if (!textEl || !btn) return;
+        if (textEl.scrollHeight <= textEl.clientHeight + 2) {
+          btn.style.display = 'none';
+          textEl.classList.remove('agent-session-text-collapse');
+          return;
+        }
+        btn.addEventListener('click', function () {
+          var expanded = textEl.classList.toggle('expanded');
+          btn.textContent = expanded ? '{{ i18n "agentSession_showLess" }}' : '{{ i18n "agentSession_showMore" }}';
+        });
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAgentSessions);
+  } else {
+    initAgentSessions();
+  }
+})();
+</script>
+{{- end -}}
+{{- else -}}
+<p><em>{{ i18n "agentSession_summaryPlaceholder" }}</em></p>
+{{- end -}}
