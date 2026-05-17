@@ -69,4 +69,9 @@
 .dark-mode .challenge {
     background: var(--callout-bg);
     box-shadow: none;
+
+    .highlight,
+    pre {
+        background: var(--syntax-highlighting-background);
+    }
 }
