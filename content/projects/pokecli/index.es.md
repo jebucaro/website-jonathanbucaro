@@ -299,7 +299,15 @@ Todo lo relacionado con Rich vive bajo `display/`. `display/common.py` reúne `M
 Las herramientas pensadas para agentes suelen aparecer al final, añadidas deprisa y relegadas a un README.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-`SKILL.md` y su `references/api-fields.md` viajan dentro del wheel, en `pokecli/skills/pokecli/`. `install.py` usa `importlib.resources` para copiarlos a `~/.claude/skills/pokecli/`. El skill se mantiene pequeño a propósito: el frontmatter se encarga de activarlo, el cuerpo contiene el mapa de comandos y el archivo de referencia solo se carga cuando el agente necesita más contexto.
+`SKILL.md` y su `references/api-fields.md` viajan dentro del wheel, en `pokecli/skills/pokecli/`. `install.py` usa `importlib.resources` para copiarlos a `~/.claude/skills/pokecli/`, así que la capa pensada para agentes se entrega junto con el CLI y no como documentación separada.
+
+Mantengo el skill pequeño a propósito y lo separé en tres capas que un agente puede cargar con poco contexto:
+
+1. el frontmatter es la capa de disparo, con el nombre del skill, una descripción corta y el límite de `allowed-tools`
+2. el cuerpo de `SKILL.md` es la guía de comandos de trabajo, organizada alrededor de los mismos grupos de comandos que ya expone el CLI
+3. `references/api-fields.md` guarda el detalle a nivel de campos que solo hace falta cuando un agente necesita más profundidad
+
+Esa estructura hace que la implementación sea nativa para IA sin convertirla en una segunda interfaz. El skill empaquetado refleja la superficie real de comandos, se instala con un solo comando y les da a Claude Code o Copilot el contexto suficiente para actuar sobre `pokecli` sin releer `--help` en cada tarea.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 

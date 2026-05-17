@@ -304,7 +304,15 @@ Everything Rich-related lives under `display/`. A shared `display/common.py` hos
 AI-native tooling is often an afterthought pinned to a README.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-`SKILL.md` and its `references/api-fields.md` live inside the wheel under `pokecli/skills/pokecli/`. `install.py` uses `importlib.resources` to copy them into `~/.claude/skills/pokecli/`. The skill is small on purpose: the frontmatter does the triggering, the body holds the command map, and the reference file only loads when the agent needs more detail.
+`SKILL.md` and its `references/api-fields.md` live inside the wheel under `pokecli/skills/pokecli/`. `install.py` uses `importlib.resources` to copy them into `~/.claude/skills/pokecli/`, so the agent-facing layer ships with the CLI instead of living as a separate doc.
+
+I kept the skill small on purpose and split it into three layers an agent can load cheaply:
+
+1. the frontmatter is the trigger layer, with the skill name, a short description, and the `allowed-tools` boundary
+2. the `SKILL.md` body is the working command guide, organized around the same command groups the CLI already exposes
+3. `references/api-fields.md` holds the field-level detail that only matters when an agent needs more depth
+
+That structure makes the implementation AI-native without turning it into a second interface. The packaged skill mirrors the real command surface, installs with one command, and gives Claude Code or Copilot enough context to act on `pokecli` without re-reading `--help` on every task.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
