@@ -12,10 +12,10 @@
     <!-- Language alternates -->
     {{ if .IsTranslated }}
       {{ range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}" />
+        <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}" />
       {{ end }}
     {{ end }}
-    <link rel="alternate" hreflang="{{ .Site.Language.LanguageCode }}" href="{{ .Permalink }}" />
+    <link rel="alternate" hreflang="{{ .Site.Language.Locale }}" href="{{ .Permalink }}" />
     <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
 
     <!-- SEO and Robots -->
@@ -67,9 +67,9 @@
     <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />
-    <meta property="og:locale" content="{{ replace .Site.Language.LanguageCode "-" "_" }}" />
+    <meta property="og:locale" content="{{ replace .Site.Language.Locale "-" "_" }}" />
     {{ range .Translations }}
-      <meta property="og:locale:alternate" content="{{ replace .Language.LanguageCode "-" "_" }}" />
+      <meta property="og:locale:alternate" content="{{ replace .Language.Locale "-" "_" }}" />
     {{ end }}
 
     <!-- RSS Feed -->

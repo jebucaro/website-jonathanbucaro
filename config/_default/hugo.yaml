@@ -5,9 +5,9 @@ defaultContentLanguageInSubdir: false
 
 languages:
     en:
-        languageCode: en-us
-        languageName: English
-        languageDirection: ltr
+        locale: en-US
+        label: English
+        direction: ltr
         weight: 1
         title: Jonathan Búcaro
         params:
@@ -15,9 +15,9 @@ languages:
             lang_label: 'EN'
 
     es:
-        languageCode: es-GT
-        languageName: Español
-        languageDirection: ltr
+        locale: es-GT
+        label: Español
+        direction: ltr
         weight: 2
         title: Jonathan Búcaro
         params:
