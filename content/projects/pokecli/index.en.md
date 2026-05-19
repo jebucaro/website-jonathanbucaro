@@ -3,7 +3,7 @@ title: 'pokecli: A Small, Typed CLI for PokeAPI'
 slug: 'pokecli'
 subtitle: 'A typed, script-friendly Python CLI for PokeAPI. Installed with uv, cached locally with TinyDB, and agent-ready through a shipped Claude Code skill.'
 date: 2026-04-20T15:24:35Z
-draft: true
+draft: false
 image: 'images/cover.webp'
 description: 'A typed, script-friendly Python CLI for PokeAPI. Installed with uv, cached locally with TinyDB, and agent-ready through a shipped Claude Code skill.'
 categories: ['CLI Tool']
