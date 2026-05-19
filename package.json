@@ -39,8 +39,11 @@
             "markdownlint --fix"
         ]
     },
-    "overrides": {
-        "minimatch": ">=10.1.4"
+    "pnpm": {
+        "overrides": {
+            "brace-expansion": "5.0.6",
+            "minimatch": ">=10.1.4"
+        }
     },
     "dependencies": {
         "chart.js": "^4.5.1",
