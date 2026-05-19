@@ -9,16 +9,38 @@ tags: []
 categories: []
 ---
 
-## Project Description
+## Overview
 
-Write a brief description of your project here.
+Describe the project or system in one or two paragraphs. Focus on the problem, why it mattered, and the shape of the solution.
+
+## Context
+
+Explain the business or technical context. For generalized case studies, keep this at the level of domain, constraints, and objectives rather than client-specific details.
+
+## Role
+
+Describe your responsibilities, decision-making scope, and the parts of the system you directly influenced.
 
 ## Technologies Used
 
 - **Backend**:
-- **Frontend**:
-- **Database**:
+- **Cloud / Infrastructure**:
+- **Data / Storage**:
 - **Other Tools**:
+
+## Architecture
+
+Summarize the main components, integration points, and boundaries. Add a Mermaid diagram here if it helps explain the system.
+
+## Key Decisions
+
+### Decision 1
+
+What options were available, what you chose, and why.
+
+### Decision 2
+
+Another meaningful tradeoff or architecture choice.
 
 ## Key Features
 
@@ -32,9 +54,18 @@ Description of feature 2
 
 ## Technical Challenges
 
-1. **Challenge 1**: Description and solution
-2. **Challenge 2**: Description and solution
+### Challenge 1
 
-## Results
+What made it difficult and how you handled it.
 
-Key outcomes and achievements of the project.
+### Challenge 2
+
+What changed, what constraint shaped the solution, and what you learned.
+
+## Outcome
+
+Summarize the results, improvements, or lessons that matter most.
+
+## Notes on Scope
+
+Use this section only when needed. For generalized case studies, explain that the write-up focuses on technical patterns, decisions, and outcomes while omitting identifying implementation details.

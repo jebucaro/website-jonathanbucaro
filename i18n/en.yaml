@@ -91,7 +91,7 @@
   translation: 'Selected Projects'
 
 - id: sections_projects_description
-  translation: "A showcase of my latest work and the technologies I've mastered and use on a regular basis."
+  translation: 'A selection of projects that reflects the kind of systems I like building and the tools I use in day-to-day work.'
 
 - id: sections_projects_viewProject
   translation: 'View Project'
