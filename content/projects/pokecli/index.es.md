@@ -17,6 +17,12 @@ categories: ['CLI Tool']
 {{< gallery-image src="images/pokecli-help.webp" alt="pokecli ejecutando el comando de ayuda" >}}
 {{< /gallery >}}
 
+{{< callout note>}}
+
+<strong>Repositorio de GitHub</strong>: {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
+
+{{< /callout >}}
+
 ## Tecnologías utilizadas
 
 <div class="table-container">
@@ -400,10 +406,6 @@ En conjunto, estas decisiones muestran por qué `pokecli` funciona bien como pro
 Tan importante como leer el código es entender la experiencia que produce. `pokecli` toma una API pública y la convierte en una herramienta serena y automatizable, y el `SKILL.md` que acompaña al proyecto hace que ese CLI sea nativo para IA al enseñarle a un agente cómo usarlo incluso si el modelo nunca fue entrenado específicamente con `pokecli`. Así, el proyecto mantiene una huella pequeña para quien llega por primera vez y, al mismo tiempo, sigue siendo legible para un agente desde la siguiente sesión.
 
 {{< agent-session "pokecli-demo" >}}
-
-## Enlaces
-
-1. Repositorio: {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
 
 ---
 

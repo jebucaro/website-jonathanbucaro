@@ -17,6 +17,12 @@ categories: ['CLI Tool']
 {{< gallery-image src="images/pokecli-help.webp" alt="pokecli executing the help command" >}}
 {{< /gallery >}}
 
+{{< callout note>}}
+
+<strong>GitHub repository</strong>: {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
+
+{{< /callout >}}
+
 ## Technologies Used
 
 <div class="table-container">
@@ -405,10 +411,6 @@ Taken together, these choices show why `pokecli` works well as a reference proje
 The product read is just as important as the code read. `pokecli` turns a public API into a calm, scriptable tool, and the shipped `SKILL.md` makes that CLI AI-native by teaching an agent how to use it even when the model was never trained on `pokecli` itself. That keeps the footprint small for a human contributor and still legible to an agent in the next session.
 
 {{< agent-session "pokecli-demo" >}}
-
-## Links
-
-1. Repository: {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
 
 ---
 
