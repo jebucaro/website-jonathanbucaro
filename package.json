@@ -11,9 +11,9 @@
         "format:write": "prettier --write .",
         "lint:markdown": "markdownlint 'content/**/*.md'",
         "lint:markdown:fix": "markdownlint --fix 'content/**/*.md'",
-        "check": "npm run format:check && npm run lint:markdown",
-        "fix": "npm run format:write && npm run lint:markdown:fix",
-        "validate": "npm run check && npm run build",
+        "check": "pnpm run format:check && pnpm run lint:markdown",
+        "fix": "pnpm run format:write && pnpm run lint:markdown:fix",
+        "validate": "pnpm run check && pnpm run build",
         "prepare": "husky"
     },
     "author": "",
@@ -22,11 +22,12 @@
     "engines": {
         "node": ">=24"
     },
+    "packageManager": "pnpm@10.32.1",
     "devDependencies": {
         "husky": "^9.1.7",
-        "lint-staged": "^16.4.0",
+        "lint-staged": "^17.0.4",
         "markdownlint-cli": "^0.48.0",
-        "prettier": "^3.8.1",
+        "prettier": "^3.8.3",
         "prettier-plugin-go-template": "^0.0.15"
     },
     "lint-staged": {
@@ -38,13 +39,16 @@
             "markdownlint --fix"
         ]
     },
-    "overrides": {
-        "minimatch": ">=10.1.4"
+    "pnpm": {
+        "overrides": {
+            "brace-expansion": "5.0.6",
+            "minimatch": ">=10.1.4"
+        }
     },
     "dependencies": {
         "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
-        "mermaid": "^11.13.0",
+        "mermaid": "^11.15.0",
         "normalize.css": "^8.0.1",
         "reframe.js": "^4.0.2",
         "smoothscroll-polyfill": "^0.4.4",

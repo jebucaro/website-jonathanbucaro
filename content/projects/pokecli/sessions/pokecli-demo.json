@@ -1,0 +1,69 @@
+{
+    "title": "Using pokecli with Claude Code",
+    "tool": "claude_code",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Look up Pikachu's stats"
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Skill",
+                    "class": "skill",
+                    "preview": "{\"skill\":\"pokecli\",\"args\":\"Pikachu stats\"}",
+                    "input": "{\n  \"skill\": \"pokecli\",\n  \"args\": \"Pikachu stats\"\n}",
+                    "output": "Launching skill: pokecli"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli pokemon get pikachu",
+                    "input": "pokecli pokemon get pikachu",
+                    "input_terminal": true,
+                    "output": "╭────────────────────────────────────────────────────────────╮\n│ #25  Pikachu   Height: 0.4m   Weight: 6.0kg   Base XP: 112 │\n╰────────────────────────────────────────────────────────────╯\n ELECTRIC \n\nAbilities: static  ·  lightning-rod (hidden)\n\n Stat            Base  Bar\n hp                35  ███░░░░░░░░░░░░░░░░░\n attack            55  ████░░░░░░░░░░░░░░░░\n defense           40  ███░░░░░░░░░░░░░░░░░\n special-attack    50  ████░░░░░░░░░░░░░░░░\n special-defense   50  ████░░░░░░░░░░░░░░░░\n speed             90  ███████░░░░░░░░░░░░░"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": "Here are Pikachu's base stats:\n\n| Stat | Value |\n|------|-------|\n| HP | 35 |\n| Attack | 55 |\n| Defense | 40 |\n| Sp. Attack | 50 |\n| Sp. Defense | 50 |\n| **Speed** | **90** |\n\nPikachu is a pure Electric type with decent Speed being its standout stat. Its abilities are **Static** (may paralyze on contact) and the hidden ability **Lightning Rod** (draws Electric moves, raises Sp. Atk)."
+        },
+        {
+            "role": "user",
+            "content": "Compare Thunderbolt and Flamethrower"
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli move get thunderbolt",
+                    "input": "pokecli move get thunderbolt",
+                    "input_terminal": true,
+                    "output": "╭──────────────────╮\n│ #85  Thunderbolt │\n╰──────────────────╯\n  Type             Electric\n  Category         Special\n  Power            90\n  Accuracy         100%\n  PP               15\n  Effect Chance    10%\n\nEffect: Has a 10% chance to paralyze the target."
+                },
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli move get flamethrower",
+                    "input": "pokecli move get flamethrower",
+                    "input_terminal": true,
+                    "output": "╭───────────────────╮\n│ #53  Flamethrower │\n╰───────────────────╯\n  Type             Fire\n  Category         Special\n  Power            90\n  Accuracy         100%\n  PP               15\n  Effect Chance    10%\n\nEffect: Has a 10% chance to burn the target."
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": "They're nearly identical moves — just different types and status effects:\n\n| | Thunderbolt | Flamethrower |\n|--|--|--|\n| Type | Electric | Fire |\n| Category | Special | Special |\n| Power | 90 | 90 |\n| Accuracy | 100% | 100% |\n| PP | 15 | 15 |\n| Effect | 10% Paralyze | 10% Burn |\n\nThe only meaningful differences:\n- **Paralysis** (Thunderbolt) halves the target's Speed and has a chance to skip turns — generally considered the stronger status\n- **Burn** (Flamethrower) deals chip damage each turn and halves the target's Attack (less useful against special attackers)\n\nBoth are among the most reliable moves in the game. Choice between them comes down to type coverage needed on your team.",
+            "collapsible": true
+        }
+    ]
+}

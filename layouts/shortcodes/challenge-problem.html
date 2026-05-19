@@ -1,0 +1,10 @@
+{{- /*
+  challenge-problem — problem section inside a challenge card.
+*/ -}}
+
+<div class="challenge__section challenge__section--problem">
+  <span class="challenge__section-label" aria-hidden="true">Problem</span>
+  <div class="challenge__section-body">
+    {{- .Inner | markdownify -}}
+  </div>
+</div>

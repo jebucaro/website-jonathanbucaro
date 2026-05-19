@@ -1,0 +1,11 @@
+{{- /*
+  challenge-decision — decision section inside a challenge card.
+  Supports rich markdown content including code blocks.
+*/ -}}
+
+<div class="challenge__section challenge__section--decision">
+  <span class="challenge__section-label" aria-hidden="true">Decision</span>
+  <div class="challenge__section-body">
+    {{- .Inner | markdownify -}}
+  </div>
+</div>

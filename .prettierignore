@@ -1,4 +1,6 @@
 # node modules and config files are ignored
+.pnpm-store/**
+pnpm-lock.yaml
 # ignore hugo generated files
 /public/**
 /resources/**

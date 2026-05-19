@@ -1,0 +1,19 @@
+{{- /*
+  challenge — outer card wrapper for a problem/decision pair.
+
+  Usage:
+    {{< challenge >}}
+      {{< challenge-problem >}}...{{< /challenge-problem >}}
+      {{< challenge-decision >}}...{{< /challenge-decision >}}
+    {{< /challenge >}}
+
+  Optional param:
+    label — visible heading above the card (omit when an h3 already provides context)
+*/ -}}
+
+{{- $label := .Get "label" -}}
+
+<div class="challenge">
+  {{- with $label -}}<p class="challenge__label">{{ . }}</p>{{- end -}}
+  {{- .Inner -}}
+</div>

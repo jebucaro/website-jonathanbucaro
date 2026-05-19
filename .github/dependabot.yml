@@ -12,7 +12,7 @@ updates:
       schedule:
           interval: weekly
 
-    # npm dependencies
+    # pnpm dependencies (pnpm-lock.yaml — dependabot supports pnpm under the npm ecosystem)
     - package-ecosystem: 'npm'
       directory: '/'
       schedule:

@@ -1,2 +1,6 @@
 // Import the theme's main SCSS
 @import "themes/hilton/assets/sass/main";
+
+// Project-level components
+@import "challenge";
+@import "agent-session";

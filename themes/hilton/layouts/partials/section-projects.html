@@ -23,13 +23,11 @@
                                             {{ else }}
                                                 <img src="{{ .Params.image | absURL }}" alt="{{ .Params.Title }}" loading="lazy" />
                                             {{ end }}
+                                            <div class="project__info">
+                                                {{ with .Params.categories }}<div class="project__label">{{ index . 0 }}</div>{{ end }}
+                                                <h3 class="project__title">{{ .Params.title }}</h3>
+                                            </div>
                                         </a>
-                                        <div class="project__info">
-                                            <h3 class="project__title"><a href="{{ .RelPermalink }}">{{ .Params.title }}</a></h3>
-                                        {{ if .Params.subtitle }}
-                                            <div class="project__subtitle">{{ .Params.subtitle }}</div>
-                                        {{ end }}
-                                        </div>
                                     </div>
                                 </article>
                             {{ end }}

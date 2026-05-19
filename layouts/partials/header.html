@@ -28,8 +28,8 @@
                                 <div class="language-selector">
                                     {{- /* Current language (shown first) */ -}}
                                     <span class="language-link language-current" aria-current="page"
-                                          aria-label="Current language: {{ .Language.LanguageName }}"
-                                          title="{{ .Language.LanguageName }}">
+                                          aria-label="Current language: {{ .Language.Label }}"
+                                          title="{{ .Language.Label }}">
                                         <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                         <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                                     </span>
@@ -38,8 +38,8 @@
                                     {{- if .IsTranslated -}}
                                         {{- range .Translations -}}
                                             <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                               title="{{ .Language.LanguageName }}"
-                                               aria-label="Switch to {{ .Language.LanguageName }}">
+                                               title="{{ .Language.Label }}"
+                                               aria-label="Switch to {{ .Language.Label }}">
                                                 <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                                 <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                                             </a>
@@ -49,8 +49,8 @@
                                         {{- range .Site.Home.AllTranslations -}}
                                             {{- if ne $.Language.Lang .Language.Lang -}}
                                                 <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                                   title="{{ .Language.LanguageName }}"
-                                                   aria-label="Switch to {{ .Language.LanguageName }}">
+                                                   title="{{ .Language.Label }}"
+                                                   aria-label="Switch to {{ .Language.Label }}">
                                                     <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                                     <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                                                 </a>
@@ -152,8 +152,8 @@
                         <div class="language-selector">
                             {{- /* Current language (shown first) */ -}}
                             <span class="language-link language-current" aria-current="page"
-                                  aria-label="Current language: {{ .Language.LanguageName }}"
-                                  title="{{ .Language.LanguageName }}">
+                                  aria-label="Current language: {{ .Language.Label }}"
+                                  title="{{ .Language.Label }}">
                                 <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                 <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                             </span>
@@ -162,8 +162,8 @@
                             {{- if .IsTranslated -}}
                                 {{- range .Translations -}}
                                     <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                       title="{{ .Language.LanguageName }}"
-                                       aria-label="Switch to {{ .Language.LanguageName }}">
+                                       title="{{ .Language.Label }}"
+                                       aria-label="Switch to {{ .Language.Label }}">
                                         <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                         <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                                     </a>
@@ -173,8 +173,8 @@
                                 {{- range .Site.Home.AllTranslations -}}
                                     {{- if ne $.Language.Lang .Language.Lang -}}
                                         <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                           title="{{ .Language.LanguageName }}"
-                                           aria-label="Switch to {{ .Language.LanguageName }}">
+                                           title="{{ .Language.Label }}"
+                                           aria-label="Switch to {{ .Language.Label }}">
                                             <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
                                             <span class="lang-code">{{ .Language.Params.lang_label }}</span>
                                         </a>

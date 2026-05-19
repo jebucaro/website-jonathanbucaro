@@ -1,3 +1,31 @@
+/* Projects section background */
+.section.projects {
+    padding: 60px 0 80px;
+    margin-left: 32px;
+    margin-right: 32px;
+    border-radius: 40px;
+    background: var(--background-alt-color);
+
+    .section__info {
+        margin-top: 0;
+        margin-bottom: 48px;
+    }
+
+    @media only screen and (max-width: $desktop) {
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 28px;
+        padding: 48px 0 60px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        margin-left: 12px;
+        margin-right: 12px;
+        border-radius: 20px;
+        padding: 40px 0 48px;
+    }
+}
+
 /* Projects */
 .projects-page {
     margin-bottom: 68px;
@@ -26,7 +54,7 @@
     width: 100%;
     height: 100%;
     min-height: 280px;
-    border-radius: 8px;
+    border-radius: 16px;
     user-select: none;
     transform: translate(0);
     overflow: hidden;
@@ -35,7 +63,7 @@
     &::after {
         content: "";
         display: table;
-        padding-top: 85%;
+        padding-top: 120%;
     }
 
     img {
@@ -45,7 +73,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 8px;
         pointer-events: none;
         transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
         transform-style: preserve-3d;
@@ -54,42 +81,41 @@
 }
 
 .project__info {
-    margin-top: 24px;
-    text-align: center;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 16px 20px;
+    background: var(--background-color);
+    border-radius: 8px;
+    text-align: left;
+
+    .project__label {
+        margin: 0 0 8px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--text-color);
+        line-height: 1;
+        opacity: 0.6;
+    }
 
     .project__title {
-        margin-bottom: 16px;
-        font-size: 32px;
-        line-height: 1;
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--heading-font-color);
 
         a {
             color: inherit;
             text-decoration: none;
-            background: linear-gradient(var(--brand-color), var(--brand-color))
-                no-repeat left bottom / 0 2px;
-            transition:
-                background-size 0.2s,
-                color 0.2s;
-        }
-
-        a:hover,
-        a:focus {
-            color: inherit;
-            background-size: 100% 2px;
-            text-decoration: none;
         }
 
         @media only screen and (max-width: $desktop) {
-            font-size: 30px;
+            font-size: 18px;
         }
-    }
-
-    .project__subtitle {
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 18px;
-        letter-spacing: 1.6px;
-        text-transform: uppercase;
     }
 }
 
