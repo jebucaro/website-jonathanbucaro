@@ -11,7 +11,7 @@ categories: ['CLI Tool']
 
 ## Descripción del proyecto
 
-`pokecli` es una herramienta de línea de comandos de código abierto que construí para consultar datos de Pokémon, bayas, objetos, movimientos, habilidades, naturalezas, tipos, cadenas de evolución y especies desde PokeAPI. Es deliberadamente pequeña y es una de las implementaciones de referencia que suelo mostrar cuando hablo de cómo diseño una herramienta de línea de comandos. El proyecto también me sirve como ejemplo de implementación para herramientas nativas para IA: `pokecli` incluye un `SKILL.md` que un agente como Claude Code o Copilot puede cargar para aprender el conjunto de comandos sin tener que releer `--help` en cada tarea.
+`pokecli` es una herramienta de línea de comandos de código abierto que construí para consultar datos de Pokémon, bayas, objetos, movimientos, habilidades, naturalezas, tipos, ubicaciones, regiones, generaciones, pokedexes, máquinas, formas, cadenas de evolución y otros recursos de referencia desde PokeAPI. Es deliberadamente pequeña y es una de las implementaciones de referencia que suelo mostrar cuando hablo de cómo diseño una herramienta de línea de comandos. El proyecto también me sirve como ejemplo de implementación para herramientas nativas para IA: `pokecli` incluye un `SKILL.md` y archivos de referencia pequeños que un agente como Claude Code o Copilot puede cargar para aprender el conjunto de comandos sin tener que releer `--help` en cada tarea.
 
 {{< gallery caption="pokecli" >}}
 {{< gallery-image src="images/pokecli-help.webp" alt="pokecli ejecutando el comando de ayuda" >}}
@@ -129,22 +129,29 @@ flowchart LR
 
 ```text
 src/pokecli/
-├── main.py             # root Typer app, sub-apps registered here
-├── config.py           # POKEAPI_BASE_URL, DEFAULT_LIMIT, CACHE_DB_PATH
-├── api/client.py       # PokeAPIClient (httpx + context manager)
-├── cache/store.py      # CacheStore (TinyDB, table per resource)
+├── main.py                   # root Typer app, sub-apps registered here
+├── config.py                 # POKEAPI_BASE_URL, DEFAULT_LIMIT, CACHE_DB_PATH
+├── api/client.py             # PokeAPIClient (httpx + context manager)
+├── cache/store.py            # CacheStore (TinyDB, table per resource)
 ├── commands/
-│   ├── _utils.py       # fetch_resource, fetch_list
-│   ├── pokemon.py      # get / moves / species / evolution / list
-│   ├── berry.py  item.py  move.py  ability.py  nature.py  type.py
-│   ├── image.py        # download (sprite variants)
-│   ├── cache.py        # stats / clear
-│   └── install.py      # install --skills
-├── display/            # Rich renderers, one file per resource
-├── models/             # Pydantic v2 models, one file per resource
+│   ├── _utils.py             # fetch_resource, fetch_list
+│   ├── pokemon.py            # get / moves / species / evolution / encounters / forms / list
+│   ├── berry.py              # item.py  move.py  ability.py  nature.py  type.py
+│   ├── region.py             # location.py  location_area.py  generation.py
+│   ├── pokedex.py            # machine.py  pokemon_form.py  evolution_chain.py
+│   ├── egg_group.py          # growth_rate.py  evolution_trigger.py
+│   ├── move_damage_class.py  # move_learn_method.py
+│   ├── version.py            # version_group.py
+│   ├── image.py              # download (sprite variants)
+│   ├── cache.py              # stats / clear
+│   └── install.py            # install --skills
+├── display/                  # Rich renderers, one file per resource
+├── models/                   # Pydantic v2 models, one file per resource
 └── skills/pokecli/
     ├── SKILL.md
-    └── references/api-fields.md
+  └── references/
+    ├── api-fields.md
+    └── workflows.md
 ```
 
 ## Funcionalidades clave
@@ -153,7 +160,7 @@ Estas funcionalidades muestran el conjunto de capacidades de `pokecli` y el tipo
 
 ### Consultas de recursos con salida tipada
 
-Cada recurso (`pokemon`, `berry`, `item`, `move`, `ability`, `nature`, `type`) tiene comandos `get` y `list` paralelos con flags compartidos (`--no-cache`, `--format`). Los comandos especializados de Pokémon agregan `moves`, `species` y `evolution`.
+Cada recurso sigue el mismo contrato corto: `get <name_or_id>` para consultar detalle, `list` para paginar y flags compartidos como `--no-cache` y `--format`. Eso ya cubre los recursos base (`pokemon`, `berry`, `item`, `move`, `ability`, `nature`, `type`) y también datos regionales y de ubicaciones (`region`, `location`, `location-area`, `generation`, `pokedex`), consultas de máquinas y formas (`machine`, `pokemon-form`) y recursos de referencia más pequeños como `egg-group`, `growth-rate`, `evolution-trigger`, `move-damage-class`, `move-learn-method`, `version` y `version-group`. Los comandos especializados de Pokémon agregan `moves`, `species`, `evolution`, `encounters` y `forms`.
 
 {{< gallery caption="Comandos de pokecli" >}}
 {{< gallery-image src="images/pokecli-pokemon.webp" alt="pokecli ejecutando el comando pokemon get para consultar los datos de Pikachu" >}}
@@ -305,15 +312,15 @@ Todo lo relacionado con Rich vive bajo `display/`. `display/common.py` reúne `M
 Las herramientas pensadas para agentes suelen aparecer al final, añadidas deprisa y relegadas a un README.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-`SKILL.md` y su `references/api-fields.md` viajan dentro del wheel, en `pokecli/skills/pokecli/`. `install.py` usa `importlib.resources` para copiarlos a `~/.claude/skills/pokecli/`, así que la capa pensada para agentes se entrega junto con el CLI y no como documentación separada.
+`SKILL.md`, `references/api-fields.md` y `references/workflows.md` viajan dentro del wheel, en `pokecli/skills/pokecli/`. `install.py` usa `importlib.resources` para copiarlos a `~/.claude/skills/pokecli/`, así que la capa pensada para agentes se entrega junto con el CLI y no como documentación separada.
 
 Mantengo el skill pequeño a propósito y lo separé en tres capas que un agente puede cargar con poco contexto:
 
 1. el frontmatter es la capa de disparo, con el nombre del skill, una descripción corta y el límite de `allowed-tools`
-2. el cuerpo de `SKILL.md` es la guía de comandos de trabajo, organizada alrededor de los mismos grupos de comandos que ya expone el CLI
-3. `references/api-fields.md` guarda el detalle a nivel de campos que solo hace falta cuando un agente necesita más profundidad
+2. el cuerpo de `SKILL.md` es la guía de comandos de trabajo, organizada alrededor de los mismos grupos de comandos que ya expone el CLI, junto con un árbol de decisión para elegir el comando correcto según la intención del usuario
+3. los archivos de `references/` guardan el detalle a nivel de campos y las recetas de varios pasos que solo hacen falta cuando un agente necesita más profundidad
 
-Esa estructura hace que la implementación sea nativa para IA sin convertirla en una segunda interfaz. El skill empaquetado refleja la superficie real de comandos, se instala con un solo comando y les da a Claude Code o Copilot el contexto suficiente para actuar sobre `pokecli` sin releer `--help` en cada tarea.
+Esa estructura hace que la implementación sea nativa para IA sin convertirla en una segunda interfaz. El skill empaquetado refleja la superficie real de comandos, se instala con un solo comando y les da a Claude Code o Copilot el contexto suficiente para actuar sobre `pokecli` sin releer `--help` en cada tarea. También orienta a los agentes a preferir la salida de tabla por defecto salvo que el caso realmente necesite JSON para scripting.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
