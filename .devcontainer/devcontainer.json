@@ -10,8 +10,17 @@
         }
     },
 
+    "mounts": [
+        "source=/opt/1Password/op-ssh-sign,target=/opt/1Password/op-ssh-sign,type=bind,readonly",
+        "source=${localEnv:HOME}/.1password/agent.sock,target=/root/.1password/agent.sock,type=bind",
+        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig-host,type=bind,readonly"
+    ],
+    "remoteEnv": {
+        "SSH_AUTH_SOCK": "/root/.1password/agent.sock"
+    },
+
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "corepack enable && rm -rf node_modules && pnpm install && git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postCreateCommand": "corepack enable && rm -rf node_modules && pnpm install && git config --global include.path /root/.gitconfig-host && git config --global --add safe.directory ${containerWorkspaceFolder}",
 
     // Configure tool-specific properties.
     "customizations": {
