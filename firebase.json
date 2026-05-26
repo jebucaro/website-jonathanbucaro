@@ -133,7 +133,7 @@
                 "headers": [
                     {
                         "key": "Content-Security-Policy",
-                        "value": "default-src 'self'; script-src 'self' *.disqus.com *.disquscdn.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com *.disquscdn.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: *.disquscdn.com https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://cdn.jsdelivr.net *.disqus.com *.disquscdn.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self' *.disqus.com; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com *.disqus.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+                        "value": "default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
                     },
                     {
                         "key": "X-Frame-Options",
