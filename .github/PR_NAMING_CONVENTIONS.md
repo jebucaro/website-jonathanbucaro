@@ -110,7 +110,7 @@ Emoji shown here; shortcode equivalents are accepted.
 ```text
 🔧 configure markdownlint for ATX-style headings
 ➕ add prettier for code formatting
-⬆️ update npm dependencies to latest versions
+⬆️ update pnpm dependencies to latest versions
 ```
 
 ### Bug Fixes
