@@ -23,7 +23,6 @@ languages:
         params:
             lang_flag: '🇬🇹'
             lang_label: 'ES'
-theme: hilton
 pagination:
     pagerSize: 6
 build:
