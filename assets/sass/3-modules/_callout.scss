@@ -51,9 +51,20 @@
             content: "⛔";
         }
     }
+
+    .highlight,
+    pre {
+        background: var(--background-color);
+        border-radius: 8px;
+    }
 }
 
 .dark-mode .callout {
     background: var(--callout-bg);
     color: var(--white);
+
+    .highlight,
+    pre {
+        background: var(--syntax-highlighting-background);
+    }
 }
