@@ -4,50 +4,47 @@
 
 ```text
 content/
-├── about/              # About page bundle
-│   ├── index.md       # About page content
-│   └── images/        # About page images
-├── blog/              # Blog posts
-│   ├── _index.md      # Blog index
-│   ├── 2019/          # Posts by year
-│   │   └── scrum-master-certified/
-│   │       ├── index.md
+├── about/                    # About page bundle
+│   ├── index.en.md           # About page content (English)
+│   ├── index.es.md           # About page content (Spanish)
+│   └── images/               # About page images
+├── blog/                     # Blog posts
+│   ├── _index.en.md          # Blog index (English)
+│   ├── _index.es.md          # Blog index (Spanish)
+│   ├── 2019/                 # Posts by year
+│   │   └── post-slug/
+│   │       ├── index.en.md
+│   │       ├── index.es.md
 │   │       └── images/
-│   ├── 2020/
-│   │   └── guide-enable-wsl2/
-│   │       ├── index.md
-│   │       └── images/
-│   ├── 2021/
-│   │   ├── get-contacts-profile-picture-inside-manychat/
-│   │   └── scrum-product-owner-certified/
-│   ├── 2024/
-│   │   ├── aws-certified-cloud-practitioner/
-│   │   ├── improve-the-windows-terminal-experience-with-ohmyposh/
-│   │   └── kmp/
-│   └── 2025/
-│       ├── create-knowledge-graph-from-text-with-gemini/
-│       ├── discover-the-importance-of-keeping-a-work-log/
-│       └── personal-impressions-about-gpt-5/
-│           ├── index.md
-│           ├── charts/
-│           └── images/
-└── projects/          # Project portfolio
-    ├── _index.md      # Projects index
-    └── erp-system/    # Individual project bundle
-        ├── index.md
-        └── images/
-            └── cover.jpg.placeholder
+│   ├── 2020/ ...
+│   ├── 2021/ ...
+│   ├── 2024/ ...
+│   ├── 2025/ ...
+│   └── 2026/                 # Add a new year directory as needed
+│       └── post-slug/
+│           ├── index.en.md
+│           ├── index.es.md
+│           ├── images/
+│           └── charts/       # Optional: used with the chart shortcode
+└── projects/                 # Project portfolio
+    ├── _index.en.md          # Projects index (English)
+    ├── _index.es.md          # Projects index (Spanish)
+    └── project-name/         # Individual project bundle
+        ├── index.en.md
+        ├── index.es.md
+        ├── images/
+        └── sessions/         # Optional: used with the agent-session shortcode
 ```
 
 ## Content Guidelines
 
 ### File Naming Convention
 
-- Use **page bundles** (directories with `index.md`) for content with associated assets
-- Use standard `.md` extension for all content files
+- Use **page bundles** (directories with `index.en.md` / `index.es.md`) for content with associated assets
+- All content files use language suffixes: `.en.md` for English, `.es.md` for Spanish
+- Section index files follow the same pattern: `_index.en.md` / `_index.es.md`
 - Use descriptive directory names that reflect URL slugs
 - Co-locate images and resources with content in the same directory
-- No language suffixes required (English-only site)
 
 ### Front Matter Structure
 
@@ -64,11 +61,11 @@ categories: ['category']
 
 ### Blog Posts Organization
 
-- Organize by year in subdirectories (e.g., `2024/`, `2025/`)
+- Organize by year in subdirectories (e.g., `2024/`, `2025/`, `2026/`)
 - Each post is a **page bundle** with its own directory containing:
-    - `index.md` - The post content
+    - `index.en.md` / `index.es.md` - The post content in each language
     - `images/` - Post-specific images (co-located with content)
-    - `charts/` - Optional charts/data visualizations (when needed)
+    - `charts/` - Optional: data files used by the `chart` shortcode
 - Use descriptive directory names that reflect the post slug
 - Include proper front matter with tags and categories
 - Images are referenced relative to the post's directory
@@ -77,9 +74,9 @@ categories: ['category']
 
 - Each project is a **page bundle** with its own directory
 - Structure:
-    - `project-name/index.md` - Project content
+    - `project-name/index.en.md` / `project-name/index.es.md` - Project content in each language
     - `project-name/images/` - Project images and assets
-    - Use `.placeholder` files for images not yet added (e.g., `cover.jpg.placeholder`)
+    - `project-name/sessions/` - Optional: agent session files used by the `agent-session` shortcode
 - Include project metadata in front matter
 - Use consistent naming and structure
 
@@ -87,7 +84,7 @@ categories: ['category']
 
 ### Localized Strings
 
-All user-facing strings are now stored in `config/_default/params.yaml` under the `strings` section:
+All user-facing strings are stored in `config/_default/params.yaml` under the `strings` section. Language-specific overrides live in `config/_default/params.en.yaml` and `config/_default/params.es.yaml`.
 
 ```yaml
 strings:
@@ -117,13 +114,11 @@ assets/
     └── main.scss        # Main SCSS file (overrides theme)
 ```
 
-### Theme SCSS Override
+### SCSS Override
 
-- The site uses the Hilton theme with custom SCSS overrides
-- Main SCSS file imports theme styles: `@import "themes/hilton/assets/sass/main";`
-- Add custom styles below the theme import in `assets/sass/main.scss`
+- Layouts and assets live in the site root (no separate theme directory)
+- Add custom styles in `assets/sass/main.scss`
 - Hugo automatically processes SCSS files through Hugo Pipes
-- The theme's `head.html` looks for `sass/main.scss` (not `scss/`)
 
 ### CSS Processing
 
