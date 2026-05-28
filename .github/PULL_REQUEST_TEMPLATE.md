@@ -11,8 +11,8 @@
 
 <!-- Run locally to catch issues before CI -->
 
-- [ ] `npm run check` passes (format + lint)
-- [ ] Tested with `npm run dev`
+- [ ] `pnpm run check` passes (format + lint)
+- [ ] Tested with `pnpm run dev`
 
 ## Test Plan
 
