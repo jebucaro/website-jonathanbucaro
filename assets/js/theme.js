@@ -1,7 +1,11 @@
 var colorScheme = document.documentElement.getAttribute('data-color-scheme');
 
 if (colorScheme === 'auto') {
-    if (localStorage.getItem('theme') === 'dark') {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+    ).matches;
+    if (saved === 'dark' || (saved === null && prefersDark)) {
         document.documentElement.setAttribute('dark', '');
         document.documentElement.classList.add('dark-mode');
     }
