@@ -76,59 +76,19 @@ La forma que más me interesa es el flujo de equipo. Cuando un repositorio deja 
 
 La herramienta sigue la estructura estándar de CliFx. `Program.cs` configura el contenedor de DI, CliFx resuelve el comando pedido desde el service provider, y el comando delega el trabajo real a un servicio. Los servicios son interface-first, y eso es lo que hace que los tests con xUnit y NSubstitute sean fáciles de escribir. Al mismo flujo de commit se accede desde dos puntos de entrada: el hook `prepare-commit-msg` de Git y el comando interactivo `commit`.
 
-```mermaid {title="dotnet-gitmoji architecture"}
-flowchart LR
-    subgraph CLI["CliFx commands"]
-        MAIN["Program.cs\nDI setup + app entry"]
-        CLIENT_CMDS["commit\nlist · search\nconfig · update"]
-        HOOK_CMDS["hook\ninit · remove"]
-    end
-
-    subgraph CORE["Shared core"]
-        GIT["GitService\nhook detect/install\nstage changes"]
-        PROMPT["PromptService\nfuzzy selector UI"]
-        FUZZY["GitmojiFuzzyMatcher\nscoring & ranking"]
-        CONFIG["ConfigurationService\n.gitmojirc.json → global"]
-        VALIDATOR["CommitMessageValidator\nparse existing message"]
-    end
-
-    subgraph DATA["Data & presentation"]
-        PROVIDER["GitmojiProvider\nAPI → cache → embedded"]
-        MODELS["Gitmoji · ToolConfiguration\nEmojiFormat · ValidationResult"]
-    end
-
-    MAIN --> CLIENT_CMDS
-    MAIN --> HOOK_CMDS
-
-    CLIENT_CMDS --> PROMPT
-    CLIENT_CMDS --> PROVIDER
-    CLIENT_CMDS --> CONFIG
-
-    HOOK_CMDS --> GIT
-    HOOK_CMDS --> PROMPT
-    HOOK_CMDS --> PROVIDER
-    HOOK_CMDS --> VALIDATOR
-
-    PROMPT --> FUZZY
-    FUZZY --> MODELS
-    PROVIDER --> MODELS
-    CONFIG --> MODELS
-```
+{{< figure-dynamic
+    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
+    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
+    alt="dotnet-gitmoji runtime shape"
+    title="dotnet-gitmoji runtime shape" >}}
 
 El diagrama de arquitectura muestra de qué se encarga cada capa. El diagrama de secuencia de abajo muestra qué se ejecuta realmente al hacer un commit. Ambos puntos de entrada convergen en `PromptService`, que controla el selector difuso (fuzzy) y luego delega en `CommitMessageService` la escritura del resultado. La única diferencia está en quién invoca `git commit` al final: en modo hook, Git ya tiene el control, así que la herramienta simplemente reescribe el archivo del mensaje; en modo cliente, `GitService` invoca Git directamente.
 
-```mermaid {title="dotnet-gitmoji runtime shape"}
-flowchart LR
-    A[git commit] --> B[prepare-commit-msg]
-    B --> C[dotnet-gitmoji hook]
-    C --> D[PromptService]
-    D --> E[GitmojiProvider<br/>cache or embedded default]
-    D --> F[CommitMessageService]
-    F --> G[.git/COMMIT_EDITMSG]
-
-    H[dotnet-gitmoji commit] --> D
-    F --> I[GitService<br/>CliWrap -> git]
-```
+{{< figure-dynamic
+    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
+    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
+    alt="dotnet-gitmoji runtime shape"
+    title="dotnet-gitmoji runtime shape" >}}
 
 ## Características clave
 

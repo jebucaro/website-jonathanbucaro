@@ -76,59 +76,19 @@ The shape I care about most is the team workflow. When a repo commits `.config/d
 
 The tool follows a standard CliFx layout. `Program.cs` wires the DI container, CliFx resolves the requested command from the service provider, and the command delegates the real work to a service. Services are interface-first, which is what makes the xUnit and NSubstitute tests cheap to write. The same commit path is reached from both entry points: Git's `prepare-commit-msg` hook and the interactive `commit` command.
 
-```mermaid {title="dotnet-gitmoji architecture"}
-flowchart LR
-    subgraph CLI["CliFx commands"]
-        MAIN["Program.cs\nDI setup + app entry"]
-        CLIENT_CMDS["commit\nlist · search\nconfig · update"]
-        HOOK_CMDS["hook\ninit · remove"]
-    end
-
-    subgraph CORE["Shared core"]
-        GIT["GitService\nhook detect/install\nstage changes"]
-        PROMPT["PromptService\nfuzzy selector UI"]
-        FUZZY["GitmojiFuzzyMatcher\nscoring & ranking"]
-        CONFIG["ConfigurationService\n.gitmojirc.json → global"]
-        VALIDATOR["CommitMessageValidator\nparse existing message"]
-    end
-
-    subgraph DATA["Data & presentation"]
-        PROVIDER["GitmojiProvider\nAPI → cache → embedded"]
-        MODELS["Gitmoji · ToolConfiguration\nEmojiFormat · ValidationResult"]
-    end
-
-    MAIN --> CLIENT_CMDS
-    MAIN --> HOOK_CMDS
-
-    CLIENT_CMDS --> PROMPT
-    CLIENT_CMDS --> PROVIDER
-    CLIENT_CMDS --> CONFIG
-
-    HOOK_CMDS --> GIT
-    HOOK_CMDS --> PROMPT
-    HOOK_CMDS --> PROVIDER
-    HOOK_CMDS --> VALIDATOR
-
-    PROMPT --> FUZZY
-    FUZZY --> MODELS
-    PROVIDER --> MODELS
-    CONFIG --> MODELS
-```
+{{< figure-dynamic
+    light-src="images/dotnet-gitmiji-architecture-light.svg"
+    dark-src="images/dotnet-gitmiji-architecture-dark.svg"
+    alt="dotnet-gitmoji architecture"
+    title="dotnet-gitmoji architecture" >}}
 
 The architecture diagram shows what each layer owns. The sequence diagram below shows what actually runs when you commit. Both entry points converge on `PromptService`, which drives the fuzzy selector and then hands off to `CommitMessageService` to write the result. The only difference is who calls `git commit` at the end: in hook mode Git already has control, so the tool just rewrites the message file; in client mode `GitService` shells out to Git directly.
 
-```mermaid {title="dotnet-gitmoji runtime shape"}
-flowchart LR
-    A[git commit] --> B[prepare-commit-msg]
-    B --> C[dotnet-gitmoji hook]
-    C --> D[PromptService]
-    D --> E[GitmojiProvider<br/>cache or embedded default]
-    D --> F[CommitMessageService]
-    F --> G[.git/COMMIT_EDITMSG]
-
-    H[dotnet-gitmoji commit] --> D
-    F --> I[GitService<br/>CliWrap -> git]
-```
+{{< figure-dynamic
+    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
+    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
+    alt="dotnet-gitmoji runtime shape"
+    title="dotnet-gitmoji runtime shape" >}}
 
 ## Key Features
 

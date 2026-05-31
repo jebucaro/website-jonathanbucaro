@@ -53,36 +53,11 @@ By using `socat` and `npiperelay`, we create a "wormhole" (a Unix socket) betwee
 
 To understand how the bridge functions, it's helpful to visualize the physical layering of the tools.
 
-```mermaid
-graph TD
-    subgraph Windows_Host [Windows 11 Host]
-        OP[1Password App + SSH Agent]
-        WH[Windows Hello / Biometrics]
-        PIPE["//./pipe/openssh-ssh-agent"]
-        NPI[npiperelay.exe]
-
-        OP --- WH
-        OP --- PIPE
-    end
-
-    subgraph WSL_Environment [WSL 2 / Linux]
-        SOC[socat listener]
-        SOCK["/tmp/1password-agent.sock"]
-
-        SOC --- NPI
-        SOC --- SOCK
-    end
-
-    subgraph Docker_Container [VS Code Dev Container]
-        GIT[Git / SSH Client]
-        EVAR["ENV: SSH_AUTH_SOCK"]
-
-        GIT --- EVAR
-        EVAR --- SOCK
-    end
-
-    PIPE <==> NPI
-```
+{{< figure-dynamic
+    light-src="images/1password-ssh-agent-architecture-light.svg"
+    dark-src="images/1password-ssh-agent-architecture-dark.svg"
+    alt="1Password SSH agent system architecture"
+    title="System Architecture" >}}
 
 <span id="quick-start"></span>
 
@@ -216,22 +191,11 @@ Host *
 
 ### Authentication Flow
 
-```mermaid
-sequenceDiagram
-    participant DC as Dev Container
-    participant WSL as WSL (Linux)
-    participant NP as npiperelay.exe
-    participant OP as 1Password Agent (Windows)
-
-    DC->>WSL: Git request (via /tmp/1password-agent.sock)
-    WSL->>WSL: socat listener receives request
-    WSL->>NP: Stream request to bridge
-    NP->>OP: Write to //./pipe/openssh-ssh-agent
-    Note over OP: Prompt Biometric Auth (Windows Hello)
-    OP-->>NP: Return Signed Payload
-    NP-->>WSL: Stream back to socket
-    WSL-->>DC: Return result to Git
-```
+{{< figure-dynamic
+    light-src="images/1password-ssh-authentication-flow-light.svg"
+    dark-src="images/1password-ssh-authentication-flow-dark.svg"
+    alt="1Password SSH agent authentication flow"
+    title="Authentication Flow" >}}
 
 <span id="results"></span>
 

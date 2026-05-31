@@ -84,53 +84,19 @@ categories: ['CLI Tool']
 
 `pokecli` is organised as five layers that each know about exactly one thing. Commands know Typer. The API client knows httpx. The cache knows TinyDB. The models know Pydantic. The display layer knows Rich. Nothing crosses its lane.
 
-```mermaid {title="Application Structure"}
-flowchart LR
-    subgraph CLI["Typer composition"]
-        MAIN["main.py\nroot app"]
-        DOMAIN_CMDS["commands/\npokemon.py\nberry.py\nimage.py\n..."]
-        CACHE_CMD["commands/cache.py"]
-    end
-
-    subgraph CORE["Shared core"]
-        UTILS["commands/_utils.py"]
-        CLIENT["api/client.py"]
-        STORE["cache/store.py"]
-    end
-
-    subgraph DATA["Domain and presentation"]
-        MODELS["models/*.py"]
-        RENDER["display/*.py"]
-    end
-
-    MAIN --> DOMAIN_CMDS
-    MAIN --> CACHE_CMD
-
-    DOMAIN_CMDS --> UTILS
-    DOMAIN_CMDS --> MODELS
-    DOMAIN_CMDS --> RENDER
-
-    UTILS --> CLIENT
-    UTILS --> STORE
-    CACHE_CMD --> STORE
-
-```
+{{< figure-dynamic
+    light-src="images/pokecli-application-structure-light.svg"
+    dark-src="images/pokecli-application-structure-dark.svg"
+    alt="pokecli application structure"
+    title="Application Structure" >}}
 
 Every `get` command follows the same short pipeline. The module boundaries enforce it, not convention.
 
-```mermaid {title="Fetch, Cache, and Render Flow"}
-flowchart LR
-    A([Request]) --> B{Cache hit?}
-    B -- yes --> C[Cached data]
-    B -- no --> D[API fetch]
-    D --> E[Update cache]
-    C --> F[Transform response]
-    E --> F
-    F --> G{Output mode}
-    G -- table --> H[Table view]
-    G -- json --> I[JSON view]
-
-```
+{{< figure-dynamic
+    light-src="images/fetch-cache-flow-light.svg"
+    dark-src="images/fetch-cache-flow-dark.svg"
+    alt="pokecli fetch, cache, and render flow"
+    title="Fetch, Cache, and Render Flow" >}}
 
 ### Package layout at a glance
 
