@@ -48,8 +48,7 @@
     "dependencies": {
         "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
-        "mermaid": "^11.15.0",
-        "normalize.css": "^8.0.1",
+"normalize.css": "^8.0.1",
         "reframe.js": "^4.0.2",
         "smoothscroll-polyfill": "^0.4.4",
         "tiny-slider": "^2.9.4",
