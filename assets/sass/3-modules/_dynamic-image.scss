@@ -1,0 +1,68 @@
+/* Dynamic Image — light/dark SVG pair toggled by theme */
+.dynamic-image {
+    margin: $base-spacing-unit * 2 -100px;
+    text-align: center;
+
+    /* Default: light mode */
+    .light-mode-img {
+        display: block;
+        margin: 0 auto;
+    }
+    .dark-mode-img {
+        display: none;
+        margin: 0 auto;
+    }
+
+    figcaption {
+        font-size: 0.85em;
+        color: var(--text-alt-color);
+        margin-top: $base-spacing-unit * 0.5;
+    }
+
+    @media only screen and (max-width: $wide) {
+        margin: $base-spacing-unit * 2 -40px;
+    }
+    @media only screen and (max-width: $desktop) {
+        margin: $base-spacing-unit * 2 0;
+    }
+    @media only screen and (max-width: 768px) {
+        margin: $base-spacing-unit 0;
+    }
+}
+
+/* OS preference for first-time visitors (specificity 0,2,0) */
+@media (prefers-color-scheme: dark) {
+    .dynamic-image .dark-mode-img {
+        display: block;
+    }
+    .dynamic-image .light-mode-img {
+        display: none;
+    }
+}
+
+/* Manual site toggle — dark (specificity 0,4,0 — overrides media query) */
+:root[dark] .dynamic-image .dark-mode-img,
+html.dark-mode .dynamic-image .dark-mode-img {
+    display: block;
+}
+:root[dark] .dynamic-image .light-mode-img,
+html.dark-mode .dynamic-image .light-mode-img {
+    display: none;
+}
+
+/* Manual site toggle — light (specificity 0,3,0 — overrides OS dark preference) */
+:root:not([dark]):not(.dark-mode) .dynamic-image .light-mode-img {
+    display: block;
+}
+:root:not([dark]):not(.dark-mode) .dynamic-image .dark-mode-img {
+    display: none;
+}
+
+@media print {
+    .dynamic-image .light-mode-img {
+        display: block;
+    }
+    .dynamic-image .dark-mode-img {
+        display: none;
+    }
+}

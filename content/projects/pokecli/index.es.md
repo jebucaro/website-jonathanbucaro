@@ -84,46 +84,19 @@ categories: ['CLI Tool']
 
 `pokecli` está organizado en cinco capas, cada una a cargo de exactamente una cosa. Los comandos conocen Typer. El cliente del API conoce httpx. El caché conoce TinyDB. Los modelos conocen Pydantic. La capa de presentación conoce Rich. Ninguna capa invade el carril de otra.
 
-```mermaid {title="Estructura de la aplicación"}
-flowchart LR
-  subgraph CLI["Composición con Typer"]
-    MAIN["main.py\napp raíz"]
-        DOMAIN_CMDS["commands/\npokemon.py\nberry.py\nimage.py\n..."]
-        CACHE_CMD["commands/cache.py"]
-    end
-  subgraph CORE["Núcleo compartido"]
-        UTILS["commands/_utils.py"]
-        CLIENT["api/client.py"]
-        STORE["cache/store.py"]
-    end
-  subgraph DATA["Dominio y presentación"]
-        MODELS["models/*.py"]
-        RENDER["display/*.py"]
-    end
-    MAIN --> DOMAIN_CMDS
-    MAIN --> CACHE_CMD
-    DOMAIN_CMDS --> UTILS
-    DOMAIN_CMDS --> MODELS
-    DOMAIN_CMDS --> RENDER
-    UTILS --> CLIENT
-    UTILS --> STORE
-    CACHE_CMD --> STORE
-```
+{{< figure-dynamic
+    light-src="images/pokecli-application-structure-light.svg"
+    dark-src="images/pokecli-application-structure-dark.svg"
+    alt="pokecli application structure"
+    title="Estructura de la aplicación" >}}
 
 Cada comando `get` sigue el mismo flujo corto. Lo imponen los límites entre módulos, no una convención informal.
 
-```mermaid {title="Flujo de consulta, caché y renderizado"}
-flowchart LR
-  A([Solicitud]) --> B{¿Hit en caché?}
-  B -- sí --> C[Datos en caché]
-  B -- no --> D[Consulta al API]
-  D --> E[Actualiza caché]
-  C --> F[Transforma la respuesta]
-    E --> F
-  F --> G{Modo de salida}
-  G -- tabla --> H[Vista de tabla]
-  G -- json --> I[Vista JSON]
-```
+{{< figure-dynamic
+    light-src="images/fetch-cache-flow-light.svg"
+    dark-src="images/fetch-cache-flow-dark.svg"
+    alt="pokecli fetch, cache, and render flow"
+    title="Flujo de consulta, caché y renderizado" >}}
 
 ### Estructura del paquete de un vistazo
 

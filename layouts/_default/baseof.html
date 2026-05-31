@@ -11,16 +11,5 @@
         <!-- end content -->
         {{ partial "footer.html" . }}
         {{ partial "javascripts.html" . }}
-        {{ if .Store.Get "hasMermaid" }}
-            {{ $mermaidVendor := resources.Get "js/mermaid-vendor.js" | js.Build }}
-            {{ $mermaidUtils := resources.Get "js/mermaid-utils.js" | js.Build }}
-            {{ if hugo.IsServer }}
-                <script src="{{ $mermaidVendor.Permalink | absURL }}"></script>
-                <script src="{{ $mermaidUtils.Permalink | absURL }}"></script>
-            {{ else }}
-                <script src="{{ ($mermaidVendor | minify | fingerprint).RelPermalink | absURL }}"></script>
-                <script src="{{ ($mermaidUtils | minify | fingerprint).RelPermalink | absURL }}"></script>
-            {{ end }}
-        {{ end }}
     </body>
 </html>

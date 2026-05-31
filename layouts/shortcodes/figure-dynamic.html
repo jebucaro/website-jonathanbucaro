@@ -1,0 +1,22 @@
+{{ $lightSrc := .Get "light-src" }}
+{{ $darkSrc  := .Get "dark-src" }}
+{{ $alt      := .Get "alt"     | default "" }}
+{{ $title    := .Get "title"   | default "" }}
+{{ $caption  := .Get "caption" | default "" }}
+{{ $class    := .Get "class"   | default "" }}
+
+{{- $lightRes := .Page.Resources.GetMatch $lightSrc -}}
+{{- $darkRes  := .Page.Resources.GetMatch $darkSrc -}}
+{{- if not $lightRes }}{{ warnf "figure-dynamic: light resource not found: %s in %s" $lightSrc .Page.File.Path }}{{ end -}}
+{{- if not $darkRes  }}{{ warnf "figure-dynamic: dark resource not found: %s in %s"  $darkSrc  .Page.File.Path }}{{ end -}}
+
+<figure class="dynamic-image{{ with $class }} {{ . }}{{ end }}">
+  <img src="{{ if $lightRes }}{{ $lightRes.RelPermalink }}{{ else }}{{ $lightSrc }}{{ end }}" alt="{{ $alt }}" class="light-mode-img">
+  <img src="{{ if $darkRes  }}{{ $darkRes.RelPermalink  }}{{ else }}{{ $darkSrc  }}{{ end }}" alt="{{ $alt }}" class="dark-mode-img">
+  {{ if or $title $caption }}
+  <figcaption>
+    {{ with $title }}<h4>{{ . }}</h4>{{ end }}
+    {{ with $caption }}<p>{{ . | markdownify }}</p>{{ end }}
+  </figcaption>
+  {{ end }}
+</figure>
