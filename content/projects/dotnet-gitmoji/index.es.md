@@ -14,11 +14,7 @@ categories: ['CLI Tool']
 
 La forma que más me interesa es el flujo de equipo. Cuando un repositorio deja versionados `.config/dotnet-tools.json`, `.husky/` y `Directory.Build.targets`, un integrante puede clonarlo, ejecutar `dotnet restore` o abrir la solución en Visual Studio o Rider, y obtener el mismo prompt de gitmoji en el siguiente commit. Así toda la convención se queda dentro de NuGet, MSBuild y el SDK de .NET en lugar de depender de Node.js sólo para compartir un hook de commit.
 
-{{< callout note>}}
-
-<strong>Repositorio de GitHub</strong>: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet + git + emoji = dotnet-gitmoji{{< /extlink >}}
-
-{{< /callout >}}
+{{< github repo="jebucaro/dotnet-gitmoji" >}}
 
 ## Tecnologías utilizadas
 
