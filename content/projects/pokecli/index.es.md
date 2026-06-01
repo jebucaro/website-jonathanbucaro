@@ -17,11 +17,7 @@ categories: ['CLI Tool']
 {{< gallery-image src="images/pokecli-help.webp" alt="pokecli ejecutando el comando de ayuda" >}}
 {{< /gallery >}}
 
-{{< callout note>}}
-
-<strong>Repositorio de GitHub</strong>: {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
-
-{{< /callout >}}
+{{< github repo="jebucaro/pokecli" >}}
 
 ## Tecnologías utilizadas
 

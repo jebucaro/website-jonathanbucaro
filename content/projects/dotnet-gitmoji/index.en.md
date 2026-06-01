@@ -14,11 +14,7 @@ categories: ['CLI Tool']
 
 The shape I care about most is the team workflow. When a repo commits `.config/dotnet-tools.json`, `.husky/`, and `Directory.Build.targets`, a teammate can clone it, run `dotnet restore` or open the solution in Visual Studio or Rider, and get the same gitmoji prompt on the next commit. That keeps the whole convention inside NuGet, MSBuild, and the .NET SDK instead of requiring Node.js just to share a commit hook.
 
-{{< callout note>}}
-
-<strong>GitHub repository</strong>: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet + git + emoji = dotnet-gitmoji{{< /extlink >}}
-
-{{< /callout >}}
+{{< github repo="jebucaro/dotnet-gitmoji" >}}
 
 ## Technologies Used
 
