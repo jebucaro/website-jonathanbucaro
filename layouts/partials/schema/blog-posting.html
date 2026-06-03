@@ -18,4 +18,4 @@
   "author" (dict "@type" "Person" "name" .Site.Params.author.author__name "url" (printf "%sabout/" .Site.BaseURL))
   "publisher" (dict "@type" "Person" "name" .Site.Params.author.author__name "image" (dict "@type" "ImageObject" "url" (.Site.Params.logo | absURL)))
 }}
-<script type="application/ld+json">{{ $schema | jsonify }}</script>
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
