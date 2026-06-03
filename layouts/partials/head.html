@@ -78,6 +78,10 @@
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
 
+    <!-- Structured Data -->
+    {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema/blog-posting.html" . }}{{ end }}
+    {{ if and .IsPage (eq .Section "projects") }}{{ partial "schema/project.html" . }}{{ end }}
+
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
 
