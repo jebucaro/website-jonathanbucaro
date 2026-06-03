@@ -56,6 +56,7 @@ draft: false
 slug: 'url-slug'
 tags: ['tag1', 'tag2']
 categories: ['category']
+# schemaType: SoftwareApplication  # projects only — omit for case studies
 ---
 ```
 
@@ -69,6 +70,7 @@ categories: ['category']
 - Use descriptive directory names that reflect the post slug
 - Include proper front matter with tags and categories
 - Images are referenced relative to the post's directory
+- Blog posts automatically receive `BlogPosting` JSON-LD structured data — no `schemaType` field is needed
 
 ### Projects Structure
 
@@ -79,6 +81,8 @@ categories: ['category']
     - `project-name/sessions/` - Optional: agent session files used by the `agent-session` shortcode
 - Include project metadata in front matter
 - Use consistent naming and structure
+
+Project pages support an optional `schemaType` front matter field that controls JSON-LD structured data. Set it to `SoftwareApplication` for tools the reader can install and run (CLI tools, packages, apps). Omit it for case studies and client work — it defaults to `CreativeWork`.
 
 ## Configuration
 

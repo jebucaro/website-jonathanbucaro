@@ -312,7 +312,7 @@ Confirm both prompts by pressing `Y`. Once installed, run:
 winfetch
 ```
 
-![winfetch](images/winfetch.webp 'winfetch')
+![Windows Terminal showing winfetch output with system information including OS, CPU, RAM, and hardware details](images/winfetch.webp 'winfetch')
 
 <span id="bat"></span>
 
@@ -328,7 +328,7 @@ Install with:
 winget install sharkdp.bat
 ```
 
-![bat](images/bat.webp 'bat')
+![Windows Terminal showing bat displaying a file with syntax highlighting and line numbers](images/bat.webp 'bat')
 
 In Windows, install `less` as well for paging:
 
@@ -352,7 +352,7 @@ winget install eza-community.eza
 
 Open a new PowerShell tab to start using it.
 
-![eza](images/eza.webp 'eza')
+![Windows Terminal showing eza listing directory contents with colors, metadata, and Git status indicators](images/eza.webp 'eza')
 
 See options and docs at the {{< extlink href="https://github.com/eza-community/eza#command-line-options" >}}eza GitHub repo{{< /extlink >}}.
 

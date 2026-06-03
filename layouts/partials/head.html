@@ -10,13 +10,14 @@
     <link rel="canonical" href="{{ .Permalink }}" />
 
     <!-- Language alternates -->
-    {{ if .IsTranslated }}
-      {{ range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}" />
+    {{ $xDefault := "" }}
+    {{ range .AllTranslations }}
+      <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}" />
+      {{ if eq .Language.Lang "en" }}
+        {{ $xDefault = .Permalink }}
       {{ end }}
     {{ end }}
-    <link rel="alternate" hreflang="{{ .Site.Language.Locale }}" href="{{ .Permalink }}" />
-    <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+    {{ with $xDefault }}<link rel="alternate" hreflang="x-default" href="{{ . }}" />{{ end }}
 
     <!-- SEO and Robots -->
     {{ if .Params.noindex }}
@@ -76,6 +77,10 @@
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
+
+    <!-- Structured Data -->
+    {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema/blog-posting.html" . }}{{ end }}
+    {{ if and .IsPage (eq .Section "projects") }}{{ partial "schema/project.html" . }}{{ end }}
 
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">

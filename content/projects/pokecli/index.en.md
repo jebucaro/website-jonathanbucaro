@@ -7,6 +7,7 @@ draft: false
 image: 'images/cover.webp'
 description: 'A typed, script-friendly Python CLI for PokeAPI. Installed with uv, cached locally with TinyDB, and agent-ready through a shipped Claude Code skill.'
 categories: ['CLI Tool']
+schemaType: SoftwareApplication
 ---
 
 ## Project Description

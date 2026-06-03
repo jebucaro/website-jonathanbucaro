@@ -6,6 +6,7 @@ draft: false
 image: 'images/cover.webp'
 description: 'A .NET tool that brings the gitmoji commit convention to Git, with a Husky.Net-managed prepare-commit-msg hook for teams and an interactive client mode for personal workflows.'
 categories: ['CLI Tool']
+schemaType: SoftwareApplication
 ---
 
 ## Project Description

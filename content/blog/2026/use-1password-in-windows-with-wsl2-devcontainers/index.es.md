@@ -54,8 +54,8 @@ Usando `socat` y `npiperelay`, creamos un "agujero de gusano" (un socket Unix) e
 Para entender cómo funciona el puente, ayuda visualizar el apilamiento físico de las herramientas.
 
 {{< figure-dynamic
-    light-src="images/system-architecture-light.svg"
-    dark-src="images/system-architecture-dark.svg"
+    light-src="images/1password-ssh-agent-architecture-light.svg"
+    dark-src="images/1password-ssh-agent-architecture-dark.svg"
     alt="1Password SSH agent system architecture"
     title="System Architecture" >}}
 
@@ -192,8 +192,8 @@ Host *
 ### Flujo de autenticación
 
 {{< figure-dynamic
-    light-src="images/auth-flow-light.svg"
-    dark-src="images/auth-flow-dark.svg"
+    light-src="images/1password-ssh-authentication-flow-light.svg"
+    dark-src="images/1password-ssh-authentication-flow-dark.svg"
     alt="1Password SSH agent authentication flow"
     title="Authentication Flow" >}}
 
