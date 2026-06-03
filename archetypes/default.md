@@ -5,6 +5,7 @@ description: ""
 draft: true
 tags: []
 image: "images/cover.webp"
+# No schemaType needed — BlogPosting JSON-LD is applied automatically to all blog posts.
 ---
 
 ## Introduction

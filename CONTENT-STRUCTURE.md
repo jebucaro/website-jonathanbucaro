@@ -70,6 +70,7 @@ categories: ['category']
 - Use descriptive directory names that reflect the post slug
 - Include proper front matter with tags and categories
 - Images are referenced relative to the post's directory
+- Blog posts automatically receive `BlogPosting` JSON-LD structured data — no `schemaType` field is needed
 
 ### Projects Structure
 
