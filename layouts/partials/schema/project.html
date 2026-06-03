@@ -18,4 +18,4 @@
 {{ if eq $type "SoftwareApplication" }}
   {{ $schema = merge $schema (dict "applicationCategory" "DeveloperApplication" "screenshot" $imageURL) }}
 {{ end }}
-<script type="application/ld+json">{{ $schema | jsonify }}</script>
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
