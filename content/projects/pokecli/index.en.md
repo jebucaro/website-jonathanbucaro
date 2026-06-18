@@ -130,7 +130,7 @@ These features show the feature set of `pokecli` and the kind of command-line ex
 
 ### Resource queries with typed output
 
-Every resource follows the same short contract: `get <name_or_id>` for detail, `list` for pagination, and shared flags like `--no-cache` and `--format`. That now covers the original core resources (`pokemon`, `berry`, `item`, `move`, `ability`, `nature`, `type`) plus location and regional data (`region`, `location`, `location-area`, `generation`, `pokedex`), machine and form lookups (`machine`, `pokemon-form`), and smaller reference resources such as `egg-group`, `growth-rate`, `evolution-trigger`, `move-damage-class`, `move-learn-method`, `version`, and `version-group`. Specialised Pokemon commands add `moves`, `species`, `evolution`, `encounters`, and `forms`.
+Every main resource follows the same short contract: `get <name_or_id>` for detail, `list` for pagination, and shared flags like `--no-cache` and `--format`. The public command surface is now grouped around top-level families such as `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature`, and `berry`. Nested reference resources live under those families, for example `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get`, and `game region get`. Specialised Pokemon commands add `moves`, `species`, `evolution`, `encounters`, and `forms`, and the repo also keeps shorter human aliases like `pokecli pokemon pikachu` for manual terminal use.
 
 {{< gallery caption="pokecli commands" >}}
 {{< gallery-image src="images/pokecli-pokemon.webp" alt="pokecli executing get pokemon command to get the data of pikachu" >}}
@@ -288,7 +288,7 @@ I kept the skill small on purpose and split it into three layers an agent can lo
 2. the `SKILL.md` body is the working command guide, organized around the same command groups the CLI already exposes, plus a decision tree for choosing the right command for a user request
 3. the `references/` files hold the field-level detail and multi-step recipes that only matter when an agent needs more depth
 
-That structure makes the implementation AI-native without turning it into a second interface. The packaged skill mirrors the real command surface, installs with one command, and gives Claude Code or Copilot enough context to act on `pokecli` without re-reading `--help` on every task. It also nudges agents toward the default table output unless JSON is specifically needed for scripting, which keeps the terminal workflow closer to how a human would use the CLI.
+That structure makes the implementation AI-native without turning it into a second interface. The packaged skill mirrors the real canonical command surface, with paths like `pokemon get`, `move get`, and `game region get`, installs with one command, and gives Claude Code or Copilot enough context to act on `pokecli` without re-reading `--help` on every task. It also nudges agents toward the default table output unless JSON is specifically needed for scripting, which keeps the terminal workflow closer to how a human would use the CLI.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
@@ -373,7 +373,7 @@ Taken together, these choices show why `pokecli` works well as a reference proje
     </tr>
     <tr>
       <td><strong>Typed contract with an external API</strong></td>
-      <td>Nine resources (<code>pokemon</code>, <code>berry</code>, <code>item</code>, <code>move</code>, <code>ability</code>, <code>nature</code>, <code>type</code>, <code>image</code>, <code>cache</code>) validated through Pydantic v2, insulating callers from upstream schema drift.</td>
+      <td>Core resources and grouped reference families are validated through Pydantic v2, from <code>pokemon</code>, <code>move</code>, and <code>ability</code> to nested paths like <code>pokemon form</code>, <code>move damage-class</code>, <code>location area</code>, and <code>game region</code>, insulating callers from upstream schema drift.</td>
     </tr>
   </table>
 </div>
