@@ -130,7 +130,7 @@ Estas funcionalidades muestran el conjunto de capacidades de `pokecli` y el tipo
 
 ### Consultas de recursos con salida tipada
 
-Cada recurso sigue el mismo contrato corto: `get <name_or_id>` para consultar detalle, `list` para paginar y flags compartidos como `--no-cache` y `--format`. Eso ya cubre los recursos base (`pokemon`, `berry`, `item`, `move`, `ability`, `nature`, `type`) y también datos regionales y de ubicaciones (`region`, `location`, `location-area`, `generation`, `pokedex`), consultas de máquinas y formas (`machine`, `pokemon-form`) y recursos de referencia más pequeños como `egg-group`, `growth-rate`, `evolution-trigger`, `move-damage-class`, `move-learn-method`, `version` y `version-group`. Los comandos especializados de Pokémon agregan `moves`, `species`, `evolution`, `encounters` y `forms`.
+Cada recurso principal sigue el mismo contrato corto: `get <name_or_id>` para consultar detalle, `list` para paginar y opciones compartidas como `--no-cache` y `--format`. La superficie pública del CLI ahora se organiza alrededor de familias de primer nivel como `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature` y `berry`. Los recursos de referencia anidados viven dentro de esas familias, por ejemplo `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get` y `game region get`. Los comandos especializados de Pokémon agregan `moves`, `species`, `evolution`, `encounters` y `forms`, y el repositorio también conserva atajos más cortos como `pokecli pokemon pikachu` para uso manual en la terminal.
 
 {{< gallery caption="Comandos de pokecli" >}}
 {{< gallery-image src="images/pokecli-pokemon.webp" alt="pokecli ejecutando el comando pokemon get para consultar los datos de Pikachu" >}}
@@ -290,7 +290,7 @@ Mantengo el skill pequeño a propósito y lo separé en tres capas que un agente
 2. el cuerpo de `SKILL.md` es la guía de comandos de trabajo, organizada alrededor de los mismos grupos de comandos que ya expone el CLI, junto con un árbol de decisión para elegir el comando correcto según la intención del usuario
 3. los archivos de `references/` guardan el detalle a nivel de campos y las recetas de varios pasos que solo hacen falta cuando un agente necesita más profundidad
 
-Esa estructura hace que la implementación sea nativa para IA sin convertirla en una segunda interfaz. El skill empaquetado refleja la superficie real de comandos, se instala con un solo comando y les da a Claude Code o Copilot el contexto suficiente para actuar sobre `pokecli` sin releer `--help` en cada tarea. También orienta a los agentes a preferir la salida de tabla por defecto salvo que el caso realmente necesite JSON para scripting.
+Esa estructura hace que la implementación sea nativa para IA sin convertirla en una segunda interfaz. El skill empaquetado refleja la superficie canónica real de comandos, con rutas como `pokemon get`, `move get` y `game region get`, se instala con un solo comando y les da a Claude Code o Copilot el contexto suficiente para actuar sobre `pokecli` sin releer `--help` en cada tarea. También orienta a los agentes a preferir la salida de tabla por defecto salvo que el caso realmente necesite JSON para scripting.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
@@ -375,7 +375,7 @@ En conjunto, estas decisiones muestran por qué `pokecli` funciona bien como pro
     </tr>
     <tr>
       <td><strong>Contrato tipado con un API externo</strong></td>
-      <td>Nueve recursos (<code>pokemon</code>, <code>berry</code>, <code>item</code>, <code>move</code>, <code>ability</code>, <code>nature</code>, <code>type</code>, <code>image</code> y <code>cache</code>) se validan con Pydantic v2, lo que protege a quien lo usa frente a cambios inesperados en el esquema del API.</td>
+      <td>Los recursos principales y las familias de referencia agrupadas se validan con Pydantic v2, desde <code>pokemon</code>, <code>move</code> y <code>ability</code> hasta rutas anidadas como <code>pokemon form</code>, <code>move damage-class</code>, <code>location area</code> y <code>game region</code>, lo que protege a quien lo usa frente a cambios inesperados en el esquema del API.</td>
     </tr>
   </table>
 </div>
