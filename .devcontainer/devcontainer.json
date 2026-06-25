@@ -2,7 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
     "name": "Node.js",
-    "image": "node:24-trixie",
+    "build": { "dockerfile": "Dockerfile" },
     "features": {
         "ghcr.io/devcontainers/features/hugo:1": {
             "extended": true,
