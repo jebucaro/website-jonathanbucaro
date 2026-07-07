@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 var colorScheme = document.documentElement.getAttribute('data-color-scheme');
 
 if (colorScheme === 'auto') {
