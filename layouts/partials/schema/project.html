@@ -1,4 +1,7 @@
-{{ $imageURL := .Site.Params.logo | absURL }}
+{{ $logoURL := .Site.Params.logo | absURL }}
+{{ with resources.Get (strings.TrimPrefix "/" .Site.Params.logo) }}{{ $logoURL = .Permalink }}{{ end }}
+
+{{ $imageURL := $logoURL }}
 {{ with .Resources.GetMatch .Params.image }}{{ $imageURL = .Permalink }}{{ end }}
 
 {{ $type := "CreativeWork" }}

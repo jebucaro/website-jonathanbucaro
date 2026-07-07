@@ -3,14 +3,20 @@
 {{- $title := .Title -}}
 
 {{- /* Check if relative path (not http/https or absolute) */ -}}
+{{- $resource := "" -}}
 {{- if not (or (hasPrefix $src "http") (hasPrefix $src "//") (hasPrefix $src "/")) -}}
-  {{- /* Try to get from page resources */ -}}
-  {{- $resource := .Page.Resources.GetMatch $src -}}
+  {{- $resource = .Page.Resources.GetMatch $src -}}
+{{- end -}}
 
-  {{- if $resource -}}
-    {{- /* Use resource's relURL */ -}}
-    {{- $src = $resource.RelPermalink -}}
-  {{- else -}}
+{{- if $resource -}}
+{{ partial "image.html" (dict
+    "image" $resource
+    "alt" $alt
+    "title" $title
+    "sizes" "(min-width: 1025px) 780px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)")
+}}
+{{- else -}}
+  {{- if not (or (hasPrefix $src "http") (hasPrefix $src "//") (hasPrefix $src "/")) -}}
     {{- /* Fallback: Build path from permalink, removing language prefix for non-English languages */ -}}
     {{- $pagePath := .Page.RelPermalink -}}
     {{- /* For Spanish pages, strip /es/ prefix to access shared resources */ -}}
@@ -20,6 +26,5 @@
     {{- end -}}
     {{- $src = printf "%s%s" $pagePath $src -}}
   {{- end -}}
-{{- end -}}
-
 <img src="{{ $src | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} loading="lazy">
+{{- end -}}

@@ -12,12 +12,12 @@
             <article class="project col col-4 col-d-6 col-t-12">
                 <div class="project__content">
                     <a href="{{ .RelPermalink }}" class="project__image">
-                        {{ $image := .Resources.GetMatch .Params.image }}
-                        {{ if $image }}
-                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ $image.RelPermalink }}" alt="{{ .Params.Title }}" />
-                        {{ else }}
-                            <img class="lazy" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3C/svg%3E" data-src="{{ .Params.image | relURL }}" alt="{{ .Params.Title }}" />
-                        {{ end }}
+                        {{ partial "image.html" (dict
+                            "image" .Params.image
+                            "page" .
+                            "alt" .Params.Title
+                            "sizes" "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)")
+                        }}
                         <div class="project__info">
                             {{ with .Params.categories }}<div class="project__label">{{ index . 0 }}</div>{{ end }}
                             <h3 class="project__title">{{ .Params.title }}</h3>

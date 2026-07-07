@@ -22,7 +22,7 @@
                             <div class="col col-8 col-d-12">
                                 <div class="footer__author">
                                     <div class="footer__author-avatar">
-                                        <img src="{{ .Site.Params.author.author__avatar | absURL }}" alt="{{ .Site.Params.author.author__name }}" loading="lazy" />
+                                        {{ partial "image.html" (dict "image" .Site.Params.author.author__avatar "alt" .Site.Params.author.author__name "widths" (slice 250 500) "sizes" "250px") }}
                                     </div>
                                     <div class="footer__author-info">
                                         <h3 class="footer__author-name">{{ .Site.Params.author.author__name }}</h3>
