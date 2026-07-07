@@ -1,12 +1,12 @@
 <div class="article col col-4 col-d-6 col-t-12">
-    {{ if .Params.Image }}
+    {{ if .Params.image }}
         <a class="article__image" href="{{ .RelPermalink }}">
-            {{ $image := .Resources.GetMatch .Params.Image }}
-            {{ if $image }}
-                <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
-            {{ else }}
-                <img src="{{ .Params.Image | absURL }}" alt="{{ .Title }}" loading="lazy" />
-            {{ end }}
+            {{ partial "image.html" (dict
+                "image" .Params.image
+                "page" .
+                "alt" .Title
+                "sizes" "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)")
+            }}
         </a>
     {{ end }}
 
