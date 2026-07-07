@@ -6,3 +6,7 @@ pnpm-lock.yaml
 /resources/**
 themes/**/*.html
 layouts/**/*.html
+# agent workflow scratch
+.superpowers/**
+# Claude Code settings
+.claude/**
