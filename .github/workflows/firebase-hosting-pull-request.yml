@@ -15,7 +15,7 @@ jobs:
             checks: write
         steps:
             - name: Checkout PR branch
-              uses: actions/checkout@v6.0.3
+              uses: actions/checkout@v7.0.0
               with:
                   ref: ${{ github.event.pull_request.head.ref }}
                   submodules: true
