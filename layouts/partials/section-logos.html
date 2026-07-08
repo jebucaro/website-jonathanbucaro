@@ -12,7 +12,7 @@
                         {{ with .Site.Params.logo_item }}
                             {{ range . }}
                                 <li class="logos__item">
-                                    <a href="{{ .link }}" class="logos__link" rel="noopener nofollow noreferrer" target="_blank"><img src="{{ .image | relURL }}" alt="{{ .name }}" class="logos__image"/></a>
+                                    <a href="{{ .link }}" class="logos__link" rel="noopener nofollow noreferrer" target="_blank">{{ partial "image.html" (dict "image" .image "alt" .name "class" "logos__image" "widths" (slice 240 480) "sizes" "240px") }}</a>
                                 </li>
                             {{ end }}
                         {{ end }}

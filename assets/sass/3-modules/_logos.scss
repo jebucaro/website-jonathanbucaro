@@ -35,6 +35,10 @@
 
 .logos__image {
     height: 72px;
+    // the img tag carries width/height attributes for its intrinsic size;
+    // without an explicit auto width, the width attribute wins and stretches
+    // the logo to its full pixel width at the fixed 72px height
+    width: auto;
     // height: 36px;
     // filter: invert(51%) sepia(4%) saturate(1703%) hue-rotate(179deg) brightness(85%) contrast(89%);
 

@@ -90,9 +90,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100);
 
     /* =======================
-  // LazyLoad Images
+  // Fade-in Images
   ======================= */
-    // LazyLoad is initialized in vendor.js
+    document.querySelectorAll('img.fade-img').forEach(function (img) {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            var markLoaded = function () {
+                img.classList.add('loaded');
+            };
+            img.addEventListener('load', markLoaded, { once: true });
+            img.addEventListener('error', markLoaded, { once: true });
+        }
+    });
 
     /* =======================
   // Zoom Image

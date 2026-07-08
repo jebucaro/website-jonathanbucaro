@@ -7,7 +7,13 @@
                     <div class="hero__inner">
                         <div class="hero__left">
                             <div class="hero__image">
-                                <img src="{{ .Site.Params.hero.hero__image | absURL }}" alt="{{ .Site.Params.author.author__name }}'s Picture" fetchpriority="high" />
+                                {{ partial "image.html" (dict
+                                    "image" .Site.Params.hero.hero__image
+                                    "alt" (printf "%s's Picture" .Site.Params.author.author__name)
+                                    "loading" "eager"
+                                    "fetchpriority" "high"
+                                    "sizes" "(min-width: 1401px) 634px, (min-width: 1025px) 484px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)")
+                                }}
                             </div>
                         </div>
                         <div class="hero__right">

@@ -1,4 +1,7 @@
-{{ $imageURL := .Site.Params.logo | absURL }}
+{{ $logoURL := .Site.Params.logo | absURL }}
+{{ with resources.Get (strings.TrimPrefix "/" .Site.Params.logo) }}{{ $logoURL = .Permalink }}{{ end }}
+
+{{ $imageURL := $logoURL }}
 {{ with .Resources.GetMatch .Params.image }}{{ $imageURL = .Permalink }}{{ end }}
 
 {{ $tags := slice }}
@@ -16,6 +19,6 @@
   "keywords" $tags
   "inLanguage" .Site.Language.Locale
   "author" (dict "@type" "Person" "name" .Site.Params.author.author__name "url" (printf "%sabout/" .Site.BaseURL))
-  "publisher" (dict "@type" "Person" "name" .Site.Params.author.author__name "image" (dict "@type" "ImageObject" "url" (.Site.Params.logo | absURL)))
+  "publisher" (dict "@type" "Person" "name" .Site.Params.author.author__name "image" (dict "@type" "ImageObject" "url" $logoURL))
 }}
 <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
