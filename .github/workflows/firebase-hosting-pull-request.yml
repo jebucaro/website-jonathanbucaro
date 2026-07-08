@@ -15,7 +15,7 @@ jobs:
             checks: write
         steps:
             - name: Checkout PR branch
-              uses: actions/checkout@v6.0.3
+              uses: actions/checkout@v7.0.0
               with:
                   ref: ${{ github.event.pull_request.head.ref }}
                   submodules: true
@@ -36,12 +36,20 @@ jobs:
                   cache: 'pnpm'
                   cache-dependency-path: '**/pnpm-lock.yaml'
 
+            - name: Cache Hugo processed images
+              uses: actions/cache@v4
+              with:
+                  path: resources
+                  key: hugo-resources-${{ github.run_id }}
+                  restore-keys: |
+                      hugo-resources-
+
             - name: Build Hugo site for staging
               run: pnpm install --frozen-lockfile && pnpm run build:staging
 
             - name: Deploy to Firebase Preview Channel
               if: github.actor != 'dependabot[bot]'
-              uses: FirebaseExtended/action-hosting-deploy@v0.10.0
+              uses: FirebaseExtended/action-hosting-deploy@v0.11.0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBSITE_JONATHANBUCARO }}'

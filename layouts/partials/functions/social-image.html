@@ -1,0 +1,27 @@
+{{- /*
+    Returns the absolute URL for og:image / twitter:image:
+    page image → hero image (home) → site logo, capped at 1200px width.
+    Falls back to the raw absolute URL when the image is not a resource.
+*/ -}}
+{{- $url := "" -}}
+{{- $res := "" -}}
+{{- if .IsHome -}}
+    {{- $path := .Site.Params.hero.hero__image -}}
+    {{- $url = $path | absURL -}}
+    {{- $res = resources.Get (strings.TrimPrefix "/" $path) -}}
+{{- else if .Params.image -}}
+    {{- $url = .Params.image | absURL -}}
+    {{- $res = .Resources.GetMatch .Params.image -}}
+{{- else -}}
+    {{- $path := .Site.Params.logo -}}
+    {{- $url = $path | absURL -}}
+    {{- $res = resources.Get (strings.TrimPrefix "/" $path) -}}
+{{- end -}}
+{{- with $res -}}
+    {{- if and (in (slice "png" "jpeg" "webp" "tiff" "bmp") .MediaType.SubType) (gt .Width 1200) -}}
+        {{- $url = (.Resize "1200x").Permalink -}}
+    {{- else -}}
+        {{- $url = .Permalink -}}
+    {{- end -}}
+{{- end -}}
+{{- return $url -}}

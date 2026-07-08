@@ -227,12 +227,12 @@ table td {
     border: 1px solid var(--background-alt-color);
 }
 
-.lazy {
+html.js .fade-img {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
 
-.lazy.loaded {
+html.js .fade-img.loaded {
     opacity: 1;
 }
 
