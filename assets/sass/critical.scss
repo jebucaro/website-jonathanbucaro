@@ -1,3 +1,6 @@
+// Fonts (self-hosted @font-face, must be in the inlined critical CSS)
+@import "0-settings/fonts";
+
 // Settings (Sass vars + CSS custom properties)
 @import "0-settings/variables";
 @import "0-settings/color-scheme";
