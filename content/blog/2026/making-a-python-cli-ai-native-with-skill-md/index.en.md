@@ -5,7 +5,7 @@ date: 2026-03-23T17:15:45+00:00
 description: 'Learn how to make a Python CLI AI-native by adding a SKILL.md for Claude Code, using pokecli as a practical example inspired by the Playwright CLI pattern.'
 draft: false
 tags: [python, ai-tools, claude]
-image: 'images/cover.webp'
+image: 'images/cover.png'
 ---
 
 ## 🎯 TL;DR

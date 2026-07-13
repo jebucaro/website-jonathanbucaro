@@ -1,7 +1,7 @@
 ---
 title: 'Guía para habilitar WSL2'
 date: 2020-09-14T19:56:03-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [windows, wsl]
 draft: false
 description: 'Aprende cómo instalar WSL2 en tu PC con Windows y explora capacidades del sistema Linux directamente en tu escritorio'

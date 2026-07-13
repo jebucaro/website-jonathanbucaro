@@ -2,7 +2,7 @@
 title: 'Get contact’s profile picture inside ManyChat'
 slug: 'get-contacts-profile-picture-inside-manychat'
 date: 2021-12-08T17:09:10-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [manychat]
 draft: false
 description: 'Get the profile picture of your ManyChat contacts. One simple action, without the technical fuzz of an external request'

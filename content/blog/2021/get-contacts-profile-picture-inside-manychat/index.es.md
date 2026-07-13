@@ -2,7 +2,7 @@
 title: 'Obtener la foto de perfil del contacto en ManyChat'
 slug: 'get-contacts-profile-picture-inside-manychat'
 date: 2021-12-08T17:09:10-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [manychat]
 draft: false
 description: 'Obtén la foto de perfil de tus contactos en ManyChat. Una acción simple, sin el rollo técnico de una solicitud externa'

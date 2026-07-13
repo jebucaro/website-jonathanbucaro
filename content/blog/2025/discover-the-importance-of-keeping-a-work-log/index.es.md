@@ -1,7 +1,7 @@
 ---
 title: 'Descubre la importancia de llevar un registro de trabajo'
 date: 2025-02-04T17:07:47-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [productivity]
 draft: false
 description: 'Descubre cómo llevar un registro de trabajo puede ayudarte a mantenerte organizado, aumentar tu productividad y destacar en tu equipo.'

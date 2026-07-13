@@ -1,7 +1,7 @@
 ---
 title: 'Guide to Enable WSL2'
 date: 2020-09-14T19:56:03-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [windows, wsl]
 draft: false
 description: 'Learn how to install WSL2 on your Windows PC and explore Linux system capabilities right on your desktop'

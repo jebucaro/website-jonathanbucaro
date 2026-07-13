@@ -3,7 +3,7 @@ title: 'Personal Impressions about GPT-5'
 slug: 'personal-impressions-about-gpt-5'
 date: 2025-08-12T19:42:37-06:00
 lastmod: 2025-11-26
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [ai-tools, gpt-5, productivity]
 draft: false
 description: 'Sharing my GPT-5 experiences: better prompting techniques and an experiment switching from subscriptions to API usage with cost comparisons'

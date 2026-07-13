@@ -1,7 +1,7 @@
 ---
 title: 'Product Owner de Scrum'
 date: 2021-01-30T06:37:04-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [personal, scrum]
 draft: false
 description: 'Mi segunda certificación de Scrum. Fui acreditado como Scrum Product Owner Certified y renové la certificación SMC.'

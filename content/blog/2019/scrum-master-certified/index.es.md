@@ -1,7 +1,7 @@
 ---
 title: 'Scrum Master Certified'
 date: 2019-01-06T18:09:27-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [personal, scrum]
 draft: false
 description: 'Obtuve mi primera certificación de Scrum: Scrum Master Certified (SMC), acreditada por SCRUMstudy.'

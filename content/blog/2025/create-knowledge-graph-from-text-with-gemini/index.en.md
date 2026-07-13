@@ -2,7 +2,7 @@
 title: 'Create a Knowledge Graph From Text With Gemini'
 slug: 'create-knowledge-graph-from-text-with-gemini'
 date: 2025-10-06T19:59:11-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [python, ai-tools, gemini]
 draft: false
 description: "Learn how to build a knowledge graph extraction system using Google's Gemini AI. Transform unstructured text into visual, connected knowledge networks with Python and Streamlit"

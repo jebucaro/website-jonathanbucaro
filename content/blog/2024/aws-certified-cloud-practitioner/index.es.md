@@ -1,7 +1,7 @@
 ---
 title: 'AWS Certified Cloud Practitioner'
 date: 2024-12-10T09:51:06-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [personal, aws]
 draft: false
 description: 'Obtuve la certificación AWS Certified Cloud Practitioner, lo cual marca un hito importante en mi camino hacia la computación en la nube y la transformación digital.'

@@ -5,7 +5,7 @@ date: 2026-05-27T19:53:56+00:00
 description: 'Un recorrido práctico por Bumblebee, el escáner de solo lectura de código abierto de Perplexity que te dice qué máquinas de desarrollo tienen una versión específica de un paquete instalada sin invocar ningún gestor de paquetes.'
 draft: false
 tags: [security, supply-chain, cli]
-image: 'images/cover.webp'
+image: 'images/cover.png'
 ---
 
 ## 🎯 TL;DR

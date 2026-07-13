@@ -1,7 +1,7 @@
 ---
 title: 'AWS Certified Cloud Practitioner'
 date: 2024-12-10T09:51:06-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [personal, aws]
 draft: false
 description: 'I achieved the AWS Certified Cloud Practitioner certification, marking a significant milestone in my journey toward cloud computing and digital transformation.'

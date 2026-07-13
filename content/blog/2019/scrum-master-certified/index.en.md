@@ -1,7 +1,7 @@
 ---
 title: 'Scrum Master Certified'
 date: 2019-01-06T18:09:27-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [personal, scrum]
 draft: false
 description: 'Successfully earned my first Scrum certification, accredited as a Scrum Master Certified by SCRUMstudy'
