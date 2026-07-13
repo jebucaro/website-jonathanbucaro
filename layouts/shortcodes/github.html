@@ -27,6 +27,6 @@
 </div>
 {{- if not (.Page.Scratch.Get "hasGithubCardJS") -}}
 {{- .Page.Scratch.Set "hasGithubCardJS" true -}}
-{{- $js := resources.Get "js/github-card.js" | fingerprint -}}
+{{- $js := resources.Get "js/github-card.js" | minify | fingerprint -}}
 <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{- end -}}

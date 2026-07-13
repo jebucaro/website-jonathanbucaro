@@ -24,9 +24,6 @@ importers:
       reframe.js:
         specifier: ^4.0.2
         version: 4.0.2
-      smoothscroll-polyfill:
-        specifier: ^0.4.4
-        version: 0.4.4
       tiny-slider:
         specifier: ^2.9.4
         version: 2.9.4
@@ -392,9 +389,6 @@ packages:
   smol-toml@1.6.1:
     resolution: {integrity: sha512-dWUG8F5sIIARXih1DTaQAX4SsiTXhInKf1buxdY9DIg4ZYPZK5nGM1VRIYmEbDbsHt7USo99xSLFu5Q1IqTmsg==}
     engines: {node: '>= 18'}
-
-  smoothscroll-polyfill@0.4.4:
-    resolution: {integrity: sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==}
 
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
@@ -874,8 +868,6 @@ snapshots:
       is-fullwidth-code-point: 5.1.0
 
   smol-toml@1.6.1: {}
-
-  smoothscroll-polyfill@0.4.4: {}
 
   string-argv@0.3.2: {}
 
