@@ -61,7 +61,7 @@
             <div class="agent-session-text agent-session-text-collapse">
               {{ . | markdownify }}
             </div>
-            <button class="agent-session-expand-btn" type="button">{{ i18n "agentSession_showMore" }}</button>
+            <button class="agent-session-expand-btn" type="button" data-show-more="{{ i18n "agentSession_showMore" }}" data-show-less="{{ i18n "agentSession_showLess" }}">{{ i18n "agentSession_showMore" }}</button>
           </div>
           {{- else -}}
           <div class="agent-session-text">
@@ -77,43 +77,8 @@
 
 {{- if not (.Page.Scratch.Get "hasAgentSessionJS") -}}
 {{- .Page.Scratch.Set "hasAgentSessionJS" true -}}
-<script>
-(function () {
-  function initAgentSessions() {
-    document.querySelectorAll('.agent-session:not([data-bound])').forEach(function (el) {
-      el.dataset.bound = '1';
-      el.querySelectorAll('.agent-session-tool-toggle').forEach(function (toggle) {
-        toggle.addEventListener('click', function () {
-          var detail = this.nextElementSibling;
-          var isExpanded = this.getAttribute('aria-expanded') === 'true';
-          detail.style.display = isExpanded ? 'none' : 'block';
-          this.setAttribute('aria-expanded', String(!isExpanded));
-          this.querySelector('.agent-session-chevron').textContent = isExpanded ? '▸' : '▾';
-        });
-      });
-      el.querySelectorAll('[data-collapsible]').forEach(function (wrapper) {
-        var textEl = wrapper.querySelector('.agent-session-text-collapse');
-        var btn = wrapper.querySelector('.agent-session-expand-btn');
-        if (!textEl || !btn) return;
-        if (textEl.scrollHeight <= textEl.clientHeight + 2) {
-          btn.style.display = 'none';
-          textEl.classList.remove('agent-session-text-collapse');
-          return;
-        }
-        btn.addEventListener('click', function () {
-          var expanded = textEl.classList.toggle('expanded');
-          btn.textContent = expanded ? '{{ i18n "agentSession_showLess" }}' : '{{ i18n "agentSession_showMore" }}';
-        });
-      });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAgentSessions);
-  } else {
-    initAgentSessions();
-  }
-})();
-</script>
+{{- $js := resources.Get "js/agent-session.js" | minify | fingerprint -}}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{- end -}}
 {{- else -}}
 <p><em>{{ i18n "agentSession_summaryPlaceholder" }}</em></p>
