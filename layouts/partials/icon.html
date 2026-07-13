@@ -1,1 +1,1 @@
-{{ $svg := resources.Get (printf "icons/%s.svg" .) }}{{ if $svg }}{{ $svg.Content | safeHTML }}{{ end }}
+{{ $svg := resources.Get (printf "icons/%s.svg" .) }}{{ if $svg }}{{ replace $svg.Content "<svg " `<svg aria-hidden="true" ` | safeHTML }}{{ end }}
