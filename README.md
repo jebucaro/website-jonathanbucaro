@@ -10,37 +10,18 @@ Personal website built with Hugo and deployed to Firebase Hosting.
 
 ## Dev container (recommended)
 
-A dev container is available at `.devcontainer/devcontainer.json`. It provides Node.js 24 and Hugo extended — no local tooling required beyond VS Code and a container runtime.
+A dev container is available at `.devcontainer/devcontainer.json`. It provides Node.js 24 and Hugo extended — no local tooling required beyond VS Code and a container runtime. It works with Docker Desktop (Windows/macOS) or Docker/Podman (Linux); Podman users should set `"dev.containers.dockerPath": "podman"` in their VS Code user settings.
 
-The configuration assumes **Podman** and **1Password SSH agent**. If your setup differs:
+**Git, SSH, and commit signing**
+VS Code copies your host `~/.gitconfig` into the container automatically, and forwards your local SSH agent — so SSH auth and SSH commit signing work with keys held in 1Password (or any other agent) without extra setup:
 
-**Using Docker instead of Podman**
-Point the VS Code Dev Containers extension to Docker by setting `"docker.dockerPath": "docker"` in your VS Code user settings, or configure `DOCKER_HOST` to your Docker socket. No changes to `devcontainer.json` are needed.
+- Windows: enable **Settings → Developer → Use the SSH agent** in 1Password (or run the Windows OpenSSH `ssh-agent` service).
+- Linux/macOS: make sure `SSH_AUTH_SOCK` points at your agent (1Password sets this up when its SSH agent is enabled).
 
-**Not using 1Password**
-Remove the two 1Password-specific mounts and the `SSH_AUTH_SOCK` env from `devcontainer.json`:
+Host-OS-specific programs in your gitconfig (e.g. `op-ssh-sign`, a Windows `ssh.exe` path) can't run inside the container, so `containerEnv` overrides `core.sshCommand` and `gpg.ssh.program` with `GIT_CONFIG_*` variables; signing goes through the forwarded agent instead (`ssh-keygen -Y sign`). Private keys never enter the container. Without an agent, everything except SSH push/pull and signing still works.
 
-```json
-"mounts": [
-    // remove these two lines:
-    "source=/opt/1Password/op-ssh-sign,target=/opt/1Password/op-ssh-sign,type=bind,readonly",
-    "source=${localEnv:HOME}/.1password/agent.sock,target=/root/.1password/agent.sock,type=bind",
-    // keep this one:
-    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig-host,type=bind,readonly"
-],
-// remove this block entirely:
-"remoteEnv": {
-    "SSH_AUTH_SOCK": "/root/.1password/agent.sock"
-}
-```
-
-To forward your system SSH agent instead, add this to `remoteEnv`:
-
-```json
-"remoteEnv": {
-    "SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
-}
-```
+**node_modules**
+Lives in a named Docker volume for native-speed installs (bind mounts are slow on Windows/macOS). The `node_modules/` directory on the host stays empty; run `pnpm install` on the host if you also work outside the container.
 
 ## Local development (without dev container)
 

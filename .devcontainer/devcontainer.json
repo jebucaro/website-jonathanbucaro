@@ -10,17 +10,30 @@
         }
     },
 
+    // node_modules lives in a named volume: native-speed I/O regardless of host OS,
+    // and it never shadows a host install (the host dir stays empty).
     "mounts": [
-        "source=/opt/1Password/op-ssh-sign,target=/opt/1Password/op-ssh-sign,type=bind,readonly",
-        "source=${localEnv:HOME}/.1password/agent.sock,target=/root/.1password/agent.sock,type=bind",
-        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig-host,type=bind,readonly"
+        "source=website-jonathanbucaro-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
     ],
-    "remoteEnv": {
-        "SSH_AUTH_SOCK": "/root/.1password/agent.sock"
+
+    // The host ~/.gitconfig is copied in automatically by VS Code (dev.containers.copyGitConfig)
+    // and may carry host-OS-specific program paths (1Password op-ssh-sign, Windows ssh.exe).
+    // GIT_CONFIG_* env vars outrank every config file, so these overrides hold no matter
+    // when VS Code re-copies the file. SSH auth and commit signing go through the SSH agent
+    // that VS Code forwards from the host (1Password or any other agent).
+    // COREPACK_ENABLE_DOWNLOAD_PROMPT=0: Corepack otherwise asks "[Y/n]" before downloading
+    // the pinned pnpm, which hangs postCreateCommand forever (it runs in a PTY, unattended).
+    "containerEnv": {
+        "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0",
+        "GIT_CONFIG_COUNT": "2",
+        "GIT_CONFIG_KEY_0": "core.sshCommand",
+        "GIT_CONFIG_VALUE_0": "ssh",
+        "GIT_CONFIG_KEY_1": "gpg.ssh.program",
+        "GIT_CONFIG_VALUE_1": "ssh-keygen"
     },
 
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "corepack enable && rm -rf node_modules && pnpm install && git config --global include.path /root/.gitconfig-host && git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postCreateCommand": "corepack enable && pnpm install && git config --global --add safe.directory ${containerWorkspaceFolder}",
 
     // Configure tool-specific properties.
     "customizations": {
