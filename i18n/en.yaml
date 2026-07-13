@@ -145,6 +145,9 @@
 - id: projects_previousProject
   translation: 'Previous Project'
 
+- id: projects_navLabel
+  translation: 'Project navigation'
+
 # Agent session shortcode
 - id: agentSession_roleUser
   translation: 'You'

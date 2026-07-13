@@ -26,40 +26,44 @@
         <div class="project-content animate">
             {{ .Content }}
         </div>
-        {{ if or .NextInSection .PrevInSection }}
-            <div class="project__nav animate">
-                {{ if .NextInSection }}
-                    <a class="project__prev" href="{{ .NextInSection.Permalink }}">
-                        <div class="project__box">
-                            <span class="project__nav-info">{{ i18n "projects_nextProject" }}{{ partial "icon.html" "arrow-forward" }}</span>
-                            <h2 class="project__nav-title">{{ .NextInSection.Title }}</h2>
+        {{/* Nav follows the list's newest-first browsing order: "previous" is the newer project (Hugo's .NextInSection), "next" the older (.PrevInSection). */}}
+        {{ $prev := .NextInSection }}
+        {{ $next := .PrevInSection }}
+        {{ if or $prev $next }}
+            <nav class="project-nav animate" aria-label="{{ i18n "projects_navLabel" }}">
+                {{ with $prev }}
+                    <a class="project-nav__card project-nav__card--prev" href="{{ .Permalink }}">
+                        <div class="project-nav__image">
+                            {{ partial "image.html" (dict
+                                "image" .Params.image
+                                "page" .
+                                "alt" .Title
+                                "sizes" "(min-width: 1025px) 140px, 100px")
+                            }}
                         </div>
-                    </a>
-                    <a class="project__nav-image" href="{{ .NextInSection.Permalink }}">
-                        {{ partial "image.html" (dict
-                            "image" .NextInSection.Params.image
-                            "page" .NextInSection
-                            "alt" .NextInSection.Title
-                            "sizes" "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)")
-                        }}
-                    </a>
-                {{ else if .PrevInSection }}
-                    <a class="project__prev" href="{{ .PrevInSection.Permalink }}">
-                        <div class="project__box">
-                            <span class="project__nav-info">{{ i18n "projects_previousProject" }}{{ partial "icon.html" "arrow-forward" }}</span>
-                            <h2 class="project__nav-title">{{ .PrevInSection.Title }}</h2>
+                        <div class="project-nav__text">
+                            <span class="project-nav__info">{{ partial "icon.html" "arrow-forward" }}{{ i18n "projects_previousProject" }}</span>
+                            <h2 class="project-nav__title">{{ .Title }}</h2>
                         </div>
-                    </a>
-                    <a class="project__nav-image" href="{{ .PrevInSection.Permalink }}">
-                        {{ partial "image.html" (dict
-                            "image" .PrevInSection.Params.image
-                            "page" .PrevInSection
-                            "alt" .PrevInSection.Title
-                            "sizes" "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)")
-                        }}
                     </a>
                 {{ end }}
-            </div>
+                {{ with $next }}
+                    <a class="project-nav__card project-nav__card--next" href="{{ .Permalink }}">
+                        <div class="project-nav__text">
+                            <span class="project-nav__info">{{ i18n "projects_nextProject" }}{{ partial "icon.html" "arrow-forward" }}</span>
+                            <h2 class="project-nav__title">{{ .Title }}</h2>
+                        </div>
+                        <div class="project-nav__image">
+                            {{ partial "image.html" (dict
+                                "image" .Params.image
+                                "page" .
+                                "alt" .Title
+                                "sizes" "(min-width: 1025px) 140px, 100px")
+                            }}
+                        </div>
+                    </a>
+                {{ end }}
+            </nav>
         {{ end }}
     </div>
 {{ end }}
