@@ -60,22 +60,14 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
 
-    <!-- Font Optimization -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;600;700&family=Noto+Serif:wght@700&display=swap">
+    <!-- Self-hosted font (declared via @font-face in the inlined critical CSS) -->
+    <link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/noto-sans-display-v30-latin-wght.woff2" | absURL }}" crossorigin>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@400;600;700&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
-
-    <!-- Theme JavaScript -->
-    {{ $themejs := resources.Get "js/theme.js" }}
-    {{ if hugo.IsServer }}
-    <script src="{{ $themejs.Permalink | absURL }}"></script>
-    {{ else }}
-    {{ $themejsProcessed := $themejs | minify | fingerprint }}
-    <link rel="preload" as="script" href="{{ $themejsProcessed.RelPermalink | absURL }}" />
-    <script src="{{ $themejsProcessed.RelPermalink | absURL }}"></script>
-    {{ end }}
+    <!-- Theme JavaScript, inlined: must run before first paint to avoid a
+         dark-mode flash. Its sha256 hash is allow-listed in firebase.json
+         script-src; scripts/check-csp-hashes.mjs keeps them in sync. -->
+    {{ $themejs := resources.Get "js/theme.js" | minify }}
+    <script>{{ $themejs.Content | safeJS }}</script>
 
     <!-- Stylesheets -->
     {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}

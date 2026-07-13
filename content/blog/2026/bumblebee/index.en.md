@@ -5,7 +5,7 @@ date: 2026-05-27T19:53:56+00:00
 description: 'A practical walkthrough of Bumblebee, the open-source read-only scanner from Perplexity that tells you which developer machines carry a specific package version without invoking any package manager.'
 draft: false
 tags: [security, supply-chain, cli]
-image: 'images/cover.webp'
+image: 'images/cover.png'
 ---
 
 ## 🎯 TL;DR

@@ -3,7 +3,7 @@ title: "{{ replace .Name "-" " " | title }}"
 subtitle: ""
 date: {{ .Date }}
 draft: true
-image: "images/cover.webp"
+image: "images/cover.png"
 description: ""
 tags: []
 categories: []

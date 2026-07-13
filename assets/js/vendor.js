@@ -2,17 +2,8 @@
 import Lightense from 'lightense-images/dist/lightense.js';
 import reframe from 'reframe.js/dist/reframe.js';
 import { tns } from 'tiny-slider/dist/tiny-slider.js';
-import smoothscroll from 'smoothscroll-polyfill/dist/smoothscroll.js';
-import { Chart, registerables } from 'chart.js';
-
-// Initialize smoothscroll polyfill
-smoothscroll.polyfill();
-
-// Register Chart.js components
-Chart.register(...registerables);
 
 // Export for global use
 window.Lightense = Lightense;
 window.reframe = reframe;
 window.tns = tns;
-window.Chart = Chart;

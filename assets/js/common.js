@@ -93,12 +93,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Fade-in Images
   ======================= */
     document.querySelectorAll('img.fade-img').forEach(function (img) {
-        if (img.complete) {
+        var markLoaded = function () {
             img.classList.add('loaded');
+            // Fade lasts 300ms; afterwards drop both classes so the
+            // html.js .fade-img transition rule stops overriding
+            // component and Lightense transform transitions.
+            setTimeout(function () {
+                img.classList.remove('fade-img', 'loaded');
+            }, 400);
+        };
+        if (img.complete) {
+            markLoaded();
         } else {
-            var markLoaded = function () {
-                img.classList.add('loaded');
-            };
             img.addEventListener('load', markLoaded, { once: true });
             img.addEventListener('error', markLoaded, { once: true });
         }

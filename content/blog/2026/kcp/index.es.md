@@ -4,7 +4,7 @@ date: 2026-02-11T16:49:22+00:00
 description: 'Obtuve la credencial Kanban Coaching Professional (KCP) de Kanban University, fortaleciendo mi capacidad para guiar a equipos y organizaciones a través del cambio evolutivo usando el Kanban Maturity Model.'
 draft: false
 tags: [personal, kanban]
-image: 'images/cover.webp'
+image: 'images/cover.png'
 slug: 'kanban-coaching-profesional'
 ---
 

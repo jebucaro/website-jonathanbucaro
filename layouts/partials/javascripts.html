@@ -1,13 +1,21 @@
 {{ $vendor := resources.Get "js/vendor.js" | js.Build }}
-{{ $main := resources.Get "js/main.js" | js.Build }}
 {{ $commonJs := resources.Get "js/common.js" }}
 
 {{ if hugo.IsServer }}
     <script src="{{ $vendor.Permalink | absURL }}"></script>
-    <script src="{{ $main.Permalink | absURL }}"></script>
     <script src="{{ $commonJs.Permalink | absURL }}"></script>
 {{ else }}
     <script src="{{ ($vendor | minify | fingerprint).RelPermalink | absURL }}"></script>
-    <script src="{{ ($main | minify | fingerprint).RelPermalink | absURL }}"></script>
     <script src="{{ ($commonJs | minify | fingerprint).RelPermalink | absURL }}"></script>
+{{ end }}
+
+{{/* Chart.js only where the chart shortcode ran; the flag is set during
+     .Content evaluation, which baseof.html renders before this partial */}}
+{{ if .Scratch.Get "hasChartJS" }}
+    {{ $charts := resources.Get "js/charts.js" | js.Build }}
+    {{ if hugo.IsServer }}
+    <script src="{{ $charts.Permalink | absURL }}" defer></script>
+    {{ else }}
+    <script src="{{ ($charts | minify | fingerprint).RelPermalink | absURL }}" defer></script>
+    {{ end }}
 {{ end }}

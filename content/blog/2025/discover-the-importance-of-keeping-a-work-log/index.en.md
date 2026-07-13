@@ -1,7 +1,7 @@
 ---
 title: 'Discover the Importance of Keeping a Work Log'
 date: 2025-02-04T17:07:47-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [productivity]
 draft: false
 description: 'Find out how keeping a work log can help you stay organized, boost your productivity, and stand out on your team.'

@@ -42,6 +42,9 @@ jobs:
             - name: Install dependencies and build
               run: pnpm install --frozen-lockfile && pnpm run build
 
+            - name: Verify CSP hashes for inline scripts
+              run: node scripts/check-csp-hashes.mjs
+
             - name: Validate HTML5
               uses: Cyb3r-Jak3/html5validator-action@v8.0.0
               with:

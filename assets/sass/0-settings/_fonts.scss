@@ -1,0 +1,16 @@
+// Self-hosted Noto Sans Display: single variable woff2 (wght 400-700, latin
+// subset, Google Fonts v30, SIL OFL 1.1). Declared in critical CSS so the
+// font face is known at first paint without any network request.
+// Spanish/English are fully covered by the latin unicode-range below.
+@font-face {
+    font-family: "Noto Sans Display";
+    font-style: normal;
+    font-weight: 400 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: url("/fonts/noto-sans-display-v30-latin-wght.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+}

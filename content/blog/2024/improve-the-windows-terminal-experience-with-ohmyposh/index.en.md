@@ -1,7 +1,7 @@
 ---
 title: 'Improve the Windows Terminal with Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
-image: 'images/cover.webp'
+image: 'images/cover.png'
 tags: [windows, powershell]
 draft: false
 description: "I'll guide you step-by-step through the process of setting up Windows Terminal and Oh My Posh."

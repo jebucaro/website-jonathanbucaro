@@ -5,7 +5,7 @@ date: 2026-01-15T06:57:56-06:00
 description: 'Una guía paso a paso para configurar 1Password como tu agente unificado de SSH y firma de Git en Windows, WSL2 y VS Code Dev Containers.'
 draft: false
 tags: [windows, wsl]
-image: 'images/cover.webp'
+image: 'images/cover.png'
 ---
 
 ## 🎯 TL;DR

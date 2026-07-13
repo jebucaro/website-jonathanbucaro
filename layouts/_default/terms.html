@@ -1,8 +1,11 @@
 {{ define "main" }}
-<!-- Redirect to homepage -->
-{{ $redirectjs := resources.Get "js/redirect.js.html" }}
-{{ $data := dict "Site" .Site }}
-{{ $template := $redirectjs | resources.ExecuteAsTemplate "redirect.js.html" $data }}
-{{ $redirectjsContent := $template | resources.Minify }}
-<script>{{ $redirectjsContent.Content | safeJS }}</script>
+    <!-- Terms pages (/tags/, /categories/) 301 to the homepage via
+         firebase.json redirects; this body is only reachable in local dev -->
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <p><a href="{{ .Site.Home.RelPermalink }}" class="button button--primary">{{ i18n "error_returnToHome" }}</a></p>
+            </div>
+        </div>
+    </div>
 {{ end }}
