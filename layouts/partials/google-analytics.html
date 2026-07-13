@@ -1,9 +1,10 @@
 {{- if .Site.Config.Services.GoogleAnalytics.ID -}}
 {{- $gaID := .Site.Config.Services.GoogleAnalytics.ID -}}
-<!-- Load our custom GA initialization script (sets consent defaults before gtag.js loads) -->
+<!-- GA bootstrap: only pushes to dataLayer, so it can defer off the critical
+     path; gtag.js drains dataLayer whenever it loads, order-independent -->
 {{- $gaInit := resources.Get "js/ga-init.js" -}}
 {{- $gaInitProcessed := $gaInit | resources.ExecuteAsTemplate (printf "js/ga-init-%s.js" $gaID) . | minify | fingerprint -}}
-<script src="{{ $gaInitProcessed.RelPermalink | absURL }}"></script>
+<script src="{{ $gaInitProcessed.RelPermalink | absURL }}" defer></script>
 <!-- Load Google Tag Manager library -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaID }}"></script>
 {{- end -}}
