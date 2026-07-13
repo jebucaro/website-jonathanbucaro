@@ -62,6 +62,26 @@
                 "source": "/es/blog/kanban-management-profesional/",
                 "destination": "/es/blog/kanban-management-professional/",
                 "type": 301
+            },
+            {
+                "source": "/tags/",
+                "destination": "/",
+                "type": 301
+            },
+            {
+                "source": "/categories/",
+                "destination": "/",
+                "type": 301
+            },
+            {
+                "source": "/es/tags/",
+                "destination": "/es/",
+                "type": 301
+            },
+            {
+                "source": "/es/categories/",
+                "destination": "/es/",
+                "type": 301
             }
         ],
         "headers": [
@@ -75,20 +95,20 @@
                 ]
             },
             {
-                "source": "/js/*.min.*.js",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=31536000, public, immutable"
-                    }
-                ]
-            },
-            {
                 "source": "/js/*.js",
                 "headers": [
                     {
                         "key": "Cache-Control",
                         "value": "max-age=3600, public"
+                    }
+                ]
+            },
+            {
+                "source": "/js/*.min.*.js",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=31536000, public, immutable"
                     }
                 ]
             },
@@ -103,6 +123,15 @@
             },
             {
                 "source": "/images/**",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=31536000, public, immutable"
+                    }
+                ]
+            },
+            {
+                "source": "/fonts/**",
                 "headers": [
                     {
                         "key": "Cache-Control",
@@ -133,7 +162,7 @@
                 "headers": [
                     {
                         "key": "Content-Security-Policy",
-                        "value": "default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://api.github.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+                        "value": "default-src 'self'; script-src 'self' 'sha256-7awEQr2XlTd9qv796C7I/DJr1zruR7D6IukoK7NSq20=' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://api.github.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
                     },
                     {
                         "key": "X-Frame-Options",
