@@ -15,7 +15,7 @@ jobs:
             statuses: write
         steps:
             - name: Checkout repository and update Hugo themes
-              uses: actions/checkout@v6.0.3
+              uses: actions/checkout@v7.0.0
               with:
                   submodules: true
                   fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
@@ -45,7 +45,7 @@ jobs:
 
             - run: pnpm install --frozen-lockfile && pnpm run build
 
-            - uses: FirebaseExtended/action-hosting-deploy@v0.10.0
+            - uses: FirebaseExtended/action-hosting-deploy@v0.11.0
               with:
                   repoToken: '${{ secrets.GITHUB_TOKEN }}'
                   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_WEBSITE_JONATHANBUCARO }}'
