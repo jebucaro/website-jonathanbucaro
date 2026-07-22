@@ -15,7 +15,7 @@ jobs:
             checks: write
         steps:
             - name: Checkout PR branch
-              uses: actions/checkout@v7.0.0
+              uses: actions/checkout@v7.0.1
               with:
                   ref: ${{ github.event.pull_request.head.ref }}
                   submodules: true
@@ -30,14 +30,14 @@ jobs:
             - name: Setup pnpm
               uses: pnpm/action-setup@v6
 
-            - uses: actions/setup-node@v6.2.0
+            - uses: actions/setup-node@v7.0.0
               with:
                   node-version: '24.x'
                   cache: 'pnpm'
                   cache-dependency-path: '**/pnpm-lock.yaml'
 
             - name: Cache Hugo processed images
-              uses: actions/cache@v4
+              uses: actions/cache@v6
               with:
                   path: resources
                   key: hugo-resources-${{ github.run_id }}

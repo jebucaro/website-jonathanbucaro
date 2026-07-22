@@ -49,7 +49,9 @@ function fetchPackageTime(name, version) {
         const encodedName = name.startsWith('@')
             ? '@' + encodeURIComponent(name.slice(1))
             : name;
-        const url = `https://registry.npmjs.org/${encodedName}/${version}`;
+        // The per-version endpoint omits the `time` map — only the full
+        // packument carries publish timestamps.
+        const url = `https://registry.npmjs.org/${encodedName}`;
 
         https
             .get(
@@ -64,7 +66,7 @@ function fetchPackageTime(name, version) {
                             return;
                         }
                         try {
-                            resolve(JSON.parse(data).time);
+                            resolve(JSON.parse(data).time?.[version] ?? null);
                         } catch {
                             reject(
                                 new Error(
