@@ -18,9 +18,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-12">
-                        <div class="article-tags__box">
+                        <div class="post-tags">
                             {{ range .Data.Terms.Alphabetical }}
-                                <a href="{{ .Page.RelPermalink }}" class="article__tag">{{ humanize .Page.Title }} ({{ .Count }})</a>
+                                <a href="{{ .Page.RelPermalink }}" class="post__tag">{{ humanize .Page.Title }} ({{ .Count }})</a>
                             {{ end }}
                         </div>
                     </div>
