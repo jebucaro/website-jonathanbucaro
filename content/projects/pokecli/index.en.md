@@ -6,7 +6,7 @@ date: 2026-04-20T15:24:35Z
 draft: false
 image: 'images/cover.png'
 description: 'A typed, script-friendly Python CLI for PokeAPI. Installed with uv, cached locally with TinyDB, and agent-ready through a shipped Claude Code skill.'
-categories: ['CLI Tool']
+project-types: ['CLI Tool']
 schemaType: SoftwareApplication
 ---
 

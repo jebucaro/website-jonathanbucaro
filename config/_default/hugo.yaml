@@ -23,6 +23,11 @@ languages:
         params:
             lang_flag: '🇬🇹'
             lang_label: 'ES'
+
+taxonomies:
+    tag: tags
+    project-type: project-types
+
 pagination:
     pagerSize: 6
 imaging:
