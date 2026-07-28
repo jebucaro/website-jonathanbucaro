@@ -33,6 +33,15 @@
         text-transform: uppercase;
         color: var(--text-color);
         line-height: 1;
+
+        a {
+            border-bottom: 1px solid var(--border-color);
+
+            &:hover {
+                color: var(--link-color);
+                border-bottom-color: var(--link-color-hover);
+            }
+        }
     }
 
     &__meta-sep {
