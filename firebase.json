@@ -72,6 +72,16 @@
                 "source": "/es/categories/",
                 "destination": "/es/",
                 "type": 301
+            },
+            {
+                "source": "/categories/cli-tool/",
+                "destination": "/project-types/cli-tool/",
+                "type": 301
+            },
+            {
+                "source": "/es/categories/cli-tool/",
+                "destination": "/es/project-types/cli-tool/",
+                "type": 301
             }
         ],
         "headers": [
