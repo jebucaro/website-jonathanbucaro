@@ -15,8 +15,8 @@
             {{ end }}
             <div class="project-hero__content">
                 <p class="project-hero__meta">
-                    {{ with .Params.categories }}{{ index . 0 }}{{ end }}
-                    {{ if and .Params.categories .Date }}<span class="project-hero__meta-sep">·</span>{{ end }}
+                    {{ with ($.GetTerms "project-types") }}<a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>{{ end }}
+                    {{ if and (index .Params "project-types") .Date }}<span class="project-hero__meta-sep">·</span>{{ end }}
                     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time>
                 </p>
                 <h1 class="project-hero__title">{{ .Title }}</h1>

@@ -1,0 +1,43 @@
+{{ define "main" }}
+{{ if eq .Data.Plural "tags" }}
+    <!-- begin tags-index -->
+    <div class="tags">
+        <div class="tags__inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-12">
+                        <div class="tag__info">
+                            <h1 class="tag__name">{{ .Title }}</h1>
+                            {{ if .Description }}
+                            <p class="page-description">{{ .Description }}</p>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-12">
+                        <div class="post-tags">
+                            {{ range .Data.Terms.Alphabetical }}
+                                <a href="{{ .Page.RelPermalink }}" class="post__tag">{{ humanize .Page.Title }} ({{ .Count }})</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end tags-index -->
+{{ else }}
+    <!-- Any non-tags taxonomy index (currently only /project-types/) 301s to the homepage via
+         firebase.json redirects; this body is only reachable in local dev -->
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <p><a href="{{ .Site.Home.RelPermalink }}" class="button button--primary">{{ i18n "error_returnToHome" }}</a></p>
+            </div>
+        </div>
+    </div>
+{{ end }}
+{{ end }}

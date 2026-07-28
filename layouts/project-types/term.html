@@ -5,10 +5,9 @@
         {{ if .Description }}<p class="page-description">{{ .Description }}</p>{{ end }}
     </div>
 </div>
-<!-- end page-head -->
 <div class="projects-page container animate">
     <div class="row">
-        {{ range (where .Site.RegularPages "Section" "projects" ) }}
+        {{ range .Pages }}
             {{ partial "project-card.html" . }}
         {{ end }}
     </div>

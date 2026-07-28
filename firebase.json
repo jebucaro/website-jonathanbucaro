@@ -64,22 +64,32 @@
                 "type": 301
             },
             {
-                "source": "/tags/",
-                "destination": "/",
-                "type": 301
-            },
-            {
                 "source": "/categories/",
                 "destination": "/",
                 "type": 301
             },
             {
-                "source": "/es/tags/",
+                "source": "/es/categories/",
                 "destination": "/es/",
                 "type": 301
             },
             {
-                "source": "/es/categories/",
+                "source": "/categories/cli-tool/",
+                "destination": "/project-types/cli-tool/",
+                "type": 301
+            },
+            {
+                "source": "/es/categories/cli-tool/",
+                "destination": "/es/project-types/cli-tool/",
+                "type": 301
+            },
+            {
+                "source": "/project-types/",
+                "destination": "/",
+                "type": 301
+            },
+            {
+                "source": "/es/project-types/",
                 "destination": "/es/",
                 "type": 301
             }
