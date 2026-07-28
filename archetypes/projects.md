@@ -6,7 +6,7 @@ draft: true
 image: "images/cover.png"
 description: ""
 tags: []
-categories: []
+project-types: []
 # schemaType controls the JSON-LD @type for this project page.
 # Use "SoftwareApplication" for tools the reader can install and run.
 # Omit this field (or remove it) for case studies and client work — defaults to CreativeWork.
