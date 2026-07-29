@@ -1,6 +1,12 @@
 {{ define "main" }}
+    {{ $projects := where .Site.RegularPages "Section" "projects" }}
+    {{ $total := len $projects }}
+    {{ $position := 0 }}
+    {{ range $i, $p := $projects }}
+        {{ if eq $p.RelPermalink $.RelPermalink }}{{ $position = add $i 1 }}{{ end }}
+    {{ end }}
     <div class="container">
-        <div class="project-hero animate">
+        <div class="project-hero" data-reveal>
             {{ if .Params.image }}
             <div class="project-hero__image">
                 {{ partial "image.html" (dict
@@ -14,6 +20,7 @@
             </div>
             {{ end }}
             <div class="project-hero__content">
+                <p class="label-numbered">{{ printf "%02d / %02d" $position $total }}</p>
                 <p class="project-hero__meta">
                     {{ with ($.GetTerms "project-types") }}<a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>{{ end }}
                     {{ if and (index .Params "project-types") .Date }}<span class="project-hero__meta-sep">·</span>{{ end }}
