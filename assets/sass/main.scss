@@ -14,6 +14,7 @@
     1.5-Grid
     1.6-Animate
     1.8-Editorial
+    1.9-Reveal
 :: 2-Base Styles
     2.1-Base
 :: 3-Modules
@@ -60,6 +61,8 @@
 @import "1-tools/animate";
 /* >>>>>>>>>>>>>> :: 1.8-Editorial <<<<<<<<<<<<<<< */
 @import "1-tools/editorial";
+/* >>>>>>>>>>>>>> :: 1.9-Reveal <<<<<<<<<<<<<<< */
+@import "1-tools/reveal";
 
 /* =======================
 :: 2-Base Styles

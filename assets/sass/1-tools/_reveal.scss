@@ -1,0 +1,30 @@
+/* Scroll Reveal */
+html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+    &.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Stagger: 3-up card grids (.row > article, .row > div, etc.) */
+.row > [data-reveal]:nth-child(3n + 2) {
+    transition-delay: 0.08s;
+}
+
+.row > [data-reveal]:nth-child(3n) {
+    transition-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.js [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

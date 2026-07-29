@@ -93,6 +93,9 @@
 - id: sections_projects_title
   translation: 'Proyectos Seleccionados'
 
+- id: sections_projects_eyebrow
+  translation: '02 — Trabajo'
+
 - id: sections_projects_description
   translation: 'Una selección de proyectos que refleja el tipo de sistemas que me gusta construir y las herramientas que uso en el trabajo diario.'
 
