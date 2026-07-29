@@ -119,8 +119,19 @@ document.addEventListener('DOMContentLoaded', function () {
             (entries, observer) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+                        var target = entry.target;
+                        target.classList.add('is-visible');
+                        observer.unobserve(target);
+                        // Reveal transition (incl. stagger delay) finishes within
+                        // 0.5s + 0.16s. Once played, drop both the attribute and
+                        // class so the html.js [data-reveal] rule stops permanently
+                        // overriding component transform/transition (e.g. the
+                        // .project hover lift) — same pattern as the fade-img
+                        // cleanup above.
+                        setTimeout(function () {
+                            target.removeAttribute('data-reveal');
+                            target.classList.remove('is-visible');
+                        }, 700);
                     }
                 });
             },
