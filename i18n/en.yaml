@@ -65,6 +65,9 @@
 - id: sections_hero_button
   translation: 'Get in Touch'
 
+- id: sections_hero_eyebrow
+  translation: '01 — Portfolio'
+
 # Section: Logos
 - id: sections_logos_title
   translation: 'My professional experience includes collaborations with the following companies:'

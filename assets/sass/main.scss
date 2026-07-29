@@ -13,6 +13,7 @@
     1.4-Syntax Highlighting
     1.5-Grid
     1.6-Animate
+    1.8-Editorial
 :: 2-Base Styles
     2.1-Base
 :: 3-Modules
@@ -57,6 +58,8 @@
 @import "1-tools/tiny-slider";
 /* >>>>>>>>>>>>>> :: 1.7-Animate <<<<<<<<<<<<<<< */
 @import "1-tools/animate";
+/* >>>>>>>>>>>>>> :: 1.8-Editorial <<<<<<<<<<<<<<< */
+@import "1-tools/editorial";
 
 /* =======================
 :: 2-Base Styles
