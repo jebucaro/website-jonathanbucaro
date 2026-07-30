@@ -217,6 +217,20 @@
     }
 }
 
+.post,
+.page {
+    font-size: 19px;
+    line-height: 1.75;
+
+    @media only screen and (max-width: $desktop) {
+        font-size: 18px;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        font-size: 17px;
+    }
+}
+
 /* Share */
 .post__share {
     padding-bottom: 48px;
