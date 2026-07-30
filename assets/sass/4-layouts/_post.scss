@@ -231,6 +231,33 @@
     }
 }
 
+.post__content {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        .heading-anchor {
+            margin-left: 8px;
+            font-weight: 400;
+            color: var(--brand-color);
+            opacity: 0;
+            text-decoration: none;
+            transition: opacity 0.15s ease;
+
+            &:focus-visible {
+                opacity: 1;
+                outline: 2px solid var(--brand-color);
+                outline-offset: 2px;
+            }
+        }
+
+        &:hover .heading-anchor {
+            opacity: 1;
+        }
+    }
+}
+
 /* Share */
 .post__share {
     padding-bottom: 48px;

@@ -1,0 +1,4 @@
+<h{{ .Level }} id="{{ .Anchor }}">
+    {{ .Text | safeHTML }}
+    {{ if eq .Page.Section "blog" }}<a href="#{{ .Anchor }}" class="heading-anchor" aria-label="{{ i18n "ui_headingAnchor" }}">#</a>{{ end }}
+</h{{ .Level }}>
