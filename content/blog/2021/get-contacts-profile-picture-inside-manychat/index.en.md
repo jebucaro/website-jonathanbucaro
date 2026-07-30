@@ -8,17 +8,6 @@ draft: false
 description: 'Get the profile picture of your ManyChat contacts. One simple action, without the technical fuzz of an external request'
 ---
 
-## 📖 Table of Contents
-
-- [👋 Greetings](#greetings)
-- [📜 Terms and Conditions](#terms-and-conditions)
-- [👓 Privacy Policy](#privacy-policy)
-- [🛠️ Initial Setup](#initial-setup)
-- [⚡ Actions](#actions)
-    - [🙂 Get Profile Picture](#get-profile-picture)
-
----
-
 <span id="greetings"></span>
 
 ## 👋 Greetings
