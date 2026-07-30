@@ -40,12 +40,22 @@
         {{ end }}
         <!-- begin post -->
         <div class="container animate">
-            <article class="post">
-                <div class="post__content">
-                    {{ .Content }}
+            <div class="post-layout">
+                {{ if .Fragments.Headings }}
+                <details class="post-toc" open>
+                    <summary>{{ i18n "ui_tableOfContents" }}</summary>
+                    {{ .TableOfContents }}
+                </details>
+                {{ end }}
+                <div class="post-main">
+                    <article class="post">
+                        <div class="post__content">
+                            {{ .Content }}
+                        </div>
+                        {{ partial "share-buttons.html" . }}
+                    </article>
                 </div>
-                {{ partial "share-buttons.html" . }}
-            </article>
+            </div>
         </div>
         <!-- end post -->
         {{ partial "related-posts.html" . }}

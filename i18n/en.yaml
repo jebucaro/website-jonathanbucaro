@@ -48,6 +48,9 @@
 - id: ui_headingAnchor
   translation: 'Anchor link'
 
+- id: ui_tableOfContents
+  translation: 'On this page'
+
 # Content strings
 - id: content_posts_one
   translation: 'Post'
