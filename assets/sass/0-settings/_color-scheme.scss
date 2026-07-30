@@ -39,6 +39,7 @@
     --th-color: var(--light-gray);
     --tr-color: var(--light-gray);
     --syntax-highlighting-background: var(--light-gray);
+    --code-lang-color: #57606a;
 }
 
 :root[dark] {
@@ -71,4 +72,5 @@
     --th-color: #22222a;
     --tr-color: #22222a;
     --syntax-highlighting-background: #22222a;
+    --code-lang-color: var(--gray);
 }
