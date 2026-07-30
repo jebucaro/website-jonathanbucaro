@@ -143,6 +143,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =======================
+  // TOC Scroll Spy
+  ======================= */
+    const tocHeadings = document.querySelectorAll(
+        '.post__content h2[id], .post__content h3[id], .post__content h4[id]',
+    );
+    const tocLinks = document.querySelectorAll('.post-toc a[href^="#"]');
+    if (
+        tocHeadings.length &&
+        tocLinks.length &&
+        'IntersectionObserver' in window
+    ) {
+        const tocObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const link = document.querySelector(
+                        `.post-toc a[href="#${entry.target.id}"]`,
+                    );
+                    if (!link) return;
+                    tocLinks.forEach((l) => l.classList.remove('is-active'));
+                    link.classList.add('is-active');
+                });
+            },
+            { rootMargin: '0px 0px -70% 0px' },
+        );
+        tocHeadings.forEach((h) => tocObserver.observe(h));
+    }
+
+    /* =======================
   // Zoom Image
   ======================= */
     const lightense = document.querySelector(
