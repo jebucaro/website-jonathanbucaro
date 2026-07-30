@@ -240,14 +240,15 @@
         .heading-anchor {
             margin-left: 8px;
             font-weight: 400;
-            color: var(--brand-color);
+            color: var(--heading-font-color);
+            border-bottom: none;
             opacity: 0;
             text-decoration: none;
             transition: opacity 0.15s ease;
 
             &:focus-visible {
                 opacity: 1;
-                outline: 2px solid var(--brand-color);
+                outline: 2px solid var(--heading-font-color);
                 outline-offset: 2px;
             }
         }
@@ -324,7 +325,7 @@
         }
 
         &.is-active {
-            color: var(--brand-color);
+            color: var(--heading-font-color);
             font-weight: 700;
         }
     }

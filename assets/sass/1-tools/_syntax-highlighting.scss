@@ -207,6 +207,7 @@
 /* Code Block Language Label */
 .code-block {
     position: relative;
+    background: var(--syntax-highlighting-background);
 
     pre {
         padding-top: 32px;
@@ -223,6 +224,6 @@
     font-weight: 700;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: var(--text-alt-color);
+    color: #57606a;
     pointer-events: none;
 }
