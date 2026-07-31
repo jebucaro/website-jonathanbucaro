@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // TOC Scroll Spy
   ======================= */
     const tocHeadings = document.querySelectorAll(
-        '.post__content h2[id], .post__content h3[id]',
+        '.post__content h2[id], .post__content h3[id], .project-content h2[id], .project-content h3[id]',
     );
     const tocLinks = document.querySelectorAll('.content-toc a[href^="#"]');
     if (

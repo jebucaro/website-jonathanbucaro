@@ -30,8 +30,18 @@
                 {{ if .Params.subtitle }}<p class="project-hero__subtitle">{{ .Params.subtitle }}</p>{{ end }}
             </div>
         </div>
-        <div class="project-content animate">
-            {{ .Content }}
+        <div class="content-layout">
+            {{ if .Fragments.Headings }}
+            <details class="content-toc" open>
+                <summary>{{ i18n "ui_tableOfContents" }}</summary>
+                {{ .TableOfContents }}
+            </details>
+            {{ end }}
+            <div class="content-main">
+                <div class="project-content animate">
+                    {{ .Content }}
+                </div>
+            </div>
         </div>
         {{/* Nav follows the list's newest-first browsing order: "previous" is the newer project (Hugo's .NextInSection), "next" the older (.PrevInSection). */}}
         {{ $prev := .NextInSection }}
