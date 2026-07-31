@@ -24,12 +24,12 @@
                         <div class="row projects-grid projects-grid--count-{{ $count }}">
                             {{ range $projects }}
                                 {{ if eq .RelPermalink $featuredPage.RelPermalink }}
-                                    {{ partial "project-card.html" (dict "page" . "featured" true) }}
+                                    {{ partial "project-card.html" (dict "page" . "featured" true "count" $count) }}
                                 {{ end }}
                             {{ end }}
                             {{ range $projects }}
                                 {{ if ne .RelPermalink $featuredPage.RelPermalink }}
-                                    {{ partial "project-card.html" (dict "page" . "featured" false) }}
+                                    {{ partial "project-card.html" (dict "page" . "featured" false "count" $count) }}
                                 {{ end }}
                             {{ end }}
                         </div>

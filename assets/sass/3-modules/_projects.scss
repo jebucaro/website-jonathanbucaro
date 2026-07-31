@@ -150,20 +150,15 @@
     }
 }
 
-.projects-grid--count-2 {
-    .project {
-        width: calc(50% - #{$base-spacing-unit * 2});
-    }
-}
-
-.projects-grid--count-4,
-.projects-grid--count-5 {
-    .project {
-        margin-bottom: 0;
-    }
-}
-
 @media only screen and (min-width: 769px) {
+    .projects-grid--count-2 {
+        .project {
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1401px) {
     .projects-grid--count-4,
     .projects-grid--count-5 {
         display: grid;
@@ -173,6 +168,7 @@
 
         .project {
             width: auto;
+            margin-bottom: 0;
         }
     }
 
@@ -182,6 +178,8 @@
         grid-row: 1 / span 2;
     }
 
+    /* :nth-of-type positions below assume section-projects.html always
+       renders the .project--featured article first in DOM order. */
     .projects-grid--count-4 .project:nth-of-type(2),
     .projects-grid--count-5 .project:nth-of-type(2) {
         grid-column: 2;

@@ -1,7 +1,10 @@
 {{ $page := .page }}
 {{ $featured := .featured }}
+{{ $count := .count }}
 {{ $sizes := "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)" }}
-{{ if $featured }}
+{{ if eq $count 2 }}
+    {{ $sizes = "(min-width: 1401px) 586px, (min-width: 769px) 460px, calc(100vw - 40px)" }}
+{{ else if $featured }}
     {{ $sizes = "(min-width: 1401px) 620px, (min-width: 1025px) 480px, (min-width: 769px) 500px, (min-width: 577px) 528px, calc(100vw - 40px)" }}
 {{ end }}
 <article class="project{{ if $featured }} project--featured{{ end }} col col-4 col-d-6 col-t-12" data-reveal>
