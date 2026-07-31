@@ -15,9 +15,6 @@
 - id: ui_email
   translation: 'Email'
 
-- id: ui_emailPlaceholder
-  translation: 'Email address...'
-
 - id: ui_relatedPosts
   translation: 'You might be interested in'
 
@@ -60,28 +57,19 @@
 
 # Section: Hero
 - id: sections_hero_title
-  translation: "Hey, I'm Jonathan 👋"
+  translation: "I'm Jonathan 🤓"
 
 - id: sections_hero_subtitle
-  translation: 'I turn complex backend problems into reliable software.'
+  translation: "I'll create services that bring you value!"
 
 - id: sections_hero_description
-  translation: '15+ years evolving from programmer to Technical Lead, bringing deep experience in cloud architectures (C#, .NET, Java, React) and applying practical Generative AI to modern engineering workflows.'
+  translation: "As a Systems Engineer experienced in C#, Python, and Generative AI technologies, I'm dedicated to crafting innovative, high-quality solutions that exceed your expectations."
 
 - id: sections_hero_button
   translation: 'Get in Touch'
 
 - id: sections_hero_eyebrow
   translation: '01 — Portfolio'
-
-- id: sections_hero_stat_experience
-  translation: '15+ Years Experience'
-
-- id: sections_hero_stat_role
-  translation: 'Technical Lead'
-
-- id: sections_hero_stat_domain
-  translation: 'Fintech & AI'
 
 # Section: Logos
 - id: sections_logos_title

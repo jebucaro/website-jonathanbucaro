@@ -4,32 +4,28 @@
         <div class="container">
             <div class="row">
                 <div class="col col-12">
-                    <div class="hero__content" data-reveal>
-                        <p class="label-numbered">{{ i18n "sections_hero_eyebrow" | safeHTML }}</p>
-                        <h1 class="hero__title">{{ i18n "sections_hero_title" | safeHTML }} <br />{{ i18n "sections_hero_subtitle" | safeHTML }}</h1>
-                        <p class="hero__description">{{ i18n "sections_hero_description" | safeHTML }}</p>
-
-                        <div class="hero__meta">
-                            <div class="hero__avatar">
+                    <div class="hero__inner">
+                        <div class="hero__left">
+                            <div class="hero__image">
                                 {{ partial "image.html" (dict
                                     "image" .Site.Params.hero.hero__image
                                     "alt" (printf "%s's Picture" .Site.Params.author.author__name)
                                     "loading" "eager"
-                                    "widths" (slice 128 256)
-                                    "sizes" "64px")
+                                    "fetchpriority" "high"
+                                    "sizes" "(min-width: 1401px) 634px, (min-width: 1025px) 484px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)")
                                 }}
                             </div>
-
-                            {{ $email := .Site.Params.contact.contact__email }}
-                            {{ $emailParts := split $email "@" }}
-                            <a href="#" class="button button--primary js-mailto" data-user="{{ index $emailParts 0 }}" data-domain="{{ index $emailParts 1 }}">{{ i18n "sections_hero_button" | safeHTML }}</a>
                         </div>
-
-                        <ul class="hero__stats list-reset">
-                            <li>{{ i18n "sections_hero_stat_experience" | safeHTML }}</li>
-                            <li>{{ i18n "sections_hero_stat_role" | safeHTML }}</li>
-                            <li>{{ i18n "sections_hero_stat_domain" | safeHTML }}</li>
-                        </ul>
+                        <div class="hero__right">
+                            <p class="label-numbered">{{ i18n "sections_hero_eyebrow" | safeHTML }}</p>
+                            <h1 class="hero__title">{{ i18n "sections_hero_title" | safeHTML }} <br />{{ i18n "sections_hero_subtitle" | safeHTML }}</h1>
+                            <p class="hero__description">{{ i18n "sections_hero_description" | safeHTML }}</p>
+                            <div class="hero__subscribe">
+                                {{ $email := .Site.Params.contact.contact__email }}
+                                {{ $emailParts := split $email "@" }}
+                                <a href="#" class="button button--primary js-mailto" data-user="{{ index $emailParts 0 }}" data-domain="{{ index $emailParts 1 }}">{{ i18n "sections_hero_button" | safeHTML }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
