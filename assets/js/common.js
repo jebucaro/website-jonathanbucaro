@@ -146,9 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // TOC Scroll Spy
   ======================= */
     const tocHeadings = document.querySelectorAll(
-        '.post__content h2[id], .post__content h3[id], .post__content h4[id]',
+        '.post__content h2[id], .post__content h3[id]',
     );
-    const tocLinks = document.querySelectorAll('.post-toc a[href^="#"]');
+    const tocLinks = document.querySelectorAll('.content-toc a[href^="#"]');
     if (
         tocHeadings.length &&
         tocLinks.length &&
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 entries.forEach((entry) => {
                     if (!entry.isIntersecting) return;
                     const link = document.querySelector(
-                        `.post-toc a[href="#${entry.target.id}"]`,
+                        `.content-toc a[href="#${entry.target.id}"]`,
                     );
                     if (!link) return;
                     tocLinks.forEach((l) => l.classList.remove('is-active'));

@@ -259,7 +259,7 @@
     }
 }
 
-.post-layout {
+.content-layout {
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -274,12 +274,12 @@
     }
 }
 
-.post-main {
+.content-main {
     min-width: 0;
     width: 100%;
 }
 
-.post-toc {
+.content-toc {
     border: none;
     background: var(--background-alt-color);
     border-radius: 12px;

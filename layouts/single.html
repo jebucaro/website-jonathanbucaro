@@ -40,14 +40,14 @@
         {{ end }}
         <!-- begin post -->
         <div class="container animate">
-            <div class="post-layout">
+            <div class="content-layout">
                 {{ if .Fragments.Headings }}
-                <details class="post-toc" open>
+                <details class="content-toc" open>
                     <summary>{{ i18n "ui_tableOfContents" }}</summary>
                     {{ .TableOfContents }}
                 </details>
                 {{ end }}
-                <div class="post-main">
+                <div class="content-main">
                     <article class="post">
                         <div class="post__content">
                             {{ .Content }}
