@@ -17,7 +17,7 @@
                         {{ $count := len $projects }}
                         {{ $pinned := where $projects "Params.featured" true }}
                         {{ $featuredPage := index ($projects.ByDate.Reverse) 0 }}
-                        {{ if gt (len $pinned) 0 }}
+                        {{ if eq (len $pinned) 1 }}
                             {{ $featuredPage = index $pinned 0 }}
                         {{ end }}
 
