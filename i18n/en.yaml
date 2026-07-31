@@ -68,9 +68,6 @@
 - id: sections_hero_button
   translation: 'Get in Touch'
 
-- id: sections_hero_eyebrow
-  translation: '01 — Portfolio'
-
 # Section: Logos
 - id: sections_logos_title
   translation: 'My professional experience includes collaborations with the following companies:'
@@ -95,9 +92,6 @@
 # Section: Projects
 - id: sections_projects_title
   translation: 'Selected Projects'
-
-- id: sections_projects_eyebrow
-  translation: '02 — Work'
 
 - id: sections_projects_description
   translation: 'A selection of projects that reflects the kind of systems I like building and the tools I use in day-to-day work.'
