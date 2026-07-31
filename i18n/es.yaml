@@ -60,19 +60,28 @@
 
 # Section: Hero
 - id: sections_hero_title
-  translation: 'Soy Jonathan 🤓'
+  translation: 'Hola, soy Jonathan 👋'
 
 - id: sections_hero_subtitle
-  translation: '¡Crearé servicios que te aporten valor!'
+  translation: 'Convierto problemas complejos de backend en software confiable.'
 
 - id: sections_hero_description
-  translation: 'Como Ingeniero en Sistemas con experiencia en C#, Python y tecnologías de IA Generativa, me dedico a crear soluciones innovadoras y de alta calidad que superen tus expectativas.'
+  translation: 'Más de 15 años evolucionando de programador a Líder Técnico, con experiencia profunda en arquitecturas en la nube (C#, .NET, Java, React) y aplicando IA Generativa de forma práctica en flujos de trabajo de ingeniería.'
 
 - id: sections_hero_button
   translation: 'Contáctame'
 
 - id: sections_hero_eyebrow
   translation: '01 — Portafolio'
+
+- id: sections_hero_stat_experience
+  translation: '15+ Años de Experiencia'
+
+- id: sections_hero_stat_role
+  translation: 'Líder Técnico'
+
+- id: sections_hero_stat_domain
+  translation: 'Fintech e IA'
 
 # Section: Logos
 - id: sections_logos_title
