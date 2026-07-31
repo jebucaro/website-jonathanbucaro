@@ -15,4 +15,4 @@ highlight:
     style: github # Syntax highlighting color scheme
 
 tableOfContents:
-    endLevel: 4 # Include h2, h3, and h4 in table of contents
+    endLevel: 3 # Include h2 and h3 in table of contents
