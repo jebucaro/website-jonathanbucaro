@@ -111,6 +111,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =======================
+  // Mailto Obfuscation
+  ======================= */
+    document.querySelectorAll('.js-mailto').forEach(function (el) {
+        var user = el.getAttribute('data-user');
+        var domain = el.getAttribute('data-domain');
+        if (user && domain) {
+            el.setAttribute('href', 'mailto:' + user + '@' + domain);
+        }
+    });
+
+    /* =======================
   // Scroll Reveal
   ======================= */
     const revealTargets = document.querySelectorAll('[data-reveal]');
