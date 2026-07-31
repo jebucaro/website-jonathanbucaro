@@ -84,6 +84,8 @@ categories: ['category']
 
 Project pages support an optional `schemaType` front matter field that controls JSON-LD structured data. Set it to `SoftwareApplication` for tools the reader can install and run (CLI tools, packages, apps). Omit it for case studies and client work — it defaults to `CreativeWork`.
 
+Project pages also support an optional `featured: true` front matter field that pins a project to the "spotlight" slot in the homepage's adaptive projects grid (used when there are 4 or 5 projects). At most one project should be `featured: true` at a time; if none or more than one is set, the homepage falls back to the most recently dated project.
+
 ## Configuration
 
 ### Localized Strings
