@@ -1,15 +1,21 @@
-<article class="project col col-4 col-d-6 col-t-12" data-reveal>
+{{ $page := .page }}
+{{ $featured := .featured }}
+{{ $sizes := "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)" }}
+{{ if $featured }}
+    {{ $sizes = "(min-width: 1401px) 620px, (min-width: 1025px) 480px, (min-width: 769px) 500px, (min-width: 577px) 528px, calc(100vw - 40px)" }}
+{{ end }}
+<article class="project{{ if $featured }} project--featured{{ end }} col col-4 col-d-6 col-t-12" data-reveal>
     <div class="project__content">
-        <a href="{{ .RelPermalink }}" class="project__image">
+        <a href="{{ $page.RelPermalink }}" class="project__image">
             {{ partial "image.html" (dict
-                "image" .Params.image
-                "page" .
-                "alt" .Params.Title
-                "sizes" "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 40px)")
+                "image" $page.Params.image
+                "page" $page
+                "alt" $page.Params.Title
+                "sizes" $sizes)
             }}
             <div class="project__info">
-                {{ with (index .Params "project-types") }}<div class="project__label">{{ index . 0 }}</div>{{ end }}
-                <h3 class="project__title">{{ .Params.title }}</h3>
+                {{ with (index $page.Params "project-types") }}<div class="project__label">{{ index . 0 }}</div>{{ end }}
+                <h3 class="project__title">{{ $page.Params.title }}</h3>
             </div>
         </a>
     </div>
