@@ -69,10 +69,6 @@ social:
 hero:
     enable: true
     hero__image: '/images/profile.webp'
-mailchimp:
-    enable: false
-    mailchimp__identifier: >-
-        frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
 projects:
     enable: true
     projects__description: true

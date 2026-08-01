@@ -7,6 +7,11 @@ image: "images/cover.png"
 description: ""
 tags: []
 project-types: []
+# featured controls the spotlight slot in the homepage's adaptive projects
+# grid. At most one project should be featured: true at a time. If none (or
+# more than one) is set, the homepage falls back to the most recent project
+# by date.
+featured: false
 # schemaType controls the JSON-LD @type for this project page.
 # Use "SoftwareApplication" for tools the reader can install and run.
 # Omit this field (or remove it) for case studies and client work — defaults to CreativeWork.

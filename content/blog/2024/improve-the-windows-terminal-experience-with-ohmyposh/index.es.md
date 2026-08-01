@@ -12,24 +12,6 @@ Personalizar tu terminal puede marcar una gran diferencia en tu productividad y 
 
 En este artículo, te guío paso a paso para transformar tu terminal de Windows con Oh My Posh. No te preocupes si nunca has personalizado nada antes; te llevo desde la instalación de PowerShell hasta dejar tu terminal literalmente irreconocible. ¿Listo para agregar estilo y funciones de nivel pro a tu consola de siempre? ¡Vamos!
 
-## 📜 Tabla de contenido
-
-- [💾 Instalar PowerShell](#install-powershell)
-- [💻 Configurar Windows Terminal](#configure-windows-terminal)
-    - [Configurar Windows Terminal como la aplicación de terminal predeterminada](#default-terminal)
-    - [Configurar la política de ejecución de scripts en PowerShell](#script-execution)
-- [🤖 Instalar y configurar Oh My Posh](#install-and-configure-ohmyposh)
-    - [Instalar una fuente](#install-a-font)
-    - [Configurar Windows Terminal para usar una Nerd Font](#configure-windows-terminal-nerd-font)
-    - [Configurar la terminal de Visual Studio Code para usar una Nerd Font](#configure-vscode-nerd-font)
-    - [Configurar PowerShell para usar Oh My Posh](#configure-powershell-ohmyposh)
-    - [Elegir y configurar un tema](#configure-ohmyposh-theme)
-- [🔝 Sube de nivel con estos módulos y apps](#level-up)
-    - [📦 PSReadLine](#psreadline)
-    - [📦 winfetch](#winfetch)
-    - [📦 bat](#bat)
-    - [📦 eza](#eza)
-
 <span id="install-powershell"></span>
 
 ## 💾 Instalar PowerShell

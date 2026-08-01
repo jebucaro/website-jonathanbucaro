@@ -1,0 +1,5 @@
+{{ $result := transform.HighlightCodeBlock . dict }}
+<div class="code-block">
+    {{ with .Type }}<span class="code-block__lang">{{ . }}</span>{{ end }}
+    {{ $result.Wrapped }}
+</div>

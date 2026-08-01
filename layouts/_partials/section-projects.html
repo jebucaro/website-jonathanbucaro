@@ -5,16 +5,31 @@
             <div class="row">
                 <div class="col col-12">
                     <div class="contaniner__inner animate">
-                        <div class="section__info">
+                        <div class="section__info" data-reveal>
                             <h2 class="section__title">{{ i18n "sections_projects_title" | safeHTML }}</h2>
                             {{ if .Site.Params.projects.projects__description }}
                             <p class="section__description">{{ i18n "sections_projects_description" | safeHTML }}</p>
                             {{ end }}
                         </div>
 
-                        <div class="row">
-                            {{ range (where .Site.RegularPages "Section" "projects" | first 6 ) }}
-                                {{ partial "project-card.html" . }}
+                        {{ $projects := where .Site.RegularPages "Section" "projects" | first 6 }}
+                        {{ $count := len $projects }}
+                        {{ $pinned := where $projects "Params.featured" true }}
+                        {{ $featuredPage := index ($projects.ByDate.Reverse) 0 }}
+                        {{ if eq (len $pinned) 1 }}
+                            {{ $featuredPage = index $pinned 0 }}
+                        {{ end }}
+
+                        <div class="row projects-grid projects-grid--count-{{ $count }}">
+                            {{ range $projects }}
+                                {{ if eq .RelPermalink $featuredPage.RelPermalink }}
+                                    {{ partial "project-card.html" (dict "page" . "featured" true "count" $count) }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range $projects }}
+                                {{ if ne .RelPermalink $featuredPage.RelPermalink }}
+                                    {{ partial "project-card.html" (dict "page" . "featured" false "count" $count) }}
+                                {{ end }}
                             {{ end }}
                         </div>
                     </div>

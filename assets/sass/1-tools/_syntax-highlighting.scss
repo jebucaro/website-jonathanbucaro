@@ -203,3 +203,27 @@
         color: #099;
     } // Literal.Number.Integer.Long
 }
+
+/* Code Block Language Label */
+.code-block {
+    position: relative;
+    background: var(--syntax-highlighting-background);
+
+    pre {
+        padding-top: 32px;
+    }
+}
+
+.code-block__lang {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 1;
+    font-family: $heading-font-family;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--code-lang-color);
+    pointer-events: none;
+}

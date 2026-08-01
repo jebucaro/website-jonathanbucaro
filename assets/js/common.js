@@ -111,6 +111,78 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* =======================
+  // Mailto Obfuscation
+  ======================= */
+    document.querySelectorAll('.js-mailto').forEach(function (el) {
+        var user = el.getAttribute('data-user');
+        var domain = el.getAttribute('data-domain');
+        if (user && domain) {
+            el.setAttribute('href', 'mailto:' + user + '@' + domain);
+        }
+    });
+
+    /* =======================
+  // Scroll Reveal
+  ======================= */
+    const revealTargets = document.querySelectorAll('[data-reveal]');
+    if (revealTargets.length && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        var target = entry.target;
+                        target.classList.add('is-visible');
+                        observer.unobserve(target);
+                        // Reveal transition (incl. stagger delay) finishes within
+                        // 0.5s + 0.16s. Once played, drop both the attribute and
+                        // class so the html.js [data-reveal] rule stops permanently
+                        // overriding component transform/transition (e.g. the
+                        // .project hover lift) — same pattern as the fade-img
+                        // cleanup above.
+                        setTimeout(function () {
+                            target.removeAttribute('data-reveal');
+                            target.classList.remove('is-visible');
+                        }, 700);
+                    }
+                });
+            },
+            { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+        );
+        revealTargets.forEach((el) => revealObserver.observe(el));
+    } else {
+        revealTargets.forEach((el) => el.classList.add('is-visible'));
+    }
+
+    /* =======================
+  // TOC Scroll Spy
+  ======================= */
+    const tocHeadings = document.querySelectorAll(
+        '.post__content h2[id], .post__content h3[id], .project-content h2[id], .project-content h3[id]',
+    );
+    const tocLinks = document.querySelectorAll('.content-toc a[href^="#"]');
+    if (
+        tocHeadings.length &&
+        tocLinks.length &&
+        'IntersectionObserver' in window
+    ) {
+        const tocObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const link = document.querySelector(
+                        `.content-toc a[href="#${entry.target.id}"]`,
+                    );
+                    if (!link) return;
+                    tocLinks.forEach((l) => l.classList.remove('is-active'));
+                    link.classList.add('is-active');
+                });
+            },
+            { rootMargin: '0px 0px -70% 0px' },
+        );
+        tocHeadings.forEach((h) => tocObserver.observe(h));
+    }
+
+    /* =======================
   // Zoom Image
   ======================= */
     const lightense = document.querySelector(

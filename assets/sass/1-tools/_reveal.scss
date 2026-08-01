@@ -1,0 +1,56 @@
+/* Scroll Reveal */
+html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+
+    &.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Stagger: 3-up card grids (.row > article, .row > div, etc.) */
+.row > [data-reveal]:nth-child(3n + 2) {
+    transition-delay: 0.08s;
+}
+
+.row > [data-reveal]:nth-child(3n) {
+    transition-delay: 0.16s;
+}
+
+/* Stagger: 2-up card grids (below $desktop, above $tablet) */
+@media only screen and (max-width: $desktop) {
+    .row > [data-reveal]:nth-child(3n + 2) {
+        transition-delay: 0s;
+    }
+
+    .row > [data-reveal]:nth-child(3n) {
+        transition-delay: 0s;
+    }
+
+    .row > [data-reveal]:nth-child(2n) {
+        transition-delay: 0.08s;
+    }
+}
+
+/* Stagger: 1-up card grids (below $tablet) — no stagger.
+   Note: the $desktop media query above is still active at $tablet widths
+   (since $tablet < $desktop), so this override must match the same
+   specificity (0,3,0) as the nth-child rules it needs to beat — a plain
+   `.row > [data-reveal]` (0,2,0) would lose to them despite coming later. */
+@media only screen and (max-width: $tablet) {
+    .row > [data-reveal]:nth-child(n) {
+        transition-delay: 0s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.js [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

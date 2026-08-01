@@ -15,9 +15,6 @@
 - id: ui_email
   translation: 'Email'
 
-- id: ui_emailPlaceholder
-  translation: 'Email address...'
-
 - id: ui_relatedPosts
   translation: 'You might be interested in'
 
@@ -44,6 +41,12 @@
 
 - id: ui_pages
   translation: 'Pages'
+
+- id: ui_headingAnchor
+  translation: 'Anchor link'
+
+- id: ui_tableOfContents
+  translation: 'On this page'
 
 # Content strings
 - id: content_posts_one

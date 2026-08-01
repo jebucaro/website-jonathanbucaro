@@ -44,3 +44,5 @@ tmpclaude-*-cwd
 
 # Agent workflow scratch (task briefs, reports, progress ledger)
 /.superpowers/
+/docs/superpowers/
+

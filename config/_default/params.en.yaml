@@ -9,7 +9,3 @@ blog:
 
 logos:
     logos__title: 'My professional experience includes collaborations with the following companies:'
-
-mailchimp:
-    mailchimp__input__text: 'Email address...'
-    mailchimp__button__text: Get updates

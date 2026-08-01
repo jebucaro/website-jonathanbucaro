@@ -8,7 +8,7 @@
 <div class="projects-page container animate">
     <div class="row">
         {{ range .Pages }}
-            {{ partial "project-card.html" . }}
+            {{ partial "project-card.html" (dict "page" . "featured" false) }}
         {{ end }}
     </div>
 </div>

@@ -19,20 +19,16 @@
                         <div class="hero__right">
                             <h1 class="hero__title">{{ i18n "sections_hero_title" | safeHTML }} <br />{{ i18n "sections_hero_subtitle" | safeHTML }}</h1>
                             <p class="hero__description">{{ i18n "sections_hero_description" | safeHTML }}</p>
-                            {{ if .Site.Params.mailchimp.enable }}
-                                <div class="hero__subscribe">
-                                    <form class="subscribe-form validate" action="{{ if .Site.Params.mailchimp.mailchimp__identifier }}//{{ .Site.Params.mailchimp.mailchimp__identifier }}{{ else }}#{{ end }}" method="POST" id="membedded-subscribe-form" name="membedded-subscribe-form" target="_blank" novalidate>
-                                        <label class="screen-reader-text" for="mce-EMAIL">{{ i18n "ui_email" }}</label>
-                                        <input class="subscribe-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="{{ if .Site.Params.mailchimp.mailchimp__input__text }}{{ .Site.Params.mailchimp.mailchimp__input__text }}{{ else }}{{ i18n "ui_emailPlaceholder" }}{{ end }}" />
-                                        <button class="button button--primary button--small subscribe-button" id="membedded-subscribe" type="submit" name="subscribe">{{ i18n "sections_hero_button" | safeHTML }}</button>
-                                    </form>
-                                </div>
-                            {{ end }}
+                            <div class="hero__subscribe">
+                                {{ $email := .Site.Params.contact.contact__email }}
+                                {{ $emailParts := split $email "@" }}
+                                <a href="#" class="button button--primary js-mailto" data-user="{{ index $emailParts 0 }}" data-domain="{{ index $emailParts 1 }}">{{ i18n "sections_hero_button" | safeHTML }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- end author -->
+    <!-- end hero -->
 {{ end }}

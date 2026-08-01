@@ -9,7 +9,3 @@ blog:
 
 logos:
     logos__title: 'Mi experiencia profesional incluye colaboraciones con las siguientes empresas:'
-
-mailchimp:
-    mailchimp__input__text: 'Dirección de correo...'
-    mailchimp__button__text: Recibir actualizaciones

@@ -8,16 +8,6 @@ draft: false
 description: 'Obtén la foto de perfil de tus contactos en ManyChat. Una acción simple, sin el rollo técnico de una solicitud externa'
 ---
 
-## 📖 Tabla de contenidos
-
-- [👋 Saludos](#greetings)
-- [📜 Términos y condiciones](#terms-and-conditions)
-- [👓 Política de privacidad](#privacy-policy)
-- [🛠️ Configuración inicial](#initial-setup)
-- [⚡ Acciones](#actions) - [🙂 Obtener foto de perfil](#get-profile-picture)
-
----
-
 <span id="greetings"></span>
 
 ## 👋 Saludos
