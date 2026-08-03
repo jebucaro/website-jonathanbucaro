@@ -14,20 +14,22 @@
       page          page context; required to resolve page-resource strings
       alt           alt text (required)
       sizes         HTML sizes attribute (default "100vw")
-      widths        candidate srcset widths (default: 400 700 1000 1400)
+      widths        candidate srcset widths (default: 400 480 560 640 700 800 1000 1200 1400)
       loading       "lazy" (default) or "eager"
       fetchpriority optional, e.g. "high" for LCP images
       class         optional extra class names
       title         optional title attribute
+      aspect        optional bool; emit style="aspect-ratio: W / H" (for images whose CSS overrides one dimension)
 */ -}}
 {{- $input := .image -}}
 {{- $page := .page -}}
 {{- $alt := .alt -}}
 {{- $sizes := .sizes | default "100vw" -}}
-{{- $widths := .widths | default (slice 400 700 1000 1400) -}}
+{{- $widths := .widths | default (slice 400 480 560 640 700 800 1000 1200 1400) -}}
 {{- $loading := .loading | default "lazy" -}}
 {{- $fetchpriority := .fetchpriority -}}
 {{- $title := .title -}}
+{{- $aspect := .aspect -}}
 
 {{- /* Resolve string input: page resources, then assets/, else plain URL */ -}}
 {{- $res := "" -}}
@@ -86,6 +88,7 @@
         {{- if eq $loading "lazy" }} loading="lazy"{{ end }}
         {{- with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}
         {{- with $title }} title="{{ . }}"{{ end }}
+        {{- if $aspect }} style="aspect-ratio: {{ $largest.Width }} / {{ $largest.Height }}"{{ end }}
         {{- with $classes }} class="{{ delimit . " " }}"{{ end }} />
 {{- else -}}
     {{- $url := $rawURL -}}

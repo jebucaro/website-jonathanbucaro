@@ -226,7 +226,9 @@
     color: var(--heading-font-color);
     background-color: var(--background-alt-color);
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease;
 
     &:hover {
         color: var(--icon-hover-color);

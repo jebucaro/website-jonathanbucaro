@@ -60,7 +60,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
 
-    <!-- Self-hosted font (declared via @font-face in the inlined critical CSS) -->
+    <!-- Self-hosted font (declared via @font-face in main.css) -->
     <link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/noto-sans-display-v30-latin-wght.woff2" | absURL }}" crossorigin>
 
     <!-- Theme JavaScript, inlined: must run before first paint to avoid a
@@ -69,22 +69,16 @@
     {{ $themejs := resources.Get "js/theme.js" | minify }}
     <script>{{ $themejs.Content | safeJS }}</script>
 
-    <!-- Stylesheets -->
+    <!-- Stylesheet: single render-blocking sheet (~13 KB gzipped, same origin).
+         Replaces the former inline-critical + async-loader split; the late-
+         applying CSS was implicated in CLS and LCP repaint. -->
     {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
-    {{- $criticalOpts := (dict "includePaths" (slice "node_modules")) -}}
-    {{- $critical := resources.Get "sass/critical.scss" | toCSS $criticalOpts | minify -}}
-    {{- if $critical }}<style>{{ $critical.Content | safeCSS }}</style>{{ end }}
     {{ if hugo.IsServer }}
     {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
-    {{ if $css }}<link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />{{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />
     {{ else }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify | fingerprint }}
-    {{ $loader := resources.Get "js/css-loader.js" | minify | fingerprint }}
-    {{ if $css }}
-    <link rel="preload" href="{{ $css.RelPermalink | absURL }}" as="style" />
-    <noscript><link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" /></noscript>
-    <script src="{{ $loader.RelPermalink | absURL }}" defer></script>
-    {{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />
     {{ end }}
 </head>

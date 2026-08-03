@@ -389,7 +389,9 @@
         border-radius: 50%;
         background-color: var(--share-bg);
         color: var(--share-text);
-        transition: all 0.2s;
+        transition:
+            background-color 0.2s,
+            color 0.2s;
 
         &:hover {
             background-color: var(--share-bg-hover);

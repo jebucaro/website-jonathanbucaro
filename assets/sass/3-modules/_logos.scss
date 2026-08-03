@@ -25,7 +25,9 @@
 
 .logos__link {
     display: block;
-    transition: all 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 
     &:hover {
         transform: scale(1.1);

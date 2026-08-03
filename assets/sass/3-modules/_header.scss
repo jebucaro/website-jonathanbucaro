@@ -54,6 +54,7 @@
 
 .logo__image {
     max-height: 50px;
+    width: auto;
 }
 
 /* Nav */
@@ -73,7 +74,9 @@
             z-index: 100;
             opacity: 1;
             visibility: visible;
-            transition: all 0.25s ease;
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
         }
 
         .nav__list {
@@ -247,7 +250,9 @@
                 height: 6px;
                 opacity: 0;
                 visibility: hidden;
-                transition: all 0.2s;
+                transition:
+                    opacity 0.2s,
+                    visibility 0.2s;
                 border-radius: 50%;
                 background-color: var(--link-color);
             }
@@ -306,7 +311,9 @@
         padding: 20px;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.25s ease;
+        transition:
+            opacity 0.25s ease,
+            visibility 0.25s ease;
         border: 1px solid var(--background-alt-color);
         border-radius: 8px;
         box-shadow: 0 15px 40px 5px rgba(20, 20, 20, 0.07);
@@ -555,7 +562,9 @@
     padding: 0 12px;
     border-radius: 8px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
     font-family: $heading-font-family;
     font-weight: 700;
     font-size: 14px;
