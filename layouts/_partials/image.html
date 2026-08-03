@@ -14,7 +14,8 @@
       page          page context; required to resolve page-resource strings
       alt           alt text (required)
       sizes         HTML sizes attribute (default "100vw")
-      widths        candidate srcset widths (default: 400 480 560 640 700 800 1000 1200 1400)
+      widths        candidate srcset widths (default: see functions/image-variants.html,
+                    the single source of truth for the default width ladder)
       loading       "lazy" (default) or "eager"
       fetchpriority optional, e.g. "high" for LCP images
       class         optional extra class names
@@ -25,7 +26,6 @@
 {{- $page := .page -}}
 {{- $alt := .alt -}}
 {{- $sizes := .sizes | default "100vw" -}}
-{{- $widths := .widths | default (slice 400 480 560 640 700 800 1000 1200 1400) -}}
 {{- $loading := .loading | default "lazy" -}}
 {{- $fetchpriority := .fetchpriority -}}
 {{- $title := .title -}}
@@ -57,38 +57,18 @@
 {{- if eq $loading "lazy" -}}{{- $classes = $classes | append "fade-img" -}}{{- end -}}
 
 {{- if $processable -}}
-    {{- $candidates := slice -}}
-    {{- range $widths -}}
-        {{- if lt . $res.Width -}}{{- $candidates = $candidates | append . -}}{{- end -}}
-    {{- end -}}
-    {{- $candidates = $candidates | append $res.Width -}}
-    {{- $variants := slice -}}
-    {{- range $candidates -}}
-        {{- $variants = $variants | append ($res.Resize (printf "%dx webp" .)) -}}
-    {{- end -}}
-    {{- $largest := index $variants (sub (len $variants) 1) -}}
-    {{- /* src fallback for no-srcset clients: variant closest to 700px */ -}}
-    {{- $fallback := index $variants 0 -}}
-    {{- range $variants -}}
-        {{- if lt (math.Abs (sub .Width 700)) (math.Abs (sub $fallback.Width 700)) -}}
-            {{- $fallback = . -}}
-        {{- end -}}
-    {{- end -}}
-    {{- $srcset := slice -}}
-    {{- range $variants -}}
-        {{- $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) -}}
-    {{- end -}}
+    {{- $v := partial "functions/image-variants.html" (dict "res" $res "widths" .widths) -}}
     <img
-        src="{{ $fallback.RelPermalink }}"
-        srcset="{{ delimit $srcset ", " }}"
+        src="{{ $v.fallback.RelPermalink }}"
+        srcset="{{ $v.srcset }}"
         sizes="{{ $sizes }}"
-        width="{{ $largest.Width }}"
-        height="{{ $largest.Height }}"
+        width="{{ $v.largest.Width }}"
+        height="{{ $v.largest.Height }}"
         alt="{{ $alt }}"
         {{- if eq $loading "lazy" }} loading="lazy"{{ end }}
         {{- with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}
         {{- with $title }} title="{{ . }}"{{ end }}
-        {{- if $aspect }} style="aspect-ratio: {{ $largest.Width }} / {{ $largest.Height }}"{{ end }}
+        {{- if $aspect }} style="aspect-ratio: {{ $v.largest.Width }} / {{ $v.largest.Height }}"{{ end }}
         {{- with $classes }} class="{{ delimit . " " }}"{{ end }} />
 {{- else -}}
     {{- $url := $rawURL -}}

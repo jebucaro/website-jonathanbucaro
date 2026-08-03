@@ -1,0 +1,4 @@
+{{- /* Single source of truth for the hero image sizes attribute; used by the
+       hero <img> (section-hero.html) and its preload hint (head.html) so the
+       two can never drift. Values mirror .hero__image CSS breakpoints. */ -}}
+{{- return "(min-width: 1401px) 634px, (min-width: 1025px) 484px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)" -}}
