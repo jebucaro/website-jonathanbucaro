@@ -37,6 +37,9 @@
     4.3-Tags Page
 <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
+// Fonts (self-hosted @font-face; the woff2 itself is preloaded in head.html)
+@import "0-settings/fonts";
+
 @import "0-settings/variables";
 @import "0-settings/color-scheme";
 @import "0-settings/mixins";

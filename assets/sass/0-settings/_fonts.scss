@@ -1,5 +1,5 @@
 // Self-hosted Noto Sans Display: single variable woff2 (wght 400-700, latin
-// subset, Google Fonts v30, SIL OFL 1.1). Declared in critical CSS so the
+// subset, Google Fonts v30, SIL OFL 1.1). Imported first in main.scss so the
 // font face is known at first paint without any network request.
 // Spanish/English are fully covered by the latin unicode-range below.
 @font-face {
