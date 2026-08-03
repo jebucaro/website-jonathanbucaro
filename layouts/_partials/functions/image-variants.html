@@ -1,0 +1,39 @@
+{{- /*
+    Shared WebP variant generator for a raster image resource.
+
+    Params (dict):
+      res     image resource (required; caller has already verified it is
+              a processable raster type)
+      widths  candidate srcset widths; defaults to the site-wide ladder
+
+    Returns (dict):
+      srcset    full srcset attribute value, e.g. "/images/a.webp 400w, …"
+      fallback  variant closest to 700px wide (src for no-srcset clients)
+      largest   widest variant (intrinsic width/height come from this)
+
+    Widths ≥ the source width are skipped (no upscaling); the original
+    width is always included, re-encoded as WebP.
+*/ -}}
+{{- $res := .res -}}
+{{- $widths := .widths | default (slice 400 480 560 640 700 800 1000 1200 1400) -}}
+{{- $candidates := slice -}}
+{{- range $widths -}}
+    {{- if lt . $res.Width -}}{{- $candidates = $candidates | append . -}}{{- end -}}
+{{- end -}}
+{{- $candidates = $candidates | append $res.Width -}}
+{{- $variants := slice -}}
+{{- range $candidates -}}
+    {{- $variants = $variants | append ($res.Resize (printf "%dx webp" .)) -}}
+{{- end -}}
+{{- $largest := index $variants (sub (len $variants) 1) -}}
+{{- $fallback := index $variants 0 -}}
+{{- range $variants -}}
+    {{- if lt (math.Abs (sub .Width 700)) (math.Abs (sub $fallback.Width 700)) -}}
+        {{- $fallback = . -}}
+    {{- end -}}
+{{- end -}}
+{{- $srcset := slice -}}
+{{- range $variants -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) -}}
+{{- end -}}
+{{- return (dict "srcset" (delimit $srcset ", ") "fallback" $fallback "largest" $largest) -}}
