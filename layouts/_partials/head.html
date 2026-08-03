@@ -69,16 +69,18 @@
     {{ $themejs := resources.Get "js/theme.js" | minify }}
     <script>{{ $themejs.Content | safeJS }}</script>
 
-    <!-- Stylesheet: single render-blocking sheet (~13 KB gzipped, same origin).
-         Replaces the former inline-critical + async-loader split; the late-
-         applying CSS was implicated in CLS and LCP repaint. -->
+    <!-- Stylesheet: fully inlined in production (~13 KB minified, style-src
+         'unsafe-inline' already allowed) so first render needs no CSS request.
+         Dev keeps an external link for source maps. All of the CSS applies
+         before first paint, so no late-apply CLS (unlike the old
+         critical + async split). -->
     {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
     {{ if hugo.IsServer }}
     {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
     <link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />
     {{ else }}
-    {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink | absURL }}" />
+    {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
+    <style>{{ $css.Content | safeCSS }}</style>
     {{ end }}
 </head>
