@@ -2,11 +2,11 @@
 {{ $commonJs := resources.Get "js/common.js" }}
 
 {{ if hugo.IsServer }}
-    <script src="{{ $vendor.Permalink | absURL }}"></script>
-    <script src="{{ $commonJs.Permalink | absURL }}"></script>
+    <script src="{{ $vendor.Permalink | absURL }}" defer></script>
+    <script src="{{ $commonJs.Permalink | absURL }}" defer></script>
 {{ else }}
-    <script src="{{ ($vendor | minify | fingerprint).RelPermalink | absURL }}"></script>
-    <script src="{{ ($commonJs | minify | fingerprint).RelPermalink | absURL }}"></script>
+    <script src="{{ ($vendor | minify | fingerprint).RelPermalink | absURL }}" defer></script>
+    <script src="{{ ($commonJs | minify | fingerprint).RelPermalink | absURL }}" defer></script>
 {{ end }}
 
 {{/* Chart.js only where the chart shortcode ran; the flag is set during
