@@ -29,7 +29,9 @@
     height: var(--icon-size);
     font-size: var(--icon-size); /* for font-icons using em */
     line-height: 1; /* avoid extra line height around font icons */
-    transition: all 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 
     &:hover {
         transform: scale(1.1);

@@ -9,7 +9,11 @@ $base-spacing-unit: 16px;
 $global-radius: 8px;
 
 // Transition
-$global-transition: all 0.35s;
+$global-transition:
+    color 0.35s,
+    background-color 0.35s,
+    border-color 0.35s,
+    opacity 0.35s;
 
 // *****************
 // Typography
