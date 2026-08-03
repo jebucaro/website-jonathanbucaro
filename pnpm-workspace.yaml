@@ -3,4 +3,4 @@ overrides:
   minimatch: '>=10.1.4'
   js-yaml: '>=5.2.2'
 patchedDependencies:
-  tiny-slider: patches/tiny-slider.patch
+  tiny-slider@*: patches/tiny-slider.patch

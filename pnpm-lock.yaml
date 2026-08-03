@@ -10,7 +10,7 @@ overrides:
   js-yaml: '>=5.2.2'
 
 patchedDependencies:
-  tiny-slider: ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e
+  tiny-slider@*: ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e
 
 importers:
 
