@@ -9,6 +9,9 @@ overrides:
   minimatch: '>=10.1.4'
   js-yaml: '>=5.2.2'
 
+patchedDependencies:
+  tiny-slider: ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e
+
 importers:
 
   .:
@@ -27,7 +30,7 @@ importers:
         version: 4.0.2
       tiny-slider:
         specifier: ^2.9.4
-        version: 2.9.4
+        version: 2.9.4(patch_hash=ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e)
     devDependencies:
       fontkit:
         specifier: ^2.0.4
@@ -816,7 +819,7 @@ snapshots:
 
   tiny-inflate@1.0.3: {}
 
-  tiny-slider@2.9.4: {}
+  tiny-slider@2.9.4(patch_hash=ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e): {}
 
   tinyexec@1.2.4: {}
 
