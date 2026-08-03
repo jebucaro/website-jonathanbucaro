@@ -6,7 +6,7 @@
                 <div class="logo">
                     <a class="logo__link" href="{{ .Site.Home.RelPermalink }}">
                     {{ if .Site.Params.logo }}
-                        {{ partial "image.html" (dict "image" .Site.Params.logo "alt" .Site.Title "class" "logo__image" "loading" "eager" "sizes" "135px") }}
+                        {{ partial "image.html" (dict "image" .Site.Params.logo "alt" .Site.Title "class" "logo__image" "loading" "eager" "widths" (slice 135 270) "sizes" "135px") }}
                     {{ else }}
                         {{ .Site.Title }}
                     {{ end }}
