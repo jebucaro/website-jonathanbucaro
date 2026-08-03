@@ -63,6 +63,24 @@
     <!-- Self-hosted font (declared via @font-face in main.css) -->
     <link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/noto-sans-display-v30-latin-wght.woff2" | absURL }}" crossorigin>
 
+    <!-- Preload the hero (LCP) image so it downloads in parallel with the
+         head instead of waiting for the parser to reach the hero markup.
+         srcset/sizes must match the hero <img>: variants come from the same
+         image-variants partial, sizes from the shared hero-sizes partial. -->
+    {{ if and .IsHome .Site.Params.hero.enable }}
+    {{ $heroPath := .Site.Params.hero.hero__image }}
+    {{ with resources.Get (strings.TrimPrefix "/" $heroPath) }}
+    {{ $v := partial "functions/image-variants.html" (dict "res" . "widths" nil) }}
+    <link
+        rel="preload"
+        as="image"
+        href="{{ $v.fallback.RelPermalink }}"
+        imagesrcset="{{ $v.srcset }}"
+        imagesizes="{{ partial "functions/hero-sizes.html" $ }}"
+        fetchpriority="high" />
+    {{ end }}
+    {{ end }}
+
     <!-- Theme JavaScript, inlined: must run before first paint to avoid a
          dark-mode flash. Its sha256 hash is allow-listed in firebase.json
          script-src; scripts/check-csp-hashes.mjs keeps them in sync. -->

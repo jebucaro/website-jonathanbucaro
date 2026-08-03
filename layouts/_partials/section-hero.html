@@ -12,7 +12,7 @@
                                     "alt" (printf "%s's Picture" .Site.Params.author.author__name)
                                     "loading" "eager"
                                     "fetchpriority" "high"
-                                    "sizes" "(min-width: 1401px) 634px, (min-width: 1025px) 484px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)")
+                                    "sizes" (partial "functions/hero-sizes.html" .))
                                 }}
                             </div>
                         </div>
