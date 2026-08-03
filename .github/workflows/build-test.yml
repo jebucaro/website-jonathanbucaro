@@ -54,6 +54,11 @@ jobs:
                   root: public/
                   css: false
                   blacklist: '.*/node_modules/.*'
+                  # vnu's bundled CSS checker predates the size-adjust @font-face
+                  # descriptor (Baseline 2022, used by the metric-tuned font
+                  # fallback). The stylesheet is inlined in every page since the
+                  # Lighthouse work, so vnu now sees it during HTML validation.
+                  extra: '--ignore-re "size-adjust"'
 
             - name: Upload build artifacts on failure
               if: failure()
