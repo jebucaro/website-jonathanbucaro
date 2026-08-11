@@ -234,6 +234,44 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 100);
 
+    /* ============================
+   // Technology Sliders
+   ============================ */
+    var technologySliders = [],
+        technologySliderMedia = window.matchMedia('(max-width: 576px)');
+
+    function updateTechnologySliders() {
+        if (!window.tns) return;
+
+        if (technologySliderMedia.matches && technologySliders.length === 0) {
+            document.querySelectorAll('.technologies__list').forEach((list) => {
+                technologySliders.push(
+                    tns({
+                        container: list,
+                        items: 1,
+                        slideBy: 1,
+                        gutter: 12,
+                        controls: false,
+                        nav: true,
+                        mouseDrag: true,
+                        loop: false,
+                        speed: window.matchMedia(
+                            '(prefers-reduced-motion: reduce)',
+                        ).matches
+                            ? 0
+                            : 300,
+                    }),
+                );
+            });
+        } else if (!technologySliderMedia.matches && technologySliders.length) {
+            technologySliders.forEach((slider) => slider.destroy());
+            technologySliders = [];
+        }
+    }
+
+    updateTechnologySliders();
+    technologySliderMedia.addEventListener('change', updateTechnologySliders);
+
     /* =================================
   // Smooth scroll to the tags page
   ================================= */
