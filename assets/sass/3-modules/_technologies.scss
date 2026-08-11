@@ -73,8 +73,7 @@
     }
 
     &:focus-visible {
-        box-shadow: 0 0 0 3px
-            color-mix(in srgb, var(--brand-color) 35%, transparent);
+        box-shadow: 0 0 0 3px rgba(255, 199, 29, 0.35);
     }
 }
 
