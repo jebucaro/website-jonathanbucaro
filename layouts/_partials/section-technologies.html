@@ -8,23 +8,36 @@
                         <h2 class="section__small__title">{{ .Site.Params.technologies.title | safeHTML }}</h2>
                     </div>
 
-                    <ul class="technologies__list list-reset">
-                        {{ with .Site.Params.technologies.items }}
-                            {{ range . }}
-                                <li class="technologies__item">
-                                    <div class="technologies__icon" title="{{ .name }}" aria-label="{{ .name }}">
-                                        {{- /* Prefer inline SVG provided via params; fallback to icon class for backwards compatibility */ -}}
-                                        {{- if .svg -}}
-                                            <span class="sr-only">{{ .name }}</span>
-                                            {{ .svg | safeHTML }}
-                                        {{- else if .icon -}}
-                                            <i class="{{ .icon }}" title="{{ .name }}" aria-label="{{ .name }}"></i>
-                                        {{- end -}}
-                                    </div>
-                                </li>
-                            {{ end }}
+                    {{ $groups := slice
+                        (dict "id" "backend-integrations" "title" "Backend & Integrations")
+                        (dict "id" "web-applications" "title" "Web Applications")
+                        (dict "id" "automation-apis-content" "title" "Automation, APIs & Content")
+                    }}
+                    {{ range $groups }}
+                        {{ $items := where $.Site.Params.technologies.items "group" .id }}
+                        {{ if $items }}
+                            <section class="technologies__group" aria-labelledby="technology-group-{{ .id }}">
+                                <h3 class="technologies__group-title" id="technology-group-{{ .id }}">{{ .title }}</h3>
+                                <ul class="technologies__list list-reset">
+                                    {{ range $items }}
+                                        <li class="technologies__item">
+                                            <article class="technologies__card" tabindex="0">
+                                                <div class="technologies__icon" aria-hidden="true">
+                                                    {{- if .svg -}}
+                                                        {{ .svg | safeHTML }}
+                                                    {{- else if .icon -}}
+                                                        <i class="{{ .icon }}"></i>
+                                                    {{- end -}}
+                                                </div>
+                                                <h4 class="technologies__name">{{ .name }}</h4>
+                                                <p class="technologies__outcome">{{ .outcome }}</p>
+                                            </article>
+                                        </li>
+                                    {{ end }}
+                                </ul>
+                            </section>
                         {{ end }}
-                    </ul>
+                    {{ end }}
                 </div>
             </div>
         </div>
