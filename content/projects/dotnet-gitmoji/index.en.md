@@ -96,11 +96,15 @@ The architecture diagram shows what each layer owns. The sequence diagram below 
 
 **Team onboarding.** The shared path lives in `.config/dotnet-tools.json`, `.husky/`, and `Directory.Build.targets`. In repos with a project file, teammates usually only need `dotnet restore` or an IDE open to restore the tools and re-establish `core.hooksPath` through Husky.Net.
 
-**Fuzzy search and discovery.** `dotnet-gitmoji search <keyword>` and the live picker share the same fuzzy matcher, which searches by emoji name, shortcode, and description. `dotnet-gitmoji list` is the non-interactive way to inspect the full catalog.
+**Fuzzy search and discovery.** `dotnet-gitmoji search <keyword>` and the live picker share the same fuzzy matcher, which searches by emoji name, shortcode, and description. The picker shows a description panel alongside the list so you can see full gitmoji metadata before choosing. `dotnet-gitmoji list` is the non-interactive way to inspect the full catalog.
 
-**Config surface.** The interactive `config` wizard and repo-level `.gitmojirc.json` expose the same knobs: emoji versus shortcode output, optional scope and message prompts, title capitalization, custom scope suggestions, auto-stage, signed commits, and a custom gitmoji feed URL.
+**Config surface.** The interactive `config` wizard and repo-level `.gitmojirc.json` expose the same knobs: emoji versus shortcode output, optional scope and message prompts, title capitalization, custom scope suggestions, auto-stage, signed commits, a custom gitmoji feed URL, `emoji: title` formatting via `normalizeCommitFormat`, and a semver badge toggle for the picker and list output.
 
-**Config resolution chain.** The tool reads `.gitmojirc.json` from the repo root first (walking up parent directories), then `~/.dotnet-gitmoji/config.json`, then built-in defaults. Team settings live with the repo, personal overrides stay in the home directory.
+**Config resolution chain.** The tool reads `.gitmojirc.json` from the repo root first (walking up parent directories), then `~/.dotnet-gitmoji/config.json`, then built-in defaults. The repo config is the single source for every shared team setting, including the title-length and convention-enforcement knobs described below; the global config's schema is deliberately frozen to hold only the personal `theme` preference.
+
+**Color themes.** `dotnet-gitmoji config` lets you pick a built-in palette — `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha` — applied across the interactive picker, prompts, and `list`/`search` output. Because `.gitmojirc.json` is shared with the whole team, theme is deliberately never read from it: it resolves from the `DOTNET_GITMOJI_THEME` environment variable, then the personal global config, then falls back to `default`, and `NO_COLOR` is honored throughout.
+
+**Commit title policy.** `maxTitleLength` and `trimTitleWhenExceeded` enforce or trim overlong titles during interactive prompts, and `enforceConvention` rejects commits that don't start with a gitmoji when no interactive terminal is available, covering IDE-triggered commits that bypass the prompt entirely.
 
 **Operational commands.** `update` refreshes the cached gitmoji list, and `remove` handles hook teardown. For Husky.Net-managed hooks, `remove` prints the cleanup steps instead of silently editing `.husky/` behind your back.
 
