@@ -2,6 +2,7 @@
 title: 'dotnet-gitmoji: un CLI de gitmoji para el mundo dotnet'
 subtitle: 'Una herramienta .NET que lleva la convención de commits de gitmoji a Git, con un hook prepare-commit-msg administrado por Husky.Net para equipos y un modo cliente interactivo para flujos personales.'
 date: 2026-04-24T10:30:00Z
+lastmod: 2026-08-13T00:00:00Z
 draft: false
 image: 'images/cover.png'
 description: 'Una herramienta .NET que lleva la convención de commits de gitmoji a Git, con un hook prepare-commit-msg administrado por Husky.Net para equipos y un modo cliente interactivo para flujos personales.'
@@ -74,10 +75,10 @@ La forma que más me interesa es el flujo de equipo. Cuando un repositorio deja 
 La herramienta sigue la estructura estándar de CliFx. `Program.cs` configura el contenedor de DI, CliFx resuelve el comando pedido desde el service provider, y el comando delega el trabajo real a un servicio. Los servicios son interface-first, y eso es lo que hace que los tests con xUnit y NSubstitute sean fáciles de escribir. Al mismo flujo de commit se accede desde dos puntos de entrada: el hook `prepare-commit-msg` de Git y el comando interactivo `commit`.
 
 {{< figure-dynamic
-    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
-    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
-    alt="dotnet-gitmoji runtime shape"
-    title="dotnet-gitmoji runtime shape" >}}
+    light-src="images/dotnet-gitmiji-architecture-light.svg"
+    dark-src="images/dotnet-gitmiji-architecture-dark.svg"
+    alt="dotnet-gitmoji architecture"
+    title="dotnet-gitmoji architecture" >}}
 
 El diagrama de arquitectura muestra de qué se encarga cada capa. El diagrama de secuencia de abajo muestra qué se ejecuta realmente al hacer un commit. Ambos puntos de entrada convergen en `PromptService`, que controla el selector difuso (fuzzy) y luego delega en `CommitMessageService` la escritura del resultado. La única diferencia está en quién invoca `git commit` al final: en modo hook, Git ya tiene el control, así que la herramienta simplemente reescribe el archivo del mensaje; en modo cliente, `GitService` invoca Git directamente.
 
@@ -95,11 +96,15 @@ El diagrama de arquitectura muestra de qué se encarga cada capa. El diagrama de
 
 **Puesta en marcha del equipo.** La ruta compartida vive en `.config/dotnet-tools.json`, `.husky/` y `Directory.Build.targets`. En repositorios con archivo de proyecto, normalmente basta con `dotnet restore` o con abrir el IDE para restaurar las herramientas y volver a establecer `core.hooksPath` a través de Husky.Net.
 
-**Fuzzy search y descubrimiento.** `dotnet-gitmoji search <keyword>` y el picker en vivo comparten el mismo fuzzy matcher, que busca por nombre, shortcode y descripción del emoji. `dotnet-gitmoji list` es la forma no interactiva de inspeccionar el catálogo completo.
+**Fuzzy search y descubrimiento.** `dotnet-gitmoji search <keyword>` y el picker en vivo comparten el mismo fuzzy matcher, que busca por nombre, shortcode y descripción del emoji. El picker muestra un panel de descripción junto a la lista para ver los metadatos completos del gitmoji antes de elegir. `dotnet-gitmoji list` es la forma no interactiva de inspeccionar el catálogo completo.
 
-**Opciones de configuración.** El asistente interactivo `config` y el `.gitmojirc.json` a nivel repositorio exponen los mismos controles: salida en emoji o shortcode, prompts opcionales de scope y mensaje, capitalización del título, sugerencias de scope personalizadas, auto-stage, commits firmados y una URL personalizada para el feed de gitmojis.
+**Opciones de configuración.** El asistente interactivo `config` y el `.gitmojirc.json` a nivel repositorio exponen los mismos controles: salida en emoji o shortcode, prompts opcionales de scope y mensaje, capitalización del título, sugerencias de scope personalizadas, auto-stage, commits firmados, una URL personalizada para el feed de gitmojis, el formato `emoji: title` a través de `normalizeCommitFormat`, y un toggle de badge de semver a través de `showSemverBadge` para el picker, la lista y la búsqueda.
 
-**Cadena de resolución de configuración.** La herramienta lee primero `.gitmojirc.json` desde la raíz del repo (subiendo por los directorios padre), después `~/.dotnet-gitmoji/config.json`, y al final los defaults incluidos. Los ajustes de equipo viajan con el repo, y las preferencias personales se quedan en el home.
+**Cadena de resolución de configuración.** La herramienta lee `.gitmojirc.json` desde la raíz del repo (subiendo por los directorios padre hasta encontrarlo), y cae en los defaults incluidos cuando no existe. La configuración del repo es la única fuente para cada ajuste compartido del equipo, incluyendo los controles de longitud de título y de aplicación de la convención descritos abajo; el esquema de la configuración global está deliberadamente limitado a guardar sólo la preferencia personal de `theme`.
+
+**Temas de color.** `dotnet-gitmoji config` te deja elegir una paleta incluida, una entre `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato` o `catppuccin-mocha`, aplicada en el picker interactivo, los prompts y la salida de `list`/`search`. Como `.gitmojirc.json` se comparte con todo el equipo, el tema deliberadamente nunca se lee desde ahí: se resuelve desde la variable de entorno `DOTNET_GITMOJI_THEME`, después desde la configuración global personal, y por último cae en `default`; `NO_COLOR` se respeta en todos los casos.
+
+**Política de título de commit.** `maxTitleLength` y `trimTitleWhenExceeded` fuerzan o recortan títulos demasiado largos durante los prompts interactivos, y `enforceConvention` rechaza commits que no empiezan con un gitmoji cuando no hay una terminal interactiva disponible, cubriendo los commits disparados desde el IDE que se saltan el prompt por completo.
 
 **Comandos operativos.** `update` refresca la lista cacheada de gitmojis, y `remove` se encarga del desmontaje del hook. Para hooks administrados por Husky.Net, `remove` imprime los pasos de limpieza en lugar de editar `.husky/` silenciosamente.
 
@@ -195,7 +200,16 @@ La misma detección del tool manifest que usa la generación del hook también m
 La lista de gitmoji vive en `gitmoji.dev/api/gitmojis`. Pegarle a la red en cada commit sería lento y frágil, pero enviar una lista vieja castiga a los equipos que quieren los emojis más nuevos.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor predeterminado en modo offline, y expuse `dotnet-gitmoji update` para actualizar una copia en caché en `~/.dotnet-gitmoji/`. `GitmojiProvider` primero lee la caché, recurre al recurso incrustado por defecto y solo hace una petición HTTP durante `update`.
+Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor predeterminado en modo offline, y expuse `dotnet-gitmoji update` para forzar la actualización de la copia en caché en `~/.dotnet-gitmoji/`. `GitmojiProvider` primero lee la caché, hace una petición a la API cuando la caché falta o está desactualizada, y recurre al recurso incrustado por defecto cuando no hay red, así la herramienta funciona completamente offline.
+{{< /challenge-decision >}}
+{{< /challenge >}}
+
+{{< challenge >}}
+{{< challenge-problem >}}
+`.gitmojirc.json` se versiona y se comparte con todo el equipo, pero un tema de color de terminal es una preferencia inherentemente personal, y el fondo y el soporte de color varían de máquina a máquina. Poner `theme` en el archivo compartido significa imponerle a todo el equipo la elección de color de una sola persona, o convertirlo en una fuente de conflictos de merge sin sentido.
+{{< /challenge-problem >}}
+{{< challenge-decision >}}
+Opté por dividir la configuración según a quién pertenece en lugar de por formato de archivo. La configuración del repo (`.gitmojirc.json`) se mantiene como la única fuente para todo lo que debe ser idéntico en todo el equipo; el esquema de la configuración global personal está deliberadamente limitado a guardar sólo `theme`. La resolución de `theme` nunca toca la configuración del repo: la variable de entorno `DOTNET_GITMOJI_THEME`, después la configuración global, y por último el default incluido; una clave que aparece en el archivo "equivocado" se ignora con una nota en stderr en lugar de aplicarse a medias.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
@@ -228,12 +242,16 @@ Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor pr
       <td>Prompts de selección con Spectre.Console, fuzzy search por nombre y shortcode, prompts opcionales de scope y mensaje, y flags de modo cliente para prellenar datos del commit.</td>
     </tr>
     <tr>
+      <td><strong>Salida con temas</strong></td>
+      <td>Registro estático de <code>ThemePalette</code> en <code>Theming/Themes.cs</code> (sólo colores, sin layout), resuelto independientemente del camino de configuración compartida. <code>NO_COLOR</code> se respeta en todos los casos.</td>
+    </tr>
+    <tr>
       <td><strong>Testabilidad</strong></td>
       <td>Servicios interface-first, tests unitarios con xUnit, NSubstitute para dobles y una <code>ToolIntegrationFixture</code> para cobertura de punta a punta.</td>
     </tr>
     <tr>
       <td><strong>Capas de configuración</strong></td>
-      <td><code>.gitmojirc.json</code> del repo, config global personal bajo <code>~/.dotnet-gitmoji/</code> y defaults incluidos, resueltos en ese orden, con <code>config</code> como asistente para la ruta personal.</td>
+      <td><code>.gitmojirc.json</code> del repo para cada ajuste compartido del equipo, los defaults incluidos cuando no existe, y una configuración global bajo <code>~/.dotnet-gitmoji/</code> que sólo guarda la preferencia personal de <code>theme</code>. El asistente <code>config</code> escribe en la configuración del repo, y sólo envía la elección de tema a la global.</td>
     </tr>
   </table>
 </div>
