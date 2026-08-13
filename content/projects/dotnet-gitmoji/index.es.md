@@ -75,10 +75,10 @@ La forma que más me interesa es el flujo de equipo. Cuando un repositorio deja 
 La herramienta sigue la estructura estándar de CliFx. `Program.cs` configura el contenedor de DI, CliFx resuelve el comando pedido desde el service provider, y el comando delega el trabajo real a un servicio. Los servicios son interface-first, y eso es lo que hace que los tests con xUnit y NSubstitute sean fáciles de escribir. Al mismo flujo de commit se accede desde dos puntos de entrada: el hook `prepare-commit-msg` de Git y el comando interactivo `commit`.
 
 {{< figure-dynamic
-    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
-    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
-    alt="dotnet-gitmoji runtime shape"
-    title="dotnet-gitmoji runtime shape" >}}
+    light-src="images/dotnet-gitmiji-architecture-light.svg"
+    dark-src="images/dotnet-gitmiji-architecture-dark.svg"
+    alt="dotnet-gitmoji architecture"
+    title="dotnet-gitmoji architecture" >}}
 
 El diagrama de arquitectura muestra de qué se encarga cada capa. El diagrama de secuencia de abajo muestra qué se ejecuta realmente al hacer un commit. Ambos puntos de entrada convergen en `PromptService`, que controla el selector difuso (fuzzy) y luego delega en `CommitMessageService` la escritura del resultado. La única diferencia está en quién invoca `git commit` al final: en modo hook, Git ya tiene el control, así que la herramienta simplemente reescribe el archivo del mensaje; en modo cliente, `GitService` invoca Git directamente.
 
