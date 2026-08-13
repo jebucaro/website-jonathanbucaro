@@ -2,6 +2,7 @@
 title: 'dotnet-gitmoji: A Gitmoji CLI for the dotnet World'
 subtitle: 'A .NET tool that brings the gitmoji commit convention to Git, with a Husky.Net-managed prepare-commit-msg hook for teams and an interactive client mode for personal workflows.'
 date: 2026-04-24T10:30:00Z
+lastmod: 2026-08-13T00:00:00Z
 draft: false
 image: 'images/cover.png'
 description: 'A .NET tool that brings the gitmoji commit convention to Git, with a Husky.Net-managed prepare-commit-msg hook for teams and an interactive client mode for personal workflows.'
