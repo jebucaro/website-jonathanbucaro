@@ -102,7 +102,7 @@ El diagrama de arquitectura muestra de qué se encarga cada capa. El diagrama de
 
 **Cadena de resolución de configuración.** La herramienta lee `.gitmojirc.json` desde la raíz del repo (subiendo por los directorios padre hasta encontrarlo), y cae en los defaults incluidos cuando no existe. La configuración del repo es la única fuente para cada ajuste compartido del equipo, incluyendo los controles de longitud de título y de aplicación de la convención descritos abajo; el esquema de la configuración global está deliberadamente limitado a guardar sólo la preferencia personal de `theme`.
 
-**Temas de color.** `dotnet-gitmoji config` te deja elegir una paleta incluida — `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha` — aplicada en el picker interactivo, los prompts y la salida de `list`/`search`. Como `.gitmojirc.json` se comparte con todo el equipo, el tema deliberadamente nunca se lee desde ahí: se resuelve desde la variable de entorno `DOTNET_GITMOJI_THEME`, después desde la configuración global personal, y por último cae en `default`; `NO_COLOR` se respeta en todos los casos.
+**Temas de color.** `dotnet-gitmoji config` te deja elegir una paleta incluida, una entre `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato` o `catppuccin-mocha`, aplicada en el picker interactivo, los prompts y la salida de `list`/`search`. Como `.gitmojirc.json` se comparte con todo el equipo, el tema deliberadamente nunca se lee desde ahí: se resuelve desde la variable de entorno `DOTNET_GITMOJI_THEME`, después desde la configuración global personal, y por último cae en `default`; `NO_COLOR` se respeta en todos los casos.
 
 **Política de título de commit.** `maxTitleLength` y `trimTitleWhenExceeded` fuerzan o recortan títulos demasiado largos durante los prompts interactivos, y `enforceConvention` rechaza commits que no empiezan con un gitmoji cuando no hay una terminal interactiva disponible, cubriendo los commits disparados desde el IDE que se saltan el prompt por completo.
 
@@ -200,13 +200,13 @@ La misma detección del tool manifest que usa la generación del hook también m
 La lista de gitmoji vive en `gitmoji.dev/api/gitmojis`. Pegarle a la red en cada commit sería lento y frágil, pero enviar una lista vieja castiga a los equipos que quieren los emojis más nuevos.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor predeterminado en modo offline, y expuse `dotnet-gitmoji update` para forzar la actualización de la copia en caché en `~/.dotnet-gitmoji/`. `GitmojiProvider` primero lee la caché, hace una petición a la API cuando la caché falta o está desactualizada, y recurre al recurso incrustado por defecto cuando no hay red — así la herramienta funciona completamente offline.
+Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor predeterminado en modo offline, y expuse `dotnet-gitmoji update` para forzar la actualización de la copia en caché en `~/.dotnet-gitmoji/`. `GitmojiProvider` primero lee la caché, hace una petición a la API cuando la caché falta o está desactualizada, y recurre al recurso incrustado por defecto cuando no hay red, así la herramienta funciona completamente offline.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
 {{< challenge >}}
 {{< challenge-problem >}}
-`.gitmojirc.json` se versiona y se comparte con todo el equipo, pero un tema de color de terminal es una preferencia inherentemente personal — el fondo y el soporte de color varían de máquina a máquina. Poner `theme` en el archivo compartido significa imponerle a todo el equipo la elección de color de una sola persona, o convertirlo en una fuente de conflictos de merge sin sentido.
+`.gitmojirc.json` se versiona y se comparte con todo el equipo, pero un tema de color de terminal es una preferencia inherentemente personal, y el fondo y el soporte de color varían de máquina a máquina. Poner `theme` en el archivo compartido significa imponerle a todo el equipo la elección de color de una sola persona, o convertirlo en una fuente de conflictos de merge sin sentido.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
 Opté por dividir la configuración según a quién pertenece en lugar de por formato de archivo. La configuración del repo (`.gitmojirc.json`) se mantiene como la única fuente para todo lo que debe ser idéntico en todo el equipo; el esquema de la configuración global personal está deliberadamente limitado a guardar sólo `theme`. La resolución de `theme` nunca toca la configuración del repo: la variable de entorno `DOTNET_GITMOJI_THEME`, después la configuración global, y por último el default incluido; una clave que aparece en el archivo "equivocado" se ignora con una nota en stderr en lugar de aplicarse a medias.
