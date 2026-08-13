@@ -98,9 +98,9 @@ The architecture diagram shows what each layer owns. The sequence diagram below 
 
 **Fuzzy search and discovery.** `dotnet-gitmoji search <keyword>` and the live picker share the same fuzzy matcher, which searches by emoji name, shortcode, and description. The picker shows a description panel alongside the list so you can see full gitmoji metadata before choosing. `dotnet-gitmoji list` is the non-interactive way to inspect the full catalog.
 
-**Config surface.** The interactive `config` wizard and repo-level `.gitmojirc.json` expose the same knobs: emoji versus shortcode output, optional scope and message prompts, title capitalization, custom scope suggestions, auto-stage, signed commits, a custom gitmoji feed URL, `emoji: title` formatting via `normalizeCommitFormat`, and a semver badge toggle for the picker and list output.
+**Config surface.** The interactive `config` wizard and repo-level `.gitmojirc.json` expose the same knobs: emoji versus shortcode output, optional scope and message prompts, title capitalization, custom scope suggestions, auto-stage, signed commits, a custom gitmoji feed URL, `emoji: title` formatting via `normalizeCommitFormat`, and a semver badge toggle via `showSemverBadge` for the picker, list, and search output.
 
-**Config resolution chain.** The tool reads `.gitmojirc.json` from the repo root first (walking up parent directories), then `~/.dotnet-gitmoji/config.json`, then built-in defaults. The repo config is the single source for every shared team setting, including the title-length and convention-enforcement knobs described below; the global config's schema is deliberately frozen to hold only the personal `theme` preference.
+**Config resolution chain.** The tool reads `.gitmojirc.json` from the repo root (walking up parent directories to find it), and falls back to built-in defaults when it's absent. The repo config is the single source for every shared team setting, including the title-length and convention-enforcement knobs described below; the global config's schema is deliberately frozen to hold only the personal `theme` preference.
 
 **Color themes.** `dotnet-gitmoji config` lets you pick a built-in palette — `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha` — applied across the interactive picker, prompts, and `list`/`search` output. Because `.gitmojirc.json` is shared with the whole team, theme is deliberately never read from it: it resolves from the `DOTNET_GITMOJI_THEME` environment variable, then the personal global config, then falls back to `default`, and `NO_COLOR` is honored throughout.
 
@@ -200,7 +200,7 @@ The same tool-manifest detection that powers hook generation also keeps this gua
 The gitmoji list lives at `gitmoji.dev/api/gitmojis`. Hitting the network on every commit would be slow and fragile, but shipping a stale list penalises teams that want the newest emojis.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I embedded `gitmojis.default.json` as a resource for the offline default, and exposed `dotnet-gitmoji update` to refresh a cached copy under `~/.dotnet-gitmoji/`. `GitmojiProvider` reads cache first, falls back to the embedded default, and only hits HTTP on `update`.
+I embedded `gitmojis.default.json` as a resource for the offline default, and exposed `dotnet-gitmoji update` to force a refresh of the cached copy under `~/.dotnet-gitmoji/`. `GitmojiProvider` reads cache first, fetches from the API when the cache is missing or stale, and falls back to the embedded default when the network is unavailable — so the tool works fully offline.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
@@ -209,7 +209,7 @@ I embedded `gitmojis.default.json` as a resource for the offline default, and ex
 `.gitmojirc.json` is committed and shared across the whole team, but a terminal color theme is inherently a personal preference — background and color support vary machine to machine. Putting `theme` in the shared file means either imposing one contributor's color choice on everyone, or turning it into a source of pointless merge churn.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I split config by ownership instead of by file format. The repo config (`.gitmojirc.json`) stays the single source for everything that must be identical across the team; the personal global config's schema is deliberately frozen to hold only `theme`. Resolution for `theme` never touches the repo config at all — `DOTNET_GITMOJI_THEME` environment variable, then the global config, then the built-in default — and a stray key in the "wrong" file is silently stripped with a note on stderr rather than partially applied.
+I split config by ownership instead of by file format. The repo config (`.gitmojirc.json`) stays the single source for everything that must be identical across the team; the personal global config's schema is deliberately frozen to hold only `theme`. Resolution for `theme` never touches the repo config at all — `DOTNET_GITMOJI_THEME` environment variable, then the global config, then the built-in default — and a stray key in the "wrong" file is ignored with a note on stderr rather than partially applied.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
@@ -251,7 +251,7 @@ I split config by ownership instead of by file format. The repo config (`.gitmoj
     </tr>
     <tr>
       <td><strong>Config layering</strong></td>
-      <td>Repo <code>.gitmojirc.json</code>, personal global config under <code>~/.dotnet-gitmoji/</code>, and built-in defaults, resolved in that order, with a <code>config</code> wizard for the personal path.</td>
+      <td>Repo <code>.gitmojirc.json</code> for every shared team setting, built-in defaults when it's absent, and a global config under <code>~/.dotnet-gitmoji/</code> that holds nothing but the personal <code>theme</code> preference. The <code>config</code> wizard writes to the repo config, sending only the theme choice to the global one.</td>
     </tr>
   </table>
 </div>
