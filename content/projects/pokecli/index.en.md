@@ -105,7 +105,9 @@ src/pokecli/
 ├── cache/store.py           # CacheStore (TinyDB, table per resource)
 ├── commands/
 │   ├── _utils.py            # fetch_resource, fetch_list
-│   ├── pokemon.py           # get / moves / species / evolution / encounters / forms / list
+│   ├── _group.py            # ResourceGroup, bare name resolves to get
+│   ├── _helptext.py         # shared help strings across commands
+│   ├── pokemon.py           # get / moves / species / evolution / encounters / forms / can-learn / where / evo / list
 │   ├── berry.py             # item.py  move.py  ability.py  nature.py  type.py
 │   ├── region.py            # location.py  location_area.py  generation.py
 │   ├── pokedex.py           # machine.py  pokemon_form.py  evolution_chain.py
@@ -130,7 +132,7 @@ These features show the feature set of `pokecli` and the kind of command-line ex
 
 ### Resource queries with typed output
 
-Every main resource follows the same short contract: `get <name_or_id>` for detail, `list` for pagination, and shared flags like `--no-cache` and `--format`. The public command surface is now grouped around top-level families such as `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature`, and `berry`. Nested reference resources live under those families, for example `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get`, and `game region get`. Specialised Pokemon commands add `moves`, `species`, `evolution`, `encounters`, and `forms`, and the repo also keeps shorter human aliases like `pokecli pokemon pikachu` for manual terminal use.
+Every main resource follows the same short contract: `get <name_or_id>` for detail, `list` for pagination, and shared flags like `--no-cache` and `--format`. The public command surface is now grouped around top-level families such as `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature`, and `berry`. Nested reference resources live under those families, for example `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get`, and `game region get`. Specialised Pokemon commands add `moves`, `species`, `evolution`, `encounters`, and `forms`, plus task shortcuts like `can-learn`, `where`, and `evo`. The repo also keeps shorter human aliases, `pokecli pokemon pikachu` resolves to `pokecli pokemon get pikachu`, for manual terminal use.
 
 {{< gallery caption="pokecli commands" >}}
 {{< gallery-image src="images/pokecli-pokemon.webp" alt="pokecli executing get pokemon command to get the data of pikachu" >}}
@@ -289,6 +291,29 @@ I kept the skill small on purpose and split it into three layers an agent can lo
 3. the `references/` files hold the field-level detail and multi-step recipes that only matter when an agent needs more depth
 
 That structure makes the implementation AI-native without turning it into a second interface. The packaged skill mirrors the real canonical command surface, with paths like `pokemon get`, `move get`, and `game region get`, installs with one command, and gives Claude Code or Copilot enough context to act on `pokecli` without re-reading `--help` on every task. It also nudges agents toward the default table output unless JSON is specifically needed for scripting, which keeps the terminal workflow closer to how a human would use the CLI.
+{{< /challenge-decision >}}
+{{< /challenge >}}
+
+### 8. Adding a human alias layer without duplicating commands
+
+{{< challenge >}}
+{{< challenge-problem >}}
+Agents do best with one explicit, canonical command per task, but typing `pokecli pokemon get pikachu` by hand every time is more than a terminal session needs.
+{{< /challenge-problem >}}
+{{< challenge-decision >}}
+Rather than register a second set of commands, `commands/_group.py` defines a small `TyperGroup` subclass that rewrites an unmatched first argument into `get` before Typer resolves it:
+
+```python
+class ResourceGroup(TyperGroup):
+    def resolve_command(self, ctx, args):
+        if args:
+            first = args[0]
+            if not first.startswith("-") and first not in self.commands:
+                args = ["get", *args]
+        return super().resolve_command(ctx, args)
+```
+
+`pokecli pokemon pikachu` and `pokecli pokemon get pikachu` now run the same function, with no branching logic inside any command. The packaged `SKILL.md` still tells agents to prefer the canonical form, so the alias stays a convenience for humans instead of a second path an agent has to guess between.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
