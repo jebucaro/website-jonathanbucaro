@@ -242,6 +242,10 @@ Opté por dividir la configuración por propiedad en lugar de por formato de arc
       <td>Prompts de selección con Spectre.Console, fuzzy search por nombre y shortcode, prompts opcionales de scope y mensaje, y flags de modo cliente para prellenar datos del commit.</td>
     </tr>
     <tr>
+      <td><strong>Salida con temas</strong></td>
+      <td>Registro estático de <code>ThemePalette</code> en <code>Theming/Themes.cs</code> (sólo colores, sin layout), resuelto independientemente del camino de configuración compartida. <code>NO_COLOR</code> se respeta en todos los casos.</td>
+    </tr>
+    <tr>
       <td><strong>Testabilidad</strong></td>
       <td>Servicios interface-first, tests unitarios con xUnit, NSubstitute para dobles y una <code>ToolIntegrationFixture</code> para cobertura de punta a punta.</td>
     </tr>

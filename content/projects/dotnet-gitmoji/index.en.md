@@ -242,6 +242,10 @@ I split config by ownership instead of by file format. The repo config (`.gitmoj
       <td>Spectre.Console selection prompts, fuzzy search by name and shortcode, optional scope and message prompts, and client-mode flags for pre-filling commit data.</td>
     </tr>
     <tr>
+      <td><strong>Themeable output</strong></td>
+      <td><code>Theming/Themes.cs</code> static registry of <code>ThemePalette</code> records (colors only, no layout), resolved independently of the shared-config path. <code>NO_COLOR</code> is honored throughout.</td>
+    </tr>
+    <tr>
       <td><strong>Testability</strong></td>
       <td>Interface-first services, xUnit unit tests, NSubstitute for doubles, and a <code>ToolIntegrationFixture</code> for end-to-end coverage.</td>
     </tr>
