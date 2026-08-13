@@ -204,6 +204,15 @@ I embedded `gitmojis.default.json` as a resource for the offline default, and ex
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
+{{< challenge >}}
+{{< challenge-problem >}}
+`.gitmojirc.json` is committed and shared across the whole team, but a terminal color theme is inherently a personal preference — background and color support vary machine to machine. Putting `theme` in the shared file means either imposing one contributor's color choice on everyone, or turning it into a source of pointless merge churn.
+{{< /challenge-problem >}}
+{{< challenge-decision >}}
+I split config by ownership instead of by file format. The repo config (`.gitmojirc.json`) stays the single source for everything that must be identical across the team; the personal global config's schema is deliberately frozen to hold only `theme`. Resolution for `theme` never touches the repo config at all — `DOTNET_GITMOJI_THEME` environment variable, then the global config, then the built-in default — and a stray key in the "wrong" file is silently stripped with a note on stderr rather than partially applied.
+{{< /challenge-decision >}}
+{{< /challenge >}}
+
 ## What this project demonstrates
 
 <div class="table-container">

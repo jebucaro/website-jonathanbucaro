@@ -204,6 +204,15 @@ Opté por incluir `gitmojis.default.json` como recurso para usarlo como valor pr
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
+{{< challenge >}}
+{{< challenge-problem >}}
+`.gitmojirc.json` se versiona y se comparte con todo el equipo, pero un tema de color de terminal es una preferencia inherentemente personal — el fondo y el soporte de color varían de máquina a máquina. Poner `theme` en el archivo compartido significa imponerle a todo el equipo la elección de color de una sola persona, o convertirlo en una fuente de conflictos de merge sin sentido.
+{{< /challenge-problem >}}
+{{< challenge-decision >}}
+Opté por dividir la configuración por propiedad en lugar de por formato de archivo. El config del repo (`.gitmojirc.json`) se mantiene como la única fuente para todo lo que debe ser idéntico en todo el equipo; el esquema del config global personal está deliberadamente limitado a guardar sólo `theme`. La resolución de `theme` nunca toca el config del repo: la variable de entorno `DOTNET_GITMOJI_THEME`, después el config global, y por último el default incluido; una key que aparece en el archivo "equivocado" se descarta silenciosamente con una nota en stderr en lugar de aplicarse a medias.
+{{< /challenge-decision >}}
+{{< /challenge >}}
+
 ## Lo que este proyecto demuestra
 
 <div class="table-container">
