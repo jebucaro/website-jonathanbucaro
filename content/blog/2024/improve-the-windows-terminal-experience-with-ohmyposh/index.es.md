@@ -1,6 +1,7 @@
 ---
 title: 'Mejora Windows Terminal con Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
+lastmod: 2026-08-13T00:00:00Z
 image: 'images/cover.png'
 tags: [windows, powershell]
 draft: false
@@ -24,7 +25,7 @@ Mi forma favorita de instalar PowerShell es con Winget porque es rápido y fáci
 
 Desde una ventana de Windows PowerShell, ejecuta:
 
-```cmd
+```powershell
 winget install Microsoft.PowerShell -s winget
 ```
 
@@ -34,7 +35,7 @@ winget install Microsoft.PowerShell -s winget
 
 Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
 
-```cmd
+```powershell
 winget install Microsoft.WindowsTerminal -s winget
 ```
 
@@ -84,7 +85,7 @@ Recomiendo instalarlo con Winget, pero también está disponible en la {{< extli
 
 Desde PowerShell, ejecuta:
 
-```cmd
+```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
@@ -96,37 +97,23 @@ Una vez instalado, abre una nueva pestaña de PowerShell para que todo cargue co
 
 Oh My Posh está diseñado para usar Nerd Fonts. Nerd Fonts son fuentes populares “parchadas” para incluir íconos, así que necesitas instalar una Nerd Font para ver los íconos especiales en Oh My Posh.
 
-{{< callout important >}}
-Para instalar fuentes en todo el sistema, ejecuta el comando desde una terminal con privilegios de administrador.
-{{< /callout >}}
+Primero, explora las fuentes disponibles:
 
-```cmd
-oh-my-posh font install
+```powershell
+oh-my-posh font list
 ```
 
-Si prefieres instalar solo para tu usuario, agrega `--user` al final.
-
-{{< callout important >}}
-El comando debe ejecutarse sin privilegios de administrador.
-{{< /callout >}}
-
-```cmd
-oh-my-posh font install --user
-```
-
-Verás una lista de fuentes; Oh My Posh recomienda la familia “Meslo”, que incluye “Meslo LGM NF”.
+Esto imprime un nombre de fuente por línea, así que puedes filtrarlo para buscar algo específico, por ejemplo `oh-my-posh font list | findstr /i mono`. Oh My Posh recomienda la familia “Meslo”, que incluye “Meslo LGM NF”.
 
 ![Instalar Meslo Nerd Font](images/windows-terminal-install-nerd-font.webp 'Instalar Meslo Nerd Font')
 
-{{< callout important >}}
-También puedes instalarla directamente por nombre (en todo el sistema requiere admin, a nivel usuario no).
-{{< /callout >}}
+Una vez que elijas un nombre de la lista, instálala:
 
-```cmd
+```powershell
 oh-my-posh font install meslo
 ```
 
-Si prefieres instalar solo para tu usuario, agrega `--user` al final y ejecútalo sin privilegios de administrador.
+Las fuentes siempre se instalan para tu usuario actual, así que no necesitas una terminal elevada. También puedes instalar directamente desde una URL o un archivo zip local, por ejemplo `oh-my-posh font install https://example.com/font.zip`.
 
 <span id="configure-windows-terminal-nerd-font"></span>
 
@@ -164,7 +151,7 @@ Vamos a decirle a PowerShell que cargue Oh My Posh cada vez que inicies una term
 
 Abre tu perfil con tu editor favorito, por ejemplo:
 
-```cmd
+```powershell
 code $PROFILE
 ```
 
@@ -190,17 +177,19 @@ Recarga tu perfil:
 
 Oh My Posh incluye varios temas integrados. Puedes explorarlos en la {{< extlink href="https://ohmyposh.dev/docs/themes" >}}documentación de temas de Oh My Posh{{< /extlink >}}.
 
-Elige el que te guste. Por ejemplo, si te gusta el tema minimalista “zash”, ubica el archivo `zash.omp.json` (normalmente en `$env:POSH_THEMES_PATH/zash.omp.json`) y actualiza la línea de tu perfil de PowerShell a:
-
-```powershell
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
-```
-
-**ACTUALIZACIÓN:** Si has instalado Oh My Posh por medio de Winget, los temas no son descargados como archivos, sin embargo, puedes hacer referencia al tema al indicar el nombre del tema en la configuración, sin incluir la extensión.
+Elige el que te guste y haz referencia a él por nombre (sin extensión) en la línea de tu perfil de PowerShell. Por ejemplo, si te gusta el tema minimalista “zash”, actualiza la línea a:
 
 ```powershell
 oh-my-posh init pwsh --config "zash" | Invoke-Expression
 ```
+
+Esto descarga y guarda en caché el tema al iniciar la terminal, así que necesitas conexión a internet la primera vez. Si prefieres quedarte con una copia local para modificarla, expórtala a un archivo:
+
+```powershell
+oh-my-posh config export --config zash --output ~/zash.omp.json
+```
+
+Luego apunta la línea de tu perfil a ese archivo, `--config "~/zash.omp.json"`.
 
 Guarda y recarga:
 
@@ -301,6 +290,10 @@ winfetch
 <span id="bat"></span>
 
 Más info en el {{< extlink href="https://github.com/lptstr/winfetch" >}}repo de winfetch en GitHub{{< /extlink >}}
+
+{{< callout tip >}}
+winfetch no ha recibido commits en un buen tiempo. Si buscas una herramienta similar que siga manteniéndose activamente, revisa {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch{{< /extlink >}}.
+{{< /callout >}}
 
 ### 📦 bat
 

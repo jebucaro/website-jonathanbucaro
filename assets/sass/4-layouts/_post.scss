@@ -142,6 +142,32 @@
     }
 }
 
+/* Updated badge — shared by .post-meta and .project-hero__meta,
+   inherits their uppercase/bold/letter-spaced type voice. */
+.updated-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 2px;
+    border-radius: 999px;
+    // --callout-green (#2db47d) at 16% opacity
+    background-color: rgba(45, 180, 125, 0.16);
+    vertical-align: middle;
+
+    &::before {
+        content: "";
+        flex-shrink: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--callout-green);
+    }
+
+    &__date {
+        color: var(--callout-green);
+    }
+}
+
 .post-image,
 .page-image {
     position: relative;
@@ -260,28 +286,12 @@
     }
 }
 
-@media only screen and (min-width: ($wide + 1)) {
-    .content-toc ~ .content-main img[src$="#wide"] {
-        width: 100%;
-        margin-left: 0;
-        transform: none;
-        border-radius: 8px;
-    }
-}
-
 .content-layout {
     display: flex;
     flex-direction: column;
     gap: 32px;
     max-width: 780px;
     margin: 0 auto;
-
-    @media only screen and (min-width: ($wide + 1)) {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 64px;
-        max-width: 1100px;
-    }
 }
 
 .content-main {
@@ -332,25 +342,6 @@
 
         &:hover {
             color: var(--link-color-hover);
-        }
-
-        &.is-active {
-            color: var(--heading-font-color);
-            font-weight: 700;
-        }
-    }
-
-    @media only screen and (min-width: ($wide + 1)) {
-        order: 2;
-        flex: 0 0 240px;
-        width: 240px;
-        position: sticky;
-        top: 40px;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-
-        summary {
-            pointer-events: none;
         }
     }
 }

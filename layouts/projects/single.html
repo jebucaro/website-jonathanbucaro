@@ -24,7 +24,13 @@
                 <p class="project-hero__meta">
                     {{ with ($.GetTerms "project-types") }}<a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>{{ end }}
                     {{ if and (index .Params "project-types") .Date }}<span class="project-hero__meta-sep">·</span>{{ end }}
-                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2006" }}</time>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/localize-month-year" (dict "date" .Date) }}</time>
+                    {{ if gt .Lastmod .Date }}
+                    <span class="project-hero__meta-sep">·</span>
+                    <span class="updated-badge">
+                        <time class="updated-badge__date" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ i18n "post_updatedLabel" }} {{ partial "functions/localize-month-year" (dict "date" .Lastmod) }}</time>
+                    </span>
+                    {{ end }}
                 </p>
                 <h1 class="project-hero__title">{{ .Title }}</h1>
                 {{ if .Params.subtitle }}<p class="project-hero__subtitle">{{ .Params.subtitle }}</p>{{ end }}

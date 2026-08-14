@@ -48,6 +48,46 @@
 - id: ui_tableOfContents
   translation: 'On this page'
 
+- id: post_updatedLabel
+  translation: 'Updated'
+
+# Month names (used where Hugo has no localized "month year" date token)
+- id: date_month_1
+  translation: 'January'
+
+- id: date_month_2
+  translation: 'February'
+
+- id: date_month_3
+  translation: 'March'
+
+- id: date_month_4
+  translation: 'April'
+
+- id: date_month_5
+  translation: 'May'
+
+- id: date_month_6
+  translation: 'June'
+
+- id: date_month_7
+  translation: 'July'
+
+- id: date_month_8
+  translation: 'August'
+
+- id: date_month_9
+  translation: 'September'
+
+- id: date_month_10
+  translation: 'October'
+
+- id: date_month_11
+  translation: 'November'
+
+- id: date_month_12
+  translation: 'December'
+
 # Content strings
 - id: content_posts_one
   translation: 'Post'

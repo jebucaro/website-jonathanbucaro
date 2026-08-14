@@ -20,7 +20,7 @@
                                 <h3 class="technologies__group-title" id="technology-group-{{ .id }}">{{ .title }}</h3>
                                 <ul class="technologies__list list-reset">
                                     {{ range $items }}
-                                        <li class="technologies__item">
+                                        <li class="technologies__item" data-reveal>
                                             <article class="technologies__card" tabindex="0">
                                                 <div class="technologies__icon" aria-hidden="true">
                                                     {{- if .svg -}}

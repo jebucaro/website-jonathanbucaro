@@ -11,12 +11,6 @@
     }
 }
 
-@media only screen and (min-width: ($wide + 1)) {
-    .content-toc ~ .content-main .gallery-box {
-        margin: 32px 0;
-    }
-}
-
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, auto);
