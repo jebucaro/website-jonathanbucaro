@@ -289,6 +289,10 @@ winfetch
 
 More info at the {{< extlink href="https://github.com/lptstr/winfetch" >}}winfetch GitHub repo{{< /extlink >}}
 
+{{< callout tip >}}
+winfetch hasn’t seen a commit in a while. If you want a similar tool that’s still actively maintained, check out {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch{{< /extlink >}}.
+{{< /callout >}}
+
 ### 📦 bat
 
 `bat` is a clone of `cat` that adds syntax highlighting and Git integration.
