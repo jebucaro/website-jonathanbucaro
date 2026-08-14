@@ -5,7 +5,7 @@
 
 {{ $msg1 := printf "%s Invalid date." $pre }}
 {{ $msg2 := printf "%s Missing date." $pre }}
-{{ $msg3 := printf "%s Invalid format." $pre }}
+{{ $msg3 := printf "%s Format must be one of Hugo's localized date tokens (e.g. \":date_full\")." $pre }}
 {{ $msg4 := printf "%s Missing format." $pre }}
 
 {{ $date := "" }}
@@ -19,22 +19,21 @@
     {{ errorf $msg2 }}
 {{ end }}
 
-{{ $format := default "January 2, 2006" .format }}
-
-{{ $monthFormat := "" }}
-{{ if in $format "January" }}
-    {{ $monthFormat = "long" }}
-{{ else if in $format "Jan" }}
-    {{ $monthFormat = "short" }}
+{{ $format := "" }}
+{{ with .format }}
+    {{ if strings.HasPrefix . ":" }}
+        {{ $format = . }}
+    {{ else }}
+        {{ errorf $msg3 }}
+    {{ end }}
+{{ else }}
+    {{ errorf $msg4 }}
 {{ end }}
 
-{{ $weekdayFormat := "" }}
-{{ if in $format "Monday" }}
-    {{ $weekdayFormat = "long" }}
-{{ else if in $format "Mon" }}
-    {{ $weekdayFormat = "short" }}
-{{ end }}
-
-{{ $dateFormatted := $date.Format $format }}
+{{/* time.Format is the locale-aware template function; the .Format method on
+     a time.Time value is plain Go and never translates month/weekday names.
+     Only Hugo's colon-prefixed tokens (:date_full, :date_long, :date_medium,
+     :date_short) trigger that localization — custom layout strings don't. */}}
+{{ $dateFormatted := time.Format $format $date }}
 
 {{ return $dateFormatted }}

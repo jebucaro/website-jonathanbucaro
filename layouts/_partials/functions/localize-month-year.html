@@ -1,0 +1,25 @@
+{{ $ns := "functions" }}
+{{ $partial := "localize-month-year.html" }}
+
+{{ $pre := printf "[partial: %s/%s]" $ns $partial }}
+
+{{ $msg1 := printf "%s Invalid date." $pre }}
+{{ $msg2 := printf "%s Missing date." $pre }}
+
+{{ $date := "" }}
+{{ with .date }}
+    {{ if eq (printf "%T" .) "time.Time" }}
+        {{ $date = . }}
+    {{ else }}
+        {{ errorf $msg1 }}
+    {{ end }}
+{{ else }}
+    {{ errorf $msg2 }}
+{{ end }}
+
+{{/* Hugo's localized date tokens (:date_full, :date_long, etc.) are all
+     day-level; there is no "month and year" preset, so the month name is
+     translated through i18n instead. */}}
+{{ $monthName := i18n (printf "date_month_%d" (int $date.Month)) }}
+
+{{ return (printf "%s %d" $monthName $date.Year) }}

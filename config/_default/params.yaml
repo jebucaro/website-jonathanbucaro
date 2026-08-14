@@ -161,8 +161,8 @@ logo_item:
       image: '/images/htec-logo.webp'
 formats:
     date:
-        long: 'Monday, January 2, 2006'
-        short: '1/2/06'
+        long: ':date_full'
+        short: ':date_short'
     time:
         long: '3:04:05 PM'
         short: '3:04 PM'
