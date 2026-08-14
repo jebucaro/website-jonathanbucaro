@@ -1,6 +1,7 @@
 ---
 title: 'Improve the Windows Terminal with Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
+lastmod: 2026-08-13T00:00:00Z
 image: 'images/cover.png'
 tags: [windows, powershell]
 draft: false
@@ -10,7 +11,7 @@ slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
 
 Customizing your terminal can make a huge difference in your productivity and comfort as a developer. One of the most popular tools to personalize the prompt on Windows is Oh My Posh, which allows you to add attractive visual themes and extra features in both PowerShell and Windows Terminal.
 
-In this article, I’ll walk you through step-by-step on how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before — I’ll take you from installing PowerShell all the way to making your terminal literally unrecognizable. Ready to add style and pro-level features to your usual console? Let’s go!
+In this article, I’ll walk you through step-by-step on how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before, I’ll take you from installing PowerShell all the way to making your terminal literally unrecognizable. Ready to add style and pro-level features to your usual console? Let’s go!
 
 <span id="install-powershell"></span>
 
@@ -94,37 +95,23 @@ Once installed, open a new PowerShell tab so everything loads properly.
 
 Oh My Posh is designed to use Nerd Fonts. Nerd Fonts are popular fonts patched to include icons, so you need to install a Nerd Font to see the special icons in Oh My Posh.
 
-{{< callout important >}}
-To install fonts system-wide, run the command from a terminal with administrator privileges.
-{{< /callout >}}
+First, browse the available fonts:
 
 ```cmd
-oh-my-posh font install
+oh-my-posh font list
 ```
 
-If you prefer to install just for your user, add `--user` at the end.
-
-{{< callout important >}}
-The command must be ran without administrator privileges.
-{{< /callout >}}
-
-```cmd
-oh-my-posh font install --user
-```
-
-You’ll see a list of fonts; Oh My Posh recommends the “Meslo” font family, which includes “Meslo LGM NF.”
+This prints one font name per line, so you can pipe it to search for something specific, for example `oh-my-posh font list | findstr /i mono`. Oh My Posh recommends the “Meslo” font family, which includes “Meslo LGM NF.”
 
 ![Install Meslo Nerd Font](images/windows-terminal-install-nerd-font.webp 'Install Meslo Nerd Font')
 
-{{< callout important >}}
-You can also install it directly by name (system-wide requires admin, user-level doesn’t).
-{{< /callout >}}
+Once you’ve picked a name from the list, install it:
 
 ```cmd
 oh-my-posh font install meslo
 ```
 
-If you prefer to install just for your user, add `--user` at the end and run it without administrator privileges.
+Fonts always install for your current user, so there’s no need for an elevated terminal. You can also install directly from a URL or a local zip file, for example `oh-my-posh font install https://example.com/font.zip`.
 
 <span id="configure-windows-terminal-nerd-font"></span>
 
@@ -188,17 +175,19 @@ Done! You should see your prompt change immediately to something like this:
 
 Oh My Posh comes with several built-in themes. You can explore them in the {{< extlink href="https://ohmyposh.dev/docs/themes" >}}Oh My Posh themes documentation{{< /extlink >}}.
 
-Pick one you like. For example, if you like the minimalist “zash” theme, locate the `zash.omp.json` file (usually at `$env:POSH_THEMES_PATH/zash.omp.json`) and update your PowerShell profile line to:
+Pick one you like, then reference it by name (no extension) in your PowerShell profile line. For example, if you like the minimalist “zash” theme, update the line to:
 
 ```powershell
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/zash.omp.json" | Invoke-Expression
-```
-
-**UPDATE:** If you have installed Oh My Posh via Winget, the themes aren't donwloaded as files, but you can access them by refering to the name of the theme in the configuration with no extension.
-
-```power
 oh-my-posh init pwsh --config "zash" | Invoke-Expression
 ```
+
+This downloads and caches the theme on shell start, so you’ll need an internet connection the first time. If you’d rather keep a local copy to tweak, export it to a file instead:
+
+```powershell
+oh-my-posh config export --config zash --output ~/zash.omp.json
+```
+
+Then point your profile line to that file, `--config "~/zash.omp.json"`.
 
 Save and reload:
 
