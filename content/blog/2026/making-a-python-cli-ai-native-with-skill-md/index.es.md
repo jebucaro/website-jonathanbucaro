@@ -2,6 +2,7 @@
 title: 'Cómo hacer que una CLI de Python sea nativa para IA con SKILL.md'
 slug: 'making-a-python-cli-ai-native-with-skill-md'
 date: 2026-03-23T17:15:45+00:00
+lastmod: 2026-08-13T00:00:00Z
 description: 'Aprende cómo hacer que una CLI de Python sea nativa para IA agregando un archivo SKILL.md para Claude Code, con pokecli como ejemplo práctico inspirado en el patrón de Playwright CLI.'
 draft: false
 tags: [python, ai-tools, claude]
