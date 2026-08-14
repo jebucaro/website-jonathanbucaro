@@ -25,7 +25,7 @@ Mi forma favorita de instalar PowerShell es con Winget porque es rápido y fáci
 
 Desde una ventana de Windows PowerShell, ejecuta:
 
-```cmd
+```powershell
 winget install Microsoft.PowerShell -s winget
 ```
 
@@ -35,7 +35,7 @@ winget install Microsoft.PowerShell -s winget
 
 Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
 
-```cmd
+```powershell
 winget install Microsoft.WindowsTerminal -s winget
 ```
 
@@ -85,7 +85,7 @@ Recomiendo instalarlo con Winget, pero también está disponible en la {{< extli
 
 Desde PowerShell, ejecuta:
 
-```cmd
+```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
@@ -99,7 +99,7 @@ Oh My Posh está diseñado para usar Nerd Fonts. Nerd Fonts son fuentes populare
 
 Primero, explora las fuentes disponibles:
 
-```cmd
+```powershell
 oh-my-posh font list
 ```
 
@@ -109,7 +109,7 @@ Esto imprime un nombre de fuente por línea, así que puedes filtrarlo para busc
 
 Una vez que elijas un nombre de la lista, instálala:
 
-```cmd
+```powershell
 oh-my-posh font install meslo
 ```
 
@@ -151,7 +151,7 @@ Vamos a decirle a PowerShell que cargue Oh My Posh cada vez que inicies una term
 
 Abre tu perfil con tu editor favorito, por ejemplo:
 
-```cmd
+```powershell
 code $PROFILE
 ```
 
