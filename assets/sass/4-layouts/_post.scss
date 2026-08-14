@@ -150,7 +150,7 @@
     gap: 6px;
     padding: 3px 10px 2px;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--callout-green) 16%, transparent);
+    background-color: color-mix(in srgb, var(--callout-green) 16%, transparent);
     vertical-align: middle;
 
     &::before {
