@@ -142,6 +142,31 @@
     }
 }
 
+/* Updated badge — shared by .post-meta and .project-hero__meta,
+   inherits their uppercase/bold/letter-spaced type voice. */
+.updated-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 2px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--callout-green) 16%, transparent);
+    vertical-align: middle;
+
+    &::before {
+        content: "";
+        flex-shrink: 0;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--callout-green);
+    }
+
+    &__date {
+        color: var(--callout-green);
+    }
+}
+
 .post-image,
 .page-image {
     position: relative;

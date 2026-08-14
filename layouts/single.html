@@ -14,6 +14,12 @@
                             <div class="post-meta">
                                 <a href="/about/" class="post-author-link">{{ .Site.Params.author.author__name }}</a> –
                                 <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ partial "functions/localize-date" (dict "date" .Date "format" site.Params.formats.date.long "site" site) }}</time>
+                                {{ if gt .Lastmod .Date }}
+                                –
+                                <span class="updated-badge">
+                                    <time class="updated-badge__date" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ i18n "post_updatedLabel" }} {{ partial "functions/localize-date" (dict "date" .Lastmod "format" site.Params.formats.date.long "site" site) }}</time>
+                                </span>
+                                {{ end }}
                             </div>
                         </div>
                     </div>

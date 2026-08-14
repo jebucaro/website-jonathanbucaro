@@ -48,6 +48,9 @@
 - id: ui_tableOfContents
   translation: 'En esta página'
 
+- id: post_updatedLabel
+  translation: 'Actualizado'
+
 # Content strings
 - id: content_posts_one
   translation: 'Publicación'
