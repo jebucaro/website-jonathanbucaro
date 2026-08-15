@@ -1,5 +1,10 @@
 /* Footer */
 .footer {
+    /* Below-the-fold: defer style/layout until near the viewport. See the
+       matching comment in 3-modules/_technologies.scss. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+
     .footer__inner {
         padding: 100px 0;
         border-top: 1px solid var(--background-alt-color);

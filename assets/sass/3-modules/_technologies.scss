@@ -2,6 +2,14 @@
 .section.technologies {
     padding-top: 0;
     border-top: none;
+
+    /* Below-the-fold and DOM-heavy (many inline SVG icons): skip style/layout
+       work until it nears the viewport so it doesn't compete with the hero
+       LCP paint on first load. contain-intrinsic-size is a rough starting
+       height only — the browser remembers the real rendered size after the
+       first layout and reuses that for any later skip. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1400px;
 }
 
 .technologies__group {
