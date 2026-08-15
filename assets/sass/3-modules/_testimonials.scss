@@ -1,6 +1,11 @@
 /* Testimonials */
 .testimonials {
     padding: 60px 0 80px;
+
+    /* Below-the-fold: defer style/layout until near the viewport. See the
+       matching comment in 3-modules/_technologies.scss. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
 }
 
 .client-list {

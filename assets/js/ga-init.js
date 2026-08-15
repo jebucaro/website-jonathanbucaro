@@ -9,9 +9,14 @@ gtag('config', '{{ .Site.Config.Services.GoogleAnalytics.ID }}', {
     anonymize_ip: true,
 });
 
-// gtag.js loads off the critical path: after window load, on browser idle.
-// The calls above only queue into dataLayer; gtag.js drains the queue
-// whenever it arrives, so nothing is lost by loading late.
+// gtag.js loads off the critical path: on first real interaction, or on
+// browser idle shortly after window load for visitors who never interact.
+// The calls above only queue into dataLayer, which lives in memory — if the
+// tab closes before gtag.js has loaded and drained that queue, the visit is
+// never sent and disappears from reports entirely. Keep this fallback short:
+// it does NOT hide the script from synthetic audits (Lighthouse/PSI don't
+// scroll or click, so they always hit this timeout path anyway), so a longer
+// delay only costs real quick-bounce visits for no measured benefit.
 (function () {
     var gtagInjected = false;
     function loadGtag() {
@@ -25,6 +30,21 @@ gtag('config', '{{ .Site.Config.Services.GoogleAnalytics.ID }}', {
             'https://www.googletagmanager.com/gtag/js?id={{ .Site.Config.Services.GoogleAnalytics.ID }}';
         document.head.appendChild(script);
     }
+
+    var interactionEvents = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    function onInteraction() {
+        interactionEvents.forEach(function (evt) {
+            window.removeEventListener(evt, onInteraction);
+        });
+        loadGtag();
+    }
+    interactionEvents.forEach(function (evt) {
+        window.addEventListener(evt, onInteraction, {
+            passive: true,
+            once: true,
+        });
+    });
+
     function scheduleGtag() {
         if ('requestIdleCallback' in window) {
             requestIdleCallback(loadGtag, { timeout: 2000 });
