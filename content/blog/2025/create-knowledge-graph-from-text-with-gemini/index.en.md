@@ -8,34 +8,13 @@ draft: false
 description: "Learn how to build a knowledge graph extraction system using Google's Gemini AI. Transform unstructured text into visual, connected knowledge networks with Python and Streamlit"
 ---
 
-## 🎯 TL;DR
+## Why I built this
 
-Nodus extracts knowledge graphs from text using Gemini AI, turning meeting notes and articles into visual networks of connected concepts. See relationships at a glance instead of searching through pages of text. Costs ~$0.00018 per 500-word article.
+About four months ago I watched Thu Vu's video on extracting knowledge graphs from text using GPT-4. The concept stuck with me: minimal code turning unstructured meeting transcripts and podcast content into visual, structured knowledge networks that made complex information instantly clearer.
 
-**Choose your path:**
+Think of a knowledge graph as a way to represent information the way your brain naturally organizes it, through connections rather than pages of text. Instead of reading through a document to understand how concepts relate, you see a map where everything is already connected. Understanding information isn't about memorizing facts, it's about seeing how they connect, and that's the principle Nodus, the tool in this post, is built around.
 
-- 🚀 [Use it now](#quick-start) (5 min)
-- 👀 [See results](#results) (2 min)
-- 🧠 [How it works](#how-it-works-architecture) (15 min)
-- 🔧 [Deep dive](#explore-the-code) (30 min)
-
----
-
-## 🌟 Why I Built This
-
-About four months ago, I discovered Thu Vu's video on extracting knowledge graphs from text using GPT-4. The concept was transformative: watching minimal code convert unstructured meeting transcriptions and podcast content into visual structured knowledge networks that made complex information instantly clearer.
-
-Think of knowledge graphs as a way to represent information the way your brain naturally organizes it, through connections and relationships. Instead of reading through pages of text to understand how concepts relate, you see a visual map where everything is connected.
-
-> from seeing the world as a machine to understanding it as a network
->
-> {{< extlink href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" >}}Fritjof Capra{{< /extlink >}}
-
-This principle applies perfectly to knowledge management. Understanding information isn't about memorizing facts, it's about seeing how they connect.
-
----
-
-## 📸 See It In Action
+## See it in action
 
 Transform this sentence:
 
@@ -50,45 +29,15 @@ Into this structured graph:
 {{< gallery-image src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." >}}
 {{< /gallery >}}
 
----
+## The problem, and what changed
 
-## 💡 The Problem (In 60 Seconds)
+Knowledge is typically created and stored as natural language: documents, transcripts, articles. But it's most useful when structured as a graph. Traditional text is hard to navigate: searching through hours of meeting transcripts to find who mentioned a deadline, reading pages of documentation to understand how concepts connect, or hunting through wikis and docs for company knowledge that has no unified view.
 
-Here's the fundamental challenge: knowledge is typically created and stored as natural language (documents, transcripts, articles), but it's most useful when structured as a graph.
-
-**Traditional text is hard to navigate:**
-
-- 📝 **Meeting notes chaos**: Searching through hours of transcripts to find "who mentioned that project deadline"
-- 🔍 **Research overwhelm**: Reading pages of documentation to understand how concepts connect
-- 🏢 **Scattered knowledge**: Company information trapped across wikis, docs, and conversations with no unified view
-
-> Data isn't information. Information, unlike data, is useful. While there's a gulf between data and information, there's a wide ocean between information and knowledge. What turns the gears in our brains isn't information, but ideas, inventions, and inspiration
->
-> {{< extlink href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" >}}Clifford Stoll{{< /extlink >}}
-
----
-
-## ✨ The Solution
-
-This is what made that initial discovery so compelling: modern LLMs changed the equation. They can read text and extract structured information with surprising accuracy, understanding context, resolving ambiguities, and identifying relationships that traditional NLP systems would miss.
-
-LLMs don't just generate text. They can impose structure on chaos, turning massive text corpora into navigable knowledge networks.
-
-**What Nodus does:**
-
-- ✅ Extracts entities and relationships from any text
-- ✅ Creates interactive, visual knowledge graphs
-- ✅ Supports multiple export formats (HTML, JSON, TXT)
-- ✅ Costs pennies per extraction (~$0.00018 per article)
-- ✅ No manual tagging or complex NLP pipelines required
-
-Instead of building complex extraction systems, you write straightforward code that leverages Gemini's structured output capabilities. Sophisticated knowledge extraction became accessible through relatively simple implementation.
-
----
+What made this newly practical is that modern LLMs changed the equation. They read text and extract structured information with surprising accuracy: understanding context, resolving ambiguities, and catching relationships traditional NLP pipelines would miss. That's what Nodus does: it extracts entities and relationships from any text, builds interactive visual knowledge graphs, exports to HTML, JSON, or TXT, and costs about $0.00018 per article, with no manual tagging or NLP pipeline to maintain. Instead of a complex extraction system, you write straightforward code against Gemini's structured output.
 
 <span id="quick-start"></span>
 
-## 🚀 Quick Start
+## Quick start
 
 ### Get the source code
 
@@ -143,13 +92,11 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 # 4. Access the app at http://localhost:8501
 ```
 
----
-
 <span id="results"></span>
 
-## 📊 Results
+## Results
 
-The interface provides four perspectives on your extracted knowledge:
+The interface gives you four perspectives on your extracted knowledge:
 
 {{< gallery caption="Visual exploration, raw JSON for debugging, and graph statistics for analysis" >}}
 {{< gallery-image src="images/nodus-main-interface.webp" alt="Nodus tab showing a summary from the input text." >}}
@@ -158,46 +105,21 @@ The interface provides four perspectives on your extracted knowledge:
 {{< gallery-image src="images/nodus-main-interface-kg-statistics.webp" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." >}}
 {{< /gallery >}}
 
-### What You Get
-
-**Four-tab results view:**
-
-1. **Summary**: Structured executive briefing with key insights
-2. **Visualization**: Interactive graph exploration with physics-based layout
-3. **Raw Data**: JSON inspection of nodes and relationships
-4. **Statistics**: Graph metrics (node count, relationship types, etc.)
-
-**Export options:**
-
-- HTML (interactive graph)
-- JSON (structured data)
-- TXT (summary)
-
----
+Four tabs cover the results: a structured **Summary** with key insights, an interactive physics-based **Visualization**, **Raw Data** as JSON for inspecting nodes and relationships, and **Statistics** on node count and relationship types. You can export the graph as HTML (interactive), JSON (structured data), or TXT (summary).
 
 <span id="how-it-works-architecture"></span>
 
-## 🏗️ How It Works (Architecture)
+## How it works
 
-I designed this implementation to prioritize clarity over abstraction. Each layer is intentionally simple, making it easy to understand, modify, and extend. Think of this as a learning foundation rather than a production-ready framework.
-
-The system uses four focused layers:
+I designed this implementation to prioritize clarity over abstraction. Each layer is intentionally simple, closer to a learning foundation than a production framework, so it's easy to understand, modify, and extend.
 
 {{< gallery caption="The clean interface focuses on the core workflow: configure, input, extract, visualize" >}}
 {{< gallery-image src="images/nodus-main-interface.webp" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." >}}
 {{< /gallery >}}
 
-### 1. 📝 Extraction Layer: Where Structure Meets Language
+### Extraction layer
 
-Modern LLMs with structured output support can accept schema definitions directly, eliminating manual JSON parsing. This is one of the most powerful features that makes knowledge graph extraction so accessible now.
-
-The extractor implements a **two-phase extraction process**:
-
-**Phase 1: Executive Summary Generation**
-The system first generates a structured executive summary with five key sections (Overview, Key Points, Entities, Relationships, Conclusions). This optional summary provides high-level context.
-
-**Phase 2: Knowledge Graph Extraction**
-The system then extracts entities and relationships, either from the executive summary (for higher-level, focused graphs) or directly from the original text (for more granular detail).
+Modern LLMs with structured output support accept schema definitions directly, which eliminates manual JSON parsing and is a big part of what makes this accessible now. The extractor runs a two-phase process: first it generates a structured executive summary with five sections (Overview, Key Points, Entities, Relationships, Conclusions), then it extracts entities and relationships either from that summary (for a higher-level, focused graph) or directly from the original text (for more granular detail).
 
 ```python
 class GeminiExtractor:
@@ -216,23 +138,15 @@ class GeminiExtractor:
         return ExtractionResult(summary=summary, knowledge_graph=kg)
 ```
 
-**Key requirements for consistent extraction:**
-
-- Node identifiers should be semantic and lowercase with underscores (`sarah` rather than `person_1`)
-- Relationship types should be uppercase with underscores (`WORKS_AT` not `works_at`)
-- Coreference resolution rules must be explicit (ensuring "Michael" and "he" map to the same entity)
-
-These constraints significantly improve debuggability and graph quality. Generic numeric IDs make troubleshooting extraction issues challenging.
+A few constraints keep extraction consistent: node identifiers should be semantic and lowercase with underscores (`sarah` rather than `person_1`), relationship types should be uppercase with underscores (`WORKS_AT` not `works_at`), and coreference resolution rules need to be explicit so "Michael" and "he" map to the same entity. Generic numeric IDs make troubleshooting extraction issues much harder, so these constraints pay off in debuggability.
 
 {{< callout warning>}}
-
-Prompt engineering is critical here. Poor prompts lead to inconsistent entity extraction, duplicate nodes, and broken relationships. Always test your prompts with diverse text samples before scaling up. Small prompt changes can dramatically affect extraction quality.
-
+Prompt engineering is critical here. Poor prompts lead to inconsistent entity extraction, duplicate nodes, and broken relationships. Always test your prompts with diverse text samples before scaling up, small prompt changes can dramatically affect extraction quality.
 {{< /callout >}}
 
-### 2. 🗂️ Data Models: Defining the Structure
+### Data models
 
-Clear data models establish the contract between the LLM and your application. I use `Pydantic` models to define exactly what structure I expect back from Gemini:
+Clear data models establish the contract between the LLM and your application. I use Pydantic models to define exactly what structure I expect back from Gemini:
 
 ```python
 class Node(BaseModel):
@@ -262,142 +176,50 @@ class ExtractionResult(BaseModel):
     knowledge_graph: KnowledgeGraph
 ```
 
-**Automatic semantic deduplication:** The `KnowledgeGraph` model includes built-in deduplication that removes redundant relationships in two ways:
+The `KnowledgeGraph` model deduplicates automatically, both by relationship ID (exact duplicates) and by semantic triplet (`source_node_id`, `type`, `target_node_id`) for functionally equivalent relationships. That handles the common case where the LLM generates the same relationship more than once with different IDs.
 
-- By relationship ID (exact duplicates)
-- By semantic triplet: `(source_node_id, type, target_node_id)` (functionally equivalent relationships)
+### Visualization layer
 
-This handles the common case where LLMs generate the same relationship multiple times with different IDs, ensuring clean, efficient graphs.
+Raw graph data is useful, but visualization is where patterns that were invisible in the text become visible. Deterministic color assignment (hashing node types to a color palette) keeps entity types visually consistent across different graphs, which helps you build a mental model quickly. A force-directed layout (ForceAtlas2) clusters connected nodes together and spreads isolated ones apart, often surfacing structure that isn't obvious in the raw data. The renderer supports both HTML string generation and file output, so it works equally well embedded in a web app or as a standalone visualization.
 
-### 3. 🎨 Visualization Layer: Making Graphs Explorable
+### Interface layer
 
-Raw graph data is useful, but visualization is where the magic happens. You can suddenly see patterns that were invisible in the text:
+The Streamlit interface keeps the flow simple: configure API credentials and model, submit text directly or upload a `.txt`/`.md` file, choose whether to build the graph from the executive summary or the original text, browse results across the four tabs, and export as HTML, JSON, or TXT.
 
-**Consistency through color-coding:**
-Using deterministic color assignment (hashing node types to a color palette) ensures that entity types maintain consistent visual representation across different graphs. This consistency helps users build mental models quickly.
+## Cost considerations
 
-**Interactive physics simulation:**
-Graph layout algorithms like ForceAtlas2 create natural-feeling visualizations where connected nodes cluster together and isolated nodes spread apart. This spatial organization often reveals patterns not obvious in the raw data.
-
-**Dual rendering modes:**
-Supporting both HTML string generation and file output enables flexible integration, whether embedding in web applications or generating standalone visualizations.
-
-### 4. 💻 Interface Layer: Streamlining the Workflow
-
-A clear interface flow reduces friction:
-
-1. **Configuration**: API credentials and model selection
-2. **Input submission**: Direct text input or file upload (.txt, .md)
-3. **Pipeline options**: Build knowledge graph from executive summary or original text
-4. **Multi-view results** across four tabs (Summary, Visualization, Raw Data, Statistics)
-5. **Export options**: Download results as HTML, JSON, or TXT
-
----
-
-## 💰 Cost Considerations
-
-One of the best parts about this approach is how affordable it is. Let me break down the economics:
-
-**Gemini 2.5 Flash Lite pricing (paid tier):**
-
-- Input: $0.10 per 1M tokens
-- Output: $0.40 per 1M tokens
-
-**Practical example:**
-A 500-word article extraction:
-
-- ~600 input tokens
-- ~300 output tokens
-- Input cost: (600 / 1,000,000) × $0.10 = $0.00006
-- Output cost: (300 / 1,000,000) × $0.40 = $0.00012
-- **Total cost: ~$0.00018 per extraction**
-
-This cost structure makes knowledge graph extraction viable for high-volume applications and real-time processing scenarios.
-
-**Note:** Gemini 2.5 Flash Lite also includes a generous free tier with no cost for both input and output tokens, making it perfect for testing and small-scale use.
+This approach is affordable enough to matter. Gemini 2.5 Flash Lite (paid tier) charges $0.10 per 1M input tokens and $0.40 per 1M output tokens. A 500-word article extraction runs roughly 600 input tokens and 300 output tokens: (600 / 1,000,000) × $0.10 = $0.00006 for input, (300 / 1,000,000) × $0.40 = $0.00012 for output, for a total around $0.00018 per extraction. Gemini 2.5 Flash Lite also has a generous free tier with no cost for input or output tokens, which is enough for testing and small-scale use.
 
 {{< callout note>}}
-
-For production use, implement token counting before API calls to estimate costs. Batch processing multiple documents can optimize API usage. Consider caching extracted graphs to avoid re-processing unchanged content.
-
+For production use, count tokens before API calls to estimate costs, batch multiple documents to optimize API usage, and cache extracted graphs to avoid re-processing unchanged content.
 {{< /callout >}}
 
----
+## Real-world applications
 
-## 🎯 Real-World Applications
+Meeting notes and transcripts are the obvious case: instead of searching through hours of notes for who mentioned a deadline, you query the graph directly ("show me all deadlines mentioned by Sarah in Q1 meetings"), since the relationships are already extracted and structured. The same idea applies to research and learning, where a knowledge graph built while you read technical documentation shows how ideas connect and which concepts are central. At an organizational level, it can unify information scattered across documents, wikis, and conversations into one map, regardless of where each piece originally lived.
 
-**Where you can use this today:**
-
-- 📝 **Meeting notes and transcriptions**: Instead of searching through hours of notes to remember "who mentioned that project deadline," you can query the graph: "Show me all deadlines mentioned by Sarah in Q1 meetings." The relationships are already extracted and structured.
-
-- 📚 **Research and learning**: When watching educational content or reading technical documentation, knowledge graphs automatically build a concept map. You can see how ideas connect, which concepts are central, and what you might be missing.
-
-- 🏢 **Organizational knowledge**: Companies have information scattered across documents, wikis, and conversations. Knowledge graphs unify this by extracting entities and relationships regardless of where they appear, creating a living map of organizational knowledge.
-
-**What you can build from here:**
-
-- Connect to document databases for automatic knowledge extraction
-- Build query interfaces to explore your graphs conversationally
-- Implement graph merging to combine knowledge from multiple sources
-- Add temporal tracking to see how knowledge evolves over time
+From here you could connect it to a document database for automatic extraction, build a conversational query interface over the graphs, merge graphs from multiple sources, or add temporal tracking to see how knowledge evolves over time.
 
 {{< callout note >}}
-
-While simple examples are easy to grasp, knowledge graphs truly shine with scale. A graph with 100 entities and 200 relationships can reveal patterns impossible to spot in raw text. The structure makes everything from trend analysis to anomaly detection significantly easier.
-
+Simple examples are easy to grasp, but knowledge graphs shine more with scale. A graph with 100 entities and 200 relationships can reveal patterns that are nearly impossible to spot in raw text, from trend analysis to anomaly detection.
 {{< /callout >}}
-
----
 
 <span id="explore-the-code"></span>
 
-## 🔗 Explore the Code
+## Explore the code
 
-The complete implementation is available {{< extlink href="https://github.com/jebucaro/blog-code" >}}on GitHub{{< /extlink >}}. I've kept the codebase intentionally minimal and well-documented so you can understand every piece and adapt it to your needs.
+The complete implementation is available {{< extlink href="https://github.com/jebucaro/blog-code" >}}on GitHub{{< /extlink >}}. I kept the codebase intentionally minimal and documented so you can understand every piece and adapt it. Start with `models.py` (Pydantic data models with validation and auto-deduplication), `extractor.py` (the two-phase extraction logic and prompts), `visualizer.py` (PyVis-based graph rendering), `app.py` (the Streamlit interface), `settings.py` (environment configuration and model selection), and `errors.py` (a custom exception hierarchy for user-friendly errors).
 
-**Start with these files:**
+## Why I built it from scratch
 
-- `models.py` - Pydantic data models with validation and auto-deduplication
-- `extractor.py` - Two-phase extraction logic and prompt engineering
-- `visualizer.py` - PyVis-based graph rendering and layout algorithms
-- `app.py` - Streamlit interface with session state management
-- `settings.py` - Environment configuration and model selection
-- `errors.py` - Custom exception hierarchy for user-friendly error messages
-
----
-
-## 🎓 Learning From Thu Vu's Approach
-
-Thu Vu's implementation demonstrates knowledge graph extraction using GPT-4 and LangChain's `LLMGraphTransformer`. The video provides valuable context for understanding how high-level abstractions simplify the extraction process:
+Thu Vu's original implementation uses GPT-4 and LangChain's `LLMGraphTransformer`, and it's worth watching for how a high-level abstraction simplifies extraction:
 
 <p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
-Watching this implementation in action reveals both the power of abstraction layers and the questions they leave unanswered. While the code is concise and effective, understanding what happens beneath those abstractions becomes important when you need to:
+That abstraction is powerful, but it also hides the questions you need answered when you're debugging unexpected extraction results, optimizing prompts for a specific domain, adapting the system to a different LLM provider, or controlling costs at scale. Working directly with the Gemini API instead of through a framework showed me the core pattern more clearly: strip away multi-provider support and framework overhead, and you can see exactly how prompt design drives the quality of extracted entities and relationships. It also means I can tune every part of the pipeline directly, and the knowledge of how structured output works at the API level carries over to any other LLM provider I use later.
 
-- Debug unexpected extraction results
-- Optimize prompts for specific domains
-- Adapt the system for different LLM providers
-- Control costs at scale
+The goal here isn't to argue against framework-based approaches, just to understand the mechanism underneath them.
 
-### Why I Built From Scratch
+## What will you extract?
 
-While tools like LangChain's `LLMGraphTransformer` make this process accessible, I wanted to understand the underlying mechanisms. Working directly with the APIs provides deeper insight into how structured extraction actually functions.
-
-**It reveals the core patterns:**
-When you strip away multi-provider support and framework overhead, the fundamental logic becomes clear. You can see exactly how prompt engineering drives the quality of extracted entities and relationships.
-
-**It enables precise control:**
-Direct API access lets you fine-tune every aspect of the extraction process. You can iterate on prompt design, adjust validation rules, and optimize for your specific domain without navigating through abstraction layers.
-
-**It builds transferable knowledge:**
-Understanding how structured output works at the API level prepares you to work with any LLM provider. The principles remain consistent even as tools and frameworks evolve.
-
-This article explores building a similar system from the ground up, focusing on Gemini's structured output capabilities. The goal isn't to replace framework-based approaches, but to understand the fundamental mechanisms that make knowledge graph extraction work.
-
----
-
-## 💬 What Will You Extract?
-
-Knowledge graphs transform how you interact with information. Whether you're managing research, organizing meeting notes, or building AI applications, structured knowledge extraction opens new possibilities.
-
-I'm curious: what's the first text you'll convert into a knowledge graph? Share your use case or questions on LinkedIn. I'd love to hear what you build with this.
+Knowledge graphs change how you interact with information, whether you're managing research, organizing meeting notes, or building AI applications on top of structured data. What's the first text you'll try converting into a knowledge graph? Share your use case or questions on LinkedIn, I'd love to hear what you build with this.

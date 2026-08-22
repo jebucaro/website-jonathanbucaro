@@ -8,34 +8,13 @@ draft: false
 description: 'Aprende a crear un sistema de extracción de grafos de conocimiento usando Gemini de Google. Convierte texto no estructurado en redes visuales de conocimiento conectado con Python y Streamlit'
 ---
 
-## 🎯 TL;DR
+## Por qué construí esto
 
-Nodus extrae grafos de conocimiento desde texto usando Gemini, convirtiendo notas de reuniones y artículos en redes visuales de conceptos conectados. Ves relaciones de un vistazo en lugar de buscar entre páginas de texto. Cuesta ~$0.00018 por artículo de 500 palabras.
+Hace unos cuatro meses vi el video de Thu Vu sobre cómo extraer grafos de conocimiento desde texto usando GPT-4. El concepto se me quedó grabado: con poco código, transcripciones de reuniones y contenido de podcasts sin estructura se convertían en redes visuales de conocimiento que hacían que la información compleja se entendiera al instante.
 
-**Elige tu ruta:**
+Piensa en un grafo de conocimiento como una forma de representar información tal como tu cerebro la organiza naturalmente, a través de conexiones en lugar de páginas de texto. En vez de leer un documento para entender cómo se relacionan los conceptos, ves un mapa donde todo ya está conectado. Entender información no se trata de memorizar datos, sino de ver cómo se conectan, y ese es el principio detrás de Nodus, la herramienta de este post.
 
-- 🚀 [Úsalo ahora](#quick-start) (5 min)
-- 👀 [Ver resultados](#results) (2 min)
-- 🧠 [Cómo funciona](#how-it-works-architecture) (15 min)
-- 🔧 [Detalle técnico](#explore-the-code) (30 min)
-
----
-
-## 🌟 Por Qué Construí Esto
-
-Hace unos cuatro meses, descubrí el video de Thu Vu sobre cómo extraer grafos de conocimiento desde texto usando GPT-4. El concepto fue transformador: ver cómo con poco código se convertían transcripciones de reuniones y contenido de podcasts, sin estructura, en redes visuales de conocimiento estructurado que hacían que la información compleja se entendiera al instante.
-
-Piensa en los grafos de conocimiento como una forma de representar información tal como tu cerebro la organiza naturalmente, a través de conexiones y relaciones. En lugar de leer páginas de texto para entender cómo se relacionan los conceptos, ves un mapa visual donde todo está conectado.
-
-> de ver el mundo como una máquina a entenderlo como una red
->
-> {{< extlink href="https://ourpermaculturelife.com/episode-7-systems-view-fritjof-capra/" >}}Fritjof Capra{{< /extlink >}}
-
-Este principio aplica perfecto a la gestión del conocimiento. Entender información no se trata de memorizar datos, sino de ver cómo se conectan.
-
----
-
-## 📸 Míralo En Acción
+## Míralo en acción
 
 Transforma esta oración:
 
@@ -50,45 +29,15 @@ En este grafo estructurado:
 {{< gallery-image src="images/nodus-main-interface-kg.webp" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." >}}
 {{< /gallery >}}
 
----
+## El problema, y qué cambió
 
-## 💡 El Problema (En 60 Segundos)
+El conocimiento normalmente se crea y se guarda como lenguaje natural: documentos, transcripciones, artículos. Pero es más útil cuando se estructura como un grafo. El texto tradicional es difícil de navegar: buscar entre horas de transcripción para encontrar quién mencionó una fecha límite, leer páginas de documentación para entender cómo se conectan los conceptos, o revisar wikis y docs dispersos sin una vista unificada.
 
-Este es el reto fundamental: el conocimiento normalmente se crea y se guarda como lenguaje natural (documentos, transcripciones, artículos), pero es más útil cuando se estructura como un grafo.
-
-**El texto tradicional es difícil de navegar:**
-
-- 📝 **Caos en notas de reuniones**: buscar entre horas de transcripción para encontrar "¿Quién mencionó esa fecha límite del proyecto?"
-- 🔍 **Sobrecarga en investigación**: leer páginas de documentación para entender cómo se conectan los conceptos
-- 🏢 **Conocimiento disperso**: información de la empresa atrapada en wikis, docs y conversaciones, sin una vista unificada
-
-> Los datos no son información. La información, a diferencia de los datos, es útil. Aunque hay un abismo entre los datos y la información, hay un océano enorme entre la información y el conocimiento. Lo que mueve los engranajes en nuestro cerebro no es la información, sino las ideas, las invenciones y la inspiración
->
-> {{< extlink href="https://todayinsci.com/S/Stoll_Clifford/StollClifford-Quotations.htm" >}}Clifford Stoll{{< /extlink >}}
-
----
-
-## ✨ La Solución
-
-Esto fue lo que hizo tan convincente ese descubrimiento inicial: los LLM modernos cambiaron la ecuación. Pueden leer texto y extraer información estructurada con una precisión sorprendente, entendiendo contexto, resolviendo ambigüedades e identificando relaciones que los sistemas tradicionales de NLP no detectarían.
-
-Los LLM no solo generan texto. Pueden imponer estructura al caos, convirtiendo grandes corpus de texto en redes de conocimiento navegables.
-
-**Lo que hace Nodus:**
-
-- ✅ Extrae entidades y relaciones de cualquier texto
-- ✅ Crea grafos de conocimiento visuales e interactivos
-- ✅ Soporta múltiples formatos de exportación (HTML, JSON, TXT)
-- ✅ Cuesta centavos por extracción (~$0.00018 por artículo)
-- ✅ No requiere etiquetado manual ni pipelines complejos de NLP
-
-En lugar de construir sistemas de extracción complicados, escribes código directo que aprovecha la capacidad de salida estructurada de Gemini. La extracción de conocimiento sofisticada se volvió accesible con una implementación relativamente simple.
-
----
+Lo que volvió esto práctico es que los LLM modernos cambiaron la ecuación. Leen texto y extraen información estructurada con precisión sorprendente: entienden contexto, resuelven ambigüedades y detectan relaciones que un pipeline tradicional de NLP se perdería. Eso es lo que hace Nodus: extrae entidades y relaciones de cualquier texto, construye grafos de conocimiento visuales e interactivos, exporta a HTML, JSON o TXT, y cuesta cerca de $0.00018 por artículo, sin etiquetado manual ni un pipeline de NLP que mantener. En vez de un sistema de extracción complicado, escribes código directo contra la salida estructurada de Gemini.
 
 <span id="quick-start"></span>
 
-## 🚀 Inicio Rápido
+## Inicio rápido
 
 ### Obtén el código fuente
 
@@ -143,11 +92,9 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 # 4. Access the app at http://localhost:8501
 ```
 
----
-
 <span id="results"></span>
 
-## 📊 Resultados
+## Resultados
 
 La interfaz te da cuatro perspectivas del conocimiento extraído:
 
@@ -158,46 +105,21 @@ La interfaz te da cuatro perspectivas del conocimiento extraído:
 {{< gallery-image src="images/nodus-main-interface-kg-statistics.webp" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." >}}
 {{< /gallery >}}
 
-### Lo Que Obtienes
-
-**Vista de resultados en cuatro pestañas:**
-
-1. **Resumen**: briefing ejecutivo estructurado con los insights clave
-2. **Visualización**: exploración interactiva del grafo con layout basado en física
-3. **Datos sin procesar**: inspección del JSON de nodos y relaciones
-4. **Estadísticas**: métricas del grafo (cantidad de nodos, tipos de relaciones, etc.)
-
-**Opciones de exportación:**
-
-- HTML (grafo interactivo)
-- JSON (datos estructurados)
-- TXT (resumen)
-
----
+Cuatro pestañas cubren los resultados: un **Resumen** estructurado con los insights clave, una **Visualización** interactiva con layout basado en física, **Datos sin procesar** en JSON para inspeccionar nodos y relaciones, y **Estadísticas** con la cantidad de nodos y tipos de relaciones. Puedes exportar el grafo como HTML (interactivo), JSON (datos estructurados) o TXT (resumen).
 
 <span id="how-it-works-architecture"></span>
 
-## 🏗️ Cómo Funciona (Arquitectura)
+## Cómo funciona
 
-Diseñé esta implementación para priorizar claridad sobre abstracción. Cada capa es intencionalmente simple, lo que facilita entender, modificar y extender. Piensa en esto como una base de aprendizaje, no como un framework listo para producción.
-
-El sistema usa cuatro capas enfocadas:
+Diseñé esta implementación para priorizar claridad sobre abstracción. Cada capa es intencionalmente simple, más cerca de una base de aprendizaje que de un framework listo para producción, así que es fácil de entender, modificar y extender.
 
 {{< gallery caption="Una interfaz limpia que se enfoca en el flujo principal: configurar, ingresar, extraer, visualizar" >}}
 {{< gallery-image src="images/nodus-main-interface.webp" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." >}}
 {{< /gallery >}}
 
-### 1. 📝 Capa de extracción: donde la estructura se encuentra con el lenguaje
+### Capa de extracción
 
-Los LLM modernos con soporte de salida estructurada pueden aceptar definiciones de esquema directamente, eliminando el parseo manual de JSON. Esta es una de las funciones más potentes que hace que la extracción de grafos de conocimiento sea tan accesible hoy.
-
-El extractor implementa un **proceso de extracción en dos fases**:
-
-**Fase 1: generación de resumen ejecutivo**
-Primero, el sistema genera un resumen ejecutivo estructurado con cinco secciones clave (Overview, Key Points, Entities, Relationships, Conclusions). Este resumen opcional da contexto de alto nivel.
-
-**Fase 2: extracción del grafo de conocimiento**
-Luego el sistema extrae entidades y relaciones, ya sea desde el resumen ejecutivo (para grafos más enfocados y de alto nivel) o directamente desde el texto original (para más detalle).
+Los LLM modernos con soporte de salida estructurada aceptan definiciones de esquema directamente, lo que elimina el parseo manual de JSON y es buena parte de lo que hace esto accesible hoy. El extractor corre un proceso en dos fases: primero genera un resumen ejecutivo estructurado con cinco secciones (Overview, Key Points, Entities, Relationships, Conclusions), y luego extrae entidades y relaciones desde ese resumen (para un grafo más enfocado y de alto nivel) o directamente desde el texto original (para más detalle).
 
 ```python
 class GeminiExtractor:
@@ -216,23 +138,15 @@ class GeminiExtractor:
         return ExtractionResult(summary=summary, knowledge_graph=kg)
 ```
 
-**Requisitos clave para extracción consistente:**
-
-- Los identificadores de nodos deben ser semánticos y en minúsculas con guiones bajos (`sarah` en lugar de `person_1`)
-- Los tipos de relación deben ir en MAYÚSCULAS con guiones bajos (`WORKS_AT` y no `works_at`)
-- Las reglas de correferencia deben ser explícitas (asegurar que "Michael" y "he" apunten a la misma entidad)
-
-Estas restricciones mejoran mucho la depuración y la calidad del grafo. IDs numéricos genéricos hacen que resolver problemas de extracción sea difícil.
+Algunas reglas mantienen la extracción consistente: los identificadores de nodo deben ser semánticos y en minúsculas con guiones bajos (`sarah` en lugar de `person_1`), los tipos de relación en MAYÚSCULAS con guiones bajos (`WORKS_AT` y no `works_at`), y las reglas de correferencia deben ser explícitas para que "Michael" y "he" apunten a la misma entidad. Los IDs numéricos genéricos hacen mucho más difícil resolver problemas de extracción, así que estas reglas se pagan solas en depuración.
 
 {{< callout warning>}}
-
-La ingeniería de prompts es crítica aquí. Prompts malos generan extracción inconsistente de entidades, nodos duplicados y relaciones rotas. Siempre prueba tus prompts con muestras de texto diversas antes de escalar. Cambios pequeños en el prompt pueden afectar de forma drástica la calidad de extracción.
-
+La ingeniería de prompts es crítica aquí. Prompts malos generan extracción inconsistente de entidades, nodos duplicados y relaciones rotas. Siempre prueba tus prompts con muestras de texto diversas antes de escalar, cambios pequeños en el prompt pueden afectar de forma drástica la calidad de extracción.
 {{< /callout >}}
 
-### 2. 🗂️ Modelos de datos: definiendo la estructura
+### Modelos de datos
 
-Modelos de datos claros establecen el contrato entre el LLM y tu aplicación. Uso modelos de `Pydantic` para definir exactamente qué estructura espero de Gemini:
+Modelos de datos claros establecen el contrato entre el LLM y tu aplicación. Uso modelos de Pydantic para definir exactamente qué estructura espero de vuelta de Gemini:
 
 ```python
 class Node(BaseModel):
@@ -262,142 +176,50 @@ class ExtractionResult(BaseModel):
     knowledge_graph: KnowledgeGraph
 ```
 
-**Deduplicación semántica automática:** el modelo `KnowledgeGraph` incluye deduplicación integrada que elimina relaciones redundantes de dos maneras:
+El modelo `KnowledgeGraph` deduplica automáticamente, tanto por ID de relación (duplicados exactos) como por tripleta semántica (`source_node_id`, `type`, `target_node_id`) para relaciones funcionalmente equivalentes. Eso cubre el caso común en el que el LLM genera la misma relación varias veces con IDs distintos.
 
-- Por ID de relación (duplicados exactos)
-- Por tripleta semántica: `(source_node_id, type, target_node_id)` (relaciones funcionalmente equivalentes)
+### Capa de visualización
 
-Esto cubre el caso común en el que los LLM generan la misma relación varias veces con IDs distintos, dejando grafos limpios y eficientes.
+Los datos de grafo sin procesar son útiles, pero la visualización es donde los patrones invisibles en el texto se vuelven visibles. La asignación determinística de colores (hashear los tipos de nodo a una paleta) mantiene la representación visual consistente entre grafos, lo que te ayuda a formar un modelo mental más rápido. Un layout basado en fuerzas (ForceAtlas2) agrupa los nodos conectados y separa los aislados, y suele revelar estructura que no es obvia en los datos crudos. El renderizador soporta tanto generación de HTML como salida a archivo, así que funciona igual de bien incrustado en una app web o como visualización independiente.
 
-### 3. 🎨 Capa de visualización: hacer explorables los grafos
+### Capa de interfaz
 
-Los datos de grafo sin procesar son útiles, pero la visualización es donde ocurre la magia. De pronto ves patrones que eran invisibles en el texto:
+La interfaz de Streamlit mantiene el flujo simple: configura las credenciales de la API y el modelo, envía texto directamente o sube un archivo `.txt`/`.md`, elige si construir el grafo desde el resumen ejecutivo o desde el texto original, explora los resultados en las cuatro pestañas, y exporta como HTML, JSON o TXT.
 
-**Consistencia por codificación de colores:**
-Usar asignación determinística de colores (hashear los tipos de nodo a una paleta) asegura que los tipos de entidad mantengan una representación visual consistente entre grafos. Esa consistencia ayuda a que las personas formen modelos mentales más rápido.
+## Consideraciones de costo
 
-**Simulación física interactiva:**
-Algoritmos de layout como ForceAtlas2 crean visualizaciones "naturales" donde los nodos conectados se agrupan y los nodos aislados se separan. Esa organización espacial suele revelar patrones que no se ven en el JSON.
-
-**Dos modos de renderizado:**
-Soportar tanto generación de strings HTML como salida a archivo permite integrar de forma flexible, ya sea incrustándolo en una app web o generando visualizaciones standalone.
-
-### 4. 💻 Capa de interfaz: optimizar el flujo
-
-Un flujo claro reduce fricción:
-
-1. **Configuración**: credenciales de API y selección de modelo
-2. **Entrada**: texto directo o carga de archivo (.txt, .md)
-3. **Opciones del pipeline**: construir el grafo desde el resumen ejecutivo o desde el texto original
-4. **Resultados en cuatro vistas** (Resumen, Visualización, Datos sin procesar, Estadísticas)
-5. **Exportación**: descargar resultados en HTML, JSON o TXT
-
----
-
-## 💰 Consideraciones de costo
-
-Una de las mejores partes de este enfoque es lo accesible que es. Te desgloso la economía:
-
-**Precios de Gemini 2.5 Flash Lite (tier de pago):**
-
-- Input: $0.10 por 1M tokens
-- Output: $0.40 por 1M tokens
-
-**Ejemplo práctico:**
-Extracción de un artículo de 500 palabras:
-
-- ~600 tokens de entrada
-- ~300 tokens de salida
-- Costo de entrada: (600 / 1,000,000) × $0.10 = $0.00006
-- Costo de salida: (300 / 1,000,000) × $0.40 = $0.00012
-- **Costo total: ~$0.00018 por extracción**
-
-Esta estructura de costos hace viable la extracción de grafos de conocimiento para aplicaciones de alto volumen y escenarios de procesamiento en tiempo real.
-
-**Nota:** Gemini 2.5 Flash Lite también incluye un free tier generoso sin costo, tanto para tokens de entrada como de salida, lo que lo hace perfecto para pruebas y uso a pequeña escala.
+Este enfoque es lo bastante accesible como para importar. Gemini 2.5 Flash Lite (tier de pago) cobra $0.10 por 1M de tokens de entrada y $0.40 por 1M de tokens de salida. Extraer un artículo de 500 palabras usa cerca de 600 tokens de entrada y 300 de salida: (600 / 1,000,000) × $0.10 = $0.00006 de entrada, (300 / 1,000,000) × $0.40 = $0.00012 de salida, un total cercano a $0.00018 por extracción. Gemini 2.5 Flash Lite también tiene un free tier generoso, sin costo de entrada ni salida, suficiente para pruebas y uso a pequeña escala.
 
 {{< callout note>}}
-
-Para uso en producción, implementa conteo de tokens antes de llamar la API para estimar costos. Procesar documentos en lote puede optimizar el uso de la API. Considera cachear grafos extraídos para evitar reprocesar contenido sin cambios.
-
+Para producción, cuenta los tokens antes de llamar la API para estimar costos, procesa documentos en lote para optimizar el uso de la API, y cachea los grafos extraídos para evitar reprocesar contenido sin cambios.
 {{< /callout >}}
 
----
+## Aplicaciones en el mundo real
 
-## 🎯 Aplicaciones en el mundo real
+Las notas y transcripciones de reuniones son el caso obvio: en vez de buscar entre horas de notas para recordar quién mencionó una fecha límite, consultas el grafo directamente ("muéstrame todas las fechas límite mencionadas por Sarah en reuniones de Q1"), porque las relaciones ya están extraídas y estructuradas. La misma idea aplica a investigación y aprendizaje, donde un grafo construido mientras lees documentación técnica muestra cómo se conectan las ideas y cuáles conceptos son centrales. A nivel organizacional, puede unificar información dispersa en documentos, wikis y conversaciones en un solo mapa, sin importar dónde vivía cada pieza originalmente.
 
-**Dónde lo puedes usar hoy:**
-
-- 📝 **Notas y transcripciones de reuniones**: en vez de buscar entre horas de notas para recordar "¿Quién mencionó esa fecha límite del proyecto?", puedes consultar el grafo: "Muéstrame todas las fechas límite mencionadas por Sarah en reuniones de Q1". Las relaciones ya están extraídas y estructuradas.
-
-- 📚 **Investigación y aprendizaje**: al ver contenido educativo o leer documentación técnica, los grafos de conocimiento construyen un mapa de conceptos automáticamente. Puedes ver cómo se conectan las ideas, cuáles conceptos son centrales y qué podría faltarte.
-
-- 🏢 **Conocimiento organizacional**: las empresas tienen información dispersa en documentos, wikis y conversaciones. Los grafos de conocimiento lo unifican extrayendo entidades y relaciones sin importar dónde aparezcan, creando un mapa vivo del conocimiento organizacional.
-
-**Lo que puedes construir a partir de aquí:**
-
-- Conectar a bases de datos de documentos para extracción automática
-- Construir interfaces de consulta para explorar tus grafos de forma conversacional
-- Implementar merge de grafos para combinar conocimiento de múltiples fuentes
-- Agregar seguimiento temporal para ver cómo evoluciona el conocimiento
+Desde aquí podrías conectarlo a una base de datos de documentos para extracción automática, construir una interfaz de consulta conversacional sobre los grafos, combinar grafos de varias fuentes, o agregar seguimiento temporal para ver cómo evoluciona el conocimiento.
 
 {{< callout note >}}
-
-Aunque los ejemplos simples se entienden rápido, los grafos de conocimiento brillan de verdad con escala. Un grafo con 100 entidades y 200 relaciones puede revelar patrones imposibles de notar en texto crudo. La estructura facilita desde análisis de tendencias hasta detección de anomalías.
-
+Los ejemplos simples se entienden rápido, pero los grafos de conocimiento brillan más con escala. Un grafo con 100 entidades y 200 relaciones puede revelar patrones casi imposibles de notar en texto crudo, desde análisis de tendencias hasta detección de anomalías.
 {{< /callout >}}
-
----
 
 <span id="explore-the-code"></span>
 
-## 🔗 Explora el código
+## Explora el código
 
-La implementación completa está disponible {{< extlink href="https://github.com/jebucaro/blog-code" >}}en GitHub{{< /extlink >}}. Mantuve el código intencionalmente minimal y bien documentado para que puedas entender cada pieza y adaptarla a tus necesidades.
+La implementación completa está disponible {{< extlink href="https://github.com/jebucaro/blog-code" >}}en GitHub{{< /extlink >}}. Mantuve el código intencionalmente minimal y documentado para que puedas entender cada pieza y adaptarla. Empieza con `models.py` (modelos Pydantic con validación y deduplicación automática), `extractor.py` (la lógica de extracción en dos fases y los prompts), `visualizer.py` (renderizado del grafo con PyVis), `app.py` (la interfaz de Streamlit), `settings.py` (configuración de entorno y selección de modelo), y `errors.py` (una jerarquía de excepciones para mensajes de error amigables).
 
-**Empieza con estos archivos:**
+## Por qué lo construí desde cero
 
-- `models.py` - Modelos de datos Pydantic con validación y deduplicación automática
-- `extractor.py` - Lógica de extracción en dos fases e ingeniería de prompts
-- `visualizer.py` - Renderizado del grafo con PyVis y algoritmos de layout
-- `app.py` - Interfaz Streamlit con manejo de session state
-- `settings.py` - Configuración de entorno y selección de modelo
-- `errors.py` - Jerarquía de excepciones personalizada para mensajes amigables
-
----
-
-## 🎓 Aprendizajes del enfoque de Thu Vu
-
-La implementación de Thu Vu demuestra extracción de grafos de conocimiento usando GPT-4 y `LLMGraphTransformer` de LangChain. El video da un contexto valioso para entender cómo las abstracciones de alto nivel simplifican el proceso:
+La implementación original de Thu Vu usa GPT-4 y `LLMGraphTransformer` de LangChain, y vale la pena verla para entender cómo una abstracción de alto nivel simplifica la extracción:
 
 <p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
-Ver esta implementación en acción muestra tanto el poder de las capas de abstracción como las preguntas que dejan abiertas. Aunque el código es conciso y efectivo, entender lo que pasa debajo se vuelve importante cuando necesitas:
+Esa abstracción es poderosa, pero también esconde las preguntas que necesitas responder cuando estás depurando resultados de extracción inesperados, optimizando prompts para un dominio específico, adaptando el sistema a otro proveedor de LLM, o controlando costos a escala. Trabajar directo con la API de Gemini, en vez de a través de un framework, me mostró el patrón central con más claridad: quita el soporte multi-proveedor y el overhead del framework, y ves exactamente cómo el diseño del prompt impulsa la calidad de las entidades y relaciones extraídas. También significa que puedo afinar cada parte del pipeline directamente, y que el conocimiento de cómo funciona la salida estructurada a nivel de API se transfiere a cualquier otro proveedor de LLM que use después.
 
-- Depurar resultados de extracción inesperados
-- Optimizar prompts para dominios específicos
-- Adaptar el sistema a distintos proveedores de LLM
-- Controlar costos a escala
+El objetivo aquí no es argumentar en contra de los enfoques basados en frameworks, solo entender el mecanismo que hay debajo.
 
-### Por qué lo construí desde cero
+## ¿Qué vas a extraer?
 
-Aunque herramientas como `LLMGraphTransformer` hacen este proceso accesible, yo quería entender los mecanismos de fondo. Trabajar directo con las APIs da una visión más profunda de cómo funciona la extracción estructurada.
-
-**Revela los patrones centrales:**
-Cuando quitas soporte multi-proveedor y el overhead del framework, la lógica fundamental se vuelve clara. Ves exactamente cómo la ingeniería de prompts impulsa la calidad de entidades y relaciones extraídas.
-
-**Habilita control preciso:**
-Acceso directo a la API te permite afinar cada aspecto del proceso. Puedes iterar en el diseño del prompt, ajustar reglas de validación y optimizar para tu dominio sin navegar capas de abstracción.
-
-**Construye conocimiento transferible:**
-Entender salida estructurada a nivel de API te prepara para trabajar con cualquier proveedor. Los principios se mantienen, aunque las herramientas y frameworks evolucionen.
-
-Este artículo explora construir un sistema similar desde cero, enfocándose en las capacidades de salida estructurada de Gemini. El objetivo no es reemplazar enfoques basados en frameworks, sino entender los mecanismos fundamentales que hacen que la extracción de grafos de conocimiento funcione.
-
----
-
-## 💬 ¿Qué vas a extraer?
-
-Los grafos de conocimiento transforman cómo interactúas con la información. Ya sea que estés gestionando investigación, organizando notas de reuniones o construyendo aplicaciones con IA, la extracción de conocimiento estructurado abre nuevas posibilidades.
-
-Me da curiosidad: ¿cuál es el primer texto que vas a convertir en un grafo de conocimiento? Comparte tu caso de uso o tus preguntas en LinkedIn. Me encantaría ver lo que construyes con esto.
+Los grafos de conocimiento cambian cómo interactúas con la información, ya sea que estés gestionando investigación, organizando notas de reuniones o construyendo aplicaciones de IA sobre datos estructurados. ¿Cuál es el primer texto que vas a convertir en un grafo de conocimiento? Comparte tu caso de uso o tus preguntas en LinkedIn, me encantaría ver lo que construyes con esto.
