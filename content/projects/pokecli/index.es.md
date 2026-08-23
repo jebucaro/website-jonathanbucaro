@@ -129,8 +129,6 @@ src/pokecli/
 
 ## Funcionalidades clave
 
-Estas funcionalidades muestran el conjunto de capacidades de `pokecli` y el tipo de experiencia de línea de comandos que busco construir: pequeña, tipada, scriptable y clara de entender a primera vista.
-
 ### Consultas de recursos con salida tipada
 
 Cada recurso principal sigue el mismo contrato corto: `get <name_or_id>` para consultar detalle, `list` para paginar y opciones compartidas como `--no-cache` y `--format`. La superficie pública del CLI ahora se organiza alrededor de familias de primer nivel como `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature` y `berry`. Los recursos de referencia anidados viven dentro de esas familias, por ejemplo `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get` y `game region get`. Los comandos especializados de Pokémon agregan `moves`, `species`, `evolution`, `encounters` y `forms`, más atajos de tarea como `can-learn`, `where` y `evo`. El repositorio también conserva alias más cortos para humanos, `pokecli pokemon pikachu` resuelve a `pokecli pokemon get pikachu`, para uso manual en la terminal.
@@ -153,8 +151,6 @@ La primera llamada va a la red; a partir de ahí, cada consulta se sirve desde `
 {{< /gallery >}}
 
 ## Desafíos técnicos
-
-Esta sección muestra las decisiones y compensaciones de ingeniería detrás de `pokecli`. Cada tarjeta destaca un problema que tuve que resolver, la decisión de diseño que tomé y lo que esa decisión dice sobre cómo construyo herramientas de línea de comandos.
 
 ### 1. Hacer que cada recurso sea una aplicación autocontenida de Typer
 
@@ -362,8 +358,6 @@ Ahora `pokecli pokemon pikachu` y `pokecli pokemon get pikachu` ejecutan la mism
     </tr>
   </table>
 </div>
-
-En conjunto, estas decisiones muestran por qué `pokecli` funciona bien como proyecto de referencia: el empaquetado es claro, los límites entre capas están bien definidos, los fallos están pensados y la herramienta sigue siendo lo bastante pequeña como para entenderse rápido sin perder rigor.
 
 ## Resultados
 

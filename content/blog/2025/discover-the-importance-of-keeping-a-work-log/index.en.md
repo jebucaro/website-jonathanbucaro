@@ -19,11 +19,11 @@ From my own experience, keeping a log has helped me in some key moments of my ca
 3. While working on a contract for a time and materials project. The client asked for a detailed breakdown of daily activities in the timesheet, and my log helped me deliver a quick and accurate report.
 
 > "The secret of success is to be ready when your opportunity comes."  
-> – Benjamin Disraeli
+> Benjamin Disraeli
 
 Having clear answers and concrete evidence of your achievements not only improves your preparation but also shows confidence and professionalism in any work environment.
 
-## 🤔 What is a work log?
+## What is a work log?
 
 A work log is a structured record of your activities. You can include details such as:
 
@@ -34,7 +34,7 @@ A work log is a structured record of your activities. You can include details su
 
 While it may sound a bit like the `stand-up meeting` questions, the purpose of a personal work log is to help you track your progress, spot patterns in your habits, and plan more effectively.
 
-## ❓ Why bother keeping a work log?
+## Why bother keeping a work log?
 
 Even if it feels tedious at first, the truth is this practice will save you time, lower your stress, and may even get you out of a tight spot more than once. Here are some key reasons to embrace it:
 
@@ -54,7 +54,7 @@ Sometimes, even when you know what you need to do, that “where do I start?” 
 
 Few things are as satisfying as crossing off completed tasks. At the end of your workday, your log lets you see what you’ve accomplished (you earned it!) and shows you what’s still left. That way, there’s no uncertainty and you can shuffle your remaining tasks to the next day, no stress required.
 
-## 💡 Benefits beyond work
+## Benefits beyond work
 
 Even though it’s mainly a work tool, keeping a log can help you in other areas of life too. It gives you perspective, encourages self-improvement, and can remind you of past learnings so you can save time in the future.
 
@@ -64,21 +64,21 @@ Even though it’s mainly a work tool, keeping a log can help you in other areas
 
 That advice fits perfectly here: relying on your own notes frees up your mental space and streamlines your workflow.
 
-## 🛠️ How to get started
+## How to get started
 
-Don’t make it complicated. Choose a simple tool that works for you—anything from a paper notebook to digital apps like `Notion` or `Obsidian`. The key is that it should be quick to update and easy to review. Ideally, you’ll want to log:
+Don’t make it complicated. Choose a simple tool that works for you, anything from a paper notebook to digital apps like `Notion` or `Obsidian`. The key is that it should be quick to update and easy to review. Ideally, you’ll want to log:
 
 1. **Start of the day:** Your key goals and tasks.
 2. **During the day:** Progress, challenges, and unexpected changes (those last-minute requests).
 3. **End of the day:** A brief summary of what you accomplished and what’s left for tomorrow.
 
-## ✍️ Using an `Obsidian` Template for Your Work Log
+## Using an `Obsidian` template for your work log
 
-`Obsidian`, according to its official site, is a private and flexible writing app that adapts to your way of thinking. It’s an excellent app—I use it every day! You can download and use `Obsidian` for free, forever, for any purpose, including personal, commercial, nonprofit, educational, and even governmental use.
+`Obsidian`, according to its official site, is a private and flexible writing app that adapts to your way of thinking. It’s an excellent app, I use it every day! You can download and use `Obsidian` for free, forever, for any purpose, including personal, commercial, nonprofit, educational, and even governmental use.
 
 This simplified template is based on the work of **Dann Berg** in his post {{< extlink href="https://dannb.org/blog/2022/obsidian-daily-note-template/" >}}My Obsidian Daily Note Template{{< /extlink >}}. Below I’ll share my own adaptation, tailored for work logs.
 
-### ⚙️ Setting Up the Template
+### Setting up the template
 
 You’ll need `Obsidian` installed and a vault to use for your work log.
 
@@ -113,7 +113,7 @@ Click on the `Browse` button and in the popup window, search for the plugin name
 {{< gallery-image src="images/obsidian-community-plugins-calendar-enabled.webp" alt="'Calendar' plugin in Obsidian already installed and enabled." >}}
 {{< /gallery >}}
 
-#### Setting Up the Template
+#### Create the template file
 
 Create a new folder called `templates` at the root of the workspace. Inside the `templates` directory, create a new note called `daily-notes-template` and copy-paste the following snippet into the note in source mode. (Tip: Use `Ctrl+Shift+v` to paste as plain text.)
 
@@ -156,7 +156,7 @@ Go to settings and, under **Core plugins**, find the **Daily Notes** plugin sett
 {{< gallery-image src="images/obsidian-create-daily-note-configuration.webp" alt="Daily Notes plugin settings in Obsidian, showing settings for file date format, location, and the option to create the daily note on launch." >}}
 {{< /gallery >}}
 
-### 🎬 Using the template
+### Using the template
 
 Your template is now ready to go, treat it as a starting point! There’s a lot you can do with Obsidian and community plugins, but for getting started with your work log, this setup is more than enough.
 
@@ -167,7 +167,7 @@ On the left sidebar, you'll see quick access buttons, including one for `Open to
 {{< gallery-image src="images/obsidian-todays-daily-note.webp" alt="A daily note created in Obsidian using the configured template." >}}
 {{< /gallery >}}
 
-In the top right, you’ll find the **Expand** button. Click it to show different tabs, one of which is **Calendar**. The calendar view lets you jump between different daily notes. If you double-click a date that doesn’t have a daily note yet, the app will prompt you to create one for that day. You can toggle this view on or off—when expanded, the button becomes **Collapse**.
+In the top right, you’ll find the **Expand** button. Click it to show different tabs, one of which is **Calendar**. The calendar view lets you jump between different daily notes. If you double-click a date that doesn’t have a daily note yet, the app will prompt you to create one for that day. You can toggle this view on or off, when expanded, the button becomes **Collapse**.
 
 {{< gallery caption="Obsidian - Calendar View" >}}
 {{< gallery-image src="images/obsidian-expand.webp" alt="Obsidian app, showing where to click to expand views, like the calendar view." >}}
@@ -176,9 +176,9 @@ In the top right, you’ll find the **Expand** button. Click it to show differen
 
 My usual process is to switch into editing mode when I need to review something from this overview.
 
-Obsidian's search is usually more than enough, but I recommend checking out the `Graph view` once you’ve built up some notes. 😉
+Obsidian's search is usually more than enough, but I recommend checking out the `Graph view` once you’ve built up some notes.
 
-## 👌 In summary
+## In summary
 
 Keeping a work log is more than just a to-do list; it’s a tool for professional growth. It helps you organize, manage your time, reduce stress, and stand out on your team. It also makes things much easier during meetings, reviews, or project wrap-ups. Over time, you’ll spot trends in your performance and gain confidence in your progress.
 

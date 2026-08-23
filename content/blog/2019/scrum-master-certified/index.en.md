@@ -14,21 +14,21 @@ My decision to pursue this certification was driven by a desire to deepen my und
 
 > The possibility of realizing a dream is what makes life interesting.
 >
-> <cite>– Paulo Coelho</cite>
+> <cite>Paulo Coelho</cite>
 
-## Sobre esta certificación – El enfoque de SCRUMstudy
+## About this certification: SCRUMstudy's approach
 
 Unlike other Scrum certifications that align closely with the **Scrum Guide** by Scrum.org or organizations like Scrum Alliance and Scrum Inc., the SCRUMstudy certification is based on the **Scrum Body of Knowledge (SBOK™ Guide)**. This framework is more prescriptive and detailed in terms of roles, processes, and management practices tailored to project environments.
 
 This approach provides a comprehensive understanding of Scrum principles as applied in a broad range of industries and projects, complementing the flexibility in the Scrum Guide with practical frameworks for implementation, governance, and scaling. It’s especially useful for professionals looking for structured Agile methodologies that align with organizational standards.
 
-## Reflections on the Journey
+## Reflections on the journey
 
-Earning the Scrum Master Certified credential represents the effort I put into learning Agile principles through a clear and structured approach. It has given me the knowledge to support teams, encourage continuous improvement, manage projects with focus, and help deliver value.
+Earning the Scrum Master Certified credential is the result of learning Agile principles through a clear, structured approach. It gave me the knowledge to support teams, push for continuous improvement, and help them deliver value with more focus.
 
-The SCRUMstudy framework emphasizes clear processes and well-defined roles, and it shows how to apply Scrum concepts in real work situations. These elements are important when using Agile at a larger scale.
+The SCRUMstudy framework emphasizes clear processes and well-defined roles, and shows how to apply Scrum concepts in real work situations, which matters once you're using Agile at a larger scale.
 
-As I continue this journey, I look forward to applying these learnings to foster collaboration, increase agility, and promote excellence within my teams and projects.
+I'm looking forward to applying what I learned here to how my teams work.
 
 {{< gallery caption="Scrum Master Certified" >}}
 {{< gallery-image src="images/badge-SMC.webp" alt="SCRUMstudy Badge for Scrum Master Certified" >}}

@@ -8,7 +8,7 @@ description: 'My second Scrum certification. I have been accredited as Scrum Pro
 slug: 'scrum-product-owner-certified'
 ---
 
-I'm really happy to kick off 2021 with the Scrum Product Owner Certified accreditation endorsed by Scrumstudy. Still January, right? 😉
+I'm really happy to kick off 2021 with the Scrum Product Owner Certified accreditation endorsed by Scrumstudy. Still January, right?
 
 {{< gallery caption="SPOC - SCRUMstudy" >}}
 {{< gallery-image src="images/badge-SPOC.webp" alt="SCRUMstudy badge for the Scrum Product Owner Certified certification" >}}
@@ -16,7 +16,7 @@ I'm really happy to kick off 2021 with the Scrum Product Owner Certified accredi
 
 {{< extlink href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" >}}Verify SPoC Credential at SCRUMstudy{{< /extlink >}}
 
-## 🤔 Why Product Owner?
+## Why Product Owner?
 
 Before formally starting my career in technology, I worked as a cashier for about two years. Knowing the business well was a key factor that got me picked for priority and high-profile projects for the financial group.
 

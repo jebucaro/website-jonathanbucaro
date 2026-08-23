@@ -8,50 +8,27 @@ tags: [windows, wsl]
 image: 'images/cover.png'
 ---
 
-## 🎯 TL;DR
+## Por qué importa
 
-Mover tu desarrollo a Dev Containers ofrece muchísima flexibilidad y aislamiento, pero rompe la configuración estándar basada en el montaje de WSL para 1Password si te encuentras trabajando con Dev Containers creados desde WSL. Esta guía te muestra cómo tender un puente del agente SSH de 1Password desde Windows hacia tus contenedores usando un socket, para que la firma biométrica de Git funcione en todas partes, sin exponer tus llaves privadas.
+Mover tu desarrollo a Dev Containers te da flexibilidad y aislamiento, pero rompe la configuración estándar basada en el montaje de WSL para 1Password si tus Dev Containers se crean desde WSL. Esta guía tiende un puente del agente SSH de 1Password desde Windows hacia tus contenedores usando un socket, para que la firma biométrica de Git funcione en todas partes sin exponer tus llaves privadas.
 
-Elige tu camino:
+El desarrollo moderno en Windows llegó a un punto ideal: el rendimiento nativo de Linux de WSL2 combinado con el aislamiento limpio y reproducible de Dev Containers. Pero esa arquitectura por capas muchas veces deja las credenciales de seguridad varadas, y tender un puente de 1Password hacia el stack te deja usar el hardware biométrico de tu máquina Windows (Windows Hello) para autenticarte dentro de entornos Linux aislados, sin dispersar llaves privadas en varios sistemas de archivos virtuales.
 
-- 🚀 [Inicio rápido](#quick-start) (10 min) - Ve directo a la implementación del puente
-- 👀 [Ver resultados](#results) (2 min) - Así se ve "Verified" en la terminal
-- 🧠 [Cómo funciona](#how-it-works) (10 min) - Entender el **puente de sockets con npiperelay**
+## El problema
 
-## ✨ Por qué importa (30 segundos)
+Si trabajas estrictamente en WSL2, es tentador apuntar tu `.gitconfig` al binario de 1Password en Windows vía el montaje `/mnt/c/`. Eso funciona en apariencia, pero es frágil y se rompe en cuanto te mueves hacia un flujo de trabajo basado en contenedores:
 
-El desarrollo moderno en Windows ha llegado a un "punto ideal": tenemos el rendimiento nativo de Linux de **WSL2** combinado con el aislamiento limpio y reproducible de **Dev Containers**. Sin embargo, esta arquitectura por capas muchas veces deja nuestras credenciales de seguridad varadas.
-
-Al tender un puente de 1Password hacia este stack, aprovechas el hardware biométrico de tu máquina Windows (Windows Hello) para autenticarte dentro de entornos Linux aislados. Obtienes la flexibilidad de un flujo de trabajo en contenedores sin el riesgo de dispersar llaves privadas en varios sistemas de archivos virtuales.
-
-> "La mejor seguridad es la que es tan fácil que realmente la usas."
-
-## 💡 El problema (en 60 segundos)
-
-Si estás trabajando estrictamente en WSL2, puede tentarte simplemente apuntar tu `.gitconfig` al binario de 1Password en Windows vía el montaje `/mnt/c/`. Aunque esto "funciona" en apariencia, crea una configuración frágil que se rompe en cuanto te mueves hacia un flujo de trabajo más moderno y basado en contenedores.
-
-**El reto:**
-
-- 📝 **La trampa del "mount"**: Referenciar `op-ssh-sign.exe` directamente en tu `.gitconfig` de WSL funciona localmente, pero esa ruta no existe dentro de un Dev Container.
-- 🔍 **Silos de Dev Container**: Los contenedores están aislados por diseño; no tienen acceso a los montajes del sistema de archivos de tu host Windows ni a sus Named Pipes.
-- 🏢 **Inconsistencia de rutas**: Distintos entornos de desarrollo tienen distintos puntos de montaje, lo cual vuelve las rutas hardcodeadas una pesadilla de mantenimiento
+- Referenciar `op-ssh-sign.exe` directamente en tu `.gitconfig` de WSL funciona localmente, pero esa ruta no existe dentro de un Dev Container.
+- Los contenedores están aislados por diseño, no tienen acceso a los montajes del sistema de archivos de tu host Windows ni a sus named pipes.
+- Distintos entornos de desarrollo tienen distintos puntos de montaje, lo que vuelve las rutas hardcodeadas una pesadilla de mantenimiento.
 
 {{< callout warning >}} Administrar llaves SSH separadas para tu host y tus contenedores aumenta tu superficie de ataque y vuelve la rotación de llaves una pesadilla. {{< /callout >}}
 
-## ✅ La solución
+## La solución
 
-Usando `socat` y `npiperelay`, creamos un "agujero de gusano" (un socket Unix) entre tu entorno Linux y el agente de 1Password en Windows.
+Usando `socat` y `npiperelay`, creas un socket Unix que conecta tu entorno Linux con el agente de 1Password en Windows. Eso te da firma biométrica para commits y push a GitHub, GitLab o Azure DevOps con Windows Hello, sin llaves privadas guardadas en `~/.ssh/` en Linux, con aislamiento por bóveda (1Password solo comparte las llaves que tú decidas exponer al agente), y una sola configuración de Git que funciona igual en Windows, WSL y dentro de cualquier Dev Container.
 
-**Lo que obtienes:**
-
-- ✅ **Autenticación biométrica**: Firma commits y haz push a GitHub, GitLab o Azure DevOps usando Windows Hello.
-- ✅ **Bóveda centralizada**: No hay llaves privadas guardadas en `~/.ssh/` en Linux.
-- ✅ **Aislamiento por bóveda**: Configura 1Password para que el agente solo comparta llaves específicas (por ejemplo, tu bóveda de Trabajo).
-- ✅ **Configuración universal**: La misma configuración de Git funciona en Windows, WSL y dentro de cualquier Dev Container.
-
-## 🏗️ Arquitectura del sistema
-
-Para entender cómo funciona el puente, ayuda visualizar el apilamiento físico de las herramientas.
+Para ver cómo encajan las piezas:
 
 {{< figure-dynamic
     light-src="images/1password-ssh-agent-architecture-light.svg"
@@ -59,22 +36,20 @@ Para entender cómo funciona el puente, ayuda visualizar el apilamiento físico 
     alt="1Password SSH agent system architecture"
     title="System Architecture" >}}
 
-<span id="quick-start"></span>
-
-## 🚀 Inicio rápido
+## Inicio rápido
 
 ### Prerrequisitos
 
 - Git for Windows instalado y ya configuraste tu {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" >}}nombre de usuario y correo global{{< /extlink >}}
 - 1Password 8+ para Windows (con Windows Hello configurado).
-- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con el comando `wsl --install`, tendrás systemd habilitado por defecto; de lo contrario, puedes seguir estas instrucciones en la {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}documentación oficial{{< /extlink >}}.
-- `npiperelay.exe` descargado y agregado a tu Windows `%PATH%`. Puedes encontrar instrucciones en el repo oficial de {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} o descargar el {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} y descomprimirlo. Solo asegúrate de que quede dentro de tu Windows `%PATH%`. En este tutorial crearemos una carpeta `bin` dentro de nuestro home de Windows y extraeremos el archivo `npiperelay.exe` del zip del release en la carpeta `bin`.
+- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con `wsl --install`, tendrás systemd habilitado por defecto; de lo contrario sigue la {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}documentación oficial{{< /extlink >}}.
+- `npiperelay.exe` descargado y agregado a tu Windows `%PATH%`. Sigue las instrucciones del repo oficial de {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} o descarga el {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} y descomprímelo en algún lugar de tu `%PATH%`. Este tutorial crea una carpeta `bin` dentro del home de Windows y extrae `npiperelay.exe` ahí.
 
-### Paso 1: Configura el host de Windows
+### Paso 1: configura el host de Windows
 
-En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**. Sigue la {{< extlink href="https://developer.1password.com/docs/ssh/get-started/" >}}guía de 1Password{{< /extlink >}}.
+En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**, siguiendo la {{< extlink href="https://developer.1password.com/docs/ssh/get-started/" >}}guía de 1Password{{< /extlink >}}.
 
-**Tip de seguridad**: En la configuración del agente, puedes restringir el acceso a bóvedas específicas para asegurar que las llaves personales no queden expuestas a tu entorno de desarrollo. Puedes seguir la {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app" >}}configuración del archivo del agente{{< /extlink >}}.
+**Tip de seguridad**: en la configuración del agente puedes restringir el acceso a bóvedas específicas para que las llaves personales no queden expuestas a tu entorno de desarrollo. Revisa la {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app" >}}configuración del archivo del agente{{< /extlink >}}.
 
 Abre Windows PowerShell y verifica que el agente esté funcionando:
 
@@ -82,25 +57,23 @@ Abre Windows PowerShell y verifica que el agente esté funcionando:
 ssh-add -l
 ```
 
-_Si ves tus llaves, la capa del host está lista._
+Si ves tus llaves, la capa del host está lista.
 
-### Paso 2: Crea el puente en WSL
+### Paso 2: crea el puente en WSL
 
-Ahora configuraremos el puente dentro de WSL. Sigue estos pasos en orden:
-
-**Instala dependencias** Asegúrate de que tu entorno WSL tenga `socat` instalado para manejar el reenvío del socket.
+Instala `socat` en WSL para manejar el reenvío del socket:
 
 ```bash
 sudo apt update && sudo apt install socat -y
 ```
 
-**Prepara el directorio de systemd** Crea el directorio local del usuario para servicios systemd si aún no existe.
+Crea el directorio local del usuario para servicios systemd si aún no existe:
 
 ```bash
 mkdir -p ~/.config/systemd/user/
 ```
 
-**Crea el servicio del puente** Crea el archivo del servicio. Este servicio iniciará el puente automáticamente cada vez que inicies sesión en WSL. Reemplaza `[username]` con tu usuario real de Windows.
+Crea el archivo del servicio que inicia el puente cada vez que inicias sesión en WSL. Reemplaza `[username]` con tu usuario real de Windows:
 
 ```text
 cat <<EOT > ~/.config/systemd/user/1password-ssh-agent.service
@@ -118,29 +91,27 @@ WantedBy=default.target
 EOT
 ```
 
-**Habilita e inicia el servicio** Recarga el administrador de systemd, luego habilita e inicia el puente de inmediato.
+Recarga el administrador de systemd, luego habilita e inicia el puente:
 
 ```bash
 systemctl --user daemon-reload
 systemctl --user enable --now 1password-ssh-agent.service
 ```
 
-**Verifica el socket** Confirma que el servicio del puente haya creado exitosamente el socket Unix.
+Confirma que el puente creó el socket Unix:
 
 ```bash
 ls -la /tmp/1password-agent.sock
 ```
 
-**Exporta la variable de entorno** Para que `ssh-add` y Git encuentren el puente, debes configurar la variable de entorno `SSH_AUTH_SOCK` en el perfil de tu shell (`~/.bashrc` o `~/.zshrc`).
-
-Puedes agregar la variable automáticamente usando el comando de abajo:
+Para que `ssh-add` y Git encuentren el puente, configura la variable de entorno `SSH_AUTH_SOCK` en el perfil de tu shell (`~/.bashrc` o `~/.zshrc`). Puedes agregarla automáticamente:
 
 ```bash
 # This appends the export line safely to the end of your profile
 echo 'export SSH_AUTH_SOCK=/tmp/1password-agent.sock' >> ~/.bashrc
 ```
 
-Alternativamente, agrega manualmente esta línea al final de tu archivo de perfil:
+O agrega esta línea manualmente al final de tu archivo de perfil:
 
 ```bash
 export SSH_AUTH_SOCK=/tmp/1password-agent.sock
@@ -149,18 +120,18 @@ export SSH_AUTH_SOCK=/tmp/1password-agent.sock
 Por último, recarga tu perfil:
 
 ```bash
-# For Bashbash
+# For Bash
 source ~/.bashrc
 
 # For Zsh
 source ~/.zshrc
 ```
 
-### Paso 3: Configura la firma y verificación de Git
+### Paso 3: configura la firma y verificación de Git
 
-Para que Git firme y verifique firmas localmente (no solo en GitHub), necesitas configurar un archivo de firmantes permitidos ("Allowed Signers") y asegurarte de que tu llave de firma coincida con lo que 1Password entrega.
+Para que Git firme y verifique firmas localmente, no solo en GitHub, necesitas un archivo de firmantes permitidos ("Allowed Signers") y una llave de firma que coincida con lo que 1Password entrega.
 
-**3.1 Haz coincidir tu llave de firma** Ejecuta `ssh-add -L` en WSL y copia la cadena completa de la llave pública (por ejemplo, `ssh-ed25519 AAA...`). Esta cadena **debe** coincidir con tu configuración de Git para que la firma funcione.
+Ejecuta `ssh-add -L` en WSL y copia la cadena completa de la llave pública (por ejemplo, `ssh-ed25519 AAA...`). Debe coincidir con tu configuración de Git para que la firma funcione:
 
 ```bash
 git config --global gpg.format ssh
@@ -168,7 +139,7 @@ git config --global user.signingkey "YOUR_SSH_ED25519_PUBLIC_KEY_STRING"
 git config --global commit.gpgsign true
 ```
 
-**3.2 Crea el archivo Allowed Signers** Esto le permite a Git verificar tus propias firmas localmente. Reemplaza el correo y la llave por los tuyos.
+Crea el archivo Allowed Signers para que Git pueda verificar tus propias firmas localmente. Reemplaza el correo y la llave por los tuyos:
 
 ```bash
 # Add yourself to the allowed signers
@@ -176,8 +147,7 @@ echo "$(git config --global user.email) YOUR_SSH_ED25519_PUBLIC_KEY_STRING" > ~/
 git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
-**3.3 Configura el reenvío del agente**
-Crea el archivo `$HOME/.ssh/config` con la siguiente configuración:
+Por último, crea `$HOME/.ssh/config` con el reenvío del agente configurado:
 
 ```text
 Host *
@@ -185,11 +155,7 @@ Host *
   IdentityAgent /tmp/1password-agent.sock
 ```
 
-<span id="how-it-works"></span>
-
-## 🧠 Cómo funciona (en profundidad)
-
-### Flujo de autenticación
+## Cómo funciona
 
 {{< figure-dynamic
     light-src="images/1password-ssh-authentication-flow-light.svg"
@@ -197,11 +163,7 @@ Host *
     alt="1Password SSH agent authentication flow"
     title="Authentication Flow" >}}
 
-<span id="results"></span>
-
-## 📊 Resultados y solución de problemas
-
-### Verificar resultados
+## Verificar resultados
 
 Para comprobar si tu configuración está firmando y verificando correctamente, crea un commit y luego ejecuta:
 
@@ -222,6 +184,6 @@ Deberías ver: `Good "git" signature for [email] with ED25519 key ...`
 
 ---
 
-Foto por {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd 📷 Dittrich{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+Foto por {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd Dittrich{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
-Ispirado por {{< extlink href="https://xebia.com/blog/elevate-your-git-security-signing-github-commits-with-1password-in-windows-wsl-and-containers/" >}}el artículo de Marius Boden «Git Security: Signing GitHub Commits with 1Password in Windows WSL and Containers»{{< /extlink >}} en {{< extlink href="https://xebia.com/blog/" >}}Xebia{{< /extlink >}}
+Inspirado por {{< extlink href="https://xebia.com/blog/elevate-your-git-security-signing-github-commits-with-1password-in-windows-wsl-and-containers/" >}}el artículo de Marius Boden «Git Security: Signing GitHub Commits with 1Password in Windows WSL and Containers»{{< /extlink >}} en {{< extlink href="https://xebia.com/blog/" >}}Xebia{{< /extlink >}}
