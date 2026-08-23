@@ -14,13 +14,13 @@ Windows Subsystem for Linux (WSL) es una funcionalidad introducida en Windows 10
 {{< gallery-image src="images/wsl2-ubuntu-lts.webp" alt="Ejecutando Ubuntu dentro de Windows 11" >}}
 {{< /gallery >}}
 
-## 📌 Requisitos
+## Requisitos
 
 Se requiere un sistema operativo actualizado, como mínimo Windows 10 con la actualización de mayo de 2020 (versión 2004 o posterior), o Windows 11. Puedes verificarlo eligiendo `Settings` desde el ícono de engranaje en el menú de Inicio, luego seleccionando `System` y por último `About`. Cerca de la parte inferior encontrarás el panel `Windows specifications`.
 
 Además, WSL2 requiere soporte de virtualización por hardware habilitado en el BIOS. Esta opción normalmente aparece como `Virtualization Technology` o `VTx`.
 
-## 🛠️ Configuración e instalación
+## Configuración e instalación
 
 ### Instala WSL
 
