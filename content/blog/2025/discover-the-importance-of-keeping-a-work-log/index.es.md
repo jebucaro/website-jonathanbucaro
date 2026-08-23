@@ -19,11 +19,11 @@ Por experiencia propia, llevar un registro me ha ayudado en algunos momentos cla
 3. Mientras trabajaba en un contrato para un proyecto de tiempo y materiales. El cliente pidió un desglose detallado de las actividades diarias en la hoja de tiempo, y mi registro me ayudó a entregar un reporte rápido y preciso.
 
 > "El secreto del éxito es estar listo cuando llegue tu oportunidad."  
-> – Benjamin Disraeli
+> Benjamin Disraeli
 
 Tener respuestas claras y evidencia concreta de tus logros no solo mejora tu preparación, también demuestra confianza y profesionalismo en cualquier entorno laboral.
 
-## 🤔 ¿Qué es un registro de trabajo?
+## ¿Qué es un registro de trabajo?
 
 Un registro de trabajo es un registro estructurado de tus actividades. Puedes incluir detalles como:
 
@@ -34,7 +34,7 @@ Un registro de trabajo es un registro estructurado de tus actividades. Puedes in
 
 Aunque suena un poco como las preguntas de una reunión de `stand-up meeting`, el objetivo de un registro personal es ayudarte a seguir tu progreso, identificar patrones en tus hábitos y planificar con más efectividad.
 
-## ❓ ¿Por qué vale la pena llevar un registro de trabajo?
+## ¿Por qué vale la pena llevar un registro de trabajo?
 
 Aunque al inicio se sienta tedioso, la verdad es que esta práctica te ahorra tiempo, reduce tu estrés y hasta puede sacarte de apuros más de una vez. Aquí hay algunas razones clave para adoptarla:
 
@@ -54,7 +54,7 @@ A veces, aunque sepas lo que tienes que hacer, la pregunta de "¿por dónde empi
 
 Pocas cosas se sienten tan bien como tachar tareas completadas. Al final de tu jornada, tu registro te deja ver lo que lograste (¡te lo ganaste!) y lo que todavía falta. Así no queda incertidumbre y puedes pasar lo pendiente para el día siguiente sin estrés.
 
-## 💡 Beneficios más allá del trabajo
+## Beneficios más allá del trabajo
 
 Aunque principalmente es una herramienta de trabajo, llevar un registro también puede ayudarte en otras áreas de tu vida. Te da perspectiva, fomenta la mejora continua y puede recordarte aprendizajes pasados para que ahorres tiempo en el futuro.
 
@@ -64,7 +64,7 @@ Aunque principalmente es una herramienta de trabajo, llevar un registro también
 
 Ese consejo encaja perfecto aquí: apoyarte en tus propias notas libera espacio mental y hace tu flujo de trabajo más ágil.
 
-## 🛠️ ¿Cómo empezar?
+## ¿Cómo empezar?
 
 No lo compliques. Elige una herramienta simple que te funcione, por ejemplo: una libreta de papel o apps digitales como `Notion` u `Obsidian`. La clave es que sea rápida de actualizar y fácil de revisar. Idealmente, vas a querer registrar:
 
@@ -72,13 +72,13 @@ No lo compliques. Elige una herramienta simple que te funcione, por ejemplo: una
 2. **Durante el día:** Avances, retos y cambios inesperados (esas solicitudes de último minuto).
 3. **Final del día:** Un resumen breve de lo que lograste y lo que queda para mañana.
 
-## ✍️ Usando una plantilla de `Obsidian` para tu registro de trabajo
+## Usando una plantilla de `Obsidian` para tu registro de trabajo
 
 `Obsidian`, según su sitio oficial, es una app de escritura privada y flexible que se adapta a tu forma de pensar. Es una app excelente, ¡yo la uso todos los días! Puedes descargar y usar `Obsidian` gratis, para siempre, para cualquier propósito, incluyendo uso personal, comercial, sin fines de lucro, educativo e incluso gubernamental.
 
 Esta plantilla simplificada está basada en el trabajo de **Dann Berg** en su post {{< extlink href="https://dannb.org/blog/2022/obsidian-daily-note-template/" >}}My Obsidian Daily Note Template{{< /extlink >}}. Abajo comparto mi propia adaptación, pensada específicamente para registros de trabajo.
 
-### ⚙️ Configurando la plantilla
+### Configurando la plantilla
 
 Vas a necesitar tener `Obsidian` instalado y un vault para usarlo como tu registro de trabajo.
 
@@ -113,7 +113,7 @@ Haz clic en el botón `Browse` y, en la ventana emergente, busca el nombre del p
 {{< gallery-image src="images/obsidian-community-plugins-calendar-enabled.webp" alt="Plugin 'Calendar' en Obsidian ya instalado y habilitado." >}}
 {{< /gallery >}}
 
-#### Configurando la plantilla
+#### Crea el archivo de plantilla
 
 Crea una carpeta nueva llamada `templates` en la raíz del vault. Dentro de la carpeta `templates`, crea una nota nueva llamada `daily-notes-template` y copia y pega el siguiente snippet en la nota en modo source. (Tip: Usa `Ctrl+Shift+v` para pegar como texto plano.)
 
@@ -156,7 +156,7 @@ Ve a Settings y, dentro de **Core plugins**, busca la configuración del plugin 
 {{< gallery-image src="images/obsidian-create-daily-note-configuration.webp" alt="Configuración del plugin Daily Notes en Obsidian, mostrando ajustes para el formato de fecha, la ubicación del archivo y la opción de crear la nota diaria al iniciar." >}}
 {{< /gallery >}}
 
-### 🎬 Usando la plantilla
+### Usando la plantilla
 
 Tu plantilla ya está lista, úsala como punto de partida. ¡Hay mucho que puedes hacer con Obsidian y los plugins de la comunidad, pero para comenzar con tu registro de trabajo, esta configuración es más que suficiente!
 
@@ -176,9 +176,9 @@ En la parte superior derecha encontrarás el botón **Expand**. Haz clic para mo
 
 Mi proceso usual es cambiar a modo de edición cuando necesito revisar algo desde este vistazo general.
 
-La búsqueda de Obsidian normalmente es más que suficiente, pero te recomiendo que pruebes el `Graph view` una vez ya tengas bastantes notas. 😉
+La búsqueda de Obsidian normalmente es más que suficiente, pero te recomiendo que pruebes el `Graph view` una vez ya tengas bastantes notas.
 
-## 👌 En resumen
+## En resumen
 
 Llevar un registro de trabajo es más que una lista de pendientes; es una herramienta de crecimiento profesional. Te ayuda a organizarte, gestionar tu tiempo, reducir el estrés y destacar en tu equipo. También hace todo mucho más fácil durante reuniones, evaluaciones o cierres de proyecto. Con el tiempo, vas a detectar tendencias en tu desempeño y vas a ganar confianza en tu avance.
 
