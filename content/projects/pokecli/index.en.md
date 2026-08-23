@@ -129,8 +129,6 @@ src/pokecli/
 
 ## Key Features
 
-These features show the feature set of `pokecli` and the kind of command-line experience I aim to build: small, typed, scriptable, and clear at a glance.
-
 ### Resource queries with typed output
 
 Every main resource follows the same short contract: `get <name_or_id>` for detail, `list` for pagination, and shared flags like `--no-cache` and `--format`. The public command surface is now grouped around top-level families such as `pokemon`, `ability`, `move`, `item`, `type`, `location`, `game`, `image`, `cache`, `nature`, and `berry`. Nested reference resources live under those families, for example `pokemon form get`, `pokemon egg-group get`, `move damage-class get`, `location area get`, and `game region get`. Specialised Pokemon commands add `moves`, `species`, `evolution`, `encounters`, and `forms`, plus task shortcuts like `can-learn`, `where`, and `evo`. The repo also keeps shorter human aliases, `pokecli pokemon pikachu` resolves to `pokecli pokemon get pikachu`, for manual terminal use.
@@ -153,8 +151,6 @@ First call goes to the network, every call after that is served from `~/.pokecli
 {{< /gallery >}}
 
 ## Technical challenges
-
-This section shows the engineering tradeoffs behind `pokecli`. Each card highlights a problem I had to solve, the design choice I made, and what that choice says about how I build command-line tools.
 
 ### 1. Keeping each resource a self-contained Typer app
 
@@ -360,8 +356,6 @@ class ResourceGroup(TyperGroup):
     </tr>
   </table>
 </div>
-
-Taken together, these choices show why `pokecli` works well as a reference project: the packaging is clean, the boundaries are explicit, the failure modes are intentional, and the tool remains small enough to understand without losing rigor.
 
 ## Results
 

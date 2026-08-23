@@ -11,11 +11,9 @@ slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
 
 Customizing your terminal can make a huge difference in your productivity and comfort as a developer. One of the most popular tools to personalize the prompt on Windows is Oh My Posh, which allows you to add attractive visual themes and extra features in both PowerShell and Windows Terminal.
 
-In this article, I’ll walk you through step-by-step on how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before, I’ll take you from installing PowerShell all the way to making your terminal literally unrecognizable. Ready to add style and pro-level features to your usual console? Let’s go!
+In this article, I’ll walk you through step-by-step how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before, I’ll take you from installing PowerShell all the way to making your terminal look completely different.
 
-<span id="install-powershell"></span>
-
-## 💾 Install PowerShell
+## Install PowerShell
 
 ![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
 
@@ -29,9 +27,7 @@ From a Windows PowerShell window, run:
 winget install Microsoft.PowerShell -s winget
 ```
 
-<span id="configure-windows-terminal"></span>
-
-## 💻 Configure Windows Terminal
+## Configure Windows Terminal
 
 Since the Windows 11 22H2 update, Windows Terminal is the default terminal. If you don’t have it installed, you can easily install it via Winget or from the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
 
@@ -39,19 +35,15 @@ Since the Windows 11 22H2 update, Windows Terminal is the default terminal. If y
 winget install Microsoft.WindowsTerminal -s winget
 ```
 
-Got it installed? Great! Let’s continue with the setup.
-
-<span id="default-terminal"></span>
+Once it's installed, continue with the setup below.
 
 ### Set Windows Terminal as the default terminal application
 
 Open Windows Terminal, right-click on the title bar (outside the tabs) or click the down arrow next to the last tab and select “Settings.” You can also press `Ctrl + ,` to open settings directly.
 
-Find the **Startup** section. On the right, set **PowerShell** as the Default Profile and **Windows Terminal** as the Default Terminal Application. Click “Save.” This sets you up perfectly to continue with the best configuration.
+Find the **Startup** section. On the right, set **PowerShell** as the Default Profile and **Windows Terminal** as the Default Terminal Application, then click “Save.”
 
 ![Default Terminal Application](images/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
-
-<span id="script-execution"></span>
 
 ### Configure PowerShell script execution policy
 
@@ -75,11 +67,9 @@ You should see:
 RemoteSigned
 ```
 
-<span id="install-and-configure-ohmyposh"></span>
+## Install and configure Oh My Posh
 
-## 🤖 Install and configure Oh My Posh
-
-Oh My Posh is the star of this tutorial. It’s super customizable, beautiful, and has a huge community behind it. What more could you want?
+Oh My Posh is the star of this tutorial. It’s highly customizable, looks great, and has a large community behind it.
 
 I recommend installing it via Winget, but it’s also available in the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}.
 
@@ -113,8 +103,6 @@ oh-my-posh font install meslo
 
 Fonts always install for your current user, so there’s no need for an elevated terminal. You can also install directly from a URL or a local zip file, for example `oh-my-posh font install https://example.com/font.zip`.
 
-<span id="configure-windows-terminal-nerd-font"></span>
-
 ### Configure Windows Terminal to use a Nerd Font
 
 Open Windows Terminal’s settings JSON file by pressing `Ctrl + Shift + ,` or via "Settings > Open JSON file".
@@ -135,13 +123,9 @@ Find the "profiles" > "defaults" section and add this:
 
 Save, and your terminal font will update.
 
-<span id="configure-vscode-nerd-font"></span>
-
 ### Configure Visual Studio Code terminal to use a Nerd Font
 
-In Visual Studio Code, configure the integrated terminal to use the Nerd Font. Open settings (`Ctrl + ,`), search for "Integrated: Font Family", and replace the value with:
-
-<span id="configure-powershell-ohmyposh"></span>
+In Visual Studio Code, configure the integrated terminal to use the Nerd Font. Open settings (`Ctrl + ,`), search for "Integrated: Font Family", and replace the value with `MesloLGM Nerd Font`.
 
 ### Configure PowerShell to use Oh My Posh
 
@@ -168,8 +152,6 @@ Reload your profile:
 Done! You should see your prompt change immediately to something like this:
 
 ![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
-
-<span id="configure-ohmyposh-theme"></span>
 
 ### Set a theme
 
@@ -205,15 +187,11 @@ If you want to revert to the default theme, just use:
 oh-my-posh init pwsh | Invoke-Expression
 ```
 
-<span id="level-up"></span>
+## Level up by installing these modules and apps
 
-## 🔝 Level up by installing these modules and apps
+### PSReadLine
 
-<span id="psreadline"></span>
-
-### 📦 PSReadLine
-
-If you’re on Windows and want to enjoy features common in bash (like syntax highlighting, history search, and key customization) PSReadLine is for you. It enhances PowerShell’s command line editing to be more interactive and user-friendly.
+If you want features common in bash, like syntax highlighting, history search, and key customization, PSReadLine is for you. It makes PowerShell’s command line editing more interactive and user-friendly.
 
 Install the pre-release (more features, might have bugs):
 
@@ -265,11 +243,9 @@ Get-PSReadLineKeyHandler
 
 Official docs at the {{< extlink href="https://github.com/PowerShell/PSReadLine" >}}PSReadLine GitHub repo{{< /extlink >}}
 
-<span id="winfetch"></span>
+### winfetch
 
-### 📦 winfetch
-
-`winfetch` is a PowerShell script that displays system information beautifully (OS, software, hardware) in a visually pleasing way.
+`winfetch` is a PowerShell script that displays system information (OS, software, hardware) in a clean, readable layout.
 
 To install:
 
@@ -285,15 +261,13 @@ winfetch
 
 ![Windows Terminal showing winfetch output with system information including OS, CPU, RAM, and hardware details](images/winfetch.webp 'winfetch')
 
-<span id="bat"></span>
-
 More info at the {{< extlink href="https://github.com/lptstr/winfetch" >}}winfetch GitHub repo{{< /extlink >}}
 
 {{< callout tip >}}
 winfetch hasn’t seen a commit in a while. If you want a similar tool that’s still actively maintained, check out {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch{{< /extlink >}}.
 {{< /callout >}}
 
-### 📦 bat
+### bat
 
 `bat` is a clone of `cat` that adds syntax highlighting and Git integration.
 
@@ -313,9 +287,7 @@ winget install jftuga.less
 
 Usage and details at the {{< extlink href="https://github.com/sharkdp/bat" >}}bat GitHub repo{{< /extlink >}} and the {{< extlink href="https://github.com/jftuga/less-Windows" >}}less-Windows repo{{< /extlink >}}.
 
-<span id="eza"></span>
-
-### 📦 eza
+### eza
 
 `eza` is a modern alternative to `ls` with colors, metadata, symlink recognition, and Git status support.
 
@@ -333,13 +305,13 @@ See options and docs at the {{< extlink href="https://github.com/eza-community/e
 
 ---
 
-Congratulations! You now have a terminal that’s not only powerful but also stylish. Who knew something so simple could so dramatically improve your daily experience?
+You now have a terminal that’s both powerful and good-looking, from a few config changes.
 
 {{< callout tip>}}
 Playing with your work environment is about feeling comfortable and happy while you create.
 {{< /callout >}}
 
-Every small tweak is a step toward a smoother, more enjoyable workflow. Keep exploring new themes, combos, and tools!
+Keep exploring new themes, combos, and tools!
 
 ---
 

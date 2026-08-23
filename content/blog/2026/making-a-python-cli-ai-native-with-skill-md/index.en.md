@@ -9,27 +9,9 @@ tags: [python, ai-tools, claude]
 image: 'images/cover.png'
 ---
 
-## 🎯 TL;DR
+## Why I built this
 
-This post shows how to make a Python CLI easier for **Claude Code** to use. I use a new tool called `pokecli` as the example and add a small `SKILL.md` that gives the agent a clear command guide.
-
-The goal is not to change how the CLI works. It is to stop the agent from re-learning the same help text during the task. A good skill gives Claude Code a shorter path into the tool, with clear triggers, command groups, examples, and a small reference file when extra detail is needed.
-
-**Choose your path:**
-
-- 🚀 [Build the skill](#quick-start)
-- 👀 [See the final SKILL.md file](#results)
-- 🧠 [Learn the pattern](#how-it-works)
-- ✅ [Test the skill](#testing-your-skill)
-- 🛠️ [Build one yourself](#build-it-yourself)
-
----
-
-## 🤔 Why I Built This?
-
-I recently gave an internal tech talk at work called **_Make Your CLI Tools AI-Native with SKILL.md_**. The feedback was a good signal that the idea landed, but it also made something clear: I needed a practical example people could inspect and reuse.
-
-This post is that example.
+I recently gave an internal tech talk at work called **_Make Your CLI Tools AI-Native with SKILL.md_**. The feedback told me the idea landed, but it also made one thing clear: I needed a practical example people could inspect and reuse. This post is that example.
 
 I like CLIs that do one thing well, and `pokecli` is a good example of that. It has a clean command surface, clear output, and a workflow that feels natural in the terminal.
 
@@ -42,93 +24,33 @@ I like CLIs that do one thing well, and `pokecli` is a good example of that. It 
 {{< gallery-image src="images/pokecli-move.webp" alt="Windows Terminal showing the result of running pokecli's move command to ge the data of Flamethrower and Thunderbolt" >}}
 {{< /gallery >}}
 
-What I wanted to show is that you do not need to redesign a CLI to make it more useful for an AI agent. In many cases, the missing piece is a compact guide that tells the agent when to use the tool, which commands exist, and how to apply them safely.
+You do not need to redesign a CLI to make it more useful for an AI agent. In many cases the missing piece is a compact guide that tells the agent when to use the tool, which commands exist, and how to apply them safely.
 
----
+## The problem a skill fixes
 
-## 📸 See It In Action
+CLI help text is great for humans, but an agent that only sees raw help output has to keep re-answering the same questions during a task: which resource groups exist, which commands support `--no-cache`, which output formats are available, how image downloads work, which cache commands are safe to run. That means the model spends part of its context budget re-learning the tool instead of solving the user's request.
 
-After installing pokecli and the respective skill, the end result is a small skill folder that Claude Code can load when a request matches the right trigger phrases:
+A skill turns a CLI into a smaller, more direct interface for an agent. For Claude Code it usually has three layers:
 
-```text
-pokecli-skill/
-└── skills/
-    └── pokecli/
-        ├── SKILL.md
-        └── references/
-            ├── api-fields.md
-            └── workflows.md
-```
-
-Once installed into `~/.claude/skills/pokecli`, Claude Code gets a much clearer picture of how to use the tool:
-
-- When to reach for `pokecli`
-- Which commands belong to each resource
-- Which flags are shared across `get` commands
-- How to download sprites
-- How to inspect and clear the local cache
-
-{{< gallery caption="" >}}
-{{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." >}}
-{{< /gallery >}}
-
-This is the same core idea used by Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} skill: keep the always-loaded trigger small, keep the main body focused, and push extra detail into reference files only when needed.
-
----
-
-## 💡 The Problem (In 60 Seconds)
-
-CLI help text is great for humans. The problem is not that an agent cannot use it. The problem is that the agent has to keep re-learning the same command surface during the task.
-
-If an agent only sees raw help output, it still has to answer basic questions during the task:
-
-- Which resource groups exist?
-- Which commands support `--no-cache`?
-- Which output formats are available?
-- How do image downloads work?
-- Which cache commands are safe to run?
-
-That means the model spends part of its context budget re-learning the tool instead of solving the user's request.
-
-This is the real value of a skill. It turns a CLI into a smaller, more direct interface for an agent.
-
----
-
-## ✨ The Solution
-
-A skill is a folder of Markdown instructions that teaches an AI agent how to use a tool or follow a workflow.
-
-For Claude Code, a well-built skill usually has three layers:
-
-1. **Frontmatter**: the skill name, description, and allowed tools
-2. **SKILL.md body**: the command guide the agent reads when the skill triggers
+1. **Frontmatter**: the skill name, description, and allowed tools, read every time to decide whether the skill should trigger
+2. **SKILL.md body**: the command guide the agent reads once the skill fires
 3. **References**: extra docs loaded only when the main file is not enough
 
-This pattern matters because it keeps the default context small.
+The frontmatter does the triggering work, the body gives the agent a short command map, and the references hold the field-level detail that only matters in a few cases. That is the pattern I applied to pokecli, and it is also the pattern behind Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} skill: keep the always-loaded trigger small, keep the body focused, and push extra detail into reference files only when needed.
 
-The frontmatter does the triggering work. The body gives the agent a short, practical command map. The references hold the field-level detail that only matters in a few cases.
-
-That is the pattern I want to apply to pokecli.
-
----
-
-<span id="quick-start"></span>
-
-## 🚀 Quick Start
+## Quick start
 
 ### Install the CLI with `uv`
 
 {{< callout important>}}
-
 This requires `uv` to be installed on your machine first. To install `uv`, you can follow {{< extlink href="https://docs.astral.sh/uv/getting-started/installation/" >}}the guide on the Astral site{{< /extlink >}}.
-
 {{< /callout >}}
 
 ```bash
 uv tool install git+https://github.com/jebucaro/pokecli
 ```
 
-You can later uninstall the tool running the following command.
+You can later uninstall the tool by running:
 
 ```bash
 uv tool uninstall pokecli
@@ -145,7 +67,7 @@ pokecli install --skills
 {{< gallery-image src="images/pokecli-install-skills.webp" alt="Install pokecli skills using the install command." >}}
 {{< /gallery >}}
 
-You could also copy the skill files into place by hand or do the same step with a small script. I added `install --skills` to make the example complete and easy to run.
+You could also copy the skill files into place by hand or with a small script. I added `install --skills` to make the example complete and easy to run.
 
 ### Optional: local dev setup
 
@@ -156,11 +78,11 @@ uv sync
 uv run pokecli --help
 ```
 
-pokecli still has obvious top-level command groups like `pokemon`, `berry`, `item`, `move`, `location`, `game`, `image`, and `cache`, but the current repo now groups many lower-level resources under those families instead of surfacing them all as flat top-level commands. In practice, the important pattern for the skill is not the exact top-level count. It is that most resources support `get <name_or_id>` and `list`, while Pokemon adds extra navigation commands like `moves`, `species`, `evolution`, `encounters`, and `forms`.
+pokecli still has obvious top-level command groups like `pokemon`, `berry`, `item`, `move`, `location`, `game`, `image`, and `cache`, but the repo now groups many lower-level resources under those families instead of surfacing them all as flat top-level commands. The important pattern for the skill is not the exact top-level count, it is that most resources support `get <name_or_id>` and `list`, while Pokemon adds extra navigation commands like `moves`, `species`, `evolution`, `encounters`, and `forms`.
 
 ### Test the CLI before writing the skill
 
-Add `uv run` before each command if you are testing locally with the dev setup
+Add `uv run` before each command if you are testing locally with the dev setup.
 
 ```bash
 pokecli pokemon get pikachu
@@ -173,13 +95,15 @@ pokecli cache stats
 The skill does not replace the CLI documentation. It gives Claude Code a smaller and more useful entry point into the same command surface.
 {{< /callout >}}
 
----
+Once installed, Claude Code gets a much clearer picture of how to use the tool: when to reach for `pokecli`, which commands belong to each resource, which flags are shared across `get` commands, how to download sprites, and how to inspect and clear the local cache.
 
-<span id="results"></span>
+{{< gallery caption="" >}}
+{{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." >}}
+{{< /gallery >}}
 
-## 📦 Results
+## The pokecli skill up close
 
-The current `SKILL.md` in the repo is about 180 lines, organized the same way I described above: frontmatter, a short "Agent rule," a quick start, a decision tree, and a commands section. Instead of pasting the whole file here, these are the three pieces worth reading closely.
+The current `SKILL.md` in the repo is about 180 lines: frontmatter, a short "Agent rule," a quick start, a decision tree, and a commands section. Instead of pasting the whole file, here are the three pieces worth reading closely.
 
 ### Frontmatter and the agent rule
 
@@ -197,7 +121,7 @@ Use the canonical command path shown in this skill. Human aliases exist, but age
 If a memorized command fails, check `pokecli --help` or the subgroup help before guessing.
 ```
 
-I added the agent rule after `pokecli` grew a shorter, human-typed command layer (more on that below). Once a CLI offers two valid ways to phrase the same request, the skill needs to say which one an agent should default to, since the shorter form is not always the safer one to script against.
+The description carries both the tool's purpose and the trigger phrases a user might actually say, like `pokedex`, `Pokemon stats`, or `download sprites`. I added the agent rule after `pokecli` grew a shorter, human-typed command layer (more on that below): once a CLI offers two valid ways to phrase the same request, the skill needs to say which one an agent should default to.
 
 ### A slice of the decision tree
 
@@ -236,48 +160,15 @@ And this is the folder layout Claude Code should end up loading:
             └── workflows.md
 ```
 
----
+## How it works
 
-<span id="how-it-works"></span>
+The nice part of this pattern is that it stays close to the tool itself. You are not inventing a new interface, you are reorganizing the CLI into an agent-friendly guide.
 
-## 🏗️ How It Works
+### The install flow
 
-The nice part of this pattern is that it stays close to the tool itself. You are not inventing a new interface. You are reorganizing the CLI into an agent-friendly guide.
+Installing `pokecli` with `uv tool install` and then running `pokecli install --skills` does not generate a new skill from scratch. It copies the skill files that already ship inside the installed package into the place Claude Code expects: `~/.claude/skills/pokecli/SKILL.md`, `references/api-fields.md`, and `references/workflows.md`. That matters because the user does not need the repo checked out locally, the installed tool already has what it needs.
 
-### 1. The Install Flow
-
-For this example, the setup works like a normal tool install.
-
-You install `pokecli` with `uv tool install git+https://github.com/jebucaro/pokecli`, then you run `pokecli install --skills`.
-
-You could also install the skill files manually or with a small script. I added this command so the post could show a complete end-to-end example.
-
-At that point, the CLI does not generate a new skill from scratch. It copies the skill files that already ship inside the installed package into the place Claude Code expects.
-
-That matters because the user does not need the repo checked out locally. The installed tool already has what it needs. In practical terms, the flow is simple:
-
-1. `uv` installs the CLI as a runnable tool
-2. `pokecli install --skills` enters the `install` command group
-3. The command reads the packaged skill files
-4. It creates `~/.claude/skills/pokecli`
-5. It writes `SKILL.md`, `references/api-fields.md`, and `references/workflows.md`
-
-It keeps the setup short and keeps the implementation easy to explain.
-
-### 2. YAML Frontmatter: The Trigger Layer
-
-The frontmatter is the part Claude reads all the time.
-
-For pokecli, it has to answer two questions fast:
-
-1. What does this skill do?
-2. When should Claude load it?
-
-That is why the description needs both the tool purpose and the trigger phrases a user might actually say, such as `pokedex`, `Pokemon stats`, `PokeAPI`, or `download sprites`.
-
-The `name` should match the folder name, the `allowed-tools` entry should keep the skill scoped to `pokecli` commands, and `user-invocable: false` keeps it as a background skill instead of a user-exposed command.
-
-### 3. `allowed-tools`: The Safety Layer
+### `allowed-tools`: the safety layer
 
 This line matters more than it looks:
 
@@ -285,52 +176,15 @@ This line matters more than it looks:
 allowed-tools: Bash(pokecli:*)
 ```
 
-It tells Claude Code that this skill is allowed to run `pokecli` commands, but not arbitrary shell commands. That is a good default for a task-focused skill.
+It tells Claude Code the skill is allowed to run `pokecli` commands, but not arbitrary shell commands. That is a good default for a task-focused skill: it is not just a convenience layer, it is also a boundary.
 
-In other words, the skill is not just a convenience layer. It is also a boundary.
+### The body: a cheat sheet, not a tutorial
 
-### 4. The Body: The Working Command Guide
+The body should read like a cheat sheet for an agent: short sections, command groups that mirror the CLI, examples that can be copied and run, no long theory in the middle of the command list. Inside each top-level group, the skill shows the operations that matter most, such as `get`, `list`, `moves`, `download`, `stats`, and `clear`, while nested resources like `pokemon form`, `move damage-class`, `location area`, and `game region` stay close to their parent families. Detail that does not belong in that cheat sheet, like what `base_experience` means or which sprite variants exist, goes into `references/api-fields.md` instead; multi-step recipes go into `references/workflows.md`.
 
-The body should read like a cheat sheet for an agent.
+### Human aliases: one class, no duplicated commands
 
-That means:
-
-- short sections
-- command groups that mirror the CLI
-- examples that can be copied and run
-- no long theory in the middle of the command list
-
-pokecli already gives us a clean top-level structure to mirror:
-
-- `pokemon`
-- `berry`
-- `item`
-- `move`
-- `location`
-- `game`
-- `image`
-- `cache`
-
-Inside those groups, the skill can then show the operations that matter most, such as `get`, `list`, `moves`, `download`, `stats`, and `clear`, while nested resources like `pokemon form`, `move damage-class`, `location area`, and `game region` stay close to their parent families.
-
-### 5. References: Where Extra Detail Belongs
-
-Not every question belongs in the main `SKILL.md`.
-
-For example:
-
-- What does `base_experience` mean for a Pokemon?
-- What is berry firmness?
-- Which fields are most useful for comparing moves?
-- Which sprite variants are usually available?
-
-That kind of detail belongs in `references/api-fields.md`. Multi-step recipes belong in `references/workflows.md`. The main skill stays short, and the deeper files are there when Claude needs them.
-
-This keeps the skill easier to maintain and easier to trigger.
-
-### 6. Human Aliases: One Class, No Duplicated Commands
-
-Partway through this project, pokecli grew a second, shorter way to type the same commands: `pokecli pokemon pikachu` instead of `pokecli pokemon get pikachu`. That is not a duplicated command tree. It is one small `TyperGroup` subclass that rewrites an unmatched first argument into `get` before Typer resolves it:
+Partway through this project, pokecli grew a second, shorter way to type the same commands: `pokecli pokemon pikachu` instead of `pokecli pokemon get pikachu`. That is not a duplicated command tree, it is one small `TyperGroup` subclass that rewrites an unmatched first argument into `get` before Typer resolves it:
 
 ```python
 class ResourceGroup(TyperGroup):
@@ -342,17 +196,13 @@ class ResourceGroup(TyperGroup):
         return super().resolve_command(ctx, args)
 ```
 
-For the skill, this matters because Claude Code now has two valid ways to phrase the same request. The `SKILL.md` handles that by keeping the decision tree canonical, `pokemon get <name>`, and listing the aliases separately, so the agent has a default and does not have to guess which form is safer to script against.
+For the skill, this means Claude Code now has two valid ways to phrase the same request. The `SKILL.md` handles that by keeping the decision tree canonical, `pokemon get <name>`, and listing the aliases separately, so the agent has a default and does not have to guess which form is safer to script against.
 
----
+## Side-by-side comparison
 
-## ⚖️ Side-by-Side Comparison
+I used Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} as the reference pattern for this pokecli skill. The goal was not to copy the browser workflow, it was to reuse the same skill shape: a small trigger, a focused command guide, and extra detail moved into reference files.
 
-I used Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} as the reference pattern for this pokecli skill.
-
-The goal was not to copy the browser workflow. It was to reuse the same skill shape: a small trigger, a focused command guide, and extra detail moved into reference files. That is why this comparison matters.
-
-| Design Choice     | Playwright CLI                  | pokecli                                                   |
+| Design choice     | Playwright CLI                  | pokecli                                                   |
 | ----------------- | ------------------------------- | --------------------------------------------------------- |
 | Main trigger      | browser automation tasks        | Pokemon data lookup tasks                                 |
 | Tool scope        | `Bash(playwright-cli:*)`        | `Bash(pokecli:*)`                                         |
@@ -361,17 +211,13 @@ The goal was not to copy the browser workflow. It was to reuse the same skill sh
 | Command groups    | browser actions and sessions    | core groups plus grouped nested resource commands         |
 | Extra docs        | separate skill references       | `references/api-fields.md` and `references/workflows.md`  |
 
-The commands and use case change, but the structure stays the same. That is the useful part of the pattern.
+The commands and use case change, but the structure stays the same, and that is the useful part of the pattern.
 
----
-
-<span id="testing-your-skill"></span>
-
-## ✅ Testing Your Skill
+## Testing your skill
 
 {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}Anthropic's skill guidance{{< /extlink >}} is helpful here: test both triggering and behavior.
 
-### Queries that should trigger the skill
+Queries that should trigger the skill:
 
 - "Look up Pikachu's stats"
 - "Show me berry data from PokeAPI"
@@ -379,14 +225,14 @@ The commands and use case change, but the structure stays the same. That is the 
 - "Compare Thunderbolt and Flamethrower"
 - "Use pokecli to browse items"
 
-### Queries that should not trigger the skill
+Queries that should not trigger it:
 
 - "Help me write a Python class"
 - "What is the weather today?"
 - "Create a spreadsheet"
 - "Summarize this meeting transcript"
 
-### Functional checks
+And functional checks against the real CLI:
 
 ```bash
 pokecli pokemon get pikachu
@@ -402,130 +248,44 @@ pokecli cache stats
 
 If these commands work, the skill examples are grounded in the actual tool.
 
----
+## Challenge: build one yourself
 
-<span id="build-it-yourself"></span>
+If you want to push this further, remove the ready-made pokecli skill and build your own. It's a good test of what Claude can infer from the CLI alone, where it gets stuck, and what kind of guidance actually helps.
 
-## 🛠️ Challenge: Build One Yourself
-
-If you want to push this one step further, try removing the ready-made pokecli skill and build your own.
-
-This is a good test because it shows you what Claude can infer from the CLI alone, where it gets stuck, and what kind of guidance actually helps.
-
-### 1. Move the shipped skill out of the way
-
-If you installed the packaged skill earlier, remove it first so it does not get picked up (you can later add them again if you need them with the `pokecli install --skills` command.
+First, move the shipped skill out of the way (you can reinstall it later with `pokecli install --skills`):
 
 ```bash
 rm -rf ~/.claude/skills/pokecli
 ```
 
-### 2. Create a small project folder
-
-Make a clean folder for the exercise and add the local skill path Claude will read.
+Then make a clean project folder with the local skill path Claude will read:
 
 ```bash
 mkdir -p pokecli-skill-lab/.claude/skills/pokecli
 cd pokecli-skill-lab
 ```
 
-Inside that folder, create `./.claude/skills/pokecli/SKILL.md`.
+Inside that folder, create `./.claude/skills/pokecli/SKILL.md`. Do not try to write the perfect skill on the first pass, start with the smallest useful version: frontmatter with `name`, `description`, and `allowed-tools`, a few quick start commands, command groups that match the CLI, a few copyable examples, and optional reference files for deeper detail. You already have a full implementation earlier in this post to use as a reference.
 
-### 3. Start with a small first draft
-
-Do not try to write the perfect skill on the first pass. Start with the smallest useful version.
-
-You already have the full implementation earlier in this post, so use that as your reference instead of repeating a second full draft here.
-
-A solid first version should include:
-
-- frontmatter with `name`, `description`, and `allowed-tools`
-- a few quick start commands
-- command groups that match the CLI
-- a few examples Claude can copy and run
-- optional reference files for deeper details
-
-### 4. Run Claude inside the project folder
-
-Now start Claude from inside the folder so it can see the local skill.
+Now start Claude from inside the folder so it can see the local skill:
 
 ```bash
 claude
 ```
 
-Once Claude is running, try prompts like these:
+Try prompts like "Use pokecli to look up Pikachu's stats" or "Download a Charizard sprite with pokecli," then clear the context and try the same prompts without mentioning `pokecli` explicitly.
 
-- "Use pokecli to look up Pikachu's stats"
-- "Browse berries with pokecli and show me five"
-- "Download a Charizard sprite with pokecli"
-- "Compare Thunderbolt and Flamethrower with pokecli"
+Watch what Claude gets wrong: if it misses a command group, add it; if it uses the wrong flags, add a working example; if it reaches for generic shell commands instead of `pokecli`, tighten the description and examples. You are not trying to write a long document, you are trying to remove hesitation.
 
-Clear the context and try the same prompts but removing the explicit mention of `pokecli`.
+After a few prompts your file will usually get better in obvious ways: trigger phrases you forgot the first time, one or two examples for `image download` and `pokemon moves`, shared flags like `--format json` and `--no-cache`, deep field notes moved into a reference file only if you really need them. That feedback loop is the real lesson. The best `SKILL.md` is not the longest one, it is the one that gives Claude a short path to the right command.
 
-### 5. Watch what Claude gets wrong
+If you want to inspect pokecli itself while you work through this, start with the project README in {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}, the command modules under `src/pokecli/commands/`, the alias logic in `src/pokecli/commands/_group.py`, and the app entry point in `src/pokecli/main.py`.
 
-This is the useful part of the exercise.
+## Final thoughts
 
-If Claude misses a command group, add it. If it uses the wrong flags, add a working example. If it reaches for generic shell commands instead of `pokecli`, tighten the description and examples.
+This is the part I find most useful about skills: they do not ask you to rebuild your tooling for AI, they ask you to describe your tooling in a way the agent can use well.
 
-You are not trying to write a long document. You are trying to remove hesitation.
-
-### 6. Tighten the skill one pass at a time
-
-After a few prompts, your file will usually get better in obvious ways:
-
-- add trigger phrases you forgot the first time
-- add one or two examples for `image download` and `pokemon moves`
-- list shared flags like `--format json` and `--no-cache`
-- move deep field notes into a reference file only if you really need them
-
-That feedback loop is the real lesson. The best `SKILL.md` is not the longest one. It is the one that gives Claude a short path to the right command.
-
----
-
-## 🔎 Explore the Repo
-
-One thing I like about this project is that the repo structure maps cleanly to the final skill.
-
-At the CLI level, the Typer app still has obvious top-level command groups such as `pokemon`, `berry`, `item`, `move`, `location`, `game`, `image`, and `cache`, but the repo now also includes many lower-level Typer apps that are grouped under those families and share the same interface.
-
-That gives the skill two useful structures at once: recognizable command families for humans and a uniform `get`/`list` contract for agents. The command examples then fill in specialized operations such as `moves`, `species`, `evolution`, `encounters`, `forms`, `can-learn`, `image`, `stats`, and `clear`.
-
-At the behavior level, the project also gives us the right details to mention in the skill:
-
-- all `get` commands support `--no-cache`
-- all `get` commands support `--format table|json`
-- list commands use `--limit` and `--offset`
-- image downloads support `--output` and `--variant`
-- cache entries live under `~/.pokecli/cache.json`
-
-If you want to inspect the tool itself, start with these sources:
-
-- the project README in {{< extlink href="https://github.com/jebucaro/pokecli" >}}pokecli{{< /extlink >}}
-- the command modules under `src/pokecli/commands/`
-- the alias logic in `src/pokecli/commands/_group.py`
-- the app entry point in `src/pokecli/main.py`
-
----
-
-## Key Takeaways
-
-1. A skill makes a CLI easier for Claude Code to use without changing the CLI itself.
-2. The frontmatter description is the most important line because it decides when the skill fires.
-3. `allowed-tools` gives the skill a clear safety boundary.
-4. The best skill body is a short command guide, not a long tutorial.
-5. Reference files help you keep the main `SKILL.md` small and focused.
-6. A clean CLI like pokecli is a strong candidate for this pattern because its command groups already map well into a skill.
-
----
-
-## Final Thoughts
-
-This is the part I find most useful about skills: they do not ask you to rebuild your tooling for AI. They ask you to describe your tooling in a way the agent can use well.
-
-If you already have a CLI with clear commands and predictable output, you are probably closer to an AI-native tool than you think. In many cases, the missing piece is not a new protocol. It is a good `SKILL.md`.
-
-That is also why I wanted to turn the tech talk into a concrete example. The idea is easier to trust when you can point to a real CLI, a real skill file, and a workflow that maps cleanly from one to the other.
+If you already have a CLI with clear commands and predictable output, you are probably closer to an AI-native tool than you think. In many cases the missing piece is not a new protocol, it is a good `SKILL.md`. That is also why I wanted to turn the tech talk into a concrete example, the idea is easier to trust when you can point to a real CLI, a real skill file, and a workflow that maps cleanly from one to the other.
 
 ---
 
