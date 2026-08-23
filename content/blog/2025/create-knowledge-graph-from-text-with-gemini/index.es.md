@@ -35,8 +35,6 @@ El conocimiento normalmente se crea y se guarda como lenguaje natural: documento
 
 Lo que volvió esto práctico es que los LLM modernos cambiaron la ecuación. Leen texto y extraen información estructurada con precisión sorprendente: entienden contexto, resuelven ambigüedades y detectan relaciones que un pipeline tradicional de NLP se perdería. Eso es lo que hace Nodus: extrae entidades y relaciones de cualquier texto, construye grafos de conocimiento visuales e interactivos, exporta a HTML, JSON o TXT, y cuesta cerca de $0.00018 por artículo, sin etiquetado manual ni un pipeline de NLP que mantener. En vez de un sistema de extracción complicado, escribes código directo contra la salida estructurada de Gemini.
 
-<span id="quick-start"></span>
-
 ## Inicio rápido
 
 ### Obtén el código fuente
@@ -92,8 +90,6 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 # 4. Access the app at http://localhost:8501
 ```
 
-<span id="results"></span>
-
 ## Resultados
 
 La interfaz te da cuatro perspectivas del conocimiento extraído:
@@ -106,8 +102,6 @@ La interfaz te da cuatro perspectivas del conocimiento extraído:
 {{< /gallery >}}
 
 Cuatro pestañas cubren los resultados: un **Resumen** estructurado con los insights clave, una **Visualización** interactiva con layout basado en física, **Datos sin procesar** en JSON para inspeccionar nodos y relaciones, y **Estadísticas** con la cantidad de nodos y tipos de relaciones. Puedes exportar el grafo como HTML (interactivo), JSON (datos estructurados) o TXT (resumen).
-
-<span id="how-it-works-architecture"></span>
 
 ## Cómo funciona
 
@@ -203,8 +197,6 @@ Desde aquí podrías conectarlo a una base de datos de documentos para extracci�
 {{< callout note >}}
 Los ejemplos simples se entienden rápido, pero los grafos de conocimiento brillan más con escala. Un grafo con 100 entidades y 200 relaciones puede revelar patrones casi imposibles de notar en texto crudo, desde análisis de tendencias hasta detección de anomalías.
 {{< /callout >}}
-
-<span id="explore-the-code"></span>
 
 ## Explora el código
 

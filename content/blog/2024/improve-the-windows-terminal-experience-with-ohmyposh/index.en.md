@@ -13,8 +13,6 @@ Customizing your terminal can make a huge difference in your productivity and co
 
 In this article, I’ll walk you through step-by-step how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before, I’ll take you from installing PowerShell all the way to making your terminal look completely different.
 
-<span id="install-powershell"></span>
-
 ## Install PowerShell
 
 ![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
@@ -29,8 +27,6 @@ From a Windows PowerShell window, run:
 winget install Microsoft.PowerShell -s winget
 ```
 
-<span id="configure-windows-terminal"></span>
-
 ## Configure Windows Terminal
 
 Since the Windows 11 22H2 update, Windows Terminal is the default terminal. If you don’t have it installed, you can easily install it via Winget or from the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
@@ -41,8 +37,6 @@ winget install Microsoft.WindowsTerminal -s winget
 
 Once it's installed, continue with the setup below.
 
-<span id="default-terminal"></span>
-
 ### Set Windows Terminal as the default terminal application
 
 Open Windows Terminal, right-click on the title bar (outside the tabs) or click the down arrow next to the last tab and select “Settings.” You can also press `Ctrl + ,` to open settings directly.
@@ -50,8 +44,6 @@ Open Windows Terminal, right-click on the title bar (outside the tabs) or click 
 Find the **Startup** section. On the right, set **PowerShell** as the Default Profile and **Windows Terminal** as the Default Terminal Application, then click “Save.”
 
 ![Default Terminal Application](images/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
-
-<span id="script-execution"></span>
 
 ### Configure PowerShell script execution policy
 
@@ -74,8 +66,6 @@ You should see:
 ```text
 RemoteSigned
 ```
-
-<span id="install-and-configure-ohmyposh"></span>
 
 ## Install and configure Oh My Posh
 
@@ -113,8 +103,6 @@ oh-my-posh font install meslo
 
 Fonts always install for your current user, so there’s no need for an elevated terminal. You can also install directly from a URL or a local zip file, for example `oh-my-posh font install https://example.com/font.zip`.
 
-<span id="configure-windows-terminal-nerd-font"></span>
-
 ### Configure Windows Terminal to use a Nerd Font
 
 Open Windows Terminal’s settings JSON file by pressing `Ctrl + Shift + ,` or via "Settings > Open JSON file".
@@ -135,13 +123,9 @@ Find the "profiles" > "defaults" section and add this:
 
 Save, and your terminal font will update.
 
-<span id="configure-vscode-nerd-font"></span>
-
 ### Configure Visual Studio Code terminal to use a Nerd Font
 
 In Visual Studio Code, configure the integrated terminal to use the Nerd Font. Open settings (`Ctrl + ,`), search for "Integrated: Font Family", and replace the value with `MesloLGM Nerd Font`.
-
-<span id="configure-powershell-ohmyposh"></span>
 
 ### Configure PowerShell to use Oh My Posh
 
@@ -168,8 +152,6 @@ Reload your profile:
 Done! You should see your prompt change immediately to something like this:
 
 ![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
-
-<span id="configure-ohmyposh-theme"></span>
 
 ### Set a theme
 
@@ -205,11 +187,7 @@ If you want to revert to the default theme, just use:
 oh-my-posh init pwsh | Invoke-Expression
 ```
 
-<span id="level-up"></span>
-
 ## Level up by installing these modules and apps
-
-<span id="psreadline"></span>
 
 ### PSReadLine
 
@@ -265,8 +243,6 @@ Get-PSReadLineKeyHandler
 
 Official docs at the {{< extlink href="https://github.com/PowerShell/PSReadLine" >}}PSReadLine GitHub repo{{< /extlink >}}
 
-<span id="winfetch"></span>
-
 ### winfetch
 
 `winfetch` is a PowerShell script that displays system information (OS, software, hardware) in a clean, readable layout.
@@ -284,8 +260,6 @@ winfetch
 ```
 
 ![Windows Terminal showing winfetch output with system information including OS, CPU, RAM, and hardware details](images/winfetch.webp 'winfetch')
-
-<span id="bat"></span>
 
 More info at the {{< extlink href="https://github.com/lptstr/winfetch" >}}winfetch GitHub repo{{< /extlink >}}
 
@@ -312,8 +286,6 @@ winget install jftuga.less
 ```
 
 Usage and details at the {{< extlink href="https://github.com/sharkdp/bat" >}}bat GitHub repo{{< /extlink >}} and the {{< extlink href="https://github.com/jftuga/less-Windows" >}}less-Windows repo{{< /extlink >}}.
-
-<span id="eza"></span>
 
 ### eza
 

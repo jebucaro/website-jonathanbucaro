@@ -8,8 +8,6 @@ draft: false
 description: 'Obtén la foto de perfil de tus contactos en ManyChat. Una acción simple, sin el rollo técnico de una solicitud externa'
 ---
 
-<span id="greetings"></span>
-
 ## Saludos
 
 ¡Hola y bienvenido! Gracias por tu interés en Monet.
@@ -41,8 +39,6 @@ Han pasado cuatro años desde que creé Monet como un proyecto sencillo para ent
 
 ---
 
-<span id="terms-and-conditions"></span>
-
 ## Términos y condiciones
 
 La «Monet App» se proporciona «tal cual» y «según disponibilidad», sin garantías o declaraciones de ningún tipo, ya sean expresas o implícitas. Tú, como usuario, eres el único responsable del uso de la API Key de ManyChat, de las operaciones que haces con ella y de dónde la utilizas. Reconoces los límites y restricciones de usar la API de ManyChat y la disponibilidad de sus servicios. También entiendes que ManyChat detendrá tus automatizaciones si ocurre un error HTTP.
@@ -51,15 +47,11 @@ EN NINGÚN CASO JONATHAN BÚCARO SERÁ RESPONSABLE ANTE TI O ANTE TERCEROS POR D
 
 ---
 
-<span id="privacy-policy"></span>
-
 ## Política de privacidad
 
 La «Monet App» no rastrea datos. Es un puente o una interfaz para que tus flows de ManyChat consuman la API de ManyChat.
 
 ---
-
-<span id="initial-setup"></span>
 
 ## Configuración inicial
 
@@ -77,11 +69,7 @@ Ahora ve a **ManyChat Settings > Extensions > Apps** y selecciona la app **Monet
 {{< gallery-image src="images/monet-setup-app-api-1.webp" alt="Vista enfocada de la configuración de la app Monet mostrando el campo para pegar la API key de ManyChat y el botón para guardar." >}}
 {{< /gallery >}}
 
-<span id="actions"></span>
-
 ## Acciones
-
-<span id="get-profile-picture"></span>
 
 ### Obtener foto de perfil
 

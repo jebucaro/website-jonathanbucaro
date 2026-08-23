@@ -36,8 +36,6 @@ Para ver cómo encajan las piezas:
     alt="1Password SSH agent system architecture"
     title="System Architecture" >}}
 
-<span id="quick-start"></span>
-
 ## Inicio rápido
 
 ### Prerrequisitos
@@ -157,8 +155,6 @@ Host *
   IdentityAgent /tmp/1password-agent.sock
 ```
 
-<span id="how-it-works"></span>
-
 ## Cómo funciona
 
 {{< figure-dynamic
@@ -166,8 +162,6 @@ Host *
     dark-src="images/1password-ssh-authentication-flow-dark.svg"
     alt="1Password SSH agent authentication flow"
     title="Authentication Flow" >}}
-
-<span id="results"></span>
 
 ## Verificar resultados
 

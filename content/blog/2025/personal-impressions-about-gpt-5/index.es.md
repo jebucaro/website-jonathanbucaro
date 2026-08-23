@@ -51,8 +51,6 @@ Este es un ejemplo real de lo que GPT-5 espera. El Prompt Optimizer de OpenAI mu
 
 La buena noticia es que no necesitas las siete secciones para cada prompt. El Inicio rápido de abajo muestra la versión simplificada que cubre la mayoría de las tareas.
 
-<span id="quick-start"></span>
-
 ## Inicio rápido
 
 Tres cambios te dan mejores resultados con GPT-5 en los próximos cinco minutos.

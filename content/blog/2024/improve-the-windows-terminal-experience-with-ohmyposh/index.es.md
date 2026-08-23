@@ -13,8 +13,6 @@ Personalizar tu terminal puede marcar una gran diferencia en tu productividad y 
 
 En este artículo, te guío paso a paso para transformar tu terminal de Windows con Oh My Posh. No te preocupes si nunca has personalizado nada antes; te llevo desde la instalación de PowerShell hasta dejar tu terminal con un aspecto completamente distinto.
 
-<span id="install-powershell"></span>
-
 ## Instalar PowerShell
 
 ![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal con Windows PowerShell')
@@ -29,8 +27,6 @@ Desde una ventana de Windows PowerShell, ejecuta:
 winget install Microsoft.PowerShell -s winget
 ```
 
-<span id="configure-windows-terminal"></span>
-
 ## Configurar Windows Terminal
 
 Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
@@ -41,8 +37,6 @@ winget install Microsoft.WindowsTerminal -s winget
 
 Una vez instalado, sigamos con la configuración.
 
-<span id="default-terminal"></span>
-
 ### Configurar Windows Terminal como la aplicación de terminal predeterminada
 
 Abre Windows Terminal, haz clic derecho en la barra de título (fuera de las pestañas) o haz clic en la flecha hacia abajo junto a la última pestaña y selecciona “Settings”. También puedes presionar `Ctrl + ,` para abrir la configuración directamente.
@@ -50,8 +44,6 @@ Abre Windows Terminal, haz clic derecho en la barra de título (fuera de las pes
 Busca la sección **Startup**. A la derecha, configura **PowerShell** como el Perfil predeterminado y **Windows Terminal** como la Aplicación de terminal predeterminada, y haz clic en “Save”.
 
 ![Aplicación de terminal predeterminada](images/windows-terminal-startup-configuration.webp 'Configuración de Windows Terminal')
-
-<span id="script-execution"></span>
 
 ### Configurar la política de ejecución de scripts en PowerShell
 
@@ -75,8 +67,6 @@ Deberías ver:
 RemoteSigned
 ```
 
-<span id="install-and-configure-ohmyposh"></span>
-
 ## Instalar y configurar Oh My Posh
 
 Oh My Posh es la estrella de este tutorial. Es muy personalizable, se ve muy bien y tiene una comunidad enorme detrás.
@@ -90,8 +80,6 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
 Una vez instalado, abre una nueva pestaña de PowerShell para que todo cargue correctamente.
-
-<span id="install-a-font"></span>
 
 ### Instalar una fuente
 
@@ -115,8 +103,6 @@ oh-my-posh font install meslo
 
 Las fuentes siempre se instalan para tu usuario actual, así que no necesitas una terminal elevada. También puedes instalar directamente desde una URL o un archivo zip local, por ejemplo `oh-my-posh font install https://example.com/font.zip`.
 
-<span id="configure-windows-terminal-nerd-font"></span>
-
 ### Configurar Windows Terminal para usar una Nerd Font
 
 Abre el archivo JSON de configuración de Windows Terminal presionando `Ctrl + Shift + ,` o desde "Settings > Open JSON file".
@@ -137,13 +123,9 @@ Busca la sección "profiles" > "defaults" y agrega esto:
 
 Guarda y la fuente de tu terminal se actualizará.
 
-<span id="configure-vscode-nerd-font"></span>
-
 ### Configurar la terminal de Visual Studio Code para usar una Nerd Font
 
 En Visual Studio Code, configura la terminal integrada para usar la Nerd Font. Abre la configuración (`Ctrl + ,`), busca "Integrated: Font Family", y reemplaza el valor con `MesloLGM Nerd Font`.
-
-<span id="configure-powershell-ohmyposh"></span>
 
 ### Configurar PowerShell para usar Oh My Posh
 
@@ -170,8 +152,6 @@ Recarga tu perfil:
 ¡Listo! Deberías ver que tu prompt cambia de inmediato a algo como esto:
 
 ![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell con Oh My Posh')
-
-<span id="configure-ohmyposh-theme"></span>
 
 ### Elegir un tema
 
@@ -207,11 +187,7 @@ Si quieres volver al tema predeterminado, solo usa:
 oh-my-posh init pwsh | Invoke-Expression
 ```
 
-<span id="level-up"></span>
-
 ## Sube de nivel instalando estos módulos y apps
-
-<span id="psreadline"></span>
 
 ### PSReadLine
 
@@ -267,8 +243,6 @@ Get-PSReadLineKeyHandler
 
 Documentación oficial en el {{< extlink href="https://github.com/PowerShell/PSReadLine" >}}repo de PSReadLine en GitHub{{< /extlink >}}
 
-<span id="winfetch"></span>
-
 ### winfetch
 
 `winfetch` es un script de PowerShell que muestra información del sistema (SO, software, hardware) en un formato claro y ordenado.
@@ -286,8 +260,6 @@ winfetch
 ```
 
 ![Windows Terminal mostrando la salida de winfetch con información del sistema incluyendo SO, CPU, RAM y detalles de hardware](images/winfetch.webp 'winfetch')
-
-<span id="bat"></span>
 
 Más info en el {{< extlink href="https://github.com/lptstr/winfetch" >}}repo de winfetch en GitHub{{< /extlink >}}
 
@@ -314,8 +286,6 @@ winget install jftuga.less
 ```
 
 Uso y detalles en el {{< extlink href="https://github.com/sharkdp/bat" >}}repo de bat en GitHub{{< /extlink >}} y en el {{< extlink href="https://github.com/jftuga/less-Windows" >}}repo de less-Windows{{< /extlink >}}.
-
-<span id="eza"></span>
 
 ### eza
 

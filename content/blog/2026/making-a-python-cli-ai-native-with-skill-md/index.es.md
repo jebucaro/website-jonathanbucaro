@@ -38,8 +38,6 @@ Un skill convierte un CLI en una interfaz más pequeña y más directa para un a
 
 El frontmatter se encarga de activar el skill, el cuerpo le da al agente un mapa corto de comandos, y las referencias guardan el detalle de campo que solo importa en algunos casos. Este es el patrón que apliqué a pokecli, y también es el que hay detrás del skill de {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} de Microsoft: mantener pequeño el disparador que siempre está cargado, dejar el cuerpo enfocado y mover el detalle extra a archivos de referencia solo cuando haga falta.
 
-<span id="quick-start"></span>
-
 ## Inicio rápido
 
 ### Instala el CLI con `uv`
@@ -103,8 +101,6 @@ Una vez instalado, Claude Code entiende mucho mejor cómo usar la herramienta: c
 {{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code usando SKILL.md para interactuar con pokecli." >}}
 {{< /gallery >}}
 
-<span id="results"></span>
-
 ## El skill de pokecli de cerca
 
 El `SKILL.md` actual en el repositorio tiene cerca de 180 líneas: frontmatter, un "Agent rule" corto, un quick start, un árbol de decisión y una sección de comandos. En vez de pegar el archivo completo, estas son las tres partes que vale la pena leer con cuidado.
@@ -164,8 +160,6 @@ Y esta es la estructura de carpetas que Claude Code debería terminar cargando:
             └── workflows.md
 ```
 
-<span id="how-it-works"></span>
-
 ## Cómo funciona
 
 Lo bueno de este patrón es que se mantiene cerca de la herramienta misma. No estás inventando una interfaz nueva, estás reorganizando el CLI como una guía amigable para un agente.
@@ -219,8 +213,6 @@ Usé {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwrigh
 
 Los comandos y el caso de uso cambian, pero la estructura sigue igual, y esa es la parte útil del patrón.
 
-<span id="testing-your-skill"></span>
-
 ## Prueba tu skill
 
 {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}La guía de Anthropic sobre skills{{< /extlink >}} ayuda bastante aquí: prueba tanto la activación como el comportamiento.
@@ -255,8 +247,6 @@ pokecli cache stats
 ```
 
 Si estos comandos funcionan, los ejemplos del skill están bien anclados a la herramienta real.
-
-<span id="build-it-yourself"></span>
 
 ## Reto: crea uno tú mismo
 

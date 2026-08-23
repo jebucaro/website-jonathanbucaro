@@ -38,8 +38,6 @@ A skill turns a CLI into a smaller, more direct interface for an agent. For Clau
 
 The frontmatter does the triggering work, the body gives the agent a short command map, and the references hold the field-level detail that only matters in a few cases. That is the pattern I applied to pokecli, and it is also the pattern behind Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} skill: keep the always-loaded trigger small, keep the body focused, and push extra detail into reference files only when needed.
 
-<span id="quick-start"></span>
-
 ## Quick start
 
 ### Install the CLI with `uv`
@@ -103,8 +101,6 @@ Once installed, Claude Code gets a much clearer picture of how to use the tool: 
 {{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." >}}
 {{< /gallery >}}
 
-<span id="results"></span>
-
 ## The pokecli skill up close
 
 The current `SKILL.md` in the repo is about 180 lines: frontmatter, a short "Agent rule," a quick start, a decision tree, and a commands section. Instead of pasting the whole file, here are the three pieces worth reading closely.
@@ -164,8 +160,6 @@ And this is the folder layout Claude Code should end up loading:
             └── workflows.md
 ```
 
-<span id="how-it-works"></span>
-
 ## How it works
 
 The nice part of this pattern is that it stays close to the tool itself. You are not inventing a new interface, you are reorganizing the CLI into an agent-friendly guide.
@@ -219,8 +213,6 @@ I used Microsoft's {{< extlink href="https://github.com/microsoft/playwright-cli
 
 The commands and use case change, but the structure stays the same, and that is the useful part of the pattern.
 
-<span id="testing-your-skill"></span>
-
 ## Testing your skill
 
 {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}Anthropic's skill guidance{{< /extlink >}} is helpful here: test both triggering and behavior.
@@ -255,8 +247,6 @@ pokecli cache stats
 ```
 
 If these commands work, the skill examples are grounded in the actual tool.
-
-<span id="build-it-yourself"></span>
 
 ## Challenge: build one yourself
 

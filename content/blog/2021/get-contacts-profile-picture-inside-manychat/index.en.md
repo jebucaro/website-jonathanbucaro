@@ -8,8 +8,6 @@ draft: false
 description: 'Get the profile picture of your ManyChat contacts. One simple action, without the technical fuzz of an external request'
 ---
 
-<span id="greetings"></span>
-
 ## Greetings
 
 Hello and welcome! Thank you for your interest in Monet.
@@ -41,8 +39,6 @@ It has been four years since I created Monet as a simple project to understand h
 
 ---
 
-<span id="terms-and-conditions"></span>
-
 ## Terms and Conditions
 
 The «Monet App» is provided to you on an «as is» and «as available» basis without warranties or representations of any kind, express or implied. You as the user are the sole responsible for the use of the ManyChat’s API Key, what operations you do with it, and where you use it. You are aware of the limits and restrictions of using ManyChat’s API and the availability of their services. You also realize that ManyChat will stop your automations if an HTTP Error occurs.
@@ -51,15 +47,11 @@ IN NO EVENT WILL JONATHAN BÚCARO BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DI
 
 ---
 
-<span id="privacy-policy"></span>
-
 ## Privacy Policy
 
 The «Monet App» does not track data. It’s a bridge or an interface for your ManyChat Flows to consume ManyChat’s API.
 
 ---
-
-<span id="initial-setup"></span>
 
 ## Initial Setup
 
@@ -77,11 +69,7 @@ Now go to **ManyChat Settings > Extensions > Apps** and select the **Monet** App
 {{< gallery-image src="images/monet-setup-app-api-1.webp" alt="Focused view of the Monet App settings showing the textbox for pasting the ManyChat API key and the button to save the configuration." >}}
 {{< /gallery >}}
 
-<span id="actions"></span>
-
 ## Actions
-
-<span id="get-profile-picture"></span>
 
 ### Get Profile Picture
 

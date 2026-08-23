@@ -51,8 +51,6 @@ Here's a real example of what GPT-5 expects. OpenAI's Prompt Optimizer shows the
 
 The good news is you don't need all seven sections for every prompt. The Quick Start below shows the simplified version that covers most tasks.
 
-<span id="quick-start"></span>
-
 ## Quick start
 
 Three changes get you better GPT-5 results in the next five minutes.

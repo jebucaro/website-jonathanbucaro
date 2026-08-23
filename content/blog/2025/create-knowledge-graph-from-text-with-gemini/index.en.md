@@ -35,8 +35,6 @@ Knowledge is typically created and stored as natural language: documents, transc
 
 What made this newly practical is that modern LLMs changed the equation. They read text and extract structured information with surprising accuracy: understanding context, resolving ambiguities, and catching relationships traditional NLP pipelines would miss. That's what Nodus does: it extracts entities and relationships from any text, builds interactive visual knowledge graphs, exports to HTML, JSON, or TXT, and costs about $0.00018 per article, with no manual tagging or NLP pipeline to maintain. Instead of a complex extraction system, you write straightforward code against Gemini's structured output.
 
-<span id="quick-start"></span>
-
 ## Quick start
 
 ### Get the source code
@@ -92,8 +90,6 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 # 4. Access the app at http://localhost:8501
 ```
 
-<span id="results"></span>
-
 ## Results
 
 The interface gives you four perspectives on your extracted knowledge:
@@ -106,8 +102,6 @@ The interface gives you four perspectives on your extracted knowledge:
 {{< /gallery >}}
 
 Four tabs cover the results: a structured **Summary** with key insights, an interactive physics-based **Visualization**, **Raw Data** as JSON for inspecting nodes and relationships, and **Statistics** on node count and relationship types. You can export the graph as HTML (interactive), JSON (structured data), or TXT (summary).
-
-<span id="how-it-works-architecture"></span>
 
 ## How it works
 
@@ -203,8 +197,6 @@ From here you could connect it to a document database for automatic extraction, 
 {{< callout note >}}
 Simple examples are easy to grasp, but knowledge graphs shine more with scale. A graph with 100 entities and 200 relationships can reveal patterns that are nearly impossible to spot in raw text, from trend analysis to anomaly detection.
 {{< /callout >}}
-
-<span id="explore-the-code"></span>
 
 ## Explore the code
 
