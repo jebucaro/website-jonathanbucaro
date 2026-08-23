@@ -8,7 +8,7 @@ description: 'Mi segunda certificación de Scrum. Fui acreditado como Scrum Prod
 slug: 'scrum-product-owner-certified'
 ---
 
-Me alegra muchísimo iniciar el 2021 con la acreditación Scrum Product Owner Certified, respaldada por Scrumstudy. Todavía estamos en enero, ¿verdad? 😉
+Me alegra muchísimo iniciar el 2021 con la acreditación Scrum Product Owner Certified, respaldada por Scrumstudy. Todavía estamos en enero, ¿verdad?
 
 {{< gallery caption="SPOC - SCRUMstudy" >}}
 {{< gallery-image src="images/badge-SPOC.webp" alt="Insignia de SCRUMstudy para la certificación Scrum Product Owner Certified" >}}
@@ -16,7 +16,7 @@ Me alegra muchísimo iniciar el 2021 con la acreditación Scrum Product Owner Ce
 
 {{< extlink href="https://www.scrumstudy.com/certification/verify?type=SPOC&number=775364" >}}Verificar credencial SPoC en SCRUMstudy{{< /extlink >}}
 
-## 🤔 ¿Por qué Product Owner?
+## ¿Por qué Product Owner?
 
 Antes de iniciar formalmente mi carrera en tecnología, trabajé como cajero por casi dos años. Conocer bien el negocio fue un factor clave para que me asignaran proyectos prioritarios y de alto perfil para el grupo financiero.
 
