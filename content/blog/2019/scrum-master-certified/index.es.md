@@ -14,9 +14,9 @@ Decidí buscar esta certificación porque quería profundizar en marcos de traba
 
 > La posibilidad de realizar un sueño es lo que hace interesante la vida.
 >
-> <cite>– Paulo Coelho</cite>
+> <cite>Paulo Coelho</cite>
 
-## Sobre esta certificación – El enfoque de SCRUMstudy
+## Sobre esta certificación: el enfoque de SCRUMstudy
 
 A diferencia de otras certificaciones de Scrum que se alinean muy de cerca con la **Scrum Guide** de Scrum.org u organizaciones como Scrum Alliance y Scrum Inc., la certificación de SCRUMstudy se basa en el **Scrum Body of Knowledge (SBOK™ Guide)**. Este marco de trabajo es más prescriptivo y detallado en cuanto a roles, procesos y prácticas de gestión adaptadas a entornos de proyecto.
 
@@ -24,11 +24,11 @@ Este enfoque ofrece una comprensión completa de los principios de Scrum aplicad
 
 ## Reflexiones del camino
 
-Obtener la acreditación Scrum Master Certified representa el esfuerzo que invertí en aprender principios ágiles a través de un enfoque claro y estructurado. Me dio el conocimiento para apoyar a los equipos, impulsar la mejora continua, gestionar proyectos con enfoque y ayudar a entregar valor.
+Obtener la acreditación Scrum Master Certified es el resultado de aprender principios ágiles con un enfoque claro y estructurado. Me dio el conocimiento para apoyar a los equipos, impulsar la mejora continua y ayudarlos a entregar valor con más enfoque.
 
-El marco de SCRUMstudy enfatiza procesos claros y roles bien definidos, y muestra cómo aplicar conceptos de Scrum en situaciones reales de trabajo. Estos elementos son importantes cuando se usa Agile a mayor escala.
+El marco de SCRUMstudy enfatiza procesos claros y roles bien definidos, y muestra cómo aplicar conceptos de Scrum en situaciones reales de trabajo, algo que importa cuando usas Agile a mayor escala.
 
-Mientras continúo este camino, me entusiasma aplicar lo aprendido para fomentar colaboración, aumentar la agilidad y promover la excelencia dentro de mis equipos y proyectos.
+Tengo ganas de aplicar lo que aprendí aquí en cómo trabajan mis equipos.
 
 {{< gallery caption="Scrum Master Certified" >}}
 {{< gallery-image src="images/badge-SMC.webp" alt="Insignia de SCRUMstudy para la certificación Scrum Master Certified" >}}
