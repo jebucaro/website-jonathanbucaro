@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function darkMode() {
         if (html.classList.contains('dark-mode')) {
             html.classList.remove('dark-mode');
-            localStorage.removeItem('theme');
+            localStorage.setItem('theme', 'light');
             document.documentElement.removeAttribute('dark');
         } else {
             html.classList.add('dark-mode');
