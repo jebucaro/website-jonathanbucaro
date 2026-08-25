@@ -2,226 +2,83 @@
 .section.technologies {
     padding-top: 0;
     border-top: none;
-
-    /* Below-the-fold and DOM-heavy (many inline SVG icons): skip style/layout
-       work until it nears the viewport so it doesn't compete with the hero
-       LCP paint on first load. contain-intrinsic-size is a rough starting
-       height only — the browser remembers the real rendered size after the
-       first layout and reuses that for any later skip. */
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1400px;
 }
 
-.technologies__group {
-    max-width: 960px;
-    margin: 0 auto 48px;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.technologies__group-title {
-    margin: 0 0 20px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--text-alt-color);
-}
-
-.technologies__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
-    gap: 16px;
-}
-
-.technologies__item {
-    margin-bottom: 0;
-}
-
-/* Stagger: matches the 3-up .row > [data-reveal] convention in
-   1-tools/_reveal.scss, scoped to this grid since it isn't a .row. */
-.technologies__list > [data-reveal]:nth-child(3n + 2) {
-    transition-delay: 0.08s;
-}
-
-.technologies__list > [data-reveal]:nth-child(3n) {
-    transition-delay: 0.16s;
-}
-
-.technologies__card {
-    position: relative;
-    display: flex;
-    height: 100%;
-    min-height: 164px;
-    padding: 24px 20px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid var(--border-color);
-    border-radius: $global-radius;
-    outline: none;
+.technologies-marquee {
+    max-width: 420px;
+    margin: 0 auto;
     overflow: hidden;
-    background: var(--background-alt-color);
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    transition:
-        border-color 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.25s ease;
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent,
+        #000 20%,
+        #000 80%,
+        transparent
+    );
+    mask-image: linear-gradient(
+        90deg,
+        transparent,
+        #000 20%,
+        #000 80%,
+        transparent
+    );
+}
 
-    &::after {
-        position: absolute;
-        right: 20px;
-        bottom: 0;
-        left: 20px;
-        height: 3px;
-        content: "";
-        background: var(--brand-color);
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform 0.25s ease;
-    }
+.technologies-marquee__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+    animation: technologies-marquee-scroll 24s linear infinite;
 
-    &:focus {
-        border-color: var(--brand-color);
-    }
-
-    &:focus-visible {
-        box-shadow: 0 0 0 3px rgba(255, 199, 29, 0.35);
+    &:hover {
+        animation-play-state: paused;
     }
 }
 
-.dark-mode .technologies__card {
-    box-shadow: none;
-}
-
-.technologies__icon {
-    --icon-size: 52px;
-    width: var(--icon-size);
-    height: var(--icon-size);
-    margin-bottom: 14px;
-    font-size: var(--icon-size);
-    line-height: 1;
-
-    i {
-        font-size: 1em;
-        color: inherit;
-    }
+.technologies-marquee__item {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    height: 40px;
+    margin-right: 16px;
 
     svg {
         display: block;
-        width: 1em !important;
-        height: 1em !important;
-        max-width: 100%;
-        max-height: 100%;
+        height: 40px;
+        width: auto;
+    }
+
+    i {
+        font-size: 40px;
+        line-height: 1;
     }
 }
 
-.technologies__name {
-    margin: 0;
-    font-size: 17px;
-    line-height: 1.3;
-    color: var(--heading-font-color);
-}
-
-.technologies__outcome {
-    display: -webkit-box;
-    margin: 10px 0 0;
-    font-size: 13px;
-    line-height: 1.45;
-    min-height: 38px;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    color: var(--text-alt-color);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .technologies__card:hover,
-    .technologies__card:focus-visible {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-
-        &::after {
-            transform: scaleX(1);
-        }
+@keyframes technologies-marquee-scroll {
+    from {
+        transform: translateX(0);
     }
-
-    .dark-mode .technologies__card:hover,
-    .dark-mode .technologies__card:focus-visible {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-}
-
-@media only screen and (max-width: $mobile) {
-    .technologies__group {
-        margin-bottom: 40px;
-    }
-
-    .technologies__list {
-        display: block;
-    }
-
-    .technologies__item {
-        width: 100%;
-    }
-
-    .technologies__list > [data-reveal]:nth-child(n) {
-        transition-delay: 0s;
-    }
-
-    .technologies__group .tns-outer {
-        padding: 0 !important;
-    }
-
-    .technologies__group .tns-nav {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 24px;
-
-        button {
-            width: 8px;
-            height: 8px;
-            padding: 0;
-            border: 0;
-            border-radius: 50%;
-            background: var(--border-color);
-
-            &.tns-nav-active {
-                background: var(--brand-color);
-            }
-        }
-    }
-
-    .technologies__card {
-        min-height: 0;
-        padding: 16px 12px;
-    }
-
-    .technologies__icon {
-        --icon-size: 44px;
-        margin-bottom: 10px;
-    }
-
-    .technologies__name {
-        font-size: 16px;
-    }
-
-    .technologies__outcome {
-        margin-top: 8px;
-        font-size: 12px;
-        min-height: 35px;
+    to {
+        transform: translateX(-50%);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .technologies__card,
-    .technologies__card::after,
-    .technologies__outcome {
-        transition: none;
+    .technologies-marquee {
+        max-width: 100%;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .technologies-marquee__track {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
+        animation: none;
+    }
+
+    .technologies-marquee__item[aria-hidden="true"] {
+        display: none;
     }
 }
