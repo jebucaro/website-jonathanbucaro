@@ -90,7 +90,7 @@
 
     .project__title {
         margin: 0;
-        font-size: 20px;
+        font-size: 24px;
         line-height: 1.2;
         font-weight: 700;
         color: var(--heading-font-color);
@@ -98,10 +98,6 @@
         a {
             color: inherit;
             text-decoration: none;
-        }
-
-        @media only screen and (max-width: $desktop) {
-            font-size: 18px;
         }
     }
 }
