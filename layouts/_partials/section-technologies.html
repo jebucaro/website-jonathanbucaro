@@ -17,7 +17,7 @@
                                     {{- else if .icon -}}
                                         <i class="{{ .icon }}"></i>
                                     {{- end -}}
-                                    <span class="sr-only">{{ .name }}</span>
+                                    <span class="technologies-marquee__label">{{ .name }}</span>
                                 </li>
                             {{ end }}
                             {{ range .Site.Params.technologies.items }}
@@ -27,6 +27,7 @@
                                     {{- else if .icon -}}
                                         <i class="{{ .icon }}"></i>
                                     {{- end -}}
+                                    <span class="technologies-marquee__label">{{ .name }}</span>
                                 </li>
                             {{ end }}
                         </ul>
