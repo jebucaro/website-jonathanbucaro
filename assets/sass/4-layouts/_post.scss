@@ -1,7 +1,7 @@
-// Ensure underline effect for all blog/featured post titles
+// Ensure underline effect for post and featured-post titles
+// (.article__title owns its own hover treatment in _article.scss)
 
 .post-title a,
-.article__title a,
 .featured__title a {
     color: inherit;
     text-decoration: none;
@@ -17,8 +17,6 @@
 }
 .post-title a:hover,
 .post-title a:focus,
-.article__title a:hover,
-.article__title a:focus,
 .featured__title a:hover,
 .featured__title a:focus {
     color: inherit;

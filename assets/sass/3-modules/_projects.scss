@@ -97,7 +97,16 @@
 
         a {
             color: inherit;
-            text-decoration: none;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
+
+            &:hover,
+            &:focus {
+                text-decoration-color: currentColor;
+            }
         }
     }
 }
