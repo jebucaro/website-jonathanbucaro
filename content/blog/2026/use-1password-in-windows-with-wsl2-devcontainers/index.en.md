@@ -184,6 +184,6 @@ You should see: `Good "git" signature for [email] with key ...`
 
 ---
 
-Photo by {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd Dittrich{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+Photo by {{< extlink href="https://unsplash.com/@cos592?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Cosmin Andrei Buzamat{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/stacked-colorful-shipping-containers-with-a-blue-crane-ZH-R-3DgVK8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
 Inspired by {{< extlink href="https://xebia.com/blog/elevate-your-git-security-signing-github-commits-with-1password-in-windows-wsl-and-containers/" >}}Marius Boden's article Elevate Your Git Security: Signing GitHub Commits with 1Password in Windows WSL and Containers{{< /extlink >}} on {{< extlink href="https://xebia.com/blog/" >}}Xebia{{< /extlink >}}
