@@ -295,3 +295,7 @@ The product read is simple: a .NET team can adopt the gitmoji convention without
 2. NuGet package: {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
 3. gitmoji convention: {{< extlink href="https://gitmoji.dev" >}}gitmoji.dev{{< /extlink >}}
 4. Husky.Net: {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}
+
+---
+
+Photo by {{< extlink href="https://unsplash.com/@timwitzdam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Tim Witzdam{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/animal-emojis-on-a-smartphone-screen-bXIdCmicMOc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
