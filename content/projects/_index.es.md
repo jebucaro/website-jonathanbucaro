@@ -1,5 +1,5 @@
 ---
 title: 'Proyectos'
-description: 'Proyectos backend y casos de estudio de arquitectura que reflejan cómo diseño software confiable.'
+description: 'La mayoría de mi trabajo profesional está bajo NDA, así que estos son proyectos personales más pequeños que muestran partes de la arquitectura y las decisiones detrás de él.'
 draft: false
 ---
