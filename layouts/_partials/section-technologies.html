@@ -23,7 +23,13 @@
                             {{ range .Site.Params.technologies.items }}
                                 <li class="technologies-marquee__item" aria-hidden="true">
                                     {{- if .svg -}}
-                                        {{ .svg | safeHTML }}
+                                        {{/* Duplicated for the seamless marquee loop, so any id="" (used
+                                             by icon gradients, e.g. Python) must be renamed here to avoid
+                                             colliding with the primary copy's ids. Internal url(#id)
+                                             references get the same suffix so they still resolve. */}}
+                                        {{ $svg := replaceRE `id="([a-zA-Z0-9_-]+)"` `id="${1}-dup"` .svg }}
+                                        {{ $svg = replaceRE `url\(#([a-zA-Z0-9_-]+)\)` `url(#${1}-dup)` $svg }}
+                                        {{ $svg | safeHTML }}
                                     {{- else if .icon -}}
                                         <i class="{{ .icon }}"></i>
                                     {{- end -}}
