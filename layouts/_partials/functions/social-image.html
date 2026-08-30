@@ -1,27 +1,55 @@
 {{- /*
-    Returns the absolute URL for og:image / twitter:image:
-    page image → hero image (home) → site logo, capped at 1200px width.
-    Falls back to the raw absolute URL when the image is not a resource.
+    Returns a dict {url, width, height, type} for og:image / twitter:image.
+    Source priority: page image → hero image (home) → site logo.
+
+    Social platforms (LinkedIn, X, Facebook) expect a landscape image around
+    1200x630 (1.91:1) and hard-crop anything else from the center, which cuts
+    off card/hero art that's square or portrait. So when the source has
+    enough resolution to crop cleanly, this smart-crops it to exactly
+    1200x630 as a JPEG (broadest crawler compatibility). Sources too small to
+    crop without heavy upscaling (e.g. the site logo) keep their native
+    aspect ratio instead, same as before.
 */ -}}
-{{- $url := "" -}}
+{{- $path := "" -}}
 {{- $res := "" -}}
 {{- if .IsHome -}}
-    {{- $path := .Site.Params.hero.hero__image -}}
-    {{- $url = $path | absURL -}}
+    {{- $path = .Site.Params.hero.hero__image -}}
     {{- $res = resources.Get (strings.TrimPrefix "/" $path) -}}
 {{- else if .Params.image -}}
-    {{- $url = .Params.image | absURL -}}
+    {{- $path = .Params.image -}}
     {{- $res = .Resources.GetMatch .Params.image -}}
 {{- else -}}
-    {{- $path := .Site.Params.logo -}}
-    {{- $url = $path | absURL -}}
+    {{- $path = .Site.Params.logo -}}
     {{- $res = resources.Get (strings.TrimPrefix "/" $path) -}}
 {{- end -}}
+
+{{- $url := $path | absURL -}}
+{{- $width := 0 -}}
+{{- $height := 0 -}}
+{{- $type := "" -}}
+
 {{- with $res -}}
-    {{- if and (in (slice "png" "jpeg" "webp" "tiff" "bmp") .MediaType.SubType) (gt .Width 1200) -}}
-        {{- $url = (.Resize "1200x").Permalink -}}
-    {{- else -}}
-        {{- $url = .Permalink -}}
+    {{- if in (slice "png" "jpeg" "webp" "tiff" "bmp") .MediaType.SubType -}}
+        {{- if and (ge .Width 600) (ge .Height 600) -}}
+            {{- $social := .Fill "1200x630 jpg q75 Smart" -}}
+            {{- $url = $social.Permalink -}}
+            {{- $width = $social.Width -}}
+            {{- $height = $social.Height -}}
+            {{- $type = $social.MediaType.Type -}}
+        {{- else -}}
+            {{- if gt .Width 1200 -}}
+                {{- $capped := .Resize "1200x" -}}
+                {{- $url = $capped.Permalink -}}
+                {{- $width = $capped.Width -}}
+                {{- $height = $capped.Height -}}
+            {{- else -}}
+                {{- $url = .Permalink -}}
+                {{- $width = .Width -}}
+                {{- $height = .Height -}}
+            {{- end -}}
+            {{- $type = .MediaType.Type -}}
+        {{- end -}}
     {{- end -}}
 {{- end -}}
-{{- return $url -}}
+
+{{- return (dict "url" $url "width" $width "height" $height "type" $type) -}}
