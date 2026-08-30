@@ -131,10 +131,10 @@
 
 # Section: Projects
 - id: sections_projects_title
-  translation: 'Proyectos Seleccionados'
+  translation: 'Proyectos Personales'
 
 - id: sections_projects_description
-  translation: 'Una selección de proyectos que refleja el tipo de sistemas que me gusta construir y las herramientas que uso en el trabajo diario.'
+  translation: 'La mayoría de mi trabajo con clientes está bajo NDA, así que estos son proyectos más pequeños que construí por mi cuenta para mostrar una parte de esa arquitectura y esas decisiones.'
 
 - id: sections_projects_viewProject
   translation: 'Ver Proyecto'

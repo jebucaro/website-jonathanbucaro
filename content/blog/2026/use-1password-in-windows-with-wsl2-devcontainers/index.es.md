@@ -184,6 +184,6 @@ Deberías ver: `Good "git" signature for [email] with ED25519 key ...`
 
 ---
 
-Foto por {{< extlink href="https://unsplash.com/@hdbernd?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Bernd Dittrich{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-large-container-ship-in-a-body-of-water-yfQfmji31fY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+Foto por {{< extlink href="https://unsplash.com/@cos592?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Cosmin Andrei Buzamat{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/stacked-colorful-shipping-containers-with-a-blue-crane-ZH-R-3DgVK8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
 Inspirado por {{< extlink href="https://xebia.com/blog/elevate-your-git-security-signing-github-commits-with-1password-in-windows-wsl-and-containers/" >}}el artículo de Marius Boden «Git Security: Signing GitHub Commits with 1Password in Windows WSL and Containers»{{< /extlink >}} en {{< extlink href="https://xebia.com/blog/" >}}Xebia{{< /extlink >}}

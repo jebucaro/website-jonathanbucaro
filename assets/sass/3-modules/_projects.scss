@@ -52,19 +52,13 @@
     position: relative;
     display: block;
     width: 100%;
-    height: 100%;
-    min-height: 280px;
+    margin-bottom: 20px;
+    padding-bottom: 100%;
     border-radius: 16px;
     user-select: none;
     transform: translate(0);
     overflow: hidden;
     background-color: var(--background-alt-color);
-
-    &::after {
-        content: "";
-        display: table;
-        padding-top: 120%;
-    }
 
     img {
         position: absolute;
@@ -81,13 +75,6 @@
 }
 
 .project__info {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    padding: 16px 20px;
-    background: var(--background-color);
-    border-radius: 8px;
     text-align: left;
 
     .project__label {
@@ -103,18 +90,23 @@
 
     .project__title {
         margin: 0;
-        font-size: 20px;
+        font-size: 24px;
         line-height: 1.2;
         font-weight: 700;
         color: var(--heading-font-color);
 
         a {
             color: inherit;
-            text-decoration: none;
-        }
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
 
-        @media only screen and (max-width: $desktop) {
-            font-size: 18px;
+            &:hover,
+            &:focus {
+                text-decoration-color: currentColor;
+            }
         }
     }
 }
@@ -139,22 +131,15 @@
 }
 
 /* Adaptive projects grid (1-6 projects) — 3 and 6 keep the default
-   flex .row/.col grid above and need no rules here. */
-.projects-grid--count-1 {
-    display: flex;
+   flex .row/.col grid above and need no rules here. Counts below 3
+   keep the natural col-4 card size (same as the article/blog cards)
+   instead of stretching to fill the row. */
+.projects-grid--count-1,
+.projects-grid--count-2 {
     justify-content: center;
 
     .project {
-        width: 100%;
-        max-width: 480px;
-    }
-}
-
-@media only screen and (min-width: 769px) {
-    .projects-grid--count-2 {
-        .project {
-            width: 50%;
-        }
+        flex-grow: 0;
     }
 }
 

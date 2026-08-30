@@ -34,12 +34,19 @@
     <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
     <meta name="twitter:site" content="{{ with .Site.Params.twitter.site }}{{ . }}{{ end }}" />
     <meta name="twitter:creator" content="{{ with .Site.Params.twitter.creator }}{{ . }}{{ end }}" />
-    <meta name="twitter:image" content="{{ $socialImage }}" />
+    <meta name="twitter:image" content="{{ $socialImage.url }}" />
+    <meta name="twitter:image:alt" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
 
     <!-- Facebook OpenGraph -->
     <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
     <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
-    <meta property="og:image" content="{{ $socialImage }}" />
+    <meta property="og:image" content="{{ $socialImage.url }}" />
+    {{ if $socialImage.width }}
+    <meta property="og:image:width" content="{{ $socialImage.width }}" />
+    <meta property="og:image:height" content="{{ $socialImage.height }}" />
+    {{ end }}
+    {{ if $socialImage.type }}<meta property="og:image:type" content="{{ $socialImage.type }}" />{{ end }}
+    <meta property="og:image:alt" content="{{ if not .IsHome }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
     <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />

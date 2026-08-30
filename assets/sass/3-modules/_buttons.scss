@@ -11,13 +11,9 @@
     border: none;
     outline: none;
     cursor: pointer;
-    overflow: hidden;
-    isolation: isolate;
     transition:
         color 0.2s,
-        background-color 0.2s,
-        box-shadow 0.2s,
-        transform 0.2s;
+        background-color 0.2s;
     color: var(--dark);
     background: var(--brand-color);
 
@@ -26,21 +22,12 @@
     }
 
     &--primary {
-        color: var(--dark);
+        color: var(--button-color);
         background-color: var(--button-background-color);
 
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: var(--button-background-hover);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        &:hover::before {
-            transform: translateX(0);
+        &:hover {
+            color: var(--dark);
+            background-color: var(--button-background-hover);
         }
     }
 
@@ -51,12 +38,5 @@
     &--big {
         display: block;
         width: 100%;
-    }
-}
-
-/* Accessibility: Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .button--primary::before {
-        transition: none;
     }
 }

@@ -126,7 +126,8 @@ pre {
     padding: 15px;
     margin-bottom: 0;
     font-size: 14px;
-    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     color: var(--heading-font-color);
 }
 

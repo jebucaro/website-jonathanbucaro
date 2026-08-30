@@ -8,36 +8,36 @@
                         <h2 class="section__small__title">{{ .Site.Params.technologies.title | safeHTML }}</h2>
                     </div>
 
-                    {{ $groups := slice
-                        (dict "id" "backend-integrations" "title" "Backend & Integrations")
-                        (dict "id" "web-applications" "title" "Web Applications")
-                        (dict "id" "automation-apis-content" "title" "Automation, APIs & Content")
-                    }}
-                    {{ range $groups }}
-                        {{ $items := where $.Site.Params.technologies.items "group" .id }}
-                        {{ if $items }}
-                            <section class="technologies__group" aria-labelledby="technology-group-{{ .id }}">
-                                <h3 class="technologies__group-title" id="technology-group-{{ .id }}">{{ .title }}</h3>
-                                <ul class="technologies__list list-reset">
-                                    {{ range $items }}
-                                        <li class="technologies__item" data-reveal>
-                                            <article class="technologies__card" tabindex="0">
-                                                <div class="technologies__icon" aria-hidden="true">
-                                                    {{- if .svg -}}
-                                                        {{ .svg | safeHTML }}
-                                                    {{- else if .icon -}}
-                                                        <i class="{{ .icon }}"></i>
-                                                    {{- end -}}
-                                                </div>
-                                                <h4 class="technologies__name">{{ .name }}</h4>
-                                                <p class="technologies__outcome">{{ .outcome }}</p>
-                                            </article>
-                                        </li>
-                                    {{ end }}
-                                </ul>
-                            </section>
-                        {{ end }}
-                    {{ end }}
+                    <div class="technologies-marquee">
+                        <ul class="technologies-marquee__track list-reset">
+                            {{ range .Site.Params.technologies.items }}
+                                <li class="technologies-marquee__item">
+                                    {{- if .svg -}}
+                                        {{ .svg | safeHTML }}
+                                    {{- else if .icon -}}
+                                        <i class="{{ .icon }}"></i>
+                                    {{- end -}}
+                                    <span class="technologies-marquee__label">{{ .name }}</span>
+                                </li>
+                            {{ end }}
+                            {{ range .Site.Params.technologies.items }}
+                                <li class="technologies-marquee__item" aria-hidden="true">
+                                    {{- if .svg -}}
+                                        {{/* Duplicated for the seamless marquee loop, so any id="" (used
+                                             by icon gradients, e.g. Python) must be renamed here to avoid
+                                             colliding with the primary copy's ids. Internal url(#id)
+                                             references get the same suffix so they still resolve. */}}
+                                        {{ $svg := replaceRE `id="([a-zA-Z0-9_-]+)"` `id="${1}-dup"` .svg }}
+                                        {{ $svg = replaceRE `url\(#([a-zA-Z0-9_-]+)\)` `url(#${1}-dup)` $svg }}
+                                        {{ $svg | safeHTML }}
+                                    {{- else if .icon -}}
+                                        <i class="{{ .icon }}"></i>
+                                    {{- end -}}
+                                    <span class="technologies-marquee__label">{{ .name }}</span>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

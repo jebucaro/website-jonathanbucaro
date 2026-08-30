@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function darkMode() {
         if (html.classList.contains('dark-mode')) {
             html.classList.remove('dark-mode');
-            localStorage.removeItem('theme');
+            localStorage.setItem('theme', 'light');
             document.documentElement.removeAttribute('dark');
         } else {
             html.classList.add('dark-mode');
@@ -204,80 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }, 100);
-
-    /* ============================
-   // Technology Sliders
-   ============================ */
-    var technologySliders = [],
-        technologySliderMedia = window.matchMedia('(max-width: 576px)');
-
-    // tiny-slider marks off-screen `.tns-item` as aria-hidden + tabindex="-1",
-    // but our focusable `.technologies__card` is nested inside and isn't part
-    // of the element it manages, so it stays reachable. Keep it in sync.
-    function syncTechnologySliderFocus(list) {
-        list.querySelectorAll('.tns-item').forEach((item) => {
-            var card = item.querySelector('.technologies__card');
-            if (!card) return;
-            card.setAttribute(
-                'tabindex',
-                item.getAttribute('aria-hidden') === 'true' ? '-1' : '0',
-            );
-        });
-    }
-
-    function updateTechnologySliders() {
-        if (!window.tns) return;
-
-        if (technologySliderMedia.matches && technologySliders.length === 0) {
-            document.querySelectorAll('.technologies__list').forEach((list) => {
-                var slider = tns({
-                    container: list,
-                    items: 1,
-                    slideBy: 1,
-                    gutter: 12,
-                    controls: false,
-                    nav: true,
-                    mouseDrag: true,
-                    loop: false,
-                    speed: window.matchMedia('(prefers-reduced-motion: reduce)')
-                        .matches
-                        ? 0
-                        : 300,
-                });
-
-                syncTechnologySliderFocus(list);
-                slider.events.on('indexChanged', () =>
-                    syncTechnologySliderFocus(list),
-                );
-
-                technologySliders.push(slider);
-            });
-        } else if (!technologySliderMedia.matches && technologySliders.length) {
-            technologySliders.forEach((slider) => slider.destroy());
-            technologySliders = [];
-
-            document
-                .querySelectorAll('.technologies__card')
-                .forEach((card) => card.setAttribute('tabindex', '0'));
-        }
-    }
-
-    function scheduleTechnologySliders() {
-        updateTechnologySliders();
-        technologySliderMedia.addEventListener(
-            'change',
-            updateTechnologySliders,
-        );
-    }
-
-    // Deferred scripts already guarantee window.tns is ready by this point,
-    // so this only needs to wait for an idle moment — not a network race —
-    // to avoid the layout-thrashing tns() init competing with LCP paint.
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(scheduleTechnologySliders, { timeout: 200 });
-    } else {
-        setTimeout(scheduleTechnologySliders, 100);
-    }
 
     /* =================================
   // Smooth scroll to the tags page
