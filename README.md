@@ -4,7 +4,7 @@ Personal website built with Hugo and deployed to Firebase Hosting.
 
 ## Requirements
 
-- Node.js 24+ (`.nvmrc` is set to `v24`)
+- Node.js 24+ (`fnm` reads the version from `.nvmrc`)
 - pnpm 10+
 - Hugo (extended)
 
@@ -25,8 +25,17 @@ Lives in a named Docker volume for native-speed installs (bind mounts are slow o
 
 ## Local development (without dev container)
 
+On Windows, initialize `fnm` when PowerShell starts by adding this line to `$PROFILE`:
+
+```powershell
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+```
+
+Open a new terminal, then run:
+
 ```bash
-nvm use
+fnm use
+node --version
 pnpm install
 pnpm dev
 ```

@@ -9,8 +9,8 @@
         "clean": "node -e \"const fs = require('fs'); ['public', 'resources'].forEach(p => fs.rmSync(p, { recursive: true, force: true }))\"",
         "format:check": "prettier --check .",
         "format:write": "prettier --write .",
-        "lint:markdown": "markdownlint 'content/**/*.md'",
-        "lint:markdown:fix": "markdownlint --fix 'content/**/*.md'",
+        "lint:markdown": "markdownlint \"content/**/*.md\"",
+        "lint:markdown:fix": "markdownlint --fix \"content/**/*.md\"",
         "check": "pnpm run format:check && pnpm run lint:markdown",
         "fix": "pnpm run format:write && pnpm run lint:markdown:fix",
         "validate": "pnpm run check && pnpm run build",
@@ -22,7 +22,7 @@
     "engines": {
         "node": ">=24"
     },
-    "packageManager": "pnpm@11.17.0+sha512.cca3cea332ad254bb84145f966d19f4879615210346fc92c79a047f23a0d7b3cca3c3792f0076ba1f1831d277efbcf0a9119b31a9a60eca7fb3d6231f331ef72",
+    "packageManager": "pnpm@12.3.4",
     "devDependencies": {
         "fontkit": "^2.0.4",
         "husky": "^9.1.7",
@@ -41,6 +41,7 @@
         ]
     },
     "dependencies": {
+        "@kurkle/color": "^0.3.4",
         "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
         "normalize.css": "^8.0.1",
