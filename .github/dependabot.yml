@@ -6,12 +6,6 @@
 
 version: 2
 updates:
-    # DevContainer updates
-    - package-ecosystem: 'devcontainers'
-      directory: '/'
-      schedule:
-          interval: weekly
-
     # pnpm dependencies (pnpm-lock.yaml — dependabot supports pnpm under the npm ecosystem)
     - package-ecosystem: 'npm'
       directory: '/'
