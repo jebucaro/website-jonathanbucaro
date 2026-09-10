@@ -4,29 +4,23 @@ Personal website built with Hugo and deployed to Firebase Hosting.
 
 ## Requirements
 
-- Node.js 24+ (`.nvmrc` is set to `v24`)
+- Node.js 24+ (`fnm` reads the version from `.nvmrc`)
 - pnpm 10+
 - Hugo (extended)
 
-## Dev container (recommended)
+## Local development
 
-A dev container is available at `.devcontainer/devcontainer.json`. It provides Node.js 24 and Hugo extended — no local tooling required beyond VS Code and a container runtime. It works with Docker Desktop (Windows/macOS) or Docker/Podman (Linux); Podman users should set `"dev.containers.dockerPath": "podman"` in their VS Code user settings.
+On Windows, initialize `fnm` when PowerShell starts by adding this line to `$PROFILE`:
 
-**Git, SSH, and commit signing**
-VS Code copies your host `~/.gitconfig` into the container automatically, and forwards your local SSH agent — so SSH auth and SSH commit signing work with keys held in 1Password (or any other agent) without extra setup:
+```powershell
+fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+```
 
-- Windows: enable **Settings → Developer → Use the SSH agent** in 1Password (or run the Windows OpenSSH `ssh-agent` service).
-- Linux/macOS: make sure `SSH_AUTH_SOCK` points at your agent (1Password sets this up when its SSH agent is enabled).
-
-Host-OS-specific programs in your gitconfig (e.g. `op-ssh-sign`, a Windows `ssh.exe` path) can't run inside the container, so `containerEnv` overrides `core.sshCommand` and `gpg.ssh.program` with `GIT_CONFIG_*` variables; signing goes through the forwarded agent instead (`ssh-keygen -Y sign`). Private keys never enter the container. Without an agent, everything except SSH push/pull and signing still works.
-
-**node_modules**
-Lives in a named Docker volume for native-speed installs (bind mounts are slow on Windows/macOS). The `node_modules/` directory on the host stays empty; run `pnpm install` on the host if you also work outside the container.
-
-## Local development (without dev container)
+Open a new terminal, then run:
 
 ```bash
-nvm use
+fnm use
+node --version
 pnpm install
 pnpm dev
 ```
