@@ -119,8 +119,8 @@ importers:
   .:
     dependencies:
       '@kurkle/color':
-        specifier: ^0.3.4
-        version: 0.3.4
+        specifier: ^0.6.4
+        version: 0.6.4
       chart.js:
         specifier: ^4.5.1
         version: 4.5.1
@@ -160,6 +160,9 @@ packages:
 
   '@kurkle/color@0.3.4':
     resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
+
+  '@kurkle/color@0.6.4':
+    resolution: {integrity: sha512-4D910mDCcdIKSN4JMirWQ/kif4l3m+eL8Cc+Ct+JsWUXRjow5VW08cO2UamnlwAwAE5xVdwapn0lLU4O2yl4Kg==}
 
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
@@ -523,6 +526,8 @@ packages:
 snapshots:
 
   '@kurkle/color@0.3.4': {}
+
+  '@kurkle/color@0.6.4': {}
 
   '@swc/helpers@0.5.23':
     dependencies:

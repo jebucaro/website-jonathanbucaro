@@ -41,7 +41,7 @@
         ]
     },
     "dependencies": {
-        "@kurkle/color": "^0.3.4",
+        "@kurkle/color": "^0.6.4",
         "chart.js": "^4.5.1",
         "lightense-images": "^1.0.17",
         "normalize.css": "^8.0.1",
