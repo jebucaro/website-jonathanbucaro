@@ -1,0 +1,38 @@
+{{- /*
+  work-artifact-label — resolves a work item's `artifact` descriptor to its
+  localized display label.
+
+  The `artifact` descriptor is deliberately NOT a Hugo taxonomy: it must not
+  generate a term page, a URL, or a sitemap entry, and callers must render the
+  result as plain text rather than a link.
+
+  Because it is not a taxonomy, Hugo does not validate it. This partial is the
+  single gateway for reading `.Params.artifact`, so it also enforces the allowed
+  list in `work.artifacts` (config/_default/params.yaml) and fails the build on
+  anything else, which is what a taxonomy would have given us for free.
+
+  Params:
+    page — the work item page
+
+  Returns:
+    the localized label, or "" when the page declares no artifact
+
+  Usage:
+    {{ $artifact := partial "functions/work-artifact-label.html" (dict "page" .) }}
+    {{ with $artifact }}<span>{{ . }}</span>{{ end }}
+*/ -}}
+
+{{- $page := .page -}}
+{{- $slug := $page.Params.artifact -}}
+{{- $label := "" -}}
+
+{{- with $slug -}}
+    {{- $allowed := site.Params.work.artifacts | default slice -}}
+    {{- if not (in $allowed .) -}}
+        {{- errorf "work-artifact-label: unknown artifact %q on %q. Allowed values (work.artifacts in config/_default/params.yaml): %v" . $page.Path $allowed -}}
+    {{- else -}}
+        {{- $label = i18n (printf "work_artifact_%s" .) -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return $label -}}

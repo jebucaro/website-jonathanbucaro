@@ -1,14 +1,16 @@
 {{ define "main" }}
-    {{ $projects := where .Site.RegularPages "Section" "projects" }}
-    {{ $total := len $projects }}
+    {{ $work := where .Site.RegularPages "Section" "work" }}
+    {{ $total := len $work }}
     {{ $position := 0 }}
-    {{ range $i, $p := $projects }}
+    {{ range $i, $p := $work }}
         {{ if eq $p.RelPermalink $.RelPermalink }}{{ $position = add $i 1 }}{{ end }}
     {{ end }}
+    {{ $workTypes := .GetTerms "work-types" }}
+    {{ $artifact := partial "functions/work-artifact-label.html" (dict "page" .) }}
     <div class="container">
-        <div class="project-hero" data-reveal>
+        <div class="work-hero" data-reveal>
             {{ if .Params.image }}
-            <div class="project-hero__image">
+            <div class="work-hero__image">
                 {{ partial "image.html" (dict
                     "image" .Params.image
                     "page" .
@@ -19,21 +21,28 @@
                 }}
             </div>
             {{ end }}
-            <div class="project-hero__content">
+            <div class="work-hero__content">
                 <p class="label-numbered">{{ printf "%02d / %02d" $position $total }}</p>
-                <p class="project-hero__meta">
-                    {{ with ($.GetTerms "project-types") }}<a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>{{ end }}
-                    {{ if and (index .Params "project-types") .Date }}<span class="project-hero__meta-sep">·</span>{{ end }}
+                <p class="work-hero__meta">
+                    {{ with $workTypes }}
+                        <a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>
+                        <span class="work-hero__meta-sep">·</span>
+                    {{ end }}
+                    {{/* The artifact descriptor is intentionally plain text, never a link. */}}
+                    {{ with $artifact }}
+                        <span class="work-hero__artifact">{{ . }}</span>
+                        <span class="work-hero__meta-sep">·</span>
+                    {{ end }}
                     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/localize-month-year" (dict "date" .Date) }}</time>
                     {{ if gt .Lastmod .Date }}
-                    <span class="project-hero__meta-sep">·</span>
+                    <span class="work-hero__meta-sep">·</span>
                     <span class="updated-badge">
                         <time class="updated-badge__date" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ i18n "post_updatedLabel" }} {{ partial "functions/localize-month-year" (dict "date" .Lastmod) }}</time>
                     </span>
                     {{ end }}
                 </p>
-                <h1 class="project-hero__title">{{ .Title }}</h1>
-                {{ if .Params.subtitle }}<p class="project-hero__subtitle">{{ .Params.subtitle }}</p>{{ end }}
+                <h1 class="work-hero__title">{{ .Title }}</h1>
+                {{ if .Params.subtitle }}<p class="work-hero__subtitle">{{ .Params.subtitle }}</p>{{ end }}
             </div>
         </div>
         <div class="content-layout">
@@ -44,19 +53,19 @@
             </details>
             {{ end }}
             <div class="content-main">
-                <div class="project-content animate">
+                <div class="work-content animate">
                     {{ .Content }}
                 </div>
             </div>
         </div>
-        {{/* Nav follows the list's newest-first browsing order: "previous" is the newer project (Hugo's .NextInSection), "next" the older (.PrevInSection). */}}
+        {{/* Nav follows the list's newest-first browsing order: "previous" is the newer item (Hugo's .NextInSection), "next" the older (.PrevInSection). It spans the whole section, so a case study can sit between two projects. */}}
         {{ $prev := .NextInSection }}
         {{ $next := .PrevInSection }}
         {{ if or $prev $next }}
-            <nav class="project-nav animate" aria-label="{{ i18n "projects_navLabel" }}">
+            <nav class="work-nav animate" aria-label="{{ i18n "work_navLabel" }}">
                 {{ with $prev }}
-                    <a class="project-nav__card project-nav__card--prev" href="{{ .Permalink }}">
-                        <div class="project-nav__image">
+                    <a class="work-nav__card work-nav__card--prev" href="{{ .Permalink }}">
+                        <div class="work-nav__image">
                             {{ partial "image.html" (dict
                                 "image" .Params.image
                                 "page" .
@@ -64,19 +73,19 @@
                                 "sizes" "(min-width: 1025px) 140px, 100px")
                             }}
                         </div>
-                        <div class="project-nav__text">
-                            <span class="project-nav__info">{{ partial "icon.html" "arrow-forward" }}{{ i18n "projects_previousProject" }}</span>
-                            <h2 class="project-nav__title">{{ .Title }}</h2>
+                        <div class="work-nav__text">
+                            <span class="work-nav__info">{{ partial "icon.html" "arrow-forward" }}{{ i18n "work_previous" }}</span>
+                            <h2 class="work-nav__title">{{ .Title }}</h2>
                         </div>
                     </a>
                 {{ end }}
                 {{ with $next }}
-                    <a class="project-nav__card project-nav__card--next" href="{{ .Permalink }}">
-                        <div class="project-nav__text">
-                            <span class="project-nav__info">{{ i18n "projects_nextProject" }}{{ partial "icon.html" "arrow-forward" }}</span>
-                            <h2 class="project-nav__title">{{ .Title }}</h2>
+                    <a class="work-nav__card work-nav__card--next" href="{{ .Permalink }}">
+                        <div class="work-nav__text">
+                            <span class="work-nav__info">{{ i18n "work_next" }}{{ partial "icon.html" "arrow-forward" }}</span>
+                            <h2 class="work-nav__title">{{ .Title }}</h2>
                         </div>
-                        <div class="project-nav__image">
+                        <div class="work-nav__image">
                             {{ partial "image.html" (dict
                                 "image" .Params.image
                                 "page" .

@@ -1,5 +1,5 @@
-/* Projects section background */
-.section.projects {
+/* Work section background */
+.section.work {
     padding: 60px 0 80px;
     margin-left: 32px;
     margin-right: 32px;
@@ -26,8 +26,8 @@
     }
 }
 
-/* Projects */
-.projects-page {
+/* Work */
+.work-page {
     margin-bottom: 68px;
 
     @media only screen and (max-width: $mobile) {
@@ -35,20 +35,20 @@
     }
 }
 
-.project {
+.work-item {
     margin-bottom: 32px;
     transition: transform 0.5s ease-in-out;
 
     &:hover {
         transform: translateY(-6px);
 
-        .project__image img {
+        .work-item__image img {
             transform: translate3d(0, 0, 0) scale3d(1.04, 1.04, 1);
         }
     }
 }
 
-.project__image {
+.work-item__image {
     position: relative;
     display: block;
     width: 100%;
@@ -74,10 +74,10 @@
     }
 }
 
-.project__info {
+.work-item__info {
     text-align: left;
 
-    .project__label {
+    .work-item__label {
         margin: 0 0 8px;
         font-size: 11px;
         font-weight: 700;
@@ -88,7 +88,7 @@
         opacity: 0.6;
     }
 
-    .project__title {
+    .work-item__title {
         margin: 0;
         font-size: 24px;
         line-height: 1.2;
@@ -113,77 +113,77 @@
 
 /* Accessibility: Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .project {
+    .work-item {
         transition: none;
 
         &:hover {
             transform: none;
 
-            .project__image img {
+            .work-item__image img {
                 transform: none;
             }
         }
     }
 
-    .project__image img {
+    .work-item__image img {
         transition: none;
     }
 }
 
-/* Adaptive projects grid (1-6 projects) — 3 and 6 keep the default
+/* Adaptive work grid (1-6 items) — 3 and 6 keep the default
    flex .row/.col grid above and need no rules here. Counts below 3
    keep the natural col-4 card size (same as the article/blog cards)
    instead of stretching to fill the row. */
-.projects-grid--count-1,
-.projects-grid--count-2 {
+.work-grid--count-1,
+.work-grid--count-2 {
     justify-content: center;
 
-    .project {
+    .work-item {
         flex-grow: 0;
     }
 }
 
 @media only screen and (min-width: 1401px) {
-    .projects-grid--count-4,
-    .projects-grid--count-5 {
+    .work-grid--count-4,
+    .work-grid--count-5 {
         display: grid;
         align-items: start;
         grid-template-columns: 2fr 1fr 1fr;
         gap: #{$base-spacing-unit * 2};
 
-        .project {
+        .work-item {
             width: auto;
             margin-bottom: 0;
         }
     }
 
-    .projects-grid--count-4 .project--featured,
-    .projects-grid--count-5 .project--featured {
+    .work-grid--count-4 .work-item--featured,
+    .work-grid--count-5 .work-item--featured {
         grid-column: 1;
         grid-row: 1 / span 2;
     }
 
-    /* :nth-of-type positions below assume section-projects.html always
-       renders the .project--featured article first in DOM order. */
-    .projects-grid--count-4 .project:nth-of-type(2),
-    .projects-grid--count-5 .project:nth-of-type(2) {
+    /* :nth-of-type positions below assume section-work.html always
+       renders the .work-item--featured article first in DOM order. */
+    .work-grid--count-4 .work-item:nth-of-type(2),
+    .work-grid--count-5 .work-item:nth-of-type(2) {
         grid-column: 2;
         grid-row: 1;
     }
 
-    .projects-grid--count-4 .project:nth-of-type(3),
-    .projects-grid--count-5 .project:nth-of-type(3) {
+    .work-grid--count-4 .work-item:nth-of-type(3),
+    .work-grid--count-5 .work-item:nth-of-type(3) {
         grid-column: 3;
         grid-row: 1;
     }
 
-    .projects-grid--count-4 .project:nth-of-type(4),
-    .projects-grid--count-5 .project:nth-of-type(4) {
+    .work-grid--count-4 .work-item:nth-of-type(4),
+    .work-grid--count-5 .work-item:nth-of-type(4) {
         grid-column: 2;
         grid-row: 2;
     }
 
-    .projects-grid--count-5 .project:nth-of-type(5) {
+    .work-grid--count-5 .work-item:nth-of-type(5) {
         grid-column: 3;
         grid-row: 2;
     }

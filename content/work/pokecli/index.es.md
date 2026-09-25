@@ -7,7 +7,8 @@ lastmod: 2026-08-13T00:00:00Z
 draft: false
 image: 'images/cover.png'
 description: 'CLI de Python tipado y pensado para PokeAPI. Se instala con uv, usa caché local con TinyDB y queda listo para agentes gracias a un skill de Claude Code incluido en el paquete.'
-project-types: ['CLI Tool']
+work-types: ['Project']
+artifact: 'cli-tool'
 schemaType: SoftwareApplication
 ---
 

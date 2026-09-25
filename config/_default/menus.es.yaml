@@ -11,10 +11,10 @@ main:
       name: Páginas
       weight: 40
       hasChildren: true
-    - identifier: projects
+    - identifier: work
       parent: pages
-      name: Proyectos
-      url: /es/projects/
+      name: Trabajo
+      url: /es/work/
       weight: 10
     - identifier: blog
       parent: pages
@@ -31,9 +31,9 @@ footer:
       name: Acerca de
       url: /es/about/
       weight: 30
-    - identifier: projects
-      name: Proyectos
-      url: /es/projects/
+    - identifier: work
+      name: Trabajo
+      url: /es/work/
       weight: 40
     - identifier: blog
       name: Blog

@@ -6,13 +6,20 @@ draft: true
 image: "images/cover.png"
 description: ""
 tags: []
-project-types: []
-# featured controls the spotlight slot in the homepage's adaptive projects
-# grid. At most one project should be featured: true at a time. If none (or
-# more than one) is set, the homepage falls back to the most recent project
+# work-types is the navigable classification: exactly one of 'Project' or
+# 'Case Study'. It drives the term page at /work-types/<slug>/.
+work-types: ['Project']
+# artifact narrows the classification without generating any page, URL, or
+# sitemap entry. It is rendered as plain text and is never a link. The value
+# must be one of the slugs listed under work.artifacts in
+# config/_default/params.yaml, or the build fails. Currently allowed: cli-tool
+# artifact: 'cli-tool'
+# featured controls the spotlight slot in the homepage's adaptive work
+# grid. At most one work item should be featured: true at a time. If none (or
+# more than one) is set, the homepage falls back to the most recent work item
 # by date.
 featured: false
-# schemaType controls the JSON-LD @type for this project page.
+# schemaType controls the JSON-LD @type for this work page.
 # Use "SoftwareApplication" for tools the reader can install and run.
 # Omit this field (or remove it) for case studies and client work — defaults to CreativeWork.
 # schemaType: SoftwareApplication
@@ -20,7 +27,7 @@ featured: false
 
 ## Overview
 
-Describe the project or system in one or two paragraphs. Focus on the problem, why it mattered, and the shape of the solution.
+Describe the work item or system in one or two paragraphs. Focus on the problem, why it mattered, and the shape of the solution.
 
 ## Context
 

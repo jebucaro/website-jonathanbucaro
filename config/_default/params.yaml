@@ -87,9 +87,16 @@ social:
 hero:
     enable: true
     hero__image: '/images/profile.webp'
-projects:
+work:
     enable: true
-    projects__description: true
+    work__description: true
+    # Allowed `artifact` front-matter slugs for work items. Because `artifact` is
+    # deliberately not a taxonomy, Hugo does not validate it; the
+    # functions/work-artifact-label.html partial fails the build on any value not
+    # listed here. Each slug also needs a `work_artifact_<slug>` entry in i18n/en.yaml
+    # and i18n/es.yaml to supply its display label.
+    artifacts:
+        - cli-tool
 testimonials:
     enable: false
     client_list__info: 'Trusted by clients worldwide'

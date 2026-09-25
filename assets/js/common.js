@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         if (window.reframe) {
             reframe(
-                '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .project-content iframe:not(.reframe-off)',
+                '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .work-content iframe:not(.reframe-off)',
             );
         }
     }, 100);
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // 0.5s + 0.16s. Once played, drop both the attribute and
                         // class so the html.js [data-reveal] rule stops permanently
                         // overriding component transform/transition (e.g. the
-                        // .project hover lift) — same pattern as the fade-img
+                        // .work-item hover lift) — same pattern as the fade-img
                         // cleanup above.
                         setTimeout(function () {
                             target.removeAttribute('data-reveal');
@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Zoom Image
   ======================= */
     const lightense = document.querySelector(
-            '.page__content img, .post__content img, .project-content img, .gallery__image img',
+            '.page__content img, .post__content img, .work-content img, .gallery__image img',
         ),
         imageLink = document.querySelectorAll(
-            '.page__content a img, .post__content a img, .project-content a img, .gallery__image a img',
+            '.page__content a img, .post__content a img, .work-content a img, .gallery__image a img',
         );
 
     if (imageLink) {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => {
         if (lightense && window.Lightense) {
             Lightense(
-                '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .project-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
+                '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .work-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
                 {
                     padding: 60,
                     offset: 30,
