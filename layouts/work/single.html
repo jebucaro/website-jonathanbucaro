@@ -28,7 +28,7 @@
                         <a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>
                         <span class="work-hero__meta-sep">·</span>
                     {{ end }}
-                    {{/* The artifact descriptor is intentionally plain text, never a link. */}}
+                    {{/* Plain text, not a link. */}}
                     {{ with $artifact }}
                         <span class="work-hero__artifact">{{ . }}</span>
                         <span class="work-hero__meta-sep">·</span>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        {{/* Nav follows the list's newest-first browsing order: "previous" is the newer item (Hugo's .NextInSection), "next" the older (.PrevInSection). It spans the whole section, so a case study can sit between two projects. */}}
+        {{/* Newest-first browsing order, so "previous" is the newer item and "next" the older. Spans the whole section. */}}
         {{ $prev := .NextInSection }}
         {{ $next := .PrevInSection }}
         {{ if or $prev $next }}

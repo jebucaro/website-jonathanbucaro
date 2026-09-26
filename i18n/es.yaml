@@ -188,9 +188,7 @@
 - id: work_navLabel
   translation: 'Navegación de trabajo'
 
-# Work artifact labels (artifact front-matter slug -> display label).
-# Every slug listed under work.artifacts in config/_default/params.yaml needs
-# an entry here, or the label renders empty.
+# Work artifact labels. Each slug in work.artifacts needs one here.
 - id: work_artifact_cli-tool
   translation: 'Herramienta CLI'
 

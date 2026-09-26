@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Title and Basic Meta -->
-    {{/* Taxonomy term titles come from a lowercase slug (e.g. "windows"), so only those
-         are humanized. Every other title is authored deliberately and is emitted verbatim:
-         humanizing them destroys intentional casing such as pokecli, PokeAPI, SKILL.md,
-         WSL2, and AI, and drops punctuation like the colon in a subtitle. */}}
+    {{/* Term titles come from lowercase slugs, so they get humanized. Every other
+         title is emitted verbatim to preserve casing like pokecli and SKILL.md. */}}
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ if eq .Kind "term" }}{{ humanize .Title }}{{ else }}{{ .Title }}{{ end }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="canonical" href="{{ .Permalink }}" />

@@ -90,11 +90,8 @@ hero:
 work:
     enable: true
     work__description: true
-    # Allowed `artifact` front-matter slugs for work items. Because `artifact` is
-    # deliberately not a taxonomy, Hugo does not validate it; the
-    # functions/work-artifact-label.html partial fails the build on any value not
-    # listed here. Each slug also needs a `work_artifact_<slug>` entry in i18n/en.yaml
-    # and i18n/es.yaml to supply its display label.
+    # Allowed `artifact` slugs. work-artifact-label.html fails the build on
+    # anything else. Each slug needs a `work_artifact_<slug>` label in both i18n files.
     artifacts:
         - cli-tool
 testimonials:
