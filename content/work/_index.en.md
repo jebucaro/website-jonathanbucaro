@@ -1,5 +1,5 @@
 ---
-title: 'Work'
-description: 'Projects and case studies. Most of my professional work is under NDA, so what I can show openly are smaller things I built myself, plus generalized case studies that cover the architecture and decisions without the identifying detail.'
+title: 'Projects & Case Studies'
+description: 'Open source tools I built end to end, and case studies of production systems told through their architecture and decisions.'
 draft: false
 ---

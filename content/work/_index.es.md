@@ -1,5 +1,5 @@
 ---
-title: 'Trabajo'
-description: 'Proyectos y casos de estudio. La mayoría de mi trabajo profesional está bajo NDA, así que lo que puedo mostrar abiertamente son proyectos más pequeños que construí por mi cuenta, más casos de estudio generalizados que cubren la arquitectura y las decisiones sin el detalle que identifica al cliente.'
+title: 'Proyectos y Casos de Estudio'
+description: 'Herramientas de código abierto que construí de principio a fin, y casos de estudio de sistemas en producción desde su arquitectura y decisiones.'
 draft: false
 ---

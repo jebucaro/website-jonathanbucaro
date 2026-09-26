@@ -131,10 +131,10 @@
 
 # Section: Work
 - id: sections_work_title
-  translation: 'Selected Work'
+  translation: 'Projects &amp; Case Studies'
 
 - id: sections_work_description
-  translation: 'Most of my professional work is under NDA, so what I can show openly are smaller things I built myself, plus generalized case studies covering the architecture and decisions without the identifying detail.'
+  translation: 'Open source tools I built end to end, and case studies of production systems, generalized to their architecture and decisions. Each one is compact on purpose: the least code that still shows how I design, test, and ship.'
 
 - id: sections_work_allWork
   translation: 'All Work'

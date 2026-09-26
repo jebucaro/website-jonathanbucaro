@@ -131,10 +131,10 @@
 
 # Section: Work
 - id: sections_work_title
-  translation: 'Trabajo Seleccionado'
+  translation: 'Proyectos y Casos de Estudio'
 
 - id: sections_work_description
-  translation: 'La mayoría de mi trabajo profesional está bajo NDA, así que lo que puedo mostrar abiertamente son cosas más pequeñas que construí por mi cuenta, más casos de estudio generalizados que cubren la arquitectura y las decisiones sin el detalle que identifica al cliente.'
+  translation: 'Herramientas de código abierto que construí de principio a fin, y casos de estudio de sistemas en producción, generalizados a su arquitectura y decisiones. Cada uno es compacto a propósito: el mínimo de código que aún muestra cómo diseño, pruebo y entrego.'
 
 - id: sections_work_allWork
   translation: 'Todo el Trabajo'
