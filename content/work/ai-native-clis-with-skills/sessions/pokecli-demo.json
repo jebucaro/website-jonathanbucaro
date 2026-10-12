@@ -24,10 +24,10 @@
                 {
                     "name": "Bash",
                     "class": "bash",
-                    "preview": "pokecli pokemon get pikachu",
-                    "input": "pokecli pokemon get pikachu",
+                    "preview": "pokecli get pokemon pikachu",
+                    "input": "pokecli get pokemon pikachu",
                     "input_terminal": true,
-                    "output": "╭────────────────────────────────────────────────────────────╮\n│ #25  Pikachu   Height: 0.4m   Weight: 6.0kg   Base XP: 112 │\n╰────────────────────────────────────────────────────────────╯\n ELECTRIC \n\nAbilities: static  ·  lightning-rod (hidden)\n\n Stat            Base  Bar\n hp                35  ███░░░░░░░░░░░░░░░░░\n attack            55  ████░░░░░░░░░░░░░░░░\n defense           40  ███░░░░░░░░░░░░░░░░░\n special-attack    50  ████░░░░░░░░░░░░░░░░\n special-defense   50  ████░░░░░░░░░░░░░░░░\n speed             90  ███████░░░░░░░░░░░░░"
+                    "output": "pokemon:\n  id: 25\n  name: pikachu\n  types: electric\n  abilities: static/lightning-rod(H)\n  stats: \"hp:35/atk:55/def:40/spa:50/spd:50/spe:90\"\n  total_moves: 109\n\nhelp[3]: pokecli moves pikachu,pokecli evolution pikachu,pokecli encounters pikachu"
                 }
             ]
         },
@@ -45,18 +45,18 @@
                 {
                     "name": "Bash",
                     "class": "bash",
-                    "preview": "pokecli move get thunderbolt",
-                    "input": "pokecli move get thunderbolt",
+                    "preview": "pokecli get move thunderbolt",
+                    "input": "pokecli get move thunderbolt",
                     "input_terminal": true,
-                    "output": "╭──────────────────╮\n│ #85  Thunderbolt │\n╰──────────────────╯\n  Type             Electric\n  Category         Special\n  Power            90\n  Accuracy         100%\n  PP               15\n  Effect Chance    10%\n\nEffect: Has a 10% chance to paralyze the target."
+                    "output": "move:\n  id: 85\n  name: thunderbolt\n  type: electric\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to paralyze the target.\n\nhelp[2]: pokecli can-learn <pokemon_name> thunderbolt,pokecli get type electric"
                 },
                 {
                     "name": "Bash",
                     "class": "bash",
-                    "preview": "pokecli move get flamethrower",
-                    "input": "pokecli move get flamethrower",
+                    "preview": "pokecli get move flamethrower",
+                    "input": "pokecli get move flamethrower",
                     "input_terminal": true,
-                    "output": "╭───────────────────╮\n│ #53  Flamethrower │\n╰───────────────────╯\n  Type             Fire\n  Category         Special\n  Power            90\n  Accuracy         100%\n  PP               15\n  Effect Chance    10%\n\nEffect: Has a 10% chance to burn the target."
+                    "output": "move:\n  id: 53\n  name: flamethrower\n  type: fire\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to burn the target.\n\nhelp[2]: pokecli can-learn <pokemon_name> flamethrower,pokecli get type fire"
                 }
             ]
         },

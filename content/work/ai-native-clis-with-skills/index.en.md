@@ -190,13 +190,13 @@ pokecli install --skills
 
 `install --skills` doesn't generate anything. The `SKILL.md` and its reference files ship inside the package, and the command copies them into `~/.claude/skills/pokecli/`, so you don't need the repo checked out. You could copy the files by hand, I added the command so the example is easy to run.
 
-The CLI has twelve top-level groups, including `pokemon`, `move`, `item`, `type`, `game`, and `cache`. The skill doesn't need that whole inventory, only the shape: most resources support `get <name_or_id>` and `list`, and `pokemon` adds commands like `moves`, `evolution`, and `encounters`.
+Every one of the 18 resources goes through the same three commands, `get`, `list`, and `search`, and six task commands like `moves`, `can-learn`, and `sprite` answer questions that don't map to a single record. The skill only needs that shape to work out the right call.
 
 {{< callout note >}}
 The skill does not replace the CLI documentation. It gives Claude Code a smaller and more useful entry point into the same command surface.
 {{< /callout >}}
 
-Once it's installed, Claude Code knows when to reach for `pokecli`, which commands belong to each resource, and which output format to ask for:
+Once it's installed, Claude Code knows when to reach for `pokecli` and which command answers each kind of question:
 
 {{< gallery caption="" >}}
 {{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." >}}
@@ -210,7 +210,7 @@ Once it's installed, Claude Code knows when to reach for `pokecli`, which comman
 
 The `SKILL.md` in the repo is 192 lines, and all four pillars show up in it. These are the parts worth a closer look.
 
-### Frontmatter and the agent rule
+### Frontmatter and the whole grammar
 
 ```yaml
 ---
@@ -221,62 +221,71 @@ user-invocable: false
 ---
 ```
 
-The description carries the tool's purpose and the phrases a user might type, like `pokedex`, `Pokemon stats`, or `download sprites`. Then the body opens with the rule the agent should apply before anything else:
+The description carries the tool's purpose and the phrases a user might type, like `pokedex`, `Pokemon stats`, or `download sprites`. Then the body opens with every command the agent will ever need, on one screen:
 
-```text
-## Agent rule
+```markdown
+## The whole grammar
 
-Use the canonical command path shown in this skill. Human aliases exist, but agents should prefer explicit commands like `pokemon get`, `move get`, and `game region get`.
+Three patterns cover every resource:
 
-If a memorized command fails, check `pokecli --help` or the subgroup help before guessing.
+    pokecli get <resource> <name_or_id>     # one record
+    pokecli list <resource>                 # browse, paginated
+    pokecli search <resource> <query>       # find a name
 
-Always use `--format toon` for token-efficient output. This produces compact key:value output optimized for LLM context windows (~40% smaller than JSON). Only use `--format json` when the next step explicitly includes `jq` or another parser. Do not use `--format table` — it contains Rich markup that wastes tokens.
+Plus six commands that answer a question rather than return a record:
+
+    pokecli moves <pokemon>                 # every learnable move
+    pokecli can-learn <pokemon> <move>      # exit 0 = yes, exit 1 = no
+    pokecli evolution <pokemon>             # full chain, from any member
+    pokecli encounters <pokemon>            # where it appears in the wild
+    pokecli forms <pokemon>                 # Mega, Alolan, Gigantamax varieties
+    pokecli sprite <pokemon> -o <path>      # download an image
+
+There is exactly one command path per behavior. No aliases, no nested groups.
 ```
 
-Each of those rules is there because the agent would otherwise guess wrong. The first two showed up after pokecli grew shorter commands for humans. Once a CLI offers two valid ways to ask for the same thing, the skill has to say which one is the default.
+With that in context, the agent doesn't need to run `--help` to find a command, and it never has to pick between two ways of asking for the same thing.
 
 ### TOON output
 
-pokecli has three output formats. Humans get a Rich table, but its markup burns tokens, and so does all of JSON's punctuation. So I added a third output for agents, TOON, a compact notation that comes out roughly 40% smaller than JSON:
+pokecli picks its output based on who's reading. In a terminal you get Rich tables, but their markup burns tokens, and so does all of JSON's punctuation. So when the output is captured, which is what happens when an agent runs it, pokecli prints TOON, a compact notation that comes out roughly 40% smaller than JSON. The skill tells the agent to leave `--format` alone and only ask for `--format json` when it needs to count, sum, or filter. This is how it describes the output:
 
 ```text
-## TOON output format
+## Reading the default output
 
-The `--format toon` output uses Token-Optimized Object Notation:
-- Single resources show as `label:` followed by indented `key: value` pairs
-- Lists show as `label[count]{fields}:` followed by indented comma-separated rows
-- Every response ends with `help[]` hints for next steps
+This is what you get with no `--format` (TOON):
+
+- A single record is `label:` followed by indented `key: value` pairs
+- A collection is `label[count]{fields}:` followed by indented rows
 - Aggregates like `count`, `total_moves`, `methods` appear as top-level keys
+- Every response ends with `help[]` hints naming valid follow-up commands
 ```
 
-The `help[]` hints are my favorite part: `pokemon get pikachu` ends by suggesting `pokemon moves` and `pokemon evolution`, so the output teaches the agent the next command. Writing the skill is what pushed me to add it. Once I wrote a rule about token cost, I could see the tool had no output mode worth recommending.
+The `help[]` hints are my favorite part. `pokecli get pokemon pikachu` ends with `help[3]: pokecli moves pikachu,pokecli evolution pikachu,pokecli encounters pikachu`, so the output teaches the agent the next command. Writing the skill is what pushed me to add TOON. Once I wrote a rule about token cost, I could see the tool had no output mode worth recommending.
 
-### Human aliases
+### One command path per behavior
 
 {{< challenge >}}
 {{< challenge-problem >}}
-Agents do best with one explicit, canonical command per task, but typing `pokecli pokemon get pikachu` by hand every time is more than a terminal session needs.
+The first version of pokecli had a group per resource family (`pokecli pokemon get pikachu`, `pokecli move get thunderbolt`), older flat groups kept around as hidden commands, and short aliases for humans like `pokecli pokemon pikachu`. Every one of those worked, so the skill needed an extra rule telling agents which form to prefer, plus a list of the aliases so the agent would recognize them.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-Rather than register a second set of commands, `commands/_group.py` defines a small `TyperGroup` subclass that rewrites an unmatched first argument into `get` before Typer resolves it:
+In v0.2 I consolidated the CLI into `get`, `list`, and `search` for all 18 resources, plus six task commands, and dropped the aliases:
 
-```python
-class ResourceGroup(TyperGroup):
-    """Allow `pokecli pokemon pikachu` as a shortcut for `pokecli pokemon get pikachu`."""
+```bash
+# before
+pokecli pokemon get pikachu
+pokecli pokemon pikachu          # alias
+pokecli move get thunderbolt
 
-    def resolve_command(self, ctx: typer.Context, args: list[str]):
-        if args:
-            first = args[0]
-            if not first.startswith("-") and first not in self.commands:
-                args = ["get", *args]
-        return super().resolve_command(ctx, args)
+# v0.2
+pokecli get pokemon pikachu
+pokecli get move thunderbolt
 ```
 
-`pokecli pokemon pikachu` and `pokecli pokemon get pikachu` now run the same function, with no branching inside any command. The packaged `SKILL.md` still tells agents to prefer the canonical form, so the alias stays a convenience for humans.
+There's one way to ask for each thing now, so the rule about preferring canonical commands disappeared from the skill, and the agent has fewer ways to get it wrong.
 {{< /challenge-decision >}}
 {{< /challenge >}}
-
-The skill also lists the short forms in their own section, with one line of guidance: "These are fine for manual use, but agents should not default to them." That way the agent recognizes `pokecli pokemon pikachu` when a user types it, and still sends the canonical command itself.
 
 Here's a real session in Claude Code, where I asked for Pikachu's stats and then for a comparison of Thunderbolt and Flamethrower:
 
@@ -302,14 +311,14 @@ And these shouldn't:
 The second is behavior. Run real commands and check the outputs, the errors, and the edge cases:
 
 ```bash
-pokecli pokemon get pikachu --format toon
-pokecli pokemon can-learn pikachu thunderbolt
-pokecli item get master-ball --format json
-pokecli pokemon image 25 -o /tmp/pika.png
+pokecli get pokemon pikachu
+pokecli can-learn pikachu thunderbolt
+pokecli get move thunderbolt --format json
+pokecli sprite 25 -o /tmp/pika.png
 pokecli cache clear --resource pokemon
 ```
 
-If those work, the skill's examples are grounded in the real tool. Try the first one in all three formats and you'll see why the agent rule picks `toon`.
+If those work, the skill's examples are grounded in the real tool. Run the first one in your terminal and then again piped through `cat`, and you'll see the output switch from Rich tables to TOON.
 
 When something's off, the symptom points at the fix. A skill that doesn't load needs more keywords in the description, one that loads for unrelated requests needs negative triggers, and inconsistent results mean the instructions need work. A handy debugging trick is to ask the agent "When would you use the pokecli skill?" and read what it understood.
 
