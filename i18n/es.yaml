@@ -192,6 +192,37 @@
 - id: work_artifact_cli-tool
   translation: 'Herramienta CLI'
 
+# Talk details card
+- id: talk_detailsLabel
+  translation: 'Detalles de la charla'
+
+- id: talk_event
+  translation: 'Evento'
+
+- id: talk_when
+  translation: 'Cuándo'
+
+- id: talk_where
+  translation: 'Dónde'
+
+- id: talk_timeRange
+  translation: 'de {{ .start }} a {{ .end }} ({{ .zone }})'
+
+- id: talk_deliveredIn
+  translation: 'Impartida en'
+
+- id: talk_language_es
+  translation: 'español'
+
+- id: talk_language_en
+  translation: 'inglés'
+
+- id: talk_slides
+  translation: 'Diapositivas (PDF)'
+
+- id: talk_sourceCode
+  translation: 'Código fuente'
+
 # Agent session shortcode
 - id: agentSession_roleUser
   translation: 'Tú'

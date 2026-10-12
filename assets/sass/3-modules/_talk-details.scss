@@ -1,0 +1,64 @@
+.talk-details {
+    margin: 0 0 2rem;
+    padding: 18px 20px;
+    background: var(--background-alt-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    &__list {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 8rem 1fr;
+        gap: 12px;
+
+        @media (max-width: 576px) {
+            grid-template-columns: 1fr;
+            gap: 2px;
+        }
+
+        dt {
+            font-weight: 600;
+            color: var(--heading-font-color);
+        }
+
+        dd {
+            margin: 0;
+            color: var(--text-color);
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+        margin-top: 16px;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    &__repo {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--link-color);
+        text-decoration: none;
+
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        &:hover {
+            color: var(--link-color-hover);
+        }
+    }
+}

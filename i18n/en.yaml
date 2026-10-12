@@ -192,6 +192,37 @@
 - id: work_artifact_cli-tool
   translation: 'CLI Tool'
 
+# Talk details card
+- id: talk_detailsLabel
+  translation: 'Talk details'
+
+- id: talk_event
+  translation: 'Event'
+
+- id: talk_when
+  translation: 'When'
+
+- id: talk_where
+  translation: 'Where'
+
+- id: talk_timeRange
+  translation: '{{ .start }} to {{ .end }} ({{ .zone }})'
+
+- id: talk_deliveredIn
+  translation: 'Delivered in'
+
+- id: talk_language_es
+  translation: 'Spanish'
+
+- id: talk_language_en
+  translation: 'English'
+
+- id: talk_slides
+  translation: 'Slides (PDF)'
+
+- id: talk_sourceCode
+  translation: 'Source code'
+
 # Agent session shortcode
 - id: agentSession_roleUser
   translation: 'You'
