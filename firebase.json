@@ -105,12 +105,12 @@
             },
             {
                 "source": "/projects/pokecli/",
-                "destination": "/work/pokecli/",
+                "destination": "/work/ai-native-clis-with-skills/",
                 "type": 301
             },
             {
                 "source": "/es/projects/pokecli/",
-                "destination": "/es/work/pokecli/",
+                "destination": "/es/work/clis-ai-native-con-skills/",
                 "type": 301
             },
             {
@@ -141,6 +141,36 @@
             {
                 "source": "/es/work-types/",
                 "destination": "/es/work/",
+                "type": 301
+            },
+            {
+                "source": "/blog/making-a-python-cli-ai-native-with-skill-md/",
+                "destination": "/work/ai-native-clis-with-skills/",
+                "type": 301
+            },
+            {
+                "source": "/es/blog/making-a-python-cli-ai-native-with-skill-md/",
+                "destination": "/es/work/clis-ai-native-con-skills/",
+                "type": 301
+            },
+            {
+                "source": "/work/pokecli/",
+                "destination": "/work/ai-native-clis-with-skills/",
+                "type": 301
+            },
+            {
+                "source": "/es/work/pokecli/",
+                "destination": "/es/work/clis-ai-native-con-skills/",
+                "type": 301
+            },
+            {
+                "source": "/tags/claude/",
+                "destination": "/blog/",
+                "type": 301
+            },
+            {
+                "source": "/es/tags/claude/",
+                "destination": "/es/blog/",
                 "type": 301
             }
         ],
