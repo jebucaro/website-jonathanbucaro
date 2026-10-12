@@ -18,7 +18,7 @@ talk:
 
 Abrí mi charla en AWS Community Day Guatemala 2026 preguntando quién ha sentido que, si no está usando el framework de agentes más nuevo y más grande, ya se quedó atrás. Después pregunté qué es lo primero que hacemos cuando se cae producción. Revisamos un log, corremos un query o armamos un script. Nadie dijo que iba a construir un agente.
 
-De esa diferencia se trató la charla. Los scripts y CLI que ya tienes pueden convertirse en herramientas que un agente usa, y lo que casi siempre falta es una guía corta, un `SKILL.md`, que le diga al agente cuándo usarlas y cómo. Esta página es la versión escrita de la charla, junto con `pokecli`, el CLI que usé para la demo. La idea empezó como una charla interna en el trabajo llamada _Make Your CLI Tools AI-Native with SKILL.md_, y pokecli existe por lo que me dijeron ahí: la gente quería algo que pudiera instalar y probar por su cuenta.
+De esa diferencia se trató la charla. Los scripts y CLI que ya tienes pueden convertirse en herramientas que un agente usa, y lo que casi siempre falta es una guía corta, un `SKILL.md`, que le diga al agente cuándo usarlas y cómo. Esta página es la versión escrita de la charla, junto con `pokecli`, el CLI que usé para la demo. La idea empezó como una charla interna en el trabajo llamada _Make Your CLI Tools AI-Native with SKILL.md_, y lo que me dijeron ahí dejó claro que necesitaba un ejemplo práctico que la gente pudiera revisar y reutilizar. Ahí entra pokecli.
 
 ## El agente decide, el script ejecuta
 
@@ -237,7 +237,7 @@ Cada una de esas reglas está ahí porque sin ella el agente adivinaría mal. La
 
 ### Salida TOON
 
-pokecli tiene tres formatos de salida. Las personas ven una tabla de Rich, pero su marcado consume tokens, y la puntuación de JSON también. Por eso agregué un tercer formato para agentes, TOON (Token-Optimized Object Notation), que sale más o menos un 40% más pequeño que JSON:
+pokecli tiene tres formatos de salida. Las personas ven una tabla de Rich, pero su marcado consume tokens, y la puntuación de JSON también. Por eso agregué una tercera salida para agentes, TOON, una notación compacta que sale más o menos un 40% más pequeña que JSON:
 
 ```text
 ## TOON output format
@@ -249,7 +249,7 @@ The `--format toon` output uses Token-Optimized Object Notation:
 - Aggregates like `count`, `total_moves`, `methods` appear as top-level keys
 ```
 
-Los hints de `help[]` son mi parte favorita: `pokemon get pikachu` termina sugiriendo `pokemon moves` y `pokemon evolution`, así que la salida le enseña al agente el siguiente comando. Escribir el skill fue lo que me llevó a construir TOON. En cuanto escribí una regla sobre el costo en tokens, vi que la herramienta no tenía ningún modo de salida que valiera la pena recomendar.
+Los hints de `help[]` son mi parte favorita: `pokemon get pikachu` termina sugiriendo `pokemon moves` y `pokemon evolution`, así que la salida le enseña al agente el siguiente comando. Escribir el skill fue lo que me llevó a agregarla. En cuanto escribí una regla sobre el costo en tokens, vi que la herramienta no tenía ningún modo de salida que valiera la pena recomendar.
 
 ### Alias para humanos
 

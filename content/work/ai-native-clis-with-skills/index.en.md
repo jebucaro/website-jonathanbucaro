@@ -18,7 +18,7 @@ talk:
 
 I opened my talk at AWS Community Day Guatemala 2026 asking who has felt that if they aren't using the newest, biggest agent framework, they've already fallen behind. Then I asked what they do first when production goes down. We tail a log, run a query, or write a script. Nobody said they'd build an agent.
 
-That gap is what the talk was about. The scripts and CLIs you already have can become tools an agent uses, and what's usually missing is a short guide, a `SKILL.md`, that tells the agent when to reach for them and how. This page is the written version of the talk, which I gave in Spanish, along with `pokecli`, the CLI I used for the demo. The idea started as an internal talk at work called _Make Your CLI Tools AI-Native with SKILL.md_, and the feedback from that one is why pokecli exists: people wanted something they could install and poke at.
+That gap is what the talk was about. The scripts and CLIs you already have can become tools an agent uses, and what's usually missing is a short guide, a `SKILL.md`, that tells the agent when to reach for them and how. This page is the written version of the talk, which I gave in Spanish, along with `pokecli`, the CLI I used for the demo. The idea started as an internal talk at work called _Make Your CLI Tools AI-Native with SKILL.md_, and the feedback from that one made it clear I needed a practical example people could inspect and reuse, which is where pokecli comes in.
 
 ## The agent decides, the script executes
 
@@ -237,7 +237,7 @@ Each of those rules is there because the agent would otherwise guess wrong. The 
 
 ### TOON output
 
-pokecli has three output formats. Humans get a Rich table, but its markup burns tokens, and so does all of JSON's punctuation. So I added a third format for agents, TOON (Token-Optimized Object Notation), which comes out roughly 40% smaller than JSON:
+pokecli has three output formats. Humans get a Rich table, but its markup burns tokens, and so does all of JSON's punctuation. So I added a third output for agents, TOON, a compact notation that comes out roughly 40% smaller than JSON:
 
 ```text
 ## TOON output format
@@ -249,7 +249,7 @@ The `--format toon` output uses Token-Optimized Object Notation:
 - Aggregates like `count`, `total_moves`, `methods` appear as top-level keys
 ```
 
-The `help[]` hints are my favorite part: `pokemon get pikachu` ends by suggesting `pokemon moves` and `pokemon evolution`, so the output teaches the agent the next command. Writing the skill is what pushed me to build TOON. Once I wrote a rule about token cost, I could see the tool had no output mode worth recommending.
+The `help[]` hints are my favorite part: `pokemon get pikachu` ends by suggesting `pokemon moves` and `pokemon evolution`, so the output teaches the agent the next command. Writing the skill is what pushed me to add it. Once I wrote a rule about token cost, I could see the tool had no output mode worth recommending.
 
 ### Human aliases
 
