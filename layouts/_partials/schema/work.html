@@ -21,4 +21,13 @@
 {{ if eq $type "SoftwareApplication" }}
   {{ $schema = merge $schema (dict "applicationCategory" "DeveloperApplication" "screenshot" $imageURL) }}
 {{ end }}
+{{ with .Params.talk }}
+  {{ $schema = merge $schema (dict "recordedAt" (dict
+    "@type" "Event"
+    "name" .event
+    "startDate" ($.Date.Format "2006-01-02T15:04:05-07:00")
+    "endDate" ((time.AsTime .endDate).Format "2006-01-02T15:04:05-07:00")
+    "location" (dict "@type" "Place" "name" .venue "address" .location)
+  )) }}
+{{ end }}
 <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
