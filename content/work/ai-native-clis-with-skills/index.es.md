@@ -44,7 +44,7 @@ Esto se traslada casi uno a uno al skill que vas a escribir después. Los parám
 
 Resumí el proceso en cuatro pilares. Funcionan igual para un script de Python, un CLI de Node o un wrapper de bash sobre una API interna.
 
-### Hazla determinista
+### 1. Hazla determinista
 
 Casi todos los scripts empiezan así, con todo quemado en el código:
 
@@ -86,7 +86,7 @@ def orders(user_id: int, env: str = "dev", format: str = "table"):
     ...
 ```
 
-### Dale un trigger que el agente encuentre
+### 2. Dale un trigger que el agente encuentre
 
 El agente nunca lee tu código. Lee tu `description`, el único campo del frontmatter que siempre está cargado, y con eso decide si tu skill aplica a lo que le están pidiendo. Compara estas dos:
 
@@ -106,7 +106,7 @@ Yo pienso en la descripción como el SEO de tu herramienta, solo que quien la le
 - Usa un `name` en kebab-case que coincida con la carpeta, sin "claude" ni "anthropic".
 - Agrega negative triggers cuando el skill aparezca donde no debe, como "NO usar para consultas generales de finanzas".
 
-### Muéstrale el camino
+### 3. Muéstrale el camino
 
 Con los ejemplos el agente aprende cómo se usa tu herramienta. Cada uno tiene tres partes: lo que pediría el usuario, el comando exacto con sus flags y la salida esperada, para que el agente note cuando algo falla.
 
@@ -134,7 +134,7 @@ Después documenta el camino triste como error, causa y solución:
 
 Que las instrucciones sean específicas. Con "Valida los datos antes de continuar" el agente se queda adivinando qué significa validar. "Corre `reporte validate --input archivo.csv`, y si falla, revisa que las fechas estén en YYYY-MM-DD y que estén los campos obligatorios" le da algo concreto que hacer. La guía de Anthropic lo resume bien: "Code is deterministic; language interpretation isn't."
 
-### Empaquétala en SKILL.md
+### 4. Empaquétala en SKILL.md
 
 Un skill es una carpeta con un `SKILL.md` adentro:
 

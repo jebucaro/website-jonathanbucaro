@@ -44,7 +44,7 @@ These map almost one to one onto the skill you'll write later. Parameters become
 
 I boiled the process down to four pillars. They work the same for a Python script, a Node CLI, or a bash wrapper around an internal API.
 
-### Make it deterministic
+### 1. Make it deterministic
 
 Most scripts start like this, with everything hardcoded:
 
@@ -86,7 +86,7 @@ def orders(user_id: int, env: str = "dev", format: str = "table"):
     ...
 ```
 
-### Give it a trigger the agent can find
+### 2. Give it a trigger the agent can find
 
 The agent never reads your code. It reads your `description`, the one frontmatter field that's always loaded, and uses it to decide whether your skill applies to the request in front of it. Compare these two:
 
@@ -106,7 +106,7 @@ I think of the description as SEO for your tool, where the reader is an agent. {
 - Use a kebab-case `name` that matches the folder, without "claude" or "anthropic" in it.
 - Add negative triggers when the skill shows up where it shouldn't, like "Do NOT use for general finance questions".
 
-### Show it the way
+### 3. Show it the way
 
 Examples teach the agent how your tool gets used. Each one has three parts: the request a user would make, the exact command with its flags, and the expected output, so the agent can notice when something went wrong.
 
@@ -134,7 +134,7 @@ Then document the sad path as error, cause, and fix:
 
 Keep the instructions specific. "Validate the data before continuing" leaves the agent guessing what validating means. "Run `report validate --input file.csv`, and if it fails, check that dates are YYYY-MM-DD and the required fields are present" gives it something to do. Anthropic's guide sums it up: "Code is deterministic; language interpretation isn't."
 
-### Package it in SKILL.md
+### 4. Package it in SKILL.md
 
 A skill is a folder with a `SKILL.md` inside:
 
