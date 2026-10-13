@@ -48,7 +48,7 @@
                     "preview": "pokecli get move thunderbolt",
                     "input": "pokecli get move thunderbolt",
                     "input_terminal": true,
-                    "output": "move:\n  id: 85\n  name: thunderbolt\n  type: electric\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to paralyze the target.\n\nhelp[2]: pokecli can-learn <pokemon_name> thunderbolt,pokecli get type electric"
+                    "output": "move:\n  id: 85\n  name: thunderbolt\n  type: electric\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to paralyze the target.\n  chance: 10%\n\nhelp[2]: pokecli can-learn <pokemon_name> thunderbolt,pokecli get type electric"
                 },
                 {
                     "name": "Bash",
@@ -56,7 +56,7 @@
                     "preview": "pokecli get move flamethrower",
                     "input": "pokecli get move flamethrower",
                     "input_terminal": true,
-                    "output": "move:\n  id: 53\n  name: flamethrower\n  type: fire\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to burn the target.\n\nhelp[2]: pokecli can-learn <pokemon_name> flamethrower,pokecli get type fire"
+                    "output": "move:\n  id: 53\n  name: flamethrower\n  type: fire\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to burn the target.\n  chance: 10%\n\nhelp[2]: pokecli can-learn <pokemon_name> flamethrower,pokecli get type fire"
                 }
             ]
         },
