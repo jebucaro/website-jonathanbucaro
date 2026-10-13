@@ -1,4 +1,8 @@
 .talk-details {
+    // --border-color matches the card background in light mode, so the
+    // divider needs its own color to stay visible.
+    --talk-details-rule: rgba(0, 0, 0, 0.1);
+
     margin: 0 0 2rem;
     padding: 18px 20px;
     background: var(--background-alt-color);
@@ -38,6 +42,8 @@
         align-items: center;
         gap: 16px;
         margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--talk-details-rule);
 
         &:empty {
             display: none;
@@ -61,4 +67,8 @@
             color: var(--link-color-hover);
         }
     }
+}
+
+.dark-mode .talk-details {
+    --talk-details-rule: var(--border-color);
 }
