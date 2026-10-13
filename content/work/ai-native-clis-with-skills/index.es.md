@@ -100,15 +100,11 @@ description: Genera reportes de órdenes, ventas y usuarios desde la base de dat
 
 Yo pienso en la descripción como el SEO de tu herramienta, solo que quien la lee es un agente. {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}La guía de Anthropic para construir skills{{< /extlink >}} tiene las reglas que sigo:
 
-{{< checklist title="Reglas para la description" >}}
-
 - Di qué hace, cuándo usarla y sus capacidades principales.
 - Incluye frases que los usuarios dirían de verdad, y tipos de archivo si importan.
 - Quédate debajo de 1024 caracteres y evita `<` y `>`, porque va al system prompt.
 - Usa un `name` en kebab-case que coincida con la carpeta, sin "claude" ni "anthropic".
 - Agrega negative triggers cuando el skill aparezca donde no debe, como "NO usar para consultas generales de finanzas".
-
-{{< /checklist >}}
 
 ### Muéstrale el camino
 
@@ -155,13 +151,9 @@ Ponlo en `./.claude/skills` para un proyecto o en `~/.claude/skills` para tenerl
 
 Esto escala gracias al progressive disclosure, porque el agente carga el skill por capas:
 
-{{< checklist title="Cómo carga el agente un skill" >}}
-
 1. El `name` y la `description` del frontmatter siempre están cargados, que es lo justo para decidir si el skill aplica.
 2. El cuerpo del `SKILL.md` se carga cuando el skill se activa. Mantenlo debajo de 5,000 palabras.
 3. Los archivos de `references/` se cargan solo cuando el agente los necesita, y lo que esté en `scripts/` se ejecuta sin entrar al contexto.
-
-{{< /checklist >}}
 
 Para un skill de un CLI yo siempre agrego el campo opcional `allowed-tools`. En pokecli se ve así:
 
@@ -355,15 +347,11 @@ Antes de dar un skill por terminado, reviso esta lista:
 
 Esta es la tarea que le dejé a la audiencia para el lunes:
 
-{{< checklist title="Cinco pasos" >}}
-
 1. Escoge un script que uses cada semana.
 2. Saca los valores quemados a flags y agrega salida en JSON.
 3. Escribe una `description` que diga qué hace y cuándo usarlo.
 4. Agrega 2 o 3 ejemplos con su salida esperada.
 5. Guárdalo como `SKILL.md` y pruébalo con tu agente.
-
-{{< /checklist >}}
 
 Si no tienes un script a mano, usa pokecli y escribe tú el skill. Primero, quita del camino el skill incluido (puedes reinstalarlo después con `pokecli install --skills`):
 
