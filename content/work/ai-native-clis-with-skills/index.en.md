@@ -66,7 +66,7 @@ report orders \
 
 That change is about 80% of the work. A CLI that works well for an agent is one that would also work well in a pipeline, so the checklist will look familiar:
 
-{{< callout note >}}
+{{< checklist title="A CLI an agent can use" >}}
 
 - Every value that changes is an argument or a flag.
 - Errors are actionable and say which values are accepted.
@@ -76,7 +76,7 @@ That change is about 80% of the work. A CLI that works well for an agent is one 
 - Nothing is interactive. A prompt waiting for input leaves the agent hanging.
 - Anything that deletes or modifies data gets `--dry-run` or `--yes`, so nobody runs a DELETE in prod over a misunderstanding.
 
-{{< /callout >}}
+{{< /checklist >}}
 
 And please don't write the argument parsing by hand. In Python, Typer, Click, or argparse will do it for you, and in Node, Commander.js, yargs, or oclif. Distribution is one command either way: `uv tool install` for Python, `npm i -g` for Node. With Typer, the report command above is just a function:
 
@@ -100,11 +100,15 @@ description: Generates order, sales, and user reports from the platform database
 
 I think of the description as SEO for your tool, where the reader is an agent. {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}Anthropic's guide to building skills{{< /extlink >}} has the rules I follow:
 
+{{< checklist title="Rules for the description" >}}
+
 - Say what it does, when to use it, and its main capabilities.
 - Include phrases users would really say, and file types if they matter.
 - Stay under 1024 characters and avoid `<` and `>`, because it goes into the system prompt.
 - Use a kebab-case `name` that matches the folder, without "claude" or "anthropic" in it.
 - Add negative triggers when the skill shows up where it shouldn't, like "Do NOT use for general finance questions".
+
+{{< /checklist >}}
 
 ### Show it the way
 
@@ -151,9 +155,13 @@ Put it in `./.claude/skills` for one project or in `~/.claude/skills` to have it
 
 This scales because of progressive disclosure, where the agent loads the skill in layers:
 
+{{< checklist title="How the agent loads a skill" >}}
+
 1. The frontmatter `name` and `description` are always loaded, which is just enough to decide whether the skill applies.
 2. The `SKILL.md` body loads when the skill fires. Keep it under 5,000 words.
 3. Files in `references/` load only when the agent needs them, and anything in `scripts/` gets executed without entering the context at all.
+
+{{< /checklist >}}
 
 For a CLI skill I'd always add the optional `allowed-tools` field. In pokecli it looks like this:
 
@@ -295,18 +303,25 @@ Here's a real session in Claude Code, where I asked for Pikachu's stats and then
 
 ## When is a skill done?
 
-When you've tested it. There are two things to test. The first is triggering: the skill should load for obvious requests and for paraphrases, and stay quiet for unrelated ones. Aim for around 90% with 10 to 20 phrases. For pokecli, these should trigger it:
+When you've tested it. There are two things to test. The first is triggering: the skill should load for obvious requests and for paraphrases, and stay quiet for unrelated ones. Aim for around 90% with 10 to 20 phrases. For pokecli, the phrases could look like this:
+
+{{< checklist >}}
+{{< checklist-section title="Should trigger" >}}
 
 - "Look up Pikachu's stats"
 - "Show me berry data from PokeAPI"
 - "Download a sprite for Charizard"
 - "Compare Thunderbolt and Flamethrower"
 
-And these shouldn't:
+{{< /checklist-section >}}
+{{< checklist-section title="Shouldn't trigger" mark="cross" >}}
 
 - "Help me write a Python class"
 - "What is the weather today?"
 - "Summarize this meeting transcript"
+
+{{< /checklist-section >}}
+{{< /checklist >}}
 
 The second is behavior. Run real commands and check the outputs, the errors, and the edge cases:
 
@@ -324,23 +339,31 @@ When something's off, the symptom points at the fix. A skill that doesn't load n
 
 Before calling a skill finished, I run through this list:
 
-- [ ] 2 or 3 concrete use cases written down
-- [ ] A kebab-case folder with a file named exactly `SKILL.md`
-- [ ] Frontmatter between `---` lines, with a kebab-case `name`
-- [ ] A `description` that says what and when, under 1024 characters, with no `<` or `>`
-- [ ] Actionable instructions, examples, and troubleshooting
-- [ ] Reference files linked from `SKILL.md`
-- [ ] Tested with obvious requests, paraphrases, and unrelated topics
+{{< checklist title="Skill checklist" >}}
+
+- 2 or 3 concrete use cases written down
+- A kebab-case folder with a file named exactly `SKILL.md`
+- Frontmatter between `---` lines, with a kebab-case `name`
+- A `description` that says what and when, under 1024 characters, with no `<` or `>`
+- Actionable instructions, examples, and troubleshooting
+- Reference files linked from `SKILL.md`
+- Tested with obvious requests, paraphrases, and unrelated topics
+
+{{< /checklist >}}
 
 ## Your homework
 
 This is the homework I gave the room for Monday:
+
+{{< checklist title="Five steps" >}}
 
 1. Pick a script you use every week.
 2. Move the hardcoded values into flags and add JSON output.
 3. Write a `description` that says what it does and when to use it.
 4. Add 2 or 3 examples with their expected output.
 5. Save it as `SKILL.md` and try it with your agent.
+
+{{< /checklist >}}
 
 If you don't have a script handy, use pokecli and write its skill yourself. First, move the shipped skill out of the way (you can reinstall it later with `pokecli install --skills`):
 

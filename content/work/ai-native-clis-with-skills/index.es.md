@@ -66,7 +66,7 @@ reporte orders \
 
 Ese cambio es como el 80% del trabajo. Un CLI que le sirve bien a un agente es uno que también funcionaría bien en un pipeline, así que la lista te va a sonar conocida:
 
-{{< callout note >}}
+{{< checklist title="Un CLI que un agente puede usar" >}}
 
 - Todo valor que cambia es un argumento o un flag.
 - Los errores son accionables y dicen qué valores acepta.
@@ -76,7 +76,7 @@ Ese cambio es como el 80% del trabajo. Un CLI que le sirve bien a un agente es u
 - Nada es interactivo. Un prompt esperando input deja al agente colgado.
 - Todo lo que borre o modifique datos lleva `--dry-run` o `--yes`, para que nadie corra un DELETE en prod por un malentendido.
 
-{{< /callout >}}
+{{< /checklist >}}
 
 Y por favor no escribas el parsing de argumentos a mano. En Python, Typer, Click o argparse lo hacen por ti, y en Node, Commander.js, yargs u oclif. Distribuirlo es un solo comando en ambos casos: `uv tool install` para Python, `npm i -g` para Node. Con Typer, el comando de reporte de arriba es solo una función:
 
@@ -100,11 +100,15 @@ description: Genera reportes de órdenes, ventas y usuarios desde la base de dat
 
 Yo pienso en la descripción como el SEO de tu herramienta, solo que quien la lee es un agente. {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}La guía de Anthropic para construir skills{{< /extlink >}} tiene las reglas que sigo:
 
+{{< checklist title="Reglas para la description" >}}
+
 - Di qué hace, cuándo usarla y sus capacidades principales.
 - Incluye frases que los usuarios dirían de verdad, y tipos de archivo si importan.
 - Quédate debajo de 1024 caracteres y evita `<` y `>`, porque va al system prompt.
 - Usa un `name` en kebab-case que coincida con la carpeta, sin "claude" ni "anthropic".
 - Agrega negative triggers cuando el skill aparezca donde no debe, como "NO usar para consultas generales de finanzas".
+
+{{< /checklist >}}
 
 ### Muéstrale el camino
 
@@ -151,9 +155,13 @@ Ponlo en `./.claude/skills` para un proyecto o en `~/.claude/skills` para tenerl
 
 Esto escala gracias al progressive disclosure, porque el agente carga el skill por capas:
 
+{{< checklist title="Cómo carga el agente un skill" >}}
+
 1. El `name` y la `description` del frontmatter siempre están cargados, que es lo justo para decidir si el skill aplica.
 2. El cuerpo del `SKILL.md` se carga cuando el skill se activa. Mantenlo debajo de 5,000 palabras.
 3. Los archivos de `references/` se cargan solo cuando el agente los necesita, y lo que esté en `scripts/` se ejecuta sin entrar al contexto.
+
+{{< /checklist >}}
 
 Para un skill de un CLI yo siempre agrego el campo opcional `allowed-tools`. En pokecli se ve así:
 
@@ -295,18 +303,25 @@ Esta es una sesión real en Claude Code, donde pedí las estadísticas de Pikach
 
 ## ¿Cuándo está listo un skill?
 
-Cuando ya lo probaste. Hay dos cosas que probar. La primera es la activación: el skill debe cargarse con peticiones obvias y con paráfrasis, y quedarse quieto con las que no tienen relación. Apunta a un 90% con 10 a 20 frases. Para pokecli, estas deberían activarlo:
+Cuando ya lo probaste. Hay dos cosas que probar. La primera es la activación: el skill debe cargarse con peticiones obvias y con paráfrasis, y quedarse quieto con las que no tienen relación. Apunta a un 90% con 10 a 20 frases. Para pokecli, las frases podrían verse así:
+
+{{< checklist >}}
+{{< checklist-section title="Debería activarlo" >}}
 
 - "Busca las estadísticas de Pikachu"
 - "Muéstrame datos de berries desde PokeAPI"
 - "Descarga un sprite de Charizard"
 - "Compara Thunderbolt y Flamethrower"
 
-Y estas no:
+{{< /checklist-section >}}
+{{< checklist-section title="No debería activarlo" mark="cross" >}}
 
 - "Ayúdame a escribir una clase en Python"
 - "¿Cómo está el clima hoy?"
 - "Resume esta transcripción de reunión"
+
+{{< /checklist-section >}}
+{{< /checklist >}}
 
 La segunda es el comportamiento. Corre comandos reales y revisa las salidas, los errores y los casos extremos:
 
@@ -324,23 +339,31 @@ Cuando algo no cuadra, el síntoma apunta a la solución. Si el skill no se carg
 
 Antes de dar un skill por terminado, reviso esta lista:
 
-- [ ] 2 o 3 casos de uso concretos por escrito
-- [ ] Una carpeta en kebab-case con un archivo llamado exactamente `SKILL.md`
-- [ ] Frontmatter entre líneas `---`, con un `name` en kebab-case
-- [ ] Una `description` que dice qué y cuándo, con menos de 1024 caracteres y sin `<` ni `>`
-- [ ] Instrucciones accionables, ejemplos y troubleshooting
-- [ ] Archivos de referencia enlazados desde el `SKILL.md`
-- [ ] Probado con peticiones obvias, paráfrasis y temas sin relación
+{{< checklist title="Checklist del skill" >}}
+
+- 2 o 3 casos de uso concretos por escrito
+- Una carpeta en kebab-case con un archivo llamado exactamente `SKILL.md`
+- Frontmatter entre líneas `---`, con un `name` en kebab-case
+- Una `description` que dice qué y cuándo, con menos de 1024 caracteres y sin `<` ni `>`
+- Instrucciones accionables, ejemplos y troubleshooting
+- Archivos de referencia enlazados desde el `SKILL.md`
+- Probado con peticiones obvias, paráfrasis y temas sin relación
+
+{{< /checklist >}}
 
 ## Tu tarea
 
 Esta es la tarea que le dejé a la audiencia para el lunes:
+
+{{< checklist title="Cinco pasos" >}}
 
 1. Escoge un script que uses cada semana.
 2. Saca los valores quemados a flags y agrega salida en JSON.
 3. Escribe una `description` que diga qué hace y cuándo usarlo.
 4. Agrega 2 o 3 ejemplos con su salida esperada.
 5. Guárdalo como `SKILL.md` y pruébalo con tu agente.
+
+{{< /checklist >}}
 
 Si no tienes un script a mano, usa pokecli y escribe tú el skill. Primero, quita del camino el skill incluido (puedes reinstalarlo después con `pokecli install --skills`):
 
