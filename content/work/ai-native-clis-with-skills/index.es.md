@@ -313,7 +313,7 @@ La segunda es el comportamiento. Corre comandos reales y revisa las salidas, los
 ```bash
 pokecli get pokemon pikachu
 pokecli can-learn pikachu thunderbolt
-pokecli get move thunderbolt --format json
+pokecli get item master-ball --format json
 pokecli sprite 25 -o /tmp/pika.png
 pokecli cache clear --resource pokemon
 ```

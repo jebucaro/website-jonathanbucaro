@@ -313,7 +313,7 @@ The second is behavior. Run real commands and check the outputs, the errors, and
 ```bash
 pokecli get pokemon pikachu
 pokecli can-learn pikachu thunderbolt
-pokecli get move thunderbolt --format json
+pokecli get item master-ball --format json
 pokecli sprite 25 -o /tmp/pika.png
 pokecli cache clear --resource pokemon
 ```
