@@ -1,12 +1,12 @@
 .talk-details {
     // --border-color matches the card background in light mode, so the
-    // divider needs its own color to stay visible.
+    // border and divider need their own color to stay visible.
     --talk-details-rule: rgba(0, 0, 0, 0.1);
 
     margin: 0 0 2rem;
     padding: 18px 20px;
     background: var(--background-alt-color);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--talk-details-rule);
     border-radius: 10px;
 
     &__list {
