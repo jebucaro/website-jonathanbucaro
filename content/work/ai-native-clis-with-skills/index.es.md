@@ -16,17 +16,19 @@ talk:
     repo: 'jebucaro/pokecli'
 ---
 
-Abrí mi charla en AWS Community Day Guatemala 2026 preguntando quién ha sentido que, si no está usando el framework de agentes más nuevo y más grande, ya se quedó atrás. Después pregunté qué es lo primero que hacemos cuando se cae producción. Revisamos un log, corremos un query o armamos un script. Nadie dijo que iba a construir un agente.
+Abrí mi charla en AWS Community Day Guatemala 2026 con una pregunta: ¿quién ha sentido que se quedó atrás por no estar usando el framework de agentes de moda? Después pregunté qué hacemos cuando se cae producción, y las respuestas fueron las de siempre: revisar un log, correr un query, armar un script. Nadie dijo que se iba a poner a construir un agente.
 
-De esa diferencia se trató la charla. Los scripts y CLI que ya tienes pueden convertirse en herramientas que un agente usa, y lo que casi siempre falta es una guía corta, un `SKILL.md`, que le diga al agente cuándo usarlas y cómo. Esta página es la versión escrita de la charla, junto con `pokecli`, el CLI que usé para la demo. La idea empezó como una charla interna en el trabajo llamada _Make Your CLI Tools AI-Native with SKILL.md_, y lo que me dijeron ahí dejó claro que necesitaba un ejemplo práctico que la gente pudiera revisar y reutilizar. Ahí entra pokecli.
+De eso se trató la charla. Los scripts y CLI que ya tienes pueden convertirse en herramientas que un agente usa, y casi siempre lo único que falta es una guía corta (un `SKILL.md`) que le explique al agente cuándo usarlos y cómo. Esta página es la versión escrita de esa charla, junto con `pokecli`, el CLI que usé para la demo. Todo empezó como una charla interna en el trabajo llamada _Make Your CLI Tools AI-Native with SKILL.md_, y los comentarios que recibí me dejaron claro que hacía falta un ejemplo práctico que la gente pudiera revisar y reutilizar, así que construí pokecli.
 
-## El agente decide, el script ejecuta
+## Qué hace el agente y qué hace el script
 
-Esto es lo que muchos hacemos hoy. Algo falla, pegamos medio log en un chat, el modelo responde "creo que el error es...", y luego vamos a verificar si es cierto. Le estamos pidiendo al modelo que calcule cosas que deberían estar programadas, así que la respuesta cambia de una corrida a otra, el modelo solo ve parte del contexto, y cuando rellena los huecos puede inventar.
+Hoy, cuando algo falla, muchos pegamos medio log en un chat, el modelo responde algo como "creo que el error es...", y después nos toca ir a verificar si tiene razón. En la práctica le estamos pidiendo al modelo que calcule cosas que deberían estar programadas, y eso tiene un costo: la respuesta cambia de una corrida a otra, el modelo solo ve una parte del contexto y, cuando rellena los huecos, puede inventar.
 
-Hay que invertir los papeles. El agente decide qué correr y cuándo, un CLI determinista hace el trabajo y devuelve una salida estructurada, y el agente interpreta esa salida y responde. `SKILL.md` es el manual que conecta las dos partes, y no necesitas servidores ni infraestructura nueva para eso.
+Lo que propuse en la charla es repartir mejor el trabajo. El agente decide qué correr y cuándo, un CLI determinista hace el trabajo y devuelve una salida estructurada, y con esa salida el agente arma la respuesta. El `SKILL.md` es el manual que conecta las dos partes, y para eso no necesitas servidores ni infraestructura nueva.
 
-Antes de escribir código, anota 2 o 3 casos de uso reales. Para cada uno, escribe lo que diría el usuario, los pasos que requiere y el resultado que esperas. Este es el que usé en la charla:
+> El agente decide, el script ejecuta.
+
+Antes de tocar código, vale la pena anotar 2 o 3 casos de uso reales. Para cada uno escribo lo que diría el usuario, los pasos que hacen falta y el resultado que espero. Este es el que usé en la charla:
 
 ```text
 Caso de uso: Reporte de órdenes por cliente
@@ -38,13 +40,13 @@ Pasos:
 Resultado: Cifras reales + el comando usado
 ```
 
-Esto se traslada casi uno a uno al skill que vas a escribir después. Los parámetros se vuelven flags, las frases del usuario se vuelven el trigger y los pasos se vuelven ejemplos. La herramienta ya existe, y el skill le agrega la experiencia de cuándo y cómo usarla.
+Ese ejercicio te ahorra trabajo después, porque casi todo pasa directo al skill: los parámetros terminan siendo flags, las frases del usuario sirven para el trigger y los pasos se convierten en ejemplos. La herramienta ya la tienes, lo que el skill aporta es saber cuándo y cómo usarla.
 
 ## Los cuatro pilares
 
-Resumí el proceso en cuatro pilares. Funcionan igual para un script de Python, un CLI de Node o un wrapper de bash sobre una API interna.
+Resumí el proceso en cuatro pilares, y funcionan igual para un script de Python, un CLI de Node o un wrapper de bash sobre una API interna.
 
-### 1. Hazla determinista
+### 1. Un CLI determinista
 
 Casi todos los scripts empiezan así, con todo quemado en el código:
 
@@ -55,7 +57,7 @@ rows = query("SELECT * FROM orders WHERE user_id = 4821")
 print(rows)
 ```
 
-Un agente no puede hacer mucho con eso. Convierte cada valor que cambia en un flag, y deja explícitos el ambiente y el formato de salida:
+Un agente no puede hacer mucho con eso. El primer paso es convertir cada valor que cambia en un flag, incluyendo el ambiente y el formato de salida:
 
 ```bash
 reporte orders \
@@ -64,7 +66,7 @@ reporte orders \
   --format json
 ```
 
-Ese cambio es como el 80% del trabajo. Un CLI que le sirve bien a un agente es uno que también funcionaría bien en un pipeline, así que la lista te va a sonar conocida:
+Ese cambio es más o menos el 80% del trabajo. Un CLI que le sirve a un agente es el mismo que te serviría en un pipeline, así que esta lista probablemente te suene conocida:
 
 {{< checklist title="Un CLI que un agente puede usar" >}}
 
@@ -73,12 +75,12 @@ Ese cambio es como el 80% del trabajo. Un CLI que le sirve bien a un agente es u
 - La salida es estructurada, por ejemplo `--format json|table|csv`.
 - Los datos van a stdout, los logs y errores a stderr.
 - Los exit codes significan algo: `0` ok, `1` error, `2` uso incorrecto.
-- Nada es interactivo. Un prompt esperando input deja al agente colgado.
+- Nada es interactivo, porque un prompt esperando input deja al agente colgado.
 - Todo lo que borre o modifique datos lleva `--dry-run` o `--yes`, para que nadie corra un DELETE en prod por un malentendido.
 
 {{< /checklist >}}
 
-Y por favor no escribas el parsing de argumentos a mano. En Python, Typer, Click o argparse lo hacen por ti, y en Node, Commander.js, yargs u oclif. Distribuirlo es un solo comando en ambos casos: `uv tool install` para Python, `npm i -g` para Node. Con Typer, el comando de reporte de arriba es solo una función:
+Y por favor, no escribas el parsing de argumentos a mano. En Python tienes Typer, Click o argparse, y en Node, Commander.js, yargs u oclif. Distribuirlo también es un solo comando: `uv tool install` para Python o `npm i -g` para Node. Con Typer, el comando de reporte de arriba queda como una simple función:
 
 ```python
 @app.command()
@@ -86,9 +88,9 @@ def orders(user_id: int, env: str = "dev", format: str = "table"):
     ...
 ```
 
-### 2. Dale un trigger que el agente encuentre
+### 2. Una description que el agente pueda encontrar
 
-El agente nunca lee tu código. Lee tu `description`, el único campo del frontmatter que siempre está cargado, y con eso decide si tu skill aplica a lo que le están pidiendo. Compara estas dos:
+Para decidir si usa tu skill, el agente lee la `description` y no tu código. Es el único campo del frontmatter que siempre está cargado, y con eso decide si el skill aplica a lo que le están pidiendo. Mira la diferencia entre estas dos:
 
 ```yaml
 # Demasiado vaga
@@ -98,17 +100,17 @@ description: Herramienta de reportes.
 description: Genera reportes de órdenes, ventas y usuarios desde la base de datos de la plataforma. Úsala cuando el usuario pida métricas, reportes, totales por fecha o información de un cliente específico que la plataforma no muestra.
 ```
 
-Yo pienso en la descripción como el SEO de tu herramienta, solo que quien la lee es un agente. {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}La guía de Anthropic para construir skills{{< /extlink >}} tiene las reglas que sigo:
+La description funciona como el SEO de tu herramienta, con la diferencia de que quien la lee es un agente. {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}La guía de Anthropic para construir skills{{< /extlink >}} tiene las reglas que sigo:
 
-- Di qué hace, cuándo usarla y sus capacidades principales.
-- Incluye frases que los usuarios dirían de verdad, y tipos de archivo si importan.
-- Quédate debajo de 1024 caracteres y evita `<` y `>`, porque va al system prompt.
-- Usa un `name` en kebab-case que coincida con la carpeta, sin "claude" ni "anthropic".
-- Agrega negative triggers cuando el skill aparezca donde no debe, como "NO usar para consultas generales de finanzas".
+- Dice qué hace, cuándo usarla y cuáles son sus capacidades principales.
+- Incluye frases que un usuario diría de verdad, y tipos de archivo si son relevantes.
+- Tiene menos de 1024 caracteres y no usa `<` ni `>`, porque termina dentro del system prompt.
+- El `name` va en kebab-case, coincide con el nombre de la carpeta y no incluye "claude" ni "anthropic".
+- Si el skill se activa donde no debe, lleva negative triggers como "NO usar para consultas generales de finanzas".
 
-### 3. Muéstrale el camino
+### 3. Ejemplos que muestren el camino
 
-Con los ejemplos el agente aprende cómo se usa tu herramienta. Cada uno tiene tres partes: lo que pediría el usuario, el comando exacto con sus flags y la salida esperada, para que el agente note cuando algo falla.
+Los ejemplos le enseñan al agente cómo se usa tu herramienta. Cada uno tiene tres partes: lo que pediría el usuario, el comando exacto con sus flags y la salida esperada, para que el agente se dé cuenta cuando algo salió mal.
 
 ```markdown
 ## Ejemplos
@@ -122,7 +124,7 @@ Con los ejemplos el agente aprende cómo se usa tu herramienta. Cada uno tiene t
     {"user_id": 4821, "total_orders": 12, "total_amount": 3450.00}
 ```
 
-Después documenta el camino triste como error, causa y solución:
+También vale la pena documentar qué hacer cuando algo falla, con el error, la causa y la solución:
 
 ```markdown
 ## Troubleshooting
@@ -132,11 +134,15 @@ Después documenta el camino triste como error, causa y solución:
 **Solución:** confirmar el ID con el usuario y el --env usado
 ```
 
-Que las instrucciones sean específicas. Con "Valida los datos antes de continuar" el agente se queda adivinando qué significa validar. "Corre `reporte validate --input archivo.csv`, y si falla, revisa que las fechas estén en YYYY-MM-DD y que estén los campos obligatorios" le da algo concreto que hacer. La guía de Anthropic lo resume bien: "Code is deterministic; language interpretation isn't."
+Las instrucciones tienen que ser específicas. Si escribes "Valida los datos antes de continuar", el agente se queda adivinando qué significa validar. En cambio, "Corre `reporte validate --input archivo.csv`, y si falla, revisa que las fechas estén en YYYY-MM-DD y que estén los campos obligatorios" le da algo concreto que hacer. La guía de Anthropic lo resume en una frase que también usé en la charla:
 
-### 4. Empaquétala en SKILL.md
+> Code is deterministic; language interpretation isn't.
+>
+> {{< extlink href="https://resources.anthropic.com/hubfs/The-Complete-Guide-to-Building-Skill-for-Claude.pdf?hsLang=en" >}}Anthropic{{< /extlink >}}
 
-Un skill es una carpeta con un `SKILL.md` adentro:
+### 4. Todo empaquetado en SKILL.md
+
+Un skill no es más que una carpeta con un `SKILL.md` adentro:
 
 ```text
 .claude/skills/
@@ -147,12 +153,12 @@ Un skill es una carpeta con un `SKILL.md` adentro:
     └── assets/        # plantillas, schemas
 ```
 
-Ponlo en `./.claude/skills` para un proyecto o en `~/.claude/skills` para tenerlo en todos. Hay detalles que confunden a la gente. El archivo se tiene que llamar exactamente `SKILL.md`, la carpeta va en kebab-case (`orders-report`, nunca `Orders Report` ni `orders_report`), y el README va en la raíz del repo, fuera de la carpeta del skill.
+Ponlo en `./.claude/skills` si es para un proyecto, o en `~/.claude/skills` si lo quieres disponible en todos tus proyectos. Ojo con algunos detalles que suelen confundir: el archivo se tiene que llamar exactamente `SKILL.md`, la carpeta va en kebab-case (`orders-report`, nunca `Orders Report` ni `orders_report`) y el README va en la raíz del repo, fuera de la carpeta del skill.
 
-Esto escala gracias al progressive disclosure, porque el agente carga el skill por capas:
+Lo que hace que esto escale es el progressive disclosure, es decir, que el agente carga el skill por capas:
 
-1. El `name` y la `description` del frontmatter siempre están cargados, que es lo justo para decidir si el skill aplica.
-2. El cuerpo del `SKILL.md` se carga cuando el skill se activa. Mantenlo debajo de 5,000 palabras.
+1. El `name` y la `description` del frontmatter están siempre cargados, y con eso le alcanza para decidir si el skill aplica.
+2. El cuerpo del `SKILL.md` se carga cuando el skill se activa, por eso conviene que no pase de 5,000 palabras.
 3. Los archivos de `references/` se cargan solo cuando el agente los necesita, y lo que esté en `scripts/` se ejecuta sin entrar al contexto.
 
 Para un skill de un CLI yo siempre agrego el campo opcional `allowed-tools`. En pokecli se ve así:
@@ -161,11 +167,11 @@ Para un skill de un CLI yo siempre agrego el campo opcional `allowed-tools`. En 
 allowed-tools: Bash(pokecli:*)
 ```
 
-Le dice a Claude Code que el skill puede correr comandos de `pokecli` y nada más, así que el skill también funciona como límite de seguridad. Esta forma no la inventé yo, por cierto. La copié del skill de {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} de Microsoft, que mantiene el trigger pequeño, el cuerpo enfocado y el detalle extra en archivos de referencia.
+Esto le dice a Claude Code que el skill solo puede correr comandos de `pokecli`, así que también funciona como un límite de seguridad. Por cierto, esta estructura no la inventé yo, la tomé del skill de {{< extlink href="https://github.com/microsoft/playwright-cli" >}}Playwright CLI{{< /extlink >}} de Microsoft, que tiene una description corta, un cuerpo enfocado y deja el detalle extra en archivos de referencia.
 
 ## Inicio rápido con pokecli
 
-`pokecli` es el CLI que construí para hacer la demo de todo esto. Es un CLI de Python pequeño y tipado para PokeAPI que cubre Pokémon, movimientos, habilidades, items, tipos y evoluciones, con una caché local para que las búsquedas repetidas no salgan a la red. Así lo pones a correr con el skill instalado.
+`pokecli` es el CLI que construí para la demo. Está escrito en Python con tipos, consulta PokeAPI y cubre Pokémon, movimientos, habilidades, items, tipos y evoluciones, con una caché local para que las búsquedas repetidas no salgan a la red. Así lo instalas junto con el skill.
 
 ### Instala el CLI con `uv`
 
@@ -188,12 +194,12 @@ pokecli install --skills
 {{< gallery-image src="images/pokecli-install-skills.webp" alt="Instalación de los skills de pokecli usando el comando install." >}}
 {{< /gallery >}}
 
-`install --skills` no genera nada. El `SKILL.md` y sus archivos de referencia vienen dentro del paquete, y el comando los copia a `~/.claude/skills/pokecli/`, así que no necesitas clonar el repo. También puedes copiar los archivos a mano, agregué el comando para que el ejemplo fuera fácil de correr.
+El comando `install --skills` no genera nada nuevo: el `SKILL.md` y sus archivos de referencia vienen dentro del paquete, y lo único que hace es copiarlos a `~/.claude/skills/pokecli/`, así que no necesitas clonar el repo. Podrías copiar los archivos a mano, pero agregué el comando para que el ejemplo fuera fácil de probar.
 
-Los 18 recursos pasan por los mismos tres comandos, `get`, `list` y `search`, y seis comandos de tarea como `moves`, `can-learn` y `sprite` responden preguntas que no corresponden a un solo registro. Al skill le basta con esa forma para dar con el comando correcto.
+Los 18 recursos usan los mismos tres comandos (`get`, `list` y `search`), y hay seis comandos de tarea, como `moves`, `can-learn` y `sprite`, para preguntas que no se responden con un solo registro. Con conocer esa estructura, el skill ya puede dar con el comando correcto.
 
 {{< callout note >}}
-El skill no reemplaza la documentación de la CLI. Le da a Claude Code un punto de entrada más pequeño y más útil hacia la misma lista de comandos.
+El skill no reemplaza la documentación del CLI. Le da a Claude Code una forma más corta y práctica de llegar a la misma lista de comandos.
 {{< /callout >}}
 
 Ya instalado, Claude Code sabe cuándo usar `pokecli` y qué comando responde cada tipo de pregunta:
@@ -208,7 +214,7 @@ Ya instalado, Claude Code sabe cuándo usar `pokecli` y qué comando responde ca
 {{< gallery-image src="images/pokecli-help.webp" alt="Windows Terminal mostrando el resultado del comando de ayuda de pokecli" >}}
 {{< /gallery >}}
 
-El `SKILL.md` del repo tiene 192 líneas, y ahí aparecen los cuatro pilares. Estas son las partes que vale la pena ver con calma.
+El `SKILL.md` del repo tiene 192 líneas y en él se ven los cuatro pilares. Estas son las partes que vale la pena ver con calma.
 
 ### Frontmatter y la gramática completa
 
@@ -248,7 +254,7 @@ Con eso en contexto, el agente no necesita correr `--help` para encontrar un com
 
 ### Salida TOON
 
-pokecli escoge su salida según quién la lee. En una terminal ves tablas de Rich, pero su marcado consume tokens, y la puntuación de JSON también. Por eso, cuando la salida se captura, que es lo que pasa cuando la corre un agente, pokecli imprime TOON, una notación compacta que sale más o menos un 40% más pequeña que JSON. El skill le dice al agente que no toque `--format` y que solo pida `--format json` cuando necesite contar, sumar o filtrar. Así describe la salida:
+pokecli decide el formato de salida según quién la va a leer. En una terminal ves tablas de Rich, pero ese marcado consume tokens, igual que toda la puntuación de JSON. Por eso, cuando la salida se captura (que es lo que pasa cuando la corre un agente), pokecli imprime TOON, una notación compacta que ocupa más o menos un 40% menos que JSON. El skill le pide al agente que no toque `--format` y que use `--format json` solo cuando necesite contar, sumar o filtrar. Así describe la salida:
 
 ```text
 ## Reading the default output
@@ -261,13 +267,13 @@ This is what you get with no `--format` (TOON):
 - Every response ends with `help[]` hints naming valid follow-up commands
 ```
 
-Los hints de `help[]` son mi parte favorita. `pokecli get pokemon pikachu` termina con `help[3]: pokecli moves pikachu,pokecli evolution pikachu,pokecli encounters pikachu`, así que la salida le enseña al agente el siguiente comando. Escribir el skill fue lo que me llevó a agregar TOON. En cuanto escribí una regla sobre el costo en tokens, vi que la herramienta no tenía ningún modo de salida que valiera la pena recomendar.
+Los hints de `help[]` son lo que más me gusta. `pokecli get pokemon pikachu` termina con `help[3]: pokecli moves pikachu,pokecli evolution pikachu,pokecli encounters pikachu`, así que la misma salida le sugiere al agente el siguiente comando. TOON existe precisamente por el skill: cuando escribí una regla sobre el costo en tokens, me di cuenta de que la herramienta no tenía ningún formato de salida que valiera la pena recomendar.
 
 ### Un solo camino por comportamiento
 
 {{< challenge >}}
 {{< challenge-problem >}}
-La primera versión de pokecli tenía un grupo por familia de recursos (`pokecli pokemon get pikachu`, `pokecli move get thunderbolt`), grupos planos más antiguos que seguían ahí como comandos ocultos, y alias cortos para humanos como `pokecli pokemon pikachu`. Todos funcionaban, así que el skill necesitaba una regla extra que le dijera al agente qué forma preferir, y una lista de los alias para que los reconociera.
+La primera versión de pokecli tenía un grupo por familia de recursos (`pokecli pokemon get pikachu`, `pokecli move get thunderbolt`), grupos más antiguos sin anidar que seguían ahí como comandos ocultos, y alias cortos para humanos como `pokecli pokemon pikachu`. Todos funcionaban, así que el skill necesitaba una regla extra que le dijera al agente qué forma preferir, y una lista de los alias para que los reconociera.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
 En la v0.2 consolidé el CLI en `get`, `list` y `search` para los 18 recursos, más seis comandos de tarea, y quité los alias:
@@ -295,7 +301,7 @@ Esta es una sesión real en Claude Code, donde pedí las estadísticas de Pikach
 
 ## ¿Cuándo está listo un skill?
 
-Cuando ya lo probaste. Hay dos cosas que probar. La primera es la activación: el skill debe cargarse con peticiones obvias y con paráfrasis, y quedarse quieto con las que no tienen relación. Apunta a un 90% con 10 a 20 frases. Para pokecli, las frases podrían verse así:
+Un skill está listo cuando lo probaste, y hay dos cosas que probar. La primera es la activación: el skill tiene que cargarse con peticiones obvias y con paráfrasis, y no activarse con las que no tienen relación. Una buena meta es acertar en un 90% de 10 a 20 frases. Para pokecli, las frases podrían verse así:
 
 {{< checklist >}}
 {{< checklist-section title="Debería activarlo" >}}
@@ -315,7 +321,7 @@ Cuando ya lo probaste. Hay dos cosas que probar. La primera es la activación: e
 {{< /checklist-section >}}
 {{< /checklist >}}
 
-La segunda es el comportamiento. Corre comandos reales y revisa las salidas, los errores y los casos extremos:
+La segunda es el comportamiento, que se prueba corriendo comandos reales y revisando las salidas, los errores y los casos extremos:
 
 ```bash
 pokecli get pokemon pikachu
@@ -325,9 +331,9 @@ pokecli sprite 25 -o /tmp/pika.png
 pokecli cache clear --resource pokemon
 ```
 
-Si funcionan, los ejemplos del skill están anclados a la herramienta real. Corre el primero en tu terminal y luego otra vez pasándolo por `cat`, y vas a ver cómo la salida cambia de tablas de Rich a TOON.
+Si estos funcionan, sabes que los ejemplos del skill coinciden con lo que hace la herramienta. Corre el primero en tu terminal y después otra vez pasándolo por `cat`, y vas a ver cómo la salida cambia de tablas de Rich a TOON.
 
-Cuando algo no cuadra, el síntoma apunta a la solución. Si el skill no se carga, le faltan keywords a la descripción. Si se carga con peticiones que no tienen nada que ver, necesita negative triggers. Si los resultados son inconsistentes, hay que mejorar las instrucciones. Un truco útil para depurar es preguntarle al agente "¿Cuándo usarías el skill de pokecli?" y leer lo que entendió.
+Cuando algo no sale bien, el síntoma casi siempre te dice qué arreglar. Si el skill no se carga, a la descripción le faltan palabras clave, y si se carga con peticiones que no tienen nada que ver, le hacen falta negative triggers. Cuando los resultados cambian de una vez a otra, son las instrucciones las que necesitan trabajo. Un truco que me sirve para depurar es preguntarle al agente "¿Cuándo usarías el skill de pokecli?" y leer lo que entendió.
 
 Antes de dar un skill por terminado, reviso esta lista:
 
@@ -345,21 +351,21 @@ Antes de dar un skill por terminado, reviso esta lista:
 
 ## Tu tarea
 
-Esta es la tarea que le dejé a la audiencia para el lunes:
+Al final de la charla le dejé a la audiencia esta tarea para el lunes:
 
 1. Escoge un script que uses cada semana.
-2. Saca los valores quemados a flags y agrega salida en JSON.
+2. Pasa los valores hardcodeados a flags y agrega salida en JSON.
 3. Escribe una `description` que diga qué hace y cuándo usarlo.
 4. Agrega 2 o 3 ejemplos con su salida esperada.
 5. Guárdalo como `SKILL.md` y pruébalo con tu agente.
 
-Si no tienes un script a mano, usa pokecli y escribe tú el skill. Primero, quita del camino el skill incluido (puedes reinstalarlo después con `pokecli install --skills`):
+Si no tienes un script a mano, usa pokecli y escribe tú mismo el skill. Primero remueve el skill si lo instalaste con la CLI (lo puedes reinstalar después con `pokecli install --skills`):
 
 ```bash
 rm -rf ~/.claude/skills/pokecli
 ```
 
-Luego crea una carpeta limpia de proyecto con la ruta local del skill que Claude va a leer:
+Luego crea una carpeta para el ejercicio, con la ruta donde Claude va a buscar el skill local:
 
 ```bash
 mkdir -p pokecli-skill-lab/.claude/skills/pokecli
@@ -372,9 +378,11 @@ Dentro de esa carpeta, crea `./.claude/skills/pokecli/SKILL.md`, y luego inicia 
 claude
 ```
 
-No busques el archivo perfecto en el primer intento. Empieza con el frontmatter y unos cuantos comandos, prueba un prompt como "Usa pokecli para buscar las estadísticas de Pikachu", y después limpia el contexto y vuelve a intentarlo sin nombrar pokecli. Fíjate en qué se equivoca Claude: si omite un grupo de comandos, agrégalo; si usa los flags equivocados, agrega un ejemplo que funcione; si se va por comandos genéricos de shell, ajusta la descripción. Cuando te guste cómo quedó, compáralo con el que trae pokecli.
+No te preocupes por que el archivo quede perfecto a la primera. Empieza con el frontmatter y unos cuantos comandos, prueba un prompt como "Usa pokecli para buscar las estadísticas de Pikachu", y después limpia el contexto y vuelve a intentarlo sin mencionar pokecli. Fíjate en qué se equivoca Claude. Si se salta algún comando, agrégalo, y si usa flags equivocados, agrega un ejemplo que funcione. Si termina usando comandos genéricos de shell, ajusta la descripción. Cuando te guste cómo quedó, compáralo con el que trae pokecli.
 
-La última diapositiva de la charla decía que no te quedaste atrás, y que los scripts que ya escribiste son tu ventaja. Hazlos deterministas, dales un trigger, muéstrale el camino al agente con ejemplos y empaqueta todo en un `SKILL.md`.
+Cerré la charla diciendo que nadie se quedó atrás, porque los scripts que ya escribiste son justamente lo que un agente necesita para hacer trabajo real. Lo que les falta es lo que vimos aquí: que sean deterministas, que tengan una buena description, unos cuantos ejemplos y un `SKILL.md` que lo junte todo.
+
+¿Qué script vas a convertir primero? Escríbeme en {{< extlink href="https://www.linkedin.com/in/jonathanbucaro/" >}}LinkedIn{{< /extlink >}} y cuéntame cómo te fue.
 
 ---
 
