@@ -190,8 +190,8 @@ pokecli install --skills
 ```
 
 {{< gallery caption="pokecli installation and SKILL.md" >}}
-{{< gallery-image src="images/uv-install-pokecli.webp" alt="Install pokecli using the package manager uv." >}}
-{{< gallery-image src="images/pokecli-install-skills.webp" alt="Install pokecli skills using the install command." >}}
+{{< gallery-image src="images/uv-install-pokecli.png" alt="Install pokecli using the package manager uv." >}}
+{{< gallery-image src="images/pokecli-install-skills.png" alt="Install pokecli skills using the install command." >}}
 {{< /gallery >}}
 
 The `install --skills` command doesn't generate anything new: the `SKILL.md` and its reference files ship inside the package, and all it does is copy them into `~/.claude/skills/pokecli/`, so you don't need the repo checked out. You could copy the files by hand, but I added the command so the example is easy to try.
@@ -211,7 +211,7 @@ Once it's installed, Claude Code knows when to reach for `pokecli` and which com
 ## pokecli up close
 
 {{< gallery caption="pokecli help command" >}}
-{{< gallery-image src="images/pokecli-help.webp" alt="Windows Terminal showing the result of running pokecli's help command" >}}
+{{< gallery-image src="images/pokecli-help.png" alt="Windows Terminal showing the result of running pokecli's help command" >}}
 {{< /gallery >}}
 
 The `SKILL.md` in the repo is 192 lines, and you can see all four pillars in it. These are the parts worth a closer look.
