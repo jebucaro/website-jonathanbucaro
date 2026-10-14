@@ -21,6 +21,8 @@
       class         optional extra class names
       title         optional title attribute
       aspect        optional bool; emit style="aspect-ratio: W / H" (for images whose CSS overrides one dimension)
+      zoom          optional bool; emit data-zoom-src with the full-size variant, which the
+                    lightbox swaps in on click so zooming shows real detail
 */ -}}
 {{- $input := .image -}}
 {{- $page := .page -}}
@@ -30,6 +32,7 @@
 {{- $fetchpriority := .fetchpriority -}}
 {{- $title := .title -}}
 {{- $aspect := .aspect -}}
+{{- $zoom := .zoom -}}
 
 {{- /* Resolve string input: page resources, then assets/, else plain URL */ -}}
 {{- $res := "" -}}
@@ -68,6 +71,7 @@
         {{- if eq $loading "lazy" }} loading="lazy"{{ end }}
         {{- with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}
         {{- with $title }} title="{{ . }}"{{ end }}
+        {{- if $zoom }} data-zoom-src="{{ $v.largest.RelPermalink }}"{{ end }}
         {{- if $aspect }} style="aspect-ratio: {{ $v.largest.Width }} / {{ $v.largest.Height }}"{{ end }}
         {{- with $classes }} class="{{ delimit . " " }}"{{ end }} />
 {{- else -}}

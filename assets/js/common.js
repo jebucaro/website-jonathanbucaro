@@ -170,6 +170,25 @@ document.addEventListener('DOMContentLoaded', function () {
             imageLink[i].classList.add('no-lightense');
     }
 
+    // Gallery images carry their full-size variant in data-zoom-src. Swap it in
+    // before Lightense sees the click, so the zoom loads and scales the
+    // full-size file instead of the small srcset fallback. Capture phase on
+    // document runs ahead of Lightense's own listener on the image.
+    document.addEventListener(
+        'click',
+        (event) => {
+            const img =
+                event.target.closest &&
+                event.target.closest('img[data-zoom-src]');
+            if (!img) return;
+            img.removeAttribute('srcset');
+            img.removeAttribute('sizes');
+            img.src = img.dataset.zoomSrc;
+            delete img.dataset.zoomSrc;
+        },
+        true,
+    );
+
     // Initialize Lightense with custom settings, with a delay to ensure the library is loaded
     setTimeout(() => {
         if (lightense && window.Lightense) {
