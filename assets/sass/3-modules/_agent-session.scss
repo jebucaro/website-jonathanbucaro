@@ -1,8 +1,15 @@
 .agent-session {
+    // --border-color matches --background-alt-color in light mode, so the
+    // dividers need their own color to stay visible.
+    --agent-session-rule: rgba(0, 0, 0, 0.1);
+    --agent-session-muted: #5f6368;
+    --agent-session-user-edge: #c4c8cf;
+    --agent-session-pill-bg: #dcdfe4;
+
     max-width: 100%;
     margin: 1.6em auto;
     border-radius: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--agent-session-rule);
     background: var(--background-color);
     font-family: $base-font-family;
     overflow: hidden;
@@ -13,13 +20,13 @@
         align-items: center;
         gap: 10px;
         padding: 10px 16px;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--agent-session-rule);
         background: var(--background-alt-color);
     }
 
     .agent-session-icon {
         flex-shrink: 0;
-        color: var(--text-alt-color);
+        color: var(--agent-session-muted);
     }
 
     .agent-session-title {
@@ -36,7 +43,7 @@
         overflow-y: auto;
         scroll-behavior: smooth;
         scrollbar-width: thin;
-        scrollbar-color: var(--border-color) transparent;
+        scrollbar-color: var(--agent-session-rule) transparent;
 
         &::-webkit-scrollbar {
             width: 6px;
@@ -47,14 +54,14 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background: var(--border-color);
+            background: var(--agent-session-rule);
             border-radius: 3px;
         }
     }
 
     .agent-session-message {
         padding: 14px 16px 14px 20px;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--agent-session-rule);
         border-left: 3px solid transparent;
 
         &:last-child {
@@ -64,12 +71,12 @@
 
     .agent-session-user {
         background: var(--background-alt-color);
-        border-left-color: var(--callout-blue);
+        border-left-color: var(--agent-session-user-edge);
     }
 
     .agent-session-assistant {
         background: var(--background-color);
-        border-left-color: var(--callout-green);
+        border-left-color: var(--brand-color);
     }
 
     .agent-session-role-badge {
@@ -84,13 +91,13 @@
     }
 
     .agent-session-role-user {
-        background: rgba(77, 101, 220, 0.12);
-        color: var(--callout-blue);
+        background: var(--agent-session-pill-bg);
+        color: var(--heading-font-color);
     }
 
     .agent-session-role-assistant {
-        background: rgba(45, 180, 125, 0.1);
-        color: var(--callout-green);
+        background: var(--brand-color);
+        color: #111;
     }
 
     .agent-session-content {
@@ -156,8 +163,8 @@
         blockquote {
             margin: 0.5em 0;
             padding: 0.5em 1em;
-            border-left: 3px solid var(--border-color);
-            color: var(--text-alt-color);
+            border-left: 3px solid var(--agent-session-rule);
+            color: var(--agent-session-muted);
         }
 
         strong,
@@ -174,7 +181,7 @@
             th,
             td {
                 padding: 6px 12px;
-                border: 1px solid var(--border-color);
+                border: 1px solid var(--agent-session-rule);
                 text-align: left;
             }
 
@@ -221,7 +228,7 @@
         margin-top: 2px;
         font-size: 0.8em;
         font-weight: 600;
-        color: var(--primary-color);
+        color: var(--heading-font-color);
         cursor: pointer;
 
         &:hover {
@@ -232,7 +239,7 @@
     .agent-session-tool-call {
         margin: 8px 0;
         border-radius: 8px;
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--agent-session-rule);
         overflow: hidden;
 
         &:last-child {
@@ -264,7 +271,7 @@
             width: 12px;
             text-align: center;
             font-size: 0.9em;
-            color: var(--text-alt-color);
+            color: var(--agent-session-muted);
             transition: transform 0.15s;
             flex-shrink: 0;
         }
@@ -272,36 +279,11 @@
         .tool-name {
             font-weight: 600;
             flex-shrink: 0;
-        }
-
-        .tool-name-read,
-        .tool-name-write,
-        .tool-name-edit,
-        .tool-name-glob {
-            color: var(--callout-blue);
-        }
-
-        .tool-name-bash {
-            color: var(--callout-green);
-        }
-
-        .tool-name-grep,
-        .tool-name-search {
-            color: var(--callout-orange);
-        }
-
-        .tool-name-task,
-        .tool-name-skill {
-            color: var(--callout-blue);
-        }
-
-        .tool-name-webfetch,
-        .tool-name-websearch {
-            color: #0891b2;
+            color: var(--heading-font-color);
         }
 
         .tool-input-preview {
-            color: var(--text-alt-color);
+            color: var(--agent-session-muted);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -311,14 +293,14 @@
     }
 
     .agent-session-tool-detail {
-        border-top: 1px solid var(--border-color);
+        border-top: 1px solid var(--agent-session-rule);
         background: var(--background-color);
 
         .tool-section {
             padding: 10px 12px;
 
             & + .tool-section {
-                border-top: 1px solid var(--border-color);
+                border-top: 1px solid var(--agent-session-rule);
             }
         }
 
@@ -327,7 +309,7 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            color: var(--text-alt-color);
+            color: var(--agent-session-muted);
             margin-bottom: 6px;
         }
     }
@@ -362,36 +344,49 @@
     }
 }
 
-// Tool badge colors in header
+// Tool badge in header: neutral pill, the tool's brand color lives in the dot
 .agent-session-tool-badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 2px 10px;
     border-radius: 12px;
     font-size: 0.7em;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background: var(--background-alt-color-2);
-    color: var(--text-color);
+    background: var(--agent-session-pill-bg);
+    color: var(--heading-font-color);
     flex-shrink: 0;
+
+    &::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--tool-dot, var(--agent-session-muted));
+    }
 }
 
 .agent-session-tool-claude_code {
-    background: #d4a574;
-    color: #3d2200;
+    --tool-dot: #d97757;
 }
 
 .agent-session-tool-codex {
-    background: #10a37f;
-    color: #fff;
+    --tool-dot: #10a37f;
 }
 
 .agent-session-tool-gemini_cli {
-    background: #4285f4;
-    color: #fff;
+    --tool-dot: #4285f4;
 }
 
 .agent-session-tool-cursor {
-    background: #6366f1;
-    color: #fff;
+    --tool-dot: #6366f1;
+}
+
+.dark-mode .agent-session {
+    --agent-session-rule: var(--border-color);
+    --agent-session-muted: var(--gray);
+    --agent-session-user-edge: #4a4d55;
+    --agent-session-pill-bg: #2f3135;
 }
