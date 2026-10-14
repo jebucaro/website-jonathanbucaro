@@ -5,9 +5,7 @@
 
     margin: 32px 0;
     border-radius: 12px;
-    border-left: 4px solid var(--brand-color);
     background: var(--background-alt-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     overflow: hidden;
 
     @media only screen and (max-width: $mobile) {
@@ -29,6 +27,20 @@
     letter-spacing: $heading-letter-spacing;
     color: var(--heading-font-color);
     border-bottom: 1px solid var(--checklist-rule);
+
+    // The brand accent stays small so the list keeps the attention.
+    &::before {
+        content: "";
+        display: inline-block;
+        position: relative;
+        top: -1px;
+        width: 8px;
+        height: 8px;
+        margin-right: 10px;
+        border-radius: 2px;
+        background: var(--brand-color);
+        vertical-align: middle;
+    }
 }
 
 .checklist__body {
@@ -91,5 +103,4 @@
     --checklist-rule: var(--border-color);
 
     background: var(--callout-bg);
-    box-shadow: none;
 }
