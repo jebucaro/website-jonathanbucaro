@@ -16,7 +16,7 @@ talk:
     repo: 'jebucaro/pokecli'
 ---
 
-Abrí mi charla en AWS Community Day Guatemala 2026 con una pregunta: ¿quién ha sentido que se quedó atrás por no estar usando el framework de agentes de moda? Después pregunté qué hacemos cuando se cae producción, y las respuestas fueron las de siempre: revisar un log, correr un query, armar un script. Nadie dijo que se iba a poner a construir un agente.
+Abrí mi charla en AWS Community Day Guatemala 2026 con una pregunta que, coincidentemente, fue la misma con la que abrió el keynote del evento: ¿quién ha sentido que se quedó atrás por no estar usando el último framework de agentes que acaba de salir? Les dije que es natural sentir FOMO cuando sale una herramienta nueva cada semana, pero que no tienes por qué preocuparte, porque puedes empezar con lo que ya tienes. Después pregunté qué hacemos cuando se cae producción, y las respuestas fueron las de siempre: revisar un log, correr un query, armar un script. Nadie dijo que se iba a poner a construir un agente.
 
 De eso se trató la charla. Los scripts y CLI que ya tienes pueden convertirse en herramientas que un agente usa, y casi siempre lo único que falta es una guía corta (un `SKILL.md`) que le explique al agente cuándo usarlos y cómo. Esta página es la versión escrita de esa charla, junto con `pokecli`, el CLI que usé para la demo. Todo empezó como una charla interna en el trabajo llamada _Make Your CLI Tools AI-Native with SKILL.md_, y los comentarios que recibí me dejaron claro que hacía falta un ejemplo práctico que la gente pudiera revisar y reutilizar, así que construí pokecli.
 
