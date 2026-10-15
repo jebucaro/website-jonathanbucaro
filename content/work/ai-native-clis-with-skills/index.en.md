@@ -16,7 +16,11 @@ talk:
     repo: 'jebucaro/pokecli'
 ---
 
-I opened my talk at AWS Community Day Guatemala 2026 with a question that, coincidentally, was the same one the event's keynote had opened with: who has felt they fell behind because they aren't using the agent framework everyone is talking about? I told the room that feeling some FOMO is natural when a new tool comes out every week, but there's no need to worry about it, because you can start with what you already have. Then I asked what we do when production goes down, and the answers were the usual ones: tail a log, run a query, put together a script. Nobody said they'd sit down and build an agent.
+I opened my talk at AWS Community Day Guatemala 2026 with a question that, coincidentally, was very similar to the one the event's keynote had opened with:
+
+> Who has felt that, if they aren't building an MCP server or using a giant Agent Framework, they've already fallen behind?
+
+I told the room that feeling some FOMO is natural when it seems like everyone is already doing it, but there's no need to worry about it, because you can start with what you already have. Then I asked what we do when production goes down, and the answers were the usual ones: tail a log, run a query, put together a script. Nobody said they'd sit down and build an agent.
 
 That's what the talk was about. The scripts and CLIs you already have can become tools an agent uses, and usually the only thing missing is a short guide (a `SKILL.md`) that explains to the agent when to use them and how. This page is the written version of the talk, which I gave in Spanish, along with `pokecli`, the CLI I used for the demo. It all started as an internal talk at work called _Make Your CLI Tools AI-Native with SKILL.md_, and the feedback I got made it clear that people needed a practical example they could inspect and reuse, so I built pokecli.
 
