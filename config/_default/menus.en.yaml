@@ -11,10 +11,10 @@ main:
       name: Pages
       weight: 40
       hasChildren: true
-    - identifier: projects
-      name: Projects
+    - identifier: work
+      name: Work
       parent: pages
-      url: /projects/
+      url: /work/
       weight: 10
     - identifier: blog
       parent: pages
@@ -31,9 +31,9 @@ footer:
       name: About
       url: /about/
       weight: 30
-    - identifier: projects
-      name: Projects
-      url: /projects/
+    - identifier: work
+      name: Work
+      url: /work/
       weight: 40
     - identifier: blog
       name: Blog

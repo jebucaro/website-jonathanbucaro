@@ -27,13 +27,13 @@
     3.6-Article
     3.7-Contact
     3.8-Sections
-    3.9-Projects
+    3.9-Work
     3.10-Testimonials
     3.11-Footer
     3.12-Callouts
 :: 4-Layouts
     4.1-Post
-    4.2-Project
+    4.2-Work
     4.3-Tags Page
 <<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -96,8 +96,8 @@
 @import "3-modules/contact";
 /* >>>>>>>>>>>>>> :: 3.8-Sections <<<<<<<<<<<<<<< */
 @import "3-modules/sections";
-/* >>>>>>>>>>>>>> :: 3.9-Projects <<<<<<<<<<<<<<< */
-@import "3-modules/projects";
+/* >>>>>>>>>>>>>> :: 3.9-Work <<<<<<<<<<<<<<< */
+@import "3-modules/work";
 /* >>>>>>>>>>>>>> :: 3.10-Testimonials <<<<<<<<<<<<<<< */
 @import "3-modules/testimonials";
 /* >>>>>>>>>>>>>> :: 3.11-Footer <<<<<<<<<<<<<<< */
@@ -112,8 +112,8 @@
 ======================= */
 /* >>>>>>>>>>>>>> :: 4.1-Post <<<<<<<<<<<<<<< */
 @import "4-layouts/post";
-/* >>>>>>>>>>>>>> :: 4.2-Project <<<<<<<<<<<<<<< */
-@import "4-layouts/project";
+/* >>>>>>>>>>>>>> :: 4.2-Work <<<<<<<<<<<<<<< */
+@import "4-layouts/work";
 /* >>>>>>>>>>>>>> :: 4.3-Tags Page <<<<<<<<<<<<<<< */
 @import "4-layouts/tags-page";
 
@@ -121,5 +121,7 @@
 :: 5-Site Components
 ======================= */
 @import "3-modules/challenge";
+@import "3-modules/checklist";
 @import "3-modules/agent-session";
 @import "3-modules/github-card";
+@import "3-modules/talk-details";

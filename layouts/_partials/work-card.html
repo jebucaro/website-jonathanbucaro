@@ -1,0 +1,25 @@
+{{ $page := .page }}
+{{ $featured := .featured }}
+{{ $count := .count }}
+{{ $sizes := "(min-width: 1401px) 390px, (min-width: 1025px) 290px, (min-width: 769px) 322px, (min-width: 577px) 528px, calc(100vw - 64px)" }}
+{{ if and $featured (or (eq $count 4) (eq $count 5)) }}
+    {{ $sizes = "(min-width: 1401px) 620px, (min-width: 1025px) 480px, (min-width: 769px) 500px, (min-width: 577px) 528px, calc(100vw - 64px)" }}
+{{ end }}
+<article class="work-item{{ if $featured }} work-item--featured{{ end }} col col-4 col-d-6 col-t-12" data-reveal>
+    <a href="{{ $page.RelPermalink }}" class="work-item__image">
+        {{ partial "image.html" (dict
+            "image" $page.Params.image
+            "page" $page
+            "alt" $page.Params.Title
+            "sizes" $sizes)
+        }}
+    </a>
+
+    <div class="work-item__info">
+        {{/* LinkTitle gives the localized term. Plain text, since the title owns the anchor. */}}
+        {{ with $page.GetTerms "work-types" }}<div class="work-item__label">{{ (index . 0).LinkTitle }}</div>{{ end }}
+        <h3 class="work-item__title">
+            <a href="{{ $page.RelPermalink }}">{{ $page.Params.title }}</a>
+        </h3>
+    </div>
+</article>

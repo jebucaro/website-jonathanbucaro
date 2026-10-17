@@ -87,9 +87,13 @@ social:
 hero:
     enable: true
     hero__image: '/images/profile.webp'
-projects:
+work:
     enable: true
-    projects__description: true
+    work__description: true
+    # Allowed `artifact` slugs. work-artifact-label.html fails the build on
+    # anything else. Each slug needs a `work_artifact_<slug>` label in both i18n files.
+    artifacts:
+        - cli-tool
 testimonials:
     enable: false
     client_list__info: 'Trusted by clients worldwide'

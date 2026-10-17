@@ -26,14 +26,27 @@ content/
 │           ├── index.es.md
 │           ├── images/
 │           └── charts/       # Optional: used with the chart shortcode
-└── projects/                 # Project portfolio
-    ├── _index.en.md          # Projects index (English)
-    ├── _index.es.md          # Projects index (Spanish)
-    └── project-name/         # Individual project bundle
+└── work/                     # Work portfolio: projects and case studies
+    ├── _index.en.md          # Work index (English)
+    ├── _index.es.md          # Work index (Spanish)
+    └── item-name/            # Individual work bundle
         ├── index.en.md
         ├── index.es.md
         ├── images/
         └── sessions/         # Optional: used with the agent-session shortcode
+```
+
+Taxonomy term pages live alongside content:
+
+```text
+content/
+├── tags/                     # Tags index (blog)
+│   ├── _index.en.md
+│   └── _index.es.md
+└── work-types/               # Work type terms (work only)
+    └── project/
+        ├── _index.en.md
+        └── _index.es.md
 ```
 
 ## Content Guidelines
@@ -55,10 +68,11 @@ date: 2025-01-01T00:00:00-06:00
 draft: false
 slug: 'url-slug'
 tags: ['tag1', 'tag2']
-categories: ['category']
-# schemaType: SoftwareApplication  # projects only — omit for case studies
 ---
 ```
+
+`tags` belongs to blog posts. Work items use `work-types` and `artifact` instead, both
+described under Work Structure below.
 
 ### Blog Posts Organization
 
@@ -68,23 +82,64 @@ categories: ['category']
     - `images/` - Post-specific images (co-located with content)
     - `charts/` - Optional: data files used by the `chart` shortcode
 - Use descriptive directory names that reflect the post slug
-- Include proper front matter with tags and categories
+- Include proper front matter with tags
 - Images are referenced relative to the post's directory
 - Blog posts automatically receive `BlogPosting` JSON-LD structured data — no `schemaType` field is needed
 
-### Projects Structure
+### Work Structure
 
-- Each project is a **page bundle** with its own directory
+The `work` section holds two kinds of write-up: projects, which are things built and shown
+openly, and case studies, which cover client work at the level of architecture and
+decisions without identifying detail. Both live in the same section and are distinguished
+by front matter, not by directory.
+
+- Each work item is a **page bundle** with its own directory
 - Structure:
-    - `project-name/index.en.md` / `project-name/index.es.md` - Project content in each language
-    - `project-name/images/` - Project images and assets
-    - `project-name/sessions/` - Optional: agent session files used by the `agent-session` shortcode
-- Include project metadata in front matter
-- Use consistent naming and structure
+    - `item-name/index.en.md` / `item-name/index.es.md` - Content in each language
+    - `item-name/images/` - Images and assets
+    - `item-name/sessions/` - Optional: agent session files used by the `agent-session` shortcode
+- Create new items with `hugo new content work/<name>/index.en.md`, which applies `archetypes/work.md`
 
-Project pages support an optional `schemaType` front matter field that controls JSON-LD structured data. Set it to `SoftwareApplication` for tools the reader can install and run (CLI tools, packages, apps). Omit it for case studies and client work — it defaults to `CreativeWork`.
+Work items are classified along two independent axes:
 
-Project pages also support an optional `featured: true` front matter field that pins a project to the "spotlight" slot in the homepage's adaptive projects grid (used when there are 4 or 5 projects). At most one project should be `featured: true` at a time; if none or more than one is set, the homepage falls back to the most recently dated project.
+**`work-types`** is the navigable axis. Exactly one value per item, either `Project` or
+`Case Study`. It is a Hugo taxonomy, so it publishes a term page at
+`/work-types/<slug>/` listing the items assigned to it, and the value is rendered as a
+link on the work item page. Term titles are localized through
+`content/work-types/<slug>/_index.{en,es}.md`. A term file is only created once at least
+one item uses that term, because an unused term would publish an empty page.
+
+This taxonomy is deliberately separate from `tags`, which blog posts use. A blog post
+cannot add terms to `work-types`, and a work item does not appear on tag pages.
+
+**`artifact`** is the non-navigable axis. It narrows the classification, for example
+`cli-tool`, and is deliberately **not** a taxonomy: Hugo generates no term page, no URL,
+and no sitemap entry for it, and it is always rendered as plain text rather than a link.
+
+```yaml
+work-types: ['Project'] # navigable, exactly one
+artifact: 'cli-tool' # optional, not navigable
+```
+
+The value is a stable lowercase slug, identical in both language files. Its display label
+is resolved per language from `work_artifact_<slug>` in `i18n/en.yaml` and `i18n/es.yaml`,
+so a single slug yields "CLI Tool" in English and "Herramienta CLI" in Spanish.
+
+Because `artifact` is not a taxonomy, Hugo does not validate it. Allowed slugs are listed
+under `work.artifacts` in `config/_default/params.yaml`, and
+`layouts/_partials/functions/work-artifact-label.html` fails the build on any value
+outside that list. Adding a new artifact means adding the slug to params and a translation
+to both i18n files.
+
+Work pages support an optional `schemaType` front matter field that controls JSON-LD
+structured data. Set it to `SoftwareApplication` for tools the reader can install and run
+(CLI tools, packages, apps). Omit it for case studies and client work — it defaults to
+`CreativeWork`.
+
+Work pages also support an optional `featured: true` front matter field that pins an item
+to the "spotlight" slot in the homepage's adaptive work grid (used when there are 4 or 5
+items). At most one item should be `featured: true` at a time; if none or more than one is
+set, the homepage falls back to the most recently dated item.
 
 ## Configuration
 

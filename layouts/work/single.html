@@ -1,0 +1,102 @@
+{{ define "main" }}
+    {{ $work := where .Site.RegularPages "Section" "work" }}
+    {{ $total := len $work }}
+    {{ $position := 0 }}
+    {{ range $i, $p := $work }}
+        {{ if eq $p.RelPermalink $.RelPermalink }}{{ $position = add $i 1 }}{{ end }}
+    {{ end }}
+    {{ $workTypes := .GetTerms "work-types" }}
+    {{ $artifact := partial "functions/work-artifact-label.html" (dict "page" .) }}
+    <div class="container">
+        <div class="work-hero" data-reveal>
+            {{ if .Params.image }}
+            <div class="work-hero__image">
+                {{ partial "image.html" (dict
+                    "image" .Params.image
+                    "page" .
+                    "alt" .Title
+                    "loading" "eager"
+                    "fetchpriority" "high"
+                    "sizes" "(min-width: 1401px) 1268px, (min-width: 1025px) 968px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)")
+                }}
+            </div>
+            {{ end }}
+            <div class="work-hero__content">
+                <p class="label-numbered">{{ printf "%02d / %02d" $position $total }}</p>
+                <p class="work-hero__meta">
+                    {{ with $workTypes }}
+                        <a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>
+                        <span class="work-hero__meta-sep">·</span>
+                    {{ end }}
+                    {{/* Plain text, not a link. */}}
+                    {{ with $artifact }}
+                        <span class="work-hero__artifact">{{ . }}</span>
+                        <span class="work-hero__meta-sep">·</span>
+                    {{ end }}
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/localize-month-year" (dict "date" .Date) }}</time>
+                    {{ if gt .Lastmod .Date }}
+                    <span class="work-hero__meta-sep">·</span>
+                    <span class="updated-badge">
+                        <time class="updated-badge__date" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ i18n "post_updatedLabel" }} {{ partial "functions/localize-month-year" (dict "date" .Lastmod) }}</time>
+                    </span>
+                    {{ end }}
+                </p>
+                <h1 class="work-hero__title">{{ .Title }}</h1>
+                {{ if .Params.subtitle }}<p class="work-hero__subtitle">{{ .Params.subtitle }}</p>{{ end }}
+            </div>
+        </div>
+        <div class="content-layout">
+            {{ if .Fragments.Headings }}
+            <details class="content-toc" open>
+                <summary>{{ i18n "ui_tableOfContents" }}</summary>
+                {{ .TableOfContents }}
+            </details>
+            {{ end }}
+            <div class="content-main">
+                {{ partial "talk-details.html" . }}
+                <div class="work-content animate">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+        {{/* Newest-first browsing order, so "previous" is the newer item and "next" the older. Spans the whole section. */}}
+        {{ $prev := .NextInSection }}
+        {{ $next := .PrevInSection }}
+        {{ if or $prev $next }}
+            <nav class="work-nav animate" aria-label="{{ i18n "work_navLabel" }}">
+                {{ with $prev }}
+                    <a class="work-nav__card work-nav__card--prev" href="{{ .Permalink }}">
+                        <div class="work-nav__image">
+                            {{ partial "image.html" (dict
+                                "image" .Params.image
+                                "page" .
+                                "alt" .Title
+                                "sizes" "(min-width: 1025px) 140px, 100px")
+                            }}
+                        </div>
+                        <div class="work-nav__text">
+                            <span class="work-nav__info">{{ partial "icon.html" "arrow-forward" }}{{ i18n "work_previous" }}</span>
+                            <h2 class="work-nav__title">{{ .Title }}</h2>
+                        </div>
+                    </a>
+                {{ end }}
+                {{ with $next }}
+                    <a class="work-nav__card work-nav__card--next" href="{{ .Permalink }}">
+                        <div class="work-nav__text">
+                            <span class="work-nav__info">{{ i18n "work_next" }}{{ partial "icon.html" "arrow-forward" }}</span>
+                            <h2 class="work-nav__title">{{ .Title }}</h2>
+                        </div>
+                        <div class="work-nav__image">
+                            {{ partial "image.html" (dict
+                                "image" .Params.image
+                                "page" .
+                                "alt" .Title
+                                "sizes" "(min-width: 1025px) 140px, 100px")
+                            }}
+                        </div>
+                    </a>
+                {{ end }}
+            </nav>
+        {{ end }}
+    </div>
+{{ end }}

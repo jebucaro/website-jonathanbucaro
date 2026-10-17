@@ -26,7 +26,7 @@ languages:
 
 taxonomies:
     tag: tags
-    project-type: project-types
+    work-type: work-types
 
 pagination:
     pagerSize: 6

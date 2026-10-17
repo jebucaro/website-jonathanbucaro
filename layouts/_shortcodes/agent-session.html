@@ -16,7 +16,7 @@
       <path d="M7.5 9L10 12L7.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M12 15H16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
-    <span class="agent-session-tool-badge agent-session-tool-{{ $session.tool }}">{{ $session.tool | replace "_" " " | title }}</span>
+    <span class="agent-session-tool-badge agent-session-tool-{{ $session.tool }}">{{ replace $session.tool "_" " " | title }}</span>
     <span class="agent-session-title">{{ $session.title }}</span>
   </div>
 
