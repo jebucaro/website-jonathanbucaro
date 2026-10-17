@@ -16,6 +16,10 @@ talk:
     repo: 'jebucaro/pokecli'
 ---
 
+{{< gallery >}}
+{{< gallery-image src="images/aws-community-day-2026-en.png" alt="AWS Community Day Guatemala 2026 speaker card for Jonathan Búcaro, Senior Software Engineer at HTEC, with the talk title Turn your Scripts and CLIs into AI-Native Tools using Skills." >}}
+{{< /gallery >}}
+
 I opened my talk at AWS Community Day Guatemala 2026 with a question that, coincidentally, was very similar to the one the event's keynote had opened with:
 
 > Who has felt that, if they aren't building an MCP server or using a giant Agent Framework, they've already fallen behind?
@@ -47,6 +51,10 @@ Result:   Real numbers + the command that was used
 That exercise saves you work later, because almost all of it carries straight into the skill: the parameters end up as flags, the user's phrases feed the trigger, and the steps turn into examples. You already have the tool, what the skill adds is knowing when and how to use it.
 
 ## The four pillars
+
+{{< gallery >}}
+{{< gallery-image src="images/four-pillars.jpg" alt="Worm's-eye view of four concrete pillars against a cloudy sky." >}}
+{{< /gallery >}}
 
 I boiled the process down to four pillars, and they work the same for a Python script, a Node CLI, or a bash wrapper around an internal API.
 
@@ -301,8 +309,6 @@ Here's a real session in Claude Code, where I asked for Pikachu's stats and then
 
 {{< agent-session "pokecli-demo" >}}
 
-{{< github repo="jebucaro/pokecli" >}}
-
 ## When is a skill done?
 
 A skill is done when you've tested it, and there are two things to test. The first is triggering: the skill should load for obvious requests and for paraphrases, and stay out of the way for unrelated ones. A good goal is getting around 90% right across 10 to 20 phrases. For pokecli, the phrases could look like this:
@@ -384,6 +390,8 @@ claude
 
 Don't worry about getting the file perfect the first time. Start with the frontmatter and a few commands, try a prompt like "Use pokecli to look up Pikachu's stats", then clear the context and try again without mentioning pokecli. Watch what Claude gets wrong. If it skips a command, add it, and if it uses the wrong flags, add an example that works. If it ends up using generic shell commands, tighten the description. When you're happy with it, compare your file with the one pokecli ships.
 
+{{< github repo="jebucaro/pokecli" >}}
+
 I closed the talk by saying nobody fell behind, because the scripts you already wrote are exactly what an agent needs to do real work. What they're missing is what we covered here: being deterministic, having a good description, a few examples, and a `SKILL.md` that ties it all together.
 
 Which script are you going to convert first? Message me on {{< extlink href="https://www.linkedin.com/in/jonathanbucaro/" >}}LinkedIn{{< /extlink >}} and tell me how it went.
@@ -391,5 +399,7 @@ Which script are you going to convert first? Message me on {{< extlink href="htt
 ---
 
 Photo by {{< extlink href="https://unsplash.com/@jmanalog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Jay{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/shallow-focus-photo-of-pokeball-dkFJST9zZZo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
+
+Photo by {{< extlink href="https://unsplash.com/@davideragusa?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}davide ragusa{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/worms-eye-view-of-four-stone-structures-during-daytime-slgtMF8EjYE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
 
 Pokémon and Pokémon character names are trademarks of Nintendo.
