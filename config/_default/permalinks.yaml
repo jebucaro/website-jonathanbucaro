@@ -1,2 +1,2 @@
 blog: 'blog/:slug/'
-projects: 'projects/:slug/'
+work: 'work/:slug/'

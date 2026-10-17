@@ -1,0 +1,42 @@
+{{- /*
+  checklist — card for a list of rules, steps, or examples.
+
+  Usage:
+    {{< checklist title="A CLI an agent can use" >}}
+    - item (renders with a check)
+    {{< /checklist >}}
+
+    {{< checklist title="Steps" >}}
+    1. item (renders as a numbered step)
+    {{< /checklist >}}
+
+    {{< checklist >}}
+      {{< checklist-section title="Should trigger" >}}...{{< /checklist-section >}}
+      {{< checklist-section title="Shouldn't trigger" mark="cross" >}}...{{< /checklist-section >}}
+    {{< /checklist >}}
+
+  Optional params:
+    title — label shown above the list
+    mark  — "check" (default) or "cross", applied to unordered lists
+*/ -}}
+
+{{- $mark := .Get "mark" | default "check" -}}
+{{- if not (in (slice "check" "cross") $mark) -}}
+  {{- errorf "checklist: mark must be \"check\" or \"cross\", got %q in %s" $mark .Position -}}
+{{- end -}}
+
+{{- /* Read .Inner first so nested checklist-section calls have set the flag. */ -}}
+{{- $inner := .Inner -}}
+
+<div class="checklist">
+  {{- if .Store.Get "hasSections" -}}
+    {{- $inner -}}
+  {{- else -}}
+    <div class="checklist__section checklist__section--{{ $mark }}">
+      {{- with .Get "title" -}}<p class="checklist__title">{{ . }}</p>{{- end -}}
+      <div class="checklist__body">
+        {{- $inner | markdownify -}}
+      </div>
+    </div>
+  {{- end -}}
+</div>

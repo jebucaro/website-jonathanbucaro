@@ -1,0 +1,56 @@
+{{- /*
+  Talk details card for work items with a `talk:` front-matter block.
+  Renders nothing when `talk` is unset, so other work items are unaffected.
+
+  Usage:
+    {{ partial "talk-details.html" . }}
+*/ -}}
+
+{{- with .Params.talk -}}
+    {{- $start := $.Date -}}
+    {{- $end := time.AsTime .endDate -}}
+    {{- $zone := $start.Format "UTC-07:00" | replaceRE `^UTC([+-])0?(\d+):00$` "UTC$1$2" -}}
+    {{- $timeRange := i18n "talk_timeRange" (dict "start" ($start.Format "15:04") "end" ($end.Format "15:04") "zone" $zone) -}}
+    {{- $language := "" -}}
+    {{- if and .language (ne .language $.Site.Language.Lang) -}}
+        {{- $language = i18n (printf "talk_language_%s" .language) -}}
+        {{- if not $language -}}
+            {{- errorf "talk-details: no talk_language_%s label in i18n for %q" .language $.Path -}}
+        {{- end -}}
+    {{- end -}}
+    {{- with .slides -}}
+        {{- if not (strings.HasPrefix . "https://") -}}
+            {{- errorf "talk-details: talk.slides must be an https:// URL on %q, got %q" $.Path . -}}
+        {{- end -}}
+    {{- end -}}
+    <aside class="talk-details" aria-label="{{ i18n "talk_detailsLabel" }}">
+        <dl class="talk-details__list">
+            <div class="talk-details__row">
+                <dt>{{ i18n "talk_event" }}</dt>
+                <dd>{{ .event }}</dd>
+            </div>
+            <div class="talk-details__row">
+                <dt>{{ i18n "talk_when" }}</dt>
+                <dd><time datetime="{{ $start.Format "2006-01-02T15:04:05-07:00" }}">{{ partial "functions/localize-date.html" (dict "date" $start "format" ":date_long") }}</time>, {{ $timeRange }}</dd>
+            </div>
+            <div class="talk-details__row">
+                <dt>{{ i18n "talk_where" }}</dt>
+                <dd>{{ .venue }}, {{ .location }}</dd>
+            </div>
+            {{- with $language }}
+            <div class="talk-details__row talk-details__row--language">
+                <dt>{{ i18n "talk_deliveredIn" }}</dt>
+                <dd>{{ . }}</dd>
+            </div>
+            {{- end }}
+        </dl>
+        <div class="talk-details__actions">
+            {{- with .slides }}
+            <a class="button button--primary button--small talk-details__slides" href="{{ . }}" target="_blank" rel="nofollow noopener noreferrer">{{ i18n "talk_slides" }}</a>
+            {{- end }}
+            {{- with .repo }}
+            <a class="talk-details__repo" href="https://github.com/{{ . }}" target="_blank" rel="nofollow noopener noreferrer">{{ partial "icon.html" "logo-github" }}<span>{{ i18n "talk_sourceCode" }}</span></a>
+            {{- end }}
+        </div>
+    </aside>
+{{- end -}}

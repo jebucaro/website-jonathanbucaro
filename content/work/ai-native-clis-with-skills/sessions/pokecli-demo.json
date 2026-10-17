@@ -1,0 +1,69 @@
+{
+    "title": "Using pokecli with Claude Code",
+    "tool": "claude_code",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Look up Pikachu's stats"
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Skill",
+                    "class": "skill",
+                    "preview": "{\"skill\":\"pokecli\",\"args\":\"Pikachu stats\"}",
+                    "input": "{\n  \"skill\": \"pokecli\",\n  \"args\": \"Pikachu stats\"\n}",
+                    "output": "Launching skill: pokecli"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli get pokemon pikachu",
+                    "input": "pokecli get pokemon pikachu",
+                    "input_terminal": true,
+                    "output": "pokemon:\n  id: 25\n  name: pikachu\n  types: electric\n  abilities: static/lightning-rod(H)\n  stats: \"hp:35/atk:55/def:40/spa:50/spd:50/spe:90\"\n  total_moves: 109\n\nhelp[3]: pokecli moves pikachu,pokecli evolution pikachu,pokecli encounters pikachu"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": "Here are Pikachu's base stats:\n\n| Stat | Value |\n|------|-------|\n| HP | 35 |\n| Attack | 55 |\n| Defense | 40 |\n| Sp. Attack | 50 |\n| Sp. Defense | 50 |\n| **Speed** | **90** |\n\nPikachu is a pure Electric type with decent Speed being its standout stat. Its abilities are **Static** (may paralyze on contact) and the hidden ability **Lightning Rod** (draws Electric moves, raises Sp. Atk)."
+        },
+        {
+            "role": "user",
+            "content": "Compare Thunderbolt and Flamethrower"
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli get move thunderbolt",
+                    "input": "pokecli get move thunderbolt",
+                    "input_terminal": true,
+                    "output": "move:\n  id: 85\n  name: thunderbolt\n  type: electric\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to paralyze the target.\n  chance: 10%\n\nhelp[2]: pokecli can-learn <pokemon_name> thunderbolt,pokecli get type electric"
+                },
+                {
+                    "name": "Bash",
+                    "class": "bash",
+                    "preview": "pokecli get move flamethrower",
+                    "input": "pokecli get move flamethrower",
+                    "input_terminal": true,
+                    "output": "move:\n  id: 53\n  name: flamethrower\n  type: fire\n  class: special\n  power: 90\n  accuracy: 100\n  pp: 15\n  effect: Has a chance to burn the target.\n  chance: 10%\n\nhelp[2]: pokecli can-learn <pokemon_name> flamethrower,pokecli get type fire"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": "They're nearly identical moves — just different types and status effects:\n\n| | Thunderbolt | Flamethrower |\n|--|--|--|\n| Type | Electric | Fire |\n| Category | Special | Special |\n| Power | 90 | 90 |\n| Accuracy | 100% | 100% |\n| PP | 15 | 15 |\n| Effect | 10% Paralyze | 10% Burn |\n\nThe only meaningful differences:\n- **Paralysis** (Thunderbolt) halves the target's Speed and has a chance to skip turns — generally considered the stronger status\n- **Burn** (Flamethrower) deals chip damage each turn and halves the target's Attack (less useful against special attackers)\n\nBoth are among the most reliable moves in the game. Choice between them comes down to type coverage needed on your team.",
+            "collapsible": true
+        }
+    ]
+}

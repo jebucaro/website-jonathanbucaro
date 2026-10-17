@@ -1,0 +1,21 @@
+{{- /*
+  checklist-section — one labeled section inside a checklist card.
+
+  Optional params:
+    title — label shown above the list
+    mark  — "check" (default) or "cross", applied to unordered lists
+*/ -}}
+
+{{- $mark := .Get "mark" | default "check" -}}
+{{- if not (in (slice "check" "cross") $mark) -}}
+  {{- errorf "checklist-section: mark must be \"check\" or \"cross\", got %q in %s" $mark .Position -}}
+{{- end -}}
+
+{{- with .Parent -}}{{- .Store.Set "hasSections" true -}}{{- end -}}
+
+<div class="checklist__section checklist__section--{{ $mark }}">
+  {{- with .Get "title" -}}<p class="checklist__title">{{ . }}</p>{{- end -}}
+  <div class="checklist__body">
+    {{- .Inner | markdownify -}}
+  </div>
+</div>

@@ -140,7 +140,7 @@
     }
 }
 
-/* Updated badge — shared by .post-meta and .project-hero__meta,
+/* Updated badge — shared by .post-meta and .work-hero__meta,
    inherits their uppercase/bold/letter-spaced type voice. */
 .updated-badge {
     display: inline-flex;
@@ -199,7 +199,7 @@
 
 .post,
 .page,
-.project-content {
+.work-content {
     max-width: 780px;
     margin: 0 auto 60px;
     color: var(--text-color);
@@ -256,7 +256,7 @@
 }
 
 .post__content,
-.project-content {
+.work-content {
     h2,
     h3,
     h4,

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Title and Basic Meta -->
-    <title>{{ if not .IsHome }}{{ humanize .Title }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+    {{/* Term titles come from lowercase slugs, so they get humanized. Every other
+         title is emitted verbatim to preserve casing like pokecli and SKILL.md. */}}
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ if eq .Kind "term" }}{{ humanize .Title }}{{ else }}{{ .Title }}{{ end }} | {{ .Site.Title }}{{ end }}</title>
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     <link rel="canonical" href="{{ .Permalink }}" />
 
@@ -62,7 +64,7 @@
 
     <!-- Structured Data -->
     {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema/blog-posting.html" . }}{{ end }}
-    {{ if and .IsPage (eq .Section "projects") }}{{ partial "schema/project.html" . }}{{ end }}
+    {{ if and .IsPage (eq .Section "work") }}{{ partial "schema/work.html" . }}{{ end }}
 
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">

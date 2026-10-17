@@ -129,18 +129,15 @@
 - id: sections_testimonials_description
   translation: 'Lo que clientes y colegas dicen sobre trabajar conmigo.'
 
-# Section: Projects
-- id: sections_projects_title
-  translation: 'Proyectos Personales'
+# Section: Work
+- id: sections_work_title
+  translation: 'Proyectos y Casos de Estudio'
 
-- id: sections_projects_description
-  translation: 'La mayoría de mi trabajo con clientes está bajo NDA, así que estos son proyectos más pequeños que construí por mi cuenta para mostrar una parte de esa arquitectura y esas decisiones.'
+- id: sections_work_description
+  translation: 'Herramientas de código abierto que construí de principio a fin, y casos de estudio de sistemas en producción, generalizados a su arquitectura y decisiones. Cada uno es compacto a propósito: el mínimo de código que aún muestra cómo diseño, pruebo y entrego.'
 
-- id: sections_projects_viewProject
-  translation: 'Ver Proyecto'
-
-- id: sections_projects_allProjects
-  translation: 'Todos los Proyectos'
+- id: sections_work_allWork
+  translation: 'Todo el Trabajo'
 
 # Section: Contact
 - id: sections_contact_title
@@ -181,15 +178,50 @@
 - id: pagination_previous
   translation: '&laquo;'
 
-# Projects navigation
-- id: projects_nextProject
-  translation: 'Siguiente Proyecto'
+# Work navigation
+- id: work_next
+  translation: 'Siguiente'
 
-- id: projects_previousProject
-  translation: 'Proyecto Anterior'
+- id: work_previous
+  translation: 'Anterior'
 
-- id: projects_navLabel
-  translation: 'Navegación de proyectos'
+- id: work_navLabel
+  translation: 'Navegación de trabajo'
+
+# Work artifact labels. Each slug in work.artifacts needs one here.
+- id: work_artifact_cli-tool
+  translation: 'Herramienta CLI'
+
+# Talk details card
+- id: talk_detailsLabel
+  translation: 'Detalles de la charla'
+
+- id: talk_event
+  translation: 'Evento'
+
+- id: talk_when
+  translation: 'Cuándo'
+
+- id: talk_where
+  translation: 'Dónde'
+
+- id: talk_timeRange
+  translation: 'de {{ .start }} a {{ .end }} ({{ .zone }})'
+
+- id: talk_deliveredIn
+  translation: 'Impartida en'
+
+- id: talk_language_es
+  translation: 'español'
+
+- id: talk_language_en
+  translation: 'inglés'
+
+- id: talk_slides
+  translation: 'Diapositivas (PDF)'
+
+- id: talk_sourceCode
+  translation: 'Código fuente'
 
 # Agent session shortcode
 - id: agentSession_roleUser

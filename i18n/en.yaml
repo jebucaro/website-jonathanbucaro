@@ -129,18 +129,15 @@
 - id: sections_testimonials_description
   translation: 'What clients and colleagues say about working with me.'
 
-# Section: Projects
-- id: sections_projects_title
-  translation: 'Personal Projects'
+# Section: Work
+- id: sections_work_title
+  translation: 'Projects &amp; Case Studies'
 
-- id: sections_projects_description
-  translation: "Most of my client work is under NDA, so these are smaller projects I built on my own, each one showing a piece of the architecture and decisions I'd bring to real work."
+- id: sections_work_description
+  translation: 'Open source tools I built end to end, and case studies of production systems, generalized to their architecture and decisions. Each one is compact on purpose: the least code that still shows how I design, test, and ship.'
 
-- id: sections_projects_viewProject
-  translation: 'View Project'
-
-- id: sections_projects_allProjects
-  translation: 'All Projects'
+- id: sections_work_allWork
+  translation: 'All Work'
 
 # Section: Contact
 - id: sections_contact_title
@@ -181,15 +178,50 @@
 - id: pagination_previous
   translation: '&laquo;'
 
-# Projects navigation
-- id: projects_nextProject
-  translation: 'Next Project'
+# Work navigation
+- id: work_next
+  translation: 'Next'
 
-- id: projects_previousProject
-  translation: 'Previous Project'
+- id: work_previous
+  translation: 'Previous'
 
-- id: projects_navLabel
-  translation: 'Project navigation'
+- id: work_navLabel
+  translation: 'Work navigation'
+
+# Work artifact labels. Each slug in work.artifacts needs one here.
+- id: work_artifact_cli-tool
+  translation: 'CLI Tool'
+
+# Talk details card
+- id: talk_detailsLabel
+  translation: 'Talk details'
+
+- id: talk_event
+  translation: 'Event'
+
+- id: talk_when
+  translation: 'When'
+
+- id: talk_where
+  translation: 'Where'
+
+- id: talk_timeRange
+  translation: '{{ .start }} to {{ .end }} ({{ .zone }})'
+
+- id: talk_deliveredIn
+  translation: 'Delivered in'
+
+- id: talk_language_es
+  translation: 'Spanish'
+
+- id: talk_language_en
+  translation: 'English'
+
+- id: talk_slides
+  translation: 'Slides (PDF)'
+
+- id: talk_sourceCode
+  translation: 'Source code'
 
 # Agent session shortcode
 - id: agentSession_roleUser

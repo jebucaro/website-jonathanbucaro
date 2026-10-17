@@ -1,0 +1,45 @@
+{{ if .Site.Params.work.enable }}
+    <!-- begin work -->
+    <section class="section work animate">
+        <div class="container">
+            <div class="row">
+                <div class="col col-12">
+                    <div class="contaniner__inner animate">
+                        <div class="section__info" data-reveal>
+                            <h2 class="section__title">{{ i18n "sections_work_title" | safeHTML }}</h2>
+                            {{ if .Site.Params.work.work__description }}
+                            <p class="section__description">{{ i18n "sections_work_description" | safeHTML }}</p>
+                            {{ end }}
+                        </div>
+
+                        {{ $work := where .Site.RegularPages "Section" "work" | first 6 }}
+                        {{ $count := len $work }}
+                        {{ $pinned := where $work "Params.featured" true }}
+                        {{ $featuredPage := index ($work.ByDate.Reverse) 0 }}
+                        {{ if eq (len $pinned) 1 }}
+                            {{ $featuredPage = index $pinned 0 }}
+                        {{ end }}
+
+                        <div class="row work-grid work-grid--count-{{ $count }}">
+                            {{ range $work }}
+                                {{ if eq .RelPermalink $featuredPage.RelPermalink }}
+                                    {{ partial "work-card.html" (dict "page" . "featured" true "count" $count) }}
+                                {{ end }}
+                            {{ end }}
+                            {{ range $work }}
+                                {{ if ne .RelPermalink $featuredPage.RelPermalink }}
+                                    {{ partial "work-card.html" (dict "page" . "featured" false "count" $count) }}
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section__navigation">
+            <a href="{{ relLangURL "/work/" }}" class="button button--primary section-button">{{ i18n "sections_work_allWork" | safeHTML }}</a>
+        </div>
+    </section>
+    <!-- end work -->
+{{ end }}

@@ -1,0 +1,33 @@
+{{ $logoURL := .Site.Params.logo | absURL }}
+{{ with resources.Get (strings.TrimPrefix "/" .Site.Params.logo) }}{{ $logoURL = .Permalink }}{{ end }}
+
+{{ $imageURL := $logoURL }}
+{{ with .Resources.GetMatch .Params.image }}{{ $imageURL = .Permalink }}{{ end }}
+
+{{ $type := "CreativeWork" }}
+{{ with .Params.schemaType }}{{ $type = . }}{{ end }}
+
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@type" $type
+  "name" .Title
+  "description" .Description
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "url" .Permalink
+  "image" $imageURL
+  "inLanguage" .Site.Language.Locale
+  "author" (dict "@type" "Person" "name" .Site.Params.author.author__name "url" (printf "%sabout/" .Site.BaseURL))
+}}
+{{ if eq $type "SoftwareApplication" }}
+  {{ $schema = merge $schema (dict "applicationCategory" "DeveloperApplication" "screenshot" $imageURL) }}
+{{ end }}
+{{ with .Params.talk }}
+  {{ $schema = merge $schema (dict "recordedAt" (dict
+    "@type" "Event"
+    "name" .event
+    "startDate" ($.Date.Format "2006-01-02T15:04:05-07:00")
+    "endDate" ((time.AsTime .endDate).Format "2006-01-02T15:04:05-07:00")
+    "location" (dict "@type" "Place" "name" .venue "address" .location)
+  )) }}
+{{ end }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
