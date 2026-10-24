@@ -14,7 +14,7 @@ schemaType: SoftwareApplication
 
 ## Por qué existe
 
-Seamos honestos, el git log de tu equipo probablemente se ve más o menos así:
+Cuando un equipo avanza rápido, los títulos de commit tienden a verse más o menos así:
 
 ```text
 9e79328 fix for real this time
@@ -29,11 +29,22 @@ ee9a912 fix
 66ae352 Update Program.cs
 ```
 
-Nadie puede saber con esa lista qué cambió, qué commit arregló un bug o cuál rompió el build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} es una convención pequeña que resuelve esto: el título de cada commit empieza con un emoji que dice qué tipo de cambio es. 🐛 corrige un bug, ✨ agrega una funcionalidad, ♻️ refactoriza código, 📝 actualiza documentación. El historial se vuelve algo que puedes recorrer de un vistazo, y como muchos gitmojis también indican su impacto en semver (✨ es un minor, 🐛 un patch, 💥 un major), el log te dice qué trae el siguiente release.
+Cada uno tenía sentido para quien lo escribió, pero leídos después como lista, cuesta saber qué cambió, qué commit arregló un bug o cuál rompió el build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} es una convención pequeña que ayuda con esto: el título de cada commit empieza con un emoji que dice qué tipo de cambio es.
 
-Una convención solo funciona si la gente la sigue, y nadie sigue una de memoria por mucho tiempo. Necesita un hook de commit que pida el emoji justo en el momento de hacer commit. Ese hook además tiene que vivir en el repositorio, si no, solo existe en la máquina de quien lo instaló. Las herramientas de gitmoji que ya existen resuelven esto para proyectos JavaScript, pero asumen Node.js, y un equipo .NET no debería tener que instalar Node en cada máquina solo para compartir un hook de commit.
+- 🐛 corrige un bug
+- ✨ agrega una funcionalidad
+- ♻️ refactoriza código
+- 📝 actualiza documentación
 
+El historial se vuelve algo que puedes recorrer de un vistazo, y como muchos gitmojis también indican su impacto en semver (✨ es un minor, 🐛 un patch, 💥 un major), el log te dice qué trae el siguiente release.
+
+> Una convención solo funciona si la gente la sigue, y nadie sigue una de memoria por mucho tiempo.
+
+Por eso necesita un hook de commit que pida el emoji justo en el momento de hacer commit. Ese hook además tiene que vivir en el repositorio, si no, solo existe en la máquina de quien lo instaló. Las herramientas de gitmoji que ya existen resuelven esto para proyectos JavaScript, pero asumen Node.js, y un equipo .NET no debería tener que instalar Node en cada máquina solo para compartir un hook de commit.
+
+{{< callout note >}}
 `dotnet-gitmoji` es mi respuesta a eso. Es una herramienta .NET, publicada en {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}NuGet{{< /extlink >}}, que instala un hook `prepare-commit-msg` a través de {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}. El hook, las versiones fijadas de las herramientas y el target de MSBuild que las instala quedan versionados en el repositorio, así que alguien del equipo que lo clona y ejecuta `dotnet restore`, o simplemente abre la solución en Visual Studio o Rider, obtiene el picker de gitmoji en su siguiente commit. Toda la convención se queda dentro del SDK de .NET, NuGet y MSBuild.
+{{< /callout >}}
 
 {{< github repo="jebucaro/dotnet-gitmoji" >}}
 
@@ -77,7 +88,7 @@ dotnet tool run dotnet-gitmoji init --mode shell
 
 Agrega un hook `prepare-commit-msg` a `.husky/`, un archivo de texto plano que puedes versionar sin problema.
 
-**4. Agrega el target de MSBuild.** Crea `Directory.Build.targets` en la raíz del repositorio:
+**4. Agrega el target de MSBuild.** Crea un archivo llamado `Directory.Build.targets` en la raíz del repositorio, junto a `.husky/` y `dotnet-tools.json`, aunque tu solución esté en una subcarpeta. Si el repositorio ya tiene uno, agrega el `PropertyGroup` y el `Target` de abajo dentro de su `<Project>` existente.
 
 ```xml
 <Project>
@@ -103,18 +114,24 @@ Agrega un hook `prepare-commit-msg` a `.husky/`, un archivo de texto plano que p
 </Project>
 ```
 
+MSBuild encuentra `Directory.Build.targets` subiendo desde la carpeta de cada proyecto, así que un solo archivo en la raíz cubre todos los proyectos del repositorio (a menos que una subcarpeta tenga el suyo, que entonces debe importar el de la raíz). El target además usa su propia carpeta, `$(MSBuildThisFileDirectory)`, para ubicar `.husky/` y el tool manifest, y por eso tiene que estar junto a ellos.
+
 Ejecuta `dotnet tool restore` y `dotnet husky install` cada vez que alguien hace restore, build o abre el proyecto, y eso es lo que instala el hook para todo el equipo. Por qué se engancha con `BeforeTargets` en lugar del más obvio `AfterTargets="Restore"` es una de las historias de más abajo.
 
 **5. Haz commit de todo.**
 
 ```sh
-git add dotnet-tools.json .husky/ Directory.Build.targets   # or .config/dotnet-tools.json on older SDKs
+git add dotnet-tools.json .husky/ Directory.Build.targets
 git commit -m "chore: add dotnet-gitmoji hook"
 ```
 
 El hook ya está activo, así que este mismo commit pasa por el picker.
 
-A partir de aquí, cada `git commit` abre un picker con fuzzy search. Escribe `bug` y la lista se reduce a 🐛, con un panel debajo que explica qué significa y su impacto en semver: "Fix a bug.", un patch. Presiona Enter, confirma el título y el commit queda como `🐛 Fix login redirect`. Quien clone el repositorio no repite ninguno de estos pasos: un `dotnet restore` y el picker se abre en su siguiente commit. Tu historial anterior se queda como estaba, y cada commit desde la configuración en adelante sigue la convención.
+A partir de aquí, cada `git commit` abre un picker con fuzzy search. Escribe `bug` y la lista se reduce a 🐛, con un panel debajo que explica qué significa y su impacto en semver: "Fix a bug.", un patch. Presiona Enter, confirma el título y el commit queda como `🐛 Fix login redirect`. Tu historial anterior se queda como estaba, y cada commit desde la configuración en adelante sigue la convención.
+
+{{< callout tip >}}
+Quien clone el repositorio no repite ninguno de estos pasos: un `dotnet restore` y el picker se abre en su siguiente commit.
+{{< /callout >}}
 
 ## Lo que aprendí construyéndola
 

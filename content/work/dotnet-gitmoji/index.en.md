@@ -14,7 +14,7 @@ schemaType: SoftwareApplication
 
 ## Why it exists
 
-Be honest, your team's git log probably looks something like this:
+When a team is moving fast, commit titles tend to drift toward something like this:
 
 ```text
 9e79328 fix for real this time
@@ -29,11 +29,22 @@ ee9a912 fix
 66ae352 Update Program.cs
 ```
 
-Nobody can tell from that list what changed, which commit fixed a bug, or which one broke the build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} is a small convention that fixes this: every commit title starts with one emoji that says what kind of change it is. 🐛 fixes a bug, ✨ adds a feature, ♻️ refactors code, 📝 updates docs. The history becomes something you can scan, and because many gitmojis also carry a semver hint (✨ is a minor, 🐛 a patch, 💥 a major), the log tells you what the next release contains.
+Each of those made sense to whoever wrote it, but read later as a list, it's hard to tell what changed, which commit fixed a bug, or which one broke the build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} is a small convention that helps with this: every commit title starts with one emoji that says what kind of change it is.
 
-A convention only works if people follow it, and nobody follows one from memory for long. It needs a commit hook that asks for the emoji at the moment you commit. That hook also has to live in the repo, otherwise it only exists on the machine of whoever installed it. The existing gitmoji tooling solves this for JavaScript projects, but it assumes Node.js, and a .NET team shouldn't have to provision Node on every machine just to share a commit hook.
+- 🐛 fixes a bug
+- ✨ adds a feature
+- ♻️ refactors code
+- 📝 updates docs
 
+The history becomes something you can scan, and because many gitmojis also carry a semver hint (✨ is a minor, 🐛 a patch, 💥 a major), the log tells you what the next release contains.
+
+> A convention only works if people follow it, and nobody follows one from memory for long.
+
+So it needs a commit hook that asks for the emoji at the moment you commit. That hook also has to live in the repo, otherwise it only exists on the machine of whoever installed it. The existing gitmoji tooling solves this for JavaScript projects, but it assumes Node.js, and a .NET team shouldn't have to provision Node on every machine just to share a commit hook.
+
+{{< callout note >}}
 `dotnet-gitmoji` is my answer to that. It is a .NET tool, published on {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}NuGet{{< /extlink >}}, that installs a `prepare-commit-msg` hook through {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}. The hook, the pinned tool versions, and the MSBuild target that installs them are all committed to the repo, so a teammate who clones it and runs `dotnet restore`, or simply opens the solution in Visual Studio or Rider, gets the gitmoji picker on their next commit. The whole convention stays inside the .NET SDK, NuGet, and MSBuild.
+{{< /callout >}}
 
 {{< github repo="jebucaro/dotnet-gitmoji" >}}
 
@@ -77,7 +88,7 @@ dotnet tool run dotnet-gitmoji init --mode shell
 
 It adds a `prepare-commit-msg` hook to `.husky/`, a plain text file that is safe to commit.
 
-**4. Add the MSBuild target.** Create `Directory.Build.targets` at the repo root:
+**4. Add the MSBuild target.** Create a file named `Directory.Build.targets` at the root of the repository, next to `.husky/` and `dotnet-tools.json`, even if your solution lives in a subfolder. If the repo already has one, add the `PropertyGroup` and `Target` below inside its existing `<Project>`.
 
 ```xml
 <Project>
@@ -103,18 +114,24 @@ It adds a `prepare-commit-msg` hook to `.husky/`, a plain text file that is safe
 </Project>
 ```
 
+MSBuild finds `Directory.Build.targets` by walking up from each project's folder, so one file at the root covers every project in the repo (unless a subfolder has its own, which then has to import the root one). The target also uses its own folder, `$(MSBuildThisFileDirectory)`, to locate `.husky/` and the tool manifest, which is why it has to sit next to them.
+
 It runs `dotnet tool restore` and `dotnet husky install` whenever someone restores, builds, or opens the project, which is what installs the hook for every teammate. Why it hooks `BeforeTargets` instead of the more obvious `AfterTargets="Restore"` is one of the stories below.
 
 **5. Commit everything.**
 
 ```sh
-git add dotnet-tools.json .husky/ Directory.Build.targets   # or .config/dotnet-tools.json on older SDKs
+git add dotnet-tools.json .husky/ Directory.Build.targets
 git commit -m "chore: add dotnet-gitmoji hook"
 ```
 
 The hook is already active, so this very commit goes through the picker.
 
-From here on, every `git commit` opens a fuzzy picker. Type `bug` and the list narrows to 🐛, with a panel below explaining what it means and its semver impact: "Fix a bug.", a patch. Press Enter, confirm the title, and the commit lands as `🐛 Fix login redirect`. A teammate who clones the repo repeats none of these steps: one `dotnet restore` and the picker opens on their next commit. Your old history stays the way it was, and every commit from the setup onward follows the convention.
+From here on, every `git commit` opens a fuzzy picker. Type `bug` and the list narrows to 🐛, with a panel below explaining what it means and its semver impact: "Fix a bug.", a patch. Press Enter, confirm the title, and the commit lands as `🐛 Fix login redirect`. Your old history stays the way it was, and every commit from the setup onward follows the convention.
+
+{{< callout tip >}}
+A teammate who clones the repo repeats none of these steps: one `dotnet restore` and the picker opens on their next commit.
+{{< /callout >}}
 
 ## What I learned building it
 
