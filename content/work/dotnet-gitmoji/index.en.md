@@ -29,7 +29,7 @@ ee9a912 fix
 66ae352 Update Program.cs
 ```
 
-Nobody can tell from that list what changed, which commit fixed a bug, or which one broke the build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} is a small convention that fixes this: every commit title starts with one emoji that says what kind of change it is. 🐛 fixes a bug, ✨ adds a feature, ♻️ refactors code, 📝 updates docs. The history becomes something you can scan, and because each gitmoji also carries a semver hint (🐛 is a patch, 💥 is a major), the log tells you what the next release contains.
+Nobody can tell from that list what changed, which commit fixed a bug, or which one broke the build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} is a small convention that fixes this: every commit title starts with one emoji that says what kind of change it is. 🐛 fixes a bug, ✨ adds a feature, ♻️ refactors code, 📝 updates docs. The history becomes something you can scan, and because many gitmojis also carry a semver hint (✨ is a minor, 🐛 a patch, 💥 a major), the log tells you what the next release contains.
 
 A convention only works if people follow it, and nobody follows one from memory for long. It needs a commit hook that asks for the emoji at the moment you commit. That hook also has to live in the repo, otherwise it only exists on the machine of whoever installed it. The existing gitmoji tooling solves this for JavaScript projects, but it assumes Node.js, and a .NET team shouldn't have to provision Node on every machine just to share a commit hook.
 
@@ -127,7 +127,7 @@ The picker is the part people see, but most of the work in a tool this small is 
 Git runs `prepare-commit-msg` with stdin redirected away from the terminal. That is reasonable for a hook that only edits a file, but this one needs to ask you a question, and Spectre.Console refuses to draw an interactive prompt when it can't read keystrokes. Without a fix, the hook fails on the very first commit.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-The fix happens at two levels. The generated hook script starts with `exec < /dev/tty`, which reconnects the shell's input to the terminal before the tool starts, the same trick gitmoji-cli uses. Then, as the first thing `Program.Main` does, `TtyConsoleInput.TryReopenStdin()` swaps the process's own stdin handle for the terminal device, before any code reads `Console.IsInputRedirected`. On Unix it opens `/dev/tty` and duplicates it onto file descriptor 0. On Windows it opens `CONIN$` and sets it as the standard input handle. When stdin already is a terminal, as it is when you run the tool by hand, the call changes nothing.
+gitmoji-cli fixes this in the shell, with `exec < /dev/tty` at the top of the hook script. That doesn't work here, because Husky.Net writes the hook script, not dotnet-gitmoji, so the tool has to fix it from the inside. As the first thing `Program.Main` does, `TtyConsoleInput.TryReopenStdin()` swaps the process's own stdin handle for the terminal device, before any code reads `Console.IsInputRedirected`. On Unix it opens `/dev/tty` and duplicates it onto file descriptor 0. On Windows it opens `CONIN$` and sets it as the standard input handle. When stdin already is a terminal, as it is when you run the tool by hand, the call changes nothing.
 
 The lesson I keep from this one: a Git hook is not your terminal session. Whatever a hook needs from the user, it has to go and get explicitly.
 {{< /challenge-decision >}}
@@ -140,7 +140,7 @@ The lesson I keep from this one: a Git hook is not your terminal session. Whatev
 A .NET tool can be installed globally, once per machine, or locally, pinned in the repo's `dotnet-tools.json`. A global install is convenient, but it means every teammate runs whatever version they happened to install, and a hook that behaves differently from one machine to the next is worse than no hook at all.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-The setup is local-first on purpose. The tool manifest is committed with the repo, so it works as a contract: everyone who restores gets the same Husky.Net and the same `dotnet-gitmoji`, and bumping the version is a reviewed change like any other. Global installs still work for personal use across repos, but the README treats them as the exception.
+The setup is local-first on purpose. The tool manifest is committed with the repo, so it works as a contract: everyone who restores gets the same Husky.Net and the same `dotnet-gitmoji`, and bumping the version is a reviewed change like any other. Global installs still work for personal use across repos, but the docs treat them as the exception.
 
 The hook has to call the tool correctly either way, so `init` checks at generation time which kind of install it is looking at. It walks up from the repo root looking for `.config/dotnet-tools.json` or a root-level `dotnet-tools.json` (.NET 10 creates the second, older SDKs the first) and checks whether `dotnet-gitmoji` is listed there:
 
@@ -178,7 +178,7 @@ This fix has a cost, and I'd rather name it. Because the target runs before rest
 `.gitmojirc.json` is committed and shared by the whole team, which is right for settings like emoji versus shortcode output, title length, or scopes. A terminal color theme is different: it is a personal preference, and background and color support vary from machine to machine. Putting `theme` in the shared file means either imposing one person's colors on everyone or turning it into a source of pointless merge churn.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I split configuration by ownership rather than by file format. The repo config is the single source for everything that must be identical across the team. The personal global config at `~/.dotnet-gitmoji/config.json` holds exactly one setting, `theme`, and nothing else. Theme resolution never reads the repo file at all: it checks the `DOTNET_GITMOJI_THEME` environment variable, then the global config, then falls back to the built-in default. A key in the wrong file is ignored with a note on stderr instead of being half applied, so a mistake is visible rather than surprising.
+I split configuration by ownership rather than by file format. The repo config is the single source for everything that must be identical across the team. The personal global config at `~/.dotnet-gitmoji/config.json` holds exactly one setting, `theme`, and nothing else. Theme resolution never takes the theme from the repo file: it checks the `DOTNET_GITMOJI_THEME` environment variable, then the global config, then falls back to the built-in default. A key in the wrong file is ignored with a note on stderr instead of being half applied, so a mistake is visible rather than surprising.
 
 The general rule I took from it: before deciding where a setting lives, ask who should be able to change it.
 {{< /challenge-decision >}}
