@@ -1,302 +1,214 @@
 ---
-title: 'dotnet-gitmoji: A Gitmoji CLI for the dotnet World'
+title: 'dotnet-gitmoji: Gitmoji Commits for .NET Teams'
 slug: 'dotnet-gitmoji'
-subtitle: 'A .NET tool that brings the gitmoji commit convention to Git, with a Husky.Net-managed prepare-commit-msg hook for teams and an interactive client mode for personal workflows.'
+subtitle: 'A .NET tool that puts the gitmoji convention in every commit, with a hook that travels with the repo and reaches each teammate through a plain dotnet restore. No Node.js required.'
 date: 2026-04-24T10:30:00Z
-lastmod: 2026-08-13T00:00:00Z
+lastmod: 2026-10-31T00:00:00Z
 draft: false
 image: 'images/cover.png'
-description: 'A .NET tool that brings the gitmoji commit convention to Git, with a Husky.Net-managed prepare-commit-msg hook for teams and an interactive client mode for personal workflows.'
+description: 'dotnet-gitmoji brings gitmoji commits to .NET teams: a Husky.Net hook that travels with the repo, reaches every teammate through dotnet restore, and needs no Node.js.'
 work-types: ['Project']
 artifact: 'cli-tool'
 schemaType: SoftwareApplication
 ---
 
-## Project Description
+## Why it exists
 
-`dotnet-gitmoji` is a small .NET 10 tool that brings the [gitmoji](https://gitmoji.dev) commit convention into a .NET workflow. You can install it globally for personal use or pin it in a repo's local tool manifest for team use. From there you get two adoption paths: a `prepare-commit-msg` Git hook managed through Husky.Net, or `dotnet-gitmoji commit` as an interactive replacement for the native Git command. Either way, the tool prompts you for a gitmoji, lets you fuzzy-search the full list, and formats the final commit message.
+When a team is moving fast, commit titles tend to drift toward something like this:
 
-The shape I care about most is the team workflow. When a repo commits `.config/dotnet-tools.json`, `.husky/`, and `Directory.Build.targets`, a teammate can clone it, run `dotnet restore` or open the solution in Visual Studio or Rider, and get the same gitmoji prompt on the next commit. That keeps the whole convention inside NuGet, MSBuild, and the .NET SDK instead of requiring Node.js just to share a commit hook.
+```text
+9e79328 fix for real this time
+3fba982 final fix
+b9d9153 wip 2
+d2c6acd Update appsettings.json
+f6c8590 fix build
+7afe3cf changes
+3d45706 asdf
+ee9a912 fix
+0bcc0d1 wip
+66ae352 Update Program.cs
+```
+
+Each of those made sense to whoever wrote it, but read later as a list, it's hard to tell what changed, which commit fixed a bug, or which one broke the build. {{< extlink href="https://gitmoji.dev" >}}gitmoji{{< /extlink >}} is a small convention that helps with this: every commit title starts with one emoji that says what kind of change it is.
+
+- 🐛 fixes a bug
+- ✨ adds a feature
+- ♻️ refactors code
+- 📝 updates docs
+
+The history becomes something you can scan, and because many gitmojis also carry a semver hint (✨ is a minor, 🐛 a patch, 💥 a major), the log tells you what the next release contains.
+
+> A convention only works if people follow it, and nobody follows one from memory for long.
+
+So it needs a commit hook that asks for the emoji at the moment you commit. That hook also has to live in the repo, otherwise it only exists on the machine of whoever installed it. The existing gitmoji tooling solves this for JavaScript projects, but it assumes Node.js, and a .NET team shouldn't have to provision Node on every machine just to share a commit hook.
+
+{{< callout note >}}
+`dotnet-gitmoji` is my answer to that. It is a .NET tool, published on {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}NuGet{{< /extlink >}}, that installs a `prepare-commit-msg` hook through {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}. The hook, the pinned tool versions, and the MSBuild target that installs them are all committed to the repo, so a teammate who clones it and runs `dotnet restore`, or simply opens the solution in Visual Studio or Rider, gets the gitmoji picker on their next commit. The whole convention stays inside the .NET SDK, NuGet, and MSBuild.
+{{< /callout >}}
 
 {{< github repo="jebucaro/dotnet-gitmoji" >}}
 
-## Technologies Used
+## See it in action
 
-<div class="table-container">
-  <table>
-    <tr>
-      <th>Layer</th>
-      <th>Choice</th>
-      <th>Why it is in the stack</th>
-    </tr>
-    <tr>
-      <td><strong>Runtime</strong></td>
-      <td>.NET 10</td>
-      <td>Modern target with first-class global tool support and a stable <code>System.Text.Json</code> baseline.</td>
-    </tr>
-    <tr>
-      <td><strong>Packaging</strong></td>
-      <td>.NET tool</td>
-      <td>Ships through NuGet as <code>dotnet-gitmoji</code>, and works as either a shared local tool or a personal global install.</td>
-    </tr>
-    <tr>
-      <td><strong>CLI framework</strong></td>
-      <td>CliFx</td>
-      <td>Declarative command and option attributes, plays well with DI without extra ceremony.</td>
-    </tr>
-    <tr>
-      <td><strong>Terminal UX</strong></td>
-      <td>Spectre.Console</td>
-      <td>Handles selection prompts, live fuzzy pickers, and colored output.</td>
-    </tr>
-    <tr>
-      <td><strong>Process invocation</strong></td>
-      <td>CliWrap</td>
-      <td>Wraps every <code>git</code> and <code>dotnet</code> subprocess call with a typed, test-friendly API.</td>
-    </tr>
-    <tr>
-      <td><strong>Composition</strong></td>
-      <td>Microsoft.Extensions.DependencyInjection</td>
-      <td>Keeps services, validators, and commands wired through a single container.</td>
-    </tr>
-    <tr>
-      <td><strong>HTTP</strong></td>
-      <td>Microsoft.Extensions.Http</td>
-      <td>Fetches the gitmoji list from <code>gitmoji.dev</code> with a typed <code>HttpClient</code>.</td>
-    </tr>
-    <tr>
-      <td><strong>Testing</strong></td>
-      <td>xUnit, NSubstitute, coverlet</td>
-      <td>Unit tests for services and validators, plus an integration fixture for the end-to-end tool.</td>
-    </tr>
-  </table>
-</div>
+The two-minute walkthrough below follows the setup straight from the README, then shows a teammate joining the repo.
 
-## Architecture
+<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fve0Xpdbdjk?rel=0" title="dotnet-gitmoji: setup and daily use" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
-The tool follows a standard CliFx layout. `Program.cs` wires the DI container, CliFx resolves the requested command from the service provider, and the command delegates the real work to a service. Services are interface-first, which is what makes the xUnit and NSubstitute tests cheap to write. The same commit path is reached from both entry points: Git's `prepare-commit-msg` hook and the interactive `commit` command.
+## Try it in five steps
 
-{{< figure-dynamic
-    light-src="images/dotnet-gitmiji-architecture-light.svg"
-    dark-src="images/dotnet-gitmiji-architecture-dark.svg"
-    alt="dotnet-gitmoji architecture"
-    title="dotnet-gitmoji architecture" >}}
+Run these once in your repo. After you commit the result, every teammate gets the hook without doing anything. You need the .NET 10 SDK, plus Git for Windows on Windows, since the hook runs under Git Bash.
 
-The architecture diagram shows what each layer owns. The sequence diagram below shows what actually runs when you commit. Both entry points converge on `PromptService`, which drives the fuzzy selector and then hands off to `CommitMessageService` to write the result. The only difference is who calls `git commit` at the end: in hook mode Git already has control, so the tool just rewrites the message file; in client mode `GitService` shells out to Git directly.
+**1. Add both tools to the local tool manifest.**
 
-{{< figure-dynamic
-    light-src="images/dotnet-gitmoji-runtime-shape-light.svg"
-    dark-src="images/dotnet-gitmoji-runtime-shape-dark.svg"
-    alt="dotnet-gitmoji runtime shape"
-    title="dotnet-gitmoji runtime shape" >}}
+```sh
+dotnet new tool-manifest   # skip if the repo already has a dotnet-tools.json
+dotnet tool install Husky
+dotnet tool install dotnet-gitmoji
+```
 
-## Key Features
+The manifest pins both tool versions for the whole team.
 
-**Hook mode.** `dotnet-gitmoji init --mode shell` installs a Husky.Net-managed `prepare-commit-msg` hook that intercepts every `git commit`. `init --mode task-runner` targets repos that already use Husky.Net's task runner, and the hook skips merge commits, squash merges, amends, and interactive rebases so automated flows are not interrupted.
+**2. Initialize Husky.Net.**
 
-**Client mode.** `dotnet-gitmoji commit` acts as a drop-in for `git commit`, and also supports `--title`, `--scope`, and `--message` for cases where you want to skip part of the prompt. It is disabled when the hook is already installed, so the emoji never gets applied twice.
+```sh
+dotnet tool run husky install
+```
 
-**Team onboarding.** The shared path lives in `.config/dotnet-tools.json`, `.husky/`, and `Directory.Build.targets`. In repos with a project file, teammates usually only need `dotnet restore` or an IDE open to restore the tools and re-establish `core.hooksPath` through Husky.Net.
+This points Git's `core.hooksPath` at the `.husky/` folder.
 
-**Fuzzy search and discovery.** `dotnet-gitmoji search <keyword>` and the live picker share the same fuzzy matcher, which searches by emoji name, shortcode, and description. The picker shows a description panel alongside the list so you can see full gitmoji metadata before choosing. `dotnet-gitmoji list` is the non-interactive way to inspect the full catalog.
+**3. Install the gitmoji hook.**
 
-**Config surface.** The interactive `config` wizard and repo-level `.gitmojirc.json` expose the same knobs: emoji versus shortcode output, optional scope and message prompts, title capitalization, custom scope suggestions, auto-stage, signed commits, a custom gitmoji feed URL, `emoji: title` formatting via `normalizeCommitFormat`, and a semver badge toggle via `showSemverBadge` for the picker, list, and search output.
+```sh
+dotnet tool run dotnet-gitmoji init --mode shell
+```
 
-**Config resolution chain.** The tool reads `.gitmojirc.json` from the repo root (walking up parent directories to find it), and falls back to built-in defaults when it's absent. The repo config is the single source for every shared team setting, including the title-length and convention-enforcement knobs described below; the global config's schema is deliberately frozen to hold only the personal `theme` preference.
+It adds a `prepare-commit-msg` hook to `.husky/`, a plain text file that is safe to commit.
 
-**Color themes.** `dotnet-gitmoji config` lets you pick a built-in palette, one of `default`, `monokai`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, or `catppuccin-mocha`, applied across the interactive picker, prompts, and `list`/`search` output. Because `.gitmojirc.json` is shared with the whole team, theme is deliberately never read from it: it resolves from the `DOTNET_GITMOJI_THEME` environment variable, then the personal global config, then falls back to `default`, and `NO_COLOR` is honored throughout.
+**4. Add the MSBuild target.** Create a file named `Directory.Build.targets` at the root of the repository, next to `.husky/` and `dotnet-tools.json`, even if your solution lives in a subfolder. If the repo already has one, add the `PropertyGroup` and `Target` below inside its existing `<Project>`.
 
-**Commit title policy.** `maxTitleLength` and `trimTitleWhenExceeded` enforce or trim overlong titles during interactive prompts, and `enforceConvention` rejects commits that don't start with a gitmoji when no interactive terminal is available, covering IDE-triggered commits that bypass the prompt entirely.
+```xml
+<Project>
+  <PropertyGroup>
+    <HuskyRoot Condition="'$(HuskyRoot)' == ''">$(MSBuildThisFileDirectory)</HuskyRoot>
+    <HuskyToolManifest Condition="'$(HuskyToolManifest)' == '' and Exists('$(HuskyRoot)dotnet-tools.json')">$(HuskyRoot)dotnet-tools.json</HuskyToolManifest>
+    <HuskyToolManifest Condition="'$(HuskyToolManifest)' == ''">$(HuskyRoot).config/dotnet-tools.json</HuskyToolManifest>
+  </PropertyGroup>
+  <Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0"
+          Inputs="$(HuskyToolManifest)"
+          Outputs="$(HuskyRoot).husky/_/install.stamp">
+    <Exec Command="dotnet tool restore"
+          StandardOutputImportance="Low" StandardErrorImportance="High" />
+    <Exec Command="dotnet husky install"
+          StandardOutputImportance="Low" StandardErrorImportance="High"
+          WorkingDirectory="$(HuskyRoot)" />
+    <Touch Files="$(HuskyRoot).husky/_/install.stamp" AlwaysCreate="true"
+           Condition="Exists('$(HuskyRoot).husky/_')" />
+    <ItemGroup>
+      <FileWrites Include="$(HuskyRoot).husky/_/install.stamp" />
+    </ItemGroup>
+  </Target>
+</Project>
+```
 
-**Operational commands.** `update` refreshes the cached gitmoji list, and `remove` handles hook teardown. For Husky.Net-managed hooks, `remove` prints the cleanup steps instead of silently editing `.husky/` behind your back.
+MSBuild finds `Directory.Build.targets` by walking up from each project's folder, so one file at the root covers every project in the repo (unless a subfolder has its own, which then has to import the root one). The target also uses its own folder, `$(MSBuildThisFileDirectory)`, to locate `.husky/` and the tool manifest, which is why it has to sit next to them.
 
-**Local and global install parity.** The tool detects whether it was installed globally or per-project, and writes the correct invocation (`dotnet-gitmoji` or `dotnet tool run dotnet-gitmoji`) into the generated hook script.
+It runs `dotnet tool restore` and `dotnet husky install` whenever someone restores, builds, or opens the project, which is what installs the hook for every teammate. Why it hooks `BeforeTargets` instead of the more obvious `AfterTargets="Restore"` is one of the stories below.
 
-## Technical challenges
+**5. Commit everything.**
+
+```sh
+git add dotnet-tools.json .husky/ Directory.Build.targets
+git commit -m "chore: add dotnet-gitmoji hook"
+```
+
+The hook is already active, so this very commit goes through the picker.
+
+From here on, every `git commit` opens a fuzzy picker. Type `bug` and the list narrows to 🐛, with a panel below explaining what it means and its semver impact: "Fix a bug.", a patch. Press Enter, confirm the title, and the commit lands as `🐛 Fix login redirect`. Your old history stays the way it was, and every commit from the setup onward follows the convention.
+
+{{< callout tip >}}
+A teammate who clones the repo repeats none of these steps: one `dotnet restore` and the picker opens on their next commit.
+{{< /callout >}}
+
+## What I learned building it
+
+The picker is the part people see, but most of the work in a tool this small is the plumbing between Git, the terminal, and MSBuild. These four problems taught me the most.
+
+### The hook that lost its terminal
 
 {{< challenge >}}
 {{< challenge-problem >}}
-Git invokes `prepare-commit-msg` with stdin redirected away from the terminal, so Spectre.Console's interactive prompts refuse to draw. Without a fix, the hook fails on the very first commit.
+Git runs `prepare-commit-msg` with stdin redirected away from the terminal. That is reasonable for a hook that only edits a file, but this one needs to ask you a question, and Spectre.Console refuses to draw an interactive prompt when it can't read keystrokes. Without a fix, the hook fails on the very first commit.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I reopen stdin from the terminal device before any code reads `Console.IsInputRedirected`. The tool does this in `Program.Main` through a `TtyConsoleInput.TryReopenStdin()` helper, which is a harmless no-op when stdin is already a TTY (client mode).
+gitmoji-cli fixes this in the shell, with `exec < /dev/tty` at the top of the hook script. That doesn't work here, because Husky.Net writes the hook script, not dotnet-gitmoji, so the tool has to fix it from the inside. As the first thing `Program.Main` does, `TtyConsoleInput.TryReopenStdin()` swaps the process's own stdin handle for the terminal device, before any code reads `Console.IsInputRedirected`. On Unix it opens `/dev/tty` and duplicates it onto file descriptor 0. On Windows it opens `CONIN$` and sets it as the standard input handle. When stdin already is a terminal, as it is when you run the tool by hand, the call changes nothing.
 
-```csharp
-public static async Task<int> Main(string[] args)
-{
-    TtyConsoleInput.TryReopenStdin();
-    // DI container and CliFx application follow
-}
-```
-
+The lesson I keep from this one: a Git hook is not your terminal session. Whatever a hook needs from the user, it has to go and get explicitly.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
+### The tool manifest is the team's contract
+
 {{< challenge >}}
 {{< challenge-problem >}}
-A .NET tool can be installed globally or per-project, and the generated hook needs a different command in each case. Hard-coding one breaks the other.
+A .NET tool can be installed globally, once per machine, or locally, pinned in the repo's `dotnet-tools.json`. A global install is convenient, but it means every teammate runs whatever version they happened to install, and a hook that behaves differently from one machine to the next is worse than no hook at all.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I made `InitCommand` detect the installation kind at hook-generation time and write either `dotnet-gitmoji hook` or `dotnet tool run dotnet-gitmoji hook` into the script. The same logic feeds the Husky.Net shell and task-runner modes, so the three hook paths stay consistent.
+The setup is local-first on purpose. The tool manifest is committed with the repo, so it works as a contract: everyone who restores gets the same Husky.Net and the same `dotnet-gitmoji`, and bumping the version is a reviewed change like any other. Global installs still work for personal use across repos, but the docs treat them as the exception.
+
+The hook has to call the tool correctly either way, so `init` checks at generation time which kind of install it is looking at. It walks up from the repo root looking for `.config/dotnet-tools.json` or a root-level `dotnet-tools.json` (.NET 10 creates the second, older SDKs the first) and checks whether `dotnet-gitmoji` is listed there:
 
 ```csharp
-// GitService.cs — detects local vs. global tool manifest at hook-generation time
-private async Task<bool> IsLocalToolManifestAsync()
-{
-    var repoRoot = await GetRepositoryRootAsync();
-    var manifestPath = Path.Combine(repoRoot, ".config", "dotnet-tools.json");
-
-    if (!File.Exists(manifestPath))
-        return false;
-
-    var json = await File.ReadAllTextAsync(manifestPath);
-    var node = JsonNode.Parse(json);
-    var tools = node?["tools"] as JsonObject;
-    return tools?.ContainsKey("dotnet-gitmoji") ?? false;
-}
-
+// GitService.cs
 private async Task<string> BuildShellHookCommandAsync()
 {
-    var isLocal = await IsLocalToolManifestAsync();
-    var invocation = isLocal ? "dotnet tool run dotnet-gitmoji" : "dotnet-gitmoji";
+    bool isLocal = await IsLocalToolManifestAsync();
+    string invocation = isLocal ? DotnetGitmojiLocalInvocation : DotnetGitmojiTaskName;
     return $"{invocation} \"$1\" \"$2\"";
 }
 ```
 
+A local install gets `dotnet tool run dotnet-gitmoji` in the script, a global one gets plain `dotnet-gitmoji`.
 {{< /challenge-decision >}}
 {{< /challenge >}}
+
+### The restore target that never fired
 
 {{< challenge >}}
 {{< challenge-problem >}}
-Running both the hook and `dotnet-gitmoji commit` in the same repo would prefix the emoji twice. Detecting this late, at commit time, is fragile.
+The whole team story depends on one moment: a teammate clones the repo, runs `dotnet restore`, and the hook gets installed. My first MSBuild target hooked `AfterTargets="Restore"`, which looks like exactly the right place, and it silently never ran. When you restore a solution, which is what a plain `dotnet restore` does at a repo root that has one, NuGet restores every project from the solution level and never runs each project's own `Restore` target. No error, no warning, just a teammate with no hook and no idea why.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I disabled client mode whenever the hook is detected, at the very start of `CommitCommand`. The message explains why and points to `remove` as the opt-out. One tool, one place that writes the emoji.
+The target now hooks `BeforeTargets="Restore;CollectPackageReferences"`. `CollectPackageReferences` runs for every project during both restore and build, so the target fires either way. An `Inputs`/`Outputs` pair keeps it incremental: it only reruns when `dotnet-tools.json` changes or after `dotnet clean`. It is also why the setup doesn't use `husky attach` as a shortcut, since Husky.Net 0.9.1 writes an `AfterTargets="Restore"` target and hardcodes `.config/dotnet-tools.json`, which .NET 10 no longer creates.
 
-```csharp
-// CommitCommand.cs — guard at the top of ExecuteAsync
-public async ValueTask ExecuteAsync(IConsole console)
-{
-    if (await _gitService.IsHookInstalledAsync())
-    {
-        await console.Error.WriteLineAsync(
-            "Error: The prepare-commit-msg hook is already configured to use dotnet-gitmoji.\n" +
-            "Using both hook mode and client mode would apply the emoji twice.\n\n" +
-            "Either:\n" +
-            "  • Use 'git commit' and let the hook handle it (hook mode)\n" +
-            "  • Remove the hook from .husky/prepare-commit-msg and use 'dotnet-gitmoji commit' (client mode)");
-        throw new CommandException("Cannot use client mode while hook is installed.", 1);
-    }
-
-    // ... rest of commit flow
-}
-```
-
-The same tool-manifest detection that powers hook generation also keeps this guard aligned with local installs, so the repo and personal paths stay consistent.
-
+This fix has a cost, and I'd rather name it. Because the target runs before restore, a repo with a private NuGet feed behind a credential helper can run `dotnet tool restore` before the helper has signed in, and fail the restore. Those developers set `HUSKY=0` and install the hook once by hand. Husky.Net made the opposite trade-off, which is tracked in {{< extlink href="https://github.com/alirezanet/Husky.Net/issues/176" >}}Husky.Net #176{{< /extlink >}}. For a tool whose entire promise is "clone, restore, commit", a hook that never fires on solution restore was the worse failure.
 {{< /challenge-decision >}}
 {{< /challenge >}}
+
+### Config split by who owns it
 
 {{< challenge >}}
 {{< challenge-problem >}}
-The gitmoji list lives at `gitmoji.dev/api/gitmojis`. Hitting the network on every commit would be slow and fragile, but shipping a stale list penalises teams that want the newest emojis.
+`.gitmojirc.json` is committed and shared by the whole team, which is right for settings like emoji versus shortcode output, title length, or scopes. A terminal color theme is different: it is a personal preference, and background and color support vary from machine to machine. Putting `theme` in the shared file means either imposing one person's colors on everyone or turning it into a source of pointless merge churn.
 {{< /challenge-problem >}}
 {{< challenge-decision >}}
-I embedded `gitmojis.default.json` as a resource for the offline default, and exposed `dotnet-gitmoji update` to force a refresh of the cached copy under `~/.dotnet-gitmoji/`. `GitmojiProvider` reads cache first, fetches from the API when the cache is missing or stale, and falls back to the embedded default when the network is unavailable, so the tool works fully offline.
+I split configuration by ownership rather than by file format. The repo config is the single source for everything that must be identical across the team. The personal global config at `~/.dotnet-gitmoji/config.json` holds exactly one setting, `theme`, and nothing else. Theme resolution never takes the theme from the repo file: it checks the `DOTNET_GITMOJI_THEME` environment variable, then the global config, then falls back to the built-in default. A key in the wrong file is ignored with a note on stderr instead of being half applied, so a mistake is visible rather than surprising.
+
+The general rule I took from it: before deciding where a setting lives, ask who should be able to change it.
 {{< /challenge-decision >}}
 {{< /challenge >}}
 
-{{< challenge >}}
-{{< challenge-problem >}}
-`.gitmojirc.json` is committed and shared across the whole team, but a terminal color theme is inherently a personal preference, and background and color support vary machine to machine. Putting `theme` in the shared file means either imposing one contributor's color choice on everyone, or turning it into a source of pointless merge churn.
-{{< /challenge-problem >}}
-{{< challenge-decision >}}
-I split config by ownership instead of by file format. The repo config (`.gitmojirc.json`) stays the single source for everything that must be identical across the team; the personal global config's schema is deliberately frozen to hold only `theme`. Resolution for `theme` never touches the repo config at all, resolving instead from the `DOTNET_GITMOJI_THEME` environment variable, then the global config, then the built-in default, and a stray key in the "wrong" file is ignored with a note on stderr rather than partially applied.
-{{< /challenge-decision >}}
-{{< /challenge >}}
+## Where to go next
 
-## What this project demonstrates
-
-<div class="table-container">
-  <table>
-    <tr>
-      <th>Area</th>
-      <th>Evidence</th>
-    </tr>
-    <tr>
-      <td><strong>.NET 10 tool packaging</strong></td>
-      <td><code>PackAsTool</code>, <code>ToolCommandName</code>, and <code>PackageId</code> in <code>DotnetGitmoji.csproj</code>. Ships to NuGet as <code>dotnet-gitmoji</code> and works as either a local or global tool.</td>
-    </tr>
-    <tr>
-      <td><strong>CLI architecture</strong></td>
-      <td>CliFx commands resolved through DI, clean separation between <code>Commands/</code>, <code>Services/</code>, <code>Validators/</code>, and <code>Models/</code>.</td>
-    </tr>
-    <tr>
-      <td><strong>Git interop</strong></td>
-      <td>CliWrap wraps every <code>git</code> call, the tool writes <code>prepare-commit-msg</code> hook scripts, and it integrates with Husky.Net's shell and task-runner modes while honoring local versus global installs.</td>
-    </tr>
-    <tr>
-      <td><strong>Team onboarding automation</strong></td>
-      <td>Committed <code>.config/dotnet-tools.json</code>, <code>.husky/</code>, and <code>Directory.Build.targets</code> let the hook bootstrap during restore or IDE startup instead of through manual shell setup on every machine.</td>
-    </tr>
-    <tr>
-      <td><strong>Terminal UX</strong></td>
-      <td>Spectre.Console selection prompts, fuzzy search by name and shortcode, optional scope and message prompts, and client-mode flags for pre-filling commit data.</td>
-    </tr>
-    <tr>
-      <td><strong>Themeable output</strong></td>
-      <td><code>Theming/Themes.cs</code> static registry of <code>ThemePalette</code> records (colors only, no layout), resolved independently of the shared-config path. <code>NO_COLOR</code> is honored throughout.</td>
-    </tr>
-    <tr>
-      <td><strong>Testability</strong></td>
-      <td>Interface-first services, xUnit unit tests, NSubstitute for doubles, and a <code>ToolIntegrationFixture</code> for end-to-end coverage.</td>
-    </tr>
-    <tr>
-      <td><strong>Config layering</strong></td>
-      <td>Repo <code>.gitmojirc.json</code> for every shared team setting, built-in defaults when it's absent, and a global config under <code>~/.dotnet-gitmoji/</code> that holds nothing but the personal <code>theme</code> preference. The <code>config</code> wizard writes to the repo config, sending only the theme choice to the global one.</td>
-    </tr>
-  </table>
-</div>
-
-## Results
-
-<div class="table-container">
-  <table>
-    <tr>
-      <th>Outcome</th>
-      <th>Evidence</th>
-    </tr>
-    <tr>
-      <td><strong>Published on NuGet</strong></td>
-      <td>The tool is published on NuGet as <a href="https://www.nuget.org/packages/dotnet-gitmoji">dotnet-gitmoji</a>, which keeps installation and updates inside the standard .NET toolchain.</td>
-    </tr>
-    <tr>
-      <td><strong>Removes the Node.js dependency</strong></td>
-      <td>A .NET repo that wants the gitmoji convention no longer has to provision Node on every machine. The .NET SDK is enough.</td>
-    </tr>
-    <tr>
-      <td><strong>Team-friendly onboarding</strong></td>
-      <td>Repos can commit the tool manifest, Husky.Net hook, and restore target so teammates get the prompt back through restore or IDE startup instead of manual machine-by-machine setup.</td>
-    </tr>
-    <tr>
-      <td><strong>Two adoption paths</strong></td>
-      <td>Teams can enforce the <code>prepare-commit-msg</code> hook, while individuals can still use <code>dotnet-gitmoji commit</code> with flags when a repo-wide hook would be too heavy.</td>
-    </tr>
-    <tr>
-      <td><strong>Config travels with the repo</strong></td>
-      <td><code>.gitmojirc.json</code> at the repo root is shared through Git. Personal preferences stay under <code>~/.dotnet-gitmoji/</code>, and the interactive wizard fills the same config shape.</td>
-    </tr>
-  </table>
-</div>
-
-The product read is simple: a .NET team can adopt the gitmoji convention without leaving the NuGet and MSBuild toolchain, and the same tool still works as a lighter personal CLI when a repo-wide hook would be too heavy.
+This page covers why the tool exists and the shortest path to a first commit. {{< extlink href="https://dotnet-gitmoji.com" >}}dotnet-gitmoji.com{{< /extlink >}} is the tool's home, with the setup, joining a repo that already uses it, daily use, and the `config` wizard with its main options. For every `.gitmojirc.json` key, the color themes, client mode for personal workflows, the task-runner mode, and the full command list, go to the {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}README{{< /extlink >}}.
 
 ## Links
 
-1. Repository: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
-2. NuGet package: {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
-3. gitmoji convention: {{< extlink href="https://gitmoji.dev" >}}gitmoji.dev{{< /extlink >}}
-4. Husky.Net: {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}
+1. Website: {{< extlink href="https://dotnet-gitmoji.com" >}}dotnet-gitmoji.com{{< /extlink >}}
+2. Full reference: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}dotnet-gitmoji README{{< /extlink >}}
+3. Repository: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
+4. NuGet package: {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
+5. gitmoji convention: {{< extlink href="https://gitmoji.dev" >}}gitmoji.dev{{< /extlink >}}
+6. Husky.Net: {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}
 
 ---
 

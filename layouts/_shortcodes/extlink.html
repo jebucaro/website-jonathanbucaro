@@ -18,4 +18,4 @@
   {{- errorf "extlink shortcode requires 'href' parameter in %s" .Page.File.Path -}}
 {{- end -}}
 
-<a href="{{ $href }}" target="_blank" rel="nofollow noopener noreferrer">{{- if $text -}}{{ $text }}{{- else -}}{{ .Inner | markdownify }}{{- end -}}&nbsp;➡️</a>
+<a href="{{ $href }}" target="_blank" rel="nofollow noopener noreferrer">{{- if $text -}}{{ $text }}{{- else -}}{{ .Inner | markdownify }}{{- end -}}&nbsp;➡️</a>{{- /* trim: a trailing newline here leaks a space into markdownified shortcode bodies */ -}}
