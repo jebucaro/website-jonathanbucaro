@@ -3,7 +3,7 @@ title: 'dotnet-gitmoji: commits con gitmoji para equipos .NET'
 slug: 'dotnet-gitmoji'
 subtitle: 'Una herramienta .NET que pone la convención gitmoji en cada commit, con un hook que viaja con el repositorio y llega a cada persona del equipo con un simple dotnet restore. Sin Node.js.'
 date: 2026-04-24T10:30:00Z
-lastmod: 2026-10-24T00:00:00Z
+lastmod: 2026-10-31T00:00:00Z
 draft: false
 image: 'images/cover.png'
 description: 'dotnet-gitmoji lleva los commits con gitmoji a equipos .NET: un hook de Husky.Net que viaja con el repositorio, llega a todo el equipo con dotnet restore y no necesita Node.js.'
@@ -48,15 +48,11 @@ Por eso necesita un hook de commit que pida el emoji justo en el momento de hace
 
 {{< github repo="jebucaro/dotnet-gitmoji" >}}
 
-<!-- VIDEO: descomentar esta sección y reemplazar VIDEO_ID cuando exista el video en YouTube.
-
 ## Míralo en acción
 
 El recorrido de dos minutos sigue la configuración tal como está en el README y luego muestra a alguien del equipo uniéndose al repositorio.
 
-<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="dotnet-gitmoji: configuración y uso diario" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
-
--->
+<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fve0Xpdbdjk?rel=0" title="dotnet-gitmoji: configuración y uso diario" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 ## Pruébalo en cinco pasos
 
@@ -203,15 +199,16 @@ La regla general que me llevé: antes de decidir dónde vive un ajuste, pregúnt
 
 ## A dónde ir después
 
-Esta página cubre por qué existe la herramienta y el camino más corto a un primer commit. La {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}documentación completa{{< /extlink >}}<!-- SITE: switch to https://dotnet-gitmoji.com once live --> cubre el resto: unirse a un repositorio que ya la usa, el asistente interactivo `config` y cada clave de `.gitmojirc.json`, los temas de color, el modo cliente para flujos personales, el modo task-runner y los comandos para listar, buscar y actualizar el catálogo de gitmojis.
+Esta página cubre por qué existe la herramienta y el camino más corto a un primer commit. {{< extlink href="https://dotnet-gitmoji.com" >}}dotnet-gitmoji.com{{< /extlink >}} es la casa de la herramienta, con la configuración inicial, cómo unirse a un repositorio que ya la usa, el uso diario y el asistente `config` con sus opciones principales. Para cada clave de `.gitmojirc.json`, los temas de color, el modo cliente para flujos personales, el modo task-runner y la lista completa de comandos, ve al {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}README{{< /extlink >}}.
 
 ## Enlaces
 
-1. Documentación: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}README de dotnet-gitmoji{{< /extlink >}}<!-- SITE: switch to https://dotnet-gitmoji.com once live -->
-2. Repositorio: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
-3. Paquete NuGet: {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
-4. Convención gitmoji: {{< extlink href="https://gitmoji.dev" >}}gitmoji.dev{{< /extlink >}}
-5. Husky.Net: {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}
+1. Sitio web: {{< extlink href="https://dotnet-gitmoji.com" >}}dotnet-gitmoji.com{{< /extlink >}}
+2. Referencia completa: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji#readme" >}}README de dotnet-gitmoji{{< /extlink >}}
+3. Repositorio: {{< extlink href="https://github.com/jebucaro/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
+4. Paquete NuGet: {{< extlink href="https://www.nuget.org/packages/dotnet-gitmoji" >}}dotnet-gitmoji{{< /extlink >}}
+5. Convención gitmoji: {{< extlink href="https://gitmoji.dev" >}}gitmoji.dev{{< /extlink >}}
+6. Husky.Net: {{< extlink href="https://alirezanet.github.io/Husky.Net/" >}}Husky.Net{{< /extlink >}}
 
 ---
 
