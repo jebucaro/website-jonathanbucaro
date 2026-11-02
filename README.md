@@ -5,8 +5,10 @@ Personal website built with Hugo and deployed to Firebase Hosting.
 ## Requirements
 
 - Node.js 24+ (`fnm` reads the version from `.nvmrc`)
-- pnpm 10+
+- pnpm 12 (pinned in `package.json` under `packageManager`)
 - Hugo (extended)
+
+Sass is compiled with Dart Sass, which `pnpm install` provides through the `sass-embedded` package. Run Hugo through pnpm (`pnpm dev`, `pnpm build`, or `pnpm exec hugo ...`); a bare `hugo` command can't find Dart Sass and fails to build the stylesheet.
 
 ## Local development
 
@@ -34,6 +36,11 @@ pnpm dev
 - `pnpm clean` - Remove `public/` and `resources/`
 - `pnpm validate` - Check + build
 
+After a build, CI also runs these checks against `public/`:
+
+- `node scripts/check-csp-hashes.mjs` - Inline script hashes match the Content Security Policy
+- `node scripts/check-hero-preload.mjs` - The homepage hero preload matches its image `srcset`
+
 ## Deployment
 
-GitHub Actions builds, checks, and deploys to Firebase Hosting on pull requests and merges to `main`.
+GitHub Actions builds and checks every pull request and deploys it to a Firebase Hosting preview channel. Merges to `main` deploy to the live site.
