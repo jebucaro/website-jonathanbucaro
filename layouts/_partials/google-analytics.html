@@ -1,9 +1,0 @@
-{{- if .Site.Config.Services.GoogleAnalytics.ID -}}
-{{- $gaID := .Site.Config.Services.GoogleAnalytics.ID -}}
-<!-- GA bootstrap: only pushes to dataLayer, so it can defer off the critical
-     path; gtag.js is also injected by ga-init.js on idle after load, and drains
-     dataLayer whenever it arrives, order-independent -->
-{{- $gaInit := resources.Get "js/ga-init.js" -}}
-{{- $gaInitProcessed := $gaInit | resources.ExecuteAsTemplate (printf "js/ga-init-%s.js" $gaID) . | minify | fingerprint -}}
-<script src="{{ $gaInitProcessed.RelPermalink | absURL }}" defer></script>
-{{- end -}}
