@@ -5,7 +5,6 @@ sitemap:
     priority: 0.5
 
 # Privacy configuration
-# Note: googleAnalytics privacy settings removed - handled in custom implementation (assets/js/ga-init.js)
 privacy:
     disqus:
         disable: true

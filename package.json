@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "dev": "hugo server -D --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
+        "dev": "hugo server -D -F -E --disableFastRender --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
         "build": "hugo --cleanDestinationDir --minify",
         "build:staging": "hugo --cleanDestinationDir --minify --environment staging",
         "clean": "node -e \"const fs = require('fs'); ['public', 'resources'].forEach(p => fs.rmSync(p, { recursive: true, force: true }))\"",
