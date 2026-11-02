@@ -27,8 +27,8 @@
         "fontkit": "^2.0.4",
         "husky": "^9.1.7",
         "lint-staged": "^17.6.0",
-        "markdownlint-cli": "^0.49.1",
-        "prettier": "^3.9.9",
+        "markdownlint-cli": "^0.50.0",
+        "prettier": "^3.9.10",
         "prettier-plugin-go-template": "^0.0.15"
     },
     "lint-staged": {
