@@ -9,6 +9,11 @@ image: 'images/cover.png'
 work-types: ['Talk']
 talk:
     event: 'AWS Community Day Guatemala 2026'
+    url: 'https://awscommunityday.gt/'
+    free: true
+    organizer:
+        name: 'AWS User Group Guatemala'
+        url: 'https://www.linkedin.com/company/aws-user-group-guatemala/'
     venue: 'Salón Fuego, Universidad Rafael Landívar'
     location: 'Guatemala City, Guatemala'
     endDate: '2026-10-10T15:55:00-06:00'
