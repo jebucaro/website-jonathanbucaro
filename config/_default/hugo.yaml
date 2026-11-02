@@ -31,9 +31,12 @@ taxonomies:
 pagination:
     pagerSize: 6
 imaging:
-    quality: 85
     resampleFilter: Lanczos
-    hint: photo
+    jpeg:
+        quality: 85
+    webp:
+        quality: 85
+        hint: photo
 build:
     writeStats: true
     useResourceCacheWhen: fallback
