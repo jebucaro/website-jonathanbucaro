@@ -4,5 +4,6 @@ overrides:
     js-yaml: ^5.4.1
     markdown-it: ^14.3.1
     smol-toml: ^1.9.0
+    re2js@>=2.2.0 <2.8.7: ^2.8.7
 patchedDependencies:
     tiny-slider@*: patches/tiny-slider.patch
