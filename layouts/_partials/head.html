@@ -110,7 +110,11 @@
          Dev keeps an external link for source maps. All of the CSS applies
          before first paint, so no late-apply CLS (unlike the old
          critical + async split). -->
-    {{ $cssOpts := (dict "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
+    {{/* "import" is silenced on purpose: assets/sass still uses @import, and the
+         end-of-2026 redesign replaces these styles. Write the new styles with
+         @use/@forward modules and delete silenceDeprecations then. Safe meanwhile
+         because sass-embedded is pinned in pnpm-lock.yaml (removal is Dart Sass 3). */}}
+    {{ $cssOpts := (dict "transpiler" "dartsass" "silenceDeprecations" (slice "import") "targetPath" "css/main.css" "includePaths" (slice "node_modules")) }}
     {{ if hugo.IsServer }}
     {{ $cssOpts = merge $cssOpts (dict "enableSourceMap" true) }}
     {{ $css := resources.Get "sass/main.scss" | toCSS $cssOpts | minify }}
