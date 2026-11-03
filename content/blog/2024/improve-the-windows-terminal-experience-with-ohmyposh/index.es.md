@@ -15,7 +15,9 @@ En este artículo, te guío paso a paso para transformar tu terminal de Windows 
 
 ## Instalar PowerShell
 
-![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal con Windows PowerShell')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-windows-powershell.png" alt="Windows Terminal ejecutando el Windows PowerShell integrado con su prompt predeterminado" >}}
+{{< /gallery >}}
 
 ¿Todavía estás usando la versión antigua de PowerShell que viene con Windows? Para aprovechar al máximo Oh My Posh, es clave tener la versión más reciente y multiplataforma.
 
@@ -43,7 +45,9 @@ Abre Windows Terminal, haz clic derecho en la barra de título (fuera de las pes
 
 Busca la sección **Startup**. A la derecha, configura **PowerShell** como el Perfil predeterminado y **Windows Terminal** como la Aplicación de terminal predeterminada, y haz clic en “Save”.
 
-![Aplicación de terminal predeterminada](images/windows-terminal-startup-configuration.webp 'Configuración de Windows Terminal')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-startup-configuration.png" alt="Configuración de inicio de Windows Terminal con PowerShell como perfil predeterminado y Windows Terminal como aplicación de terminal predeterminada" >}}
+{{< /gallery >}}
 
 ### Configurar la política de ejecución de scripts en PowerShell
 
@@ -161,7 +165,9 @@ Recarga tu perfil:
 
 ¡Listo! Deberías ver que tu prompt cambia de inmediato a algo como esto:
 
-![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell con Oh My Posh')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-ohmyposh.png" alt="Prompt de PowerShell con el tema predeterminado de Oh My Posh mostrando la carpeta actual y la rama de Git" >}}
+{{< /gallery >}}
 
 ### Elegir un tema
 
@@ -189,7 +195,9 @@ Guarda y recarga:
 
 ¡Disfruta tu nuevo look!
 
-![Tema zash de Oh My Posh](images/windows-terminal-ohmyposh-zash.webp 'Tema zash de Oh My Posh')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-ohmyposh-zash.png" alt="Prompt de PowerShell con el tema zash de Oh My Posh mostrando el usuario, la carpeta actual y la rama de Git" >}}
+{{< /gallery >}}
 
 Si quieres volver al tema predeterminado, solo usa:
 
@@ -201,33 +209,27 @@ oh-my-posh init pwsh --strict | Invoke-Expression
 
 ### PSReadLine
 
-Si quieres funciones comunes en bash, como resaltado de sintaxis, búsqueda en el historial y personalización de teclas, PSReadLine es para ti. Mejora la edición de la línea de comandos en PowerShell para que sea más interactiva y amigable.
+PSReadLine se encarga de la edición de la línea de comandos en PowerShell: resaltado de sintaxis, historial, sugerencias y atajos de teclado. PowerShell 7 ya lo incluye, así que no necesitas instalar nada, y obtienes mucho sin configurar nada:
 
-Instala la versión pre-release (más funciones, puede tener bugs):
+- Resaltado de sintaxis para comandos y argumentos
+- Sugerencias de tu historial mientras escribes, presiona `Right arrow` para aceptar una
+- `Ctrl + R` para buscar en tu historial
+- `Alt + H` para ver la ayuda del parámetro bajo el cursor
+- `Ctrl + arrow keys` para moverte por palabras
+- `Ctrl + L` para limpiar la pantalla
 
-```powershell
-Install-Module PSReadLine -AllowPrerelease -Force
-```
-
-O la versión estable:
-
-```powershell
-Install-Module PSReadLine
-```
-
-Luego edita tu perfil de PowerShell:
+Algunos ajustes lo mejoran todavía más. Abre tu perfil de PowerShell:
 
 ```powershell
 code $PROFILE
 ```
 
-Agrega al inicio de tu perfil:
+Agrega estas líneas al inicio:
 
 ```powershell
-Import-Module PSReadLine
+Set-PSReadLineOption -BellStyle None
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Tab -Function Complete
 ```
 
 Guarda y recarga:
@@ -236,16 +238,9 @@ Guarda y recarga:
 . $PROFILE
 ```
 
-Los beneficios de esta configuración incluyen:
+La primera línea desactiva el pitido, por ejemplo cuando presionas Backspace en una línea vacía. Las otras dos cambian las flechas arriba y abajo para buscar en tu historial según lo que ya escribiste. Escribe `git`, presiona `Up` y solo recorrerás tus comandos `git` anteriores. En una línea vacía, las flechas funcionan como siempre.
 
-- Resaltado de sintaxis para comandos y argumentos
-- Historial de comandos y autocompletado con Tab
-- Atajos de teclado configurables
-- Búsqueda en el historial con flechas arriba/abajo, respetando el texto que ya escribiste
-- `Ctrl + arrow keys` para moverte por palabras
-- `Ctrl + L` para limpiar la pantalla
-
-Revisa los key bindings con:
+Revisa todos los key bindings con:
 
 ```powershell
 Get-PSReadLineKeyHandler
@@ -253,29 +248,27 @@ Get-PSReadLineKeyHandler
 
 Documentación oficial en el {{< extlink href="https://github.com/PowerShell/PSReadLine" >}}repo de PSReadLine en GitHub{{< /extlink >}}
 
-### winfetch
+### fastfetch
 
-`winfetch` es un script de PowerShell que muestra información del sistema (SO, software, hardware) en un formato claro y ordenado.
+`fastfetch` muestra información del sistema (SO, software, hardware) junto al logo de tu sistema operativo en un formato claro y ordenado.
 
-Para instalar:
-
-```powershell
-Install-Script winfetch
-```
-
-Confirma ambos mensajes presionando `Y`. Una vez instalado, ejecuta:
+Instálalo con:
 
 ```powershell
-winfetch
+winget install Fastfetch-cli.Fastfetch
 ```
 
-![Windows Terminal mostrando la salida de winfetch con información del sistema incluyendo SO, CPU, RAM y detalles de hardware](images/winfetch.webp 'winfetch')
+Abre una nueva pestaña de PowerShell y ejecuta:
 
-Más info en el {{< extlink href="https://github.com/lptstr/winfetch" >}}repo de winfetch en GitHub{{< /extlink >}}
+```powershell
+fastfetch
+```
 
-{{< callout tip >}}
-winfetch no ha recibido commits en un buen tiempo. Si buscas una herramienta similar que siga manteniéndose activamente, revisa {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch{{< /extlink >}}.
-{{< /callout >}}
+{{< gallery >}}
+{{< gallery-image src="images/fastfetch.png" alt="Windows Terminal mostrando la salida de fastfetch con información del sistema incluyendo SO, CPU, RAM y detalles de hardware" >}}
+{{< /gallery >}}
+
+Más info en el {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}repo de fastfetch en GitHub{{< /extlink >}}.
 
 ### bat
 
@@ -287,7 +280,15 @@ Instálalo con:
 winget install sharkdp.bat
 ```
 
-![Windows Terminal mostrando bat desplegando un archivo con resaltado de sintaxis y números de línea](images/bat.webp 'bat')
+`bat` necesita el Visual C++ Redistributable en Windows. Si no arranca, instálalo con:
+
+```powershell
+winget install Microsoft.VCRedist.2015+.x64
+```
+
+{{< gallery >}}
+{{< gallery-image src="images/bat.png" alt="Windows Terminal mostrando bat desplegando un archivo con resaltado de sintaxis y números de línea" >}}
+{{< /gallery >}}
 
 En Windows, instala `less` también para paginar:
 
@@ -309,7 +310,9 @@ winget install eza-community.eza
 
 Abre una nueva pestaña de PowerShell para empezar a usarlo.
 
-![Windows Terminal mostrando eza listando el contenido de un directorio con colores, metadatos e indicadores de estado de Git](images/eza.webp 'eza')
+{{< gallery >}}
+{{< gallery-image src="images/eza.png" alt="Windows Terminal mostrando eza listando el contenido de un directorio con colores, metadatos e indicadores de estado de Git" >}}
+{{< /gallery >}}
 
 Mira opciones y docs en el {{< extlink href="https://github.com/eza-community/eza#command-line-options" >}}repo de eza en GitHub{{< /extlink >}}.
 

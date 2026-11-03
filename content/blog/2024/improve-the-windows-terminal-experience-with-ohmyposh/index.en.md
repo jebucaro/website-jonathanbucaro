@@ -15,7 +15,9 @@ In this article, I’ll walk you through step-by-step how to transform your Wind
 
 ## Install PowerShell
 
-![Windows PowerShell](images/windows-terminal-windows-powershell.webp 'Windows Terminal with Windows PowerShell')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-windows-powershell.png" alt="Windows Terminal running the built-in Windows PowerShell with its default prompt" >}}
+{{< /gallery >}}
 
 Are you still using the old version of PowerShell that comes with Windows? To fully benefit from Oh My Posh, it’s essential to have the latest cross-platform version.
 
@@ -43,7 +45,9 @@ Open Windows Terminal, right-click on the title bar (outside the tabs) or click 
 
 Find the **Startup** section. On the right, set **PowerShell** as the Default Profile and **Windows Terminal** as the Default Terminal Application, then click “Save.”
 
-![Default Terminal Application](images/windows-terminal-startup-configuration.webp 'Windows Terminal Configuration')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-startup-configuration.png" alt="Windows Terminal Startup settings with PowerShell as the default profile and Windows Terminal as the default terminal application" >}}
+{{< /gallery >}}
 
 ### Configure PowerShell script execution policy
 
@@ -161,7 +165,9 @@ Reload your profile:
 
 Done! You should see your prompt change immediately to something like this:
 
-![Oh My Posh](images/windows-terminal-ohmyposh.webp 'PowerShell with Oh My Posh')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-ohmyposh.png" alt="PowerShell prompt with the default Oh My Posh theme showing the current folder and Git branch" >}}
+{{< /gallery >}}
 
 ### Set a theme
 
@@ -189,7 +195,9 @@ Save and reload:
 
 Enjoy your new look!
 
-![Oh My Posh Zash Theme](images/windows-terminal-ohmyposh-zash.webp 'Oh My Posh Zash Theme')
+{{< gallery >}}
+{{< gallery-image src="images/windows-terminal-ohmyposh-zash.png" alt="PowerShell prompt with the Oh My Posh zash theme showing the user, current folder, and Git branch" >}}
+{{< /gallery >}}
 
 If you want to revert to the default theme, just use:
 
@@ -201,33 +209,27 @@ oh-my-posh init pwsh --strict | Invoke-Expression
 
 ### PSReadLine
 
-If you want features common in bash, like syntax highlighting, history search, and key customization, PSReadLine is for you. It makes PowerShell’s command line editing more interactive and user-friendly.
+PSReadLine handles command line editing in PowerShell: syntax highlighting, history, suggestions, and keyboard shortcuts. PowerShell 7 already includes it, so there’s nothing to install, and you get a lot without configuring anything:
 
-Install the pre-release (more features, might have bugs):
+- Syntax highlighting for commands and arguments
+- Suggestions from your history as you type, press `Right arrow` to accept one
+- `Ctrl + R` to search your history
+- `Alt + H` to show help for the parameter under the cursor
+- `Ctrl + arrow keys` to move by words
+- `Ctrl + L` to clear the screen
 
-```powershell
-Install-Module PSReadLine -AllowPrerelease -Force
-```
-
-Or the stable version:
-
-```powershell
-Install-Module PSReadLine
-```
-
-Then edit your PowerShell profile:
+A few settings make it even better. Open your PowerShell profile:
 
 ```powershell
 code $PROFILE
 ```
 
-Add at the top of your profile:
+Add these lines at the top:
 
 ```powershell
-Import-Module PSReadLine
+Set-PSReadLineOption -BellStyle None
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Tab -Function Complete
 ```
 
 Save and reload:
@@ -236,16 +238,9 @@ Save and reload:
 . $PROFILE
 ```
 
-The benefits of the configuration include:
+The first line turns off the beep, for example when you press Backspace on an empty line. The other two change the up and down arrows to search your history based on what you’ve already typed. Type `git`, press `Up`, and you’ll only cycle through your previous `git` commands. On an empty line, the arrows work as usual.
 
-- Syntax highlighting for commands and arguments
-- Command history and tab completion
-- Configurable keyboard shortcuts
-- Search history with up/down arrows, respecting typed text
-- `Ctrl + arrow keys` to move by words
-- `Ctrl + L` to clear the screen
-
-Check key bindings with:
+Check all key bindings with:
 
 ```powershell
 Get-PSReadLineKeyHandler
@@ -253,29 +248,27 @@ Get-PSReadLineKeyHandler
 
 Official docs at the {{< extlink href="https://github.com/PowerShell/PSReadLine" >}}PSReadLine GitHub repo{{< /extlink >}}
 
-### winfetch
+### fastfetch
 
-`winfetch` is a PowerShell script that displays system information (OS, software, hardware) in a clean, readable layout.
+`fastfetch` displays system information (OS, software, hardware) next to your OS logo in a clean, readable layout.
 
-To install:
-
-```powershell
-Install-Script winfetch
-```
-
-Confirm both prompts by pressing `Y`. Once installed, run:
+Install with:
 
 ```powershell
-winfetch
+winget install Fastfetch-cli.Fastfetch
 ```
 
-![Windows Terminal showing winfetch output with system information including OS, CPU, RAM, and hardware details](images/winfetch.webp 'winfetch')
+Open a new PowerShell tab, then run:
 
-More info at the {{< extlink href="https://github.com/lptstr/winfetch" >}}winfetch GitHub repo{{< /extlink >}}
+```powershell
+fastfetch
+```
 
-{{< callout tip >}}
-winfetch hasn’t seen a commit in a while. If you want a similar tool that’s still actively maintained, check out {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch{{< /extlink >}}.
-{{< /callout >}}
+{{< gallery >}}
+{{< gallery-image src="images/fastfetch.png" alt="Windows Terminal showing fastfetch output with system information including OS, CPU, RAM, and hardware details" >}}
+{{< /gallery >}}
+
+More info at the {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}}fastfetch GitHub repo{{< /extlink >}}.
 
 ### bat
 
@@ -287,7 +280,15 @@ Install with:
 winget install sharkdp.bat
 ```
 
-![Windows Terminal showing bat displaying a file with syntax highlighting and line numbers](images/bat.webp 'bat')
+`bat` needs the Visual C++ Redistributable on Windows. If it doesn’t start, install it with:
+
+```powershell
+winget install Microsoft.VCRedist.2015+.x64
+```
+
+{{< gallery >}}
+{{< gallery-image src="images/bat.png" alt="Windows Terminal showing bat displaying a file with syntax highlighting and line numbers" >}}
+{{< /gallery >}}
 
 In Windows, install `less` as well for paging:
 
@@ -309,7 +310,9 @@ winget install eza-community.eza
 
 Open a new PowerShell tab to start using it.
 
-![Windows Terminal showing eza listing directory contents with colors, metadata, and Git status indicators](images/eza.webp 'eza')
+{{< gallery >}}
+{{< gallery-image src="images/eza.png" alt="Windows Terminal showing eza listing directory contents with colors, metadata, and Git status indicators" >}}
+{{< /gallery >}}
 
 See options and docs at the {{< extlink href="https://github.com/eza-community/eza#command-line-options" >}}eza GitHub repo{{< /extlink >}}.
 
