@@ -1,7 +1,7 @@
 ---
 title: 'Improve the Windows Terminal with Oh My Posh'
 date: 2024-06-30T17:20:10-06:00
-lastmod: 2026-08-13T00:00:00Z
+lastmod: 2026-11-03T00:00:00Z
 image: 'images/cover.png'
 tags: [windows, powershell]
 draft: false
@@ -71,15 +71,19 @@ RemoteSigned
 
 Oh My Posh is the star of this tutorial. It’s highly customizable, looks great, and has a large community behind it.
 
-I recommend installing it via Winget, but it’s also available in the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}.
-
-From PowerShell, run:
+Install it with Winget. From PowerShell, run:
 
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
 Once installed, open a new PowerShell tab so everything loads properly.
+
+To update Oh My Posh later, run:
+
+```powershell
+winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+```
 
 ### Install a font
 
@@ -91,9 +95,13 @@ First, browse the available fonts:
 oh-my-posh font list
 ```
 
-This prints one font name per line, so you can pipe it to search for something specific, for example `oh-my-posh font list | findstr /i mono`. Oh My Posh recommends the “Meslo” font family, which includes “Meslo LGM NF.”
+This prints one font name per line, so you can pipe it to search for something specific:
 
-![Install Meslo Nerd Font](images/windows-terminal-install-nerd-font.webp 'Install Meslo Nerd Font')
+```powershell
+oh-my-posh font list | findstr /i mono
+```
+
+Oh My Posh recommends the “Meslo” font family, which includes “Meslo LGM NF.”
 
 Once you’ve picked a name from the list, install it:
 
@@ -140,8 +148,10 @@ code $PROFILE
 Add this line and save:
 
 ```powershell
-oh-my-posh init pwsh | Invoke-Expression
+oh-my-posh init pwsh --strict | Invoke-Expression
 ```
+
+The `--strict` flag makes the prompt find `oh-my-posh` through your `PATH`. Without it, the init script points to the exact install folder, and since `winget upgrade` removes the old version, your prompt would break after an update.
 
 Reload your profile:
 
@@ -160,7 +170,7 @@ Oh My Posh comes with several built-in themes. You can explore them in the {{< e
 Pick one you like, then reference it by name (no extension) in your PowerShell profile line. For example, if you like the minimalist “zash” theme, update the line to:
 
 ```powershell
-oh-my-posh init pwsh --config "zash" | Invoke-Expression
+oh-my-posh init pwsh --strict --config "zash" | Invoke-Expression
 ```
 
 This downloads and caches the theme on shell start, so you’ll need an internet connection the first time. If you’d rather keep a local copy to tweak, export it to a file instead:
@@ -184,7 +194,7 @@ Enjoy your new look!
 If you want to revert to the default theme, just use:
 
 ```powershell
-oh-my-posh init pwsh | Invoke-Expression
+oh-my-posh init pwsh --strict | Invoke-Expression
 ```
 
 ## Level up by installing these modules and apps
