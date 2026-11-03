@@ -40,7 +40,7 @@
     <!-- end page-head -->
     <div class="container animate">
         <div class="row">
-            {{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog" ) }}
+            {{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog").ByLastmod.Reverse }}
             {{ range $paginator.Pages }}{{ partial "article" . }}{{ end }}
         </div>
     </div>
