@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="row">
-                            {{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog" | first 3 ) }}
+                            {{ $paginator := .Paginate ((where .Site.RegularPages "Type" "blog").ByLastmod.Reverse | first 3) }}
                             {{ range $paginator.Pages }}
                                 {{ partial "article.html" . }}
                             {{ end }}
