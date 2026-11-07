@@ -100,10 +100,10 @@
   translation: 'Soy Jonathan 🤓'
 
 - id: sections_hero_subtitle
-  translation: '¡Crearé servicios que te aporten valor!'
+  translation: 'Construyo productos de software de punta a punta.'
 
 - id: sections_hero_description
-  translation: 'Como Ingeniero en Sistemas con experiencia en C#, Python y tecnologías de IA Generativa, me dedico a crear soluciones innovadoras y de alta calidad que superen tus expectativas.'
+  translation: 'Product engineer y Senior Software Engineer en Guatemala. Convierto problemas de negocio en software que funciona, modernizo los sistemas de los que depende, los hago utilizables por agentes de IA y los mantengo funcionando en producción. En el día a día: Java (Spring Boot), React, Hasura, Kubernetes, C#, Python y AWS.'
 
 - id: sections_hero_button
   translation: 'Contáctame'

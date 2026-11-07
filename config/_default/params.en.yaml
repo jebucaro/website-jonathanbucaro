@@ -1,8 +1,8 @@
 # English localized parameters
-description: 'Jonathan Búcaro 🤓. I like building software and writing about what I learn along the way, C#, Python, AI, and CLI tools included.'
+description: 'Jonathan Búcaro (@jebucaro), product engineer and Senior Software Engineer in Guatemala. Case studies and writing on building, modernizing, and running software, and making it work with AI agents.'
 author:
     author__bio: >-
-        Systems Engineer and Planeswalker. I write about my journey in technology, sharing experiences and insights that have driven my professional development.
+        Product engineer and Senior Software Engineer based in Guatemala. I build software end to end, from the business problem to production, in Java, C#, Python, and React, and I make existing systems usable by AI agents.
 
 blog:
     blog__title: Recent Posts
