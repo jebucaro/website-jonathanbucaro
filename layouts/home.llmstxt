@@ -1,0 +1,30 @@
+{{- $en := hugo.Sites.Default -}}
+{{- $about := $en.GetPage "/about" -}}
+# {{ $en.Params.author.author__name }}
+
+> {{ $en.Params.author.author__bio }}
+
+{{ $en.Params.author.author__name }} (@jebucaro) writes case studies about the software he builds and runs, and articles on .NET, Java, Python, AI agents, and developer tooling. Every page is available in English and Spanish.
+
+## About
+
+- [{{ $about.Title }}]({{ $about.Permalink }}): background, experience, and how to get in touch.
+
+## Work
+{{ range where $en.RegularPages "Section" "work" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description }}
+{{- end }}
+
+## Writing
+{{ range (where $en.RegularPages "Section" "blog").ByLastmod.Reverse }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description }}
+{{- end }}
+
+## Profiles
+{{ range $en.Params.author.same_as }}
+- [{{ . }}]({{ . }})
+{{- end }}
+
+## Optional
+
+- [Versión en español]({{ (index (where hugo.Sites "Language.Lang" "es") 0).Home.Permalink }}): the same site in Spanish.

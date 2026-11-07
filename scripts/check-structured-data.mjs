@@ -160,6 +160,68 @@ if (existsSync(talk)) {
         );
 }
 
+// /llms.txt: English only, summary = English bio, every link is a built page.
+function checkLlmsTxt() {
+    const file = 'llms.txt';
+    const full = join(PUBLIC_DIR, file);
+    if (existsSync(join(PUBLIC_DIR, 'es', file)))
+        fail('es/llms.txt', 'should not be generated');
+    if (!existsSync(full)) return fail(file, 'missing');
+    const text = readFileSync(full, 'utf8');
+    const lines = text.split('\n');
+    if (lines[0] !== `# ${PERSON_NAME}`)
+        fail(file, `first line is ${JSON.stringify(lines[0])}`);
+    if (/&amp;|&#/.test(text)) fail(file, 'contains HTML entities');
+    const home = jsonLdNodes(
+        'index.html',
+        readFileSync(join(PUBLIC_DIR, 'index.html'), 'utf8'),
+    );
+    const bio = home.find((n) => n['@id'] === PERSON_ID)?.description;
+    if (!bio || !lines.includes(`> ${bio}`))
+        fail(file, 'summary is not the English bio');
+    const sections = lines.filter((l) => l.startsWith('## '));
+    if (
+        !same(sections, [
+            '## About',
+            '## Work',
+            '## Writing',
+            '## Profiles',
+            '## Optional',
+        ])
+    ) {
+        fail(file, `sections are ${JSON.stringify(sections)}`);
+    }
+    const profiles =
+        text.split('## Profiles')[1]?.split('## Optional')[0] ?? '';
+    for (const url of SAME_AS)
+        if (!profiles.includes(`](${url})`))
+            fail(file, `Profiles missing ${url}`);
+    for (const [, url] of text.matchAll(
+        /\]\((https:\/\/jonathanbucaro\.com\/[^)]*)\)/g,
+    )) {
+        const path = url.slice(SITE.length);
+        const target =
+            path === '' || path.endsWith('/')
+                ? join(PUBLIC_DIR, path, 'index.html')
+                : join(PUBLIC_DIR, path);
+        if (!existsSync(target))
+            fail(file, `link does not resolve to a built page: ${url}`);
+    }
+    if (
+        !/## Work\n(?:.*\n)*?- \[.+\]\(https:\/\/jonathanbucaro\.com\/work\//.test(
+            text,
+        )
+    )
+        fail(file, 'no work items listed');
+    if (
+        !/## Writing\n(?:.*\n)*?- \[.+\]\(https:\/\/jonathanbucaro\.com\/blog\//.test(
+            text,
+        )
+    )
+        fail(file, 'no posts listed');
+}
+checkLlmsTxt();
+
 if (failures.length) {
     console.error(`Structured data check failed (${failures.length}):`);
     for (const f of [...new Set(failures)]) console.error(`  - ${f}`);
