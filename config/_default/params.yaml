@@ -71,6 +71,35 @@ technologies:
 author:
     author__name: Jonathan Búcaro
     author__avatar: '/images/profile.webp'
+    # Canonical schema.org Person (layouts/_partials/schema/person.html).
+    # Every field must be backed by visible content on the site.
+    alternate_names: ['Jonathan Bucaro', 'jebucaro']
+    job_title: 'Senior Software Engineer'
+    address:
+        country: 'GT'
+    knows_about:
+        - 'Product Engineering'
+        - 'Software Engineering'
+        - 'Java'
+        - 'Spring Boot'
+        - 'React'
+        - 'Hasura'
+        - 'Kubernetes'
+        - 'C#'
+        - '.NET'
+        - 'Python'
+        - 'TypeScript'
+        - 'AWS'
+        - 'Legacy System Modernization'
+        - 'Model Context Protocol (MCP)'
+        - 'AI Agent Skills'
+        - 'Command-Line Tools'
+    same_as:
+        - 'https://github.com/jebucaro'
+        - 'https://www.linkedin.com/in/jonathanbucaro/'
+        - 'https://www.nuget.org/profiles/jebucaro'
+        - 'https://dev.to/jebucaro'
+        - 'https://www.tinytooltown.com/authors/jebucaro/'
 social:
     - icon: logo-linkedin
       name: LinkedIn

@@ -18,7 +18,7 @@
   "image" $imageURL
   "keywords" $tags
   "inLanguage" .Site.Language.Locale
-  "author" (dict "@type" "Person" "name" .Site.Params.author.author__name "url" (printf "%sabout/" .Site.BaseURL))
-  "publisher" (dict "@type" "Person" "name" .Site.Params.author.author__name "image" (dict "@type" "ImageObject" "url" $logoURL))
+  "author" (partial "schema/person-ref.html" .)
+  "publisher" (merge (partial "schema/person-ref.html" .) (dict "image" (dict "@type" "ImageObject" "url" $logoURL)))
 }}
 <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

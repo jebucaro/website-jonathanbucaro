@@ -1,0 +1,22 @@
+{{/* Returns the canonical Person node. Identical on every page and in both
+     languages (URLs always point at the English site) except `description`,
+     which is the localized footer bio. */}}
+{{ $a := site.Params.author }}
+{{ $home := hugo.Sites.Default.Home.Permalink }}
+{{ $image := $a.author__avatar | absURL }}
+{{ with resources.Get (strings.TrimPrefix "/" $a.author__avatar) }}{{ $image = .Permalink }}{{ end }}
+{{ return dict
+  "@type" "Person"
+  "@id" (printf "%s#person" $home)
+  "name" $a.author__name
+  "alternateName" $a.alternate_names
+  "url" $home
+  "image" $image
+  "jobTitle" $a.job_title
+  "description" $a.author__bio
+  "address" (dict "@type" "PostalAddress" "addressCountry" $a.address.country)
+  "knowsAbout" $a.knows_about
+  "knowsLanguage" (slice "en" "es")
+  "sameAs" $a.same_as
+  "mainEntityOfPage" (printf "%sabout/" $home)
+}}

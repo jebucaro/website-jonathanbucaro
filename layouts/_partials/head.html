@@ -65,6 +65,8 @@
     <!-- Structured Data -->
     {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema/blog-posting.html" . }}{{ end }}
     {{ if and .IsPage (eq .Section "work") }}{{ partial "schema/work.html" . }}{{ end }}
+    {{ if .IsHome }}{{ partial "schema/home.html" . }}{{ end }}
+    {{ if .Params.profilePage }}{{ partial "schema/profile-page.html" . }}{{ end }}
 
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">

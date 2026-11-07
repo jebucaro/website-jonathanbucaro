@@ -4,6 +4,7 @@ date: 2023-07-09T11:08:22-06:00
 lastmod: 2025-11-26
 draft: false
 slug: 'about'
+profilePage: true
 ---
 
 ¡Hola! Me llamo Jonathan Búcaro y soy Ingeniero en Sistemas, con base en Guatemala 🇬🇹. A lo largo de mi carrera profesional, me he dedicado a desarrollar soluciones tecnológicas que aportan valor y eficiencia a las operaciones del negocio.

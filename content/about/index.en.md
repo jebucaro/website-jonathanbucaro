@@ -4,6 +4,7 @@ date: 2023-07-09T11:08:22-06:00
 lastmod: 2025-11-26
 draft: false
 slug: 'about'
+profilePage: true
 ---
 
 Hello! My name is Jonathan Búcaro, and I am a Systems Engineer based in Guatemala 🇬🇹. Throughout my professional career, I have been dedicated to developing technology solutions that bring value and efficiency to business operations.
