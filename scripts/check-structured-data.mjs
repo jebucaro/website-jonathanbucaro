@@ -19,7 +19,10 @@ const SAME_AS = [
 ];
 const HOME_PAGES = ['index.html', 'es/index.html'];
 const ABOUT_PAGES = ['about/index.html', 'es/about/index.html'];
-const BIO_MARKER = { en: 'I build software end to end', es: 'Construyo software de punta a punta' };
+const BIO_MARKER = {
+    en: 'I build software end to end',
+    es: 'Construyo software de punta a punta',
+};
 
 const failures = [];
 const fail = (file, msg) => failures.push(`${file}: ${msg}`);
@@ -37,7 +40,8 @@ function htmlFiles(dir) {
 
 function jsonLdNodes(file, html) {
     const nodes = [];
-    const re = /<script[^>]*type=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi;
+    const re =
+        /<script[^>]*type=["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi;
     for (const [, raw] of html.matchAll(re)) {
         if (/&amp;|&#/.test(raw)) fail(file, 'JSON-LD contains HTML entities');
         let data;
@@ -66,16 +70,22 @@ function checkPerson(file, person, lang) {
         alternateName: ['Jonathan Bucaro', 'jebucaro'],
     };
     for (const [key, value] of Object.entries(expect)) {
-        if (!same(person[key], value)) fail(file, `Person.${key} is ${JSON.stringify(person[key])}`);
+        if (!same(person[key], value))
+            fail(file, `Person.${key} is ${JSON.stringify(person[key])}`);
     }
-    if (person.address?.addressCountry !== 'GT') fail(file, 'Person.address.addressCountry is not GT');
-    if ('worksFor' in person) fail(file, 'Person.worksFor must wait for the About rewrite');
-    if (!String(person.description ?? '').includes(BIO_MARKER[lang])) fail(file, `Person.description is not the ${lang} bio`);
+    if (person.address?.addressCountry !== 'GT')
+        fail(file, 'Person.address.addressCountry is not GT');
+    if ('worksFor' in person)
+        fail(file, 'Person.worksFor must wait for the About rewrite');
+    if (!String(person.description ?? '').includes(BIO_MARKER[lang]))
+        fail(file, `Person.description is not the ${lang} bio`);
 }
 
 function checkRef(file, label, ref) {
-    if (ref?.['@id'] !== PERSON_ID) fail(file, `${label} does not reference ${PERSON_ID}`);
-    if (ref?.name !== PERSON_NAME) fail(file, `${label}.name is ${JSON.stringify(ref?.name)}`);
+    if (ref?.['@id'] !== PERSON_ID)
+        fail(file, `${label} does not reference ${PERSON_ID}`);
+    if (ref?.name !== PERSON_NAME)
+        fail(file, `${label}.name is ${JSON.stringify(ref?.name)}`);
 }
 
 for (const full of htmlFiles(PUBLIC_DIR)) {
@@ -83,20 +93,31 @@ for (const full of htmlFiles(PUBLIC_DIR)) {
     const html = readFileSync(full, 'utf8');
     const nodes = jsonLdNodes(file, html);
     const lang = file.startsWith('es/') ? 'es' : 'en';
-    const fullPersons = nodes.filter((n) => n['@type'] === 'Person' && 'sameAs' in n);
+    const fullPersons = nodes.filter(
+        (n) => n['@type'] === 'Person' && 'sameAs' in n,
+    );
 
     if (HOME_PAGES.includes(file)) {
         const site = byType(nodes, 'WebSite');
-        if (site?.['@id'] !== `${SITE}#website`) fail(file, 'missing WebSite node');
-        if (site?.publisher?.['@id'] !== PERSON_ID) fail(file, 'WebSite.publisher does not reference Person');
+        if (site?.['@id'] !== `${SITE}#website`)
+            fail(file, 'missing WebSite node');
+        if (site?.publisher?.['@id'] !== PERSON_ID)
+            fail(file, 'WebSite.publisher does not reference Person');
         checkPerson(file, fullPersons[0], lang);
     } else if (ABOUT_PAGES.includes(file)) {
         const page = byType(nodes, 'ProfilePage');
-        const canonical = /<link rel="?canonical"? href="?([^"\s>]+)/.exec(html)?.[1];
+        const canonical = /<link rel="?canonical"? href="?([^"\s>]+)/.exec(
+            html,
+        )?.[1];
         if (!page) fail(file, 'missing ProfilePage node');
         else {
-            if (page.mainEntity?.['@id'] !== PERSON_ID) fail(file, 'ProfilePage.mainEntity does not reference Person');
-            if (page.url !== canonical) fail(file, `ProfilePage.url ${page.url} != canonical ${canonical}`);
+            if (page.mainEntity?.['@id'] !== PERSON_ID)
+                fail(file, 'ProfilePage.mainEntity does not reference Person');
+            if (page.url !== canonical)
+                fail(
+                    file,
+                    `ProfilePage.url ${page.url} != canonical ${canonical}`,
+                );
         }
         checkPerson(file, fullPersons[0], lang);
     } else if (fullPersons.length > 0) {
@@ -107,9 +128,12 @@ for (const full of htmlFiles(PUBLIC_DIR)) {
         checkRef(file, 'BlogPosting.author', post.author);
         checkRef(file, 'BlogPosting.publisher', post.publisher);
     }
-    for (const work of nodes.filter((n) => ['CreativeWork', 'SoftwareApplication'].includes(n['@type']))) {
+    for (const work of nodes.filter((n) =>
+        ['CreativeWork', 'SoftwareApplication'].includes(n['@type']),
+    )) {
         checkRef(file, `${work['@type']}.author`, work.author);
-        if (work.recordedAt) checkRef(file, 'Event.performer', work.recordedAt.performer);
+        if (work.recordedAt)
+            checkRef(file, 'Event.performer', work.recordedAt.performer);
     }
 }
 
@@ -120,12 +144,20 @@ for (const [file, type] of [
 ]) {
     const full = join(PUBLIC_DIR, file);
     if (!existsSync(full)) fail(file, 'expected page is missing');
-    else if (!byType(jsonLdNodes(file, readFileSync(full, 'utf8')), type)) fail(file, `missing ${type}`);
+    else if (!byType(jsonLdNodes(file, readFileSync(full, 'utf8')), type))
+        fail(file, `missing ${type}`);
 }
 const talk = join(PUBLIC_DIR, 'work/ai-native-clis-with-skills/index.html');
 if (existsSync(talk)) {
-    const work = byType(jsonLdNodes('talk', readFileSync(talk, 'utf8')), 'CreativeWork');
-    if (!work?.recordedAt) fail('work/ai-native-clis-with-skills/index.html', 'missing recordedAt Event');
+    const work = byType(
+        jsonLdNodes('talk', readFileSync(talk, 'utf8')),
+        'CreativeWork',
+    );
+    if (!work?.recordedAt)
+        fail(
+            'work/ai-native-clis-with-skills/index.html',
+            'missing recordedAt Event',
+        );
 }
 
 if (failures.length) {
