@@ -4,8 +4,6 @@
 
 > {{ $en.Params.author.author__bio }}
 
-{{ $en.Params.author.author__name }} (@jebucaro) writes case studies about the software he builds and runs, and articles on .NET, Java, Python, AI agents, and developer tooling. Every page is available in English and Spanish.
-
 ## About
 
 - [{{ $about.Title }}]({{ $about.Permalink }}): background, experience, and how to get in touch.

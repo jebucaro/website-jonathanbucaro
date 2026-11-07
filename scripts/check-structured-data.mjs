@@ -86,6 +86,14 @@ function checkRef(file, label, ref) {
         fail(file, `${label} does not reference ${PERSON_ID}`);
     if (ref?.name !== PERSON_NAME)
         fail(file, `${label}.name is ${JSON.stringify(ref?.name)}`);
+    const extra = Object.keys(ref ?? {}).filter(
+        (k) => !['@type', '@id', 'name', 'url'].includes(k),
+    );
+    if (extra.length)
+        fail(
+            file,
+            `${label} adds ${extra.join(', ')} to the shared Person @id`,
+        );
 }
 
 for (const full of htmlFiles(PUBLIC_DIR)) {
@@ -99,8 +107,10 @@ for (const full of htmlFiles(PUBLIC_DIR)) {
 
     if (HOME_PAGES.includes(file)) {
         const site = byType(nodes, 'WebSite');
-        if (site?.['@id'] !== `${SITE}#website`)
-            fail(file, 'missing WebSite node');
+        // One WebSite node per language, so one @id never carries two urls.
+        const siteId = `${SITE}${lang === 'es' ? 'es/' : ''}#website`;
+        if (site?.['@id'] !== siteId)
+            fail(file, `WebSite @id is not ${siteId}`);
         if (site?.publisher?.['@id'] !== PERSON_ID)
             fail(file, 'WebSite.publisher does not reference Person');
         checkPerson(file, fullPersons[0], lang);
@@ -179,6 +189,12 @@ function checkLlmsTxt() {
     const bio = home.find((n) => n['@id'] === PERSON_ID)?.description;
     if (!bio || !lines.includes(`> ${bio}`))
         fail(file, 'summary is not the English bio');
+    // Nothing between the summary and the first section: free prose there
+    // drifts into claims the site's content doesn't back.
+    const summaryAt = lines.indexOf(`> ${bio}`);
+    const aboutAt = lines.indexOf('## About');
+    if (lines.slice(summaryAt + 1, aboutAt).some((l) => l.trim() !== ''))
+        fail(file, 'unexpected prose between summary and ## About');
     const sections = lines.filter((l) => l.startsWith('## '));
     if (
         !same(sections, [
