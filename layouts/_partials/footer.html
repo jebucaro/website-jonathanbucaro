@@ -25,7 +25,7 @@
                                         {{ partial "image.html" (dict "image" .Site.Params.author.author__avatar "alt" .Site.Params.author.author__name "widths" (slice 250 500) "sizes" "250px") }}
                                     </div>
                                     <div class="footer__author-info">
-                                        <h3 class="footer__author-name">{{ .Site.Params.author.author__name }}</h3>
+                                        <h2 class="footer__author-name">{{ .Site.Params.author.author__name }}</h2>
                                         <p class="footer__author-bio">{{ .Site.Params.author.author__bio }}</p>
                                         {{ partial "social-links.html" . }}
                                     </div>

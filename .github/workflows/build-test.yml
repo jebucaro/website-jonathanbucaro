@@ -48,21 +48,17 @@ jobs:
             - name: Verify hero preload matches hero img srcset
               run: node scripts/check-hero-preload.mjs
 
+            # Official Nu Html Checker (vnu), pinned by image digest. The
+            # previous wrapper action bundled a 2022 vnu whose CSS checker
+            # rejected valid modern CSS (size-adjust, content-visibility,
+            # subgrid) in the inlined stylesheet; current vnu accepts all of
+            # it, so no ignore list is needed. To update, pull
+            # ghcr.io/validator/validator:latest and replace the digest.
             - name: Validate HTML5
-              uses: Cyb3r-Jak3/html5validator-action@v8.0.0
-              with:
-                  root: public/
-                  css: false
-                  blacklist: '.*/node_modules/.*'
-                  # vnu's bundled CSS checker predates several CSS properties in
-                  # use here, so it flags them as unknown even though they're
-                  # valid and well-supported: the size-adjust @font-face
-                  # descriptor (Baseline 2022, used by the metric-tuned font
-                  # fallback), and content-visibility/contain-intrinsic-size
-                  # (CSS Containment, used to defer below-the-fold rendering).
-                  # The stylesheet is inlined in every page since the Lighthouse
-                  # work, so vnu now sees all of this during HTML validation.
-                  extra: '--ignore-re "size-adjust|content-visibility|contain-intrinsic-size"'
+              run: >-
+                  docker run --rm -v "$PWD/public:/site:ro"
+                  ghcr.io/validator/validator@sha256:292cef9f3367a6d52447c617e65c94bca04cd3399abb37bd5d17c1c7d430525a
+                  java -jar /vnu.jar --skip-non-html --errors-only /site
 
             - name: Upload build artifacts on failure
               if: failure()
