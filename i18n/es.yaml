@@ -96,8 +96,11 @@
   translation: 'Publicaciones'
 
 # Section: Hero
-- id: sections_hero_title
-  translation: 'Soy Jonathan 🤓'
+- id: sections_hero_meta
+  translation: 'Guatemala · @jebucaro'
+
+- id: sections_hero_terminal_label
+  translation: 'Trabajo reciente'
 
 - id: sections_hero_subtitle
   translation: 'Construyo productos de software de punta a punta.'

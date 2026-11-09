@@ -96,8 +96,11 @@
   translation: 'Posts'
 
 # Section: Hero
-- id: sections_hero_title
-  translation: "I'm Jonathan 🤓"
+- id: sections_hero_meta
+  translation: 'Guatemala · @jebucaro'
+
+- id: sections_hero_terminal_label
+  translation: 'Latest work'
 
 - id: sections_hero_subtitle
   translation: 'I build software products end to end.'
