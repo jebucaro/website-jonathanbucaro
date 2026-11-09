@@ -103,7 +103,7 @@
   translation: 'Construyo productos de software de punta a punta.'
 
 - id: sections_hero_description
-  translation: 'Product engineer y Senior Software Engineer en Guatemala. Convierto problemas de negocio en software que funciona, modernizo los sistemas de los que depende, los hago utilizables por agentes de IA y los mantengo funcionando en producción. En el día a día: Java (Spring Boot), React, Hasura, Kubernetes, C#, Python y AWS.'
+  translation: 'Product Engineer y Senior Software Engineer en Guatemala. Convierto problemas de negocio en software que funciona, modernizo los sistemas de los que depende, los hago utilizables por agentes de IA y los mantengo funcionando en producción. En el día a día: Java (Spring Boot), React, Hasura, Kubernetes, C#, Python y AWS.'
 
 - id: sections_hero_button
   translation: 'Contáctame'

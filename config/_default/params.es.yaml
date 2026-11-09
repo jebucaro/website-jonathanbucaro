@@ -1,8 +1,8 @@
 # Spanish localized parameters
-description: 'Jonathan Búcaro (@jebucaro), product engineer y Senior Software Engineer en Guatemala. Casos de estudio y artículos sobre construir, modernizar y operar software, y hacerlo funcionar con agentes de IA.'
+description: 'Jonathan Búcaro (@jebucaro) es Product Engineer y Senior Software Engineer en Guatemala, y escribe sobre cómo construir, modernizar y operar software, y hacerlo funcionar con agentes de IA.'
 author:
     author__bio: >-
-        Product engineer y Senior Software Engineer en Guatemala. Construyo software de punta a punta, desde el problema de negocio hasta producción, con Java, C#, Python y React, y hago que los sistemas existentes puedan ser usados por agentes de IA.
+        Product Engineer y Senior Software Engineer en Guatemala. Construyo software de punta a punta, desde el problema de negocio hasta producción, con Java, C#, Python y React, y hago que los sistemas existentes puedan ser usados por agentes de IA.
 
 blog:
     blog__title: Publicaciones Recientes
