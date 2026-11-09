@@ -185,6 +185,12 @@ $terminal-fg: #dcdfe4;
     margin-top: 1em;
 }
 
+/* Half a line between a command and its output: less crowded, but the
+   output still reads as belonging to the command above it. */
+.terminal__line + .terminal__list {
+    margin-top: 0.5em;
+}
+
 .terminal__item,
 .terminal__repo {
     display: grid;
