@@ -195,6 +195,17 @@ for (const [lang, cfg] of Object.entries(LANGS)) {
         if (!labels.includes(tech))
             fail(file, `technologies carousel is missing ${tech}`);
 
+    // Tab icon: the Ubuntu logo (inline SVG), not a plain colored dot.
+    const tabIcon = elementsWithClass(terminal.inner, 'terminal__tab-icon')[0];
+    if (
+        !tabIcon ||
+        !/<svg\b/i.test(tabIcon.inner) ||
+        !/#e95420/i.test(tabIcon.inner)
+    )
+        fail(file, 'terminal tab is missing the Ubuntu logo icon');
+    if (elementsWithClass(terminal.inner, 'terminal__tab-dot').length)
+        fail(file, 'terminal tab still uses the plain dot');
+
     // Second command: the open-source repos, from site config, linking to GitHub.
     if (!text(terminal.inner).includes('$ gh repo list jebucaro --limit 3'))
         fail(file, 'terminal gh repo list command missing');

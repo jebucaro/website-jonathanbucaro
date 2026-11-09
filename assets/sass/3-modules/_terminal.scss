@@ -60,12 +60,12 @@ $terminal-fg: #dcdfe4;
     }
 }
 
-.terminal__tab-dot {
+.terminal__tab-icon {
+    /* Ubuntu logo (Windows Terminal's WSL profile icon), inline SVG. */
+    display: flex;
     flex: none;
     width: 14px;
     height: 14px;
-    border-radius: 50%;
-    background-color: #e95420;
 }
 
 .terminal__tab-label {
