@@ -1,9 +1,9 @@
 {{- /*
     Homepage hero terminal card: a static Windows Terminal window (One Half
-    Dark) running `ls work --latest`. Lists the current language's newest work
+    Dark) running `ls work --latest` and `gh repo list`. Lists the current language's newest work
     items (max 5) by date, using each page's short linkTitle. The window chrome
     and prompt lines are decorative and hidden from assistive tech; the list
-    itself is a real list of links. Command text is not translated.
+    itself is a real list of links. Repos come from params `terminal_repos`. Command text is not translated.
 */ -}}
 {{- $items := first 5 (where .Site.RegularPages "Section" "work").ByDate.Reverse -}}
 <section class="terminal" aria-label="{{ i18n "sections_hero_terminal_label" }}">
@@ -35,6 +35,18 @@
             </li>
             {{- end }}
         </ul>
-        <p class="terminal__line" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cursor"></span></p>
+        {{- with .Site.Params.terminal_repos }}
+        <p class="terminal__line terminal__line--spaced" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cmd">gh</span> <span class="terminal__arg">repo list jebucaro</span> <span class="terminal__flag">--limit 3</span></p>
+        <ul class="terminal__list" role="list">
+            {{- range first 3 . }}
+            <li class="terminal__repo">
+                <a class="terminal__link" href="https://github.com/jebucaro/{{ .name }}">{{ .name }}</a>
+                <span class="terminal__lang">{{ .language }}</span>
+                <span class="terminal__desc">{{ .description }}</span>
+            </li>
+            {{- end }}
+        </ul>
+        {{- end }}
+        <p class="terminal__line terminal__line--spaced" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cursor"></span></p>
     </div>
 </section>

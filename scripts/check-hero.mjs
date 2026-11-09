@@ -15,14 +15,32 @@ const LANGS = {
         workDir: 'work',
         hrefPrefix: '/work/',
         h1: 'I build software products end to end.',
-        label: 'Latest work',
+        label: 'Latest work and open-source code',
+        repos: [
+            ['dotnet-gitmoji', 'C#', 'Gitmoji commits for .NET teams'],
+            ['banguat', 'C#', 'Banguat exchange rates as REST, MCP and CLI'],
+            ['pokecli', 'Python', 'Typed PokeAPI CLI with an agent skill'],
+        ],
     },
     es: {
         file: 'es/index.html',
         workDir: 'es/work',
         hrefPrefix: '/es/work/',
         h1: 'Construyo productos de software de punta a punta.',
-        label: 'Trabajo reciente',
+        label: 'Trabajo reciente y código abierto',
+        repos: [
+            ['dotnet-gitmoji', 'C#', 'Commits con gitmoji para equipos .NET'],
+            [
+                'banguat',
+                'C#',
+                'Tipo de cambio del Banguat como REST, MCP y CLI',
+            ],
+            [
+                'pokecli',
+                'Python',
+                'CLI tipado para PokeAPI con skill para agentes',
+            ],
+        ],
     },
 };
 
@@ -176,6 +194,35 @@ for (const [lang, cfg] of Object.entries(LANGS)) {
     for (const tech of ['Kubernetes', 'Hasura', 'AWS'])
         if (!labels.includes(tech))
             fail(file, `technologies carousel is missing ${tech}`);
+
+    // Second command: the open-source repos, from site config, linking to GitHub.
+    if (!text(terminal.inner).includes('$ gh repo list jebucaro --limit 3'))
+        fail(file, 'terminal gh repo list command missing');
+    const repos = elementsWithClass(terminal.inner, 'terminal__repo');
+    if (repos.length !== cfg.repos.length)
+        fail(file, `expected ${cfg.repos.length} repos, found ${repos.length}`);
+    repos.forEach((repo, i) => {
+        const [name, lang, desc] = cfg.repos[i] ?? [];
+        const a = /<a\b[^>]*>([\s\S]*?)<\/a>/i.exec(repo.inner);
+        const cell = (cls) =>
+            text(elementsWithClass(repo.inner, cls)[0]?.inner ?? '');
+        if (
+            attr('href', a?.[0] ?? '') !== `https://github.com/jebucaro/${name}`
+        )
+            fail(file, `repo ${i} href is ${attr('href', a?.[0] ?? '')}`);
+        if (text(a?.[1] ?? '') !== name)
+            fail(file, `repo ${i} name is ${text(a?.[1] ?? '')}`);
+        if (cell('terminal__lang') !== lang)
+            fail(file, `repo ${i} language is ${cell('terminal__lang')}`);
+        if (cell('terminal__desc') !== desc)
+            fail(
+                file,
+                `repo ${i} description is ${JSON.stringify(cell('terminal__desc'))}`,
+            );
+    });
+    for (const l of elementsWithClass(terminal.inner, 'terminal__list'))
+        if (attr('role', l.tag) !== 'list')
+            fail(file, 'every .terminal__list needs role="list"');
 
     const avatar = elementsWithClass(html, 'hero__avatar')[0];
     const img = avatar && /<img\b[^>]*>/i.exec(avatar.inner)?.[0];

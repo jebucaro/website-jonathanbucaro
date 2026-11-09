@@ -10,3 +10,15 @@ blog:
 
 logos:
     logos__title: 'Mi experiencia profesional incluye colaboraciones con las siguientes empresas:'
+
+# Terminal del hero: segundo comando (`gh repo list`). Ver params.en.yaml.
+terminal_repos:
+    - name: 'dotnet-gitmoji'
+      language: 'C#'
+      description: 'Commits con gitmoji para equipos .NET'
+    - name: 'banguat'
+      language: 'C#'
+      description: 'Tipo de cambio del Banguat como REST, MCP y CLI'
+    - name: 'pokecli'
+      language: 'Python'
+      description: 'CLI tipado para PokeAPI con skill para agentes'

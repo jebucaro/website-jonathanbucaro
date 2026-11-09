@@ -100,7 +100,7 @@
   translation: 'Guatemala · @jebucaro'
 
 - id: sections_hero_terminal_label
-  translation: 'Latest work'
+  translation: 'Latest work and open-source code'
 
 - id: sections_hero_subtitle
   translation: 'I build software products end to end.'

@@ -181,7 +181,12 @@ $terminal-fg: #dcdfe4;
     }
 }
 
-.terminal__item {
+.terminal__line--spaced {
+    margin-top: 1em;
+}
+
+.terminal__item,
+.terminal__repo {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
@@ -191,6 +196,17 @@ $terminal-fg: #dcdfe4;
        Lighthouse target-size) even at the 11px phone font size. */
     line-height: 24px;
     white-space: nowrap;
+}
+
+.terminal__lang {
+    /* One Half blue: red #e06c75 is 4.38:1 on #282c34, below WCAG AA. */
+    color: #61afef;
+}
+
+.terminal__desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #9da5b4;
 }
 
 .terminal__date {
