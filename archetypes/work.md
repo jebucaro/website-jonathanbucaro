@@ -1,5 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
+# linkTitle: short name shown in the homepage terminal listing (falls back to title).
+linkTitle: ''
 subtitle: ""
 date: {{ .Date }}
 draft: true
