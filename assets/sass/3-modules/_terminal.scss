@@ -177,6 +177,9 @@ $terminal-fg: #dcdfe4;
     column-gap: 2ch;
     margin: 0;
     padding: 0;
+    /* Each row is a touch target: keep links at least 24px tall (WCAG 2.5.8,
+       Lighthouse target-size) even at the 11px phone font size. */
+    line-height: 24px;
     white-space: nowrap;
 
     @media only screen and (max-width: $mobile) {
