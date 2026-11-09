@@ -113,8 +113,25 @@
 
 .hero__terminal {
     grid-area: terminal;
-    align-self: center;
     min-width: 0;
+
+    /* Desktop: stretch the card to the full height of the left column
+       (byline to button); the listing stays at the top, like a real
+       terminal window with room below the prompt. */
+    @media only screen and (min-width: #{$desktop + 1px}) {
+        display: flex;
+        align-self: stretch;
+
+        .terminal {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+
+        .terminal__body {
+            flex: 1;
+        }
+    }
 
     @media only screen and (max-width: $desktop) {
         margin-top: 32px;

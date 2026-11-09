@@ -165,6 +165,18 @@ for (const [lang, cfg] of Object.entries(LANGS)) {
         if (!text(a?.[1] ?? '')) fail(file, `item ${i} has empty link text`);
     });
 
+    // The stack sentence moved out of the hero; the technologies carousel is
+    // now the only visible home for these (and backs Person.knowsAbout).
+    const desc = elementsWithClass(html, 'hero__description')[0];
+    if (!desc || /day to day|día a día/i.test(text(desc.inner)))
+        fail(file, 'hero description still carries the stack sentence');
+    const labels = elementsWithClass(html, 'technologies-marquee__label').map(
+        (l) => text(l.inner),
+    );
+    for (const tech of ['Kubernetes', 'Hasura', 'AWS'])
+        if (!labels.includes(tech))
+            fail(file, `technologies carousel is missing ${tech}`);
+
     const avatar = elementsWithClass(html, 'hero__avatar')[0];
     const img = avatar && /<img\b[^>]*>/i.exec(avatar.inner)?.[0];
     if (!img) fail(file, 'missing .hero__avatar <img>');
