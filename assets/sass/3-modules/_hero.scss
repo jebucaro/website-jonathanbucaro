@@ -115,17 +115,16 @@
     grid-area: terminal;
     min-width: 0;
 
-    /* Desktop: stretch the card to the full height of the left column
-       (byline to button); the listing stays at the top, like a real
-       terminal window with room below the prompt. */
+    /* Desktop: a tall-enough card centered against the left column, with a
+       few empty lines below the prompt like a real terminal window. 420px
+       was picked over a full-column stretch, which left too much empty space. */
     @media only screen and (min-width: #{$desktop + 1px}) {
-        display: flex;
-        align-self: stretch;
+        align-self: center;
 
         .terminal {
             display: flex;
-            flex: 1;
             flex-direction: column;
+            min-height: 420px;
         }
 
         .terminal__body {
