@@ -26,7 +26,7 @@
     </div>
     <div class="terminal__body">
         <p class="terminal__line" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cmd">ls</span> <span class="terminal__arg">work</span> <span class="terminal__flag">--latest</span></p>
-        <ul class="terminal__list">
+        <ul class="terminal__list" role="list">
             {{- range $items }}
             <li class="terminal__item">
                 <span class="terminal__date">{{ .Date.Format "2006-01" }}</span>

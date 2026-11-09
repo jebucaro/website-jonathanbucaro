@@ -165,26 +165,32 @@ $terminal-fg: #dcdfe4;
     background-color: #a3b3cc;
 }
 
+/* The list owns the columns so the type column fits its longest localized
+   term (e.g. "proyecto", "caso de estudio"); rows inherit them via subgrid
+   and stay aligned. The title column absorbs the rest and truncates. */
 .terminal__list {
+    display: grid;
+    grid-template-columns: auto max-content minmax(0, 1fr);
+    column-gap: 2ch;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @media only screen and (max-width: $mobile) {
+        column-gap: 1ch;
+    }
 }
 
 .terminal__item {
     display: grid;
-    grid-template-columns: auto 7ch minmax(0, 1fr);
-    column-gap: 2ch;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
     margin: 0;
     padding: 0;
     /* Each row is a touch target: keep links at least 24px tall (WCAG 2.5.8,
        Lighthouse target-size) even at the 11px phone font size. */
     line-height: 24px;
     white-space: nowrap;
-
-    @media only screen and (max-width: $mobile) {
-        column-gap: 1ch;
-    }
 }
 
 .terminal__date {

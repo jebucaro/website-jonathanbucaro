@@ -16,8 +16,6 @@ const LANGS = {
         hrefPrefix: '/work/',
         h1: 'I build software products end to end.',
         label: 'Latest work',
-        firstHref: '/work/ai-native-clis-with-skills/',
-        firstText: 'AI-native CLIs with Skills',
     },
     es: {
         file: 'es/index.html',
@@ -25,8 +23,6 @@ const LANGS = {
         hrefPrefix: '/es/work/',
         h1: 'Construyo productos de software de punta a punta.',
         label: 'Trabajo reciente',
-        firstHref: '/es/work/clis-ai-native-con-skills/',
-        firstText: 'CLIs AI-native con skills',
     },
 };
 
@@ -35,6 +31,13 @@ const fail = (file, msg) => failures.push(`${file}: ${msg}`);
 const text = (html) =>
     html
         .replace(/<[^>]*>/g, ' ')
+        .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+        .replace(/&#x([0-9a-f]+);/gi, (_, n) =>
+            String.fromCodePoint(parseInt(n, 16)),
+        )
+        .replace(/&quot;/g, '"')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
         .replace(/&amp;/g, '&')
         .replace(/\s+/g, ' ')
         .trim();
@@ -72,12 +75,28 @@ function elementsWithClass(html, cls) {
     return out;
 }
 
-function workPageCount(dir) {
+// Expected listing for a language, derived from the built work pages (so a
+// newly published item never needs a script change): each page's JSON-LD
+// datePublished, newest first, at most MAX_ITEMS. Returns [{href, month}].
+function expectedWork(dir) {
     const full = join(PUBLIC_DIR, dir);
-    if (!existsSync(full)) return 0;
-    return readdirSync(full, { withFileTypes: true }).filter(
-        (e) => e.isDirectory() && existsSync(join(full, e.name, 'index.html')),
-    ).length;
+    if (!existsSync(full)) return [];
+    return readdirSync(full, { withFileTypes: true })
+        .filter(
+            (e) =>
+                e.isDirectory() && existsSync(join(full, e.name, 'index.html')),
+        )
+        .map((e) => {
+            const page = readFileSync(join(full, e.name, 'index.html'), 'utf8');
+            const date = /"datePublished":"([^"]+)"/.exec(page)?.[1] ?? '';
+            return {
+                href: `/${dir}/${e.name}/`,
+                date,
+                month: date.slice(0, 7),
+            };
+        })
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+        .slice(0, MAX_ITEMS);
 }
 
 for (const [lang, cfg] of Object.entries(LANGS)) {
@@ -112,12 +131,17 @@ for (const [lang, cfg] of Object.entries(LANGS)) {
     if (!text(terminal.inner).includes('$ ls work --latest'))
         fail(file, 'terminal command line missing');
 
+    const list = elementsWithClass(terminal.inner, 'terminal__list')[0];
+    // list-style: none drops list semantics in Safari/VoiceOver without it.
+    if (!list || attr('role', list.tag) !== 'list')
+        fail(file, '.terminal__list needs role="list"');
+
     const items = elementsWithClass(terminal.inner, 'terminal__item');
-    const expected = Math.min(MAX_ITEMS, workPageCount(cfg.workDir));
-    if (items.length !== expected)
+    const expected = expectedWork(cfg.workDir);
+    if (items.length !== expected.length)
         fail(
             file,
-            `expected ${expected} terminal items, found ${items.length}`,
+            `expected ${expected.length} terminal items, found ${items.length}`,
         );
     items.forEach((item, i) => {
         const a = /<a\b[^>]*>([\s\S]*?)<\/a>/i.exec(item.inner);
@@ -125,23 +149,20 @@ for (const [lang, cfg] of Object.entries(LANGS)) {
         const date = text(
             elementsWithClass(item.inner, 'terminal__date')[0]?.inner ?? '',
         );
+        const want = expected[i];
         if (!href?.startsWith(cfg.hrefPrefix))
             fail(
                 file,
                 `item ${i} href ${href} does not start with ${cfg.hrefPrefix}`,
             );
-        if (!/^\d{4}-\d{2}$/.test(date))
-            fail(file, `item ${i} date ${JSON.stringify(date)} is not YYYY-MM`);
-        if (i === 0) {
-            if (href !== cfg.firstHref)
-                fail(file, `first item href is ${href}`);
-            if (text(a?.[1] ?? '') !== cfg.firstText)
-                fail(
-                    file,
-                    `first item text is ${JSON.stringify(text(a?.[1] ?? ''))}`,
-                );
-            if (date !== '2026-10') fail(file, `first item date is ${date}`);
-        }
+        if (want && href !== want.href)
+            fail(
+                file,
+                `item ${i} is ${href}, expected ${want.href} (newest first)`,
+            );
+        if (want && date !== want.month)
+            fail(file, `item ${i} date ${date}, expected ${want.month}`);
+        if (!text(a?.[1] ?? '')) fail(file, `item ${i} has empty link text`);
     });
 
     const avatar = elementsWithClass(html, 'hero__avatar')[0];
