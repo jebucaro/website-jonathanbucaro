@@ -75,8 +75,23 @@ function checkPerson(file, person, lang) {
     }
     if (person.address?.addressCountry !== 'GT')
         fail(file, 'Person.address.addressCountry is not GT');
-    if ('worksFor' in person)
-        fail(file, 'Person.worksFor must wait for the About rewrite');
+    // Both are named on the About page (en and es).
+    const orgs = {
+        worksFor: {
+            '@type': 'Organization',
+            name: 'HTEC',
+            url: 'https://htec.com/',
+        },
+        alumniOf: {
+            '@type': 'CollegeOrUniversity',
+            name: 'Universidad Mariano Gálvez de Guatemala',
+            url: 'https://umg.edu.gt/',
+        },
+    };
+    for (const [key, value] of Object.entries(orgs)) {
+        if (!same(person[key], value))
+            fail(file, `Person.${key} is ${JSON.stringify(person[key])}`);
+    }
     if (!String(person.description ?? '').includes(BIO_MARKER[lang]))
         fail(file, `Person.description is not the ${lang} bio`);
 }
@@ -137,6 +152,10 @@ for (const full of htmlFiles(PUBLIC_DIR)) {
     for (const post of nodes.filter((n) => n['@type'] === 'BlogPosting')) {
         checkRef(file, 'BlogPosting.author', post.author);
         checkRef(file, 'BlogPosting.publisher', post.publisher);
+        if (post['@id'] !== `${post.url}#article`)
+            fail(file, `BlogPosting @id is ${JSON.stringify(post['@id'])}`);
+        if (post.mainEntityOfPage !== post.url)
+            fail(file, 'BlogPosting.mainEntityOfPage is not its url');
     }
     for (const work of nodes.filter((n) =>
         ['CreativeWork', 'SoftwareApplication'].includes(n['@type']),
