@@ -45,8 +45,11 @@ jobs:
             - name: Verify CSP hashes for inline scripts
               run: node scripts/check-csp-hashes.mjs
 
-            - name: Verify hero preload matches hero img srcset
-              run: node scripts/check-hero-preload.mjs
+            - name: Verify hero markup
+              run: node scripts/check-hero.mjs
+
+            - name: Verify structured data and llms.txt
+              run: node scripts/check-structured-data.mjs
 
             # Official Nu Html Checker (vnu), pinned by image digest. The
             # previous wrapper action bundled a 2022 vnu whose CSS checker

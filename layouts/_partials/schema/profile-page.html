@@ -1,0 +1,17 @@
+{{ $home := hugo.Sites.Default.Home.Permalink }}
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@graph" (slice
+    (dict
+      "@type" "ProfilePage"
+      "@id" (printf "%s#profilepage" .Permalink)
+      "url" .Permalink
+      "name" .Title
+      "inLanguage" .Site.Language.Locale
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+      "mainEntity" (dict "@id" (printf "%s#person" $home))
+    )
+    (partial "schema/person.html" .)
+  )
+}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

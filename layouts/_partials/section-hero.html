@@ -4,26 +4,31 @@
         <div class="container">
             <div class="row">
                 <div class="col col-12">
+                    {{/* DOM order is the stacked (mobile) order; CSS grid areas move
+                         the terminal to the right column on desktop. */}}
                     <div class="hero__inner">
-                        <div class="hero__left">
-                            <div class="hero__image">
+                        <div class="hero__byline">
+                            <div class="hero__avatar">
                                 {{ partial "image.html" (dict
                                     "image" .Site.Params.hero.hero__image
-                                    "alt" (printf "%s's Picture" .Site.Params.author.author__name)
-                                    "loading" "eager"
-                                    "fetchpriority" "high"
-                                    "sizes" (partial "functions/hero-sizes.html" .))
+                                    "alt" .Site.Params.author.author__name
+                                    "widths" (slice 64 128)
+                                    "sizes" "64px"
+                                    "loading" "eager")
                                 }}
                             </div>
-                        </div>
-                        <div class="hero__right">
-                            <h1 class="hero__title">{{ i18n "sections_hero_title" | safeHTML }} <br />{{ i18n "sections_hero_subtitle" | safeHTML }}</h1>
-                            <p class="hero__description">{{ i18n "sections_hero_description" | safeHTML }}</p>
-                            <div class="hero__subscribe">
-                                {{ $email := .Site.Params.contact.contact__email }}
-                                {{ $emailParts := split $email "@" }}
-                                <a href="#" class="button button--primary js-mailto" data-user="{{ index $emailParts 0 }}" data-domain="{{ index $emailParts 1 }}">{{ i18n "sections_hero_button" | safeHTML }}</a>
+                            <div class="hero__identity">
+                                <span class="hero__name">{{ .Site.Params.author.author__name }}</span>
+                                <span class="hero__meta">{{ i18n "sections_hero_meta" }}</span>
                             </div>
+                        </div>
+                        <h1 class="hero__title">{{ i18n "sections_hero_subtitle" }}</h1>
+                        <p class="hero__description">{{ i18n "sections_hero_description" }}</p>
+                        <div class="hero__terminal">{{ partial "hero-terminal.html" . }}</div>
+                        <div class="hero__actions">
+                            {{ $email := .Site.Params.contact.contact__email }}
+                            {{ $emailParts := split $email "@" }}
+                            <a href="#" class="button button--primary js-mailto" data-user="{{ index $emailParts 0 }}" data-domain="{{ index $emailParts 1 }}">{{ i18n "sections_hero_button" }}</a>
                         </div>
                     </div>
                 </div>

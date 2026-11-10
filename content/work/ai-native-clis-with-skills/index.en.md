@@ -1,5 +1,6 @@
 ---
 title: 'Turn Your Scripts and CLIs into AI-Native Tools with Skills'
+linkTitle: 'AI-native CLIs with Skills'
 slug: 'ai-native-clis-with-skills'
 subtitle: 'My AWS Community Day Guatemala 2026 talk: how to give an AI agent a short guide to the scripts and CLIs you already have, with pokecli as the demo.'
 description: 'How to turn your scripts and CLIs into AI-native tools with a SKILL.md, from my AWS Community Day Guatemala 2026 talk, with pokecli as a working example.'

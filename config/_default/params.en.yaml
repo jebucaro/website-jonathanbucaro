@@ -1,8 +1,8 @@
 # English localized parameters
-description: 'Jonathan Búcaro 🤓. I like building software and writing about what I learn along the way, C#, Python, AI, and CLI tools included.'
+description: 'Jonathan Búcaro (@jebucaro) is a Product Engineer and Senior Software Engineer in Guatemala who writes about building, modernizing, and running software, including making it work with AI agents.'
 author:
     author__bio: >-
-        Systems Engineer and Planeswalker. I write about my journey in technology, sharing experiences and insights that have driven my professional development.
+        Product Engineer and Senior Software Engineer based in Guatemala. I build software end to end, from the business problem to running it in production, in Java, C#, Python, and React, and I make existing systems usable by AI agents.
 
 blog:
     blog__title: Recent Posts
@@ -10,3 +10,17 @@ blog:
 
 logos:
     logos__title: 'My professional experience includes collaborations with the following companies:'
+
+# Homepage hero terminal: second command (`gh repo list`). Static on purpose:
+# fetching from GitHub at build time would make builds depend on its API.
+# Keep descriptions in sync with the repos' GitHub descriptions.
+terminal_repos:
+    - name: 'dotnet-gitmoji'
+      language: 'C#'
+      description: 'Gitmoji commits for .NET teams'
+    - name: 'banguat'
+      language: 'C#'
+      description: 'Banguat exchange rates as REST, MCP and CLI'
+    - name: 'pokecli'
+      language: 'Python'
+      description: 'Typed PokeAPI CLI with an agent skill'

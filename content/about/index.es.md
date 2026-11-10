@@ -4,6 +4,7 @@ date: 2023-07-09T11:08:22-06:00
 lastmod: 2025-11-26
 draft: false
 slug: 'about'
+profilePage: true
 ---
 
 ¡Hola! Me llamo Jonathan Búcaro y soy Ingeniero en Sistemas, con base en Guatemala 🇬🇹. A lo largo de mi carrera profesional, me he dedicado a desarrollar soluciones tecnológicas que aportan valor y eficiencia a las operaciones del negocio.
@@ -35,3 +36,5 @@ Esta trayectoria me llevó a una promoción a tiempo completo en Cognits, donde 
 Para fortalecer mi impacto en este rol, he obtenido certificaciones en metodologías ágiles (Scrum, Kanban) y en tecnologías clave. Con la reciente adquisición de Cognits por parte de HTEC, estoy bien posicionado para aplicar esta experiencia en una organización más grande y dinámica, y seguir entregando soluciones con impacto.
 
 Siempre estoy abierto a conectar con otros profesionales. ¿Hablamos de tecnología, proyectos o aprendizajes de la industria en {{< extlink href="https://www.linkedin.com/in/jonathanbucaro" >}}LinkedIn{{< /extlink >}}?
+
+Fuera del trabajo soy Planeswalker: casi siempre me vas a encontrar jugando Magic: The Gathering.

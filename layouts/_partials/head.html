@@ -65,38 +65,14 @@
     <!-- Structured Data -->
     {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema/blog-posting.html" . }}{{ end }}
     {{ if and .IsPage (eq .Section "work") }}{{ partial "schema/work.html" . }}{{ end }}
+    {{ if .IsHome }}{{ partial "schema/home.html" . }}{{ end }}
+    {{ if .Params.profilePage }}{{ partial "schema/profile-page.html" . }}{{ end }}
 
     <!-- Favicon -->
     <link rel="icon" href="{{ "/favicon.ico" | absURL }}">
 
     <!-- Self-hosted font (declared via @font-face in main.css) -->
     <link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/noto-sans-display-v30-latin-wght.woff2" | absURL }}" crossorigin>
-
-    <!-- Preload the hero (LCP) image so it downloads in parallel with the
-         head instead of waiting for the parser to reach the hero markup.
-         srcset/sizes must match the hero <img>: variants come from the same
-         image-variants partial, sizes from the shared hero-sizes partial. -->
-    {{ if and .IsHome .Site.Params.hero.enable }}
-    {{ $heroPath := .Site.Params.hero.hero__image }}
-    {{ with resources.Get (strings.TrimPrefix "/" $heroPath) }}
-    {{ if in (slice "png" "jpeg" "webp" "tiff" "bmp") .MediaType.SubType }}
-    {{ $v := partial "functions/image-variants.html" (dict "res" . "widths" nil) }}
-    <link
-        rel="preload"
-        as="image"
-        href="{{ $v.fallback.RelPermalink }}"
-        {{/* imagesrcset must be printed via safeHTMLAttr: Go's html/template
-             treats any attribute whose name contains "src" as a URL unless it
-             recognizes it as the special-cased "srcset", so a plain
-             imagesrcset="{{ $v.srcset }}" gets percent-encoded (spaces become
-             %20) and the preload silently stops matching the hero <img>'s
-             srcset. Do not "simplify" this back to a plain attribute. */}}
-        {{ printf `imagesrcset="%s"` $v.srcset | safeHTMLAttr }}
-        imagesizes="{{ partial "functions/hero-sizes.html" $ }}"
-        fetchpriority="high" />
-    {{ end }}
-    {{ end }}
-    {{ end }}
 
     <!-- Theme JavaScript, inlined: must run before first paint to avoid a
          dark-mode flash. Its sha256 hash is allow-listed in firebase.json

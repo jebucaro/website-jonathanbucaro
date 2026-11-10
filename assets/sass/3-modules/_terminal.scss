@@ -1,0 +1,242 @@
+/* Hero terminal card: a static Windows Terminal window in the One Half Dark
+   scheme. Identical in light and dark site themes (it is always dark), so it
+   uses fixed colors instead of theme tokens. The mono stack is local-only:
+   no web font is downloaded. */
+$terminal-mono:
+    "Cascadia Code", "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
+$terminal-bg: #282c34;
+$terminal-fg: #dcdfe4;
+
+.terminal {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: $terminal-bg;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    font-family: $terminal-mono;
+    font-size: 13px;
+    color: $terminal-fg;
+
+    @media only screen and (max-width: $mobile) {
+        font-size: 11px;
+    }
+}
+
+.terminal__bar {
+    display: flex;
+    align-items: stretch;
+    height: 38px;
+    background-color: #1f1f1f;
+    font-size: 12px;
+    color: #ccc;
+    user-select: none;
+
+    svg {
+        display: block;
+    }
+
+    @media only screen and (max-width: $mobile) {
+        height: 34px;
+        font-size: 11px;
+    }
+}
+
+.terminal__tab {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 240px;
+    margin: 6px 0 0 8px;
+    padding: 0 12px 0 14px;
+    border-radius: 8px 8px 0 0;
+    background-color: $terminal-bg;
+    white-space: nowrap;
+
+    @media only screen and (max-width: $mobile) {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: 130px;
+        padding: 0 10px;
+    }
+}
+
+.terminal__tab-icon {
+    /* Ubuntu logo (Windows Terminal's WSL profile icon), inline SVG. */
+    display: flex;
+    flex: none;
+    width: 14px;
+    height: 14px;
+}
+
+.terminal__tab-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.terminal__tab-close {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    color: #888;
+
+    @media only screen and (max-width: $mobile) {
+        display: none;
+    }
+}
+
+.terminal__newtab {
+    display: flex;
+    align-items: center;
+    margin: 6px 0 0 4px;
+    color: #bbb;
+
+    > span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 26px;
+        padding: 0 8px;
+
+        @media only screen and (max-width: $mobile) {
+            padding: 0 6px;
+        }
+    }
+
+    > .terminal__sep {
+        width: 1px;
+        height: 16px;
+        padding: 0;
+        background-color: #4a4a4a;
+    }
+}
+
+.terminal__controls {
+    display: flex;
+    margin-left: auto;
+
+    > span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+
+        @media only screen and (max-width: $mobile) {
+            width: 28px;
+        }
+    }
+}
+
+.terminal__body {
+    padding: 16px 18px 18px;
+    line-height: 1.75;
+
+    @media only screen and (max-width: $mobile) {
+        padding: 14px 14px 16px;
+    }
+}
+
+.terminal__line {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.terminal__prompt {
+    color: #e5c07b;
+}
+
+.terminal__cmd {
+    font-weight: 600;
+    color: #98c379;
+}
+
+.terminal__arg {
+    color: $terminal-fg;
+}
+
+.terminal__flag {
+    color: #56b6c2;
+}
+
+.terminal__cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+    background-color: #a3b3cc;
+}
+
+/* The list owns the columns so the type column fits its longest localized
+   term (e.g. "proyecto", "caso de estudio"); rows inherit them via subgrid
+   and stay aligned. The title column absorbs the rest and truncates. */
+.terminal__list {
+    display: grid;
+    grid-template-columns: auto max-content minmax(0, 1fr);
+    column-gap: 2ch;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media only screen and (max-width: $mobile) {
+        column-gap: 1ch;
+    }
+}
+
+.terminal__line--spaced {
+    margin-top: 1em;
+}
+
+/* Half a line between a command and its output: less crowded, but the
+   output still reads as belonging to the command above it. */
+.terminal__line + .terminal__list {
+    margin-top: 0.5em;
+}
+
+.terminal__item,
+.terminal__repo {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    margin: 0;
+    padding: 0;
+    /* Each row is a touch target: keep links at least 24px tall (WCAG 2.5.8,
+       Lighthouse target-size) even at the 11px phone font size. */
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+.terminal__lang {
+    /* One Half blue: red #e06c75 is 4.38:1 on #282c34, below WCAG AA. */
+    color: #61afef;
+}
+
+.terminal__desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #9da5b4;
+}
+
+.terminal__date {
+    color: #9da5b4;
+}
+
+.terminal__type {
+    color: #c678dd;
+}
+
+.terminal__link {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $terminal-fg;
+    text-decoration: underline;
+    text-decoration-color: #61afef;
+    text-underline-offset: 3px;
+
+    &:hover {
+        color: #61afef;
+    }
+
+    &:focus-visible {
+        outline: 2px solid #61afef;
+        outline-offset: 2px;
+    }
+}

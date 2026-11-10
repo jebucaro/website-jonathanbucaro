@@ -1,5 +1,6 @@
 ---
 title: 'dotnet-gitmoji: Gitmoji Commits for .NET Teams'
+linkTitle: 'dotnet-gitmoji'
 slug: 'dotnet-gitmoji'
 subtitle: 'A .NET tool that puts the gitmoji convention in every commit, with a hook that travels with the repo and reaches each teammate through a plain dotnet restore. No Node.js required.'
 date: 2026-04-24T10:30:00Z

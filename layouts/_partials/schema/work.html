@@ -16,7 +16,7 @@
   "url" .Permalink
   "image" $imageURL
   "inLanguage" .Site.Language.Locale
-  "author" (dict "@type" "Person" "name" .Site.Params.author.author__name "url" (printf "%sabout/" .Site.BaseURL))
+  "author" (partial "schema/person-ref.html" .)
 }}
 {{ if eq $type "SoftwareApplication" }}
   {{ $schema = merge $schema (dict "applicationCategory" "DeveloperApplication" "screenshot" $imageURL) }}
@@ -31,7 +31,7 @@
     "startDate" ($.Date.Format "2006-01-02T15:04:05-07:00")
     "endDate" ((time.AsTime .endDate).Format "2006-01-02T15:04:05-07:00")
     "location" (dict "@type" "Place" "name" .venue "address" .location)
-    "performer" (dict "@type" "Person" "name" $.Site.Params.author.author__name "url" (printf "%sabout/" $.Site.BaseURL))
+    "performer" (partial "schema/person-ref.html" $)
   }}
   {{ with .url }}
     {{ $event = merge $event (dict "url" .) }}
