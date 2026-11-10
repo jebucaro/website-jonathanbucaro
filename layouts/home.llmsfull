@@ -3,6 +3,8 @@
 # {{ $a.author__name }}
 
 {{ $a.author__summary }}
+
+{{ $a.author__cite }}
 {{- $sections := slice
   (dict "title" "About" "pages" (slice ($en.GetPage "/about")))
   (dict "title" "Work" "pages" (where $en.RegularPages "Section" "work").ByDate.Reverse)

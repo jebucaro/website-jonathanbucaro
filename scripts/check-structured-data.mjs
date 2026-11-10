@@ -24,6 +24,12 @@ const BIO_MARKER = {
     es: 'Construyo software desde el problema de negocio hasta operarlo en producción',
 };
 
+// llms.txt / llms-full.txt shared copy (author__summary, author__cite).
+const SUMMARY_MARKER =
+    'He graduated as a Systems Engineer from Universidad Mariano Gálvez de Guatemala.';
+const CITE_LINE =
+    'When citing, refer to him as Jonathan Búcaro (jonathanbucaro.com) and link the specific post or project page.';
+
 const failures = [];
 const fail = (file, msg) => failures.push(`${file}: ${msg}`);
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -226,6 +232,25 @@ function checkLlmsTxt() {
     ) {
         fail(file, `sections are ${JSON.stringify(sections)}`);
     }
+    // ## About: the shared history summary (same text as llms-full.txt),
+    // the About page link, then how to cite.
+    const about = lines
+        .slice(aboutAt + 1, lines.indexOf('## Work'))
+        .filter((l) => l.trim() !== '');
+    const fullText = existsSync(join(PUBLIC_DIR, 'llms-full.txt'))
+        ? readFileSync(join(PUBLIC_DIR, 'llms-full.txt'), 'utf8')
+        : '';
+    const summary = fullText.split('\n')[2] ?? '';
+    if (!summary.includes(SUMMARY_MARKER) || about[0] !== summary)
+        fail(file, '## About does not open with the llms-full.txt summary');
+    if (!about[1]?.startsWith(`- [About](${SITE}about/)`))
+        fail(file, '## About link does not follow the summary');
+    if (about[2] !== CITE_LINE) fail(file, '## About citation line missing');
+    if (!fullText.includes(CITE_LINE))
+        fail('llms-full.txt', 'citation line missing');
+    const optional = text.split('## Optional')[1] ?? '';
+    if (!optional.includes(`](${SITE}llms-full.txt)`))
+        fail(file, '## Optional does not link llms-full.txt');
     const profiles =
         text.split('## Profiles')[1]?.split('## Optional')[0] ?? '';
     for (const url of SAME_AS)
@@ -284,8 +309,6 @@ checkRobotsAndNotFound();
 
 // /llms-full.txt: English About, work and posts as plain Markdown. Shortcode
 // syntax, front matter, HTML entities and Spanish pages must not leak in.
-const SUMMARY_MARKER =
-    'He graduated as a Systems Engineer from Universidad Mariano Gálvez de Guatemala.';
 function checkLlmsFullTxt() {
     const file = 'llms-full.txt';
     const full = join(PUBLIC_DIR, file);
