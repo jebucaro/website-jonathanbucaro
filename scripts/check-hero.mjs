@@ -26,7 +26,7 @@ const LANGS = {
         file: 'es/index.html',
         workDir: 'es/work',
         hrefPrefix: '/es/work/',
-        h1: 'Construyo productos de software de punta a punta.',
+        h1: 'Construyo productos de software de principio a fin.',
         label: 'Trabajo reciente y código abierto',
         repos: [
             ['dotnet-gitmoji', 'C#', 'Commits con gitmoji para equipos .NET'],

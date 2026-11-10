@@ -21,7 +21,7 @@ const HOME_PAGES = ['index.html', 'es/index.html'];
 const ABOUT_PAGES = ['about/index.html', 'es/about/index.html'];
 const BIO_MARKER = {
     en: 'I build software end to end',
-    es: 'Construyo software de punta a punta',
+    es: 'Construyo software desde el problema de negocio hasta operarlo en producción',
 };
 
 const failures = [];
