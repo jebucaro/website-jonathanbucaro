@@ -1,13 +1,13 @@
 ---
 title: 'About'
 date: 2023-07-09T11:08:22-06:00
-lastmod: 2025-11-26
+lastmod: 2026-11-10
 draft: false
 slug: 'about'
 profilePage: true
 ---
 
-Hello! My name is Jonathan Búcaro, and I am a Systems Engineer based in Guatemala 🇬🇹. Throughout my professional career, I have been dedicated to developing technology solutions that bring value and efficiency to business operations.
+Hello! My name is Jonathan Búcaro, a Product Engineer and Senior Software Engineer based in Guatemala 🇬🇹. I graduated as a Systems Engineer from {{< extlink href="https://umg.edu.gt/" >}}Universidad Mariano Gálvez de Guatemala{{< /extlink >}}, and I build software end to end, from the business problem to running it in production.
 
 For thirteen years at **Banco G&T Continental**, I worked primarily in the financial sector, participating in projects that demanded high standards of reliability, scalability, and regulatory compliance. During this time, I grew professionally from programmer to serving as a Technical Lead.
 
@@ -20,21 +20,20 @@ In various roles, I coordinated development teams, led the modernization of crit
 
 In recent years, I have expanded my experience by collaborating with companies in other sectors, including multinational food corporations and the fintech industry. This has allowed me to adapt to new challenges, integrating solutions in cloud-oriented environments and applying my expertise across different industries.
 
-I worked as a Full Stack Engineer contractor at Cognits for two years, specializing in developing services with C# and .NET, while building APIs
-and microservices using Java (Spring Boot) and TypeScript. All applications were deployed on AWS. Recently, I contributed to fintech process audits and cloud-based solution implementations.
+I joined Cognits as a Full Stack Engineer contractor and worked there for two years. For several clients the role was product engineering: working directly with them on requirements, then building and shipping the services myself in C# and .NET, Java (Spring Boot) and TypeScript, all deployed on AWS. I also contributed to fintech process audits and cloud-based solution implementations.
 
 {{< gallery caption="'Passion to Grow' award, Cognits 2024 Q2, with the team." >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Group photo with the Cognits team" >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2.webp" alt="Cognits 'Passion to Grow' award" >}}
 {{< /gallery >}}
 
-This progression led to a full-time promotion at Cognits, where I now collaborate with leadership to analyze client requirements and develop strategic business proposals. This shift from hands-on development to strategic partnership has deepened my understanding of how technology drives business value.
+That work led to a full-time role at Cognits, where I partner with leadership to analyze client requirements and develop business proposals. It deepened my understanding of how technology drives business value.
 
 {{< gallery caption="2025 - Selfie after receiving the notice of becoming a full time employee." >}}
 {{< gallery-image src="images/cognits-becoming-fte.webp" alt="Selfie at a conference room" >}}
 {{< /gallery >}}
 
-To strengthen my impact in this evolved role, I've earned certifications in agile methodologies (Scrum, Kanban) and key technologies. With Cognits' recent acquisition by HTEC, I'm well-positioned to apply this expertise across a larger, dynamic organization and continue delivering meaningful solutions.
+Along the way I've earned certifications in agile methodologies (Scrum, Kanban) and key technologies. Cognits is now part of {{< extlink href="https://htec.com/" >}}HTEC{{< /extlink >}}, where I work as a Senior Software Engineer.
 
 I'm always open to connecting with fellow professionals. Let's discuss technology, projects, or industry insights on {{< extlink href="https://www.linkedin.com/in/jonathanbucaro" >}}LinkedIn{{< /extlink >}}.
 

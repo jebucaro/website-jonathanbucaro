@@ -1,13 +1,13 @@
 ---
 title: 'Acerca de'
 date: 2023-07-09T11:08:22-06:00
-lastmod: 2025-11-26
+lastmod: 2026-11-10
 draft: false
 slug: 'about'
 profilePage: true
 ---
 
-¡Hola! Me llamo Jonathan Búcaro y soy Ingeniero en Sistemas, con base en Guatemala 🇬🇹. A lo largo de mi carrera profesional, me he dedicado a desarrollar soluciones tecnológicas que aportan valor y eficiencia a las operaciones del negocio.
+¡Hola! Me llamo Jonathan Búcaro, soy Product Engineer y Senior Software Engineer con base en Guatemala 🇬🇹. Soy Ingeniero en Sistemas graduado de la {{< extlink href="https://umg.edu.gt/" >}}Universidad Mariano Gálvez de Guatemala{{< /extlink >}} y construyo software de punta a punta, desde el problema de negocio hasta operarlo en producción.
 
 Durante trece años en **Banco G&T Continental**, trabajé principalmente en el sector financiero, participando en proyectos que exigían altos estándares de confiabilidad, escalabilidad y cumplimiento regulatorio. En ese tiempo, crecí profesionalmente: de programador a desempeñarme como Líder Técnico.
 
@@ -20,20 +20,20 @@ En distintos roles, coordiné equipos de desarrollo, lideré la modernización d
 
 En los últimos años, amplié mi experiencia colaborando con empresas de otros sectores, incluyendo corporaciones multinacionales de alimentos y la industria fintech. Esto me permitió adaptarme a nuevos retos, integrando soluciones en entornos orientados a la nube y aplicando mi experiencia en distintas industrias.
 
-Trabajé como contratista Full Stack Engineer en Cognits durante dos años, especializándome en el desarrollo de servicios con C# y .NET, además de construir APIs y microservicios usando Java (Spring Boot) y TypeScript. Todas las aplicaciones se desplegaron en AWS. Recientemente, contribuí en auditorías de procesos fintech y en implementaciones de soluciones basadas en la nube.
+Me uní a Cognits como contratista Full Stack Engineer y trabajé ahí durante dos años. Para varios clientes, el rol fue de product engineering: trabajar directamente con ellos en los requerimientos y luego construir y entregar yo mismo los servicios en C# y .NET, Java (Spring Boot) y TypeScript, todos desplegados en AWS. También contribuí en auditorías de procesos fintech y en implementaciones de soluciones basadas en la nube.
 
 {{< gallery caption="Reconocimiento 'Passion to Grow', Cognits 2024 Q2, junto con el equipo." >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2-group-photo.webp" alt="Foto grupal con el equipo de Cognits" >}}
 {{< gallery-image src="images/cognits-passion-to-grow-2024-q2.webp" alt="Reconocimiento 'Passion to Grow' de Cognits" >}}
 {{< /gallery >}}
 
-Esta trayectoria me llevó a una promoción a tiempo completo en Cognits, donde ahora colaboro con el liderazgo para analizar requerimientos de clientes y desarrollar propuestas estratégicas de negocio. Este cambio, de un enfoque práctico de desarrollo a una alianza estratégica, profundizó mi comprensión de cómo la tecnología impulsa el valor para el negocio.
+Ese trabajo me llevó a un puesto a tiempo completo en Cognits, donde colaboro con el liderazgo para analizar requerimientos de clientes y desarrollar propuestas de negocio. Esto profundizó mi comprensión de cómo la tecnología impulsa el valor para el negocio.
 
 {{< gallery caption="2025 - Selfie después de recibir la noticia de convertirme en empleado a tiempo completo." >}}
 {{< gallery-image src="images/cognits-becoming-fte.webp" alt="Selfie en una sala de conferencias" >}}
 {{< /gallery >}}
 
-Para fortalecer mi impacto en este rol, he obtenido certificaciones en metodologías ágiles (Scrum, Kanban) y en tecnologías clave. Con la reciente adquisición de Cognits por parte de HTEC, estoy bien posicionado para aplicar esta experiencia en una organización más grande y dinámica, y seguir entregando soluciones con impacto.
+En el camino obtuve certificaciones en metodologías ágiles (Scrum, Kanban) y en tecnologías clave. Cognits ahora es parte de {{< extlink href="https://htec.com/" >}}HTEC{{< /extlink >}}, donde trabajo como Senior Software Engineer.
 
 Siempre estoy abierto a conectar con otros profesionales. ¿Hablamos de tecnología, proyectos o aprendizajes de la industria en {{< extlink href="https://www.linkedin.com/in/jonathanbucaro" >}}LinkedIn{{< /extlink >}}?
 
