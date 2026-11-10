@@ -1,0 +1,52 @@
+{{- /*
+    Homepage hero terminal card: a static Windows Terminal window (One Half
+    Dark) running `ls work --latest` and `gh repo list`. Lists the current language's newest work
+    items (max 5) by date, using each page's short linkTitle. The window chrome
+    and prompt lines are decorative and hidden from assistive tech; the list
+    itself is a real list of links. Repos come from params `terminal_repos`. Command text is not translated.
+*/ -}}
+{{- $items := first 5 (where .Site.RegularPages "Section" "work").ByDate.Reverse -}}
+<section class="terminal" aria-label="{{ i18n "sections_hero_terminal_label" }}">
+    <div class="terminal__bar" aria-hidden="true">
+        <div class="terminal__tab">
+            <span class="terminal__tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="12" fill="#e95420"/><path transform="translate(4.2 4.2) scale(.65)" fill="#fff" d="M17.61.455a3.41 3.41 0 0 0-3.41 3.41 3.41 3.41 0 0 0 3.41 3.41 3.41 3.41 0 0 0 3.41-3.41 3.41 3.41 0 0 0-3.41-3.41zM12.92.8C8.923.777 5.137 2.941 3.148 6.451a4.5 4.5 0 0 1 .26-.007 4.92 4.92 0 0 1 2.585.737A8.316 8.316 0 0 1 12.688 3.6 4.944 4.944 0 0 1 13.723.834 11.008 11.008 0 0 0 12.92.8zm9.226 4.994a4.915 4.915 0 0 1-1.918 2.246 8.36 8.36 0 0 1-.273 8.303 4.89 4.89 0 0 1 1.632 2.54 11.156 11.156 0 0 0 .559-13.089zM3.41 7.932A3.41 3.41 0 0 0 0 11.342a3.41 3.41 0 0 0 3.41 3.409 3.41 3.41 0 0 0 3.41-3.41 3.41 3.41 0 0 0-3.41-3.41zm2.027 7.866a4.908 4.908 0 0 1-2.915.358 11.1 11.1 0 0 0 7.991 6.698 11.234 11.234 0 0 0 2.422.249 4.879 4.879 0 0 1-.999-2.85 8.484 8.484 0 0 1-.836-.136 8.304 8.304 0 0 1-5.663-4.32zm11.405.928a3.41 3.41 0 0 0-3.41 3.41 3.41 3.41 0 0 0 3.41 3.41 3.41 3.41 0 0 0 3.41-3.41 3.41 3.41 0 0 0-3.41-3.41z"/></svg></span>
+            <span class="terminal__tab-label">~/jonathan</span>
+            <span class="terminal__tab-close"><svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        </div>
+        <div class="terminal__newtab">
+            <span><svg width="12" height="12" viewBox="0 0 12 12" focusable="false"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.3"/></svg></span>
+            <span class="terminal__sep"></span>
+            <span><svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><path d="M1.5 3.5L5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></span>
+        </div>
+        <div class="terminal__controls">
+            <span><svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><path d="M0 5h10" stroke="currentColor" stroke-width="1"/></svg></span>
+            <span><svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><rect x=".5" y=".5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1"/></svg></span>
+            <span><svg width="10" height="10" viewBox="0 0 10 10" focusable="false"><path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"/></svg></span>
+        </div>
+    </div>
+    <div class="terminal__body">
+        <p class="terminal__line" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cmd">ls</span> <span class="terminal__arg">work</span> <span class="terminal__flag">--latest</span></p>
+        <ul class="terminal__list" role="list">
+            {{- range $items }}
+            <li class="terminal__item">
+                <span class="terminal__date">{{ .Date.Format "2006-01" }}</span>
+                <span class="terminal__type">{{ with .GetTerms "work-types" }}{{ lower (index . 0).LinkTitle }}{{ end }}</span>
+                <a class="terminal__link" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            </li>
+            {{- end }}
+        </ul>
+        {{- with .Site.Params.terminal_repos }}
+        <p class="terminal__line terminal__line--spaced" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cmd">gh</span> <span class="terminal__arg">repo list jebucaro</span> <span class="terminal__flag">--limit 3</span></p>
+        <ul class="terminal__list" role="list">
+            {{- range first 3 . }}
+            <li class="terminal__repo">
+                <a class="terminal__link" href="https://github.com/jebucaro/{{ .name }}">{{ .name }}</a>
+                <span class="terminal__lang">{{ .language }}</span>
+                <span class="terminal__desc">{{ .description }}</span>
+            </li>
+            {{- end }}
+        </ul>
+        {{- end }}
+        <p class="terminal__line terminal__line--spaced" aria-hidden="true"><span class="terminal__prompt">$</span> <span class="terminal__cursor"></span></p>
+    </div>
+</section>

@@ -1,4 +1,6 @@
-/* Hero */
+/* Hero: byline + headline + description + action, with the work terminal
+   (3-modules/_terminal.scss) in the right column on desktop. DOM order is
+   the stacked order; grid areas place the terminal on desktop. */
 .hero {
     @media only screen and (max-width: $desktop) {
         padding: 40px 0 0;
@@ -10,130 +12,136 @@
 }
 
 .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-areas:
+        "byline terminal"
+        "title terminal"
+        "description terminal"
+        "actions terminal";
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 64px;
+    align-items: start;
+
+    @media only screen and (max-width: $wide) {
+        column-gap: 40px;
+    }
+
+    @media only screen and (max-width: $desktop) {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "byline"
+            "title"
+            "description"
+            "terminal"
+            "actions";
+        grid-template-rows: none;
+    }
+}
+
+.hero__byline {
+    grid-area: byline;
     display: flex;
     align-items: center;
-
-    @media only screen and (max-width: $desktop) {
-        flex-direction: column;
-    }
+    gap: 14px;
+    margin-bottom: 24px;
 }
 
-.hero__left {
-    width: 50%;
-
-    @media only screen and (max-width: $desktop) {
-        width: 100%;
-        margin-top: 40px;
-    }
-
-    @media only screen and (max-width: $mobile) {
-        margin-top: 32px;
-    }
-}
-
-.hero__image {
-    position: relative;
-    transform: translate(0);
-    width: 100%;
-    height: 634px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-    background-color: var(--background-alt-color);
-    user-select: none;
+.hero__avatar {
+    flex: none;
+    width: 64px;
+    height: 64px;
 
     img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        display: block;
+        width: 64px;
+        height: 64px;
+        border: 3px solid #ffc71d;
+        border-radius: 50%;
         object-fit: cover;
-    }
-
-    @media only screen and (max-width: $wide) {
-        height: 484px;
-    }
-
-    @media only screen and (max-width: $desktop) {
-        height: 440px;
-    }
-
-    @media only screen and (max-width: $tablet) {
-        height: 420px;
-    }
-
-    @media only screen and (max-width: $mobile) {
-        height: 280px;
+        object-position: 50% 20%;
     }
 }
 
-.hero__right {
-    max-width: 575px;
-    margin-left: auto;
+.hero__identity {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+}
 
-    @media only screen and (max-width: $wide) {
-        max-width: 440px;
-    }
+.hero__name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--heading-font-color);
+}
 
-    @media only screen and (max-width: $desktop) {
-        order: -1;
-        max-width: 100%;
-    }
+.hero__meta {
+    font-size: 14px;
+    color: var(--text-alt-color);
 }
 
 .hero__title {
-    margin-bottom: 48px;
+    grid-area: title;
+    margin-bottom: 32px;
     font-size: 72px;
-    font-family:
-        "Outfit",
-        Arial,
-        Helvetica Neue,
-        Helvetica,
-        sans-serif;
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -1.5px;
     color: var(--heading-font-color);
 
     @media only screen and (max-width: $wide) {
-        margin-bottom: 32px;
         font-size: 60px;
     }
 
     @media only screen and (max-width: $mobile) {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         font-size: 36px;
         letter-spacing: -0.5px;
     }
 }
 
 .hero__description {
+    grid-area: description;
     margin-bottom: 0;
     font-size: 18px;
-    font-family:
-        "Lato",
-        Arial,
-        Helvetica Neue,
-        Helvetica,
-        sans-serif;
-    font-weight: 400;
     line-height: 1.6;
-    letter-spacing: 0.01em;
 
     @media only screen and (max-width: $desktop) {
         font-size: inherit;
     }
 }
 
-.hero__subscribe {
-    margin-top: 48px;
+.hero__terminal {
+    grid-area: terminal;
+    min-width: 0;
 
-    @media only screen and (max-width: $wide) {
-        margin-top: 32px;
+    /* Desktop: a tall-enough card centered against the left column, with a
+       few empty lines below the prompt like a real terminal window. 420px
+       was picked over a full-column stretch, which left too much empty space. */
+    @media only screen and (min-width: #{$desktop + 1px}) {
+        align-self: center;
+
+        .terminal {
+            display: flex;
+            flex-direction: column;
+            min-height: 420px;
+        }
+
+        .terminal__body {
+            flex: 1;
+        }
     }
 
     @media only screen and (max-width: $desktop) {
-        margin-top: 20px;
+        margin-top: 32px;
+    }
+}
+
+.hero__actions {
+    grid-area: actions;
+    margin-top: 32px;
+
+    @media only screen and (max-width: $desktop) {
+        margin-top: 24px;
     }
 }

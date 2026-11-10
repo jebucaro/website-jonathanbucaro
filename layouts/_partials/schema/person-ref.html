@@ -1,0 +1,8 @@
+{{/* Returns a reference to the canonical Person (see schema/person.html). */}}
+{{ $home := hugo.Sites.Default.Home.Permalink }}
+{{ return dict
+  "@type" "Person"
+  "@id" (printf "%s#person" $home)
+  "name" site.Params.author.author__name
+  "url" $home
+}}

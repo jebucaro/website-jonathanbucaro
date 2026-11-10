@@ -96,14 +96,17 @@
   translation: 'Publicaciones'
 
 # Section: Hero
-- id: sections_hero_title
-  translation: 'Soy Jonathan 🤓'
+- id: sections_hero_meta
+  translation: 'Guatemala · @jebucaro'
+
+- id: sections_hero_terminal_label
+  translation: 'Trabajo reciente y código abierto'
 
 - id: sections_hero_subtitle
-  translation: '¡Crearé servicios que te aporten valor!'
+  translation: 'Construyo productos de software de principio a fin.'
 
 - id: sections_hero_description
-  translation: 'Como Ingeniero en Sistemas con experiencia en C#, Python y tecnologías de IA Generativa, me dedico a crear soluciones innovadoras y de alta calidad que superen tus expectativas.'
+  translation: 'Product Engineer y Senior Software Engineer en Guatemala. Convierto problemas de negocio en software que funciona, modernizo los sistemas de los que depende, los hago utilizables por agentes de IA y los mantengo funcionando en producción.'
 
 - id: sections_hero_button
   translation: 'Contáctame'

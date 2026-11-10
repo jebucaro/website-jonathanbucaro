@@ -96,14 +96,17 @@
   translation: 'Posts'
 
 # Section: Hero
-- id: sections_hero_title
-  translation: "I'm Jonathan 🤓"
+- id: sections_hero_meta
+  translation: 'Guatemala · @jebucaro'
+
+- id: sections_hero_terminal_label
+  translation: 'Latest work and open-source code'
 
 - id: sections_hero_subtitle
-  translation: "I'll create services that bring you value!"
+  translation: 'I build software products end to end.'
 
 - id: sections_hero_description
-  translation: "As a Systems Engineer experienced in C#, Python, and Generative AI technologies, I'm dedicated to crafting innovative, high-quality solutions that exceed your expectations."
+  translation: 'Product Engineer and Senior Software Engineer in Guatemala. I turn business problems into working software, modernize the systems it depends on, make them usable by AI agents, and keep them running in production.'
 
 - id: sections_hero_button
   translation: 'Get in Touch'

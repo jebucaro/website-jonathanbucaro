@@ -4,6 +4,7 @@ date: 2023-07-09T11:08:22-06:00
 lastmod: 2025-11-26
 draft: false
 slug: 'about'
+profilePage: true
 ---
 
 Hello! My name is Jonathan Búcaro, and I am a Systems Engineer based in Guatemala 🇬🇹. Throughout my professional career, I have been dedicated to developing technology solutions that bring value and efficiency to business operations.
@@ -36,3 +37,5 @@ This progression led to a full-time promotion at Cognits, where I now collaborat
 To strengthen my impact in this evolved role, I've earned certifications in agile methodologies (Scrum, Kanban) and key technologies. With Cognits' recent acquisition by HTEC, I'm well-positioned to apply this expertise across a larger, dynamic organization and continue delivering meaningful solutions.
 
 I'm always open to connecting with fellow professionals. Let's discuss technology, projects, or industry insights on {{< extlink href="https://www.linkedin.com/in/jonathanbucaro" >}}LinkedIn{{< /extlink >}}.
+
+Off the clock, I'm a Planeswalker: you'll usually find me playing Magic: The Gathering.

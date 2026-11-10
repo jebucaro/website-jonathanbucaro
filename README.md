@@ -39,7 +39,8 @@ pnpm dev
 After a build, CI also runs these checks against `public/`:
 
 - `node scripts/check-csp-hashes.mjs` - Inline script hashes match the Content Security Policy
-- `node scripts/check-hero-preload.mjs` - The homepage hero preload matches its image `srcset`
+- `node scripts/check-hero.mjs` - The homepage hero has no image preload, a headline-only `<h1>`, and a terminal listing the latest work items
+- `node scripts/check-structured-data.mjs` - The JSON-LD Person/WebSite/ProfilePage graph and `/llms.txt` are consistent
 
 ## Deployment
 

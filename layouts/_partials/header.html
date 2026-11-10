@@ -28,10 +28,11 @@
                                 <div class="language-selector">
                                     {{- /* Current language (shown first) */ -}}
                                     <span class="language-link language-current" aria-current="page"
-                                          aria-label="Current language: {{ .Language.Label }}"
                                           title="{{ .Language.Label }}">
-                                        <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                        <span class="lang-code">{{ .Language.Params.lang_label }}</span>
+                                        {{- /* aria-label is not allowed on a plain span; screen readers get this text instead. */ -}}
+                                        <span class="screen-reader-text">Current language: {{ .Language.Label }}</span>
+                                        <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
+                                        <span class="lang-code" aria-hidden="true">{{ .Language.Params.lang_label }}</span>
                                     </span>
 
                                     {{- /* Show available translations */ -}}
@@ -152,10 +153,11 @@
                         <div class="language-selector">
                             {{- /* Current language (shown first) */ -}}
                             <span class="language-link language-current" aria-current="page"
-                                  aria-label="Current language: {{ .Language.Label }}"
                                   title="{{ .Language.Label }}">
-                                <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                <span class="lang-code">{{ .Language.Params.lang_label }}</span>
+                                {{- /* aria-label is not allowed on a plain span; screen readers get this text instead. */ -}}
+                                <span class="screen-reader-text">Current language: {{ .Language.Label }}</span>
+                                <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
+                                <span class="lang-code" aria-hidden="true">{{ .Language.Params.lang_label }}</span>
                             </span>
 
                             {{- /* Show available translations */ -}}

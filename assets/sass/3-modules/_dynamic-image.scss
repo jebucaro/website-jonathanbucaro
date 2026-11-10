@@ -19,6 +19,18 @@
         margin-top: $base-spacing-unit * 0.5;
     }
 
+    /* Caption title: looks like the h4 it used to be, without being one. */
+    .dynamic-image__title {
+        display: block;
+        margin-bottom: 0.5em;
+        font-family: $heading-font-family;
+        font-size: $font-size-h4;
+        font-weight: $heading-font-weight;
+        line-height: $heading-line-height;
+        letter-spacing: $heading-letter-spacing;
+        color: var(--heading-font-color);
+    }
+
     @media only screen and (max-width: $wide) {
         margin: $base-spacing-unit * 2 -40px;
     }
