@@ -18,6 +18,7 @@
 {{- /* Media: keep captions and alt text, drop the files */ -}}
 {{- $md = replaceRE `\{\{<\s*gallery\s+caption="([^"]*)"\s*>\}\}` "_${1}_" $md -}}
 {{- $md = replaceRE `\{\{<\s*/?gallery\s*>\}\}` "" $md -}}
+{{- $md = replaceRE `(?s)\{\{<\s*gallery-(?:image|video)\b[^>]*?\balt="([^"]*)"[^>]*>\}\}` "_${1}_" $md -}}
 {{- $md = replaceRE `(?s)\{\{<\s*gallery-(?:image|video)\b.*?>\}\}` "" $md -}}
 {{- $md = replaceRE `(?s)\{\{<\s*figure-dynamic\b[^>]*?\balt="([^"]*)"[^>]*>\}\}` "_${1}_" $md -}}
 
@@ -38,15 +39,17 @@
 
 {{- $md = replaceRE `\n{3,}` "\n\n" $md -}}
 
-{{- /* Demote headings two levels so a page's own `##` sections nest under its
+{{- /* Demote headings two levels (capped at h6) so a page's own `##` sections nest under its
      `###` title in llms-full.txt. Lines inside code fences are left alone. */ -}}
 {{- $out := slice -}}
 {{- $fence := false -}}
 {{- range split $md "\n" -}}
     {{- if or (hasPrefix (trim . " ") "```") (hasPrefix (trim . " ") "~~~") -}}
         {{- $fence = not $fence -}}
-    {{- else if and (not $fence) (findRE `^#{1,4} ` .) -}}
-        {{- $out = $out | append (printf "##%s" .) -}}
+    {{- else if and (not $fence) (findRE `^#{1,6} ` .) -}}
+        {{- $hashes := index (index (findRESubmatch `^(#{1,6}) ` . 1) 0) 1 -}}
+        {{- $level := math.Min 6 (add (len $hashes) 2) -}}
+        {{- $out = $out | append (printf "%s%s" (strings.Repeat (int $level) "#") (strings.TrimPrefix $hashes .)) -}}
         {{- continue -}}
     {{- end -}}
     {{- $out = $out | append . -}}

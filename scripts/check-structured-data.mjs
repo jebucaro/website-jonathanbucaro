@@ -319,6 +319,19 @@ function checkLlmsFullTxt() {
     if (text.split('\n')[0] !== `# ${PERSON_NAME}`)
         fail(file, 'first line is not the name heading');
     if (!text.includes(SUMMARY_MARKER)) fail(file, 'summary missing');
+    // Every page carries its last update, not only its publish date.
+    const pagesListed = text.match(/^URL: /gm)?.length ?? 0;
+    if (
+        (text.match(/^Updated: \d{4}-\d{2}-\d{2}$/gm)?.length ?? 0) !==
+        pagesListed
+    )
+        fail(file, 'not every page has an Updated: line');
+    // Captionless galleries keep their alt text (the speaker card names HTEC).
+    if (!text.includes('speaker card for Jonathan Búcaro'))
+        fail(file, 'gallery alt text dropped');
+    // Demotion keeps heading order: the work-log h4 > h5 must not invert.
+    if (/^##### Enable Community Plugins$/m.test(text))
+        fail(file, 'demoted headings invert levels');
     const llms = readFileSync(join(PUBLIC_DIR, 'llms.txt'), 'utf8');
     const posts = [
         ...(
@@ -337,7 +350,8 @@ function checkLlmsFullTxt() {
         ['Spanish post URL', /jonathanbucaro\.com\/es\/blog\//],
         ['shortcode syntax', /\{\{<|>\}\}|\{\{%/],
         ['HTML entities', /&amp;|&#/],
-        ['front matter', /^(title|slug|draft|lastmod):/m],
+        // Front matter would sit right after a page's metadata lines.
+        ['front matter', /^Updated: .*\n\n---\n/m],
         ['em dash', /—/],
     ])
         if (re.test(text)) fail(file, `contains ${label}`);
