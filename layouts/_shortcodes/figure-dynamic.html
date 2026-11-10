@@ -15,7 +15,8 @@
   {{ if $darkRes }}{{ partial "image.html" (dict "image" $darkRes "alt" $alt "class" "dark-mode-img" "sizes" "(min-width: 1025px) 780px, (min-width: 769px) 708px, (min-width: 577px) 528px, calc(100vw - 40px)") }}{{ else }}<img src="{{ $darkSrc }}" alt="{{ $alt }}" class="dark-mode-img">{{ end }}
   {{ if or $title $caption }}
   <figcaption>
-    {{ with $title }}<h4>{{ . }}</h4>{{ end }}
+    {{/* Not a heading: a caption title would break the page outline (h2 -> h4). */}}
+    {{ with $title }}<span class="dynamic-image__title">{{ . }}</span>{{ end }}
     {{ with $caption }}<p>{{ . | markdownify }}</p>{{ end }}
   </figcaption>
   {{ end }}

@@ -9,7 +9,7 @@
 <div class="work-page container animate">
     <div class="row">
         {{ range (where .Site.RegularPages "Section" "work" ) }}
-            {{ partial "work-card.html" (dict "page" . "featured" false) }}
+            {{ partial "work-card.html" (dict "page" . "featured" false "headingLevel" 2) }}
         {{ end }}
     </div>
 </div>
