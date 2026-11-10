@@ -238,6 +238,31 @@ function checkLlmsTxt() {
 }
 checkLlmsTxt();
 
+// robots.txt: one root sitemap (an index of both languages), no es copy.
+// 404: never indexed.
+function checkRobotsAndNotFound() {
+    const robots = join(PUBLIC_DIR, 'robots.txt');
+    if (!existsSync(robots)) fail('robots.txt', 'missing');
+    else {
+        const sitemaps = readFileSync(robots, 'utf8')
+            .split('\n')
+            .filter((l) => l.startsWith('Sitemap:'));
+        if (!same(sitemaps, [`Sitemap: ${SITE}sitemap.xml`]))
+            fail('robots.txt', `Sitemap lines are ${JSON.stringify(sitemaps)}`);
+    }
+    if (existsSync(join(PUBLIC_DIR, 'es', 'robots.txt')))
+        fail('es/robots.txt', 'should not be generated');
+    const notFound = join(PUBLIC_DIR, '404.html');
+    if (
+        !existsSync(notFound) ||
+        !/<meta name="?robots"? content="?noindex/.test(
+            readFileSync(notFound, 'utf8'),
+        )
+    )
+        fail('404.html', 'missing robots noindex');
+}
+checkRobotsAndNotFound();
+
 if (failures.length) {
     console.error(`Structured data check failed (${failures.length}):`);
     for (const f of [...new Set(failures)]) console.error(`  - ${f}`);
