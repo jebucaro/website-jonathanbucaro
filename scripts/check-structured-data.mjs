@@ -282,6 +282,45 @@ function checkRobotsAndNotFound() {
 }
 checkRobotsAndNotFound();
 
+// /llms-full.txt: English About, work and posts as plain Markdown. Shortcode
+// syntax, front matter, HTML entities and Spanish pages must not leak in.
+const SUMMARY_MARKER =
+    'He graduated as a Systems Engineer from Universidad Mariano Gálvez de Guatemala.';
+function checkLlmsFullTxt() {
+    const file = 'llms-full.txt';
+    const full = join(PUBLIC_DIR, file);
+    if (existsSync(join(PUBLIC_DIR, 'es', file)))
+        fail(`es/${file}`, 'should not be generated');
+    if (!existsSync(full)) return fail(file, 'missing');
+    const text = readFileSync(full, 'utf8');
+    if (text.split('\n')[0] !== `# ${PERSON_NAME}`)
+        fail(file, 'first line is not the name heading');
+    if (!text.includes(SUMMARY_MARKER)) fail(file, 'summary missing');
+    const llms = readFileSync(join(PUBLIC_DIR, 'llms.txt'), 'utf8');
+    const posts = [
+        ...(
+            llms.split('## Writing')[1]?.split('## Profiles')[0] ?? ''
+        ).matchAll(/\]\((https:[^)]+)\)/g),
+    ].map((m) => m[1]);
+    if (posts.length === 0) fail(file, 'no posts found in llms.txt to compare');
+    for (const url of [
+        `${SITE}about/`,
+        `${SITE}work/ai-native-clis-with-skills/`,
+        `${SITE}work/dotnet-gitmoji/`,
+        ...posts,
+    ])
+        if (!text.includes(url)) fail(file, `missing ${url}`);
+    for (const [label, re] of [
+        ['Spanish post URL', /jonathanbucaro\.com\/es\/blog\//],
+        ['shortcode syntax', /\{\{<|>\}\}|\{\{%/],
+        ['HTML entities', /&amp;|&#/],
+        ['front matter', /^(title|slug|draft|lastmod):/m],
+        ['em dash', /—/],
+    ])
+        if (re.test(text)) fail(file, `contains ${label}`);
+}
+checkLlmsFullTxt();
+
 if (failures.length) {
     console.error(`Structured data check failed (${failures.length}):`);
     for (const f of [...new Set(failures)]) console.error(`  - ${f}`);

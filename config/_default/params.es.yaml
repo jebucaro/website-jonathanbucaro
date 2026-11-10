@@ -3,6 +3,10 @@ description: 'Jonathan Búcaro (@jebucaro) es Product Engineer y Senior Software
 author:
     author__bio: >-
         Product Engineer y Senior Software Engineer en Guatemala. Construyo software desde el problema de negocio hasta operarlo en producción, con Java, C#, Python y React, y hago que los sistemas existentes puedan ser usados por agentes de IA.
+    # Third-person history paragraph for /llms.txt and /llms-full.txt (en only
+    # today; es kept in sync). Same facts as the About page.
+    author__summary: >-
+        Jonathan Búcaro es Product Engineer y Senior Software Engineer con base en Guatemala. Es Ingeniero en Sistemas graduado de la Universidad Mariano Gálvez de Guatemala. Durante trece años en Banco G&T Continental pasó de programador a Líder Técnico, modernizando sistemas críticos en el sector financiero. Luego se unió a Cognits como contratista Full Stack Engineer, haciendo product engineering para varios clientes: trabajando con ellos en los requerimientos y construyendo servicios en C#/.NET, Java (Spring Boot) y TypeScript en AWS. Cognits ahora es parte de HTEC, donde trabaja como Senior Software Engineer.
 
 blog:
     blog__title: Publicaciones Recientes

@@ -1,0 +1,23 @@
+{{- $en := hugo.Sites.Default -}}
+{{- $a := $en.Params.author -}}
+# {{ $a.author__name }}
+
+{{ $a.author__summary }}
+{{- $sections := slice
+  (dict "title" "About" "pages" (slice ($en.GetPage "/about")))
+  (dict "title" "Work" "pages" (where $en.RegularPages "Section" "work").ByDate.Reverse)
+  (dict "title" "Writing" "pages" (where $en.RegularPages "Section" "blog").ByLastmod.Reverse)
+}}
+{{- range $sections }}
+
+## {{ .title }}
+{{- range .pages }}
+
+### {{ .Title }}
+
+URL: {{ .Permalink }}
+Date: {{ .Date.Format "2006-01-02" }}
+
+{{ partial "functions/llms-markdown.html" (dict "page" .) }}
+{{- end }}
+{{- end }}
