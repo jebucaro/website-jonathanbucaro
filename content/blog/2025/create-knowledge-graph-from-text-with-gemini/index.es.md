@@ -145,11 +145,11 @@ El Chat hace un compromiso de privacidad que la extracción no. Las llamadas de 
 
 ## Cuánto cuesta
 
-Casi nada. Nodus trae `gemini-3.5-flash-lite` (el más barato), `gemini-3.8-flash` (el default) y `gemini-3.1-pro-preview` (el más capaz). En el tier de pago de Flash-Lite, a $0.30 por 1M de tokens de entrada y $2.50 por 1M de salida, un artículo de 500 palabras son más o menos 600 tokens de entrada y 300 de salida, como $0.0009 por extracción. Armar el grafo desde el resumen lo duplica, más o menos. Flash-Lite también tiene tier gratuito, que te alcanza de sobra para probarlo.
+Casi nada. Nodus trae `gemini-3.5-flash-lite` (el más barato), `gemini-3.8-flash` (el default) y `gemini-3.1-pro-preview` (el más capaz). En el tier de pago de Flash-Lite, a $0.30 por 1M de tokens de entrada y $2.50 por 1M de salida, un artículo de 500 palabras son más o menos 600 tokens de entrada y 300 de salida, como $0.0009 por extracción. Armar el grafo desde el resumen lo duplica, más o menos. Flash-Lite también tiene tier gratuito, que es suficiente para probarlo.
 
 ## Por qué no usar LangChain y ya
 
-La abstracción de LangChain está buenísima cuando quieres un resultado rápido, y para eso vale la pena ver el video de Thu Vu:
+La abstracción de LangChain funciona muy bien cuando quieres un resultado rápido, y para eso vale la pena ver el video de Thu Vu:
 
 <p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
