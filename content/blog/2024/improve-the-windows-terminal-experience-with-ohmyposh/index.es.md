@@ -9,57 +9,53 @@ description: 'Te guío paso a paso para configurar Windows Terminal y Oh My Posh
 slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
 ---
 
-Personalizar tu terminal puede marcar una gran diferencia en tu productividad y comodidad como desarrollador. Una de las herramientas más populares para personalizar el prompt en Windows es Oh My Posh, que te permite agregar temas visuales atractivos y funciones extra tanto en PowerShell como en Windows Terminal.
+Quería que mi terminal en Windows se viera bien y me mostrara más información de un vistazo, así que la configuré con PowerShell 7, Windows Terminal, Oh My Posh con una Nerd Font y unas cuantas herramientas de línea de comandos. Apunté los pasos para poder repetirlos, y para que tú también puedas, aunque nunca hayas personalizado una terminal.
 
-En este artículo, te guío paso a paso para transformar tu terminal de Windows con Oh My Posh. No te preocupes si nunca has personalizado nada antes; te llevo desde la instalación de PowerShell hasta dejar tu terminal con un aspecto completamente distinto.
-
-## Instalar PowerShell
+## Instala PowerShell
 
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-windows-powershell.png" alt="Windows Terminal ejecutando el Windows PowerShell integrado con su prompt predeterminado" >}}
 {{< /gallery >}}
 
-¿Todavía estás usando la versión antigua de PowerShell que viene con Windows? Para aprovechar al máximo Oh My Posh, es clave tener la versión más reciente y multiplataforma.
+Windows trae el Windows PowerShell antiguo. Oh My Posh funciona mejor con el PowerShell 7 actual, que es multiplataforma.
 
-Mi forma favorita de instalar PowerShell es con Winget porque es rápido y fácil, pero también lo puedes obtener desde la {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}. ¡Tú decides!
+Yo lo instalo con Winget porque es rápido, pero también lo puedes bajar de la {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}.
 
-Desde una ventana de Windows PowerShell, ejecuta:
+Desde una ventana de Windows PowerShell, corre:
 
 ```powershell
 winget install Microsoft.PowerShell -s winget
 ```
 
-## Configurar Windows Terminal
+## Configura Windows Terminal
 
-Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes instalada, la puedes instalar fácilmente con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
+Desde la actualización de Windows 11 22H2, Windows Terminal es la terminal predeterminada. Si no la tienes, instálala con Winget o desde la {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
 
 ```powershell
 winget install Microsoft.WindowsTerminal -s winget
 ```
 
-Una vez instalado, sigamos con la configuración.
+### Deja Windows Terminal como terminal predeterminada
 
-### Configurar Windows Terminal como la aplicación de terminal predeterminada
+Abre Windows Terminal, dale clic derecho a la barra de título (fuera de las pestañas) o a la flecha junto a la última pestaña, y entra a “Settings”. También puedes usar `Ctrl + ,`.
 
-Abre Windows Terminal, haz clic derecho en la barra de título (fuera de las pestañas) o haz clic en la flecha hacia abajo junto a la última pestaña y selecciona “Settings”. También puedes presionar `Ctrl + ,` para abrir la configuración directamente.
-
-Busca la sección **Startup**. A la derecha, configura **PowerShell** como el Perfil predeterminado y **Windows Terminal** como la Aplicación de terminal predeterminada, y haz clic en “Save”.
+En la sección **Startup**, pon **PowerShell** como perfil predeterminado y **Windows Terminal** como aplicación de terminal predeterminada, y dale “Save”.
 
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-startup-configuration.png" alt="Configuración de inicio de Windows Terminal con PowerShell como perfil predeterminado y Windows Terminal como aplicación de terminal predeterminada" >}}
 {{< /gallery >}}
 
-### Configurar la política de ejecución de scripts en PowerShell
+### Cambia la política de ejecución de scripts
 
-Las políticas predeterminadas de PowerShell controlan si se pueden ejecutar scripts o comandos. En un equipo Windows de escritorio, normalmente la política está en “Restricted”, lo que permite ejecutar comandos individuales pero no scripts. En Windows Server, la política “RemoteSigned” permite ejecutar scripts y comandos locales, pero requiere que los scripts descargados estén firmados digitalmente.
+Por defecto, Windows de escritorio usa la política “Restricted”, que deja correr comandos sueltos pero no scripts, y Oh My Posh necesita scripts. “RemoteSigned” deja correr scripts locales y solo pide que los descargados estén firmados, y para la mayoría de casos es suficiente.
 
-Para la mayoría de casos, “RemoteSigned” es suficiente. Ejecuta este comando en PowerShell:
+Corre esto en PowerShell:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 ```
 
-Para confirmar que funcionó:
+Para revisar que quedó:
 
 ```powershell
 Get-ExecutionPolicy
@@ -71,35 +67,35 @@ Deberías ver:
 RemoteSigned
 ```
 
-## Instalar y configurar Oh My Posh
+## Instala y configura Oh My Posh
 
-Oh My Posh es la estrella de este tutorial. Es muy personalizable, se ve muy bien y tiene una comunidad enorme detrás.
+Esta es la pieza principal. Es muy personalizable y tiene una comunidad grande detrás.
 
-Instálalo con Winget. Desde PowerShell, ejecuta:
+Instálalo con Winget desde PowerShell:
 
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-Una vez instalado, abre una nueva pestaña de PowerShell para que todo cargue correctamente.
+Cuando termine, abre otra pestaña de PowerShell para que agarre los cambios.
 
-Para actualizar Oh My Posh más adelante, ejecuta:
+Para actualizarlo después:
 
 ```powershell
 winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-### Instalar una fuente
+### Instala una fuente
 
-Oh My Posh está diseñado para usar Nerd Fonts. Nerd Fonts son fuentes populares “parchadas” para incluir íconos, así que necesitas instalar una Nerd Font para ver los íconos especiales en Oh My Posh.
+Oh My Posh usa Nerd Fonts, fuentes normales modificadas para incluir íconos. Sin una, los íconos de tu prompt se ven como cuadros.
 
-Primero, explora las fuentes disponibles:
+Primero mira qué fuentes hay:
 
 ```powershell
 oh-my-posh font list
 ```
 
-Esto imprime un nombre de fuente por línea, así que puedes filtrarlo para buscar algo específico:
+Te sale un nombre por línea, así que lo puedes filtrar para buscar una en específico:
 
 ```powershell
 oh-my-posh font list | findstr /i mono
@@ -107,19 +103,19 @@ oh-my-posh font list | findstr /i mono
 
 Oh My Posh recomienda la familia “Meslo”, que incluye “Meslo LGM NF”.
 
-Una vez que elijas un nombre de la lista, instálala:
+Cuando ya elegiste una, instálala:
 
 ```powershell
 oh-my-posh font install meslo
 ```
 
-Las fuentes siempre se instalan para tu usuario actual, así que no necesitas una terminal elevada. También puedes instalar directamente desde una URL o un archivo zip local, por ejemplo `oh-my-posh font install https://example.com/font.zip`.
+Las fuentes se instalan solo para tu usuario, así que no necesitas una terminal como administrador. También puedes instalar desde una URL o un zip local, por ejemplo `oh-my-posh font install https://example.com/font.zip`.
 
-### Configurar Windows Terminal para usar una Nerd Font
+### Usa la Nerd Font en Windows Terminal
 
-Abre el archivo JSON de configuración de Windows Terminal presionando `Ctrl + Shift + ,` o desde "Settings > Open JSON file".
+Abre el JSON de configuración de Windows Terminal con `Ctrl + Shift + ,` o desde "Settings > Open JSON file".
 
-Busca la sección "profiles" > "defaults" y agrega esto:
+En la sección "profiles" > "defaults", agrega esto:
 
 ```json
 {
@@ -133,17 +129,17 @@ Busca la sección "profiles" > "defaults" y agrega esto:
 }
 ```
 
-Guarda y la fuente de tu terminal se actualizará.
+Guarda y listo, la terminal ya usa la fuente nueva.
 
-### Configurar la terminal de Visual Studio Code para usar una Nerd Font
+### Usa la Nerd Font en la terminal de VS Code
 
-En Visual Studio Code, configura la terminal integrada para usar la Nerd Font. Abre la configuración (`Ctrl + ,`), busca "Integrated: Font Family", y reemplaza el valor con `MesloLGM Nerd Font`.
+En VS Code, abre la configuración (`Ctrl + ,`), busca "Integrated: Font Family" y cambia el valor a `MesloLGM Nerd Font`.
 
-### Configurar PowerShell para usar Oh My Posh
+### Carga Oh My Posh en PowerShell
 
-Vamos a decirle a PowerShell que cargue Oh My Posh cada vez que inicies una terminal.
+Ahora dile a PowerShell que cargue Oh My Posh cada vez que abras una terminal.
 
-Abre tu perfil con tu editor favorito, por ejemplo:
+Abre tu perfil con el editor que uses, por ejemplo:
 
 ```powershell
 code $PROFILE
@@ -155,7 +151,7 @@ Agrega esta línea y guarda:
 oh-my-posh init pwsh --strict | Invoke-Expression
 ```
 
-La opción `--strict` hace que el prompt encuentre `oh-my-posh` a través de tu `PATH`. Sin ella, el script de inicio apunta a la carpeta exacta de instalación, y como `winget upgrade` elimina la versión anterior, tu prompt dejaría de funcionar después de una actualización.
+La opción `--strict` hace que el prompt encuentre `oh-my-posh` por medio de tu `PATH`. Sin ella, el script apunta a la carpeta exacta de instalación, y como `winget upgrade` borra la versión anterior, el prompt se te rompe después de actualizar.
 
 Recarga tu perfil:
 
@@ -163,23 +159,23 @@ Recarga tu perfil:
 . $PROFILE
 ```
 
-¡Listo! Deberías ver que tu prompt cambia de inmediato a algo como esto:
+Deberías ver que tu prompt cambia de una vez a algo como esto:
 
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-ohmyposh.png" alt="Prompt de PowerShell con el tema predeterminado de Oh My Posh mostrando la carpeta actual y la rama de Git" >}}
 {{< /gallery >}}
 
-### Elegir un tema
+### Elige un tema
 
-Oh My Posh incluye varios temas integrados. Puedes explorarlos en la {{< extlink href="https://ohmyposh.dev/docs/themes" >}}documentación de temas de Oh My Posh{{< /extlink >}}.
+Oh My Posh trae varios temas. Los puedes ver en la {{< extlink href="https://ohmyposh.dev/docs/themes" >}}documentación de temas de Oh My Posh{{< /extlink >}}.
 
-Elige el que te guste y haz referencia a él por nombre (sin extensión) en la línea de tu perfil de PowerShell. Por ejemplo, si te gusta el tema minimalista “zash”, actualiza la línea a:
+Elige el que te guste y pon su nombre (sin extensión) en la línea de tu perfil de PowerShell. Por ejemplo, para el tema minimalista “zash”, la línea queda así:
 
 ```powershell
 oh-my-posh init pwsh --strict --config "zash" | Invoke-Expression
 ```
 
-Esto descarga y guarda en caché el tema al iniciar la terminal, así que necesitas conexión a internet la primera vez. Si prefieres quedarte con una copia local para modificarla, expórtala a un archivo:
+Así el tema se descarga y queda en caché al abrir la terminal, por eso la primera vez necesitas internet. Si prefieres tener una copia local para modificarla, expórtala a un archivo:
 
 ```powershell
 oh-my-posh config export --config zash --output ~/zash.omp.json
@@ -193,23 +189,21 @@ Guarda y recarga:
 . $PROFILE
 ```
 
-¡Disfruta tu nuevo look!
-
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-ohmyposh-zash.png" alt="Prompt de PowerShell con el tema zash de Oh My Posh mostrando el usuario, la carpeta actual y la rama de Git" >}}
 {{< /gallery >}}
 
-Si quieres volver al tema predeterminado, solo usa:
+Para regresar al tema por defecto:
 
 ```powershell
 oh-my-posh init pwsh --strict | Invoke-Expression
 ```
 
-## Sube de nivel instalando estos módulos y apps
+## Otras herramientas que instalo
 
 ### PSReadLine
 
-PSReadLine se encarga de la edición de la línea de comandos en PowerShell: resaltado de sintaxis, historial, sugerencias y atajos de teclado. PowerShell 7 ya lo incluye, así que no necesitas instalar nada, y obtienes mucho sin configurar nada:
+PSReadLine es lo que maneja la edición de la línea de comandos en PowerShell: resaltado de sintaxis, historial, sugerencias y atajos de teclado. Ya viene con PowerShell 7, así que no tienes que instalar nada, y sin configurar nada ya te da bastante:
 
 - Resaltado de sintaxis para comandos y argumentos
 - Sugerencias de tu historial mientras escribes, presiona `Right arrow` para aceptar una
@@ -218,7 +212,7 @@ PSReadLine se encarga de la edición de la línea de comandos en PowerShell: res
 - `Ctrl + arrow keys` para moverte por palabras
 - `Ctrl + L` para limpiar la pantalla
 
-Algunos ajustes lo mejoran todavía más. Abre tu perfil de PowerShell:
+Con un par de ajustes queda mejor. Abre tu perfil de PowerShell:
 
 ```powershell
 code $PROFILE
@@ -238,9 +232,9 @@ Guarda y recarga:
 . $PROFILE
 ```
 
-La primera línea desactiva el pitido, por ejemplo cuando presionas Backspace en una línea vacía. Las otras dos cambian las flechas arriba y abajo para buscar en tu historial según lo que ya escribiste. Escribe `git`, presiona `Up` y solo recorrerás tus comandos `git` anteriores. En una línea vacía, las flechas funcionan como siempre.
+La primera línea quita el pitido, por ejemplo cuando le das Backspace a una línea vacía. Las otras dos hacen que las flechas arriba y abajo busquen en tu historial según lo que ya escribiste. Escribe `git`, dale `Up` y solo te van a salir tus comandos `git` anteriores. Con la línea vacía, las flechas funcionan normal.
 
-Revisa todos los key bindings con:
+Para ver todos los atajos:
 
 ```powershell
 Get-PSReadLineKeyHandler
@@ -250,7 +244,7 @@ Documentación oficial en el {{< extlink href="https://github.com/PowerShell/PSR
 
 ### fastfetch
 
-`fastfetch` muestra información del sistema (SO, software, hardware) junto al logo de tu sistema operativo en un formato claro y ordenado.
+`fastfetch` te muestra la información del sistema (SO, software, hardware) al lado del logo de tu sistema operativo.
 
 Instálalo con:
 
@@ -258,7 +252,7 @@ Instálalo con:
 winget install Fastfetch-cli.Fastfetch
 ```
 
-Abre una nueva pestaña de PowerShell y ejecuta:
+Abre otra pestaña de PowerShell y corre:
 
 ```powershell
 fastfetch
@@ -272,7 +266,7 @@ Más info en el {{< extlink href="https://github.com/fastfetch-cli/fastfetch" >}
 
 ### bat
 
-`bat` es un clon de `cat` que agrega resaltado de sintaxis e integración con Git.
+`bat` es como `cat`, pero con resaltado de sintaxis e integración con Git.
 
 Instálalo con:
 
@@ -290,7 +284,7 @@ winget install Microsoft.VCRedist.2015+.x64
 {{< gallery-image src="images/bat.png" alt="Windows Terminal mostrando bat desplegando un archivo con resaltado de sintaxis y números de línea" >}}
 {{< /gallery >}}
 
-En Windows, instala `less` también para paginar:
+En Windows instala también `less` para poder paginar:
 
 ```powershell
 winget install jftuga.less
@@ -300,7 +294,7 @@ Uso y detalles en el {{< extlink href="https://github.com/sharkdp/bat" >}}repo d
 
 ### eza
 
-`eza` es una alternativa moderna a `ls` con colores, metadata, reconocimiento de symlinks y soporte para estado de Git.
+`eza` es un reemplazo de `ls` con colores, metadata, symlinks y el estado de Git.
 
 Instálalo con:
 
@@ -308,7 +302,7 @@ Instálalo con:
 winget install eza-community.eza
 ```
 
-Abre una nueva pestaña de PowerShell para empezar a usarlo.
+Abre otra pestaña de PowerShell y ya lo puedes usar.
 
 {{< gallery >}}
 {{< gallery-image src="images/eza.png" alt="Windows Terminal mostrando eza listando el contenido de un directorio con colores, metadatos e indicadores de estado de Git" >}}
@@ -316,26 +310,16 @@ Abre una nueva pestaña de PowerShell para empezar a usarlo.
 
 Mira opciones y docs en el {{< extlink href="https://github.com/eza-community/eza#command-line-options" >}}repo de eza en GitHub{{< /extlink >}}.
 
----
-
-Ahora tienes una terminal potente y con estilo, a partir de unos pocos cambios de configuración.
-
-{{< callout tip>}}
-Jugar con tu entorno de trabajo se trata de sentirte cómodo y feliz mientras creas.
-{{< /callout >}}
-
-¡Sigue explorando nuevos temas, combinaciones y herramientas!
-
----
+## Si algo no funciona
 
 **¿Los íconos aparecen como cuadros o no se muestran?**
-Asegúrate de haber seleccionado la Nerd Font en todas tus terminales. A veces necesitas cerrar por completo y volver a abrir las apps para que la fuente se aplique.
+Revisa que tengas la Nerd Font seleccionada en todas tus terminales. A veces hay que cerrar la app por completo y volverla a abrir para que agarre la fuente.
 
 **¿No puedes ejecutar scripts?**
-Asegúrate de haber cambiado la política de ejecución con `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force` y de estar usando PowerShell, no CMD ni Windows PowerShell. Las instalaciones a nivel sistema pueden requerir permisos de administrador.
+Revisa que hayas cambiado la política de ejecución con `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force` y que estés en PowerShell, no en CMD ni en Windows PowerShell. Las instalaciones para todo el sistema pueden pedir permisos de administrador.
 
 **¿El prompt no cambia después de la configuración?**
-Verifica que el comando de Oh My Posh esté al final de tu archivo `$PROFILE` y que hayas recargado tu perfil (`. $PROFILE`). Si editaste tu perfil pero no ves cambios, ejecuta `. $PROFILE` manualmente.
+Revisa que el comando de Oh My Posh esté al final de tu `$PROFILE` y que hayas recargado el perfil (`. $PROFILE`). Si lo editaste y no ves cambios, corre `. $PROFILE` a mano.
 
 ---
 

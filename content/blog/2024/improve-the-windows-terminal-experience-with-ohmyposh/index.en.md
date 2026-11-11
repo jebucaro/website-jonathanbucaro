@@ -9,9 +9,7 @@ description: "I'll guide you step-by-step through the process of setting up Wind
 slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
 ---
 
-Customizing your terminal can make a huge difference in your productivity and comfort as a developer. One of the most popular tools to personalize the prompt on Windows is Oh My Posh, which allows you to add attractive visual themes and extra features in both PowerShell and Windows Terminal.
-
-In this article, I’ll walk you through step-by-step how to transform your Windows terminal with Oh My Posh. Don’t worry if you’ve never customized anything before, I’ll take you from installing PowerShell all the way to making your terminal look completely different.
+I wanted my Windows terminal to look good and show more at a glance, so I set it up with PowerShell 7, Windows Terminal, Oh My Posh with a Nerd Font, and a few command-line tools. I wrote the steps down so I could repeat them, and so you can too, even if you've never customized a terminal before.
 
 ## Install PowerShell
 
@@ -19,9 +17,9 @@ In this article, I’ll walk you through step-by-step how to transform your Wind
 {{< gallery-image src="images/windows-terminal-windows-powershell.png" alt="Windows Terminal running the built-in Windows PowerShell with its default prompt" >}}
 {{< /gallery >}}
 
-Are you still using the old version of PowerShell that comes with Windows? To fully benefit from Oh My Posh, it’s essential to have the latest cross-platform version.
+Windows ships with the old Windows PowerShell. Oh My Posh works best with the current cross-platform PowerShell 7.
 
-My favorite way to install PowerShell is with Winget because it’s fast and easy, but you can also get it from the {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}. Your choice!
+I install it with Winget because it's quick, but you can also get it from the {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}.
 
 From a Windows PowerShell window, run:
 
@@ -31,13 +29,11 @@ winget install Microsoft.PowerShell -s winget
 
 ## Configure Windows Terminal
 
-Since the Windows 11 22H2 update, Windows Terminal is the default terminal. If you don’t have it installed, you can easily install it via Winget or from the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
+Since the Windows 11 22H2 update, Windows Terminal is the default terminal. If you don’t have it, install it with Winget or from the {{< extlink href="https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}:
 
 ```powershell
 winget install Microsoft.WindowsTerminal -s winget
 ```
-
-Once it's installed, continue with the setup below.
 
 ### Set Windows Terminal as the default terminal application
 
@@ -51,9 +47,9 @@ Find the **Startup** section. On the right, set **PowerShell** as the Default Pr
 
 ### Configure PowerShell script execution policy
 
-PowerShell’s default policies control whether scripts or commands can run. On a Windows desktop, the policy is usually set to “Restricted,” which allows running single commands but not scripts. On Windows Server, the “RemoteSigned” policy lets you run local scripts and commands but requires downloaded scripts to be digitally signed.
+By default, Windows desktops use the “Restricted” policy, which runs single commands but not scripts, and Oh My Posh needs scripts. “RemoteSigned” runs local scripts and only requires downloaded ones to be signed, which is enough for most cases.
 
-For most cases, “RemoteSigned” is enough. Run this command in PowerShell:
+Run this in PowerShell:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
@@ -73,7 +69,7 @@ RemoteSigned
 
 ## Install and configure Oh My Posh
 
-Oh My Posh is the star of this tutorial. It’s highly customizable, looks great, and has a large community behind it.
+This is the main piece. It's very customizable and has a big community behind it.
 
 Install it with Winget. From PowerShell, run:
 
@@ -91,7 +87,7 @@ winget upgrade JanDeDobbeleer.OhMyPosh -s winget
 
 ### Install a font
 
-Oh My Posh is designed to use Nerd Fonts. Nerd Fonts are popular fonts patched to include icons, so you need to install a Nerd Font to see the special icons in Oh My Posh.
+Oh My Posh uses Nerd Fonts, regular fonts patched to include icons. Without one, the icons in your prompt show up as squares.
 
 First, browse the available fonts:
 
@@ -141,7 +137,7 @@ In Visual Studio Code, configure the integrated terminal to use the Nerd Font. O
 
 ### Configure PowerShell to use Oh My Posh
 
-Let’s tell PowerShell to load Oh My Posh whenever you start a terminal.
+Now tell PowerShell to load Oh My Posh every time a terminal starts.
 
 Open your profile with your favorite editor, for example:
 
@@ -163,7 +159,7 @@ Reload your profile:
 . $PROFILE
 ```
 
-Done! You should see your prompt change immediately to something like this:
+You should see your prompt change right away to something like this:
 
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-ohmyposh.png" alt="PowerShell prompt with the default Oh My Posh theme showing the current folder and Git branch" >}}
@@ -193,8 +189,6 @@ Save and reload:
 . $PROFILE
 ```
 
-Enjoy your new look!
-
 {{< gallery >}}
 {{< gallery-image src="images/windows-terminal-ohmyposh-zash.png" alt="PowerShell prompt with the Oh My Posh zash theme showing the user, current folder, and Git branch" >}}
 {{< /gallery >}}
@@ -205,7 +199,7 @@ If you want to revert to the default theme, just use:
 oh-my-posh init pwsh --strict | Invoke-Expression
 ```
 
-## Level up by installing these modules and apps
+## A few more tools I install
 
 ### PSReadLine
 
@@ -316,17 +310,7 @@ Open a new PowerShell tab to start using it.
 
 See options and docs at the {{< extlink href="https://github.com/eza-community/eza#command-line-options" >}}eza GitHub repo{{< /extlink >}}.
 
----
-
-You now have a terminal that’s both powerful and good-looking, from a few config changes.
-
-{{< callout tip>}}
-Playing with your work environment is about feeling comfortable and happy while you create.
-{{< /callout >}}
-
-Keep exploring new themes, combos, and tools!
-
----
+## If something doesn't work
 
 **Icons showing as squares or not displaying?**
 Make sure you’ve selected the Nerd Font in all your terminals. Sometimes you need to fully close and reopen apps for the font to apply.

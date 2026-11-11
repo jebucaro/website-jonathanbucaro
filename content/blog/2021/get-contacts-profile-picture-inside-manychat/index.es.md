@@ -8,13 +8,11 @@ draft: false
 description: 'Obtén la foto de perfil de tus contactos en ManyChat. Una acción simple, sin el rollo técnico de una solicitud externa'
 ---
 
-## Saludos
+Esta es la documentación de Monet, una app pequeña para ManyChat que hice para obtener la foto de perfil de tus contactos con una sola acción, sin tener que armar una solicitud externa.
 
-¡Hola y bienvenido! Gracias por tu interés en Monet.
+Monet usa la API de ManyChat (`fb/subscriber/getInfo`), así que necesitas una cuenta ManyChat Pro, y cuenta para los {{< extlink href="https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls%3F" >}}límites de la API de ManyChat{{< /extlink >}}: 10 requests por segundo para ese endpoint.
 
-Esta app usa la API de ManyChat para obtener la URL de la foto de perfil de tus contactos. Vas a necesitar una cuenta ManyChat Pro y, como estás consumiendo la API de ManyChat directamente, debes tener en cuenta los {{< extlink href="https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls%3F" >}}límites de la API de ManyChat{{< /extlink >}}. La API que usa mi app Monet es `fb/subscriber/getInfo`, con un límite de 10 RPS (requests per second).
-
-El límite de uso de la API está bien para la mayoría de casos, solo ten cuidado si haces algo a lo grande.
+Para la mayoría de bots eso alcanza, solo ten cuidado si vas a hacer algo masivo.
 
 {{< gallery caption="Galería Monet" >}}
 {{< gallery-image src="images/0-monet-description.webp" alt="Arte de Monet acompañado de texto: 'One simple action without the technical fuzz of an external request' relacionado con una aplicación de ManyChat." >}}
@@ -25,15 +23,15 @@ El límite de uso de la API está bien para la mayoría de casos, solo ten cuida
 {{< gallery-image src="images/5-monet-phone.webp" alt="Arte de fondo de Monet con un teléfono mostrando la app de Messenger con la foto de perfil del usuario en una conversación con un chatbot." >}}
 {{< /gallery >}}
 
-### Instalar Monet para ManyChat
+## Instalar Monet para ManyChat
 
-El siguiente link te va a llevar a la página de instalación de la app en ManyChat. El único permiso necesario es `View contact data`, para poder leer el dato de la foto de perfil del contacto.
+El link de abajo te lleva a la página de instalación en ManyChat. El único permiso que pide es `View contact data`, que necesita para leer la foto de perfil del contacto.
 
 {{< extlink href="https://manychat.com/apps/849/install" >}}Instalar Monet{{< /extlink >}}
 
-### Obtener el código fuente de Monet
+## Obtener el código fuente de Monet
 
-Han pasado cuatro años desde que creé Monet como un proyecto sencillo para entender cómo crear una app pequeña para ManyChat. El código fuente es principalmente un archivo de configuración en JSON.
+Hice Monet como un proyecto pequeño para aprender cómo funcionan las apps de ManyChat, y el código es casi todo un archivo de configuración en JSON.
 
 {{< extlink href="https://github.com/jebucaro/monet-for-manychat" >}}Ir a GitHub{{< /extlink >}}
 
@@ -62,7 +60,7 @@ Ve a **ManyChat Settings > Extensions > API**. Si no has generado una API Key, h
 {{< gallery-image src="images/monet-setup-api-generate-1.webp" alt="Detalle de la configuración de ManyChat resaltando el campo de texto de la API key y el botón para generarla." >}}
 {{< /gallery >}}
 
-Ahora ve a **ManyChat Settings > Extensions > Apps** y selecciona la app **Monet**. Pega tu API Key en el campo **ManyChat API Key** (3). Haz clic en **Save** (4). ¡Y listo!
+Ahora ve a **ManyChat Settings > Extensions > Apps** y selecciona la app **Monet**. Pega tu API Key en el campo **ManyChat API Key** (3). Haz clic en **Save** (4), y listo.
 
 {{< gallery caption="Monet: Configura tu API Key de ManyChat" >}}
 {{< gallery-image src="images/monet-setup-app-select-1.webp" alt="Pantalla de configuración de ManyChat mostrando la lista de apps instaladas, resaltando la app Monet." >}}
@@ -95,7 +93,7 @@ Es más seguro validar si el CUF tiene algún valor. Si no, estas suelen ser las
 - Ocurrió un error al consumir la API de ManyChat
 - El atributo de foto de perfil no está disponible en el canal que estás usando
 
-Aquí tienes un flow básico de ejemplo para usar la app Monet.
+Aquí tienes un flow básico usando Monet:
 
 {{< gallery caption="Monet: Flow de ejemplo" >}}
 {{< gallery-image src="images/monet-flow-sample.webp" alt="Diagrama de un flow de ManyChat incorporando la app Monet, ilustrando la secuencia de acciones." >}}
@@ -105,7 +103,7 @@ Aquí tienes un flow básico de ejemplo para usar la app Monet.
 
 El sitio oficial de ManyChat.com se encuentra en {{< extlink href="https://manychat.com" >}}ManyChat{{< /extlink >}}
 
-Usé la definición de Monet de Urban Dictionary como inspiración para nombrar la app.
+Le puse el nombre a la app por la definición de Monet en Urban Dictionary:
 
 > Como las pinturas de Monet... Se ven bien de lejos, pero de cerca están lejos de verse bien
 >

@@ -8,104 +8,63 @@ description: 'Descubre cómo llevar un registro de trabajo puede ayudarte a mant
 slug: 'discover-the-importance-of-keeping-a-work-log'
 ---
 
-¿Alguna vez alguien te pidió una actualización de tu progreso y tuviste que escarbar en tu memoria para recordar en qué fue lo último que trabajaste? ¡No estás solo!
+Empecé a llevar un registro de trabajo cuando era desarrollador en Banco G&T Continental, y cuando empecé a trabajar como contratista se volvió algo de todos los días. Suena a una tarea más, pero me ha salvado más de una vez:
 
-Llevar un registro de trabajo (también conocido como diario de trabajo o bitácora) puede sonar como otro paso extra, pero en realidad es una de las herramientas más útiles para aumentar tu productividad y mantener tu vida laboral organizada.
+1. En una reestructuración de la empresa, cuando me pidieron un reporte detallado de mis logros, los obstáculos que tuve y cómo los resolví.
+2. Cuando pedí un aumento, tenía toda la información lista para presentar mi caso.
+3. En un contrato de tiempo y materiales, el cliente pidió el detalle de las actividades de cada día en la hoja de tiempo, y con mi registro lo entregué rápido y sin errores.
 
-Por experiencia propia, llevar un registro me ha ayudado en algunos momentos clave de mi carrera:
+En los tres casos, la otra opción era ponerme a escarbar en la memoria para acordarme de qué hice hace semanas.
 
-1. Durante una reestructuración en la empresa, cuando me pidieron un reporte detallado de mis logros, los obstáculos que enfrenté y los pasos que tomé para superarlos.
-2. Al solicitar un aumento; gracias a mi registro, tenía toda la información lista para presentar mi caso de forma clara y convincente.
-3. Mientras trabajaba en un contrato para un proyecto de tiempo y materiales. El cliente pidió un desglose detallado de las actividades diarias en la hoja de tiempo, y mi registro me ayudó a entregar un reporte rápido y preciso.
+## Qué apunto
 
-> "El secreto del éxito es estar listo cuando llegue tu oportunidad."  
-> Benjamin Disraeli
+Nada complicado. Durante el día voy anotando:
 
-Tener respuestas claras y evidencia concreta de tus logros no solo mejora tu preparación, también demuestra confianza y profesionalismo en cualquier entorno laboral.
+- Lo que terminé
+- Lo que sigue
+- Lo que me atrasó o me quitó tiempo
+- Notas, cosas que aprendí y lo que se me complicó
 
-## ¿Qué es un registro de trabajo?
+Se parece un poco a las preguntas del stand-up, pero es para ti, no para el equipo. Trato de apuntar mis objetivos al empezar el día, el avance y las sorpresas (esos requerimientos de último momento) durante el día, y un resumen corto al final.
 
-Un registro de trabajo es un registro estructurado de tus actividades. Puedes incluir detalles como:
+Con el tiempo eso te da varias cosas. Tienes un historial de tus logros para las evaluaciones, sin depender de la memoria. Ves en qué se fueron realmente las horas, interrupciones incluidas, y a qué hora trabajas mejor. La nota de la mañana te resuelve el "¿por dónde empiezo?", y al final del día ves qué quedó listo y pasas lo demás para mañana sin andarlo cargando en la cabeza. Prefiero buscar las cosas en mis notas que tratar de acordarme.
 
-- ¿Qué tareas completé?
-- ¿Qué tareas tendré que abordar después?
-- ¿Cuáles fueron mis mayores distracciones o en qué se me fue el tiempo?
-- Notas importantes, aprendizajes o dificultades durante el día
+Usa lo que sea rápido de actualizar y fácil de buscar: un cuaderno, Notion, lo que sea. Yo uso Obsidian todos los días, así que abajo está mi configuración.
 
-Aunque suena un poco como las preguntas de una reunión de `stand-up meeting`, el objetivo de un registro personal es ayudarte a seguir tu progreso, identificar patrones en tus hábitos y planificar con más efectividad.
+## Mi configuración en Obsidian
 
-## ¿Por qué vale la pena llevar un registro de trabajo?
+`Obsidian` es una app de escritura gratuita y privada, y la puedes usar para lo que sea, incluso para trabajo comercial. Mi plantilla es una versión simplificada de la que comparte **Dann Berg** en {{< extlink href="https://dannb.org/blog/2022/obsidian-daily-note-template/" >}}My Obsidian Daily Note Template{{< /extlink >}}, adaptada para un registro de trabajo.
 
-Aunque al inicio se sienta tedioso, la verdad es que esta práctica te ahorra tiempo, reduce tu estrés y hasta puede sacarte de apuros más de una vez. Aquí hay algunas razones clave para adoptarla:
+### Crea un vault
 
-### Te da un rastro claro de tus logros
-
-¡No subestimes todo lo que haces! Documentar tu progreso asegura que no se te olviden tus victorias ni esos momentos en los que superaste obstáculos grandes. En evaluaciones de desempeño o reuniones con tu manager, tu registro puede hablar por ti y ayudarte a respaldar tu trabajo con hechos concretos.
-
-### Te ayuda a entender en qué se te va el tiempo
-
-¿Cuántas veces has llegado al final del día sin saber dónde se fueron esas ocho horas? Un registro te permite identificar exactamente en qué trabajaste, incluyendo interrupciones o tareas inesperadas. También empezarás a notar tus momentos más productivos: ¿Eres más creativo en las mañanas? ¿Te concentras mejor después de un buen almuerzo? Esto puede ayudarte a ajustar tu horario y recortar actividades de bajo valor.
-
-### Elimina ambigüedad y mejora tu enfoque
-
-A veces, aunque sepas lo que tienes que hacer, la pregunta de "¿por dónde empiezo?" genera estrés. Registrar tu trabajo al inicio y al final del día te da claridad. Incluso puedes usar tu registro para definir metas claras y reducir la incertidumbre al enfrentar tareas grandes o complejas. Ordenar tus ideas antes de empezar te ayuda a mantenerte en rumbo y evitar improvisar sobre la marcha.
-
-### Te da cierre al final del día
-
-Pocas cosas se sienten tan bien como tachar tareas completadas. Al final de tu jornada, tu registro te deja ver lo que lograste (¡te lo ganaste!) y lo que todavía falta. Así no queda incertidumbre y puedes pasar lo pendiente para el día siguiente sin estrés.
-
-## Beneficios más allá del trabajo
-
-Aunque principalmente es una herramienta de trabajo, llevar un registro también puede ayudarte en otras áreas de tu vida. Te da perspectiva, fomenta la mejora continua y puede recordarte aprendizajes pasados para que ahorres tiempo en el futuro.
-
-> "Nunca memorices algo que puedas consultar".
->
-> {{< extlink href="https://www.goodreads.com/quotes/24194-never-memorize-something-that-you-can-look-up" >}}Albert Einstein{{< /extlink >}}
-
-Ese consejo encaja perfecto aquí: apoyarte en tus propias notas libera espacio mental y hace tu flujo de trabajo más ágil.
-
-## ¿Cómo empezar?
-
-No lo compliques. Elige una herramienta simple que te funcione, por ejemplo: una libreta de papel o apps digitales como `Notion` u `Obsidian`. La clave es que sea rápida de actualizar y fácil de revisar. Idealmente, vas a querer registrar:
-
-1. **Inicio del día:** Tus metas y tareas principales.
-2. **Durante el día:** Avances, retos y cambios inesperados (esas solicitudes de último minuto).
-3. **Final del día:** Un resumen breve de lo que lograste y lo que queda para mañana.
-
-## Usando una plantilla de `Obsidian` para tu registro de trabajo
-
-`Obsidian`, según su sitio oficial, es una app de escritura privada y flexible que se adapta a tu forma de pensar. Es una app excelente, ¡yo la uso todos los días! Puedes descargar y usar `Obsidian` gratis, para siempre, para cualquier propósito, incluyendo uso personal, comercial, sin fines de lucro, educativo e incluso gubernamental.
-
-Esta plantilla simplificada está basada en el trabajo de **Dann Berg** en su post {{< extlink href="https://dannb.org/blog/2022/obsidian-daily-note-template/" >}}My Obsidian Daily Note Template{{< /extlink >}}. Abajo comparto mi propia adaptación, pensada específicamente para registros de trabajo.
-
-### Configurando la plantilla
-
-Vas a necesitar tener `Obsidian` instalado y un vault para usarlo como tu registro de trabajo.
+Instala `Obsidian` y crea un vault para tu registro de trabajo.
 
 {{< gallery caption="Obsidian - Obsidian - Crear un vault" >}}
 {{< gallery-image src="images/obsidian.webp" alt="Pantalla de bienvenida de Obsidian mostrando diferentes opciones, resaltando la opción para crear un vault nuevo." >}}
 {{< gallery-image src="images/obsidian-create-vault.webp" alt="Opciones dentro de 'Create a new vault' en Obsidian, donde se define el nombre y la ubicación del vault." >}}
 {{< /gallery >}}
 
-#### Plugins
+### Instala los plugins
+
+Necesitas dos plugins:
 
 - {{< extlink href="https://help.obsidian.md/Plugins/Daily+notes" >}}Daily Notes{{< /extlink >}}, incluido por defecto en Obsidian, no requiere instalación.
 - {{< extlink href="https://github.com/liamcain/obsidian-calendar-plugin" >}}Calendar{{< /extlink >}}, un plugin de la comunidad que se instala desde la {{< extlink href="https://help.obsidian.md/Extending+Obsidian/Community+plugins" >}}galería de plugins de Obsidian{{< /extlink >}}
 
-##### Habilitar plugins de la comunidad
+Primero habilita los plugins de la comunidad:
 
 {{< gallery caption="Obsidian - Habilitar plugins de la comunidad" >}}
 {{< gallery-image src="images/obsidian-enable-community-plugins.webp" alt="Pantalla de configuración en la sección de community plugins de Obsidian, con el botón para habilitar los plugins de la comunidad." >}}
 {{< gallery-image src="images/obsidian-community-plugins-enabled.webp" alt="Opción para habilitar los plugins de la comunidad en Obsidian, mostrando estado activo." >}}
 {{< /gallery >}}
 
-Haz clic en el botón `Browse` y, en la ventana emergente, busca el nombre del plugin (por ejemplo, `Templater`).
+Después dale clic a `Browse` y busca el plugin por nombre (en la captura sale `Templater`, pero funciona igual para cualquier plugin):
 
 {{< gallery caption="Obsidian - Buscar plugins de la comunidad" >}}
 {{< gallery-image src="images/obsidian-community-plugins-browse.webp" alt="Búsqueda de plugins en la ventana de community plugins en Obsidian, mostrando la búsqueda de 'Templater'." >}}
 {{< /gallery >}}
 
-##### Instalación del plugin Calendar
+Instala y habilita Calendar:
 
 {{< gallery caption="Obsidian - Instalar y habilitar el plugin Calendar" >}}
 {{< gallery-image src="images/obsidian-community-plugins-install-calendar.webp" alt="Resultado de búsqueda del plugin 'Calendar' en Obsidian, mostrando el botón de instalación." >}}
@@ -113,9 +72,9 @@ Haz clic en el botón `Browse` y, en la ventana emergente, busca el nombre del p
 {{< gallery-image src="images/obsidian-community-plugins-calendar-enabled.webp" alt="Plugin 'Calendar' en Obsidian ya instalado y habilitado." >}}
 {{< /gallery >}}
 
-#### Crea el archivo de plantilla
+### Crea la plantilla
 
-Crea una carpeta nueva llamada `templates` en la raíz del vault. Dentro de la carpeta `templates`, crea una nota nueva llamada `daily-notes-template` y copia y pega el siguiente snippet en la nota en modo source. (Tip: Usa `Ctrl+Shift+v` para pegar como texto plano.)
+Crea una carpeta `templates` en la raíz del vault, y adentro una nota llamada `daily-notes-template`. Pega esto en modo source (`Ctrl+Shift+v` pega como texto plano):
 
 ```markdown
 ---
@@ -141,48 +100,44 @@ tags:
 ## 📝 Notes
 ```
 
-Crea una carpeta nueva llamada `daily` en la raíz del vault.
+Luego crea una carpeta `daily` en la raíz del vault.
 
 {{< gallery caption="Obsidian - Estructura de directorios" >}}
 {{< gallery-image src="images/obsidian-folder-structure.webp" alt="Pantalla principal de Obsidian mostrando la estructura de carpetas para configurar el template y la carpeta de generación de notas diarias." >}}
 {{< gallery-image src="images/obsidian-template-content.webp" alt="Contenido del template de notas diarias en Obsidian." >}}
 {{< /gallery >}}
 
-#### Configuración del plugin
+### Configura Daily Notes
 
-Ve a Settings y, dentro de **Core plugins**, busca la configuración del plugin **Daily Notes**. Configura `YYYY/MM-MMMM/YYYY-MM-DD-dddd` como valor de **Date Format**. Esto anida tus notas en subcarpetas por _año > mes > día_, haciendo más fácil navegar. También configura `daily` como valor de **New File Location**, y `templates/daily-notes-template` como **Template file location**. Así, cuando presiones **Open today's daily note** en la cinta (ribbon) de Obsidian, tu nota nueva va a usar la plantilla. Tal vez también quieras activar **Open daily note on startup**; personalmente yo lo mantengo activado.
+En Settings, dentro de **Core plugins**, abre **Daily Notes** y configura:
+
+- **Date Format**: `YYYY/MM-MMMM/YYYY-MM-DD-dddd`, que ordena tus notas por _año > mes > día_
+- **New File Location**: `daily`
+- **Template file location**: `templates/daily-notes-template`
+
+Yo también activo **Open daily note on startup**.
 
 {{< gallery caption="Obsidian - Configuración de Daily Note" >}}
 {{< gallery-image src="images/obsidian-create-daily-note-configuration.webp" alt="Configuración del plugin Daily Notes en Obsidian, mostrando ajustes para el formato de fecha, la ubicación del archivo y la opción de crear la nota diaria al iniciar." >}}
 {{< /gallery >}}
 
-### Usando la plantilla
+### Úsala
 
-Tu plantilla ya está lista, úsala como punto de partida. ¡Hay mucho que puedes hacer con Obsidian y los plugins de la comunidad, pero para comenzar con tu registro de trabajo, esta configuración es más que suficiente!
-
-En la barra lateral izquierda vas a ver botones de acceso rápido, incluyendo uno para `Open today's daily note`. Al hacer clic, se creará una entrada nueva para la fecha de hoy (o se abrirá la existente, si ya está). Lo mismo pasa cuando abres Obsidian, si habilitaste la opción en la configuración de Daily Note.
+Dale clic a `Open today's daily note` en la barra lateral izquierda para crear la nota de hoy, o abrirla si ya existe. Si activaste la opción de inicio, Obsidian lo hace solo al abrirse.
 
 {{< gallery caption="Obsidian - Crear la nota de hoy" >}}
 {{< gallery-image src="images/obsidian-open-todays-daily-note.webp" alt="Pantalla de la app Obsidian, mostrando dónde hacer clic para tu nota diaria." >}}
 {{< gallery-image src="images/obsidian-todays-daily-note.webp" alt="Una nota diaria creada en Obsidian usando la plantilla configurada." >}}
 {{< /gallery >}}
 
-En la parte superior derecha encontrarás el botón **Expand**. Haz clic para mostrar diferentes pestañas, una de ellas es **Calendar**. La vista de calendario te permite saltar entre distintas notas diarias. Si haces doble clic en una fecha que todavía no tiene nota diaria, la app te pedirá crear una para ese día. Puedes activar o desactivar esta vista; cuando está expandida, el botón se convierte en **Collapse**.
+El botón **Expand** de arriba a la derecha muestra la pestaña **Calendar**, donde puedes saltar entre días. Si le das doble clic a una fecha sin nota, te ofrece crearla. Cuando está abierta, el botón cambia a **Collapse**.
 
 {{< gallery caption="Obsidian - Vista de Calendar" >}}
 {{< gallery-image src="images/obsidian-expand.webp" alt="App Obsidian mostrando dónde hacer clic para expandir vistas, como la vista de calendario." >}}
 {{< gallery-image src="images/obsidian-expand-calendar.webp" alt="App Obsidian mostrando la vista de Calendar." >}}
 {{< /gallery >}}
 
-Mi proceso usual es cambiar a modo de edición cuando necesito revisar algo desde este vistazo general.
-
-La búsqueda de Obsidian normalmente es más que suficiente, pero te recomiendo que pruebes el `Graph view` una vez ya tengas bastantes notas.
-
-## En resumen
-
-Llevar un registro de trabajo es más que una lista de pendientes; es una herramienta de crecimiento profesional. Te ayuda a organizarte, gestionar tu tiempo, reducir el estrés y destacar en tu equipo. También hace todo mucho más fácil durante reuniones, evaluaciones o cierres de proyecto. Con el tiempo, vas a detectar tendencias en tu desempeño y vas a ganar confianza en tu avance.
-
-¿Listo para empezar? Si mantienes este hábito, ¡te vas a sorprender de cuánto puede aumentar tu productividad y tu tranquilidad!
+Yo me paso a modo de edición cuando necesito revisar algo desde esa vista. Con la búsqueda normalmente encuentras lo que necesitas, pero cuando ya tengas unas semanas de notas, dale una mirada al `Graph view`.
 
 ---
 

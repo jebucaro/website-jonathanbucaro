@@ -8,27 +8,9 @@ tags: [windows, wsl]
 image: 'images/cover.png'
 ---
 
-## Why this matters
+When I moved all my development into Dev Containers inside WSL2, I also moved Docker out of Windows: it runs inside the WSL distro, so my code stays isolated from the Windows side. The catch was signing commits. I use the 1Password SSH agent on Windows with Windows Hello, and the usual trick of pointing `.gitconfig` at `op-ssh-sign.exe` through `/mnt/c/` only works in WSL itself. Inside a container that path doesn't exist, and containers can't see Windows mounts or named pipes.
 
-Moving your development into Dev Containers gives you flexibility and isolation, but it breaks the standard "WSL mount" configuration for 1Password if your Dev Containers are created inside WSL. This guide bridges the 1Password SSH agent from Windows into your containers using a network socket, so biometric Git signing works everywhere without leaking private keys.
-
-Modern Windows development has reached a sweet spot: the native Linux performance of WSL2 combined with the clean, reproducible isolation of Dev Containers. But that multi-layered architecture often leaves security credentials stranded, and bridging 1Password into the stack lets you use the biometric hardware of your Windows machine (Windows Hello) to authenticate inside isolated Linux environments, without scattering private keys across virtual filesystems.
-
-## The problem
-
-If you work strictly in WSL2, it's tempting to point your `.gitconfig` at the Windows 1Password binary via the `/mnt/c/` mount. That works on the surface, but it's brittle and breaks the moment you move toward a containerized workflow:
-
-- Referencing `op-ssh-sign.exe` directly in your WSL `.gitconfig` works locally, but that path does not exist inside a Dev Container.
-- Containers are isolated by design, they don't have access to your Windows host's filesystem mounts or its named pipes.
-- Different dev environments have different mount points, which makes hardcoded paths a maintenance headache.
-
-{{< callout warning >}} Managing separate SSH keys for your host and your containers increases your attack surface and makes key rotation a nightmare. {{< /callout >}}
-
-## The solution
-
-Using `socat` and `npiperelay`, you create a Unix socket that bridges your Linux environment to the Windows 1Password agent. That gets you biometric signing for commits and pushes to GitHub, GitLab, or Azure DevOps through Windows Hello, no private keys stored in `~/.ssh/` on Linux, vault isolation (1Password only shares the keys you choose to expose to the agent), and one Git configuration that works the same on Windows, WSL, and inside any Dev Container.
-
-To see how the pieces fit together:
+The fix is a small bridge: `socat` and `npiperelay` expose the Windows 1Password agent as a Unix socket in WSL, and the containers use that socket. You get biometric signing with Windows Hello for GitHub, GitLab, or Azure DevOps, no private keys in `~/.ssh/` on Linux, only the vaults you choose exposed to the agent, and one Git config that works the same on Windows, WSL, and in any Dev Container. You also don't end up managing separate keys for every environment.
 
 {{< figure-dynamic
     light-src="images/1password-ssh-agent-architecture-light.svg"
@@ -36,14 +18,14 @@ To see how the pieces fit together:
     alt="1Password SSH agent system architecture"
     title="System Architecture" >}}
 
-## Quick start
+## Setup
 
 ### Prerequisites
 
 - Git for Windows installed and you have configured your {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" >}}global user name and email{{< /extlink >}}
 - 1Password 8+ for Windows (with Windows Hello configured).
 - WSL 2 with `systemd` enabled. If you installed Ubuntu via `wsl --install`, systemd is enabled by default; otherwise follow the {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}official documentation{{< /extlink >}}.
-- `npiperelay.exe` downloaded and added to your Windows `%PATH%`. Follow the instructions in the {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} repo, or download the {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} and unzip it somewhere on your `%PATH%`. This tutorial creates a `bin` folder inside the Windows home folder and extracts `npiperelay.exe` there.
+- `npiperelay.exe` downloaded and added to your Windows `%PATH%`. Follow the instructions in the {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} repo, or download the {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} and unzip it somewhere on your `%PATH%`. I create a `bin` folder in my Windows home and extract `npiperelay.exe` there.
 
 ### Step 1: configure the Windows host
 
@@ -163,9 +145,9 @@ Host *
     alt="1Password SSH agent authentication flow"
     title="Authentication Flow" >}}
 
-## Verifying results
+## Check that it works
 
-To check if your setup is signing and verifying correctly, create a commit and run:
+Create a commit, approve it with Windows Hello, and run:
 
 ```bash
 git log --show-signature
@@ -181,6 +163,8 @@ git log --show-signature
 {{< /gallery >}}
 
 You should see: `Good "git" signature for [email] with key ...`
+
+I wrote this when the goal was signing my own commits from containers. Today, with more of my work being agent-driven, I'd rethink this setup, but at the time it was how I kept my dev containers isolated and still signed every commit.
 
 ---
 
