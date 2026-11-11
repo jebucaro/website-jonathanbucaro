@@ -17,7 +17,7 @@ Quería que mi terminal en Windows se viera bien y me mostrara más información
 {{< gallery-image src="images/windows-terminal-windows-powershell.png" alt="Windows Terminal ejecutando el Windows PowerShell integrado con su prompt predeterminado" >}}
 {{< /gallery >}}
 
-Windows trae el Windows PowerShell viejo. Oh My Posh funciona mejor con el PowerShell 7 actual, que es multiplataforma.
+Windows trae el Windows PowerShell antiguo. Oh My Posh funciona mejor con el PowerShell 7 actual, que es multiplataforma.
 
 Yo lo instalo con Winget porque es rápido, pero también lo puedes bajar de la {{< extlink href="https://www.microsoft.com/store/productId/9MZ1SNWT0N5D?ocid=pdpshare" >}}Microsoft Store{{< /extlink >}}.
 
