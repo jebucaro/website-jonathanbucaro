@@ -10,3 +10,5 @@ layouts/**/*.html
 .superpowers/**
 # Claude Code settings
 .claude/**
+# test fixture: blank lines and fences are deliberate
+content/llms-fixture/**

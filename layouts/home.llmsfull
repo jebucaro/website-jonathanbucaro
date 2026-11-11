@@ -24,3 +24,13 @@ Updated: {{ .Lastmod.Format "2006-01-02" }}
 {{ partial "functions/llms-markdown.html" (dict "page" .) }}
 {{- end }}
 {{- end }}
+{{- /* Test-only: scripts/check-llms-fixture.mjs builds with this environment
+     to check the Markdown conversion against a headless fixture page. */}}
+{{- if eq hugo.Environment "llms-fixture" }}
+{{- with $en.GetPage "/llms-fixture" }}
+
+## Fixture
+
+{{ partial "functions/llms-markdown.html" (dict "page" .) }}
+{{- end }}
+{{- end }}

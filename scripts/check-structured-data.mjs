@@ -353,10 +353,23 @@ function checkLlmsFullTxt() {
         // Front matter would sit right after a page's metadata lines.
         ['front matter', /^Updated: .*\n\n---\n/m],
         ['em dash', /—/],
+        ['test fixture', /llms-markdown fixture|## Fixture/],
     ])
         if (re.test(text)) fail(file, `contains ${label}`);
 }
 checkLlmsFullTxt();
+
+// The headless llms-markdown test fixture must never be published.
+for (const path of ['llms-fixture', 'es/llms-fixture'])
+    if (existsSync(join(PUBLIC_DIR, path)))
+        fail(path, 'test fixture was rendered');
+if (
+    existsSync(join(PUBLIC_DIR, 'en/sitemap.xml')) &&
+    readFileSync(join(PUBLIC_DIR, 'en/sitemap.xml'), 'utf8').includes(
+        'llms-fixture',
+    )
+)
+    fail('en/sitemap.xml', 'lists the test fixture');
 
 if (failures.length) {
     console.error(`Structured data check failed (${failures.length}):`);

@@ -37,22 +37,51 @@
 {{- $md = replaceRE `\{\{<\s*(?:checklist|checklist-section)\s+title="([^"]*)"[^>]*>\}\}` "**${1}**" $md -}}
 {{- $md = replaceRE `\{\{<\s*/?(?:callout|challenge|challenge-problem|challenge-decision|checklist|checklist-section)\s*>\}\}` "" $md -}}
 
-{{- $md = replaceRE `\n{3,}` "\n\n" $md -}}
-
-{{- /* Demote headings two levels (capped at h6) so a page's own `##` sections nest under its
-     `###` title in llms-full.txt. Lines inside code fences are left alone. */ -}}
+{{- /* One pass over the lines, outside code fences only:
+     - demote headings two levels (capped at h6) so a page's own `##` sections
+       nest under its `###` title in llms-full.txt;
+     - squeeze runs of blank lines (left by removed shortcodes) to one.
+     Fences follow CommonMark: a fence opens with 3+ backticks or tildes
+     (indented at most 3 spaces) and closes only on a bare fence of the same
+     character that is at least as long, so nested fences in code samples
+     stay intact. */ -}}
 {{- $out := slice -}}
-{{- $fence := false -}}
+{{- $fenceChar := "" -}}
+{{- $fenceLen := 0 -}}
+{{- $prevBlank := false -}}
 {{- range split $md "\n" -}}
-    {{- if or (hasPrefix (trim . " ") "```") (hasPrefix (trim . " ") "~~~") -}}
-        {{- $fence = not $fence -}}
-    {{- else if and (not $fence) (findRE `^#{1,6} ` .) -}}
+    {{- $marker := "" -}}
+    {{- $info := "" -}}
+    {{- with findRESubmatch "^ {0,3}(`{3,}|~{3,})(.*)$" . 1 -}}
+        {{- $marker = index (index . 0) 1 -}}
+        {{- $info = index (index . 0) 2 -}}
+    {{- end -}}
+    {{- if $fenceChar -}}
+        {{- /* Inside a fence: keep every line verbatim. */ -}}
+        {{- if and $marker (hasPrefix $marker $fenceChar) (ge (len $marker) $fenceLen) (eq (trim $info " \t") "") -}}
+            {{- $fenceChar = "" -}}
+        {{- end -}}
+        {{- $out = $out | append . -}}
+        {{- $prevBlank = false -}}
+        {{- continue -}}
+    {{- end -}}
+    {{- if $marker -}}
+        {{- $fenceChar = substr $marker 0 1 -}}
+        {{- $fenceLen = len $marker -}}
+    {{- else if eq (trim . " \t") "" -}}
+        {{- if $prevBlank }}{{ continue }}{{ end -}}
+        {{- $prevBlank = true -}}
+        {{- $out = $out | append . -}}
+        {{- continue -}}
+    {{- else if findRE `^#{1,6} ` . -}}
         {{- $hashes := index (index (findRESubmatch `^(#{1,6}) ` . 1) 0) 1 -}}
         {{- $level := math.Min 6 (add (len $hashes) 2) -}}
         {{- $out = $out | append (printf "%s%s" (strings.Repeat (int $level) "#") (strings.TrimPrefix $hashes .)) -}}
+        {{- $prevBlank = false -}}
         {{- continue -}}
     {{- end -}}
     {{- $out = $out | append . -}}
+    {{- $prevBlank = false -}}
 {{- end -}}
 {{- $md = delimit $out "\n" -}}
 
