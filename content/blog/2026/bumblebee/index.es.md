@@ -128,7 +128,7 @@ Para revisar contra incidentes conocidos, bájate la carpeta `threat_intel/` del
 }
 ```
 
-Para respuesta a incidentes puedes barrer un home completo con deep. Solo `deep` acepta un home como root; `baseline` y `project` lo rechazan. Ojo que se tarda más, porque recorre todo lo que alcanza:
+Para respuesta a incidentes puedes barrer un home completo con deep. Solo `deep` acepta un home como root; `baseline` y `project` lo rechazan. Toma en consideración que se tarda más, porque recorre todo lo que alcanza:
 
 ```bash
 bumblebee scan --profile deep \

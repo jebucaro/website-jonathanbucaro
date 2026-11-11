@@ -127,7 +127,7 @@ Lo demás son reglas en el prompt, y cualquier cambio pequeño ahí se nota en l
 
 Aun con prompts estrictos, a veces el modelo devuelve una relación que apunta a un nodo que nunca definió, o lo escribe un poco distinto. En vez de botar esas aristas sin decir nada, un paso de reparación busca una coincidencia exacta, luego una normalizada y luego una difusa con un umbral alto, y si nada encaja crea un nodo temporal para que la arista no se pierda. La interfaz te dice qué reparó. El grafo además elimina relaciones duplicadas, tanto las copias exactas como las que tienen el mismo origen, tipo y destino con IDs distintos.
 
-El texto de entrada no es de confianza, entonces Nodus lo envuelve en delimitadores y le dice al modelo que lo trate como datos, no como instrucciones. Es una primera línea de defensa contra la inyección de prompts, no una garantía. Ojo con un detalle: la Interactions API no expone los filtros de seguridad ajustables, así que solo aplican las protecciones base que Gemini siempre tiene activas.
+El texto de entrada no es de confianza, entonces Nodus lo envuelve en delimitadores y le dice al modelo que lo trate como datos, no como instrucciones. Es una primera línea de defensa contra la inyección de prompts, no una garantía. Toma en consideración que la Interactions API no expone los filtros de seguridad ajustables, así que solo aplican las protecciones base que Gemini siempre tiene activas.
 
 El grafo lo dibuja PyVis con un layout ForceAtlas2, así que los nodos conectados se juntan solos, y cada tipo de nodo tiene un color fijo para que se vea igual en todos los grafos.
 
@@ -140,7 +140,7 @@ Después de extraer, puedes hacerle preguntas al documento. Las respuestas salen
 {{< /gallery >}}
 
 {{< callout warning>}}
-Ojo con la privacidad, porque el Chat no funciona igual que la extracción. Las llamadas de extracción usan `store=False`, pero el Chat usa `store=True` y envía el texto original completo en la primera pregunta, así que Gemini retiene la conversación y tu documento durante la ventana de retención de la Interactions API (55 días en el tier de pago, 1 día en el gratuito). Esto solo aplica mientras usas el Chat, y se reinicia cada vez que vuelves a extraer o presionas Clear.
+Ten precaución con la privacidad, porque el Chat no funciona igual que la extracción. Las llamadas de extracción usan `store=False`, pero el Chat usa `store=True` y envía el texto original completo en la primera pregunta, así que Gemini retiene la conversación y tu documento durante la ventana de retención de la Interactions API (55 días en el tier de pago, 1 día en el gratuito). Esto solo aplica mientras usas el Chat, y se reinicia cada vez que vuelves a extraer o presionas Clear.
 {{< /callout >}}
 
 ## Cuánto cuesta
