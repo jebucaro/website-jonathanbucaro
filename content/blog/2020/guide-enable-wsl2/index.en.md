@@ -8,7 +8,7 @@ description: 'Learn how to install WSL2 on your Windows PC and explore Linux sys
 slug: 'guide-enable-wsl2'
 ---
 
-Windows Subsystem for Linux (WSL) is a feature introduced in Windows 10 that allows you to run Linux applications directly in Windows through an intermediate compatibility layer. WSL2 brings significant improvements over the first version, including faster performance and better compatibility with more complex Linux applications.
+This is how I set up WSL2 on Windows today. I first installed it in 2020, when the process was different, so I've updated this guide to match how it works now. WSL (Windows Subsystem for Linux) lets you run Linux directly on Windows, and WSL2 is faster and works with more Linux apps than the first version.
 
 {{< gallery caption="Ubuntu 24.04 on WSL2" >}}
 {{< gallery-image src="images/wsl2-ubuntu-lts.webp" alt="Running Ubuntu inside Windows 11" >}}
@@ -16,15 +16,15 @@ Windows Subsystem for Linux (WSL) is a feature introduced in Windows 10 that all
 
 ## Requirements
 
-An updated operating system is required, at minimum Windows 10 with the May 2020 Update (version 2004 or later), or Windows 11. You can verify this by choosing `Settings` from the gear icon in the Start menu, then selecting `System` and finally `About`. Near the bottom, you will find the `Windows specifications` panel.
+You need at least Windows 10 version 2004 (the May 2020 Update) or Windows 11. You can check it in `Settings` > `System` > `About`, in the `Windows specifications` panel near the bottom.
 
-Additionally, WSL2 requires hardware virtualization support enabled in BIOS. This option is usually labeled `Virtualization Technology` or `VTx`.
+WSL2 also needs hardware virtualization enabled in the BIOS, usually labeled `Virtualization Technology` or `VTx`.
 
-## Setup and Installation
+## Install
 
 ### Install WSL
 
-You can now install everything needed to run WSL with a single command.
+Everything installs with one command.
 
 {{< callout important >}}
 Run these commands in a terminal with administrator privileges.
@@ -34,15 +34,13 @@ Run these commands in a terminal with administrator privileges.
 wsl --install
 ```
 
-This command will enable all required components to run WSL and install the Ubuntu Linux distribution by default.
-
-You must restart your computer to complete the WSL installation.
+It enables everything WSL needs and installs Ubuntu by default. Restart your computer to finish.
 
 {{< callout tip >}}
 This command only works if WSL is not already installed.
 {{< /callout >}}
 
-To view the list of available Linux distributions, run this command:
+To see which other distributions you can install:
 
 ```powershell
 wsl --list --online
@@ -75,7 +73,7 @@ OracleLinux_8_7                 Oracle Linux 8.7
 OracleLinux_9_1                 Oracle Linux 9.1
 ```
 
-If you want to install a specific distribution, use this command:
+And to install a specific one:
 
 ```powershell
 wsl --install -d <DistroName>
@@ -83,47 +81,47 @@ wsl --install -d <DistroName>
 
 ### Set your username and password in Linux
 
-After the Linux distribution installation via WSL completes, open the distribution (Ubuntu by default) from the Start menu. You will be prompted to create a Username and Password for your Linux distribution.
+When the install finishes, open the distribution (Ubuntu by default) from the Start menu and create a username and password. A few things to know:
 
-- This Username and Password are specific to each Linux distribution you install and are unrelated to your Windows user account.
-- Note that when typing your password, no characters will appear on screen. This “blind typing” is normal and intentional.
-- When you create your Username and Password, this account will become your default user for the distribution and will automatically log in when you launch it.
-- This account will have administrator privileges on Linux, allowing you to execute administrative commands using sudo (Super User Do).
-- Each Linux distribution running in WSL maintains its own user accounts and passwords. You must create a user account each time you add a new distribution, reinstall it, or reset it.
+- They're only for that distribution and have nothing to do with your Windows account.
+- Nothing shows on screen while you type the password. That's normal.
+- This becomes the default user and logs in automatically when you open the distribution.
+- It has administrator rights through `sudo`.
+- Every distribution has its own users, so you create one each time you add, reinstall, or reset a distribution.
 
 ### Change or reset your password
 
-To change or reset your password, open your Linux distribution and enter the following command:
+To change your password, open the distribution and run:
 
 ```bash
 passwd
 ```
 
-You will be asked to enter your current password, then a new password, and finally to confirm the new password.
+It asks for your current password, then the new one twice.
 
-If you forget your Linux distribution password:
+If you forgot it:
 
-- Open PowerShell and access your default WSL distribution as root with the command:
+- Open PowerShell and enter your default distribution as root:
 
 ```powershell
 wsl -u root
 ```
 
-- To change the password in a distribution that is not your default, replace Debian below with your target distribution’s name:
+- For a distribution that isn't your default, use its name (Debian in this example):
 
 ```powershell
 wsl -d Debian -u root
 ```
 
-- Once inside the WSL distribution as root via PowerShell, run this command to change the password:
+- As root, reset the password:
 
 ```bash
 passwd <username>
 ```
 
-where `<username>` is the user account name whose password you want to reset.
+where `<username>` is the account you want to reset.
 
-- You will be prompted to enter and confirm a new UNIX password. After a message confirming the password update, exit WSL inside PowerShell by running:
+- Enter the new password twice, and when it confirms the change, leave WSL:
 
 ```bash
 exit
@@ -131,25 +129,21 @@ exit
 
 ## Update and upgrade packages
 
-It is recommended to regularly update and upgrade your packages using your distribution’s package manager. For Ubuntu or Debian, use:
+Windows doesn't update your Linux distributions for you, so do it yourself every now and then. On Ubuntu or Debian:
 
 ```bash
 sudo apt update && sudo apt upgrade
 ```
 
-Windows does not automatically update or upgrade your Linux distributions. This is a task most Linux users prefer to control manually.
-
 ## Visual Studio Code WSL Extension
 
-This extension allows you to open any directory inside WSL and take advantage of VS Code’s features and functionality. You can install the extension from the {{< extlink href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" >}}Visual Studio Marketplace{{< /extlink >}}.
+If you use VS Code, install the {{< extlink href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" >}}WSL extension{{< /extlink >}} so you can open any folder inside WSL with all of VS Code's features.
 
 {{< gallery caption="Microsoft's extension for VS Code" >}}
 {{< gallery-image src="images/wsl-extension.webp" alt="Extension for Visual Studio Code to enable the integration with WSL" >}}
 {{< /gallery >}}
 
-Once installed, restart Visual Studio Code.
-
-The extension lets you run Visual Studio Code and explore the contents of your current directory in WSL by running the command:
+Restart VS Code after installing it. Then, from any folder in WSL, open it with:
 
 ```bash
 code .
