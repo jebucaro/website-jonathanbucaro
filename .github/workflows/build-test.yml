@@ -51,6 +51,9 @@ jobs:
             - name: Verify structured data and llms.txt
               run: node scripts/check-structured-data.mjs
 
+            - name: Verify llms-full.txt Markdown conversion
+              run: node scripts/check-llms-fixture.mjs
+
             # Official Nu Html Checker (vnu), pinned by image digest. The
             # previous wrapper action bundled a 2022 vnu whose CSS checker
             # rejected valid modern CSS (size-adjust, content-visibility,

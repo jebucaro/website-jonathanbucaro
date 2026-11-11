@@ -3,6 +3,12 @@ description: 'Jonathan Búcaro (@jebucaro) is a Product Engineer and Senior Soft
 author:
     author__bio: >-
         Product Engineer and Senior Software Engineer based in Guatemala. I build software end to end, from the business problem to running it in production, in Java, C#, Python, and React, and I make existing systems usable by AI agents.
+    # Third-person history paragraph for /llms.txt and /llms-full.txt (en only
+    # today; es kept in sync). Same facts as the About page.
+    author__summary: >-
+        Jonathan Búcaro is a Product Engineer and Senior Software Engineer based in Guatemala. He graduated as a Systems Engineer from Universidad Mariano Gálvez de Guatemala. For thirteen years at Banco G&T Continental he grew from programmer to Technical Lead, modernizing critical systems in the financial sector. He then joined Cognits as a Full Stack Engineer contractor, doing product engineering for several clients: working with them on requirements and building C#/.NET, Java (Spring Boot) and TypeScript services on AWS. Cognits is now part of HTEC, where he works as a Senior Software Engineer.
+    # How agents should cite the site (/llms.txt and /llms-full.txt).
+    author__cite: 'When citing, refer to him as Jonathan Búcaro (jonathanbucaro.com) and link the specific post or project page.'
 
 blog:
     blog__title: Recent Posts

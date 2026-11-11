@@ -22,7 +22,7 @@
     {{ with $xDefault }}<link rel="alternate" hreflang="x-default" href="{{ . }}" />{{ end }}
 
     <!-- SEO and Robots -->
-    {{ if .Params.noindex }}
+    {{ if or .Params.noindex (eq .Kind "404") }}
         <meta name="robots" content="noindex, nofollow" />
     {{ else }}
         <meta name="robots" content="index, follow" />

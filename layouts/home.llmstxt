@@ -6,7 +6,11 @@
 
 ## About
 
+{{ $en.Params.author.author__summary }}
+
 - [{{ $about.Title }}]({{ $about.Permalink }}): background, experience, and how to get in touch.
+
+{{ $en.Params.author.author__cite }}
 
 ## Work
 {{ range where $en.RegularPages "Section" "work" }}
@@ -25,4 +29,5 @@
 
 ## Optional
 
+- [Full text]({{ "llms-full.txt" | absURL }}): the About page, work and posts in full, as Markdown.
 - [Versión en español]({{ (index (where hugo.Sites "Language.Lang" "es") 0).Home.Permalink }}): the same site in Spanish.

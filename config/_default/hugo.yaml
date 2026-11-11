@@ -20,12 +20,11 @@ languages:
         direction: ltr
         weight: 2
         title: Jonathan Búcaro
-        # llms.txt is English only (the default site's /llms.txt).
+        # llms.txt and robots.txt are root-only (English default site).
         outputs:
             home:
                 - HTML
                 - RSS
-                - RobotsTXT
         params:
             lang_flag: '🇬🇹'
             lang_label: 'ES'
@@ -68,6 +67,11 @@ outputFormats:
         baseName: llms
         isPlainText: true
         notAlternative: true
+    LLMSFULL:
+        mediaType: text/plain
+        baseName: llms-full
+        isPlainText: true
+        notAlternative: true
 
 outputs:
     home:
@@ -75,3 +79,4 @@ outputs:
         - RSS
         - RobotsTXT
         - LLMSTXT
+        - LLMSFULL

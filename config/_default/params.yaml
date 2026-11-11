@@ -98,6 +98,13 @@ author:
     job_title: 'Senior Software Engineer'
     address:
         country: 'GT'
+    # Both are named on the About page; keep them in sync with it.
+    works_for:
+        name: 'HTEC'
+        url: 'https://htec.com/'
+    alumni_of:
+        name: 'Universidad Mariano Gálvez de Guatemala'
+        url: 'https://umg.edu.gt/'
     knows_about:
         - 'Product Engineering'
         - 'Software Engineering'
