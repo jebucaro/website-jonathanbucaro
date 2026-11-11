@@ -42,9 +42,11 @@ También corro {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extli
 {{< gallery-image src="images/openwebui-main.webp" alt="Interfaz principal de Open WebUI con lista de chats y área de conversación" >}}
 {{< /gallery >}}
 
-Después de varios meses, el cambio más grande es que preguntamos más, porque ya no estamos pendientes del límite. Elegimos el modelo según la tarea (GPT-5 para código, Claude para escribir), tenemos un solo historial para todos los modelos, y aunque seguimos revisando el consumo, hasta los meses pesados salen más baratos que las suscripciones.
+Después de varios meses con esta configuración, preguntamos más porque ya no estamos pendientes de los límites, experimentamos más con distintos modelos y elegimos el modelo según la tarea (GPT-5 para código, Claude para escribir). Seguimos revisando el consumo, pero casi nunca nos preocupa, porque hasta los meses pesados cuestan menos que las suscripciones. Además lo usamos desde cualquier dispositivo, sin el aviso de "actualiza para continuar", y con un solo historial de conversaciones para todos los modelos.
 
-Igual tiene su trabajo. Tú manejas tus API keys y tu facturación, configurarlo toma de 15 a 30 minutos, y pierdes los custom GPTs de la comunidad. Si mandas diez mensajes a la semana, con el tier gratuito o con Plus estás bien. Después de que escribí esto, Sam Altman también confirmó límites más altos para Plus, así que si estás contento ahí, puede que te alcance. Si chocas con los límites cada semana, la API se paga sola.
+A cambio, nos toca manejar nuestras propias API keys y la facturación, la configuración inicial toma de 15 a 30 minutos, y perdimos acceso a los custom GPTs de la comunidad.
+
+**Actualización:** Sam Altman confirmó en X que los suscriptores de ChatGPT Plus van a tener límites más altos. Si ya tienes Plus y estás contento, puede que con eso te alcance. Para nosotros, la flexibilidad de la API y el ahorro siguen teniendo más sentido.
 
 ## Prompts que funcionan mejor con GPT-5
 

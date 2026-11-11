@@ -42,9 +42,11 @@ I also run {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >
 {{< gallery-image src="images/openwebui-main.webp" alt="Open WebUI main page showing a list of chats and the main chat user interface." >}}
 {{< /gallery >}}
 
-After several months, the biggest change is that we ask more questions, because there's no limit to worry about. We pick the model by task (GPT-5 for code, Claude for writing), we have one history across every model, and we still keep an eye on usage, but even heavy months cost less than the subscriptions did.
+After several months on this setup, we ask more questions since there's no rate-limit anxiety, we experiment more with different models, and we pick the model by task (GPT-5 for code, Claude for writing). We still keep an eye on usage, but rarely worry about it, since even heavy months cost less than the subscriptions did. We also get access from any device, no "upgrade to continue" interruptions, and one conversation history across every model.
 
-It's not free of effort. You manage your own API keys and billing, setup takes 15-30 minutes, and you lose the community custom GPTs. If you send ten messages a week, the free tier or Plus is fine. Since I wrote this, Sam Altman also confirmed higher limits for Plus, so if you're happy there, that may be enough. If you hit limits every week, the API pays for itself.
+In exchange, we manage our own API keys and billing, the initial setup takes 15-30 minutes, and we lost access to the community custom GPTs.
+
+**Update:** Sam Altman confirmed via X that ChatGPT Plus subscribers will get higher rate limits. If you're already on Plus and happy with it, the new limits might be enough. For us, the API flexibility and the savings still make more sense.
 
 ## Prompts that work better with GPT-5
 
