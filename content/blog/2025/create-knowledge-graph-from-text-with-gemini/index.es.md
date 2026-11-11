@@ -140,7 +140,7 @@ Después de extraer, puedes hacerle preguntas al documento. Las respuestas salen
 {{< /gallery >}}
 
 {{< callout warning>}}
-El Chat hace un compromiso de privacidad que la extracción no. Las llamadas de extracción usan `store=False`, pero el Chat usa `store=True` y envía el texto original completo en la primera pregunta, así que Gemini retiene la conversación y tu documento durante la ventana de retención de la Interactions API (55 días en el tier de pago, 1 día en el gratuito). Esto solo aplica mientras usas el Chat, y se reinicia cada vez que vuelves a extraer o presionas Clear.
+Ojo con la privacidad, porque el Chat no funciona igual que la extracción. Las llamadas de extracción usan `store=False`, pero el Chat usa `store=True` y envía el texto original completo en la primera pregunta, así que Gemini retiene la conversación y tu documento durante la ventana de retención de la Interactions API (55 días en el tier de pago, 1 día en el gratuito). Esto solo aplica mientras usas el Chat, y se reinicia cada vez que vuelves a extraer o presionas Clear.
 {{< /callout >}}
 
 ## Cuánto cuesta

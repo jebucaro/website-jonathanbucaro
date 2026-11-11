@@ -63,7 +63,7 @@ Salió limpio:
 }
 ```
 
-Revisó 150,020 archivos, encontró 6,784 instalaciones de paquetes, y ninguna coincidió con el catálogo. Esos paquetes aparecen como "suppressed" porque `--findings-only` solo imprime las coincidencias. Todo tomó menos de medio segundo. Los dos diagnósticos no eran nada grave: un permiso denegado en una carpeta `.containers` dentro de un proyecto, y un archivo de configuración MCP sin servidores.
+Revisó 150,020 archivos, encontró 6,784 instalaciones de paquetes, y ninguna coincidió con el catálogo. Esos paquetes aparecen como "suppressed" porque `--findings-only` solo imprime las coincidencias. Todo tomó menos de medio segundo. Los dos diagnósticos no eran nada grave: un permiso denegado en una carpeta `.containers` dentro de un proyecto, y un archivo de configuración MCP del que no pudo leer ningún servidor.
 
 ## Qué es
 
@@ -75,7 +75,7 @@ La salida es NDJSON, un registro por línea: `package` por cada instalación enc
 
 ## Pruébalo en tu máquina
 
-Bájate el binario para tu plataforma desde el {{< extlink href="https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee" >}}anuncio de Bumblebee{{< /extlink >}}, o compílalo con Go 1.25 o posterior. Solo corre en macOS y Linux; la v0.1 no soporta Windows. Los ejemplos usan `jq` para que la salida se pueda leer.
+Bájate el binario para tu plataforma desde el {{< extlink href="https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee" >}}anuncio de Bumblebee{{< /extlink >}}, o compílalo con Go 1.25 o posterior. Solo corre en macOS y Linux; la v0.1 no soporta Windows. Los ejemplos usan `jq` para que la salida se pueda leer, así que instálalo primero (`brew install jq` en macOS, o `apt install jq` / `dnf install jq` en Linux).
 
 Hay tres perfiles:
 
@@ -145,7 +145,7 @@ El recorrido se salta las carpetas de credenciales (`.ssh`, `.aws`, `.kube`, `.g
 
 Cada archivo que encuentra va a uno de 11 parsers según el nombre: npm, pnpm, yarn, bun, `node_modules`, `dist-info` de Python, `go.sum` y `go.mod`, `Gemfile.lock`, `composer.lock`, configuraciones MCP (Claude Desktop, `mcp.json`, settings de Gemini) y extensiones tipo VS Code y de Chromium. Corren en un pool de workers (4 por defecto, lo cambias con `--concurrency`), y cada parser solo abre el archivo que le toca.
 
-Cada paquete tiene un `record_id` estable, un SHA-256 de su identidad, así que el mismo paquete visto desde `package-lock.json` y desde `node_modules/` se reporta una sola vez (esos son los 211 duplicados de mi corrida), y el mismo ID se repite entre corridas. En npm, pnpm y yarn, `has_lifecycle_scripts` te dice si el paquete define hooks de instalación, no si se ejecutaron. La coincidencia con el catálogo es exacta por ecosistema, nombre y versión, sin rangos de semver ni coincidencias aproximadas. El `scan_summary` siempre sale de último, y su `status` es `complete`, `partial` (si llegó a `--max-duration` o se interrumpió) o `error`, así que solo confía en una corrida que diga `complete`.
+Cada paquete tiene un `record_id` estable, un SHA-256 de su identidad, así que el mismo paquete visto desde `package-lock.json` y desde `node_modules/` se reporta una sola vez (los 211 duplicados de mi resumen), y el mismo ID se repite entre corridas. En npm, pnpm y yarn, `has_lifecycle_scripts` te dice si el paquete define hooks de instalación, no si se ejecutaron. La coincidencia con el catálogo es exacta por ecosistema, nombre y versión, sin rangos de semver ni coincidencias aproximadas. El `scan_summary` siempre sale de último, y su `status` es `complete`, `partial` (si llegó a `--max-duration` o se interrumpió) o `error`, así que solo confía en una corrida que diga `complete`.
 
 ## Limitaciones
 

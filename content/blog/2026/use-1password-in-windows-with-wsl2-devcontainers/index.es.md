@@ -22,40 +22,40 @@ La solución es un puente pequeño: `socat` y `npiperelay` exponen el agente de 
 
 ### Prerrequisitos
 
-- Git for Windows instalado y ya configuraste tu {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" >}}nombre de usuario y correo global{{< /extlink >}}
+- Git for Windows instalado, con tu {{< extlink href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup" >}}nombre de usuario y correo global{{< /extlink >}} ya configurados
 - 1Password 8+ para Windows (con Windows Hello configurado).
-- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con `wsl --install`, tendrás systemd habilitado por defecto; de lo contrario sigue la {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}documentación oficial{{< /extlink >}}.
+- WSL 2 con `systemd` habilitado. Si instalaste Ubuntu con `wsl --install`, systemd ya viene habilitado; si no, sigue la {{< extlink href="https://learn.microsoft.com/en-us/windows/wsl/systemd" >}}documentación oficial{{< /extlink >}}.
 - `npiperelay.exe` descargado y agregado a tu Windows `%PATH%`. Sigue las instrucciones del repo oficial de {{< extlink href="https://github.com/jstarks/npiperelay" >}}npiperelay{{< /extlink >}} o descarga el {{< extlink href="https://github.com/jstarks/npiperelay/releases" >}}release{{< /extlink >}} y descomprímelo en algún lugar de tu `%PATH%`. Yo creo una carpeta `bin` en mi home de Windows y ahí extraigo `npiperelay.exe`.
 
 ### Paso 1: configura el host de Windows
 
-En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**, siguiendo la {{< extlink href="https://developer.1password.com/docs/ssh/get-started/" >}}guía de 1Password{{< /extlink >}}.
+En 1Password, ve a **Settings > Developer** y marca **Use the 1Password SSH agent**, como explica la {{< extlink href="https://developer.1password.com/docs/ssh/get-started/" >}}guía de 1Password{{< /extlink >}}.
 
-**Tip de seguridad**: en la configuración del agente puedes restringir el acceso a bóvedas específicas para que las llaves personales no queden expuestas a tu entorno de desarrollo. Revisa la {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app" >}}configuración del archivo del agente{{< /extlink >}}.
+**Tip de seguridad**: en la configuración del agente puedes limitar qué bóvedas comparte, para no exponer tus llaves personales al ambiente de desarrollo. Mira la {{< extlink href="https://developer.1password.com/docs/ssh/agent/config/#from-the-1password-app" >}}configuración del archivo del agente{{< /extlink >}}.
 
-Abre Windows PowerShell y verifica que el agente esté funcionando:
+Abre Windows PowerShell y revisa que el agente funcione:
 
 ```powershell
 ssh-add -l
 ```
 
-Si ves tus llaves, la capa del host está lista.
+Si te salen tus llaves, el lado de Windows ya está listo.
 
 ### Paso 2: crea el puente en WSL
 
-Instala `socat` en WSL para manejar el reenvío del socket:
+Instala `socat` en WSL, que es el que pasa el socket de un lado al otro:
 
 ```bash
 sudo apt update && sudo apt install socat -y
 ```
 
-Crea el directorio local del usuario para servicios systemd si aún no existe:
+Crea la carpeta de servicios de systemd de tu usuario si todavía no existe:
 
 ```bash
 mkdir -p ~/.config/systemd/user/
 ```
 
-Crea el archivo del servicio que inicia el puente cada vez que inicias sesión en WSL. Reemplaza `[username]` con tu usuario real de Windows:
+Crea el servicio que levanta el puente cada vez que entras a WSL. Cambia `[username]` por tu usuario de Windows:
 
 ```text
 cat <<EOT > ~/.config/systemd/user/1password-ssh-agent.service
@@ -73,27 +73,27 @@ WantedBy=default.target
 EOT
 ```
 
-Recarga el administrador de systemd, luego habilita e inicia el puente:
+Recarga systemd, y luego habilita y arranca el puente:
 
 ```bash
 systemctl --user daemon-reload
 systemctl --user enable --now 1password-ssh-agent.service
 ```
 
-Confirma que el puente creó el socket Unix:
+Revisa que se haya creado el socket:
 
 ```bash
 ls -la /tmp/1password-agent.sock
 ```
 
-Para que `ssh-add` y Git encuentren el puente, configura la variable de entorno `SSH_AUTH_SOCK` en el perfil de tu shell (`~/.bashrc` o `~/.zshrc`). Puedes agregarla automáticamente:
+Para que `ssh-add` y Git encuentren el puente, configura `SSH_AUTH_SOCK` en el perfil de tu shell (`~/.bashrc` o `~/.zshrc`). Lo puedes agregar así:
 
 ```bash
 # This appends the export line safely to the end of your profile
 echo 'export SSH_AUTH_SOCK=/tmp/1password-agent.sock' >> ~/.bashrc
 ```
 
-O agrega esta línea manualmente al final de tu archivo de perfil:
+O agrega esta línea a mano al final del archivo:
 
 ```bash
 export SSH_AUTH_SOCK=/tmp/1password-agent.sock
@@ -111,9 +111,9 @@ source ~/.zshrc
 
 ### Paso 3: configura la firma y verificación de Git
 
-Para que Git firme y verifique firmas localmente, no solo en GitHub, necesitas un archivo de firmantes permitidos ("Allowed Signers") y una llave de firma que coincida con lo que 1Password entrega.
+Para que Git firme y verifique las firmas en tu máquina, no solo en GitHub, necesitas un archivo de firmantes permitidos ("Allowed Signers") y una llave de firma que coincida con la que te da 1Password.
 
-Ejecuta `ssh-add -L` en WSL y copia la cadena completa de la llave pública (por ejemplo, `ssh-ed25519 AAA...`). Debe coincidir con tu configuración de Git para que la firma funcione:
+Corre `ssh-add -L` en WSL y copia la llave pública completa (por ejemplo, `ssh-ed25519 AAA...`). Tiene que ser la misma que pongas en Git para que la firma funcione:
 
 ```bash
 git config --global gpg.format ssh
@@ -121,7 +121,7 @@ git config --global user.signingkey "YOUR_SSH_ED25519_PUBLIC_KEY_STRING"
 git config --global commit.gpgsign true
 ```
 
-Crea el archivo Allowed Signers para que Git pueda verificar tus propias firmas localmente. Reemplaza el correo y la llave por los tuyos:
+Crea el archivo Allowed Signers para que Git pueda verificar tus propias firmas. Cambia el correo y la llave por los tuyos:
 
 ```bash
 # Add yourself to the allowed signers
@@ -129,7 +129,7 @@ echo "$(git config --global user.email) YOUR_SSH_ED25519_PUBLIC_KEY_STRING" > ~/
 git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 ```
 
-Por último, crea `$HOME/.ssh/config` con el reenvío del agente configurado:
+Por último, crea `$HOME/.ssh/config` con el reenvío del agente:
 
 ```text
 Host *

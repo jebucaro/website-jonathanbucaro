@@ -9,7 +9,7 @@ description: "I'll guide you step-by-step through the process of setting up Wind
 slug: 'improve-the-windows-terminal-experience-with-ohmyposh'
 ---
 
-I like a terminal that looks good and shows me what I need at a glance, so every time I set up a Windows machine I go through the same steps: PowerShell 7, Windows Terminal, Oh My Posh with a Nerd Font, and a few command-line tools. I wrote them down so I could repeat them, and so you can too, even if you've never customized a terminal before.
+I wanted my Windows terminal to look good and show more at a glance, so I set it up with PowerShell 7, Windows Terminal, Oh My Posh with a Nerd Font, and a few command-line tools. I wrote the steps down so I could repeat them, and so you can too, even if you've never customized a terminal before.
 
 ## Install PowerShell
 

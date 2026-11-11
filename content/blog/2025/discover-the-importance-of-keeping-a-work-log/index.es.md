@@ -25,7 +25,7 @@ Nada complicado. Durante el día voy anotando:
 - Lo que me atrasó o me quitó tiempo
 - Notas, cosas que aprendí y lo que se me complicó
 
-Se parece un poco a las preguntas del stand-up, pero es para ti, no para el equipo. Normalmente apunto mis objetivos al empezar el día, el avance y las sorpresas (esos requerimientos de último momento) durante el día, y un resumen corto al final.
+Se parece un poco a las preguntas del stand-up, pero es para ti, no para el equipo. Trato de apuntar mis objetivos al empezar el día, el avance y las sorpresas (esos requerimientos de último momento) durante el día, y un resumen corto al final.
 
 Con el tiempo eso te da varias cosas. Tienes un historial de tus logros para las evaluaciones, sin depender de la memoria. Ves en qué se fueron realmente las horas, interrupciones incluidas, y a qué hora trabajas mejor. La nota de la mañana te resuelve el "¿por dónde empiezo?", y al final del día ves qué quedó listo y pasas lo demás para mañana sin andarlo cargando en la cabeza. Prefiero buscar las cosas en mis notas que tratar de acordarme.
 

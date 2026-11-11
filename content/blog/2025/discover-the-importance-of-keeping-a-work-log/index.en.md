@@ -25,7 +25,7 @@ Nothing fancy. Through the day I write down:
 - What got in the way or ate my time
 - Notes, things I learned, and anything that was hard
 
-It looks a bit like stand-up questions, but it's for you, not the team. I usually write my goals at the start of the day, progress and surprises (those last-minute requests) during it, and a short summary at the end.
+It looks a bit like stand-up questions, but it's for you, not the team. I try to write my goals at the start of the day, progress and surprises (those last-minute requests) during it, and a short summary at the end.
 
 Over time that gives you a few things. You have a record of your wins for reviews, so you're not relying on memory. You see where the hours actually went, interruptions included, and when you work best. The morning entry answers "where do I start?", and at the end of the day you can see what's done and move the rest to tomorrow without carrying it in your head. I'd rather look things up in my notes than try to remember them.
 

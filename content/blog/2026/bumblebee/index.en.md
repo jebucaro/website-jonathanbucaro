@@ -63,7 +63,7 @@ It came back clean:
 }
 ```
 
-It looked at 150,020 files and found 6,784 package installations, and none of them matched the catalog. Those packages show up as "suppressed" because `--findings-only` only prints matches. The whole thing took under half a second. The two diagnostics were harmless: a permission-denied on a `.containers` folder inside one project, and an MCP config file with no servers in it.
+It looked at 150,020 files and found 6,784 package installations, and none of them matched the catalog. Those packages show up as "suppressed" because `--findings-only` only prints matches. The whole thing took under half a second. The two diagnostics were harmless: a permission-denied on a `.containers` folder inside one project, and an MCP config file it couldn't parse any servers from.
 
 ## What it is
 
@@ -75,7 +75,7 @@ Output is NDJSON, one record per line: `package` for each installation found, `f
 
 ## Try it on your machine
 
-Get the binary for your platform from the {{< extlink href="https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee" >}}Bumblebee announcement{{< /extlink >}}, or build it with Go 1.25 or later. It runs on macOS and Linux only; v0.1 doesn't support Windows. The examples below use `jq` to make the output readable.
+Get the binary for your platform from the {{< extlink href="https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee" >}}Bumblebee announcement{{< /extlink >}}, or build it with Go 1.25 or later. It runs on macOS and Linux only; v0.1 doesn't support Windows. The examples below use `jq` to make the output readable, so install it first (`brew install jq` on macOS, or `apt install jq` / `dnf install jq` on Linux).
 
 There are three profiles:
 
@@ -145,7 +145,7 @@ The walker skips credential folders (`.ssh`, `.aws`, `.kube`, `.gnupg`, `.docker
 
 Each file it finds goes to one of 11 parsers by filename: npm, pnpm, yarn, bun, `node_modules`, Python `dist-info`, `go.sum` and `go.mod`, `Gemfile.lock`, `composer.lock`, MCP configs (Claude Desktop, `mcp.json`, Gemini settings), and VS Code-style and Chromium extensions. They run in a worker pool (4 by default, `--concurrency` to change it), and each parser only opens the file it's given.
 
-Every package gets a stable `record_id`, a SHA-256 of its identity, so the same package seen from `package-lock.json` and `node_modules/` is reported once (that's the 211 duplicates in my run), and the same ID shows up across runs. For npm, pnpm, and yarn, `has_lifecycle_scripts` tells you whether the package defines install hooks, not whether they ran. Catalog matching is exact on ecosystem, name, and version, with no semver ranges or fuzzy matching. The `scan_summary` always comes last, and its `status` is `complete`, `partial` (if it hit `--max-duration` or was interrupted), or `error`, so only trust a run that says `complete`.
+Every package gets a stable `record_id`, a SHA-256 of its identity, so the same package seen from `package-lock.json` and `node_modules/` is reported once (the 211 duplicates in my summary), and the same ID shows up across runs. For npm, pnpm, and yarn, `has_lifecycle_scripts` tells you whether the package defines install hooks, not whether they ran. Catalog matching is exact on ecosystem, name, and version, with no semver ranges or fuzzy matching. The `scan_summary` always comes last, and its `status` is `complete`, `partial` (if it hit `--max-duration` or was interrupted), or `error`, so only trust a run that says `complete`.
 
 ## Limits
 
