@@ -9,19 +9,13 @@ draft: false
 description: "Learn how to build a knowledge graph extraction system using Google's Gemini AI. Transform unstructured text into visual, connected knowledge networks with Python and Streamlit"
 ---
 
-## Why I built this
+In June 2025 I watched Thu Vu's video on turning text into a knowledge graph with GPT-4 and LangChain's `LLMGraphTransformer`. It took very little code, and I wanted to understand what that one call was actually doing. I got a bit carried away, and it ended up as Nodus, a small Streamlit app that does the same extraction straight against the Gemini API, with no framework in between.
 
-About four months ago (June 2025) I watched Thu Vu's video on extracting knowledge graphs from text using GPT-4. The concept stuck with me: minimal code turning unstructured meeting transcripts and podcast content into visual, structured knowledge networks that made complex information instantly clearer.
-
-Think of a knowledge graph as a way to represent information the way your brain naturally organizes it, through connections rather than pages of text. Instead of reading through a document to understand how concepts relate, you see a map where everything is already connected. Understanding information isn't about memorizing facts, it's about seeing how they connect, and that's the principle Nodus, the tool in this post, is built around.
-
-## See it in action
-
-Transform this sentence:
+A knowledge graph keeps information as connections instead of paragraphs. Give Nodus this sentence:
 
 > Sarah works at TechCorp in San Francisco and reports to Michael, who is the VP of Engineering.
 
-Into this structured graph:
+And you get this back:
 
 - **Entities**: Sarah (person), TechCorp (organization), San Francisco (location), Michael (person), VP of Engineering (occupation)
 - **Relationships**: Sarah WORKS_AT TechCorp, TechCorp LOCATED_IN San Francisco, Sarah REPORTS_TO Michael, Michael HAS_ROLE VP of Engineering
@@ -30,15 +24,11 @@ Into this structured graph:
 {{< gallery-image src="images/nodus-knowledge-graph.png" alt="Nodus tab showing a knowledge graph created by extracting the entities and relationships from the input text." >}}
 {{< /gallery >}}
 
-## The problem, and what changed
+With one sentence that's a toy. With an hour of meeting transcripts, it's the difference between searching for who mentioned a deadline and just looking at the map.
 
-Knowledge is typically created and stored as natural language: documents, transcripts, articles. But it's most useful when structured as a graph. Traditional text is hard to navigate: searching through hours of meeting transcripts to find who mentioned a deadline, reading pages of documentation to understand how concepts connect, or hunting through wikis and docs for company knowledge that has no unified view.
+## Run it locally
 
-What made this newly practical is that modern LLMs changed the equation. They read text and extract structured information with surprising accuracy: understanding context, resolving ambiguities, and catching relationships traditional NLP pipelines would miss. That's what Nodus does: it extracts entities and relationships from any text, builds interactive visual knowledge graphs, exports to HTML, JSON, or TXT, and costs less than a tenth of a cent per article on Gemini 3.5 Flash-Lite (and nothing on the free tier), with no manual tagging or NLP pipeline to maintain. Instead of a complex extraction system, you write straightforward code against Gemini's structured output.
-
-## Quick start
-
-### Get the source code
+The code lives in my `blog-code` repo. A sparse checkout grabs only the Nodus folder:
 
 ```bash
 # Clone repository without downloading all files
@@ -54,7 +44,7 @@ git sparse-checkout set python/Nodus
 cd python/Nodus
 ```
 
-### Configure the project
+Add your Gemini API key and install the dependencies:
 
 ```bash
 # Copy the example environment file
@@ -68,15 +58,13 @@ cp .env.example .env
 uv sync
 ```
 
-### Launch the application
-
-#### Option 1: Using uv
+Then start it with uv:
 
 ```bash
 uv run streamlit run src/nodus/main.py
 ```
 
-#### Option 2: Using Docker
+Or with Docker, if you prefer:
 
 ```bash
 # 1. Ensure Docker Desktop is running, then build the image
@@ -91,9 +79,7 @@ docker run -p 8501:8501 --env-file .env nodus:latest
 # 4. Access the app at http://localhost:8501
 ```
 
-## Results
-
-The interface gives you four perspectives on your extracted knowledge:
+## What you get
 
 {{< gallery caption="Visual exploration, raw JSON for debugging, and graph statistics for analysis" >}}
 {{< gallery-image src="images/nodus-summary.png" alt="Nodus tab showing a summary from the input text." >}}
@@ -102,59 +88,11 @@ The interface gives you four perspectives on your extracted knowledge:
 {{< gallery-image src="images/nodus-statistics.png" alt="Nodus tab showing some statistics like total nodes, total relationships and total relationships types of the knowledge graph." >}}
 {{< /gallery >}}
 
-Four tabs cover the results: a structured **Summary** with key insights, an interactive physics-based **Visualization**, **Raw Data** as tables and JSON for inspecting nodes and relationships (grouped and sorted by relationship type, then source, then target, with each item's supporting context alongside it), and **Statistics** on node count and relationship types. Below the tabs, a Chat section lets you ask questions about the document. You can export the graph as HTML (interactive), JSON (structured data), or TXT (summary).
+You paste text or upload a `.txt`/`.md` file, pick a model, and get four tabs: a **Summary** with the key points, an interactive **Visualization**, the **Raw Data** as tables and JSON (each node and relationship with its supporting context), and **Statistics** on nodes and relationship types. You can filter the graph by relationship type, hide isolated nodes, and export everything as HTML, JSON, or TXT.
 
 ## How it works
 
-I designed this implementation to prioritize clarity over abstraction. Each layer is intentionally simple, closer to a learning foundation than a production framework, so it's easy to understand, modify, and extend.
-
-{{< gallery caption="The clean interface focuses on the core workflow: configure, input, extract, visualize" >}}
-{{< gallery-image src="images/nodus-summary.png" alt="Nodus Streamlit application with a sidebar to configure the Gemini API key and model selection, the main interface allows the user to upload a text file or paste the contents to generate a knowledge graph." >}}
-{{< /gallery >}}
-
-### Extraction layer
-
-Modern LLMs accept schema definitions directly, which eliminates manual JSON parsing and is a big part of what makes this accessible now. Nodus passes the Pydantic schema to Gemini as the `response_format`, so the model returns JSON that maps straight onto the data models. The extractor runs two phases, a structured executive summary and the entity/relationship extraction. By default the graph is built from the original text (which keeps the detail that fills each node's and relationship's context) and the two calls run in parallel. You can opt into building the graph from the summary instead, for a higher-level graph, though most fine detail is lost that way.
-
-```python
-class GeminiExtractor:
-    def extract_with_summary(
-        self,
-        text: str,
-        use_summary_for_kg: bool = False,
-        show_summary: bool = True,
-        on_progress: Callable[[str], None] | None = None,
-    ) -> ExtractionResult:
-        summary: ExecutiveSummary | None = None
-
-        if use_summary_for_kg:
-            # Sequential: the summary feeds the knowledge graph
-            summary = self.summarize(text)
-            knowledge_graph = self.extract(summary.summary)
-        elif show_summary:
-            # Parallel: summarize and extract from the original text at once
-            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-                summary_future = executor.submit(self.summarize, text)
-                kg_future = executor.submit(self.extract, text)
-                summary = summary_future.result()
-                knowledge_graph = kg_future.result()
-        else:
-            knowledge_graph = self.extract(text)
-
-        return ExtractionResult(summary=summary, knowledge_graph=knowledge_graph)
-```
-
-You also pick a **thinking level** (the model's default, or low/medium/high) to trade speed for reasoning depth on harder text. A few constraints keep extraction consistent: semantic lowercase node IDs (`sarah` rather than `person_1`), uppercase relationship types (`WORKS_AT` not `works_at`), and explicit coreference rules so "Michael" and "he" map to the same entity. Those semantic IDs make extraction issues much easier to debug than generic numeric ones.
-
-Because the input text is untrusted, Nodus wraps it in explicit delimiters and tells the model to treat everything inside as data, not instructions. Paired with system-prompt rules that refuse role changes, this is a practical first line of defense against prompt injection in user-submitted content. One caveat: the Interactions API doesn't currently expose the adjustable safety filters, so only Gemini's always-on core protections (like child safety) apply.
-
-{{< callout warning>}}
-Prompt engineering is critical here. Poor prompts lead to inconsistent entity extraction, duplicate nodes, and broken relationships. Always test your prompts with diverse text samples before scaling up, small prompt changes can dramatically affect extraction quality.
-{{< /callout >}}
-
-### Data models
-
-Clear data models establish the contract between the LLM and your application. I use Pydantic models to define exactly what structure I expect back from Gemini:
+There's no NLP pipeline here. Gemini supports structured output, so Nodus passes it a Pydantic schema as the `response_format` and gets back JSON that maps straight onto these models:
 
 ```python
 class Node(BaseModel):
@@ -183,25 +121,19 @@ class ExtractionResult(BaseModel):
     knowledge_graph: KnowledgeGraph
 ```
 
-The `KnowledgeGraph` model deduplicates automatically, both by relationship ID (exact duplicates) and by semantic triplet (`source_node_id`, `type`, `target_node_id`) for functionally equivalent relationships. That handles the common case where the LLM generates the same relationship more than once with different IDs.
+That schema is the contract with the model, and it's most of the trick. The summary and the graph are two calls that run in parallel over the original text. You can build the graph from the summary instead for a higher-level view, but you lose most of the detail and it costs two sequential calls. There's also a thinking level (default, low, medium, high) for harder text.
 
-The optional `context` field holds a short (up to 200 characters) supporting detail the label and type alone don't capture, a date, number, quote fragment, or reason, and it shows up in the graph tooltips and the Raw Data tables. It's often absent, so the extraction schema requires it as a string and an empty value normalizes back to nothing. Chat never sees it, since chat works from the original source text.
+The rest is prompt rules, and small changes to them made a big difference in quality. Node IDs are semantic and lowercase (`sarah`, not `person_1`), relationship types are uppercase (`WORKS_AT`), and coreference is explicit so "Michael" and "he" end up as the same node. The semantic IDs paid off the most: when an extraction goes wrong, `sarah` tells you a lot more than `person_1`. Test your prompts with different kinds of text before you trust them.
 
-### Graph repair layer
+Even with strict prompts, the model sometimes returns a relationship pointing at a node it never defined, or spells it slightly differently. Instead of silently dropping those edges, a repair pass tries an exact match, then a normalized match, then a fuzzy match with a high cutoff, and if nothing fits it creates a placeholder node so the edge survives. The UI tells you what it repaired. The graph also deduplicates relationships, both exact copies and the same source, type, and target with different IDs.
 
-Even with strict prompts, the model occasionally emits a relationship that points at a node ID it never defined, or reuses a slightly different spelling. Rather than silently dropping those edges, a repair pass runs between extraction and display. For each dangling endpoint it tries, in order: an exact node ID match, a normalized ID or label match, and a fuzzy match (with a high cutoff so typos get fixed without merging genuinely distinct entities). If nothing matches, it creates a labeled placeholder node so the edge survives. Self-loops are dropped and counted, isolated nodes are kept and reported, and the interface surfaces a small summary of what was repaired so nothing happens behind your back. The original graph is never mutated, which keeps the raw output available for inspection.
+The input text is untrusted, so Nodus wraps it in delimiters and tells the model to treat it as data, not instructions. It's a first line of defense against prompt injection, not a guarantee. One caveat: the Interactions API doesn't expose the adjustable safety filters, so only Gemini's always-on core protections apply.
 
-### Visualization layer
-
-Raw graph data is useful, but visualization is where patterns that were invisible in the text become visible. Deterministic color assignment (hashing node types to a color palette) keeps entity types visually consistent across different graphs, which helps you build a mental model quickly. A force-directed layout (ForceAtlas2) clusters connected nodes together and spreads isolated ones apart, often surfacing structure that isn't obvious in the raw data. A relationship-type filter overlay lets you show or hide edges by type, with All and None shortcuts, and it hides edges without moving the nodes. The renderer supports both HTML string generation and file output, so it works equally well embedded in a web app or as a standalone visualization.
-
-### Interface layer
-
-The Streamlit interface keeps the flow simple: configure API credentials, pick a model and thinking level, submit text directly or upload a `.txt`/`.md` file, choose whether to build the graph from the executive summary or the original text, browse results across the four tabs, filter the graph by relationship type, and export as HTML, JSON, or TXT. When a graph has isolated nodes, a toggle lets you show or hide them without re-running the extraction. Below the tabs, a Chat section lets you ask questions about the document, covered next.
+For the graph itself, PyVis renders it with a ForceAtlas2 layout, so connected nodes cluster together, and node types hash to a fixed color so the same type looks the same in every graph.
 
 ## Chat with your document
 
-Once a graph is extracted, the Chat section below the tabs answers questions about the document. Answers come from the original source text, with the extracted relationship list used as a consistency aid for entity names. Each answer ends with an `### Evidence` section: verbatim quotes from the document, plus a "From the relationships:" line for anything drawn from the relationship list. The quotes are written by the model and can occasionally be inexact, so check anything important against the source. Chat starts fresh whenever you re-extract or click Clear.
+After extracting, you can ask questions about the document. Answers come from the original text, and each one ends with an `### Evidence` section quoting the document, plus a "From the relationships:" line when it used the graph. The model writes those quotes, so they can be slightly off; check anything important against the source.
 
 {{< gallery caption="Ask a question and get an answer grounded in the source text, with quoted evidence" >}}
 {{< gallery-image src="images/nodus-chat.png" alt="Nodus Chat section showing a question about the document, a prose answer, and an Evidence block with a verbatim quote and a relationship line." >}}
@@ -211,38 +143,16 @@ Once a graph is extracted, the Chat section below the tabs answers questions abo
 Chat makes a privacy tradeoff extraction doesn't. Extraction calls use `store=False`, but Chat uses `store=True` and sends the full original source text on the first question, so Gemini retains the conversation and your document for the Interactions API retention window (55 days on the paid tier, 1 day on the free tier). This applies only while you're using Chat, and it resets whenever you re-extract or click Clear.
 {{< /callout >}}
 
-## Cost considerations
+## What it costs
 
-This approach is affordable enough to matter. Nodus offers three curated models, `gemini-3.5-flash-lite` (fastest, cheapest), `gemini-3.8-flash` (the balanced default), and `gemini-3.1-pro-preview` (most capable), so you can dial cost against quality. On the cheapest, Gemini 3.5 Flash-Lite (paid tier) charges $0.30 per 1M input tokens and $2.50 per 1M output tokens. A 500-word extraction runs roughly 600 input tokens and 300 output tokens: (600 / 1,000,000) × $0.30 = $0.00018 for input, (300 / 1,000,000) × $2.50 = $0.00075 for output, for a total around $0.0009 per extraction, still under a tenth of a cent. Building the graph from the executive summary makes two model calls instead of one, so budget for roughly double when that option is enabled. Gemini 3.5 Flash-Lite also has a free tier with no cost for input or output tokens, which is enough for testing and small-scale use.
+Almost nothing. Nodus offers `gemini-3.5-flash-lite` (cheapest), `gemini-3.8-flash` (the default), and `gemini-3.1-pro-preview` (most capable). On Flash-Lite's paid tier, $0.30 per 1M input tokens and $2.50 per 1M output tokens, a 500-word article is about 600 tokens in and 300 out, around $0.0009 per extraction. Building the graph from the summary roughly doubles that. Flash-Lite also has a free tier, which is plenty for trying it out.
 
-{{< callout note>}}
-For production use, count tokens before API calls to estimate costs, batch multiple documents to optimize API usage, and cache extracted graphs to avoid re-processing unchanged content.
-{{< /callout >}}
+## Why not just use LangChain
 
-## Real-world applications
-
-Meeting notes and transcripts are the obvious case: instead of searching through hours of notes for who mentioned a deadline, you query the graph directly ("show me all deadlines mentioned by Sarah in Q1 meetings"), since the relationships are already extracted and structured. The same idea applies to research and learning, where a knowledge graph built while you read technical documentation shows how ideas connect and which concepts are central. At an organizational level, it can unify information scattered across documents, wikis, and conversations into one map, regardless of where each piece originally lived.
-
-From here you could connect it to a document database for automatic extraction, build a conversational query interface over the graphs, merge graphs from multiple sources, or add temporal tracking to see how knowledge evolves over time.
-
-{{< callout note >}}
-Simple examples are easy to grasp, but knowledge graphs shine more with scale. A graph with 100 entities and 200 relationships can reveal patterns that are nearly impossible to spot in raw text, from trend analysis to anomaly detection.
-{{< /callout >}}
-
-## Explore the code
-
-The complete implementation is available {{< extlink href="https://github.com/jebucaro/blog-code" >}}on GitHub{{< /extlink >}}. I kept the codebase intentionally minimal and documented so you can understand every piece and adapt it. Start with `models.py` (Pydantic data models with validation and auto-deduplication), `extractor.py` (the two-phase extraction logic, prompts, and prompt-injection guards), `repair.py` (the endpoint-repair pass that keeps dangling edges from being dropped), `visualizer.py` (PyVis-based graph rendering), `chat.py` (the document Q&A session grounded in the source text, with evidence-cited answers), `app.py` (the Streamlit interface), `settings.py` (environment configuration, model and thinking-level selection), and `errors.py` (a custom exception hierarchy for user-friendly errors).
-
-## Why I built it from scratch
-
-Thu Vu's original implementation uses GPT-4 and LangChain's `LLMGraphTransformer`, and it's worth watching for how a high-level abstraction simplifies extraction:
+LangChain's abstraction is great when you want a result fast, and Thu Vu's video is worth watching for exactly that:
 
 <p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/O-T_6KOXML4?si=t954bEKM1cd6ig6h" title="YouTube video player" style="border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
-That abstraction is powerful, but it also hides the questions you need answered when you're debugging unexpected extraction results, optimizing prompts for a specific domain, adapting the system to a different LLM provider, or controlling costs at scale. Working directly with the Gemini API instead of through a framework showed me the core pattern more clearly: strip away multi-provider support and framework overhead, and you can see exactly how prompt design drives the quality of extracted entities and relationships. It also means I can tune every part of the pipeline directly, and the knowledge of how structured output works at the API level carries over to any other LLM provider I use later.
+But it hides the part I wanted to learn. Calling Gemini directly showed me that the core is structured output plus good prompts, and that carries over to any other provider. It also made debugging a weird extraction a lot easier, because there was nothing between me and the model. I'm not arguing against frameworks, I just wanted to see what's underneath.
 
-The goal here isn't to argue against framework-based approaches, just to understand the mechanism underneath them.
-
-## What will you extract?
-
-Knowledge graphs change how you interact with information, whether you're managing research, organizing meeting notes, or building AI applications on top of structured data. What's the first text you'll try converting into a knowledge graph? Share your use case or questions on LinkedIn, I'd love to hear what you build with this.
+The full code is {{< extlink href="https://github.com/jebucaro/blog-code" >}}on GitHub{{< /extlink >}}. Start with `extractor.py` for the prompts and injection guards, `models.py` for the schema, and `repair.py` for the repair pass.
