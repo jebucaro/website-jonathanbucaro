@@ -171,7 +171,7 @@ Un skill no es más que una carpeta con un `SKILL.md` adentro:
     └── assets/        # plantillas, schemas
 ```
 
-Ponlo en `./.claude/skills` si es para un proyecto, o en `~/.claude/skills` si lo quieres disponible en todos tus proyectos. Ojo con algunos detalles que suelen confundir: el archivo se tiene que llamar exactamente `SKILL.md`, la carpeta va en kebab-case (`orders-report`, nunca `Orders Report` ni `orders_report`) y el README va en la raíz del repo, fuera de la carpeta del skill.
+Ponlo en `./.claude/skills` si es para un proyecto, o en `~/.claude/skills` si lo quieres disponible en todos tus proyectos. Toma en consideración algunos detalles que suelen confundir: el archivo se tiene que llamar exactamente `SKILL.md`, la carpeta va en kebab-case (`orders-report`, nunca `Orders Report` ni `orders_report`) y el README va en la raíz del repo, fuera de la carpeta del skill.
 
 Lo que hace que esto escale es el progressive disclosure, es decir, que el agente carga el skill por capas:
 

@@ -8,13 +8,11 @@ draft: false
 description: 'Get the profile picture of your ManyChat contacts. One simple action, without the technical fuzz of an external request'
 ---
 
-## Greetings
+This is the documentation for Monet, a small ManyChat app I built to get your contacts' profile picture with one action, without setting up an external request yourself.
 
-Hello and welcome! Thank you for your interest in Monet.
+Monet calls ManyChat's API (`fb/subscriber/getInfo`), so you need a ManyChat Pro account, and it counts against {{< extlink href="https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls%3F" >}}ManyChat’s API limits{{< /extlink >}}: 10 requests per second for that endpoint.
 
-This App uses ManyChat’s API to get the profile picture URL of your contacts. You will need a ManyChat Pro Account, and since you are consuming ManyChat’s API directly, you have to be aware of {{< extlink href="https://support.manychat.com/support/solutions/articles/36000070776-manychat-api#Is-there-any-limit-to-a-number-of-API-calls>>?" >}}ManyChat’s API limits{{< /extlink >}}. The API used by Monet App is `fb/subscriber/getInfo`, which is limited to 10 RPS (requests per second).
-
-The API usage limit is fine for most use cases, just be careful if you are doing something massive.
+That's enough for most bots, just be careful if you're doing something massive.
 
 {{< gallery caption="Gallery Monet" >}}
 {{< gallery-image src="images/0-monet-description.webp" alt="Artwork by Monet accompanied by text: 'One simple action without the technical fuzz of an external request' related to a ManyChat application." >}}
@@ -25,15 +23,15 @@ The API usage limit is fine for most use cases, just be careful if you are doing
 {{< gallery-image src="images/5-monet-phone.webp" alt="Background artwork by Monet with a phone displaying the Messenger app showing the user's profile picture in a chatbot conversation." >}}
 {{< /gallery >}}
 
-### Install Monet for ManyChat
+## Install Monet for ManyChat
 
-The following link will send you to the ManyChat App installation page. The only permission needed is `View contact data`, to be able to read the data of the contact's profile picture.
+The link below opens the ManyChat install page. The only permission it asks for is `View contact data`, which it needs to read the contact's profile picture.
 
 {{< extlink href="https://manychat.com/apps/849/install" >}}Install Monet{{< /extlink >}}
 
-### Get Monet's source code
+## Get Monet's source code
 
-It has been four years since I created Monet as a simple project to understand how to create a small app for ManyChat. The source code is mostly a json configuration file.
+I built Monet as a small project to learn how ManyChat apps work, and the source is mostly a JSON configuration file.
 
 {{< extlink href="https://github.com/jebucaro/monet-for-manychat" >}}Go to GitHub{{< /extlink >}}
 
@@ -62,7 +60,7 @@ Go to your **ManyChat Settings > Extensions > API**. If you haven’t generated 
 {{< gallery-image src="images/monet-setup-api-generate-1.webp" alt="Close-up of ManyChat settings highlighting the textbox for the API key and the button to generate the key." >}}
 {{< /gallery >}}
 
-Now go to **ManyChat Settings > Extensions > Apps** and select the **Monet** App. Paste your API Key on the **ManyChat API Key** field (3). Click **Save** (4). And that’s it!
+Now go to **ManyChat Settings > Extensions > Apps** and select the **Monet** App. Paste your API Key on the **ManyChat API Key** field (3). Click **Save** (4), and you're done.
 
 {{< gallery caption="Monet: Configure your ManyChat API Key" >}}
 {{< gallery-image src="images/monet-setup-app-select-1.webp" alt="ManyChat settings screen showing a list of installed apps, highlighting the Monet App." >}}
@@ -95,7 +93,7 @@ It’s safer to validate if the CUF has some value in it. If not, the following 
 - An error occurred while consuming ManyChat’s API
 - The profile picture attribute isn’t available in the channel you are using
 
-Here is a small basic flow on how to use Monet App.
+Here's a basic flow using Monet:
 
 {{< gallery caption="Monet: Flow Sample" >}}
 {{< gallery-image src="images/monet-flow-sample.webp" alt="ManyChat flow diagram incorporating the Monet App, illustrating the sequence of actions." >}}
@@ -105,7 +103,7 @@ Here is a small basic flow on how to use Monet App.
 
 The official ManyChat.com website can be found at {{< extlink href="https://manychat.com" >}}ManyChat{{< /extlink >}}
 
-I used the Urban Dictionary definition of Monet as inspiration to name the app.
+I named the app after the Urban Dictionary definition of Monet:
 
 > Like Monet’s paintings… Looks good from afar – but far from good close up
 >

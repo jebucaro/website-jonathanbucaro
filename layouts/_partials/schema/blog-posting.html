@@ -10,6 +10,8 @@
 {{ $schema := dict
   "@context" "https://schema.org"
   "@type" "BlogPosting"
+  "@id" (printf "%s#article" .Permalink)
+  "mainEntityOfPage" .Permalink
   "headline" .Title
   "description" .Description
   "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")

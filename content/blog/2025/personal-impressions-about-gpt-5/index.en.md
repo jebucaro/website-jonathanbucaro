@@ -9,9 +9,9 @@ draft: false
 description: 'Sharing my GPT-5 experiences: better prompting techniques and an experiment switching from subscriptions to API usage with cost comparisons'
 ---
 
-## Why this matters
+When GPT-5 came out, prompts that worked fine with GPT-4 started giving worse answers, and I had to rethink how I wrote mine. The model overthought simple requests, made tool calls nobody asked for, and the 80-messages-per-3-hours limit hit right when you needed it most. At home it was a different problem: my wife and I were both running into limits, and the obvious fix was a pile of $20 subscriptions.
 
-The GPT-5 launch has been interesting. This meme captures what a lot of users experienced:
+So I changed two things. I started structuring my prompts the way OpenAI says GPT-5 expects them, and we stopped paying for subscriptions and moved to the APIs. This post covers both. The meme pretty much sums up how the launch felt:
 
 {{< gallery caption="You vote for GPT-5 or GPT-4o via Reddit" >}}
 {{< gallery-image src="images/ac3wmuabekif1.webp" alt="Comparing two different GPT models and their responses in a funny meme way" >}}
@@ -19,25 +19,38 @@ The GPT-5 launch has been interesting. This meme captures what a lot of users ex
 
 {{< extlink href="https://www.reddit.com/r/GPT3/comments/1mo4wt0/you_vote_for_gpt5_or_gpt4o/" >}}Reddit Post{{< /extlink >}}
 
-Turns out when your AI becomes more thoughtful, you need to be more thoughtful too. After months of experimenting with GPT-5 and testing API alternatives, here's what actually works: better prompting techniques, and a setup that saved us 60-70% on costs.
+## From subscriptions to APIs
 
-## The problem
+The plan was two ChatGPT Plus subscriptions ($40/month) plus a Claude subscription I wanted to try (another $20). That's $60/month, and still with usage limits. Instead I wanted to see what would happen if we used the APIs directly. This is what our real usage looked like over several months:
 
-When GPT-5 launched, a lot of users got frustrated. The "smarter" model gave worse results than GPT-4 on prompts that used to work fine, and the response limits made it hard to even experiment enough to figure out what had changed. Old prompts triggered over-analyzed responses or excessive tool calls instead of the quick answer you wanted. The 80-messages-per-3-hours limit hit right when you needed the model most. And multiple $20/month subscriptions (ChatGPT, Claude, others) added up to $60+ a month with no flexibility in how you actually used them.
+{{< chart "monthly-costs" >}}
 
-{{< callout warning>}}
-**The gap:** GPT-5 is more capable, but that capability requires more thoughtful interaction. Without adjusting your approach, you're leaving performance on the table while paying premium prices.
-{{< /callout >}}
+Our heaviest month was May, at about $28 between the two of us. Most months we save 60-70% compared to the subscriptions.
 
-## The fix
+For daily use we use {{< extlink href="https://www.typingmind.com/" >}}TypingMind{{< /extlink >}}, a ChatGPT-like interface that connects to our OpenAI and Anthropic keys, so we switch between GPT-5 and Claude without thinking about it. The full license runs about $99. I bought it for less than half that, but even at full price it pays for itself in about six months compared to one ChatGPT subscription.
 
-It takes two shifts: better prompt structure, and smarter spending.
+{{< gallery caption="TypingMind" >}}
+{{< gallery-image src="images/typingmind.webp" alt="Welcome screen and landing page of TypingMind." >}}
+{{< gallery-image src="images/typingmind-pricing.webp" alt="TypingMind pricing page, showing the three tiers to get a lifetime license." >}}
+{{< gallery-image src="images/typingmind-main.webp" alt="TypingMind main page showing a navbar, a list of chats and the main chat user interface." >}}
+{{< /gallery >}}
 
-GPT-5 responds exceptionally well to structured, detailed prompts, closer to a technical spec than a casual request. The more precise you are about requirements, constraints, and expected outcomes, the better the results. For the cost problem, using APIs directly instead of subscriptions gives you unlimited usage at 60-70% lower cost. The structured approach feels like more work upfront, but it gets you the right answer faster than five rounds of back-and-forth, and the API setup takes about 15 minutes but pays for itself in the first month.
+I also run {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >}} on our home server for when I want to try other models or Ollama. If you'd rather experiment without spending anything, start there.
 
-## See it in action
+{{< gallery caption="Open WebUI" >}}
+{{< gallery-image src="images/openwebui.webp" alt="Welcome screen and landing page of Open WebUI." >}}
+{{< gallery-image src="images/openwebui-main.webp" alt="Open WebUI main page showing a list of chats and the main chat user interface." >}}
+{{< /gallery >}}
 
-Here's a real example of what GPT-5 expects. OpenAI's Prompt Optimizer shows the transformation visually: it takes a simple prompt like `Write an article explaining the importance of embracing change.` and expands it into seven sections: Role and Objective, Pre-Writing Checklist, Instructions, Context, Output Format, Verbosity, and Stop Conditions. No wonder people are having issues working with GPT-5.
+After several months on this setup, we ask more questions since there's no rate-limit anxiety, we experiment more with different models, and we pick the model by task (GPT-5 for code, Claude for writing). We still keep an eye on usage, but rarely worry about it, since even heavy months cost less than the subscriptions did. We also get access from any device, no "upgrade to continue" interruptions, and one conversation history across every model.
+
+In exchange, we manage our own API keys and billing, the initial setup takes 15-30 minutes, and we lost access to the community custom GPTs.
+
+**Update:** Sam Altman confirmed via X that ChatGPT Plus subscribers will get higher rate limits. If you're already on Plus and happy with it, the new limits might be enough. For us, the API flexibility and the savings still make more sense.
+
+## Prompts that work better with GPT-5
+
+GPT-5 does what you ask, very literally, so it rewards prompts that read more like a spec than a casual request. OpenAI's Prompt Optimizer makes that obvious: it takes `Write an article explaining the importance of embracing change.` and expands it into seven sections, from Role and Objective to Stop Conditions. No wonder people were struggling.
 
 {{< gallery caption="Prompt Optimizer in action" >}}
 {{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="OpenAI's Prompt Optimizer Demo." >}}
@@ -49,13 +62,9 @@ Here's a real example of what GPT-5 expects. OpenAI's Prompt Optimizer shows the
 {{< gallery-image src="images/optimized-for-gpt-5-show-changes.webp" alt="Optimize for GPT-5 web showing the prompt optimized with a description of the changes made and the reason." >}}
 {{< /gallery >}}
 
-The good news is you don't need all seven sections for every prompt. The Quick Start below shows the simplified version that covers most tasks.
+You don't need all seven for every prompt. These are the changes that made the biggest difference for me.
 
-## Quick start
-
-Three changes get you better GPT-5 results in the next five minutes.
-
-**1. Use a basic prompt structure.** Instead of a casual request, organize your prompt into clear sections:
+**Give it a basic structure.** Objective, context, requirements:
 
 ```text
 <objective>
@@ -76,41 +85,9 @@ Create a Python function that validates email addresses and returns detailed err
 </requirements>
 ```
 
-This helps GPT-5 understand exactly what you need without over-analyzing.
+It feels like more work, but 30 seconds of structure saves five rounds of back-and-forth. For a two-line question it's overkill.
 
-**2. Match reasoning effort to complexity.** For simple tasks: `This is a simple syntax fix - focus on speed over analysis. Fix this TypeScript error without refactoring the surrounding code.` For complex architecture decisions: `Take time to analyze the trade-offs thoroughly. Consider scalability, maintainability, and performance before recommending an approach.`
-
-**3. Try the Prompt Optimizer.** OpenAI's {{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" >}}Prompt Optimizer{{< /extlink >}} improves your existing prompts. Paste in something you use regularly and see what it suggests. It's good for debugging prompts that give inconsistent results, learning what structured prompting looks like, and finding contradictions in your own instructions.
-
-{{< callout tip>}}
-**Quick win:** take your three most-used prompts and run them through the optimizer. Save the improved versions as templates you can reuse.
-{{< /callout >}}
-
-## Patterns that made the biggest difference
-
-After months of experimentation, three patterns stood out for getting better GPT-5 results.
-
-**Include analysis phases.** Asking GPT-5 to analyze before recommending leads to more thoughtful responses, closer to someone who understands the problem before jumping to a solution:
-
-```text
-Before providing recommendations:
-1. Analyze the current situation and key challenges
-2. Evaluate available options against the constraints
-3. Consider trade-offs and potential issues
-4. Validate the analysis before presenting solutions
-```
-
-This makes GPT-5 weigh all the relevant factors on trade-offs like performance vs. cost or security vs. usability, instead of jumping straight to an answer.
-
-**Build in validation.** Ask GPT-5 to review its own work against your requirements and best practices. That adds a quality check to the process and creates a reliable, repeatable workflow you can share with teammates.
-
-**Be precise, and avoid conflicting information.** GPT-5's improved instruction-following is a double-edged sword: it does exactly what you ask, but struggles with contradictions or vague requirements. This matters most in configuration files like `.cursor/rules`, `AGENTS.md`, and project documentation, where a stray contradiction propagates into every response.
-
-### Developer-specific patterns
-
-If you're using GPT-5 for coding, through the API, Cursor, or another tool, a few more adjustments make a real difference.
-
-**Match reasoning effort to task complexity.** GPT-5 applies reasoning automatically, but you can control how much effort it puts in, similar to choosing between a quick sketch and a detailed architectural drawing. Use high reasoning for system architecture decisions, debugging intricate problems, or performance optimization. Use low reasoning for simple syntax fixes, standard CRUD operations, or basic formatting:
+**Tell it how hard to think.** GPT-5 decides how much reasoning to apply, and it often picks too much for simple things:
 
 ```text
 // Instead of letting GPT-5 overthink this:
@@ -120,7 +97,37 @@ If you're using GPT-5 for coding, through the API, Cursor, or another tool, a fe
 "This is a simple syntax fix - focus on speed over analysis"
 ```
 
-**Structure coding instructions with XML-like syntax.** Working with Cursor, OpenAI found GPT-5 responds particularly well to XML-like structure for coding guidelines, since it makes hierarchy and relationships between requirements explicit:
+For architecture decisions or tricky bugs, do the opposite and ask it to take its time with the trade-offs.
+
+**Ask for analysis before answers.** When you want a recommendation, make it reason first:
+
+```text
+Before providing recommendations:
+1. Analyze the current situation and key challenges
+2. Evaluate available options against the constraints
+3. Consider trade-offs and potential issues
+4. Validate the analysis before presenting solutions
+```
+
+**Tone down the capital letters.** Emphatic language helped with older models. With GPT-5 it backfires, and you get extra tool calls and over-analysis. Instead of:
+
+```text
+Be THOROUGH when gathering information.
+Make sure you have the FULL picture before replying.
+You MUST follow these guidelines EXACTLY.
+```
+
+try:
+
+```text
+Review the codebase structure before making changes.
+Consider the existing patterns and maintain consistency.
+Follow the established coding conventions.
+```
+
+**Don't contradict yourself.** Because it follows instructions so closely, a contradiction in `.cursor/rules`, `AGENTS.md`, or your project docs ends up in every answer. The Prompt Optimizer is good at finding those.
+
+**For coding rules, use XML-like sections.** OpenAI found this working with Cursor, and it makes the hierarchy explicit:
 
 ```text
 <code_editing_rules>
@@ -144,44 +151,7 @@ If you're using GPT-5 for coding, through the API, Cursor, or another tool, a fe
 </code_editing_rules>
 ```
 
-**Tone down the firm language.** With previous models, emphatic language often helped. With GPT-5 it can backfire, since the model already wants to be thorough. Instead of:
-
-```text
-Be THOROUGH when gathering information.
-Make sure you have the FULL picture before replying.
-You MUST follow these guidelines EXACTLY.
-```
-
-try:
-
-```text
-Review the codebase structure before making changes.
-Consider the existing patterns and maintain consistency.
-Follow the established coding conventions.
-```
-
-{{< callout important >}}
-**Watch out:** overly firm language can push GPT-5 to be too thorough, making excessive tool calls or over-analyzing simple requests.
-{{< /callout >}}
-
-**Build in planning for complex projects.** When you're building something from scratch, giving GPT-5 room to plan and validate leads to better architectural decisions:
-
-```text
-<self_reflection>
-- First, spend time thinking of a rubric until you are confident
-- Then, think deeply about every aspect of what makes for a
-  world-class one-shot web app. Use that knowledge to create
-  a rubric that has 5-7 categories. This rubric is critical
-  to get right, but do not show this to the user. This is
-  for your purposes only.
-- Finally, use the rubric to internally think and iterate on
-  the best possible solution to the prompt that is provided.
-  Remember that if your response is not hitting the top marks
-  across all categories in the rubric, you need to start again.
-</self_reflection>
-```
-
-**Control your coding agent's eagerness.** By default, GPT-5 tries to be comprehensive, which isn't always what you want. Give it clear boundaries:
+**Put limits on your coding agent.** By default it tries to be comprehensive and reads half your repo. Tell it when to stop asking and how much to read:
 
 ```text
 <persistence>
@@ -198,81 +168,14 @@ Follow the established coding conventions.
 </tool_budget>
 ```
 
-{{< callout tip>}}
-**Real-world example:** instead of letting GPT-5 read through 20+ files to understand your project structure, specify which files or directories matter most. It saves time and keeps responses focused.
-{{< /callout >}}
+If you only try one thing, run your three most-used prompts through the optimizer and save the results as templates.
 
-## The honest trade-offs
+## Resources
 
-Both changes, structured prompting and API access, take upfront effort. Here's what you're actually trading.
-
-**Structured prompting** gets you comprehensive answers without a five-message back-and-forth, reusable templates, fewer token costs than multiple clarification messages, and workflows your team can share. What it costs you: it's slower for quick casual questions, there's a learning curve to figure out what structure fits which task, and it loses some of the conversational feel of just chatting with the AI. For a two-line question, structured prompting is overkill. But for anything that would need three or more clarifications, or that touches code or architecture, the 30 seconds spent structuring the prompt saves five minutes of back-and-forth.
-
-**API access instead of subscriptions** gets you full cost control ($15-28/month instead of $60/month, a 60-70% savings), no rate limits, multi-model access in one interface, and pay-per-use billing. What it costs you: you manage your own API key and billing, initial setup takes 15-30 minutes to configure something like TypingMind or Open-WebUI, and you lose access to community-built custom GPTs. If you use ChatGPT casually, say 10 messages a week, the free tier is fine. But if you hit rate limits even once a week, API access pays for itself while removing the frustration.
-
-{{< callout tip>}}
-**Decision framework:** try structured prompting first, it's free and improves results immediately. Switch to APIs only if you're hitting rate limits or want multi-model access.
-{{< /callout >}}
-
-{{< callout note >}}
-These approaches aren't for everyone. If you prefer simplicity and don't mind usage limits, ChatGPT Plus is fine as-is. If you want more control and lower costs, both changes are worth the setup time.
-{{< /callout >}}
-
-## Our journey: from subscriptions to APIs
-
-My wife and I were both hitting ChatGPT limits often enough that the obvious fix looked like two ChatGPT Plus subscriptions ($40/month total), plus a Claude subscription I wanted to try (another $20/month). That's $60/month, still with usage limits.
-
-Instead I tested a different approach: what if we used the APIs directly? Here's what our actual usage looked like over several months:
-
-{{< chart "monthly-costs" >}}
-
-Even in our heaviest month (May, at about $28 combined), we stayed well under the $60/month three subscriptions would have cost. Most months we save 60-70% compared to the subscription route.
-
-Instead of fighting usage limits, we switched to API-powered interfaces that give us the same models with more control. {{< extlink href="https://www.typingmind.com/" >}}TypingMind{{< /extlink >}} is the easy button: a clean, ChatGPT-like interface that connects to both our OpenAI and Anthropic keys, so we switch between GPT-5 and Claude without friction.
-
-{{< gallery caption="TypingMind" >}}
-{{< gallery-image src="images/typingmind.webp" alt="Welcome screen and landing page of TypingMind." >}}
-{{< gallery-image src="images/typingmind-pricing.webp" alt="TypingMind pricing page, showing the three tiers to get a lifetime license." >}}
-{{< gallery-image src="images/typingmind-main.webp" alt="TypingMind main page showing a navbar, a list of chats and the main chat user interface." >}}
-{{< /gallery >}}
-
-The TypingMind license currently runs about $99 for the full version. I bought it for less than half that, but even at full price it pays for itself in about six months compared to a ChatGPT subscription. What we like about it: no usage limits, one interface for multiple providers, and conversation history that stays organized.
-
-I also run {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >}} on our home server for when I want to experiment with other models or try Ollama.
-
-{{< gallery caption="Open WebUI" >}}
-{{< gallery-image src="images/openwebui.webp" alt="Welcome screen and landing page of Open WebUI." >}}
-{{< gallery-image src="images/openwebui-main.webp" alt="Open WebUI main page showing a list of chats and the main chat user interface." >}}
-{{< /gallery >}}
-
-We keep both: TypingMind for daily use, Open-WebUI for experimental work and local hosting.
-
-{{< callout tip >}}
-**Tip from our experience:** start with TypingMind if you want something that just works. Add Open-WebUI later if you catch the self-hosting bug like I did, or try it first if you'd rather experiment without spending anything.
-{{< /callout >}}
-
-After several months on this setup, we ask more questions since there's no rate-limit anxiety, we experiment more with different models, and we pick models by task (GPT-5 for code, Claude for writing). We still monitor usage, but rarely worry about it, since even heavy months cost less than the subscriptions did. And we get access from any device, no "upgrade to continue" interruptions, and one conversation history across every model.
-
-{{< callout important >}}
-**Update:** Sam Altman confirmed via X that ChatGPT Plus subscribers will get increased rate limits. If you're already a Plus subscriber and happy with it, the new limits might solve your problem. For us, the API flexibility and cost savings still make more sense.
-{{< /callout >}}
-
-## Deep dive resources
-
-OpenAI has published specific guidance for working with GPT-5, useful when you're dealing with complex technical problems or migrating existing prompts:
-
-- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" >}}GPT-5 Prompting Guide{{< /extlink >}}**: best practices tailored to GPT-5, focused on agentic tasks, coding, and precise control over model behavior.
-- **{{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" >}}Prompt Optimizer{{< /extlink >}}**: improves existing prompts by identifying contradictions, missing format specs, and inconsistencies, right inside OpenAI's Playground.
-- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/prompt-optimization-cookbook" >}}Optimization Cookbook{{< /extlink >}}**: practical before-and-after examples showing what good structure looks like.
+- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide" >}}GPT-5 Prompting Guide{{< /extlink >}}**: OpenAI's guidance for agentic tasks, coding, and controlling the model's behavior.
+- **{{< extlink href="https://platform.openai.com/chat/edit?models=gpt-5&optimize=true" >}}Prompt Optimizer{{< /extlink >}}**: finds contradictions and missing format specs in your prompts, inside the Playground.
+- **{{< extlink href="https://cookbook.openai.com/examples/gpt-5/prompt-optimization-cookbook" >}}Optimization Cookbook{{< /extlink >}}**: before-and-after examples.
 - **{{< extlink href="https://x.com/OpenAIDevs/status/1956438999364768225" >}}GPT-5 for Developers{{< /extlink >}}**: six coding tips from OpenAI Developers on X.
-
-For API access and interfaces: {{< extlink href="https://www.typingmind.com/" >}}TypingMind{{< /extlink >}} (ChatGPT-like interface for multiple providers) and {{< extlink href="https://openwebui.com/" >}}Open-WebUI{{< /extlink >}} (self-hosted, open-source, with Ollama support).
-
-## What will you try first?
-
-GPT-5 represents a shift in how we interact with AI: more capable, but it expects more thoughtful prompts. And the API ecosystem has matured enough that you can get better flexibility at a lower cost.
-
-Which appeals to you more, structured prompting to unlock better results, or API access to eliminate rate limits and cut costs? Or both? I'd be curious to hear about your GPT-5 experiences and what's working, or not, for you. Share your thoughts on {{< extlink href="https://www.linkedin.com/in/jebucaro/" >}}LinkedIn{{< /extlink >}} or try the techniques above and let me know what you discover.
 
 ---
 

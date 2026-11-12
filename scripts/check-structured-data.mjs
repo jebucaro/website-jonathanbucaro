@@ -24,6 +24,12 @@ const BIO_MARKER = {
     es: 'Construyo software desde el problema de negocio hasta operarlo en producción',
 };
 
+// llms.txt / llms-full.txt shared copy (author__summary, author__cite).
+const SUMMARY_MARKER =
+    'He graduated as a Systems Engineer from Universidad Mariano Gálvez de Guatemala.';
+const CITE_LINE =
+    'When citing, refer to him as Jonathan Búcaro (jonathanbucaro.com) and link the specific post or project page.';
+
 const failures = [];
 const fail = (file, msg) => failures.push(`${file}: ${msg}`);
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -75,8 +81,23 @@ function checkPerson(file, person, lang) {
     }
     if (person.address?.addressCountry !== 'GT')
         fail(file, 'Person.address.addressCountry is not GT');
-    if ('worksFor' in person)
-        fail(file, 'Person.worksFor must wait for the About rewrite');
+    // Both are named on the About page (en and es).
+    const orgs = {
+        worksFor: {
+            '@type': 'Organization',
+            name: 'HTEC',
+            url: 'https://htec.com/',
+        },
+        alumniOf: {
+            '@type': 'CollegeOrUniversity',
+            name: 'Universidad Mariano Gálvez de Guatemala',
+            url: 'https://umg.edu.gt/',
+        },
+    };
+    for (const [key, value] of Object.entries(orgs)) {
+        if (!same(person[key], value))
+            fail(file, `Person.${key} is ${JSON.stringify(person[key])}`);
+    }
     if (!String(person.description ?? '').includes(BIO_MARKER[lang]))
         fail(file, `Person.description is not the ${lang} bio`);
 }
@@ -137,6 +158,10 @@ for (const full of htmlFiles(PUBLIC_DIR)) {
     for (const post of nodes.filter((n) => n['@type'] === 'BlogPosting')) {
         checkRef(file, 'BlogPosting.author', post.author);
         checkRef(file, 'BlogPosting.publisher', post.publisher);
+        if (post['@id'] !== `${post.url}#article`)
+            fail(file, `BlogPosting @id is ${JSON.stringify(post['@id'])}`);
+        if (post.mainEntityOfPage !== post.url)
+            fail(file, 'BlogPosting.mainEntityOfPage is not its url');
     }
     for (const work of nodes.filter((n) =>
         ['CreativeWork', 'SoftwareApplication'].includes(n['@type']),
@@ -207,6 +232,25 @@ function checkLlmsTxt() {
     ) {
         fail(file, `sections are ${JSON.stringify(sections)}`);
     }
+    // ## About: the shared history summary (same text as llms-full.txt),
+    // the About page link, then how to cite.
+    const about = lines
+        .slice(aboutAt + 1, lines.indexOf('## Work'))
+        .filter((l) => l.trim() !== '');
+    const fullText = existsSync(join(PUBLIC_DIR, 'llms-full.txt'))
+        ? readFileSync(join(PUBLIC_DIR, 'llms-full.txt'), 'utf8')
+        : '';
+    const summary = fullText.split('\n')[2] ?? '';
+    if (!summary.includes(SUMMARY_MARKER) || about[0] !== summary)
+        fail(file, '## About does not open with the llms-full.txt summary');
+    if (!about[1]?.startsWith(`- [About](${SITE}about/)`))
+        fail(file, '## About link does not follow the summary');
+    if (about[2] !== CITE_LINE) fail(file, '## About citation line missing');
+    if (!fullText.includes(CITE_LINE))
+        fail('llms-full.txt', 'citation line missing');
+    const optional = text.split('## Optional')[1] ?? '';
+    if (!optional.includes(`](${SITE}llms-full.txt)`))
+        fail(file, '## Optional does not link llms-full.txt');
     const profiles =
         text.split('## Profiles')[1]?.split('## Optional')[0] ?? '';
     for (const url of SAME_AS)
@@ -237,6 +281,95 @@ function checkLlmsTxt() {
         fail(file, 'no posts listed');
 }
 checkLlmsTxt();
+
+// robots.txt: one root sitemap (an index of both languages), no es copy.
+// 404: never indexed.
+function checkRobotsAndNotFound() {
+    const robots = join(PUBLIC_DIR, 'robots.txt');
+    if (!existsSync(robots)) fail('robots.txt', 'missing');
+    else {
+        const sitemaps = readFileSync(robots, 'utf8')
+            .split('\n')
+            .filter((l) => l.startsWith('Sitemap:'));
+        if (!same(sitemaps, [`Sitemap: ${SITE}sitemap.xml`]))
+            fail('robots.txt', `Sitemap lines are ${JSON.stringify(sitemaps)}`);
+    }
+    if (existsSync(join(PUBLIC_DIR, 'es', 'robots.txt')))
+        fail('es/robots.txt', 'should not be generated');
+    const notFound = join(PUBLIC_DIR, '404.html');
+    if (
+        !existsSync(notFound) ||
+        !/<meta name="?robots"? content="?noindex/.test(
+            readFileSync(notFound, 'utf8'),
+        )
+    )
+        fail('404.html', 'missing robots noindex');
+}
+checkRobotsAndNotFound();
+
+// /llms-full.txt: English About, work and posts as plain Markdown. Shortcode
+// syntax, front matter, HTML entities and Spanish pages must not leak in.
+function checkLlmsFullTxt() {
+    const file = 'llms-full.txt';
+    const full = join(PUBLIC_DIR, file);
+    if (existsSync(join(PUBLIC_DIR, 'es', file)))
+        fail(`es/${file}`, 'should not be generated');
+    if (!existsSync(full)) return fail(file, 'missing');
+    const text = readFileSync(full, 'utf8');
+    if (text.split('\n')[0] !== `# ${PERSON_NAME}`)
+        fail(file, 'first line is not the name heading');
+    if (!text.includes(SUMMARY_MARKER)) fail(file, 'summary missing');
+    // Every page carries its last update, not only its publish date.
+    const pagesListed = text.match(/^URL: /gm)?.length ?? 0;
+    if (
+        (text.match(/^Updated: \d{4}-\d{2}-\d{2}$/gm)?.length ?? 0) !==
+        pagesListed
+    )
+        fail(file, 'not every page has an Updated: line');
+    // Captionless galleries keep their alt text (the speaker card names HTEC).
+    if (!text.includes('speaker card for Jonathan Búcaro'))
+        fail(file, 'gallery alt text dropped');
+    // Demotion keeps heading order: the work-log h4 > h5 must not invert.
+    if (/^##### Enable Community Plugins$/m.test(text))
+        fail(file, 'demoted headings invert levels');
+    const llms = readFileSync(join(PUBLIC_DIR, 'llms.txt'), 'utf8');
+    const posts = [
+        ...(
+            llms.split('## Writing')[1]?.split('## Profiles')[0] ?? ''
+        ).matchAll(/\]\((https:[^)]+)\)/g),
+    ].map((m) => m[1]);
+    if (posts.length === 0) fail(file, 'no posts found in llms.txt to compare');
+    for (const url of [
+        `${SITE}about/`,
+        `${SITE}work/ai-native-clis-with-skills/`,
+        `${SITE}work/dotnet-gitmoji/`,
+        ...posts,
+    ])
+        if (!text.includes(url)) fail(file, `missing ${url}`);
+    for (const [label, re] of [
+        ['Spanish post URL', /jonathanbucaro\.com\/es\/blog\//],
+        ['shortcode syntax', /\{\{<|>\}\}|\{\{%/],
+        ['HTML entities', /&amp;|&#/],
+        // Front matter would sit right after a page's metadata lines.
+        ['front matter', /^Updated: .*\n\n---\n/m],
+        ['em dash', /—/],
+        ['test fixture', /llms-markdown fixture|## Fixture/],
+    ])
+        if (re.test(text)) fail(file, `contains ${label}`);
+}
+checkLlmsFullTxt();
+
+// The headless llms-markdown test fixture must never be published.
+for (const path of ['llms-fixture', 'es/llms-fixture'])
+    if (existsSync(join(PUBLIC_DIR, path)))
+        fail(path, 'test fixture was rendered');
+if (
+    existsSync(join(PUBLIC_DIR, 'en/sitemap.xml')) &&
+    readFileSync(join(PUBLIC_DIR, 'en/sitemap.xml'), 'utf8').includes(
+        'llms-fixture',
+    )
+)
+    fail('en/sitemap.xml', 'lists the test fixture');
 
 if (failures.length) {
     console.error(`Structured data check failed (${failures.length}):`);

@@ -1,0 +1,88 @@
+{{- /*
+  Returns a page's body as plain Markdown for /llms-full.txt: front matter
+  dropped (.RawContent) and every shortcode turned into readable text, so agents
+  never see `{{< … >}}` syntax. A shortcode with no rule here leaks through and
+  fails scripts/check-structured-data.mjs; add a rule when adding a shortcode.
+
+  Usage:
+    {{ partial "functions/llms-markdown.html" (dict "page" .) }}
+*/ -}}
+
+{{- $page := .page -}}
+{{- $url := $page.Permalink -}}
+{{- $md := $page.RawContent -}}
+
+{{- /* Links */ -}}
+{{- $md = replaceRE `(?s)\{\{<\s*extlink\s+href="([^"]*)"[^>]*>\}\}(.*?)\{\{<\s*/extlink\s*>\}\}` "[$2]($1)" $md -}}
+
+{{- /* Media: keep captions and alt text, drop the files */ -}}
+{{- $md = replaceRE `\{\{<\s*gallery\s+caption="([^"]*)"\s*>\}\}` "_${1}_" $md -}}
+{{- $md = replaceRE `\{\{<\s*/?gallery\s*>\}\}` "" $md -}}
+{{- $md = replaceRE `(?s)\{\{<\s*gallery-(?:image|video)\b[^>]*?\balt="([^"]*)"[^>]*>\}\}` "_${1}_" $md -}}
+{{- $md = replaceRE `(?s)\{\{<\s*gallery-(?:image|video)\b.*?>\}\}` "" $md -}}
+{{- $md = replaceRE `(?s)\{\{<\s*figure-dynamic\b[^>]*?\balt="([^"]*)"[^>]*>\}\}` "_${1}_" $md -}}
+
+{{- /* Interactive embeds: point at the page instead of dumping data */ -}}
+{{- $md = replaceRE `\{\{<\s*chart\s+"([^"]*)"\s*>\}\}` (printf "Chart: ${1}, see %s" $url) $md -}}
+{{- $md = replaceRE `\{\{<\s*agent-session\s+"[^"]*"\s*>\}\}` (printf "Agent session transcript, see %s" $url) $md -}}
+{{- $md = replaceRE `\{\{<\s*github\s+repo="([^"]*)"\s*>\}\}` "GitHub repo: https://github.com/$1" $md -}}
+
+{{- /* Wrappers: a bold label for the open tag, inner Markdown kept */ -}}
+{{- range slice "note" "tip" "important" "warning" "caution" -}}
+    {{- $md = replaceRE (printf `\{\{<\s*callout\s+%s\s*>\}\}` .) (printf "**%s:**" (title .)) $md -}}
+{{- end -}}
+{{- $md = replaceRE `\{\{<\s*challenge\s+label="([^"]*)"\s*>\}\}` "**${1}**" $md -}}
+{{- $md = replaceRE `\{\{<\s*challenge-problem\s*>\}\}` "**Problem:**" $md -}}
+{{- $md = replaceRE `\{\{<\s*challenge-decision\s*>\}\}` "**Decision:**" $md -}}
+{{- $md = replaceRE `\{\{<\s*(?:checklist|checklist-section)\s+title="([^"]*)"[^>]*>\}\}` "**${1}**" $md -}}
+{{- $md = replaceRE `\{\{<\s*/?(?:callout|challenge|challenge-problem|challenge-decision|checklist|checklist-section)\s*>\}\}` "" $md -}}
+
+{{- /* One pass over the lines, outside code fences only:
+     - demote headings two levels (capped at h6) so a page's own `##` sections
+       nest under its `###` title in llms-full.txt;
+     - squeeze runs of blank lines (left by removed shortcodes) to one.
+     Fences follow CommonMark: a fence opens with 3+ backticks or tildes
+     (indented at most 3 spaces) and closes only on a bare fence of the same
+     character that is at least as long, so nested fences in code samples
+     stay intact. */ -}}
+{{- $out := slice -}}
+{{- $fenceChar := "" -}}
+{{- $fenceLen := 0 -}}
+{{- $prevBlank := false -}}
+{{- range split $md "\n" -}}
+    {{- $marker := "" -}}
+    {{- $info := "" -}}
+    {{- with findRESubmatch "^ {0,3}(`{3,}|~{3,})(.*)$" . 1 -}}
+        {{- $marker = index (index . 0) 1 -}}
+        {{- $info = index (index . 0) 2 -}}
+    {{- end -}}
+    {{- if $fenceChar -}}
+        {{- /* Inside a fence: keep every line verbatim. */ -}}
+        {{- if and $marker (hasPrefix $marker $fenceChar) (ge (len $marker) $fenceLen) (eq (trim $info " \t") "") -}}
+            {{- $fenceChar = "" -}}
+        {{- end -}}
+        {{- $out = $out | append . -}}
+        {{- $prevBlank = false -}}
+        {{- continue -}}
+    {{- end -}}
+    {{- if $marker -}}
+        {{- $fenceChar = substr $marker 0 1 -}}
+        {{- $fenceLen = len $marker -}}
+    {{- else if eq (trim . " \t") "" -}}
+        {{- if $prevBlank }}{{ continue }}{{ end -}}
+        {{- $prevBlank = true -}}
+        {{- $out = $out | append . -}}
+        {{- continue -}}
+    {{- else if findRE `^#{1,6} ` . -}}
+        {{- $hashes := index (index (findRESubmatch `^(#{1,6}) ` . 1) 0) 1 -}}
+        {{- $level := math.Min 6 (add (len $hashes) 2) -}}
+        {{- $out = $out | append (printf "%s%s" (strings.Repeat (int $level) "#") (strings.TrimPrefix $hashes .)) -}}
+        {{- $prevBlank = false -}}
+        {{- continue -}}
+    {{- end -}}
+    {{- $out = $out | append . -}}
+    {{- $prevBlank = false -}}
+{{- end -}}
+{{- $md = delimit $out "\n" -}}
+
+{{- return trim $md "\n" -}}
