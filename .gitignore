@@ -48,3 +48,5 @@ tmpclaude-*-cwd
 
 # OpenSpec planning artifacts
 /openspec/
+
+.kiro

@@ -1,69 +1,151 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
-    var html = document.querySelector('html'),
-        menuOpenIcon = document.querySelector('.icon__menu'),
-        menuCloseIcon = document.querySelector('.nav__icon-close'),
+    var html = document.documentElement,
+        menuOpenButton = document.querySelector('.icon__menu'),
+        menuCloseButton = document.querySelector('.nav__icon-close'),
         menuList = document.querySelector('.main-nav'),
         toggleThemeButtons = document.querySelectorAll('.toggle-theme-js'),
-        btnScrollToTop = document.querySelector('.top');
+        btnScrollToTop = document.querySelector('.top'),
+        prefersDark = window.matchMedia('(prefers-color-scheme: dark)'),
+        prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+        );
+
+    function scrollBehavior() {
+        return prefersReducedMotion.matches ? 'auto' : 'smooth';
+    }
 
     /* =======================================================
-  // Menu + Theme Switcher
+  // Menu
   ======================================================= */
-    if (menuOpenIcon) {
-        menuOpenIcon.addEventListener('click', () => {
-            menuOpen();
+    // Below the desktop breakpoint the nav is a modal drawer: a top-layer
+    // popover, so it renders above everything and Escape closes it and
+    // returns focus to the opener. A popover is not modal on its own, so the
+    // rest of the page is made inert while it is open. At desktop widths the
+    // same nav is the inline header bar, so the popover attributes are only
+    // present on mobile.
+    var drawerQuery = window.matchMedia('(max-width: 1024px)'),
+        inertSiblings = [];
+
+    function setPageInert(inert) {
+        inertSiblings.forEach(function (el) {
+            el.inert = false;
         });
-    }
-
-    if (menuCloseIcon) {
-        menuCloseIcon.addEventListener('click', () => {
-            menuClose();
-        });
-    }
-
-    function menuOpen() {
-        menuList.classList.add('is-open');
-    }
-
-    function menuClose() {
-        menuList.classList.remove('is-open');
-    }
-
-    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
-        toggleThemeButtons.forEach((toggleTheme) => {
-            toggleTheme.addEventListener('click', () => {
-                darkMode();
-            });
-        });
-    }
-
-    // Theme Switcher
-    function darkMode() {
-        if (html.classList.contains('dark-mode')) {
-            html.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            document.documentElement.removeAttribute('dark');
-        } else {
-            html.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            document.documentElement.setAttribute('dark', '');
+        inertSiblings = [];
+        if (!inert) return;
+        // Every sibling on the path from the nav up to <body>.
+        for (var node = menuList; node !== document.body;) {
+            var parent = node.parentElement;
+            for (var sibling of parent.children) {
+                if (sibling !== node) {
+                    sibling.inert = true;
+                    inertSiblings.push(sibling);
+                }
+            }
+            node = parent;
         }
     }
+
+    function syncDrawer() {
+        if (drawerQuery.matches) {
+            menuList.setAttribute('popover', 'auto');
+            menuList.setAttribute('role', 'dialog');
+            menuList.setAttribute('aria-modal', 'true');
+            menuList.setAttribute('aria-labelledby', 'main-nav-title');
+        } else {
+            // Removing the attribute does not fire beforetoggle, so close first.
+            if (menuList.matches(':popover-open')) menuList.hidePopover();
+            menuList.removeAttribute('popover');
+            menuList.removeAttribute('role');
+            menuList.removeAttribute('aria-modal');
+            menuList.removeAttribute('aria-labelledby');
+            setPageInert(false);
+            menuOpenButton.setAttribute('aria-expanded', 'false');
+        }
+    }
+
+    if (menuList && menuOpenButton && 'showPopover' in menuList) {
+        syncDrawer();
+        drawerQuery.addEventListener('change', syncDrawer);
+
+        menuOpenButton.addEventListener('click', function () {
+            // source makes focus return to the button on close in browsers
+            // that do not focus a button on click.
+            menuList.showPopover({ source: menuOpenButton });
+        });
+
+        if (menuCloseButton) {
+            menuCloseButton.addEventListener('click', function () {
+                menuList.hidePopover();
+            });
+        }
+
+        // Fires before the popover is hidden, so the opener is no longer
+        // inert when the browser returns focus to it.
+        menuList.addEventListener('beforetoggle', function (event) {
+            var open = event.newState === 'open';
+            setPageInert(open);
+            menuOpenButton.setAttribute('aria-expanded', String(open));
+        });
+
+        // In-page anchor links do not unload the page; close the drawer.
+        menuList.addEventListener('click', function (event) {
+            if (
+                event.target.closest('a[href]') &&
+                menuList.matches(':popover-open')
+            ) {
+                menuList.hidePopover();
+            }
+        });
+    }
+
+    /* =======================================================
+  // Theme Switcher
+  ======================================================= */
+    // Two-state toggle over three stored states (system, light, dark): the
+    // target is the opposite of what is rendered now. It is only stored when
+    // it differs from the OS preference; toggling back to what the OS already
+    // asks for clears the override, so the site follows the system again.
+    function toggleColorScheme() {
+        var target = html.hasAttribute('dark') ? 'light' : 'dark';
+        var system = prefersDark.matches ? 'dark' : 'light';
+        var override = target === system ? null : target;
+
+        try {
+            if (override) {
+                localStorage.setItem('theme', override);
+            } else {
+                localStorage.removeItem('theme');
+            }
+        } catch (e) {
+            // Storage blocked: the theme still applies for this page view.
+        }
+
+        stopAnimation();
+        window.applyColorScheme(override);
+    }
+
+    toggleThemeButtons.forEach((button) => {
+        button.addEventListener('click', toggleColorScheme);
+    });
+
+    // Follow OS changes (a stored override, if any, still wins) and changes
+    // made in another tab.
+    prefersDark.addEventListener('change', () => {
+        window.applyColorScheme();
+    });
+
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'theme' || event.key === null) {
+            window.applyColorScheme();
+        }
+    });
 
     /* ================================================================
   // Stop Animations During Window Resizing and Switching Theme Modes
   ================================================================ */
     let disableTransition;
-
-    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
-        toggleThemeButtons.forEach((toggleTheme) => {
-            toggleTheme.addEventListener('click', () => {
-                stopAnimation();
-            });
-        });
-    }
 
     window.addEventListener('resize', () => {
         stopAnimation();
@@ -80,14 +162,12 @@ document.addEventListener('DOMContentLoaded', function () {
     /* =======================
   // Responsive Videos
   ======================= */
-    // Initialize reframe with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (window.reframe) {
-            reframe(
-                '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .work-content iframe:not(.reframe-off)',
-            );
-        }
-    }, 100);
+    // vendor.js is deferred ahead of this file, so its globals are already set.
+    if (window.reframe) {
+        reframe(
+            '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .work-content iframe:not(.reframe-off)',
+        );
+    }
 
     /* =======================
   // Fade-in Images
@@ -130,19 +210,10 @@ document.addEventListener('DOMContentLoaded', function () {
             (entries, observer) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        var target = entry.target;
-                        target.classList.add('is-visible');
-                        observer.unobserve(target);
-                        // Reveal transition (incl. stagger delay) finishes within
-                        // 0.5s + 0.16s. Once played, drop both the attribute and
-                        // class so the html.js [data-reveal] rule stops permanently
-                        // overriding component transform/transition (e.g. the
-                        // .work-item hover lift) — same pattern as the fade-img
-                        // cleanup above.
-                        setTimeout(function () {
-                            target.removeAttribute('data-reveal');
-                            target.classList.remove('is-visible');
-                        }, 700);
+                        // Plays the one-off CSS entry animation; see
+                        // 1-tools/_reveal.scss.
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
                     }
                 });
             },
@@ -189,64 +260,35 @@ document.addEventListener('DOMContentLoaded', function () {
         true,
     );
 
-    // Initialize Lightense with custom settings, with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (lightense && window.Lightense) {
-            Lightense(
-                '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .work-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
-                {
-                    padding: 60,
-                    offset: 30,
-                },
-            );
-        }
-    }, 100);
-
-    /* ============================
-  // Testimonials Slider
-  ============================ */
-    // Initialize tiny-slider with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (document.querySelector('.my-slider') && window.tns) {
-            var slider = tns({
-                container: '.my-slider',
-                items: 1,
-                slideBy: 1,
-                gutter: 0,
-                nav: false,
-                mouseDrag: true,
-                autoplay: false,
-                controls: true,
-                controlsContainer: '.testimonials-controls',
-                speed: 500,
-                loop: true,
-            });
-        }
-    }, 100);
+    if (lightense && window.Lightense) {
+        Lightense(
+            '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .work-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
+            {
+                padding: 60,
+                offset: 30,
+            },
+        );
+    }
 
     /* =================================
   // Smooth scroll to the tags page
   ================================= */
     document.querySelectorAll('.tag__link, .top__link').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (!target) return;
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth',
-            });
+            e.preventDefault();
+            target.scrollIntoView({ behavior: scrollBehavior() });
         });
     });
 
     /* =======================
   // Scroll Top Button
   ======================= */
-    btnScrollToTop.addEventListener('click', function () {
-        if (window.scrollY != 0) {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth',
-            });
-        }
-    });
+    if (btnScrollToTop) {
+        btnScrollToTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, left: 0, behavior: scrollBehavior() });
+        });
+    }
 });

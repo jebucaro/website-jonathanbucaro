@@ -114,9 +114,6 @@ overrides:
   re2js@>=2.2.0 <2.8.7: ^2.8.7
   katex: '>=0.18.2'
 
-patchedDependencies:
-  tiny-slider@*: ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e
-
 importers:
 
   .:
@@ -136,9 +133,6 @@ importers:
       reframe.js:
         specifier: ^4.0.2
         version: 4.0.2
-      tiny-slider:
-        specifier: ^2.9.4
-        version: 2.9.4(patch_hash=ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e)
     devDependencies:
       fontkit:
         specifier: ^2.0.4
@@ -769,9 +763,6 @@ packages:
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
-
-  tiny-slider@2.9.4:
-    resolution: {integrity: sha512-LAs2kldWcY+BqCKw4kxd4CMx2RhWrHyEePEsymlOIISTlOVkjfK40sSD7ay73eKXBLg/UkluAZpcfCstimHXew==}
 
   tinyexec@1.3.1:
     resolution: {integrity: sha512-GCvB3aoys96IuDFBMcTB46JOR6mdMtAToqwiW8JlWhsoh1mhHi/xn9ss/Dg7N555GiJyEt2qzoG/NHCwM6h1EA==}
@@ -1454,8 +1445,6 @@ snapshots:
   sync-message-port@1.2.0: {}
 
   tiny-inflate@1.0.3: {}
-
-  tiny-slider@2.9.4(patch_hash=ab73e9fe072402a8de0fc7e4f3a6e4a88e187dabdf882e678ec4419ee7bd812e): {}
 
   tinyexec@1.3.1: {}
 

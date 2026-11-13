@@ -1,0 +1,31 @@
+{{/* Speculation Rules: prefetch likely next pages, prerender on press.
+     Same-origin only (document rules without "host" match this origin).
+     - Header nav links are few and likely, so they are prefetched eagerly.
+     - Any other internal link is prefetched on hover (moderate).
+     - Prerender waits for pointer-down (conservative), when the click is
+       almost certain, so no speculative page scripts run for abandoned hovers.
+     Excluded: same-page anchors, new-tab and download links, nofollow links,
+     and non-page files (feeds, text, JSON, PDFs, archives).
+     CSP: Chromium applies script-src to inline rules, so this block's sha256
+     is allow-listed in firebase.json like the theme script; any change to
+     the rules changes the hash (scripts/check-csp-hashes.mjs prints it).
+     Unsupported browsers ignore the block. */}}
+{{ $notFiles := slice }}
+{{ range slice "/*.xml" "/*.txt" "/*.json" "/*.pdf" "/*.zip" }}
+    {{ $notFiles = $notFiles | append (dict "not" (dict "href_matches" .)) }}
+{{ end }}
+{{ $base := slice
+    (dict "href_matches" "/*")
+    (dict "not" (dict "selector_matches" "[target=_blank], [download], [rel~=nofollow], [href^=\"#\"]"))
+}}
+{{ $where := dict "and" ($base | append $notFiles) }}
+{{ $navWhere := dict "and" (slice $where (dict "selector_matches" ".main-nav a, .logo a")) }}
+{{/* No "tag": the Nu HTML Checker used in CI rejects it. */}}
+{{ $rules := dict
+    "prefetch" (slice
+        (dict "where" $navWhere "eagerness" "eager")
+        (dict "where" $where "eagerness" "moderate"))
+    "prerender" (slice
+        (dict "where" $where "eagerness" "conservative"))
+}}
+<script type="speculationrules">{{ $rules | jsonify | safeHTML }}</script>

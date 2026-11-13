@@ -15,6 +15,19 @@
     padding: 0;
 }
 
+// Strip native <button> chrome so it can be styled like any other element.
+// Include it first in a rule: later declarations override these.
+@mixin button-reset() {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+}
+
 // Screen reader text
 @mixin screen-reader() {
     clip: rect(1px, 1px, 1px, 1px);

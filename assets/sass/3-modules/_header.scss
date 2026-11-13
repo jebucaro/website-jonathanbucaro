@@ -57,6 +57,12 @@
     width: auto;
 }
 
+@keyframes nav-drawer-in {
+    from {
+        opacity: 0;
+    }
+}
+
 /* Nav */
 .main-nav {
     @media only screen and (max-width: $desktop) {
@@ -70,13 +76,33 @@
         visibility: hidden;
         background-color: var(--background-color);
 
-        &.is-open {
-            z-index: 100;
+        /* common.js turns the nav into a popover at these widths. The
+           reset undoes the user-agent popover box (fit-content, centred,
+           bordered); the user agent still hides it until it is open. */
+        &[popover] {
+            z-index: auto;
             opacity: 1;
             visibility: visible;
-            transition:
-                opacity 0.25s ease,
-                visibility 0.25s ease;
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: inherit;
+            overflow: hidden;
+            /* Keeps scroll gestures from reaching the page behind. */
+            overscroll-behavior: contain;
+
+            &:popover-open {
+                animation: nav-drawer-in 0.25s ease;
+            }
+
+            &::backdrop {
+                overflow: hidden;
+                overscroll-behavior: contain;
+            }
         }
 
         .nav__list {
@@ -156,6 +182,7 @@
     align-items: center;
 
     .nav__icon-close {
+        @include button-reset();
         display: none;
         justify-content: center;
         align-items: center;
@@ -166,7 +193,6 @@
         border-radius: 50%;
         color: var(--heading-font-color);
         background: var(--background-alt-color);
-        cursor: pointer;
 
         &:hover {
             .ion-md-close {
@@ -276,7 +302,8 @@
         &.dropdown {
             position: relative;
 
-            &:hover {
+            &:hover,
+            &:focus-within {
                 .dropdown-menu {
                     opacity: 1;
                     visibility: visible;
@@ -284,16 +311,25 @@
                 }
             }
 
-            .arrow-down {
-                vertical-align: middle;
-            }
-
             .dropdown-toggle {
+                /* No vertical padding: a button is inline-block, so the
+                   .nav__link padding would grow the item and shift the
+                   label off the other links' baseline. */
+                padding: 0;
+                border: 0;
                 color: var(--link-color);
+                background: none;
                 cursor: pointer;
 
                 &::before {
                     content: none;
+                }
+
+                /* The chevron is an inline 1em box sitting on the baseline,
+                   which puts it above the label's optical middle. Centre it
+                   on the x-height instead. */
+                svg {
+                    vertical-align: middle;
                 }
             }
         }
@@ -395,8 +431,8 @@
     }
 
     .icon__menu {
+        @include button-reset();
         display: none;
-        cursor: pointer;
     }
 
     .icon__menu {
@@ -490,6 +526,7 @@
 
 /* Toggle Theme */
 .toggle-theme {
+    @include button-reset();
     position: relative;
     display: flex;
     justify-content: center;
@@ -498,7 +535,6 @@
     height: 44px;
     border-radius: 50%;
     user-select: none;
-    cursor: pointer;
     background: var(--background-alt-color);
 
     &.theme-light {

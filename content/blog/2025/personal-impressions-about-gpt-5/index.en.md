@@ -53,7 +53,7 @@ In exchange, we manage our own API keys and billing, the initial setup takes 15-
 GPT-5 does what you ask, very literally, so it rewards prompts that read more like a spec than a casual request. OpenAI's Prompt Optimizer makes that obvious: it takes `Write an article explaining the importance of embracing change.` and expands it into seven sections, from Role and Objective to Stop Conditions. No wonder people were struggling.
 
 {{< gallery caption="Prompt Optimizer in action" >}}
-{{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="OpenAI's Prompt Optimizer Demo." >}}
+{{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="OpenAI's Prompt Optimizer Demo." width="960" height="485" >}}
 {{< /gallery >}}
 
 {{< gallery caption="Before, after, and explanation of changes" >}}

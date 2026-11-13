@@ -223,7 +223,7 @@ The skill does not replace the CLI documentation. It gives Claude Code a shorter
 Once it's installed, Claude Code knows when to reach for `pokecli` and which command answers each kind of question:
 
 {{< gallery caption="" >}}
-{{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." >}}
+{{< gallery-video src="images/pokecli-skill-in-action-claude-code.webm" alt="Claude Code using SKILL.md to interact with pokecli." width="1280" height="720" >}}
 {{< /gallery >}}
 
 ## pokecli up close

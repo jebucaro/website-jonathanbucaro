@@ -1,0 +1,25 @@
+{{- /* Theme control. With color_scheme "light" or "dark" the scheme is fixed
+       and this is only an indicator; otherwise it is a toggle (common.js).
+       Both labels are in the markup and CSS hides the inactive one, which
+       also removes it from the accessibility tree. */ -}}
+{{ $scheme := .Site.Params.color_scheme }}
+{{ if eq $scheme "light" }}
+    <div class="toggle-theme theme-light">
+        <span class="toggle-sun">{{ partial "icon.html" "sunny" }}</span>
+    </div>
+{{ else if eq $scheme "dark" }}
+    <div class="toggle-theme theme-dark">
+        <span class="toggle-moon">{{ partial "icon.html" "moon" }}</span>
+    </div>
+{{ else }}
+    <button type="button" class="toggle-theme toggle-theme-js">
+        <span class="toggle-moon" title="{{ i18n "ui_switchToDarkTheme" }}">
+            {{ partial "icon.html" "moon" }}
+            <span class="screen-reader-text">{{ i18n "ui_switchToDarkTheme" }}</span>
+        </span>
+        <span class="toggle-sun" title="{{ i18n "ui_switchToLightTheme" }}">
+            {{ partial "icon.html" "sunny" }}
+            <span class="screen-reader-text">{{ i18n "ui_switchToLightTheme" }}</span>
+        </span>
+    </button>
+{{ end }}

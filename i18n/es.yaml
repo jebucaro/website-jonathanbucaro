@@ -36,6 +36,21 @@
 - id: ui_backToTop
   translation: 'Arriba'
 
+- id: ui_switchToDarkTheme
+  translation: 'Cambiar a tema oscuro'
+
+- id: ui_switchToLightTheme
+  translation: 'Cambiar a tema claro'
+
+- id: ui_openMenu
+  translation: 'Abrir menú'
+
+- id: ui_menu
+  translation: 'Menú'
+
+- id: ui_closeMenu
+  translation: 'Cerrar menú'
+
 - id: ui_preferences
   translation: 'Preferencias'
 
@@ -131,6 +146,21 @@
 
 - id: sections_testimonials_description
   translation: 'Lo que clientes y colegas dicen sobre trabajar conmigo.'
+
+- id: testimonials_previous
+  translation: 'Testimonio anterior'
+
+- id: testimonials_next
+  translation: 'Testimonio siguiente'
+
+- id: testimonials_slides
+  translation: 'Diapositivas de testimonios'
+
+- id: testimonials_slide_label
+  translation: '{{ .n }} de {{ .total }}'
+
+- id: testimonials_status
+  translation: 'Testimonio {{ .n }} de {{ .total }}'
 
 # Section: Work
 - id: sections_work_title

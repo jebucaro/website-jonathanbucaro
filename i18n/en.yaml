@@ -36,6 +36,21 @@
 - id: ui_backToTop
   translation: 'Top'
 
+- id: ui_switchToDarkTheme
+  translation: 'Switch to dark theme'
+
+- id: ui_switchToLightTheme
+  translation: 'Switch to light theme'
+
+- id: ui_openMenu
+  translation: 'Open menu'
+
+- id: ui_menu
+  translation: 'Menu'
+
+- id: ui_closeMenu
+  translation: 'Close menu'
+
 - id: ui_preferences
   translation: 'Preferences'
 
@@ -131,6 +146,21 @@
 
 - id: sections_testimonials_description
   translation: 'What clients and colleagues say about working with me.'
+
+- id: testimonials_previous
+  translation: 'Previous testimonial'
+
+- id: testimonials_next
+  translation: 'Next testimonial'
+
+- id: testimonials_slides
+  translation: 'Testimonial slides'
+
+- id: testimonials_slide_label
+  translation: '{{ .n }} of {{ .total }}'
+
+- id: testimonials_status
+  translation: 'Testimonial {{ .n }} of {{ .total }}'
 
 # Section: Work
 - id: sections_work_title
