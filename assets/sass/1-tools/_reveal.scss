@@ -1,56 +1,67 @@
-/* Scroll Reveal */
-html.js [data-reveal] {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-        opacity 0.5s ease,
-        transform 0.5s ease;
+/* Scroll Reveal
+   common.js adds .is-visible when a [data-reveal] element scrolls into view,
+   which plays a one-off entry animation. It animates only `opacity` and the
+   individual `translate` property and has no end keyframe, so once it finishes
+   the element rests on its own styles: component `transform` and `transition`
+   (e.g. the .work-item hover lift) are never overridden, and nothing has to be
+   cleaned up afterwards. Without JS, or with reduced motion, content is simply
+   visible. */
+@keyframes reveal {
+    from {
+        opacity: 0;
+        translate: 0 24px;
+    }
+}
 
-    &.is-visible {
-        opacity: 1;
-        transform: none;
+@media (prefers-reduced-motion: no-preference) {
+    html.js [data-reveal] {
+        &:not(.is-visible) {
+            opacity: 0;
+        }
+
+        /* Longhands on purpose: the shorthand would reset the stagger's
+           animation-delay below. `backwards` holds the hidden start frame
+           through that delay. */
+        &.is-visible {
+            animation-name: reveal;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            animation-fill-mode: backwards;
+        }
     }
 }
 
 /* Stagger: 3-up card grids (.row > article, .row > div, etc.) */
 .row > [data-reveal]:nth-child(3n + 2) {
-    transition-delay: 0.08s;
+    animation-delay: 0.08s;
 }
 
 .row > [data-reveal]:nth-child(3n) {
-    transition-delay: 0.16s;
+    animation-delay: 0.16s;
 }
 
 /* Stagger: 2-up card grids (below $desktop, above $tablet) */
 @media only screen and (max-width: $desktop) {
     .row > [data-reveal]:nth-child(3n + 2) {
-        transition-delay: 0s;
+        animation-delay: 0s;
     }
 
     .row > [data-reveal]:nth-child(3n) {
-        transition-delay: 0s;
+        animation-delay: 0s;
     }
 
     .row > [data-reveal]:nth-child(2n) {
-        transition-delay: 0.08s;
+        animation-delay: 0.08s;
     }
 }
 
-/* Stagger: 1-up card grids (below $tablet) — no stagger.
+/* Stagger: 1-up card grids (below $tablet) have none.
    Note: the $desktop media query above is still active at $tablet widths
    (since $tablet < $desktop), so this override must match the same
-   specificity (0,3,0) as the nth-child rules it needs to beat — a plain
+   specificity (0,3,0) as the nth-child rules it needs to beat. A plain
    `.row > [data-reveal]` (0,2,0) would lose to them despite coming later. */
 @media only screen and (max-width: $tablet) {
     .row > [data-reveal]:nth-child(n) {
-        transition-delay: 0s;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html.js [data-reveal] {
-        opacity: 1;
-        transform: none;
-        transition: none;
+        animation-delay: 0s;
     }
 }
