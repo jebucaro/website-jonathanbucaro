@@ -85,6 +85,9 @@
     {{ $themejs := resources.Get "js/theme.js" | minify }}
     <script>{{ $themejs.Content | safeJS }}</script>
 
+    <!-- Speculative loading of likely next pages (Chromium only) -->
+    {{ partial "speculation-rules.html" . }}
+
     <!-- Stylesheet: fully inlined in production (~13 KB gzipped, ~82 KB raw;
          style-src 'unsafe-inline' already allowed) so first render needs no
          CSS request.

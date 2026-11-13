@@ -11,8 +11,11 @@ const PUBLIC_DIR = 'public';
 const FIREBASE_CONFIG = 'firebase.json';
 
 // Script types browsers execute; anything else (application/ld+json, ...)
-// is a data block that CSP neither executes nor blocks.
+// is a data block that CSP neither executes nor blocks. speculationrules is
+// the exception: Chromium applies script-src to inline rules, so they need
+// a hash like any inline script or they are silently dropped.
 const EXECUTABLE_TYPES = new Set([
+    'speculationrules',
     '',
     'text/javascript',
     'application/javascript',
