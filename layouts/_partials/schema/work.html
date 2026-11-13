@@ -40,10 +40,20 @@
     {{ $event = merge $event (dict "organizer" (dict "@type" "Organization" "name" .name "url" .url)) }}
   {{ end }}
   {{ if .free }}
-    {{ $event = merge $event (dict
-      "isAccessibleForFree" true
-      "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "GTQ" "url" .url)
-    ) }}
+    {{ $offer := dict "@type" "Offer" "price" "0" "priceCurrency" "GTQ" "url" .url }}
+    {{/* Optional, real data only: when registration opened and a schema.org
+         ItemAvailability name (InStock, SoldOut, ...). */}}
+    {{ with .registrationOpened }}
+      {{ $offer = merge $offer (dict "validFrom" ((time.AsTime .).Format "2006-01-02T15:04:05-07:00")) }}
+    {{ end }}
+    {{ with .availability }}
+      {{ $allowed := slice "InStock" "SoldOut" "PreOrder" "LimitedAvailability" "Discontinued" }}
+      {{ if not (in $allowed .) }}
+        {{ errorf "talk.availability %q in %s is not one of %v" . $.File.Path $allowed }}
+      {{ end }}
+      {{ $offer = merge $offer (dict "availability" (printf "https://schema.org/%s" .)) }}
+    {{ end }}
+    {{ $event = merge $event (dict "isAccessibleForFree" true "offers" $offer) }}
   {{ end }}
   {{ $schema = merge $schema (dict "recordedAt" $event) }}
 {{ end }}
