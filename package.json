@@ -46,7 +46,6 @@
         "chart.js": "^4.6.1",
         "lightense-images": "^1.0.17",
         "normalize.css": "^8.0.1",
-        "reframe.js": "^4.0.2",
-        "tiny-slider": "^2.9.4"
+        "reframe.js": "^4.0.2"
     }
 }

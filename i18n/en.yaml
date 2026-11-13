@@ -147,6 +147,21 @@
 - id: sections_testimonials_description
   translation: 'What clients and colleagues say about working with me.'
 
+- id: testimonials_previous
+  translation: 'Previous testimonial'
+
+- id: testimonials_next
+  translation: 'Next testimonial'
+
+- id: testimonials_slides
+  translation: 'Testimonial slides'
+
+- id: testimonials_slide_label
+  translation: '{{ .n }} of {{ .total }}'
+
+- id: testimonials_status
+  translation: 'Testimonial {{ .n }} of {{ .total }}'
+
 # Section: Work
 - id: sections_work_title
   translation: 'Projects &amp; Case Studies'

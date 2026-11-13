@@ -6,7 +6,7 @@
             <div class="col col-12">
 
                 <div class="section__info">
-                    <h2 class="section__title">{{ i18n "sections_testimonials_title" | safeHTML }}</h2>
+                    <h2 class="section__title" id="testimonials-title">{{ i18n "sections_testimonials_title" | safeHTML }}</h2>
                     {{ if .Site.Params.testimonials.testimonial__description }}
                     <p class="section__description">{{ .Site.Params.testimonials.testimonial__description | safeHTML }}</p>
                     {{ end }}
@@ -30,16 +30,19 @@
                     {{ end }}
                 </div>
 
-                <div class="testimonials__wrapper">
+                {{ $items := .Site.Params.testimonial_item }}
+                {{ $total := len $items }}
+                <div class="testimonials__wrapper" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title" data-carousel>
                     <div class="testimonials-controls">
-                        <button data-controls="prev" aria-label="Previous testimonial">&#8592;</button>
-                        <button data-controls="next" aria-label="Next testimonial">&#8594;</button>
+                        <button type="button" data-controls="prev" aria-label="{{ i18n "testimonials_previous" }}">&#8592;</button>
+                        <button type="button" data-controls="next" aria-label="{{ i18n "testimonials_next" }}">&#8594;</button>
                     </div>
 
-                    <div class="testimonials__slider my-slider">
-                        {{ with .Site.Params.testimonial_item }}
-                            {{ range . }}
-                            <div class="testimonial-item">
+                    <div class="testimonials__slider" tabindex="0" role="group" aria-label="{{ i18n "testimonials_slides" }}">
+                        {{ with $items }}
+                            {{ range $i, $_ := . }}
+                            {{ $pos := dict "n" (add $i 1) "total" $total }}
+                            <div class="testimonial-item" role="group" aria-roledescription="slide" aria-label="{{ i18n "testimonials_slide_label" $pos }}" data-status="{{ i18n "testimonials_status" $pos }}">
                                 <div class="testimonial-content">
                                     <div class="testimonial-left">
                                         {{ if .image }}
@@ -64,11 +67,16 @@
                             {{ end }}
                         {{ end }}
                     </div>
+
+                    <p class="screen-reader-text" role="status" aria-live="polite"></p>
                 </div>
 
             </div>
         </div>
     </div>
 </section>
+{{/* Carousel behaviour ships only with the section, not in common.js. */}}
+{{ $js := resources.Get "js/testimonials.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 <!-- end testimonials -->
 {{ end }}

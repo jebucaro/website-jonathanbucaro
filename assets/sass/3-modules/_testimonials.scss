@@ -84,9 +84,40 @@
     }
 }
 
-/* Testimonial card */
+/* Testimonial carousel: native scroll snap, one slide per view. */
 .testimonials__slider {
-    position: relative;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    touch-action: manipulation;
+
+    &:focus-visible {
+        outline: 2px solid var(--brand-color);
+        outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+
+    /* Loop by parking the last slide before the first (and the first after
+       the last) next to the current one. The script sets these properties;
+       without them order computes to 0 and the list stays plain. */
+    > :first-child {
+        order: var(--park-first);
+    }
+
+    > :last-child {
+        order: var(--park-last);
+    }
+}
+
+.testimonial-item {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: center;
 }
 
 .testimonial-content {
@@ -235,16 +266,26 @@
             transform 0.2s,
             box-shadow 0.2s;
 
+        &:focus-visible {
+            outline: 2px solid var(--brand-color);
+            outline-offset: 3px;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
         &[data-controls="prev"] {
             transform: translateX(-50%);
-            &:hover {
+            &:hover:not(:disabled) {
                 transform: translateX(-50%) scale(1.05);
             }
         }
 
         &[data-controls="next"] {
             transform: translateX(50%);
-            &:hover {
+            &:hover:not(:disabled) {
                 transform: translateX(50%) scale(1.05);
             }
         }
@@ -253,6 +294,11 @@
     @media only screen and (max-width: $desktop) {
         display: none;
     }
+}
+
+/* Without JS the buttons would do nothing; the track still scrolls natively. */
+html:not(.js) .testimonials-controls {
+    display: none;
 }
 
 /* Accessibility: Respect user's motion preferences */

@@ -270,25 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
-    /* ============================
-  // Testimonials Slider
-  ============================ */
-    if (document.querySelector('.my-slider') && window.tns) {
-        tns({
-            container: '.my-slider',
-            items: 1,
-            slideBy: 1,
-            gutter: 0,
-            nav: false,
-            mouseDrag: true,
-            autoplay: false,
-            controls: true,
-            controlsContainer: '.testimonials-controls',
-            speed: 500,
-            loop: true,
-        });
-    }
-
     /* =================================
   // Smooth scroll to the tags page
   ================================= */
