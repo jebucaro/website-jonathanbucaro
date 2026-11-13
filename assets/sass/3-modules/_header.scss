@@ -57,6 +57,12 @@
     width: auto;
 }
 
+@keyframes nav-drawer-in {
+    from {
+        opacity: 0;
+    }
+}
+
 /* Nav */
 .main-nav {
     @media only screen and (max-width: $desktop) {
@@ -70,14 +76,33 @@
         visibility: hidden;
         background-color: var(--background-color);
 
-        &.is-open {
-            z-index: 100;
+        /* common.js turns the nav into a popover at these widths. The
+           reset undoes the user-agent popover box (fit-content, centred,
+           bordered); the user agent still hides it until it is open. */
+        &[popover] {
+            z-index: auto;
             opacity: 1;
             visibility: visible;
-            /* Only opacity: a visibility transition keeps the drawer
-               "hidden" at its first frame, which blocks moving focus into
-               it on open. */
-            transition: opacity 0.25s ease;
+            width: auto;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: inherit;
+            overflow: hidden;
+            /* Keeps scroll gestures from reaching the page behind. */
+            overscroll-behavior: contain;
+
+            &:popover-open {
+                animation: nav-drawer-in 0.25s ease;
+            }
+
+            &::backdrop {
+                overflow: hidden;
+                overscroll-behavior: contain;
+            }
         }
 
         .nav__list {

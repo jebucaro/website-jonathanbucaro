@@ -19,31 +19,83 @@ document.addEventListener('DOMContentLoaded', function () {
     /* =======================================================
   // Menu
   ======================================================= */
-    function menuOpen() {
-        menuList.classList.add('is-open');
-        menuOpenButton.setAttribute('aria-expanded', 'true');
-        if (menuCloseButton) menuCloseButton.focus();
+    // Below the desktop breakpoint the nav is a modal drawer: a top-layer
+    // popover, so it renders above everything and Escape closes it and
+    // returns focus to the opener. A popover is not modal on its own, so the
+    // rest of the page is made inert while it is open. At desktop widths the
+    // same nav is the inline header bar, so the popover attributes are only
+    // present on mobile.
+    var drawerQuery = window.matchMedia('(max-width: 1024px)'),
+        inertSiblings = [];
+
+    function setPageInert(inert) {
+        inertSiblings.forEach(function (el) {
+            el.inert = false;
+        });
+        inertSiblings = [];
+        if (!inert) return;
+        // Every sibling on the path from the nav up to <body>.
+        for (var node = menuList; node !== document.body;) {
+            var parent = node.parentElement;
+            for (var sibling of parent.children) {
+                if (sibling !== node) {
+                    sibling.inert = true;
+                    inertSiblings.push(sibling);
+                }
+            }
+            node = parent;
+        }
     }
 
-    function menuClose() {
-        menuList.classList.remove('is-open');
-        menuOpenButton.setAttribute('aria-expanded', 'false');
-        menuOpenButton.focus();
+    function syncDrawer() {
+        if (drawerQuery.matches) {
+            menuList.setAttribute('popover', 'auto');
+            menuList.setAttribute('role', 'dialog');
+            menuList.setAttribute('aria-modal', 'true');
+            menuList.setAttribute('aria-labelledby', 'main-nav-title');
+        } else {
+            // Removing the attribute does not fire beforetoggle, so close first.
+            if (menuList.matches(':popover-open')) menuList.hidePopover();
+            menuList.removeAttribute('popover');
+            menuList.removeAttribute('role');
+            menuList.removeAttribute('aria-modal');
+            menuList.removeAttribute('aria-labelledby');
+            setPageInert(false);
+            menuOpenButton.setAttribute('aria-expanded', 'false');
+        }
     }
 
-    if (menuList && menuOpenButton) {
-        menuOpenButton.addEventListener('click', menuOpen);
+    if (menuList && menuOpenButton && 'showPopover' in menuList) {
+        syncDrawer();
+        drawerQuery.addEventListener('change', syncDrawer);
+
+        menuOpenButton.addEventListener('click', function () {
+            // source makes focus return to the button on close in browsers
+            // that do not focus a button on click.
+            menuList.showPopover({ source: menuOpenButton });
+        });
 
         if (menuCloseButton) {
-            menuCloseButton.addEventListener('click', menuClose);
+            menuCloseButton.addEventListener('click', function () {
+                menuList.hidePopover();
+            });
         }
 
-        document.addEventListener('keydown', (event) => {
+        // Fires before the popover is hidden, so the opener is no longer
+        // inert when the browser returns focus to it.
+        menuList.addEventListener('beforetoggle', function (event) {
+            var open = event.newState === 'open';
+            setPageInert(open);
+            menuOpenButton.setAttribute('aria-expanded', String(open));
+        });
+
+        // In-page anchor links do not unload the page; close the drawer.
+        menuList.addEventListener('click', function (event) {
             if (
-                event.key === 'Escape' &&
-                menuList.classList.contains('is-open')
+                event.target.closest('a[href]') &&
+                menuList.matches(':popover-open')
             ) {
-                menuClose();
+                menuList.hidePopover();
             }
         });
     }

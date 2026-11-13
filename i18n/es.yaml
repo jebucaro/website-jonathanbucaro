@@ -45,6 +45,9 @@
 - id: ui_openMenu
   translation: 'Abrir menú'
 
+- id: ui_menu
+  translation: 'Menú'
+
 - id: ui_closeMenu
   translation: 'Cerrar menú'
 
