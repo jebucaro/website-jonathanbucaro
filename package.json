@@ -30,7 +30,7 @@
         "markdownlint-cli": "^0.50.0",
         "prettier": "^3.9.10",
         "prettier-plugin-go-template": "^0.0.15",
-        "sass-embedded": "^1.107.1"
+        "sass-embedded": "^1.108.0"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css,scss,sass,less}": [
