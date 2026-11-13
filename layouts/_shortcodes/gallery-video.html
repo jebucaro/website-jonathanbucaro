@@ -1,21 +1,27 @@
 {{- /*
   Gallery video shortcode - used within gallery shortcode
-  Renders a looping, muted, autoplay video (animated GIF replacement)
+  Renders a looping, muted video (animated GIF replacement) that downloads and
+  plays only when it approaches the viewport (see assets/js/gallery-video.js).
 
   Usage:
-    {{< gallery-video src="images/video.webm" alt="Description" >}}
-  Note: mp4 fallback is derived automatically by replacing .webm with .mp4
+    {{< gallery-video src="images/video.webm" alt="Description" width="960" height="485" >}}
+  Note: mp4 fallback is derived automatically by replacing .webm with .mp4.
+  width/height are the intrinsic pixel size; they reserve the layout box so the
+  video does not shift the page when it loads. Without JavaScript the video
+  stays idle until played with the native controls.
 */ -}}
 
 {{- $src := .Get "src" -}}
 {{- $alt := .Get "alt" | default "" -}}
+{{- $width := .Get "width" -}}
+{{- $height := .Get "height" -}}
 {{- $page := .Page -}}
 {{- $resource := $page.Resources.GetMatch $src -}}
 {{- $mp4 := replace $src ".webm" ".mp4" -}}
 {{- $mp4resource := $page.Resources.GetMatch $mp4 -}}
 
 {{- if $src -}}
-<video autoplay muted loop playsinline title="{{ $alt }}" style="max-width:100%;height:auto;">
+<video class="gallery__video" data-gallery-video controls loop muted playsinline preload="none" loading="lazy"{{ with $width }} width="{{ . }}"{{ end }}{{ with $height }} height="{{ . }}"{{ end }}{{ with $alt }} aria-label="{{ . }}"{{ end }}>
   {{- if $resource }}
   <source src="{{ $resource.RelPermalink }}" type="video/webm">
   {{- else }}
@@ -27,6 +33,11 @@
   {{- warnf "Video resource not found: %s in %s" $mp4 $page.File.Path -}}
   {{- end }}
 </video>
+{{- if not ($page.Scratch.Get "hasGalleryVideoJS") -}}
+{{- $page.Scratch.Set "hasGalleryVideoJS" true -}}
+{{- $js := resources.Get "js/gallery-video.js" | minify | fingerprint -}}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end -}}
 {{- else -}}
   {{- errorf "gallery-video shortcode requires 'src' parameter in %s" $page.File.Path -}}
 {{- end -}}

@@ -53,7 +53,7 @@ A cambio, nos toca manejar nuestras propias API keys y la facturación, la confi
 GPT-5 hace lo que le pides, al pie de la letra, entonces le va mejor con prompts que parecen más una especificación que una pregunta casual. El Prompt Optimizer de OpenAI lo deja muy claro: agarra `Write an article explaining the importance of embracing change.` y lo convierte en siete secciones, desde Role and Objective hasta Stop Conditions. Con razón a la gente le estaba costando.
 
 {{< gallery caption="Prompt Optimizer en acción" >}}
-{{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="Demo del Prompt Optimizer de OpenAI" >}}
+{{< gallery-video src="images/prompt-optimizer-3-22s.webm" alt="Demo del Prompt Optimizer de OpenAI" width="960" height="485" >}}
 {{< /gallery >}}
 
 {{< gallery caption="Antes, después y explicación de los cambios" >}}
