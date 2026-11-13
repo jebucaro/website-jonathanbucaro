@@ -1,5 +1,25 @@
 /* Color Scheme */
 :root {
+    /* Native UI (scrollbars, form controls, canvas) follows the OS by default.
+       theme.js pins a user override by rewriting <meta name="color-scheme">;
+       author CSS beats that meta, so it is mapped back to the property here. */
+    color-scheme: light dark;
+
+    &:has(> head > meta[name="color-scheme"][content="dark"]) {
+        color-scheme: dark;
+    }
+
+    &:has(> head > meta[name="color-scheme"][content="light"]) {
+        color-scheme: light;
+    }
+
+    /* The dark tokens below are applied by theme.js ([dark]), so without JS
+       the page renders light whatever the OS says. Keep native UI in step
+       until the redesign moves the tokens to light-dark(). */
+    &:not(.js) {
+        color-scheme: light;
+    }
+
     /* Callout Colors */
     --callout-blue: #4d65dc;
     --callout-green: #2db47d;

@@ -36,6 +36,18 @@
 - id: ui_backToTop
   translation: 'Top'
 
+- id: ui_switchToDarkTheme
+  translation: 'Switch to dark theme'
+
+- id: ui_switchToLightTheme
+  translation: 'Switch to light theme'
+
+- id: ui_openMenu
+  translation: 'Open menu'
+
+- id: ui_closeMenu
+  translation: 'Close menu'
+
 - id: ui_preferences
   translation: 'Preferences'
 

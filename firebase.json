@@ -252,7 +252,7 @@
                 "headers": [
                     {
                         "key": "Content-Security-Policy",
-                        "value": "default-src 'self'; script-src 'self' 'sha256-7awEQr2XlTd9qv796C7I/DJr1zruR7D6IukoK7NSq20='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://api.github.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
+                        "value": "default-src 'self'; script-src 'self' 'sha256-a3XbDJyWNiYps6mIh9d0nJI6FDLYZofojJXMAi1lhtI='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://api.github.com; form-action 'self'; object-src 'none'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self' https://www.youtube.com; upgrade-insecure-requests;"
                     },
                     {
                         "key": "X-Frame-Options",

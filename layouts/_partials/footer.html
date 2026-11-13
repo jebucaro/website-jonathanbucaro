@@ -60,7 +60,7 @@
                             {{ dateFormat "2006" now }} &copy;
                             <a href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>. {{ i18n "ui_allRightsReserved" }} <a href="https://gohugo.io/">Hugo</a>.
                         </div>
-                        <div class="top" title="{{ i18n "ui_backToTop" }}">{{ partial "icon.html" "chevron-up-outline" }}</div>
+                        <button type="button" class="top" title="{{ i18n "ui_backToTop" }}" aria-label="{{ i18n "ui_backToTop" }}">{{ partial "icon.html" "chevron-up-outline" }}</button>
                     </div>
                 </div>
             </div>

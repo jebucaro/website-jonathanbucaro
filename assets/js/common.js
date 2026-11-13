@@ -1,69 +1,99 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
 
-    var html = document.querySelector('html'),
-        menuOpenIcon = document.querySelector('.icon__menu'),
-        menuCloseIcon = document.querySelector('.nav__icon-close'),
+    var html = document.documentElement,
+        menuOpenButton = document.querySelector('.icon__menu'),
+        menuCloseButton = document.querySelector('.nav__icon-close'),
         menuList = document.querySelector('.main-nav'),
         toggleThemeButtons = document.querySelectorAll('.toggle-theme-js'),
-        btnScrollToTop = document.querySelector('.top');
+        btnScrollToTop = document.querySelector('.top'),
+        prefersDark = window.matchMedia('(prefers-color-scheme: dark)'),
+        prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+        );
+
+    function scrollBehavior() {
+        return prefersReducedMotion.matches ? 'auto' : 'smooth';
+    }
 
     /* =======================================================
-  // Menu + Theme Switcher
+  // Menu
   ======================================================= */
-    if (menuOpenIcon) {
-        menuOpenIcon.addEventListener('click', () => {
-            menuOpen();
-        });
-    }
-
-    if (menuCloseIcon) {
-        menuCloseIcon.addEventListener('click', () => {
-            menuClose();
-        });
-    }
-
     function menuOpen() {
         menuList.classList.add('is-open');
+        menuOpenButton.setAttribute('aria-expanded', 'true');
+        if (menuCloseButton) menuCloseButton.focus();
     }
 
     function menuClose() {
         menuList.classList.remove('is-open');
+        menuOpenButton.setAttribute('aria-expanded', 'false');
+        menuOpenButton.focus();
     }
 
-    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
-        toggleThemeButtons.forEach((toggleTheme) => {
-            toggleTheme.addEventListener('click', () => {
-                darkMode();
-            });
+    if (menuList && menuOpenButton) {
+        menuOpenButton.addEventListener('click', menuOpen);
+
+        if (menuCloseButton) {
+            menuCloseButton.addEventListener('click', menuClose);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (
+                event.key === 'Escape' &&
+                menuList.classList.contains('is-open')
+            ) {
+                menuClose();
+            }
         });
     }
 
-    // Theme Switcher
-    function darkMode() {
-        if (html.classList.contains('dark-mode')) {
-            html.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            document.documentElement.removeAttribute('dark');
-        } else {
-            html.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            document.documentElement.setAttribute('dark', '');
+    /* =======================================================
+  // Theme Switcher
+  ======================================================= */
+    // Two-state toggle over three stored states (system, light, dark): the
+    // target is the opposite of what is rendered now. It is only stored when
+    // it differs from the OS preference; toggling back to what the OS already
+    // asks for clears the override, so the site follows the system again.
+    function toggleColorScheme() {
+        var target = html.hasAttribute('dark') ? 'light' : 'dark';
+        var system = prefersDark.matches ? 'dark' : 'light';
+        var override = target === system ? null : target;
+
+        try {
+            if (override) {
+                localStorage.setItem('theme', override);
+            } else {
+                localStorage.removeItem('theme');
+            }
+        } catch (e) {
+            // Storage blocked: the theme still applies for this page view.
         }
+
+        stopAnimation();
+        window.applyColorScheme(override);
     }
+
+    toggleThemeButtons.forEach((button) => {
+        button.addEventListener('click', toggleColorScheme);
+    });
+
+    // Follow OS changes (a stored override, if any, still wins) and changes
+    // made in another tab.
+    prefersDark.addEventListener('change', () => {
+        window.applyColorScheme();
+    });
+
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'theme' || event.key === null) {
+            window.applyColorScheme();
+        }
+    });
 
     /* ================================================================
   // Stop Animations During Window Resizing and Switching Theme Modes
   ================================================================ */
     let disableTransition;
-
-    if (toggleThemeButtons && toggleThemeButtons.length > 0) {
-        toggleThemeButtons.forEach((toggleTheme) => {
-            toggleTheme.addEventListener('click', () => {
-                stopAnimation();
-            });
-        });
-    }
 
     window.addEventListener('resize', () => {
         stopAnimation();
@@ -80,14 +110,12 @@ document.addEventListener('DOMContentLoaded', function () {
     /* =======================
   // Responsive Videos
   ======================= */
-    // Initialize reframe with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (window.reframe) {
-            reframe(
-                '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .work-content iframe:not(.reframe-off)',
-            );
-        }
-    }, 100);
+    // vendor.js is deferred ahead of this file, so its globals are already set.
+    if (window.reframe) {
+        reframe(
+            '.post__content iframe:not(.reframe-off), .page__content iframe:not(.reframe-off), .work-content iframe:not(.reframe-off)',
+        );
+    }
 
     /* =======================
   // Fade-in Images
@@ -189,64 +217,54 @@ document.addEventListener('DOMContentLoaded', function () {
         true,
     );
 
-    // Initialize Lightense with custom settings, with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (lightense && window.Lightense) {
-            Lightense(
-                '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .work-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
-                {
-                    padding: 60,
-                    offset: 30,
-                },
-            );
-        }
-    }, 100);
+    if (lightense && window.Lightense) {
+        Lightense(
+            '.page__content img:not(.no-lightense), .post__content img:not(.no-lightense), .work-content img:not(.no-lightense), .gallery__image img:not(.no-lightense)',
+            {
+                padding: 60,
+                offset: 30,
+            },
+        );
+    }
 
     /* ============================
   // Testimonials Slider
   ============================ */
-    // Initialize tiny-slider with a delay to ensure the library is loaded
-    setTimeout(() => {
-        if (document.querySelector('.my-slider') && window.tns) {
-            var slider = tns({
-                container: '.my-slider',
-                items: 1,
-                slideBy: 1,
-                gutter: 0,
-                nav: false,
-                mouseDrag: true,
-                autoplay: false,
-                controls: true,
-                controlsContainer: '.testimonials-controls',
-                speed: 500,
-                loop: true,
-            });
-        }
-    }, 100);
+    if (document.querySelector('.my-slider') && window.tns) {
+        tns({
+            container: '.my-slider',
+            items: 1,
+            slideBy: 1,
+            gutter: 0,
+            nav: false,
+            mouseDrag: true,
+            autoplay: false,
+            controls: true,
+            controlsContainer: '.testimonials-controls',
+            speed: 500,
+            loop: true,
+        });
+    }
 
     /* =================================
   // Smooth scroll to the tags page
   ================================= */
     document.querySelectorAll('.tag__link, .top__link').forEach((anchor) => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (!target) return;
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth',
-            });
+            e.preventDefault();
+            target.scrollIntoView({ behavior: scrollBehavior() });
         });
     });
 
     /* =======================
   // Scroll Top Button
   ======================= */
-    btnScrollToTop.addEventListener('click', function () {
-        if (window.scrollY != 0) {
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth',
-            });
-        }
-    });
+    if (btnScrollToTop) {
+        btnScrollToTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, left: 0, behavior: scrollBehavior() });
+        });
+    }
 });

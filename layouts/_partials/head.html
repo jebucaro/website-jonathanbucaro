@@ -74,6 +74,11 @@
     <!-- Self-hosted font (declared via @font-face in main.css) -->
     <link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/noto-sans-display-v30-latin-wght.woff2" | absURL }}" crossorigin>
 
+    <!-- Color scheme: "light dark" follows the OS. theme.js rewrites the
+         content to "light" or "dark" when an override is stored, and
+         0-settings/_color-scheme.scss maps it back to the CSS property. -->
+    <meta name="color-scheme" content="light dark" />
+
     <!-- Theme JavaScript, inlined: must run before first paint to avoid a
          dark-mode flash. Its sha256 hash is allow-listed in firebase.json
          script-src; scripts/check-csp-hashes.mjs keeps them in sync. -->
