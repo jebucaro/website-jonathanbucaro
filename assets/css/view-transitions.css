@@ -1,0 +1,14 @@
+/* Cross-document view transitions: a short cross-fade between pages.
+   Unsupported browsers ignore the at-rule and navigate normally.
+   The theme is applied by the inline <script> in <head> before the new page
+   can render, so the incoming snapshot already has the right colors. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0.18s;
+    }
+}

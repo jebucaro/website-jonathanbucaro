@@ -88,6 +88,14 @@
     <!-- Speculative loading of likely next pages (Chromium only) -->
     {{ partial "speculation-rules.html" . }}
 
+    <!-- View transitions: a separate tiny file on purpose. The Nu HTML Checker
+         used in CI does not know @view-transition or ::view-transition-*, so
+         they cannot live in the inlined stylesheet. The media attribute makes
+         it inert (and non-blocking) when reduced motion is requested. -->
+    {{ $vt := resources.Get "css/view-transitions.css" }}
+    {{ if not hugo.IsServer }}{{ $vt = $vt | minify | fingerprint }}{{ end }}
+    <link rel="stylesheet" href="{{ $vt.RelPermalink | absURL }}" media="(prefers-reduced-motion: no-preference)" />
+
     <!-- Stylesheet: fully inlined in production (~13 KB gzipped, ~82 KB raw;
          style-src 'unsafe-inline' already allowed) so first render needs no
          CSS request.
