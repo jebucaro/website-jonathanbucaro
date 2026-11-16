@@ -28,9 +28,9 @@
         "husky": "^9.1.7",
         "lint-staged": "^17.6.0",
         "markdownlint-cli": "^0.50.0",
-        "prettier": "^3.9.10",
+        "prettier": "^3.10.1",
         "prettier-plugin-go-template": "^0.0.15",
-        "sass-embedded": "^1.108.0"
+        "sass-embedded": "^1.108.2"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,css,scss,sass,less}": [
