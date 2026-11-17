@@ -41,19 +41,15 @@
     // without an explicit auto width, the width attribute wins and stretches
     // the logo to its full pixel width at the fixed 72px height
     width: auto;
-    // height: 36px;
-    // filter: invert(51%) sepia(4%) saturate(1703%) hue-rotate(179deg) brightness(85%) contrast(89%);
 
     @media (max-width: $mobile) {
-        // height: 32px;
         height: 48px;
     }
 }
 
 .dark-mode {
     .logos__image {
-        // filter: invert(100%) sepia(32%) saturate(304%) hue-rotate(200deg) brightness(115%) contrast(88%);
-        filter: invert(100%) sepia(4%) saturate(304%) hue-rotate(200deg)
-            brightness(115%) contrast(88%);
+        // the logos are grayscale, so inverting keeps their tones
+        filter: invert(1) brightness(1.15) contrast(0.88);
     }
 }

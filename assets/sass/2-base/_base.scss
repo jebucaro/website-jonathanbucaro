@@ -49,6 +49,12 @@ h6 {
     color: var(--heading-font-color);
 }
 
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
 h1 {
     font-size: $font-size-h1;
 }
