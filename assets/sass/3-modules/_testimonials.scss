@@ -296,13 +296,14 @@
     }
 }
 
-/* Pause/Play for autoplay: in flow below the slider, shown by JS (hidden attr). */
+/* Pause/Play for autoplay: in flow below the slider, shown by JS (hidden attr).
+   The spacing sits on the button so a hidden button leaves no gap. */
 .testimonials-autoplay {
     display: flex;
     justify-content: center;
-    margin-top: 24px;
 
     button {
+        margin-top: 24px;
         width: 44px;
         height: 44px;
         display: flex;
