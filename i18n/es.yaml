@@ -162,6 +162,12 @@
 - id: testimonials_status
   translation: 'Testimonio {{ .n }} de {{ .total }}'
 
+- id: testimonials_pause
+  translation: 'Pausar testimonios'
+
+- id: testimonials_play
+  translation: 'Reproducir testimonios'
+
 # Section: Work
 - id: sections_work_title
   translation: 'Proyectos y Casos de Estudio'

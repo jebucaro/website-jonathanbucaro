@@ -162,6 +162,12 @@
 - id: testimonials_status
   translation: 'Testimonial {{ .n }} of {{ .total }}'
 
+- id: testimonials_pause
+  translation: 'Pause testimonials'
+
+- id: testimonials_play
+  translation: 'Play testimonials'
+
 # Section: Work
 - id: sections_work_title
   translation: 'Projects &amp; Case Studies'
