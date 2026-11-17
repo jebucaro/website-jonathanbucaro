@@ -74,14 +74,18 @@
     }
 }
 
-/* Testimonials wrapper — positioning context for custom controls */
 .testimonials__wrapper {
-    position: relative;
     margin-top: 64px;
 
     @media only screen and (max-width: $desktop) {
         margin-top: 48px;
     }
+}
+
+/* Slider plus arrows, without the Pause/Play row below: positioning context
+   that keeps the arrows centered on the slides. */
+.testimonials__stage {
+    position: relative;
 }
 
 /* Testimonial carousel: native scroll snap, one slide per view. */

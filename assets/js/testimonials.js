@@ -252,8 +252,16 @@
             carousel.addEventListener('pointerleave', function () {
                 setHold('hover', false);
             });
-            carousel.addEventListener('focusin', function () {
-                setHold('focus', true);
+            // Only keyboard focus holds: a mouse or tap click on Play focuses
+            // the button too, and must not keep autoplay paused.
+            carousel.addEventListener('focusin', function (event) {
+                var keyboard = true;
+                try {
+                    keyboard = event.target.matches(':focus-visible');
+                } catch (e) {
+                    // No :focus-visible support: treat all focus as keyboard.
+                }
+                setHold('focus', keyboard);
             });
             carousel.addEventListener('focusout', function (event) {
                 if (!carousel.contains(event.relatedTarget)) {

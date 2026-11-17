@@ -32,40 +32,42 @@
 
                 {{ $items := .Site.Params.testimonial_item }}
                 {{ $total := len $items }}
-                <div class="testimonials__wrapper" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title" data-carousel{{ if .Site.Params.testimonials.autoplay }} data-autoplay="{{ mul (.Site.Params.testimonials.interval | default 7 | int) 1000 }}"{{ end }}>
-                    <div class="testimonials-controls">
-                        <button type="button" data-controls="prev" aria-label="{{ i18n "testimonials_previous" }}">&#8592;</button>
-                        <button type="button" data-controls="next" aria-label="{{ i18n "testimonials_next" }}">&#8594;</button>
-                    </div>
+                <div class="testimonials__wrapper" role="region" aria-roledescription="carousel" aria-labelledby="testimonials-title" data-carousel{{ if .Site.Params.testimonials.autoplay }} data-autoplay="{{ mul (float (.Site.Params.testimonials.interval | default 7)) 1000 | int }}"{{ end }}>
+                    <div class="testimonials__stage">
+                        <div class="testimonials-controls">
+                            <button type="button" data-controls="prev" aria-label="{{ i18n "testimonials_previous" }}">&#8592;</button>
+                            <button type="button" data-controls="next" aria-label="{{ i18n "testimonials_next" }}">&#8594;</button>
+                        </div>
 
-                    <div class="testimonials__slider" tabindex="0" role="group" aria-label="{{ i18n "testimonials_slides" }}">
-                        {{ with $items }}
-                            {{ range $i, $_ := . }}
-                            {{ $pos := dict "n" (add $i 1) "total" $total }}
-                            <div class="testimonial-item" role="group" aria-roledescription="slide" aria-label="{{ i18n "testimonials_slide_label" $pos }}" data-status="{{ i18n "testimonials_status" $pos }}">
-                                <div class="testimonial-content">
-                                    <div class="testimonial-left">
-                                        {{ if .image }}
-                                        <div class="client-image">
-                                            <img src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy">
-                                        </div>
-                                        {{ end }}
-                                    </div>
-                                    <div class="testimonial-right">
-                                        <div class="client-info">
-                                            {{ if .content }}<p class="client-text">{{ .content }}</p>{{ end }}
-                                            {{ if .name }}
-                                            <h3 class="client-name">
-                                                {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
-                                            </h3>
+                        <div class="testimonials__slider" tabindex="0" role="group" aria-label="{{ i18n "testimonials_slides" }}">
+                            {{ with $items }}
+                                {{ range $i, $_ := . }}
+                                {{ $pos := dict "n" (add $i 1) "total" $total }}
+                                <div class="testimonial-item" role="group" aria-roledescription="slide" aria-label="{{ i18n "testimonials_slide_label" $pos }}" data-status="{{ i18n "testimonials_status" $pos }}">
+                                    <div class="testimonial-content">
+                                        <div class="testimonial-left">
+                                            {{ if .image }}
+                                            <div class="client-image">
+                                                <img src="{{ .image | relURL }}" alt="{{ .name }}" loading="lazy">
+                                            </div>
                                             {{ end }}
-                                            {{ if .designation }}<span class="client-designation">{{ .designation }}</span>{{ end }}
+                                        </div>
+                                        <div class="testimonial-right">
+                                            <div class="client-info">
+                                                {{ if .content }}<p class="client-text">{{ .content }}</p>{{ end }}
+                                                {{ if .name }}
+                                                <h3 class="client-name">
+                                                    {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+                                                </h3>
+                                                {{ end }}
+                                                {{ if .designation }}<span class="client-designation">{{ .designation }}</span>{{ end }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                {{ end }}
                             {{ end }}
-                        {{ end }}
+                        </div>
                     </div>
 
                     {{ if .Site.Params.testimonials.autoplay }}
