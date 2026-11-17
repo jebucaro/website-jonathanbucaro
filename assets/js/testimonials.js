@@ -17,7 +17,8 @@
             pending = null,
             settledIndex = -1,
             parkKey = null,
-            settleTimer = 0;
+            settleTimer = 0,
+            touchDown = false;
 
         // Distance of a slide's center from the track's center.
         function slideOffset(slide) {
@@ -191,18 +192,53 @@
             go(1);
         });
 
+        // Whether this input takes over the slides (stopping autoplay), as
+        // opposed to scrolling the page past them or tabbing out.
+        function takesOver(event) {
+            if (event.type === 'wheel') {
+                return Math.abs(event.deltaX) > Math.abs(event.deltaY);
+            }
+            if (event.type === 'pointerdown') {
+                return event.pointerType !== 'touch';
+            }
+            return event.key !== 'Tab';
+        }
+
         // Direct user input replaces any scripted target.
         ['pointerdown', 'wheel', 'keydown'].forEach(function (type) {
             track.addEventListener(
                 type,
                 function (event) {
                     pending = null;
-                    // Tabbing out of the track isn't taking over the slides.
-                    if (event.key !== 'Tab') stopAutoplay();
+                    if (event.type === 'pointerdown') {
+                        touchDown = event.pointerType === 'touch';
+                    }
+                    if (takesOver(event)) stopAutoplay();
                 },
                 { passive: true },
             );
         });
+
+        // A touch only takes over once it drags the track; a vertical swipe
+        // that starts here scrolls the page instead. Not pointercancel: the
+        // browser fires it as soon as it starts panning the track itself.
+        ['pointerup', 'touchend', 'touchcancel'].forEach(function (type) {
+            track.addEventListener(
+                type,
+                function () {
+                    touchDown = false;
+                },
+                { passive: true },
+            );
+        });
+        track.addEventListener(
+            'scroll',
+            function () {
+                // pending is set while autoplay's own scroll is in flight.
+                if (touchDown && !pending) stopAutoplay();
+            },
+            { passive: true },
+        );
 
         if (autoplay) {
             autoplayButton.addEventListener('click', function () {
