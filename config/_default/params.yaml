@@ -153,6 +153,8 @@ work:
         - cli-tool
 testimonials:
     enable: false
+    autoplay: true
+    interval: 7
     client_list__info: 'Trusted by clients worldwide'
 testimonial_item:
     - name: Aspen Carder

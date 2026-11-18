@@ -74,14 +74,18 @@
     }
 }
 
-/* Testimonials wrapper — positioning context for custom controls */
 .testimonials__wrapper {
-    position: relative;
     margin-top: 64px;
 
     @media only screen and (max-width: $desktop) {
         margin-top: 48px;
     }
+}
+
+/* Slider plus arrows, without the Pause/Play row below: positioning context
+   that keeps the arrows centered on the slides. */
+.testimonials__stage {
+    position: relative;
 }
 
 /* Testimonial carousel: native scroll snap, one slide per view. */
@@ -296,8 +300,41 @@
     }
 }
 
+/* Pause/Play for autoplay: in flow below the slider, shown by JS (hidden attr).
+   The spacing sits on the button so a hidden button leaves no gap. */
+.testimonials-autoplay {
+    display: flex;
+    justify-content: center;
+
+    button {
+        margin-top: 24px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid var(--heading-font-color);
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--heading-font-color);
+        background: var(--background-color);
+
+        &[hidden] {
+            display: none;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--brand-color);
+            outline-offset: 3px;
+        }
+    }
+}
+
 /* Without JS the buttons would do nothing; the track still scrolls natively. */
-html:not(.js) .testimonials-controls {
+html:not(.js) .testimonials-controls,
+html:not(.js) .testimonials-autoplay {
     display: none;
 }
 
