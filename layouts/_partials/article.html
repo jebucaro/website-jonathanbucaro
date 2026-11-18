@@ -1,3 +1,15 @@
+{{- /*
+    Post card. Pass the page, or (dict "page" $page "headingLevel" 3) when the
+    cards sit under a section h2 (homepage, related posts) so the outline stays
+    h2 > h3. Lists whose page title is the h1 keep the default h2.
+*/ -}}
+{{- $page := . -}}
+{{- $level := 2 -}}
+{{- if reflect.IsMap . -}}
+    {{- $page = .page -}}
+    {{- $level = .headingLevel | default 2 -}}
+{{- end -}}
+{{- with $page -}}
 <div class="article col col-4 col-d-6 col-t-12">
     {{ if .Params.image }}
         <a class="article__image" href="{{ .RelPermalink }}">
@@ -12,16 +24,18 @@
 
     {{ if .Params.tags }}
         <div class="article-tags__box">
-            {{ range ($.GetTerms "tags") }}
+            {{ range (.GetTerms "tags") }}
                 <a href="{{ .Permalink }}" class="article__tag">{{ .LinkTitle }}</a>
             {{ end }}
         </div>
     {{ end }}
 
 
-    <h2 class="article__title">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
+    {{ if eq $level 3 }}
+    <h3 class="article__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ else }}
+    <h2 class="article__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ end }}
 
     <div class="article__meta">
         <div class="article-info">
@@ -36,3 +50,4 @@
 
     <p class="article__excerpt">{{ if .Description }}{{ .Description }}{{ else }}{{ truncate 250 .Summary | safeHTML }}{{ end }}</p>
 </div>
+{{- end -}}

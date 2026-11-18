@@ -1,0 +1,36 @@
+{{- /*
+    Language selector, rendered twice by header.html (drawer and header bar).
+    Each link's accessible name starts with its visible code ("ES") so voice
+    control matches what is on screen (WCAG 2.5.3), then names the target
+    language in that language. The flag is decorative.
+*/ -}}
+{{- if hugo.IsMultilingual -}}
+<div class="language-selector">
+    {{- /* Current language (shown first). aria-label is not allowed on a plain span; screen readers get the hidden text instead. */ -}}
+    <span class="language-link language-current" aria-current="page" title="{{ .Language.Label }}">
+        <span class="screen-reader-text">{{ i18n "ui_currentLanguage" }} <span lang="{{ .Language.Lang }}">{{ .Language.Label }}</span></span>
+        <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
+        <span class="lang-code" aria-hidden="true">{{ .Language.Params.lang_label }}</span>
+    </span>
+
+    {{- /* Link to this page's translations, or to the other languages' home pages when there are none. */ -}}
+    {{- $targets := slice -}}
+    {{- if .IsTranslated -}}
+        {{- $targets = .Translations -}}
+    {{- else -}}
+        {{- range .Site.Home.AllTranslations -}}
+            {{- if ne $.Language.Lang .Language.Lang -}}
+                {{- $targets = $targets | append . -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- range $targets -}}
+        <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link" title="{{ .Language.Label }}">
+            <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
+            <span class="lang-code">{{ .Language.Params.lang_label }}</span>
+            <span class="screen-reader-text">, {{ i18n "ui_switchLanguageTo" }} <span lang="{{ .Language.Lang }}">{{ .Language.Label }}</span></span>
+        </a>
+    {{- end -}}
+</div>
+{{- end -}}

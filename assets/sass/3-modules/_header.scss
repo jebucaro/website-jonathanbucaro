@@ -302,9 +302,11 @@
         &.dropdown {
             position: relative;
 
+            /* No-JS fallback. With JS, common.js makes the menu a popover
+               of the toggle at desktop widths (see .dropdown-menu[popover]). */
             &:hover,
             &:focus-within {
-                .dropdown-menu {
+                .dropdown-menu:not([popover]) {
                     opacity: 1;
                     visibility: visible;
                     transform: translate3d(0, 0, 0);
@@ -398,6 +400,45 @@
             &::before {
                 content: none;
             }
+        }
+    }
+
+    /* Desktop with JS: a native popover in the top layer, opened by its
+       toggle (Enter/Space, click, or a hover preview from common.js), with
+       light dismiss and Escape from the browser. The toggle is the implicit
+       anchor, so position-area places the panel under it; the -32px inline
+       margin lines the item text up with the toggle's label. */
+    .dropdown-menu[popover] {
+        position: absolute;
+        position-area: block-end span-inline-end;
+        position-try-fallbacks: flip-block, flip-inline;
+        inset: auto;
+        height: auto;
+        margin: 8px 0 0 -32px;
+        overflow: visible;
+        color: inherit;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+
+        &:not(:popover-open) {
+            display: none;
+        }
+
+        /* Bridges the 8px gap so moving the pointer from the toggle into the
+           panel does not end the hover preview. */
+        &::before {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            bottom: 100%;
+            height: 8px;
+        }
+
+        /* Without anchor positioning, common.js sets top/left from the toggle. */
+        @supports not (position-area: block-end) {
+            position: fixed;
+            margin: 0;
         }
     }
 }

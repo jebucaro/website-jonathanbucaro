@@ -15,7 +15,7 @@
 
         <div class="row grid">
             {{ range first 3 ( where ( where .Site.Pages.ByDate.Reverse ".Params.tags" "intersect" .Params.tags ) "Permalink" "!=" .Permalink ) }}
-                {{ partial "article.html" . }}
+                {{ partial "article.html" (dict "page" . "headingLevel" 3) }}
             {{ end }}
         </div>
     </section>

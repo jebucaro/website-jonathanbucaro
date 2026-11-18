@@ -38,6 +38,16 @@
                             {{ end }}
                         </ul>
                     </div>
+
+                    {{- /* Pause/Play for the loop (WCAG 2.2.2). Hidden until common.js wires it up;
+                         under reduced motion the CSS hides it because nothing moves. */}}
+                    <button type="button" class="technologies-marquee__toggle" hidden
+                            data-label-pause="{{ i18n "technologies_pause" }}"
+                            data-label-play="{{ i18n "technologies_play" }}">
+                        <span class="technologies-marquee__icon technologies-marquee__icon--pause">{{ partial "icon.html" "pause" }}</span>
+                        <span class="technologies-marquee__icon technologies-marquee__icon--play">{{ partial "icon.html" "play" }}</span>
+                        <span class="screen-reader-text">{{ i18n "technologies_pause" }}</span>
+                    </button>
                 </div>
             </div>
         </div>

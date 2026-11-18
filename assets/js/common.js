@@ -94,6 +94,131 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* =======================================================
+  // Submenus
+  ======================================================= */
+    // At desktop widths each submenu is a native popover of its toggle:
+    // Enter/Space or a click opens it, the browser handles light dismiss and
+    // Escape, and the toggle event keeps aria-expanded in sync. A mouse can
+    // preview it on hover; clicking during a preview pins it open. In the
+    // drawer the toggle is hidden and the submenu is a plain nested list, so
+    // the popover attributes are removed there. Without JS, CSS opens it on
+    // :hover / :focus-within.
+    var hoverQuery = window.matchMedia('(hover: hover)'),
+        anchorSupported = CSS.supports('position-area', 'block-end');
+
+    document.querySelectorAll('.nav__item.dropdown').forEach(function (item) {
+        var trigger = item.querySelector('.dropdown-toggle'),
+            submenu = item.querySelector('.dropdown-menu'),
+            previewing = false;
+
+        if (!trigger || !submenu || !('showPopover' in submenu)) return;
+
+        function isOpen() {
+            return submenu.matches(':popover-open');
+        }
+
+        function sync() {
+            if (drawerQuery.matches) {
+                if (submenu.hasAttribute('popover') && isOpen()) {
+                    submenu.hidePopover();
+                }
+                submenu.removeAttribute('popover');
+                trigger.removeAttribute('popovertarget');
+                trigger.removeAttribute('aria-controls');
+                trigger.removeAttribute('aria-expanded');
+            } else {
+                submenu.setAttribute('popover', 'auto');
+                trigger.setAttribute('popovertarget', submenu.id);
+                trigger.setAttribute('aria-controls', submenu.id);
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // Fallback placement where CSS anchor positioning is missing: below
+        // the toggle (flipped above if it would overflow), clamped to the
+        // viewport. The CSS switches the popover to position: fixed there.
+        function place() {
+            var t = trigger.getBoundingClientRect(),
+                s = submenu.getBoundingClientRect(),
+                top = t.bottom + 8,
+                left = Math.min(
+                    Math.max(0, t.left - 32),
+                    window.innerWidth - s.width,
+                );
+            if (top + s.height > window.innerHeight) top = t.top - 8 - s.height;
+            submenu.style.top = Math.max(0, top) + 'px';
+            submenu.style.left = Math.max(0, left) + 'px';
+        }
+
+        sync();
+        drawerQuery.addEventListener('change', sync);
+
+        submenu.addEventListener('toggle', function (event) {
+            var open = event.newState === 'open';
+            trigger.setAttribute('aria-expanded', String(open));
+            if (!open) previewing = false;
+            if (open && !anchorSupported) place();
+        });
+
+        item.addEventListener('pointerenter', function (event) {
+            if (
+                !submenu.hasAttribute('popover') ||
+                !hoverQuery.matches ||
+                event.pointerType === 'touch' ||
+                isOpen()
+            ) {
+                return;
+            }
+            submenu.showPopover({ source: trigger });
+            previewing = true;
+        });
+
+        item.addEventListener('pointerleave', function () {
+            if (previewing && isOpen()) submenu.hidePopover();
+        });
+
+        // A click during a hover preview pins the menu instead of closing it.
+        trigger.addEventListener('click', function (event) {
+            if (previewing) {
+                event.preventDefault();
+                previewing = false;
+            }
+        });
+
+        // Tabbing out of the item closes it.
+        item.addEventListener('focusout', function (event) {
+            if (
+                event.relatedTarget &&
+                !item.contains(event.relatedTarget) &&
+                submenu.hasAttribute('popover') &&
+                isOpen()
+            ) {
+                submenu.hidePopover();
+            }
+        });
+    });
+
+    /* =======================================================
+  // Technologies marquee: Pause / Play (WCAG 2.2.2)
+  ======================================================= */
+    var technologies = document.querySelector('.section.technologies'),
+        marqueeToggle =
+            technologies &&
+            technologies.querySelector('.technologies-marquee__toggle');
+
+    if (marqueeToggle) {
+        var marqueeLabel = marqueeToggle.querySelector('.screen-reader-text');
+        marqueeToggle.hidden = false;
+        marqueeToggle.addEventListener('click', function () {
+            var paused = technologies.classList.toggle('is-paused');
+            // The name swaps between Pause and Play, so no aria-pressed.
+            marqueeLabel.textContent = paused
+                ? marqueeToggle.dataset.labelPlay
+                : marqueeToggle.dataset.labelPause;
+        });
+    }
+
+    /* =======================================================
   // Theme Switcher
   ======================================================= */
     // Two-state toggle over three stored states (system, light, dark): the

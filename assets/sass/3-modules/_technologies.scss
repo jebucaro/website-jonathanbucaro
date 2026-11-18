@@ -28,12 +28,66 @@
     display: flex;
     align-items: flex-start;
     width: max-content;
-    will-change: transform;
-    animation: technologies-marquee-scroll 24s linear infinite;
 
-    &:hover {
+    /* Motion is opt-in: under reduced motion the track is a static grid (below). */
+    @media (prefers-reduced-motion: no-preference) {
+        will-change: transform;
+        animation: technologies-marquee-scroll 24s linear infinite;
+    }
+
+    &:hover,
+    .technologies.is-paused & {
         animation-play-state: paused;
     }
+}
+
+/* Pause/Play: a Paper Gray circle like the theme toggle. Shown by common.js
+   (hidden attr); hidden again under reduced motion, where nothing moves. */
+.technologies-marquee__toggle {
+    @include button-reset();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    margin: 16px auto 0;
+    font-size: 16px;
+    border-radius: 50%;
+    color: var(--heading-font-color);
+    background-color: var(--background-alt-color);
+    transition:
+        color 0.2s,
+        background-color 0.2s;
+
+    &:hover {
+        background-color: var(--background-alt-color-2);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--heading-font-color);
+        outline-offset: 2px;
+    }
+
+    &[hidden] {
+        display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        display: none;
+    }
+}
+
+.technologies-marquee__icon {
+    display: flex;
+}
+
+.technologies-marquee__icon--play,
+.technologies.is-paused .technologies-marquee__icon--pause {
+    display: none;
+}
+
+.technologies.is-paused .technologies-marquee__icon--play {
+    display: flex;
 }
 
 .technologies-marquee__item {
@@ -90,7 +144,6 @@
         flex-wrap: wrap;
         justify-content: center;
         width: auto;
-        animation: none;
     }
 
     .technologies-marquee__item[aria-hidden="true"] {
