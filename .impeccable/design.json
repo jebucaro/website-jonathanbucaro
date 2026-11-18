@@ -1,6 +1,6 @@
 {
     "schemaVersion": 2,
-    "generatedAt": "2026-11-18T00:00:00Z",
+    "generatedAt": "2026-11-18T23:30:00Z",
     "title": "Design System: Jonathan Búcaro",
     "extensions": {
         "colorMeta": {
@@ -150,7 +150,10 @@
                 "role": "tertiary",
                 "displayName": "Terminal Muted"
             },
-            "terminal-prompt": { "role": "tertiary", "displayName": "Prompt" },
+            "terminal-prompt": {
+                "role": "tertiary",
+                "displayName": "Prompt"
+            },
             "terminal-command": {
                 "role": "tertiary",
                 "displayName": "Command"
@@ -209,7 +212,10 @@
                 "displayName": "Nav",
                 "purpose": "Desktop navigation links."
             },
-            "body": { "displayName": "Body", "purpose": "Default page text." },
+            "body": {
+                "displayName": "Body",
+                "purpose": "Default page text."
+            },
             "body-article": {
                 "displayName": "Body Article",
                 "purpose": "Posts and pages in the 780px reading column."
@@ -273,10 +279,22 @@
             }
         ],
         "breakpoints": [
-            { "name": "mobile", "value": "576px" },
-            { "name": "tablet", "value": "768px" },
-            { "name": "desktop", "value": "1024px" },
-            { "name": "wide", "value": "1400px" }
+            {
+                "name": "mobile",
+                "value": "576px"
+            },
+            {
+                "name": "tablet",
+                "value": "768px"
+            },
+            {
+                "name": "desktop",
+                "value": "1024px"
+            },
+            {
+                "name": "wide",
+                "value": "1400px"
+            }
         ]
     },
     "components": [
@@ -310,14 +328,14 @@
             "refersTo": "work-card-image",
             "description": "Square 16px-cornered cover on a Paper Gray placeholder, uppercase label and bold title below; lifts 6px on hover.",
             "html": "<article class=\"ds-work-card\"><a class=\"ds-work-card__image\" href=\"#\" aria-hidden=\"true\" tabindex=\"-1\"></a><p class=\"ds-work-card__label\">Project · CLI tool</p><h3 class=\"ds-work-card__title\"><a href=\"#\">dotnet-gitmoji</a></h3></article>",
-            "css": ".ds-work-card { max-width: 320px; font-family: 'Noto Sans Display', Arial, sans-serif; transition: transform 0.5s ease-in-out; } .ds-work-card:hover { transform: translateY(-6px); } .ds-work-card__image { display: block; aspect-ratio: 1; margin-bottom: 20px; border-radius: 16px; background-color: var(--background-alt-color, #eaecef); } .ds-work-card__label { margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; line-height: 1; color: var(--text-color, #111); opacity: 0.6; } .ds-work-card__title { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 700; color: var(--heading-font-color, #111); } .ds-work-card__title a { color: inherit; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: text-decoration-color 0.2s; } .ds-work-card__title a:hover, .ds-work-card__title a:focus-visible { text-decoration-color: currentColor; } @media (prefers-reduced-motion: reduce) { .ds-work-card, .ds-work-card:hover { transition: none; transform: none; } }"
+            "css": ".ds-work-card { max-width: 320px; font-family: 'Noto Sans Display', Arial, sans-serif; transition: transform 0.5s ease-in-out; } .ds-work-card:hover { transform: translateY(-6px); } .ds-work-card__image { display: block; aspect-ratio: 1; margin-bottom: 20px; border-radius: 16px; background-color: var(--background-alt-color, #eaecef); } .ds-work-card__label { margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; line-height: 1; color: var(--label-color, rgba(17, 17, 17, 0.6)); } .ds-work-card__title { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 700; color: var(--heading-font-color, #111); } .ds-work-card__title a { color: inherit; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: text-decoration-color 0.2s; } .ds-work-card__title a:hover, .ds-work-card__title a:focus-visible { text-decoration-color: currentColor; } @media (prefers-reduced-motion: reduce) { .ds-work-card, .ds-work-card:hover { transition: none; transform: none; } }"
         },
         {
             "name": "Desktop Navigation",
             "kind": "nav",
-            "description": "Centered bold links; a 6px dot above marks hover (link color) and the active page (Highlighter Yellow).",
-            "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__link\" href=\"#\">Home</a><a class=\"ds-nav__link ds-nav__link--active\" href=\"#\" aria-current=\"page\">Work</a><a class=\"ds-nav__link\" href=\"#\">Blog</a><a class=\"ds-nav__link\" href=\"#\">About</a></nav>",
-            "css": ".ds-nav { display: flex; gap: 48px; align-items: center; } .ds-nav__link { position: relative; padding: 12px 0; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 20px; line-height: 1; font-weight: 700; text-decoration: none; color: var(--link-color, #111); } .ds-nav__link::before { content: ''; position: absolute; left: 50%; top: 0; width: 6px; height: 6px; border-radius: 50%; transform: translateX(-50%); opacity: 0; background-color: var(--link-color, #111); transition: opacity 0.2s; } .ds-nav__link:hover::before { opacity: 1; } .ds-nav__link--active::before { opacity: 1; background-color: var(--brand-color, #ffc71d); } .ds-nav__link:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; }"
+            "description": "Centered bold links; a 6px dot above marks hover, a 16px by 3px bar below marks the current page (Ink in light, Highlighter Yellow in dark).",
+            "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__link\" href=\"#\">Home</a><a class=\"ds-nav__link\" href=\"#\" aria-current=\"page\">Work</a><a class=\"ds-nav__link\" href=\"#\">Blog</a><a class=\"ds-nav__link\" href=\"#\">About</a></nav>",
+            "css": ".ds-nav { display: flex; gap: 48px; align-items: center; } .ds-nav__link { position: relative; padding: 12px 0; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 20px; line-height: 1; font-weight: 700; text-decoration: none; color: var(--link-color, #111); } .ds-nav__link::before { content: ''; position: absolute; left: 50%; top: 0; width: 6px; height: 6px; border-radius: 50%; transform: translateX(-50%); opacity: 0; background-color: var(--link-color, #111); transition: opacity 0.2s; } .ds-nav__link:hover::before { opacity: 1; } .ds-nav__link[aria-current=page]::before { top: auto; bottom: 2px; width: 16px; height: 0; border-top: 3px solid var(--nav-current-color, #111); border-radius: 2px; opacity: 1; background-color: transparent; } .ds-nav__link:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; }"
         },
         {
             "name": "Language Switcher",
@@ -411,7 +429,9 @@
             "Don't set Highlighter Yellow as text on Paper or Paper Gray (1.56:1).",
             "Don't theme the terminal or let it read site color tokens.",
             "Don't add resting shadows to cards, sections or buttons.",
-            "Don't use sliding or `::before` fill animations on buttons; hover is a plain color change."
+            "Don't use sliding or `::before` fill animations on buttons; hover is a plain color change.",
+            "Don't recolor link text to Highlighter Yellow on hover in light mode; use `--link-text-hover` for text and keep the yellow for the underline, border or tile (`--link-color-hover`, `--icon-hover-bg`).",
+            "Don't mute text with `opacity`; use `--label-color` or another token that meets 4.5:1 in both themes."
         ]
     }
 }

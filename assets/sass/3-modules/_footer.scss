@@ -166,6 +166,14 @@
         font-family: $heading-font-family;
         margin-bottom: 20px;
         font-size: 20px;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+
+        &:hover {
+            text-decoration-color: var(--link-color-hover);
+        }
     }
 
     @media only screen and (max-width: $desktop) {

@@ -1,0 +1,15 @@
+{
+    "detector": {
+        "ignoreRules": [],
+        "ignoreFiles": [],
+        "ignoreValues": [
+            {
+                "rule": "border-accent-on-rounded",
+                "value": "*",
+                "files": ["assets/sass/3-modules/_header.scss"],
+                "createdAt": "2026-11-18T23:03:01.275Z",
+                "reason": "Claude: L303 is the 16x3px current-page nav bar (::before, border-radius: 0), not a rounded card; regex-only match"
+            }
+        ]
+    }
+}

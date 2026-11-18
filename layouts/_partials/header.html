@@ -55,7 +55,7 @@
                                                     {{ end }}
                                                 {{ end }}
                                                 <a href="{{ $href }}"
-                                                  class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                                                  class="nav__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
                                             {{ end }}
                                         </div>
                                     </li>
@@ -70,7 +70,7 @@
                                             {{ end }}
                                         {{ end }}
                                         <a href="{{ $href }}"
-                                            class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                                            class="nav__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
                                     </li>
                                 {{ end }}
 

@@ -290,11 +290,27 @@
                 }
             }
 
-            &.active-link {
+            /* Current page: a short bar under the label, a different shape
+               from the hover dot above it (WCAG 1.4.1), drawn as a border so
+               it survives forced colors. Ink in light mode, Highlighter
+               Yellow in dark (3:1 or more either way). */
+            &[aria-current="page"] {
                 &::before {
+                    top: auto;
+                    bottom: 2px;
+                    width: 16px;
+                    height: 0;
+                    border-top: 3px solid var(--nav-current-color);
+                    border-radius: 0;
                     opacity: 1;
                     visibility: visible;
-                    background-color: var(--brand-color);
+                    background-color: transparent;
+
+                    /* Drawer links carry 20px of vertical padding; keep the
+                       bar about as close to the label as on desktop. */
+                    @media only screen and (max-width: $desktop) {
+                        bottom: 12px;
+                    }
                 }
             }
         }
@@ -376,7 +392,7 @@
                 margin-bottom: 0;
             }
 
-            &.active-link {
+            &[aria-current="page"] {
                 &::after {
                     opacity: 0.7;
                 }
@@ -546,8 +562,7 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1.5px;
-        color: var(--text-color);
-        opacity: 0.5;
+        color: var(--label-color);
     }
 }
 

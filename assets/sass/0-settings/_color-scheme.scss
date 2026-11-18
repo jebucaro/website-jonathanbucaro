@@ -31,8 +31,10 @@
     --share-bg: #333333;
     --share-bg-hover: #1a1a1a;
     --share-text: #ffffff;
-    --icon-hover-color: var(--brand-color);
-    --icon-hover-bg: #eaecef;
+    /* Icon hover: a Highlighter Yellow tile behind an Ink icon (yellow
+       never writes on Paper: 1.56:1). */
+    --icon-hover-color: var(--dark);
+    --icon-hover-bg: var(--brand-color);
     --primary-color: #ffc71d;
     --secondary-color: #0038ff;
     --brand-color: var(--primary-color);
@@ -50,7 +52,14 @@
     --text-alt-color: var(--gray);
     --heading-font-color: var(--dark);
     --link-color: var(--dark);
+    /* Accent for hover underlines and borders. Hover text uses
+       --link-text-hover, which stays Ink in light mode. */
     --link-color-hover: var(--brand-color);
+    --link-text-hover: var(--dark);
+    /* Current-page marker in the nav (3:1 or more on the page). */
+    --nav-current-color: var(--dark);
+    /* Small uppercase meta labels: 60% Ink, 4.65:1 even on Paper Gray. */
+    --label-color: rgba(17, 17, 17, 0.6);
     --button-color: var(--white);
     --button-background-color: var(--dark);
     --button-background-hover: var(--primary-color);
@@ -84,6 +93,9 @@
     --heading-font-color: var(--light-gray);
     --link-color: var(--light-gray);
     --link-color-hover: var(--brand-color);
+    --link-text-hover: var(--brand-color);
+    --nav-current-color: var(--brand-color);
+    --label-color: var(--gray);
     --button-color: var(--dark);
     --button-background-color: var(--primary-color);
     --button-background-hover: #ffd34e;

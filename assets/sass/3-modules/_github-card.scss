@@ -36,11 +36,14 @@
         color: var(--heading-font-color);
         text-decoration: none;
 
+        /* Inside post and work content the title also gets the in-article
+           link border, which turns yellow on hover; that is its hover cue.
+           Keep the text Ink there: yellow never writes on Paper. */
         &:hover {
-            color: var(--primary-color);
+            color: var(--link-text-hover);
 
             .github-card__icon {
-                fill: var(--primary-color);
+                fill: var(--link-text-hover);
             }
         }
     }

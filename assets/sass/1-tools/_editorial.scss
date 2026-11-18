@@ -8,10 +8,5 @@
     line-height: 1;
     letter-spacing: 1.6px;
     text-transform: uppercase;
-    color: var(--text-color);
-    opacity: 0.6;
-}
-
-.dark-mode .label-numbered {
-    opacity: 1;
+    color: var(--label-color);
 }

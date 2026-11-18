@@ -169,7 +169,7 @@ A near-monochrome notebook (ink on paper by day, chalk on night by night) with a
 
 ### Primary
 
-- **Highlighter Yellow** (`highlighter-yellow`): the one brand accent. Fills the accent button, the hover state of the primary button, tag chips on hover, text selection, the active-nav dot, the current-language border, the 2px link-underline sweep on post titles and in the mobile nav, the blockquote's opening mark, the hero avatar ring and the callout's default left rule. In dark mode it also becomes the primary button's resting fill, brightening to **Highlighter Yellow Bright** (`highlighter-yellow-bright`) on hover.
+- **Highlighter Yellow** (`highlighter-yellow`): the one brand accent. Fills the accent button, the hover state of the primary button, tag chips on hover, text selection, the hover tile behind footer and back-to-top icons (with an Ink icon), the current-language border, the current-page nav bar in dark mode, the 2px link-underline sweep on post titles and in the mobile nav, the blockquote's opening mark, the hero avatar ring and the callout's default left rule. In dark mode it also becomes the primary button's resting fill, brightening to **Highlighter Yellow Bright** (`highlighter-yellow-bright`) on hover.
 
 ### Neutral
 
@@ -217,7 +217,7 @@ The One Half Dark scheme: **Terminal Background** (`terminal-bg`) inside a **Ter
 - **Nav** (700, 20px, line height 1): desktop navigation links; 24px in the mobile drawer.
 - **Body** (400, 18px stepping to 17px and 16px, line height 1.7): default page text.
 - **Body Article** (400, 19px stepping to 18px and 17px, line height 1.75): posts and pages, in a 780px column, with `text-wrap: pretty` on paragraphs and `balance` on h1 to h3.
-- **Label** (700, 11 to 12px, 1.6px tracking, uppercase): post meta, work-hero meta, card labels and nav section labels, usually at 60% opacity of the text color.
+- **Label** (700, 11 to 12px, 1.6px tracking, uppercase): post meta, work-hero meta, card labels and nav section labels, in the label color: 60% Ink in light mode (4.65:1 even on Paper Gray), Moon Gray in dark mode. Never lower the element's opacity to mute it; that compounds with already-muted dark text.
 - **Mono** (13px, 11px on phones, line height 1.75): the hero terminal; code blocks use 14px.
 
 ### Named Rules
@@ -278,13 +278,13 @@ Friendly and solid: generous padding, a rounded 12px corner, and instant color c
 - **Corner Style:** square-cropped covers with 16px corners on work cards and 8px on article cards.
 - **Background:** the cover sits on a Paper Gray placeholder; the caption below has no container.
 - **Shadow Strategy:** none at rest; a 6px lift and 4% image zoom on hover (see Elevation & Depth).
-- **Caption:** an uppercase 11px label at 60% opacity, then a 24px bold title whose underline fades in on hover (1.5px thickness, 3px offset).
+- **Caption:** an uppercase 11px label in the label color, then a 24px bold title whose underline fades in on hover (1.5px thickness, 3px offset).
 - **Work band:** on the homepage, work cards sit inside a Paper Gray band with 40px corners, inset 32px from the viewport edges.
 
 ### Navigation
 
-- **Desktop:** centered 20px bold links with 48px gaps. Hover shows a 6px dot above the label in the link color; the active page shows it in Highlighter Yellow. Dropdowns open on hover or focus into an 8px-cornered panel with the menu-float shadow, where items get a yellow wash (30% opacity on hover, 70% when active).
-- **Mobile (1024px and below):** a full-screen popover drawer with a centered 36px title, 24px links that sweep a 2px yellow underline in on hover, and labeled Preferences and Pages sections. The close control is a 36px Paper Gray circle.
+- **Desktop:** centered 20px bold links with 48px gaps. Hover shows a 6px dot above the label in the link color; the current page (`aria-current="page"`) gets a 16px by 3px bar under the label instead, a different shape so it never relies on color alone: Ink in light mode, Highlighter Yellow in dark. The bar is a border, so it survives forced colors. Link text never turns yellow on hover in light mode. Submenus are native popovers of their toggle: Enter, Space or a click opens them, a mouse hover previews them, and they open into an 8px-cornered panel with the menu-float shadow, where items get a yellow wash (30% opacity on hover, 70% for the current page).
+- **Mobile (1024px and below):** a full-screen popover drawer with a centered 36px title, 24px links that sweep a 2px yellow underline in on hover, and labeled Preferences and Pages sections, with the current page's bar about 5px under its label. The close control is a 36px Paper Gray circle.
 - **Preferences:** the theme toggle is a 44px Paper Gray circle with a sun or moon icon. The language switcher uses 44px-tall, 8px-cornered links; the current language gets a Paper Gray fill, a 2px Highlighter Yellow border and a 20px by 3px yellow bar.
 
 ### Callouts
@@ -319,11 +319,10 @@ A static Windows Terminal window in One Half Dark: a 38px Terminal Chrome title 
 - **Don't** theme the terminal or let it read site color tokens.
 - **Don't** add resting shadows to cards, sections or buttons.
 - **Don't** use sliding or `::before` fill animations on buttons; hover is a plain color change.
+- **Don't** recolor link text to Highlighter Yellow on hover in light mode; use `--link-text-hover` for text and keep the yellow for the underline, border or tile (`--link-color-hover`, `--icon-hover-bg`).
+- **Don't** mute text with `opacity`; use `--label-color` or another token that meets 4.5:1 in both themes.
 
-### Known drift (found during documentation, 2026-11-18)
+### Known drift (found during documentation, 2026-11-18; updated after the polish pass)
 
-- The global `a:hover` sets link text to Highlighter Yellow, which breaks the Highlighter Never Writes Rule in light mode wherever a component doesn't override it.
-- `.hero__avatar` hardcodes `#ffc71d` instead of using `var(--brand-color)`.
-- `.section__small__title` reads `--text-alt-color-2`, which is never defined.
-- In dark mode, 60%-opacity card labels on Night Panel measure about 3.0:1, and the green "updated" badge text on Paper is about 2.6:1; both are below AA.
-- `.callout`, `.label-numbered` and the dropdown are styled through the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.
+- The green "updated" badge text on Paper measures about 2.6:1, below AA (post and work pages, not the homepage).
+- `.callout` and the dropdown are still styled through the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.

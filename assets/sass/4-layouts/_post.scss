@@ -348,7 +348,11 @@
         border-bottom: none;
 
         &:hover {
-            color: var(--link-color-hover);
+            color: var(--link-text-hover);
+            text-decoration: underline;
+            text-decoration-color: var(--link-color-hover);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 3px;
         }
     }
 }
