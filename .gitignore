@@ -50,3 +50,7 @@ tmpclaude-*-cwd
 /openspec/
 
 .kiro
+
+# Impeccable runtime output (local audit reports, design-hook cache)
+.impeccable/audit/
+.impeccable/hook.cache.json

@@ -1,0 +1,417 @@
+{
+    "schemaVersion": 2,
+    "generatedAt": "2026-11-18T00:00:00Z",
+    "title": "Design System: Jonathan Búcaro",
+    "extensions": {
+        "colorMeta": {
+            "highlighter-yellow": {
+                "role": "primary",
+                "displayName": "Highlighter Yellow",
+                "canonical": "oklch(85.6% 0.170 87)",
+                "tonalRamp": [
+                    "#1c0300",
+                    "#481400",
+                    "#6b3700",
+                    "#8f5b00",
+                    "#b57f00",
+                    "#dca500",
+                    "#ecce87",
+                    "#f8eed5"
+                ]
+            },
+            "highlighter-yellow-bright": {
+                "role": "primary",
+                "displayName": "Highlighter Yellow Bright"
+            },
+            "ink": {
+                "role": "neutral",
+                "displayName": "Ink",
+                "canonical": "oklch(17.8% 0 0)",
+                "tonalRamp": [
+                    "#0b0b0b",
+                    "#262626",
+                    "#454545",
+                    "#666666",
+                    "#898989",
+                    "#aeaeae",
+                    "#d1d1d1",
+                    "#eeeeee"
+                ]
+            },
+            "paper": {
+                "role": "neutral",
+                "displayName": "Paper",
+                "canonical": "oklch(100% 0 0)"
+            },
+            "paper-gray": {
+                "role": "neutral",
+                "displayName": "Paper Gray",
+                "canonical": "oklch(94.2% 0.005 258)",
+                "tonalRamp": [
+                    "#0a0b0c",
+                    "#252629",
+                    "#434547",
+                    "#646669",
+                    "#87898c",
+                    "#acaeb1",
+                    "#d0d1d3",
+                    "#eeeeef"
+                ]
+            },
+            "paper-mist": {
+                "role": "neutral",
+                "displayName": "Paper Mist",
+                "canonical": "oklch(92.5% 0.007 268)"
+            },
+            "pencil-gray": {
+                "role": "neutral",
+                "displayName": "Pencil Gray",
+                "canonical": "oklch(56.6% 0 0)"
+            },
+            "code-label-gray": {
+                "role": "neutral",
+                "displayName": "Code Label Gray"
+            },
+            "night": {
+                "role": "neutral",
+                "displayName": "Night",
+                "canonical": "oklch(17.7% 0.012 292)",
+                "tonalRamp": [
+                    "#0b0b0e",
+                    "#26252c",
+                    "#45444b",
+                    "#66656d",
+                    "#898890",
+                    "#aeadb5",
+                    "#d1d0d5",
+                    "#eeeef0"
+                ]
+            },
+            "night-panel": {
+                "role": "neutral",
+                "displayName": "Night Panel",
+                "canonical": "oklch(25.5% 0.015 285)",
+                "tonalRamp": [
+                    "#0b0b0f",
+                    "#25262e",
+                    "#44444d",
+                    "#65656f",
+                    "#888892",
+                    "#adadb7",
+                    "#d0d0d6",
+                    "#eeeef0"
+                ]
+            },
+            "night-panel-raised": {
+                "role": "neutral",
+                "displayName": "Night Panel Raised",
+                "canonical": "oklch(27.6% 0.015 285)"
+            },
+            "night-rule": {
+                "role": "neutral",
+                "displayName": "Night Rule",
+                "canonical": "oklch(31.3% 0.008 264)"
+            },
+            "moon-gray": {
+                "role": "neutral",
+                "displayName": "Moon Gray",
+                "canonical": "oklch(69.9% 0 0)"
+            },
+            "chalk": {
+                "role": "neutral",
+                "displayName": "Chalk",
+                "canonical": "oklch(95.5% 0 0)"
+            },
+            "terminal-bg": {
+                "role": "tertiary",
+                "displayName": "Terminal Background",
+                "canonical": "oklch(29.3% 0.016 264)",
+                "tonalRamp": [
+                    "#090b0f",
+                    "#23262e",
+                    "#41454e",
+                    "#62666f",
+                    "#848993",
+                    "#a9aeb8",
+                    "#ced1d7",
+                    "#edeef1"
+                ]
+            },
+            "terminal-chrome": {
+                "role": "tertiary",
+                "displayName": "Terminal Chrome"
+            },
+            "terminal-fg": {
+                "role": "tertiary",
+                "displayName": "Terminal Foreground",
+                "canonical": "oklch(90.3% 0.008 260)"
+            },
+            "terminal-muted": {
+                "role": "tertiary",
+                "displayName": "Terminal Muted"
+            },
+            "terminal-prompt": { "role": "tertiary", "displayName": "Prompt" },
+            "terminal-command": {
+                "role": "tertiary",
+                "displayName": "Command"
+            },
+            "terminal-blue": {
+                "role": "tertiary",
+                "displayName": "Terminal Blue"
+            },
+            "terminal-cyan": {
+                "role": "tertiary",
+                "displayName": "Terminal Cyan"
+            },
+            "terminal-purple": {
+                "role": "tertiary",
+                "displayName": "Terminal Purple"
+            },
+            "callout-blue": {
+                "role": "semantic",
+                "displayName": "Callout Blue (note)"
+            },
+            "callout-green": {
+                "role": "semantic",
+                "displayName": "Callout Green (tip, updated)"
+            },
+            "callout-yellow": {
+                "role": "semantic",
+                "displayName": "Callout Yellow (important)"
+            },
+            "callout-orange": {
+                "role": "semantic",
+                "displayName": "Callout Orange (warning)"
+            },
+            "callout-red": {
+                "role": "semantic",
+                "displayName": "Callout Red (caution)"
+            },
+            "callout-night": {
+                "role": "semantic",
+                "displayName": "Callout Night"
+            }
+        },
+        "typographyMeta": {
+            "display": {
+                "displayName": "Display",
+                "purpose": "Homepage hero headline only."
+            },
+            "headline": {
+                "displayName": "Headline",
+                "purpose": "Post, page and section titles."
+            },
+            "title": {
+                "displayName": "Title",
+                "purpose": "Work and article card titles."
+            },
+            "nav": {
+                "displayName": "Nav",
+                "purpose": "Desktop navigation links."
+            },
+            "body": { "displayName": "Body", "purpose": "Default page text." },
+            "body-article": {
+                "displayName": "Body Article",
+                "purpose": "Posts and pages in the 780px reading column."
+            },
+            "label": {
+                "displayName": "Label",
+                "purpose": "Uppercase meta lines, card labels, nav section labels."
+            },
+            "mono": {
+                "displayName": "Mono",
+                "purpose": "Hero terminal; local fonts only, never downloaded."
+            }
+        },
+        "shadows": [
+            {
+                "name": "terminal-lift",
+                "value": "0 18px 40px rgba(0, 0, 0, 0.18)",
+                "purpose": "The hero terminal only; the page's one floating object."
+            },
+            {
+                "name": "menu-float",
+                "value": "0 15px 40px 5px rgba(20, 20, 20, 0.07)",
+                "purpose": "Desktop dropdown menu over content."
+            },
+            {
+                "name": "whisper",
+                "value": "0 2px 8px rgba(0, 0, 0, 0.04)",
+                "purpose": "Callouts, challenge blocks, GitHub cards; reads as a tonal edge."
+            },
+            {
+                "name": "whisper-hover",
+                "value": "0 4px 16px rgba(0, 0, 0, 0.08)",
+                "purpose": "GitHub card hover."
+            }
+        ],
+        "motion": [
+            {
+                "name": "color-change",
+                "value": "color 0.2s, background-color 0.2s",
+                "purpose": "Buttons, links, nav: plain instant-feeling color change."
+            },
+            {
+                "name": "theme-transition",
+                "value": "color 0.35s, background-color 0.35s, border-color 0.35s, opacity 0.35s",
+                "purpose": "Global token transition when the theme switches."
+            },
+            {
+                "name": "card-lift",
+                "value": "transform 0.5s ease-in-out; translateY(-6px), image scale 1.04",
+                "purpose": "Work and article card hover; disabled under reduced motion."
+            },
+            {
+                "name": "underline-sweep",
+                "value": "background-size 0.2s; 0 to 100% by 2px",
+                "purpose": "Yellow underline on post titles and mobile nav links."
+            },
+            {
+                "name": "reveal",
+                "value": "0.5s ease; opacity 0 and translate 0 24px to rest",
+                "purpose": "One-off scroll entry on [data-reveal] cards; off without JS or with reduced motion."
+            }
+        ],
+        "breakpoints": [
+            { "name": "mobile", "value": "576px" },
+            { "name": "tablet", "value": "768px" },
+            { "name": "desktop", "value": "1024px" },
+            { "name": "wide", "value": "1400px" }
+        ]
+    },
+    "components": [
+        {
+            "name": "Primary Button",
+            "kind": "button",
+            "refersTo": "button-primary",
+            "description": "Main call to action (Get in Touch). Ink fill that turns Highlighter Yellow on hover.",
+            "html": "<a class=\"ds-btn-primary\" href=\"#\">Get in Touch</a>",
+            "css": ".ds-btn-primary { display: inline-block; padding: 20px 40px; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 1.1; text-decoration: none; border-radius: 12px; color: var(--button-color, #fff); background-color: var(--button-background-color, #111); transition: color 0.2s, background-color 0.2s; } .ds-btn-primary:hover { color: #111; background-color: var(--button-background-hover, #ffc71d); } .ds-btn-primary:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; }"
+        },
+        {
+            "name": "Accent Button",
+            "kind": "button",
+            "refersTo": "button-accent",
+            "description": "Default .button: Highlighter Yellow fill with Ink text.",
+            "html": "<a class=\"ds-btn-accent\" href=\"#\">Read the post</a>",
+            "css": ".ds-btn-accent { display: inline-block; padding: 20px 40px; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 16px; font-weight: 700; line-height: 1.1; text-decoration: none; border-radius: 12px; color: #111; background: var(--brand-color, #ffc71d); transition: color 0.2s, background-color 0.2s; } .ds-btn-accent:hover { color: #111; } .ds-btn-accent:focus-visible { outline: 2px solid #111; outline-offset: 2px; }"
+        },
+        {
+            "name": "Tag Chip",
+            "kind": "chip",
+            "refersTo": "tag-chip",
+            "description": "Post-head tag: Paper Gray chip that fills with Highlighter Yellow on hover.",
+            "html": "<a class=\"ds-tag\" href=\"#\">AI Agents</a>",
+            "css": ".ds-tag { display: inline-block; padding: 8px 12px; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 11px; line-height: 1.2; font-weight: 500; text-transform: uppercase; text-decoration: none; border-radius: 4px; color: var(--heading-font-color, #111); background-color: var(--background-alt-color, #eaecef); transition: background-color 0.15s ease, color 0.15s ease; } .ds-tag:hover { color: #111; background-color: var(--brand-color, #ffc71d); } .ds-tag:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; }"
+        },
+        {
+            "name": "Work Card",
+            "kind": "card",
+            "refersTo": "work-card-image",
+            "description": "Square 16px-cornered cover on a Paper Gray placeholder, uppercase label and bold title below; lifts 6px on hover.",
+            "html": "<article class=\"ds-work-card\"><a class=\"ds-work-card__image\" href=\"#\" aria-hidden=\"true\" tabindex=\"-1\"></a><p class=\"ds-work-card__label\">Project · CLI tool</p><h3 class=\"ds-work-card__title\"><a href=\"#\">dotnet-gitmoji</a></h3></article>",
+            "css": ".ds-work-card { max-width: 320px; font-family: 'Noto Sans Display', Arial, sans-serif; transition: transform 0.5s ease-in-out; } .ds-work-card:hover { transform: translateY(-6px); } .ds-work-card__image { display: block; aspect-ratio: 1; margin-bottom: 20px; border-radius: 16px; background-color: var(--background-alt-color, #eaecef); } .ds-work-card__label { margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; line-height: 1; color: var(--text-color, #111); opacity: 0.6; } .ds-work-card__title { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 700; color: var(--heading-font-color, #111); } .ds-work-card__title a { color: inherit; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: text-decoration-color 0.2s; } .ds-work-card__title a:hover, .ds-work-card__title a:focus-visible { text-decoration-color: currentColor; } @media (prefers-reduced-motion: reduce) { .ds-work-card, .ds-work-card:hover { transition: none; transform: none; } }"
+        },
+        {
+            "name": "Desktop Navigation",
+            "kind": "nav",
+            "description": "Centered bold links; a 6px dot above marks hover (link color) and the active page (Highlighter Yellow).",
+            "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__link\" href=\"#\">Home</a><a class=\"ds-nav__link ds-nav__link--active\" href=\"#\" aria-current=\"page\">Work</a><a class=\"ds-nav__link\" href=\"#\">Blog</a><a class=\"ds-nav__link\" href=\"#\">About</a></nav>",
+            "css": ".ds-nav { display: flex; gap: 48px; align-items: center; } .ds-nav__link { position: relative; padding: 12px 0; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 20px; line-height: 1; font-weight: 700; text-decoration: none; color: var(--link-color, #111); } .ds-nav__link::before { content: ''; position: absolute; left: 50%; top: 0; width: 6px; height: 6px; border-radius: 50%; transform: translateX(-50%); opacity: 0; background-color: var(--link-color, #111); transition: opacity 0.2s; } .ds-nav__link:hover::before { opacity: 1; } .ds-nav__link--active::before { opacity: 1; background-color: var(--brand-color, #ffc71d); } .ds-nav__link:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; }"
+        },
+        {
+            "name": "Language Switcher",
+            "kind": "nav",
+            "refersTo": "language-link",
+            "description": "44px-tall links; the current language gets a Paper Gray fill, yellow border and a short yellow bar.",
+            "html": "<div class=\"ds-lang\"><span class=\"ds-lang__link ds-lang__link--current\" aria-current=\"true\">EN</span><a class=\"ds-lang__link\" href=\"#\" hreflang=\"es\">ES</a></div>",
+            "css": ".ds-lang { display: flex; gap: 10px; } .ds-lang__link { position: relative; display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-decoration: none; color: var(--link-color, #111); transition: color 0.2s ease, background-color 0.2s ease; } .ds-lang__link:hover { background: var(--background-alt-color, #eaecef); } .ds-lang__link:focus-visible { outline: 2px solid var(--brand-color, #ffc71d); outline-offset: 2px; } .ds-lang__link--current { background: var(--background-alt-color, #eaecef); color: var(--heading-font-color, #111); border: 2px solid var(--brand-color, #ffc71d); } .ds-lang__link--current::before { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; border-radius: 2px; background: var(--brand-color, #ffc71d); }"
+        },
+        {
+            "name": "Callout",
+            "kind": "custom",
+            "refersTo": "callout",
+            "description": "Paper Gray panel with a 6px semantic left rule and an emoji marker.",
+            "html": "<div class=\"ds-callout ds-callout--tip\"><p>Start with the scripts you already have.</p></div>",
+            "css": ".ds-callout { position: relative; padding: 24px 32px 24px 56px; border-radius: 12px; font-family: 'Noto Sans Display', Arial, sans-serif; font-size: 16px; color: var(--text-color, #111); background: var(--background-alt-color, #eaecef); border-left: 6px solid var(--brand-color, #ffc71d); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); } .ds-callout p { margin: 0; } .ds-callout::before { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); font-size: 22px; line-height: 1; } .ds-callout--tip { border-color: #2db47d; } .ds-callout--tip::before { content: '💡'; }"
+        },
+        {
+            "name": "Hero Terminal",
+            "kind": "custom",
+            "refersTo": "terminal",
+            "description": "Always-dark One Half Dark terminal window; the site's signature and only floating object.",
+            "html": "<div class=\"ds-term\"><div class=\"ds-term__bar\"><span class=\"ds-term__tab\">jebucaro@wsl: ~</span></div><div class=\"ds-term__body\"><p class=\"ds-term__line\"><span class=\"ds-term__prompt\">~ $</span> <span class=\"ds-term__cmd\">gh</span> repo list <span class=\"ds-term__flag\">--limit</span> 3</p><p class=\"ds-term__line\"><span class=\"ds-term__lang\">C#</span>  <a class=\"ds-term__link\" href=\"#\">dotnet-gitmoji</a>  <span class=\"ds-term__muted\">Gitmoji commits for .NET teams</span></p><p class=\"ds-term__line\"><span class=\"ds-term__prompt\">~ $</span> <span class=\"ds-term__cursor\"></span></p></div></div>",
+            "css": ".ds-term { max-width: 520px; overflow: hidden; border-radius: 10px; background: #282c34; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18); font-family: 'Cascadia Code', 'Cascadia Mono', ui-monospace, Consolas, Menlo, monospace; font-size: 13px; color: #dcdfe4; } .ds-term__bar { display: flex; height: 38px; background: #1f1f1f; font-size: 12px; color: #ccc; } .ds-term__tab { display: flex; align-items: center; min-width: 240px; margin: 6px 0 0 8px; padding: 0 12px 0 14px; border-radius: 8px 8px 0 0; background: #282c34; } .ds-term__body { padding: 16px 18px 18px; line-height: 1.75; } .ds-term__line { margin: 0; white-space: nowrap; } .ds-term__prompt { color: #e5c07b; } .ds-term__cmd { font-weight: 600; color: #98c379; } .ds-term__flag { color: #56b6c2; } .ds-term__lang { color: #61afef; } .ds-term__muted { color: #9da5b4; } .ds-term__link { color: #dcdfe4; text-decoration: underline; text-decoration-color: #61afef; text-underline-offset: 3px; } .ds-term__link:hover { color: #61afef; } .ds-term__link:focus-visible { outline: 2px solid #61afef; outline-offset: 2px; } .ds-term__cursor { display: inline-block; width: 0.6em; height: 1.2em; vertical-align: text-bottom; background: #a3b3cc; }"
+        }
+    ],
+    "narrative": {
+        "northStar": "The Engineer's Notebook",
+        "overview": "The site reads like a working engineer's notebook: clean pages of plain type, one highlighter for what matters, and real artifacts pasted in. The personality comes from those artifacts (a live-looking terminal, code blocks, talk photos, project covers), not from decoration. A reader should feel they are looking at someone's actual work, kept tidy, rather than at a marketing site.\n\nDensity is relaxed: 18px body text with a 1.7 line height, 32px between blocks, 100px between homepage sections, and a 780px reading column for posts and work write-ups. One sans family carries everything from the 72px hero headline to 12px uppercase labels. The only other voice is the monospace inside the terminal and code.\n\nCorners are friendly and rounded throughout (8 to 16px on most surfaces, 40px on the homepage work band), which softens an otherwise strict black-white-yellow palette. Light and dark themes are equal citizens; dark mode is a deep violet-tinted night (`night`), not pure black. The system explicitly rejects hype and SaaS gloss: no gradients, glows, glassmorphism, or anything that reads as a product launch page.",
+        "keyCharacteristics": [
+            "One accent, Highlighter Yellow, used as a fill or underline, never as body text on paper.",
+            "One type family (Noto Sans Display, self-hosted variable 400 to 700) plus a local-only monospace.",
+            "Flat tonal layers for depth; the hero terminal is the only element that floats.",
+            "Friendly rounded corners on every contained surface.",
+            "An always-dark Windows Terminal window (One Half Dark) as the homepage signature."
+        ],
+        "rules": [
+            {
+                "name": "The One Highlighter Rule",
+                "body": "Highlighter Yellow is the only brand accent. No second accent color sits beside it; semantic callout colors stay inside callouts and status badges.",
+                "section": "colors"
+            },
+            {
+                "name": "The Highlighter Never Writes Rule",
+                "body": "Yellow is a fill behind dark ink (12:1) or a 2 to 3px stroke, underline or dot. Never use it as text on Paper: it measures 1.56:1.",
+                "section": "colors"
+            },
+            {
+                "name": "The Always-Dark Terminal Rule",
+                "body": "The terminal keeps its fixed One Half Dark palette in both site themes. It never reads theme tokens.",
+                "section": "colors"
+            },
+            {
+                "name": "The One Family Rule",
+                "body": "Noto Sans Display sets every word of UI and prose. Don't add a second display or body face; the monospace is only for terminal and code, and it is never downloaded.",
+                "section": "typography"
+            },
+            {
+                "name": "The Weight Ladder Rule",
+                "body": "Hierarchy is built from weight (400, 700, 800), size and tracking. Color stays Ink or Chalk for every heading level.",
+                "section": "typography"
+            },
+            {
+                "name": "The Reading Column Rule",
+                "body": "Long-form text never exceeds the 780px column; everything wider is an image or a deliberate full-bleed break.",
+                "section": "layout"
+            },
+            {
+                "name": "The Flat Paper Rule",
+                "body": "Surfaces are flat at rest. Only the terminal floats; card lift is a response to hover, never a resting state, and it disappears under reduced motion.",
+                "section": "elevation"
+            },
+            {
+                "name": "The Scale-Matched Corner Rule",
+                "body": "The bigger the surface, the rounder the corner. A new component picks the radius of the nearest existing surface of its size.",
+                "section": "shapes"
+            }
+        ],
+        "dos": [
+            "Do use Highlighter Yellow as a fill behind Ink (12:1) or as a 2 to 3px underline, border or dot.",
+            "Do build depth from Paper Gray and Night Panel layers; keep the 18% shadow for the terminal alone.",
+            "Do match corner radius to surface size (4px chips, 8px images, 12px buttons and callouts, 16px cards, 40px bands).",
+            "Do set every word in Noto Sans Display; use the local Cascadia stack only for terminal and code.",
+            "Do keep reading text in the 780px column at 19px and 1.75 line height.",
+            "Do switch off lift, zoom and reveal motion under `prefers-reduced-motion`, and give interactive controls a visible `:focus-visible` outline (2px with a 2px offset).",
+            "Do keep touch targets at least 44px for header controls and 24px for inline rows."
+        ],
+        "donts": [
+            "Don't add hype or SaaS gloss: no gradients, glows, glassmorphism, neon, or launch-page drama.",
+            "Don't introduce a second brand accent; callout colors stay in callouts and status badges.",
+            "Don't set Highlighter Yellow as text on Paper or Paper Gray (1.56:1).",
+            "Don't theme the terminal or let it read site color tokens.",
+            "Don't add resting shadows to cards, sections or buttons.",
+            "Don't use sliding or `::before` fill animations on buttons; hover is a plain color change."
+        ]
+    }
+}
