@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var html = document.documentElement,
         menuOpenButton = document.querySelector('.icon__menu'),
-        menuCloseButton = document.querySelector('.nav__icon-close'),
         menuList = document.querySelector('.main-nav'),
         toggleThemeButtons = document.querySelectorAll('.toggle-theme-js'),
         btnScrollToTop = document.querySelector('.top'),
@@ -74,12 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // that do not focus a button on click.
             menuList.showPopover({ source: menuOpenButton });
         });
-
-        if (menuCloseButton) {
-            menuCloseButton.addEventListener('click', function () {
-                menuList.hidePopover();
-            });
-        }
 
         // Fires before the popover is hidden, so the opener is no longer
         // inert when the browser returns focus to it.

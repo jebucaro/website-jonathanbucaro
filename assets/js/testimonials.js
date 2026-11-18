@@ -5,7 +5,7 @@
     var carousel = document.querySelector('[data-carousel]');
     if (carousel) {
         var track = carousel.querySelector('.testimonials__slider'),
-            slides = Array.prototype.slice.call(track.children),
+            slides = Array.from(track.children),
             prevButton = carousel.querySelector('[data-controls="prev"]'),
             nextButton = carousel.querySelector('[data-controls="next"]'),
             statusRegion = carousel.querySelector('[role="status"]'),
@@ -26,7 +26,7 @@
         }
 
         function visualOrder() {
-            return slides.slice().sort(function (a, b) {
+            return slides.toSorted(function (a, b) {
                 return slideOffset(a) - slideOffset(b);
             });
         }

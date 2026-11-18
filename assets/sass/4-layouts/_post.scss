@@ -256,6 +256,15 @@
 }
 
 .post__content,
+.page__content,
+.work-content {
+    p,
+    blockquote {
+        text-wrap: pretty;
+    }
+}
+
+.post__content,
 .work-content {
     h2,
     h3,

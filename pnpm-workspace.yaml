@@ -6,3 +6,9 @@ overrides:
     smol-toml: ^1.9.0
     re2js@>=2.2.0 <2.8.7: ^2.8.7
     katex: '>=0.18.2'
+auditConfig:
+    ignoreGhsas:
+        # picomatch <=4.0.7 ReDoS, no patched release yet. Dev-only (markdownlint-cli,
+        # lint-staged, sass watcher) and only fed our own glob patterns.
+        # Remove once picomatch publishes a fix and the lockfile resolves it.
+        - GHSA-fc5q-39xc-vjpf
