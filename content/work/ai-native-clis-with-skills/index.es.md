@@ -12,6 +12,8 @@ talk:
     event: 'AWS Community Day Guatemala 2026'
     url: 'https://awscommunityday.gt/'
     free: true
+    availability: 'SoldOut'
+    registrationOpened: '2026-07-29T08:52:10-06:00'
     organizer:
         name: 'AWS User Group Guatemala'
         url: 'https://www.linkedin.com/company/aws-user-group-guatemala/'
