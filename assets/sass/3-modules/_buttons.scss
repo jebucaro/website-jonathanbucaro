@@ -21,6 +21,16 @@
         color: var(--dark);
     }
 
+    /* Keyboard focus (WCAG 2.4.7). The base rule drops the browser ring for
+       mouse clicks; this one shows for keyboard use only. Ink in light mode,
+       Chalk in dark, offset so a strip of page color separates it from the
+       fill whether that is Ink, Highlighter Yellow or sits on Paper Gray.
+       An outline survives forced colors, unlike a box-shadow ring. */
+    &:focus-visible {
+        outline: 2px solid var(--heading-font-color);
+        outline-offset: 3px;
+    }
+
     &--primary {
         color: var(--button-color);
         background-color: var(--button-background-color);

@@ -53,4 +53,5 @@ tmpclaude-*-cwd
 
 # Impeccable runtime output (local audit reports, design-hook cache)
 .impeccable/audit/
+.impeccable/critique/
 .impeccable/hook.cache.json
