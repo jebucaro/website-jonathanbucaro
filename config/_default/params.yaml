@@ -3,7 +3,6 @@ description: ''
 color_scheme: auto
 technologies:
     enable: true
-    title: 'Main Programming Languages & Technologies'
     items:
         - name: 'C#'
           group: 'backend-integrations'
