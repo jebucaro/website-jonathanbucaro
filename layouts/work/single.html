@@ -26,12 +26,12 @@
                 <p class="work-hero__meta">
                     {{ with $workTypes }}
                         <a href="{{ (index . 0).RelPermalink }}">{{ (index . 0).LinkTitle }}</a>
-                        <span class="work-hero__meta-sep">·</span>
+                        <span class="work-hero__meta-sep" aria-hidden="true">·</span>
                     {{ end }}
                     {{/* Plain text, not a link. */}}
                     {{ with $artifact }}
                         <span class="work-hero__artifact">{{ . }}</span>
-                        <span class="work-hero__meta-sep">·</span>
+                        <span class="work-hero__meta-sep" aria-hidden="true">·</span>
                     {{ end }}
                     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/localize-month-year" (dict "date" .Date) }}</time>
                     {{ if gt .Lastmod .Date }}

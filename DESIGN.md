@@ -331,7 +331,21 @@ A static Windows Terminal window in One Half Dark: a 38px Terminal Chrome title 
 - **Don't** recolor link text to Highlighter Yellow on hover in light mode; use `--link-text-hover` for text and keep the yellow for the underline, border or tile (`--link-color-hover`, `--icon-hover-bg`).
 - **Don't** mute text with `opacity`; use `--label-color` or another token that meets 4.5:1 in both themes.
 
-### Known drift (found during documentation, 2026-11-18; updated after the polish pass)
+### Known drift (re-measured 2026-11-18 in the final polish pass)
 
-- A few components (dropdown menu, logos, GitHub card, talk details, agent session, checklist dividers) still key dark-mode tweaks on the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.
-- **Callout Yellow** (`#f1c40f`, the "important" callout rule) nearly duplicates Highlighter Yellow and measures about 1.4:1 as a rule on Paper Gray. Left as is for now; revisit with the accent's role.
+Measured on 13 pages (including `/es/` and the 404) in light and dark at 1280px and 390px: no resting text or forced-hover contrast failures and no horizontal overflow. A keyboard pass over 8 pages showed a focus ring on every stop; only the YouTube embed relies on its own player's ring.
+
+Still open:
+
+- A few components (dropdown menu, logos, GitHub card, talk details, agent session, checklist dividers) key dark-mode tweaks on the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.
+- Dark mode needs JavaScript: the dark tokens apply on `[dark]`, which theme.js sets, so with scripts off a dark-OS visitor sees the light theme. Planned for the end-of-2026 redesign (tokens on `light-dark()`).
+- **Callout Yellow** (`#f1c40f`, the "important" callout rule) nearly duplicates Highlighter Yellow and measures about 1.4:1 as a rule on Paper Gray. Revisit with the accent's role.
+- The GitHub Primer dark `.err` syntax token measures about 3.1:1 on its background (external palette, rare in practice).
+- The contact layout's form fields show focus only as a yellow border (1.56:1 on Paper). No page uses that layout today; fix it before one does.
+- On phones in Spanish, the work header can end a line with "·" when the next item wraps. Cosmetic.
+
+Accepted on purpose (decided 2026-11-18, not drift):
+
+- Technology names in the logo carousel appear on hover only; screen readers still get every name.
+- Yellow plays a different role per theme: light mode stays near-monochrome, dark mode keeps its yellow buttons.
+- The "·" separators in the work header are decorative (50% opacity, `aria-hidden`).
