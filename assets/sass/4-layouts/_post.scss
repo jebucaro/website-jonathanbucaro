@@ -131,23 +131,37 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.6px;
-    line-height: 1;
+    /* Room between lines when the meta wraps (Spanish, phones). */
+    line-height: 1.6;
 
     .post-author-link,
     .post-date {
         color: var(--text-color);
         transition: none;
+        white-space: nowrap;
+    }
+
+    /* The head is centered, so center the badge's own line too. */
+    .updated-badge {
+        margin-inline: auto;
     }
 }
 
 /* Updated badge — shared by .post-meta and .work-hero__meta,
    inherits their uppercase/bold/letter-spaced type voice. */
 .updated-badge {
-    display: inline-flex;
+    /* Its own line under the meta: a pill wrapped mid-line read as
+       misaligned and left a dangling separator, especially in Spanish. */
+    display: flex;
+    width: fit-content;
     align-items: center;
     gap: 6px;
+    margin-top: 12px;
     padding: 3px 10px 2px;
-    border-radius: 999px;
+    /* 11px is a full pill on one line; long Spanish dates wrap on phones,
+       and the badge then becomes a rounded box instead of a blob. */
+    border-radius: 11px;
+    line-height: 1.4;
     // --callout-green (#2db47d) at 16% opacity
     background-color: rgba(45, 180, 125, 0.16);
     vertical-align: middle;
@@ -162,7 +176,7 @@
     }
 
     &__date {
-        color: var(--callout-green);
+        color: var(--success-text);
     }
 }
 

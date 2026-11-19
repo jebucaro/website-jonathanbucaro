@@ -58,20 +58,10 @@
 
 .challenge__section--problem .challenge__section-label {
     background: rgba(230, 126, 34, 0.12);
-    color: var(--callout-orange);
+    color: var(--warning-text);
 }
 
 .challenge__section--decision .challenge__section-label {
     background: rgba(45, 180, 125, 0.12);
-    color: var(--callout-green);
-}
-
-.dark-mode .challenge {
-    background: var(--callout-bg);
-    box-shadow: none;
-
-    .highlight,
-    pre {
-        background: var(--syntax-highlighting-background);
-    }
+    color: var(--success-text);
 }

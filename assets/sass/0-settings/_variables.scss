@@ -16,6 +16,14 @@ $global-transition:
     opacity 0.35s;
 
 // *****************
+// Always-dark machine output (One Half Dark)
+// *****************
+// Shared by the hero terminal and the agent-session transcript's code, which
+// stay dark in both site themes. Fixed values, not theme tokens.
+$terminal-bg: #282c34;
+$terminal-fg: #dcdfe4;
+
+// *****************
 // Typography
 // *****************
 $base-font-size: 18px;

@@ -32,7 +32,15 @@
         letter-spacing: 1.6px;
         text-transform: uppercase;
         color: var(--text-color);
-        line-height: 1;
+        /* Room between lines when the meta wraps (Spanish, phones). */
+        line-height: 1.6;
+
+        /* Wrap between items, never inside one ("abril / 2026"). */
+        > a,
+        > span,
+        > time {
+            white-space: nowrap;
+        }
 
         a {
             border-bottom: 1px solid var(--border-color);

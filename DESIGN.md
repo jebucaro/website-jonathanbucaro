@@ -30,7 +30,8 @@ colors:
     callout-yellow: '#f1c40f'
     callout-orange: '#e67e22'
     callout-red: '#e74c3c'
-    callout-night: '#23272f'
+    success-text: '#16704b'
+    warning-text: '#9a4c0e'
 typography:
     display:
         fontFamily: 'Noto Sans Display, Noto Sans Display Fallback, Arial, Helvetica Neue, Helvetica, sans-serif'
@@ -191,7 +192,15 @@ The One Half Dark scheme: **Terminal Background** (`terminal-bg`) inside a **Ter
 
 ### Semantic (callouts and status only)
 
-**Callout Blue** (note), **Callout Green** (tip, and the "updated" badge), **Callout Yellow** (important), **Callout Orange** (warning), **Callout Red** (caution), and **Callout Night** (`callout-night`, the dark-mode callout panel). They appear only as a callout's left rule or a status badge, never as decoration.
+**Callout Blue** (note), **Callout Green** (tip, and the "updated" badge dot), **Callout Yellow** (important), **Callout Orange** (warning) and **Callout Red** (caution). They appear only as a callout's left rule, a status dot or a tinted badge background, never as decoration.
+
+The bright green and orange fail as text on light surfaces, so text and thin rules use two darker tokens in light mode: **Success Text** (`success-text`) for the "Updated" date, the "Decision" label and the tip rule, and **Warning Text** (`warning-text`) for the "Problem" label and the warning rule. Both clear 4.6:1 on white, Paper Gray and their 12 to 16% tints. In dark mode these tokens resolve to the bright Callout Green and Callout Orange, which clear 4.6:1 on Night Panel.
+
+### Code and machine output (documented exceptions)
+
+- **Syntax highlighting** uses GitHub's Primer light and dark palettes (`1-tools/_syntax-highlighting.scss`) on the Paper Gray or Night Panel code background. Treat those colors as one external palette; don't reuse them elsewhere.
+- **Agent-session code** (the AI transcript shortcode) stays dark in both themes like the terminal, and reads the same Sass values (`$terminal-bg`, `$terminal-fg` in `0-settings/_variables.scss`).
+- **The JB monogram** (`/images/logo.png`) is an image of the initials in a custom typeface. Its brick red belongs to the mark, not to the palette; don't sample it for UI.
 
 ### Named Rules
 
@@ -289,7 +298,7 @@ Friendly and solid: generous padding, a rounded 12px corner, and instant color c
 
 ### Callouts
 
-A Paper Gray panel (Callout Night in dark mode) with 12px corners, a 6px left rule in the semantic color, an emoji marker at 22px in a 56px left gutter, and the whisper shadow. Code inside a callout gets its own Paper (or Night Panel) background.
+A Paper Gray panel (Night Panel in dark mode, with the normal body text color) with 12px corners, a 6px left rule in the semantic color, an emoji marker at 22px in a 56px left gutter, and the whisper shadow. Code inside a callout gets its own Paper (or Night Panel) background.
 
 ### Post Links and Headings
 
@@ -324,5 +333,5 @@ A static Windows Terminal window in One Half Dark: a 38px Terminal Chrome title 
 
 ### Known drift (found during documentation, 2026-11-18; updated after the polish pass)
 
-- The green "updated" badge text on Paper measures about 2.6:1, below AA (post and work pages, not the homepage).
-- `.callout` and the dropdown are still styled through the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.
+- A few components (dropdown menu, logos, GitHub card, talk details, agent session, checklist dividers) still key dark-mode tweaks on the `.dark-mode` class while the tokens switch on `[dark]`; theme.js sets both, but new code should use the tokens.
+- **Callout Yellow** (`#f1c40f`, the "important" callout rule) nearly duplicates Highlighter Yellow and measures about 1.4:1 as a rule on Paper Gray. Left as is for now; revisit with the accent's role.

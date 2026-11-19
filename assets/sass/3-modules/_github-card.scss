@@ -65,7 +65,7 @@
     &__description {
         margin: 0 0 14px;
         font-size: 0.875em;
-        color: var(--text-alt-color);
+        color: var(--label-color);
         line-height: 1.5;
 
         &:empty {
@@ -101,7 +101,7 @@
         align-items: center;
         gap: 4px;
         font-size: 0.82em;
-        color: var(--text-alt-color);
+        color: var(--label-color);
 
         svg {
             width: 14px;

@@ -35,7 +35,7 @@
                     {{ end }}
                     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "functions/localize-month-year" (dict "date" .Date) }}</time>
                     {{ if gt .Lastmod .Date }}
-                    <span class="work-hero__meta-sep">·</span>
+                    {{- /* No separator: the badge sits on its own line (see .updated-badge). */}}
                     <span class="updated-badge">
                         <time class="updated-badge__date" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ i18n "post_updatedLabel" }} {{ partial "functions/localize-month-year" (dict "date" .Lastmod) }}</time>
                     </span>
