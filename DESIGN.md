@@ -169,7 +169,7 @@ A near-monochrome notebook (ink on paper by day, chalk on night by night) with a
 
 ### Primary
 
-- **Highlighter Yellow** (`highlighter-yellow`): the one brand accent. Fills the accent button, the hover state of the primary button, tag chips on hover, text selection, the hover tile behind footer and back-to-top icons (with an Ink icon), the current-language border, the current-page nav bar in dark mode, the 2px link-underline sweep on post titles and in the mobile nav, the blockquote's opening mark, the hero avatar ring and the callout's default left rule. In dark mode it also becomes the primary button's resting fill, brightening to **Highlighter Yellow Bright** (`highlighter-yellow-bright`) on hover.
+- **Highlighter Yellow** (`highlighter-yellow`): the one brand accent. Fills the accent button, the hover state of the primary button, tag chips on hover, text selection, the hover tile behind footer and back-to-top icons (with an Ink icon), the current-page pagination fill (with Ink text in both themes), the current-language bar and the current-page nav bar in dark mode, the 2px link-underline sweep on post titles and in the mobile nav, the blockquote's opening mark, the hero avatar ring and the callout's default left rule. In dark mode it also becomes the primary button's resting fill, brightening to **Highlighter Yellow Bright** (`highlighter-yellow-bright`) on hover.
 
 ### Neutral
 
@@ -285,7 +285,7 @@ Friendly and solid: generous padding, a rounded 12px corner, and instant color c
 
 - **Desktop:** centered 20px bold links with 48px gaps. Hover shows a 6px dot above the label in the link color; the current page (`aria-current="page"`) gets a 16px by 3px bar under the label instead, a different shape so it never relies on color alone: Ink in light mode, Highlighter Yellow in dark. The bar is a border, so it survives forced colors. Link text never turns yellow on hover in light mode. Submenus are native popovers of their toggle: Enter, Space or a click opens them, a mouse hover previews them, and they open into an 8px-cornered panel with the menu-float shadow, where items get a yellow wash (30% opacity on hover, 70% for the current page).
 - **Mobile (1024px and below):** a full-screen popover drawer with a centered 36px title, 24px links that sweep a 2px yellow underline in on hover, and labeled Preferences and Pages sections, with the current page's bar about 5px under its label. The close control is a 36px Paper Gray circle.
-- **Preferences:** the theme toggle is a 44px Paper Gray circle with a sun or moon icon. The language switcher uses 44px-tall, 8px-cornered links; the current language gets a Paper Gray fill, a 2px Highlighter Yellow border and a 20px by 3px yellow bar.
+- **Preferences:** the theme toggle is a 44px Paper Gray circle with a sun or moon icon. The language switcher uses 44px-tall, 8px-cornered links; the current language gets a Paper Gray fill, a heavier code (700 against 500) and a 20px by 3px bar under it, drawn as a border: Ink in light mode, Highlighter Yellow in dark, the same shape as the nav's current-page bar. No outline in either theme. Language links show an Ink (light) or Chalk (dark) focus ring.
 
 ### Callouts
 
@@ -308,7 +308,7 @@ A static Windows Terminal window in One Half Dark: a 38px Terminal Chrome title 
 - **Do** match corner radius to surface size (4px chips, 8px images, 12px buttons and callouts, 16px cards, 40px bands).
 - **Do** set every word in Noto Sans Display; use the local Cascadia stack only for terminal and code.
 - **Do** keep reading text in the 780px column at 19px and 1.75 line height.
-- **Do** switch off lift, zoom and reveal motion under `prefers-reduced-motion`, and give interactive controls a visible `:focus-visible` outline (2px with a 2px offset).
+- **Do** switch off lift, zoom and reveal motion under `prefers-reduced-motion`, and give interactive controls a visible `:focus-visible` outline: 2px with a 2px offset in the heading color (Ink in light, Chalk in dark), set site-wide in the base styles. Never a yellow focus ring on Paper (1.56:1), and never rely on the browser default, which is near-black and vanishes on Night.
 - **Do** keep touch targets at least 44px for header controls and 24px for inline rows.
 
 ### Don't:

@@ -37,8 +37,9 @@
         }
     }
 
+    /* Ink on the yellow fill in both themes (12:1). Chalk would be 1.37:1. */
     .active-link {
-        color: var(--heading-font-color);
+        color: var(--dark);
         background: var(--brand-color);
         font-weight: 600;
     }

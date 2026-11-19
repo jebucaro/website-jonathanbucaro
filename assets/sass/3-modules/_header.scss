@@ -658,7 +658,7 @@
         color 0.2s ease,
         background-color 0.2s ease;
     font-family: $heading-font-family;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 14px;
     color: var(--link-color);
     background: transparent;
@@ -666,8 +666,9 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 
+    /* Ink in light mode, Chalk in dark: yellow is 1.56:1 on Paper. */
     &:focus-visible {
-        outline: 2px solid var(--brand-color);
+        outline: 2px solid var(--heading-font-color);
         outline-offset: 2px;
     }
 
@@ -687,11 +688,17 @@
         color: var(--link-color);
     }
 
+    /* Current language: Paper Gray fill, heavier code and a bar under it,
+       one shape in both themes so the state never rests on color alone.
+       The bar matches the nav's current-page marker: Ink in light mode,
+       Highlighter Yellow in dark. It is a border so it survives forced
+       colors. The transparent border keeps the chip's footprint from the
+       old outlined version, so the header doesn't shift. */
     &.language-current {
         background-color: var(--background-alt-color);
-        background: var(--background-alt-color);
         color: var(--heading-font-color);
-        border: 2px solid var(--brand-color);
+        font-weight: 700;
+        border: 2px solid transparent;
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02);
         cursor: default;
 
@@ -702,9 +709,8 @@
             left: 50%;
             transform: translateX(-50%);
             width: 20px;
-            height: 3px;
-            background: var(--brand-color);
-            border-radius: 2px;
+            height: 0;
+            border-top: 3px solid var(--nav-current-color);
         }
     }
 }
