@@ -26,23 +26,28 @@
     --callout-yellow: #f1c40f;
     --callout-orange: #e67e22;
     --callout-red: #e74c3c;
-    --callout-bg: #23272f;
+    /* Semantic text: the bright callout hues fail as text on light surfaces
+       (green 2.3:1, orange 2.2:1 on their tints). These darker versions
+       clear 4.6:1 on white, Paper Gray and the 12-16% tints. Dark mode uses
+       the bright values (4.6:1 or more on Night Panel). Dots and fills keep
+       the bright hues in both themes. */
+    --success-text: #16704b;
+    --warning-text: #9a4c0e;
     /* Share Button Colors - Dark icons in light mode */
     --share-bg: #333333;
     --share-bg-hover: #1a1a1a;
     --share-text: #ffffff;
-    --icon-hover-color: var(--brand-color);
-    --icon-hover-bg: #eaecef;
+    /* Icon hover: a Highlighter Yellow tile behind an Ink icon (yellow
+       never writes on Paper: 1.56:1). */
+    --icon-hover-color: var(--dark);
+    --icon-hover-bg: var(--brand-color);
     --primary-color: #ffc71d;
-    --secondary-color: #0038ff;
     --brand-color: var(--primary-color);
     --white: #fff;
     --light-gray: #eaecef;
     --light-blue: #e4e6eb;
-    --blue-gray: #716f8a;
     --gray: #767676;
     --dark: #111;
-    --dark-blue: #1e2740;
     --background-color: var(--white);
     --background-alt-color: var(--light-gray);
     --background-alt-color-2: var(--light-blue);
@@ -50,7 +55,14 @@
     --text-alt-color: var(--gray);
     --heading-font-color: var(--dark);
     --link-color: var(--dark);
+    /* Accent for hover underlines and borders. Hover text uses
+       --link-text-hover, which stays Ink in light mode. */
     --link-color-hover: var(--brand-color);
+    --link-text-hover: var(--dark);
+    /* Current-page marker in the nav (3:1 or more on the page). */
+    --nav-current-color: var(--dark);
+    /* Small uppercase meta labels: 60% Ink, 4.65:1 even on Paper Gray. */
+    --label-color: rgba(17, 17, 17, 0.6);
     --button-color: var(--white);
     --button-background-color: var(--dark);
     --button-background-hover: var(--primary-color);
@@ -70,7 +82,6 @@
     --icon-hover-color: var(--brand-color);
     --icon-hover-bg: #22222a;
     --primary-color: #ffc71d;
-    --secondary-color: #22222a;
     --brand-color: var(--primary-color);
     --white: #fff;
     --light-gray: #f0f0f0;
@@ -84,6 +95,11 @@
     --heading-font-color: var(--light-gray);
     --link-color: var(--light-gray);
     --link-color-hover: var(--brand-color);
+    --link-text-hover: var(--brand-color);
+    --success-text: var(--callout-green);
+    --warning-text: var(--callout-orange);
+    --nav-current-color: var(--brand-color);
+    --label-color: var(--gray);
     --button-color: var(--dark);
     --button-background-color: var(--primary-color);
     --button-background-hover: #ffd34e;

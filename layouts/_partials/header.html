@@ -23,43 +23,7 @@
                         <div class="nav-section nav-section--preferences">
                             <span class="nav-section__label">{{ i18n "ui_preferences" }}</span>
                             <div class="nav-controls nav-controls--drawer">
-                                {{- /* Language Selector */ -}}
-                                {{- if hugo.IsMultilingual -}}
-                                <div class="language-selector">
-                                    {{- /* Current language (shown first) */ -}}
-                                    <span class="language-link language-current" aria-current="page"
-                                          title="{{ .Language.Label }}">
-                                        {{- /* aria-label is not allowed on a plain span; screen readers get this text instead. */ -}}
-                                        <span class="screen-reader-text">Current language: {{ .Language.Label }}</span>
-                                        <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
-                                        <span class="lang-code" aria-hidden="true">{{ .Language.Params.lang_label }}</span>
-                                    </span>
-
-                                    {{- /* Show available translations */ -}}
-                                    {{- if .IsTranslated -}}
-                                        {{- range .Translations -}}
-                                            <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                               title="{{ .Language.Label }}"
-                                               aria-label="Switch to {{ .Language.Label }}">
-                                                <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                                <span class="lang-code">{{ .Language.Params.lang_label }}</span>
-                                            </a>
-                                        {{- end -}}
-                                    {{- else -}}
-                                        {{- /* No translation available, link to home page of other language */ -}}
-                                        {{- range .Site.Home.AllTranslations -}}
-                                            {{- if ne $.Language.Lang .Language.Lang -}}
-                                                <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                                   title="{{ .Language.Label }}"
-                                                   aria-label="Switch to {{ .Language.Label }}">
-                                                    <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                                    <span class="lang-code">{{ .Language.Params.lang_label }}</span>
-                                                </a>
-                                            {{- end -}}
-                                        {{- end -}}
-                                    {{- end -}}
-                                </div>
-                                {{- end -}}
+                                {{ partial "language-selector.html" . }}
 
                                 {{ partial "theme-toggle.html" . }}
                             </div>
@@ -76,8 +40,9 @@
 
                                 {{ if .HasChildren }}
                                     <li class="nav__item dropdown">
+                                        {{- /* common.js turns the menu into a popover of this button at desktop widths. */}}
                                         <button type="button" class="nav__link dropdown-toggle">{{ .Name }}{{ partial "icon.html" "chevron-down" }}</button>
-                                        <div class="dropdown-menu">
+                                        <div class="dropdown-menu" id="submenu-{{ .Name | urlize }}">
                                             {{ range .Children }}
                                                 {{ $childURL := .URL }}
                                                 {{ $active := eq $childURL $pageURL }}
@@ -90,7 +55,7 @@
                                                     {{ end }}
                                                 {{ end }}
                                                 <a href="{{ $href }}"
-                                                  class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                                                  class="nav__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
                                             {{ end }}
                                         </div>
                                     </li>
@@ -105,7 +70,7 @@
                                             {{ end }}
                                         {{ end }}
                                         <a href="{{ $href }}"
-                                            class="nav__link {{ if $active }}active-link{{ end }}">{{ .Name }}</a>
+                                            class="nav__link"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
                                     </li>
                                 {{ end }}
 
@@ -118,43 +83,7 @@
 
                 <div class="nav-button">
                     <div class="nav-controls nav-controls--header">
-                        {{- /* Language Selector */ -}}
-                        {{- if hugo.IsMultilingual -}}
-                        <div class="language-selector">
-                            {{- /* Current language (shown first) */ -}}
-                            <span class="language-link language-current" aria-current="page"
-                                  title="{{ .Language.Label }}">
-                                {{- /* aria-label is not allowed on a plain span; screen readers get this text instead. */ -}}
-                                <span class="screen-reader-text">Current language: {{ .Language.Label }}</span>
-                                <span class="flag-icon" aria-hidden="true">{{ .Language.Params.lang_flag }}</span>
-                                <span class="lang-code" aria-hidden="true">{{ .Language.Params.lang_label }}</span>
-                            </span>
-
-                            {{- /* Show available translations */ -}}
-                            {{- if .IsTranslated -}}
-                                {{- range .Translations -}}
-                                    <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                       title="{{ .Language.Label }}"
-                                       aria-label="Switch to {{ .Language.Label }}">
-                                        <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                        <span class="lang-code">{{ .Language.Params.lang_label }}</span>
-                                    </a>
-                                {{- end -}}
-                            {{- else -}}
-                                {{- /* No translation available, link to home page of other language */ -}}
-                                {{- range .Site.Home.AllTranslations -}}
-                                    {{- if ne $.Language.Lang .Language.Lang -}}
-                                        <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" class="language-link"
-                                           title="{{ .Language.Label }}"
-                                           aria-label="Switch to {{ .Language.Label }}">
-                                            <span class="flag-icon">{{ .Language.Params.lang_flag }}</span>
-                                            <span class="lang-code">{{ .Language.Params.lang_label }}</span>
-                                        </a>
-                                    {{- end -}}
-                                {{- end -}}
-                            {{- end -}}
-                        </div>
-                        {{- end -}}
+                        {{ partial "language-selector.html" . }}
 
                         {{ partial "theme-toggle.html" . }}
                     </div>

@@ -124,12 +124,15 @@
         height: 40px;
         font-size: 18px;
         border-radius: 8px;
-        will-change: transform;
         color: var(--heading-font-color);
         background-color: var(--background-alt-color);
+        /* Flat, like the back-to-top button beside it: the hover is the
+           Highlighter Yellow fill alone. Lift is reserved for cards. */
+        transition:
+            color 0.25s ease,
+            background-color 0.25s ease;
 
         &:hover {
-            transform: translateY(-3px);
             color: var(--icon-hover-color);
             background-color: var(--icon-hover-bg);
         }
@@ -166,6 +169,14 @@
         font-family: $heading-font-family;
         margin-bottom: 20px;
         font-size: 20px;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+
+        &:hover {
+            text-decoration-color: var(--link-color-hover);
+        }
     }
 
     @media only screen and (max-width: $desktop) {

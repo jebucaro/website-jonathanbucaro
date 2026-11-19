@@ -42,6 +42,12 @@
 - id: ui_switchToLightTheme
   translation: 'Cambiar a tema claro'
 
+- id: ui_currentLanguage
+  translation: 'Idioma actual:'
+
+- id: ui_switchLanguageTo
+  translation: 'Cambiar a'
+
 - id: ui_openMenu
   translation: 'Abrir menú'
 
@@ -167,6 +173,15 @@
 
 - id: testimonials_play
   translation: 'Reproducir testimonios'
+
+- id: technologies_title
+  translation: 'Principales lenguajes de programación y tecnologías'
+
+- id: technologies_pause
+  translation: 'Pausar logos de tecnologías'
+
+- id: technologies_play
+  translation: 'Reproducir logos de tecnologías'
 
 # Section: Work
 - id: sections_work_title

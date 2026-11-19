@@ -99,8 +99,7 @@
     color: var(--gray);
 }
 
+/* Dark mode keeps the base Night Panel background; only the dividers change. */
 .dark-mode .checklist {
     --checklist-rule: var(--border-color);
-
-    background: var(--callout-bg);
 }

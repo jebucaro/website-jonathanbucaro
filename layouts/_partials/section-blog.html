@@ -17,7 +17,7 @@
                         <div class="row">
                             {{ $paginator := .Paginate ((where .Site.RegularPages "Type" "blog").ByLastmod.Reverse | first 3) }}
                             {{ range $paginator.Pages }}
-                                {{ partial "article.html" . }}
+                                {{ partial "article.html" (dict "page" . "headingLevel" 3) }}
                             {{ end }}
                         </div>
                     </div>

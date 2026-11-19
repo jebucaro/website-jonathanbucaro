@@ -1,16 +1,17 @@
-/* Animate */
-.animate {
-    animation: animateElement cubic-bezier(0.3, 0.45, 0.45, 0.95) 0.75s;
-    animation-duration: 0.5s;
-    animation-iteration-count: 1;
-    transition: transform 0.15s;
+/* Animate
+   One-off 50px rise as a page container, section or image loads. Motion is
+   opt-in: with reduced motion nothing moves and the content simply shows.
+   It animates the individual `translate` property and has no end keyframe,
+   so the element rests on its own styles and any component `transform`
+   (e.g. .page-image's `translate(0)` clip fix) is never overridden. */
+@keyframes animate-element {
+    from {
+        translate: 0 50px;
+    }
+}
 
-    @keyframes animateElement {
-        0% {
-            transform: translate(0px, 50px);
-        }
-        100% {
-            transform: translate(0px, 0px);
-        }
+@media (prefers-reduced-motion: no-preference) {
+    .animate {
+        animation: animate-element 0.5s cubic-bezier(0.3, 0.45, 0.45, 0.95);
     }
 }

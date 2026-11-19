@@ -180,8 +180,18 @@ a {
     transition: $global-transition;
 
     &:hover {
-        color: var(--link-color-hover);
+        color: var(--link-text-hover);
     }
+}
+
+/* Keyboard focus for everything without its own ring (logo, nav, toggles,
+   footer and post links). The browser default is drawn near-black, which
+   vanishes on Night; this is Ink in light mode and Chalk in dark (WCAG
+   2.4.7, 1.4.11). Components that need a different ring (buttons, the
+   terminal, language links) override it with their own :focus-visible. */
+:focus-visible {
+    outline: 2px solid var(--heading-font-color);
+    outline-offset: 2px;
 }
 
 hr {
