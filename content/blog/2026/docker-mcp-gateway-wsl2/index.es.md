@@ -1,7 +1,7 @@
 ---
 title: 'Corre Docker MCP Gateway en WSL2 sin Docker Desktop'
 slug: 'docker-mcp-gateway-en-wsl2-sin-docker-desktop'
-date: 2026-11-22T16:00:00-06:00
+date: 2026-11-22T10:00:00-06:00
 description: 'Corre el Docker MCP Gateway sobre Docker Engine en WSL2, lee los secretos desde un service account de 1Password de solo lectura y conéctalo a Claude Code.'
 draft: false
 tags: [windows, wsl, ai-tools, security]
@@ -9,7 +9,7 @@ tags: [windows, wsl, ai-tools, security]
 
 Los servidores MCP le dan herramientas a un agente de IA, y cada herramienta necesita acceso a algo: un token de GitHub, una API key, tu sistema de archivos. El {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}} de Docker corre cada servidor en su propio contenedor, con privilegios, CPU, memoria y red limitados, y le pasa solo los secretos que declara. Ese aislamiento es lo que quería para mis agentes, y asumí que era una función de Docker Desktop, porque ahí es donde vive el MCP Toolkit.
 
-No lo es. El gateway es el plugin open source `docker mcp` del CLI, y corre sobre Docker Engine normal. Yo no uso Docker Desktop (expliqué por qué en mi [post de 1Password con Dev Containers en WSL2]({{< relref "blog/2026/use-1password-in-windows-with-wsl2-devcontainers" >}})), así que todo esto corre en Docker Engine dentro de WSL2 en Windows 11.
+No lo es. El gateway es el plugin open source `docker mcp` del CLI, y corre sobre Docker Engine normal. Yo no uso Docker Desktop (expliqué por qué en mi [post de 1Password con Dev Containers en WSL2](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/)), así que todo esto corre en Docker Engine dentro de WSL2 en Windows 11.
 
 Las guías que encontré para este setup tenían comandos que no funcionan y no mencionaban varias trampas, así que probé cada paso con Docker Engine 29.10 y `docker mcp` v0.44.3. Al final vas a tener Claude Code conectado al gateway, corriendo el servidor MCP oficial de GitHub en un contenedor, con su token leído desde un service account de 1Password que solo puede ver un vault.
 

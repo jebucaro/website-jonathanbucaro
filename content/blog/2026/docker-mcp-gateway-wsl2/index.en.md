@@ -1,7 +1,7 @@
 ---
 title: 'Run Docker MCP Gateway in WSL2 without Docker Desktop'
 slug: 'docker-mcp-gateway-wsl2-without-docker-desktop'
-date: 2026-11-22T16:00:00-06:00
+date: 2026-11-22T10:00:00-06:00
 description: 'Run the Docker MCP Gateway on Docker Engine in WSL2, read secrets from a read-only 1Password service account, and connect it to Claude Code.'
 draft: false
 tags: [windows, wsl, ai-tools, security]
@@ -9,7 +9,7 @@ tags: [windows, wsl, ai-tools, security]
 
 MCP servers give an AI agent tools, and every tool needs access to something: a GitHub token, an API key, your file system. Docker's {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}} runs each server in its own container with limited privileges, CPU, memory and network, and hands it only the secrets it declares. That isolation is what I wanted for my agents, and I assumed it was a Docker Desktop feature, since that's where the MCP Toolkit lives.
 
-It isn't. The gateway is the open source `docker mcp` CLI plugin, and it runs on plain Docker Engine. I don't use Docker Desktop (I explained why in my [1Password with WSL2 Dev Containers post]({{< relref "blog/2026/use-1password-in-windows-with-wsl2-devcontainers" >}})), so everything here runs on Docker Engine inside WSL2 on Windows 11.
+It isn't. The gateway is the open source `docker mcp` CLI plugin, and it runs on plain Docker Engine. I don't use Docker Desktop (I explained why in my [1Password with WSL2 Dev Containers post](/blog/use-1password-in-windows-with-wsl2-dev-containers/)), so everything here runs on Docker Engine inside WSL2 on Windows 11.
 
 The guides I found for this setup had wrong commands and missed a few traps, so every step below was tested on Docker Engine 29.10 with `docker mcp` v0.44.3. At the end you'll have Claude Code connected to the gateway, running the official GitHub MCP server in a container, with its token read from a 1Password service account that can only see one vault.
 
