@@ -64,7 +64,7 @@ docker mcp catalog pull mcp/docker-mcp-catalog
 docker mcp catalog show mcp/docker-mcp-catalog | less
 ```
 
-Busca `github-official` (escribe `/github-official` en `less`). La entrada te dice las dos cosas que necesitas: el nombre del secreto (`github.personal_access_token`, que llega al contenedor como `GITHUB_PERSONAL_ACCESS_TOKEN`) y los hosts que el servidor declara que necesita: `api.github.com`, `github.com` y `raw.githubusercontent.com`. Toma en consideración que el gateway solo aplica esa lista cuando lo corres con `--block-network`, que viene apagado por defecto.
+Busca `github-official` (escribe `/github-official` en `less`). La entrada te dice las dos cosas que necesitas: el nombre del secreto (`github.personal_access_token`, que llega al contenedor como `GITHUB_PERSONAL_ACCESS_TOKEN`) y los hosts que el servidor declara que necesita: `api.github.com`, `github.com` y `raw.githubusercontent.com`. El gateway solo aplica esa lista cuando lo corres con `--block-network`, que viene apagado por defecto, así que el wrapper del Paso 6 lo activa.
 
 {{< callout note >}}
 Usa `github-official`. El catálogo también tiene un servidor llamado `github`, que algunos ejemplos todavía usan, pero aparece como "GitHub (Archived)".
@@ -167,6 +167,7 @@ unset OP_SERVICE_ACCOUNT_TOKEN
 
 exec docker mcp gateway run \
   --servers "${MCP_SERVERS:-github-official}" \
+  --block-network \
   --secrets <(printf 'github.personal_access_token=%s\n' "$GITHUB_TOKEN") \
   "$@"
 ```
@@ -179,8 +180,8 @@ mcp-gateway --dry-run --verbose 2>&1 | grep -E 'TOKEN|tools listed'
 
 ```text
     - GITHUB_PERSONAL_ACCESS_TOKEN: gith****
-  - Running ghcr.io/github/github-mcp-server with [run --rm -i --init --security-opt no-new-privileges --cpus 1 --memory 2Gb --pull never ... -e GITHUB_PERSONAL_ACCESS_TOKEN]
-> 46 tools listed in 1.025223625s
+  - Running ghcr.io/github/github-mcp-server with [run --rm -i --init --security-opt no-new-privileges --cpus 1 --memory 2Gb --pull never ... --network docker-mcp-proxies-int ... -e https_proxy=docker-mcp-l7proxy-...:8080 -e GITHUB_PERSONAL_ACCESS_TOKEN]
+> 46 tools listed in 3.426928878s
 ```
 
 {{< callout warning >}}
@@ -212,7 +213,7 @@ Cuando Claude Code arranca, corre `mcp-gateway` y se comunica con él por stdin 
 
 - `--security-opt no-new-privileges`, `--cpus 1` y `--memory 2Gb`.
 - El token como variable de ambiente pasada por nombre (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), así que el valor no aparece en la lista de procesos.
-- Los tres hosts de GitHub del catálogo como las conexiones que declara necesitar. Con `--block-network`, el gateway pasa el tráfico del contenedor por un proxy que solo permite esos hosts. Viene apagado por defecto y todavía no lo he probado con este setup, así que el wrapper no lo usa.
+- Acceso de red solo a los tres hosts de GitHub del catálogo. Con `--block-network`, el contenedor corre en una red interna de Docker (`docker-mcp-proxies-int`) sin salida directa, y llega a internet por medio de un proxy L7 en un sidecar que solo permite esos hosts. Le agrega unos dos segundos al arranque.
 
 El gateway también bloquea secretos en las llamadas y respuestas de las herramientas por defecto (`--block-secrets`), y es lo único que ve Claude Code: un solo servidor MCP, corra lo que corra detrás.
 
@@ -224,7 +225,7 @@ Este setup limita lo que puede hacer cada servidor MCP. No aísla al agente en s
 - Cualquiera con acceso al socket de Docker puede correr `docker inspect` sobre el contenedor de GitHub y leer el token de su ambiente, y Claude Code puede correr `docker`.
 - `op.exe` con la integración de la app de escritorio sigue disponible para cualquier proceso que corra con tu usuario, detrás del aviso de aprobación de 1Password. Ya con el service account creado, puedes apagar **Integrate with 1Password CLI** en **Settings > Developer** si nada más de lo que usas lo necesita. El wrapper no lo necesita.
 
-Lo que ganas es que el daño posible es menor. Si el agente o una herramienta filtra algo, es un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda tu cuenta de 1Password. Puedes cerrarlo más con la bandera `--tools` del gateway, que expone solo las herramientas que le indiques, con `--block-network` para que se respete la lista de hosts del catálogo, y con el modo de solo lectura del servidor de GitHub.
+Lo que ganas es que el daño posible es menor. Si el agente o una herramienta filtra algo, es un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda tu cuenta de 1Password. Puedes cerrarlo más con la bandera `--tools` del gateway, que expone solo las herramientas que le indiques, y con el modo de solo lectura del servidor de GitHub.
 
 Aislar al agente es el siguiente paso, y para eso está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}. El {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password también parece una forma de prescindir del token del service account. Todavía no he probado ninguno de los dos.
 
