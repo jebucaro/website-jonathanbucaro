@@ -9,7 +9,7 @@ tags: [windows, wsl, ai-tools, security]
 
 I wanted my agents' MCP servers running in containers, isolated, without the GitHub token sitting in plain text in a config file. Docker's {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}} does exactly that, but I assumed it only came with Docker Desktop, which I don't use (I explained why in my [1Password post](/blog/use-1password-in-windows-with-wsl2-dev-containers/)). It doesn't: the gateway is an open source plugin for the Docker CLI, and it runs on Docker Engine inside WSL2.
 
-While I was investigating, I found several guides for this setup, and some of their commands didn't work. This is how it ended up working for me, with Claude Code connected and the token coming from 1Password without access to the rest of my vaults. I tested it with Docker Engine 29.10 and `docker mcp` v0.44.3.
+While I was investigating, I found several guides for this setup, and some of their commands didn't work. This is how it ended up working for me: Claude Code connected to the gateway and the token fetched from 1Password, without the agent having access to the rest of my vaults. I tested it with Docker Engine 29.10 and `docker mcp` v0.44.3.
 
 {{< figure-dynamic
     light-src="images/docker-mcp-gateway-architecture-light.svg"
@@ -35,15 +35,15 @@ curl -sL https://github.com/docker/mcp-gateway/releases/download/v0.44.3/docker-
 docker mcp version
 ```
 
-It prints `v0.44.3`. The guides I found download from `releases/latest/download/...`, and that URL returns a 404: every release on the {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}releases page{{< /extlink >}} is marked as a pre-release, so GitHub has no "latest", and the file is a `.tar.gz`. Check that page for newer versions, and use `linux-arm64` on ARM.
+It should print `v0.44.3`. Check the {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}releases page{{< /extlink >}} for newer versions, and use `linux-arm64` if you're on ARM.
 
-Some `docker mcp` commands also look for Docker Desktop and fail with "Docker Desktop is not running" even when the daemon is up. The project's README documents the variable that skips that check on WSL2 and Docker CE:
+Some `docker mcp` commands also look for Docker Desktop and fail with "Docker Desktop is not running" even when the daemon is up. The project's README documents an environment variable to skip that check on WSL2 and Docker CE:
 
 ```bash
 export DOCKER_MCP_IN_CONTAINER=1
 ```
 
-Add it to your `~/.zshrc` or `~/.bashrc` if you want it in your terminal. The wrapper further down sets it on its own.
+Add it to your `~/.zshrc` or `~/.bashrc` if you want it available in your terminal. The wrapper we'll create further down already sets it on its own.
 
 ## Pick the GitHub server
 
@@ -64,7 +64,7 @@ The 1Password CLI for Linux can't talk to the 1Password app on Windows, so from 
 (Get-Command op.exe).Source
 ```
 
-Then convert that path in WSL and keep it in a variable:
+Then convert that path to WSL format and save it in a variable:
 
 ```bash
 OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
@@ -72,23 +72,23 @@ OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 echo "$OP"
 ```
 
-Keep the path that `echo` prints, the wrapper needs it. Run the next section in the same terminal, or set `OP` again in a new one. Two things to keep in mind with Windows programs called from WSL: their output ends lines with `\r\n`, so values need `tr -d '\r'`, and they don't see your Linux environment variables unless you list them in `WSLENV`.
+Save the path that `echo` prints, because the wrapper needs it. Run the next section in the same terminal, or set `OP` again in a new one. Two things to keep in mind with Windows programs called from WSL: their output ends lines with `\r\n`, so you need to clean values with `tr -d '\r'`, and they don't see your Linux environment variables unless you list them in `WSLENV`.
 
 ## Give the agent its own vault
 
-The easy option is to read the token with your normal `op` session, and I didn't want that. The desktop app integration authorizes the CLI for your whole account, and according to 1Password's {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}security model{{< /extlink >}} that authorization extends to sub-shells of the terminal. An agent running commands from that session could read any item I have.
+The easiest option would be to read the token with your normal `op` session, but I preferred not to do it that way. The desktop app integration authorizes the CLI for your whole account, and according to 1Password's {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}security model{{< /extlink >}} that authorization extends to sub-shells of the terminal. An agent running commands from that session could read any item in my account.
 
-So I followed 1Password's {{< extlink href="https://www.1password.dev/sdks/ai-agent" >}}guidance for AI agents{{< /extlink >}}: a vault only for the agent and a service account that can only read it. Service accounts are included in every plan. The 1Password, Families and Teams plans allow 1,000 reads per hour, and the wrapper reads once each time it starts.
+So I followed 1Password's {{< extlink href="https://www.1password.dev/sdks/ai-agent" >}}guidance for AI agents{{< /extlink >}}: a vault only for the agent and a service account that can only read it. Service accounts are included in every plan. The 1Password, Families and Teams plans allow 1,000 reads per hour, and the wrapper only does one read each time it starts.
 
 1. In the 1Password app, create a vault named **AI Agents**.
 2. Create a {{< extlink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token" >}}fine-grained personal access token{{< /extlink >}} on GitHub with only the repositories and permissions you want the agent to have, and save it in that vault as an **API Credential** named **GitHub PAT**.
-3. Create the service account, which uses your normal session one last time:
+3. Create the service account. This step does use your normal `op` session, one last time:
 
 ```bash
 "$OP" service-account create "Claude Code MCP Gateway" --vault "AI Agents:read_items" --expires-in 90d
 ```
 
-It prints a token that starts with `ops_` only once. Save it to a file only you can read, without leaving it in your shell history (this works in bash and zsh), and clear your terminal afterwards:
+The command shows you the token, which starts with `ops_`, only once. Save it to a file only you can read, without leaving it in your shell history (this works in bash and zsh), and clear your terminal afterwards:
 
 ```bash
 mkdir -p ~/.config/mcp-gateway
@@ -108,7 +108,7 @@ ID                            NAME
 xxxxxxxxxxxxxxxxxxxxxxxxxx    AI Agents
 ```
 
-Only the AI Agents vault. When I ran the same command without `WSLENV=...`, it listed every vault in my account: `op.exe` never got the token and quietly fell back to the desktop app. The `/w` flag passes the variable from WSL to Windows only.
+Only the AI Agents vault shows up. When I ran the same command without `WSLENV=...`, it listed every vault in my account: `op.exe` never got the token and used the desktop app integration without any warning. The `/w` at the end of the variable makes it pass from WSL to Windows only.
 
 ```text
 ID                            NAME
@@ -120,7 +120,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxx    Shared
 
 ## The wrapper
 
-MCP clients start a server by running a command directly, without a shell, so the secret handling goes in a small script. I saved it as `~/.local/bin/mcp-gateway`. Replace the `op.exe` path with yours and run `chmod +x` on it:
+MCP clients start each server by running a command directly, without going through a shell, so the secret handling has to go in a small script. I saved it as `~/.local/bin/mcp-gateway`. Replace the `op.exe` path with yours and run `chmod +x` on it:
 
 ```bash
 #!/usr/bin/env bash
@@ -153,11 +153,11 @@ exec docker mcp gateway run \
   "$@"
 ```
 
-The gateway reads `--secrets` once when it starts, so a process substitution works and the GitHub token never touches the disk. The service account token is removed before the gateway starts, so neither the gateway nor its containers get it.
+The gateway reads `--secrets` once when it starts, so a process substitution works and the GitHub token never touches the disk. The script removes the service account token from the environment before starting the gateway, so neither the gateway nor its containers get it.
 
-The `</dev/null` came from the first time I connected Claude Code: it waited 30 seconds and gave up. `op.exe` was inheriting the stdin that Claude Code uses to talk to the gateway, and it swallowed the first message. The empty-token check is there because the gateway doesn't complain when it can't read a secrets file, it just starts without the secret. For the same reason I don't use `--watch`: a reload would read the secrets again from a stream that's already been read.
+I added the `</dev/null` after the first time I connected Claude Code: it waited 30 seconds and gave up. `op.exe` was inheriting the stdin that Claude Code uses to talk to the gateway, and it swallowed the first message. The wrapper checks that the token isn't empty because the gateway doesn't throw any error when it can't read a secrets file, it simply starts without the secret. For that same reason I don't use `--watch`: when the gateway reloads, it reads the secrets again from a stream that's already been read.
 
-Docker's docs organize servers into profiles, but `--profile` can't be combined with `--secrets`, and on Docker Engine profile secrets depend on the {{< extlink href="https://github.com/docker/secrets-engine" >}}Secrets Engine{{< /extlink >}}, which is still experimental there. With `--servers` I skip profiles, and the gateway turns off its dynamic tools.
+Docker's docs organize servers into profiles, but `--profile` can't be combined with `--secrets`, and on Docker Engine profile secrets depend on the {{< extlink href="https://github.com/docker/secrets-engine" >}}Secrets Engine{{< /extlink >}}, which is still experimental there. That's why I used `--servers`, which doesn't use profiles. The only thing you lose is that the gateway turns off its dynamic tools.
 
 A dry run starts the server, lists its tools and exits:
 
@@ -171,7 +171,7 @@ mcp-gateway --dry-run --verbose 2>&1 | grep -E 'TOKEN|tools listed'
 > 46 tools listed in 3.426928878s
 ```
 
-If you don't see the masked `gith****`, the token didn't arrive.
+If you don't see the masked `gith****`, the token didn't reach the container.
 
 ## Connect Claude Code
 
@@ -190,6 +190,6 @@ After restarting Claude Code, the GitHub tools show up under `/mcp`.
 
 The GitHub server runs with `no-new-privileges`, one CPU and 2 GB of memory. The token is passed by name (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), so the value doesn't show up in the process list. With `--block-network`, the container sits on an internal Docker network (`docker-mcp-proxies-int`) with no route out, and reaches the internet through an L7 proxy that only allows the three GitHub hosts. That adds about two seconds to startup. The gateway also blocks secrets in tool calls and responses by default (`--block-secrets`).
 
-It doesn't isolate the agent itself. The service account token file can be read by anything running as my user, Claude Code included. Anyone with access to the Docker socket can run `docker inspect` on the container and read the GitHub token, and Claude Code can run `docker`. `op.exe` with the desktop integration is also still there, behind 1Password's approval prompt; once the service account exists, you can turn off **Integrate with 1Password CLI** in **Settings > Developer** if nothing else you use needs it.
+It doesn't isolate the agent itself. The service account token file can be read by anything running as my user, Claude Code included. Anyone with access to the Docker socket can run `docker inspect` on the container and read the GitHub token, and Claude Code can run `docker`. `op.exe` with the desktop integration is also still available, protected only by 1Password's approval prompt; once the service account exists, you can turn off **Integrate with 1Password CLI** in **Settings > Developer** if no other tool you use depends on it.
 
-What I gain is that a leak costs much less: a fine-grained GitHub token that expires and read access to a vault that only holds that token, not my whole 1Password account. The gateway's `--tools` flag and the GitHub server's read-only mode can narrow it further. Isolating the agent itself is what {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}} is for, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token. I haven't tried either yet.
+What I gain is that, if something leaks, the damage is much smaller: a fine-grained GitHub token that expires and read access to a vault that only holds that token, not my whole 1Password account. The gateway's `--tools` flag and the GitHub server's read-only mode can limit it even more. To isolate the agent itself there's {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token. I haven't tried either yet.

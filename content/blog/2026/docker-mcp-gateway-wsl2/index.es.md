@@ -9,7 +9,7 @@ tags: [windows, wsl, ai-tools, security]
 
 Quería que los servidores MCP de mis agentes corrieran en contenedores, aislados, y sin el token de GitHub en texto plano en un archivo de configuración. El {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}} de Docker hace exactamente eso, pero asumí que solo venía con Docker Desktop, que no uso (expliqué por qué en mi [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/)). No es así: el gateway es un plugin open source del CLI de Docker, y corre sobre Docker Engine dentro de WSL2.
 
-Mientras investigaba encontré varias guías para este setup, y algunos de sus comandos no funcionaban. Así es como me quedó funcionando: Claude Code conectado al gateway y el token leído desde 1Password, sin que el agente tenga acceso al resto de mis vaults. Lo probé con Docker Engine 29.10 y `docker mcp` v0.44.3.
+Mientras investigaba encontré varias guías para este setup, y algunos de sus comandos no funcionaban. Así es como me quedó funcionando: Claude Code conectado al gateway y el token obtenido de 1Password, sin que el agente tenga acceso al resto de mis vaults. Lo probé con Docker Engine 29.10 y `docker mcp` v0.44.3.
 
 {{< figure-dynamic
     light-src="images/docker-mcp-gateway-architecture-light.svg"
@@ -35,9 +35,9 @@ curl -sL https://github.com/docker/mcp-gateway/releases/download/v0.44.3/docker-
 docker mcp version
 ```
 
-Debería imprimir `v0.44.3`. Las guías que encontré usan `releases/latest/download/...` para descargarlo, pero esa URL da error 404: todos los releases en la {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}página de releases{{< /extlink >}} están marcados como pre-release, así que GitHub no tiene ninguno marcado como "latest", y además el archivo es un `.tar.gz`. Revisa esa página por si hay versiones más nuevas, y usa `linux-arm64` si estás en ARM.
+Debería imprimir `v0.44.3`. Revisa la {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}página de releases{{< /extlink >}} por si hay versiones más nuevas, y usa `linux-arm64` si estás en ARM.
 
-Algunos comandos de `docker mcp` también buscan Docker Desktop y fallan con "Docker Desktop is not running" aunque el daemon esté corriendo. El README del proyecto documenta una variable de ambiente para saltarse esa verificación en WSL2 y Docker CE:
+Algunos comandos de `docker mcp` también buscan Docker Desktop y fallan con "Docker Desktop is not running" aunque el daemon esté corriendo. El README del proyecto documenta una variable de entorno para saltarse esa verificación en WSL2 y Docker CE:
 
 ```bash
 export DOCKER_MCP_IN_CONTAINER=1
@@ -72,7 +72,7 @@ OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 echo "$OP"
 ```
 
-Guarda la ruta que imprime el `echo`, porque el wrapper la necesita. Corre la siguiente sección en la misma terminal, o vuelve a definir `OP` en una nueva. Ten en cuenta dos cosas con los programas de Windows que llamas desde WSL: su salida termina las líneas con `\r\n`, así que hay que limpiar los valores con `tr -d '\r'`, y no ven tus variables de ambiente de Linux a menos que las pongas en `WSLENV`.
+Guarda la ruta que imprime el `echo`, porque el wrapper la necesita. Corre la siguiente sección en la misma terminal, o vuelve a definir `OP` en una nueva. Ten en cuenta dos cosas con los programas de Windows que llamas desde WSL: su salida termina las líneas con `\r\n`, así que hay que limpiar los valores con `tr -d '\r'`, y no ven tus variables de entorno de Linux a menos que las pongas en `WSLENV`.
 
 ## Dale al agente su propio vault
 
@@ -153,7 +153,7 @@ exec docker mcp gateway run \
   "$@"
 ```
 
-El gateway lee `--secrets` una sola vez al arrancar, así que un process substitution funciona y el token de GitHub nunca se escribe en disco. El script borra el token del service account del ambiente antes de arrancar el gateway, así que ni el gateway ni sus contenedores lo reciben.
+El gateway lee `--secrets` una sola vez al arrancar, así que un process substitution funciona y el token de GitHub nunca se escribe en disco. El script borra el token del service account del entorno antes de arrancar el gateway, así que ni el gateway ni sus contenedores lo reciben.
 
 Agregué el `</dev/null` después de la primera vez que conecté Claude Code: se quedó esperando 30 segundos y falló. `op.exe` estaba heredando el stdin que Claude Code usa para hablar con el gateway, y se comía el primer mensaje. El wrapper revisa que el token no venga vacío porque el gateway no da ningún error cuando no puede leer un archivo de secretos, simplemente arranca sin el secreto. Por esa misma razón no uso `--watch`: cuando el gateway recarga, vuelve a leer los secretos de un stream que ya se leyó.
 
@@ -171,7 +171,7 @@ mcp-gateway --dry-run --verbose 2>&1 | grep -E 'TOKEN|tools listed'
 > 46 tools listed in 3.426928878s
 ```
 
-Si no aparece la línea con `gith****`, el token no llegó al contenedor.
+Si no ves el `gith****` enmascarado, el token no llegó al contenedor.
 
 ## Conecta Claude Code
 
