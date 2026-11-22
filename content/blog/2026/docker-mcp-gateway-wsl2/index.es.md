@@ -64,7 +64,7 @@ docker mcp catalog pull mcp/docker-mcp-catalog
 docker mcp catalog show mcp/docker-mcp-catalog | less
 ```
 
-Busca `github-official` (escribe `/github-official` en `less`). La entrada te dice las dos cosas que necesitas: el nombre del secreto (`github.personal_access_token`, que llega al contenedor como `GITHUB_PERSONAL_ACCESS_TOKEN`) y los hosts a los que el contenedor puede conectarse: `api.github.com`, `github.com` y `raw.githubusercontent.com`. Nada más.
+Busca `github-official` (escribe `/github-official` en `less`). La entrada te dice las dos cosas que necesitas: el nombre del secreto (`github.personal_access_token`, que llega al contenedor como `GITHUB_PERSONAL_ACCESS_TOKEN`) y los hosts que el servidor declara que necesita: `api.github.com`, `github.com` y `raw.githubusercontent.com`. Toma en consideración que el gateway solo aplica esa lista cuando lo corres con `--block-network`, que viene apagado por defecto.
 
 {{< callout note >}}
 Usa `github-official`. El catálogo también tiene un servidor llamado `github`, que algunos ejemplos todavía usan, pero aparece como "GitHub (Archived)".
@@ -83,7 +83,10 @@ Después convierte esa ruta en WSL y guárdala en una variable para los siguient
 ```bash
 OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 "$OP" --version
+echo "$OP"
 ```
+
+Guarda la ruta que imprime el `echo`, porque el wrapper la necesita en el Paso 6, y corre los Pasos 4 y 5 en la misma terminal (o vuelve a definir `OP` en una nueva).
 
 Ten en cuenta dos cosas con cualquier programa de Windows que llames desde WSL: su salida termina las líneas con `\r\n`, así que pasa los valores por `tr -d '\r'`, y no ve tus variables de ambiente de Linux a menos que las pongas en `WSLENV`. Esto último es importante en el siguiente paso.
 
@@ -105,7 +108,7 @@ Imprime un token que empieza con `ops_` una sola vez. Guárdalo en un archivo qu
 
 ```bash
 mkdir -p ~/.config/mcp-gateway
-printf 'Token: '; read -rs t; printf '%s' "$t" > ~/.config/mcp-gateway/op-service-account-token; unset t; echo
+(umask 077; printf 'Token: '; read -rs t; printf '%s' "$t" > ~/.config/mcp-gateway/op-service-account-token; echo)
 chmod 600 ~/.config/mcp-gateway/op-service-account-token
 ```
 
@@ -209,7 +212,7 @@ Cuando Claude Code arranca, corre `mcp-gateway` y se comunica con él por stdin 
 
 - `--security-opt no-new-privileges`, `--cpus 1` y `--memory 2Gb`.
 - El token como variable de ambiente pasada por nombre (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), así que el valor no aparece en la lista de procesos.
-- Acceso de red solo a los tres hosts de GitHub del catálogo.
+- Los tres hosts de GitHub del catálogo como las conexiones que declara necesitar. Con `--block-network`, el gateway pasa el tráfico del contenedor por un proxy que solo permite esos hosts. Viene apagado por defecto y todavía no lo he probado con este setup, así que el wrapper no lo usa.
 
 El gateway también bloquea secretos en las llamadas y respuestas de las herramientas por defecto (`--block-secrets`), y es lo único que ve Claude Code: un solo servidor MCP, corra lo que corra detrás.
 
@@ -219,8 +222,9 @@ Este setup limita lo que puede hacer cada servidor MCP. No aísla al agente en s
 
 - El archivo con el token del service account lo puede leer cualquier proceso que corra con tu usuario, incluido Claude Code.
 - Cualquiera con acceso al socket de Docker puede correr `docker inspect` sobre el contenedor de GitHub y leer el token de su ambiente, y Claude Code puede correr `docker`.
+- `op.exe` con la integración de la app de escritorio sigue disponible para cualquier proceso que corra con tu usuario, detrás del aviso de aprobación de 1Password. Ya con el service account creado, puedes apagar **Integrate with 1Password CLI** en **Settings > Developer** si nada más de lo que usas lo necesita. El wrapper no lo necesita.
 
-Lo que ganas es que el daño posible es mucho menor. Si el agente o una herramienta filtra algo, es un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda tu cuenta de 1Password. Puedes cerrarlo más con la bandera `--tools` del gateway, que expone solo las herramientas que le indiques, y con el modo de solo lectura del servidor de GitHub.
+Lo que ganas es que el daño posible es menor. Si el agente o una herramienta filtra algo, es un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda tu cuenta de 1Password. Puedes cerrarlo más con la bandera `--tools` del gateway, que expone solo las herramientas que le indiques, con `--block-network` para que se respete la lista de hosts del catálogo, y con el modo de solo lectura del servidor de GitHub.
 
 Aislar al agente es el siguiente paso, y para eso está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}. El {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password también parece una forma de prescindir del token del service account. Todavía no he probado ninguno de los dos.
 
@@ -237,6 +241,6 @@ Yo me quedé con `--servers`, que no usa profiles para nada. Lo único que pierd
 ## Comprueba que funciona
 
 1. `mcp-gateway --dry-run --verbose` muestra `gith****` y el conteo de herramientas.
-2. La revisión con `vault list` del Paso 5 muestra solo **AI Agents**.
+2. La revisión con `vault list` del Paso 5 (con `OP` definido como en el Paso 4) muestra solo **AI Agents**.
 3. `claude mcp list` muestra `MCP_DOCKER` como conectado.
 4. En Claude Code, `/mcp` lista `MCP_DOCKER` con las herramientas de GitHub.
