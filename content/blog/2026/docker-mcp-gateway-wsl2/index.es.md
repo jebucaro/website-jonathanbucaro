@@ -108,7 +108,7 @@ ID                            NAME
 xxxxxxxxxxxxxxxxxxxxxxxxxx    AI Agents
 ```
 
-Solo el vault AI Agents. Cuando corrí el mismo comando sin `WSLENV=...`, me listó todos los vaults de mi cuenta: `op.exe` nunca recibió el token y regresó a la app de escritorio sin avisar. La bandera `/w` pasa la variable solo de WSL a Windows.
+Solo el vault AI Agents. Cuando corrí el mismo comando sin `WSLENV=...`, me listó todos los vaults de mi cuenta: `op.exe` nunca recibió el token y regresó a la app de escritorio sin avisar. El `/w` al final de la variable hace que pase solo de WSL a Windows.
 
 ```text
 ID                            NAME
@@ -192,4 +192,4 @@ El servidor de GitHub corre con `no-new-privileges`, un CPU y 2 GB de memoria. E
 
 Lo que no hace es aislar al agente. El archivo con el token del service account lo puede leer cualquier proceso que corra con mi usuario, Claude Code incluido. Cualquiera con acceso al socket de Docker puede correr `docker inspect` sobre el contenedor y leer el token de GitHub, y Claude Code puede correr `docker`. `op.exe` con la integración de escritorio también sigue ahí, detrás del aviso de aprobación de 1Password; ya con el service account creado, puedes apagar **Integrate with 1Password CLI** en **Settings > Developer** si nada más de lo que usas lo necesita.
 
-Lo que gano es que una filtración cuesta mucho menos: un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda mi cuenta de 1Password. La bandera `--tools` del gateway y el modo de solo lectura del servidor de GitHub lo pueden cerrar más. Aislar al agente es para lo que está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, y el {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password parece una forma de prescindir del token del service account. Todavía no he probado ninguno de los dos.
+Lo que gano es que una filtración cuesta mucho menos: un token de GitHub fine-grained que expira y acceso de lectura a un vault que solo tiene ese token, no toda mi cuenta de 1Password. El parámetro `--tools` del gateway y el modo de solo lectura del servidor de GitHub lo pueden cerrar más. Aislar al agente es para lo que está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, y el {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password parece una forma de prescindir del token del service account. Todavía no he probado ninguno de los dos.
