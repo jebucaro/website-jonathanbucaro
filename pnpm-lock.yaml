@@ -185,8 +185,8 @@ importers:
   .:
     dependencies:
       '@kurkle/color':
-        specifier: ^0.6.5
-        version: 0.6.5
+        specifier: ^0.6.6
+        version: 0.6.6
       chart.js:
         specifier: ^4.6.1
         version: 4.6.1
@@ -233,8 +233,8 @@ packages:
   '@kurkle/color@0.3.4':
     resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
 
-  '@kurkle/color@0.6.5':
-    resolution: {integrity: sha512-AzUwT55B7ejnZHoyM20+mx05nONJgfY+Bj+cmpBP0Fp1Pyx6gEQMwbLWlb6njN7/P8UtBARo5ccJKFVCZDdwxw==}
+  '@kurkle/color@0.6.6':
+    resolution: {integrity: sha512-Bd1NjGyoe27ExXRIBu13YymFP6k/wFxpUkX97Z3RlofLFV43nECB2G8vETZzcZzz2Ct2oRzwYElX65lxyi5UNg==}
 
   '@parcel/watcher-android-arm64@2.6.0':
     resolution: {integrity: sha512-trgpLSCKRC/huFjXX/Smh+0sWe4+YtKfktIToiMl59ghz7z+qkH6kMvNnUbLyRs9N11t8l4svSCs1+5B3rOAhA==}
@@ -870,7 +870,7 @@ snapshots:
 
   '@kurkle/color@0.3.4': {}
 
-  '@kurkle/color@0.6.5': {}
+  '@kurkle/color@0.6.6': {}
 
   '@parcel/watcher-android-arm64@2.6.0':
     optional: true
