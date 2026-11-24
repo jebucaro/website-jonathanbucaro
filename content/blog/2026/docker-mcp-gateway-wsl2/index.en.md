@@ -54,7 +54,7 @@ docker mcp catalog pull mcp/docker-mcp-catalog
 docker mcp catalog show mcp/docker-mcp-catalog | less
 ```
 
-There's also a server named just `github`, which some examples use, but the catalog lists it as "GitHub (Archived)". The `github-official` entry tells you the secret it expects (`github.personal_access_token`, which reaches the container as `GITHUB_PERSONAL_ACCESS_TOKEN`) and the hosts it needs: `api.github.com`, `github.com` and `raw.githubusercontent.com`. The gateway only enforces that list when you run it with `--block-network`, which is off by default, so the wrapper turns it on.
+There's also a server named just `github`, which some examples use, but the catalog lists it as "GitHub (Archived)". The `github-official` entry tells you the secret it expects (`github.personal_access_token`, which reaches the container as `GITHUB_PERSONAL_ACCESS_TOKEN`).
 
 ## Find op.exe from WSL
 
@@ -148,7 +148,6 @@ unset OP_SERVICE_ACCOUNT_TOKEN
 
 exec docker mcp gateway run \
   --servers "${MCP_SERVERS:-github-official}" \
-  --block-network \
   --secrets <(printf 'github.personal_access_token=%s\n' "$GITHUB_TOKEN") \
   "$@"
 ```
@@ -167,8 +166,8 @@ mcp-gateway --dry-run --verbose 2>&1 | grep -E 'TOKEN|tools listed'
 
 ```text
     - GITHUB_PERSONAL_ACCESS_TOKEN: gith****
-  - Running ghcr.io/github/github-mcp-server with [run --rm -i --init --security-opt no-new-privileges --cpus 1 --memory 2Gb --pull never ... --network docker-mcp-proxies-int ... -e https_proxy=docker-mcp-l7proxy-...:8080 -e GITHUB_PERSONAL_ACCESS_TOKEN]
-> 46 tools listed in 3.426928878s
+  - Running ghcr.io/github/github-mcp-server with [run --rm -i --init --security-opt no-new-privileges --cpus 1 --memory 2Gb --pull never ... -e GITHUB_PERSONAL_ACCESS_TOKEN]
+> 46 tools listed in 694.010041ms
 ```
 
 If you don't see the masked `gith****`, the token didn't reach the container.
@@ -195,7 +194,7 @@ docker mcp catalog server ls mcp/docker-mcp-catalog
 docker mcp catalog server inspect mcp/docker-mcp-catalog brave | less
 ```
 
-In the `inspect` output, look at two fields: `secrets`, the secrets the server expects, and `allowHosts`, the hosts it's allowed to reach.
+In the `inspect` output, the `secrets` field tells you which secrets the server expects.
 
 If the server doesn't need any secret, add it to the default `MCP_SERVERS` value in the wrapper, separated by a comma. I tried it with DuckDuckGo's search server:
 
@@ -216,11 +215,9 @@ BRAVE_KEY="$("$OP" read "op://$VAULT/Brave Search/credential" </dev/null | tr -d
 
 Add the same empty check you have for `GITHUB_TOKEN`, and run the dry run again: you should see `BRAVE_API_KEY` masked just like the GitHub token. Then restart Claude Code so it starts the gateway with the new servers.
 
-Take into account that `--block-network` only restricts servers whose catalog entry has `allowHosts`. When I checked, only three of them did: `github-official`, `duckduckgo` and `kafka-schema-reg-mcp`. The rest, like `brave` or `fetch`, run on Docker's default network with full internet access, even with `--block-network`. They still get the same CPU, memory and privilege limits, but nothing stops them from sending data anywhere.
-
 ## What this protects and what it doesn't
 
-The GitHub server runs with `no-new-privileges`, one CPU and 2 GB of memory. The token is passed by name (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), so the value doesn't show up in the process list. With `--block-network`, the container sits on an internal Docker network (`docker-mcp-proxies-int`) with no route out, and reaches the internet through an L7 proxy that only allows the three GitHub hosts. That adds about two seconds to startup. The gateway also blocks secrets in tool calls and responses by default (`--block-secrets`). None of this ends up in Claude Code's config, my dotfiles or a `.env` file; the token only lives in memory and inside the container. And if the server image itself were compromised, it couldn't read my files or send anything anywhere except GitHub.
+The GitHub server runs with `no-new-privileges`, one CPU and 2 GB of memory. The token is passed by name (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), so the value doesn't show up in the process list. The gateway also blocks secrets in tool calls and responses by default (`--block-secrets`). None of this ends up in Claude Code's config, my dotfiles or a `.env` file; the token only lives in memory and inside the container. And if the server image itself were compromised, it couldn't read my files. It does have internet access, like any container on Docker's default network.
 
 It doesn't isolate the agent itself. The service account token file can be read by anything running as my user, Claude Code included. Anyone with access to the Docker socket can run `docker inspect` on the container and read the GitHub token, and Claude Code can run `docker`. `op.exe` with the desktop integration is also still available, protected only by 1Password's approval prompt; once the service account exists, you can turn off **Integrate with 1Password CLI** in **Settings > Developer** if no other tool you use depends on it. And the agent doesn't even need to see the token to misuse it: if it reads an issue or a README with hidden instructions (prompt injection), it can call the GitHub tools directly with whatever permissions the token has.
 

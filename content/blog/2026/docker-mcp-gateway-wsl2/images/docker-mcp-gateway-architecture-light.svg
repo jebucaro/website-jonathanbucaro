@@ -53,11 +53,11 @@ text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-
 <text class="s" x="635" y="321" text-anchor="middle">no access to your other vaults</text>
 
 <rect class="e" x="490" y="398" width="290" height="118" rx="12"/>
-<text class="h" x="635" y="426" text-anchor="middle">GitHub (only via L7 proxy)</text>
+<text class="h" x="635" y="426" text-anchor="middle">GitHub</text>
 <text class="m" x="635" y="450" text-anchor="middle">api.github.com</text>
 <text class="m" x="635" y="468" text-anchor="middle">github.com</text>
 <text class="m" x="635" y="486" text-anchor="middle">raw.githubusercontent.com</text>
-<text class="s" x="635" y="506" text-anchor="middle">--block-network, internal network</text>
+<text class="s" x="635" y="506" text-anchor="middle">with the fine-grained PAT</text>
 
 <path class="r" d="M240 126V172"/>
 <text class="l" x="232" y="154" text-anchor="end">stdio · JSON-RPC</text>
