@@ -25,50 +25,48 @@ text{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-
 <text class="s" x="240" y="114" text-anchor="middle">MCP server MCP_DOCKER</text>
 
 <rect class="b" x="60" y="176" width="360" height="66" rx="8"/>
-<text class="h" x="240" y="202" text-anchor="middle">mcp-gateway (wrapper script)</text>
-<text class="s" x="240" y="221" text-anchor="middle">reads the GitHub token, fails if it's empty,</text>
-<text class="s" x="240" y="235" text-anchor="middle">then runs the gateway</text>
+<text class="h" x="240" y="205" text-anchor="middle">mcp-gateway</text>
+<text class="m" x="240" y="226" text-anchor="middle">~/.local/bin/mcp-gateway</text>
 
 <rect class="b" x="60" y="292" width="360" height="56" rx="8"/>
 <text class="h" x="240" y="317" text-anchor="middle">docker mcp gateway run</text>
 <text class="m" x="240" y="335" text-anchor="middle">--servers github-official</text>
 
 <rect class="b" x="60" y="398" width="360" height="118" rx="8"/>
-<text class="h" x="240" y="424" text-anchor="middle">github-official container</text>
+<text class="h" x="240" y="424" text-anchor="middle">github-official</text>
 <text class="m" x="240" y="446" text-anchor="middle">--security-opt no-new-privileges</text>
 <text class="m" x="240" y="464" text-anchor="middle">--cpus 1 --memory 2Gb</text>
 <text class="m" x="240" y="482" text-anchor="middle">-e GITHUB_PERSONAL_ACCESS_TOKEN</text>
-<text class="s" x="240" y="503" text-anchor="middle">46 tools</text>
+<text class="m" x="240" y="503" text-anchor="middle">ghcr.io/github/github-mcp-server</text>
 
 <rect class="w" x="490" y="20" width="290" height="160" rx="12"/>
 <text class="z" x="510" y="48">WINDOWS 11</text>
 <rect class="b" x="520" y="100" width="230" height="56" rx="8"/>
 <text class="h" x="635" y="125" text-anchor="middle">op.exe</text>
-<text class="s" x="635" y="143" text-anchor="middle">1Password CLI, via WSL interop</text>
+<text class="s" x="635" y="143" text-anchor="middle">1Password CLI</text>
 
 <rect class="e" x="490" y="236" width="290" height="96" rx="12"/>
 <text class="h" x="635" y="264" text-anchor="middle">1Password service account</text>
-<text class="s" x="635" y="284" text-anchor="middle">vault AI Agents · read_items only</text>
-<text class="m" x="635" y="304" text-anchor="middle">op://AI Agents/GitHub PAT</text>
-<text class="s" x="635" y="321" text-anchor="middle">no access to your other vaults</text>
+<text class="m" x="635" y="284" text-anchor="middle">AI Agents:read_items</text>
+<text class="m" x="635" y="308" text-anchor="middle">op://AI Agents/GitHub PAT</text>
 
 <rect class="e" x="490" y="398" width="290" height="118" rx="12"/>
 <text class="h" x="635" y="426" text-anchor="middle">GitHub</text>
 <text class="m" x="635" y="450" text-anchor="middle">api.github.com</text>
 <text class="m" x="635" y="468" text-anchor="middle">github.com</text>
 <text class="m" x="635" y="486" text-anchor="middle">raw.githubusercontent.com</text>
-<text class="s" x="635" y="506" text-anchor="middle">with the fine-grained PAT</text>
+<text class="s" x="635" y="506" text-anchor="middle">fine-grained PAT</text>
 
 <path class="r" d="M240 126V172"/>
 <text class="l" x="232" y="154" text-anchor="end">stdio · JSON-RPC</text>
 <path class="r" d="M420 200H470V128H516"/>
 <text class="l" x="462" y="148" text-anchor="end">OP_SERVICE_ACCOUNT_TOKEN</text>
-<text class="l" x="462" y="164" text-anchor="end">passed via WSLENV /w</text>
+<text class="l" x="462" y="164" text-anchor="end">WSLENV /w</text>
 <path class="r" d="M635 156V232"/>
-<text class="l" x="645" y="200">read token</text>
+<text class="l" x="645" y="200">op read</text>
 <path class="r" d="M240 242V288"/>
 <text class="l" x="250" y="270">--secrets &lt;(…)</text>
 <path class="r" d="M240 348V394"/>
-<text class="l" x="250" y="376">token as env var</text>
+<text class="l" x="250" y="376">github.personal_access_token</text>
 <path class="r" d="M420 457H486"/>
 </svg>
