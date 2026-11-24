@@ -45,9 +45,9 @@ export DOCKER_MCP_IN_CONTAINER=1
 
 Add it to your `~/.zshrc` or `~/.bashrc` if you want it available in your terminal. The wrapper we'll create further down already sets it on its own.
 
-## Pick the GitHub server
+## Test the setup with the GitHub server
 
-Docker's catalog is an OCI image. Pull it and look for `github-official` (type `/github-official` in `less`):
+To test the whole setup I used GitHub's official server, because it needs both a secret and network access. Docker's catalog is an OCI image. Pull it and look for `github-official` (type `/github-official` in `less`):
 
 ```bash
 docker mcp catalog pull mcp/docker-mcp-catalog
@@ -185,6 +185,38 @@ MCP_DOCKER: mcp-gateway  - ✔ Connected
 ```
 
 After restarting Claude Code, the GitHub tools show up under `/mcp`.
+
+## Add other servers from the catalog
+
+Once the GitHub server works, you can add others from the catalog, which has more than 300. To list them and see what one of them needs:
+
+```bash
+docker mcp catalog server ls mcp/docker-mcp-catalog
+docker mcp catalog server inspect mcp/docker-mcp-catalog brave | less
+```
+
+In the `inspect` output, look at two fields: `secrets`, the secrets the server expects, and `allowHosts`, the hosts it's allowed to reach.
+
+If the server doesn't need any secret, add it to the default `MCP_SERVERS` value in the wrapper, separated by a comma. I tried it with DuckDuckGo's search server:
+
+```bash
+  --servers "${MCP_SERVERS:-github-official,duckduckgo}" \
+```
+
+If it does need one, save the credential in the AI Agents vault, read it with `op.exe` the same way as the GitHub token, and add one line per secret to the process substitution. For Brave Search, which expects `brave.api_key`, the wrapper would get these changes:
+
+```bash
+BRAVE_KEY="$("$OP" read "op://$VAULT/Brave Search/credential" </dev/null | tr -d '\r')"
+```
+
+```bash
+  --servers "${MCP_SERVERS:-github-official,brave}" \
+  --secrets <(printf 'github.personal_access_token=%s\nbrave.api_key=%s\n' "$GITHUB_TOKEN" "$BRAVE_KEY") \
+```
+
+Add the same empty check you have for `GITHUB_TOKEN`, and run the dry run again: you should see `BRAVE_API_KEY` masked just like the GitHub token. Then restart Claude Code so it starts the gateway with the new servers.
+
+Take into account that `--block-network` only restricts servers whose catalog entry has `allowHosts`. When I checked, only three of them did: `github-official`, `duckduckgo` and `kafka-schema-reg-mcp`. The rest, like `brave` or `fetch`, run on Docker's default network with full internet access, even with `--block-network`. They still get the same CPU, memory and privilege limits, but nothing stops them from sending data anywhere.
 
 ## What this protects and what it doesn't
 
