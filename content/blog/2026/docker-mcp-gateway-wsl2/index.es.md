@@ -245,6 +245,41 @@ Si sí necesita uno, primero guarda la credencial en el vault AI Agents. Despué
 
 Guarda el archivo y vuelve a correr el dry run con `mcp-gateway --dry-run --verbose`: deberías ver `BRAVE_API_KEY` enmascarado igual que el token de GitHub. Después reinicia Claude Code para que levante el gateway con los nuevos servidores.
 
+## Usa el mismo vault para tus CLIs
+
+Uso el CLI de `gh` más que el servidor MCP de GitHub, y lo tenía configurado con una función de zsh que leía el token de mi vault Private por medio de la app de escritorio. Es el mismo acceso a toda la cuenta que evité para el gateway, y Claude Code también corre `gh` a través de esa función. Así que también lo pasé al service account. Creé un segundo token fine-grained para el CLI, lo guardé en AI Agents como **GitHub CLI** y puse esto en `~/.zshenv`:
+
+```zsh
+# Read one item through the read-only "AI Agents" service account.
+_op_agent_read() {
+  local op_bin="${MCP_OP_EXE:-/mnt/c/path/to/op.exe}" sa
+  sa="$(<"$HOME/.config/mcp-gateway/op-service-account-token")" || return 1
+  OP_SERVICE_ACCOUNT_TOKEN="$sa" WSLENV="${WSLENV:+$WSLENV:}OP_SERVICE_ACCOUNT_TOKEN/w" \
+    "$op_bin" read "$1" </dev/null 2>/dev/null | tr -d '\r'
+}
+
+typeset -g _GH_TOKEN_CACHE=""
+gh() {
+  if [[ -z $GH_TOKEN && -z $_GH_TOKEN_CACHE ]]; then
+    _GH_TOKEN_CACHE="$(_op_agent_read 'op://AI Agents/GitHub CLI/credential')"
+    if [[ -z $_GH_TOKEN_CACHE ]]; then
+      print -u2 "gh: could not read 'GitHub CLI' from the AI Agents vault"
+      return 1
+    fi
+  fi
+  GH_TOKEN="${GH_TOKEN:-$_GH_TOKEN_CACHE}" command gh "$@"
+}
+```
+
+Va en `.zshenv` y no en `.zshrc` para que también la tengan las shells no interactivas, como las que abre Claude Code. El token queda en una variable que no se exporta, así que `gh` es el único programa que lo recibe, y si la lectura falla la función no regresa a la app de escritorio. Le di al CLI su propio token para que tenga permisos distintos a los del servidor MCP, y para poder revocar uno sin romper el otro. En una terminal nueva, `gh auth status` debería mostrar que está usando el token:
+
+```text
+github.com
+  ✓ Logged in to github.com account <you> (GH_TOKEN)
+```
+
+Otros CLIs siguen el mismo patrón con la variable de entorno que lee cada uno, por ejemplo `npm() { NPM_TOKEN="$(_op_agent_read 'op://AI Agents/npm/credential')" command npm "$@" }`. Toma en consideración que todo lo que está en AI Agents también lo puede leer el agente, así que guarda ahí solo tokens que estés dispuesto a que use. Y comandos como `timeout gh` o `xargs gh` corren el binario directamente, se saltan la función y se ejecutan sin token.
+
 ## Qué protege y qué no
 
 El servidor de GitHub corre con `no-new-privileges`, un CPU y 2 GB de memoria. El token se pasa por nombre (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), así que el valor no aparece en la lista de procesos. El gateway también bloquea secretos en las llamadas y respuestas de las herramientas por defecto (`--block-secrets`). El token no queda en la configuración de Claude Code, ni en mis dotfiles ni en un archivo `.env`. Solo existe en memoria y dentro del contenedor. Y si la imagen del servidor estuviera comprometida, no podría leer mis archivos. Eso sí, tiene acceso a internet, como cualquier contenedor en la red por defecto de Docker.
