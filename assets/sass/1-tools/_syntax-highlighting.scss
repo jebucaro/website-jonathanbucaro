@@ -14,6 +14,7 @@
 .highlight {
     margin-bottom: 32px;
     background: var(--syntax-highlighting-background);
+    border-radius: $global-radius;
 }
 
 .chroma {
@@ -279,6 +280,7 @@
 .code-block {
     position: relative;
     background: var(--syntax-highlighting-background);
+    border-radius: $global-radius;
 
     pre {
         padding-top: 32px;
