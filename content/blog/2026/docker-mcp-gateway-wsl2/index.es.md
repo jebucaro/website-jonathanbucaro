@@ -7,7 +7,7 @@ draft: false
 tags: [windows, wsl, ai-tools, security]
 ---
 
-Quería que los servidores MCP de mis agentes corrieran en contenedores aislados, sin tener el token de GitHub en texto plano en algún archivo de configuración. El {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}} de Docker hace justo eso, pero yo pensaba que solo venía con Docker Desktop, que no uso (en mi [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/) cuento por qué). Me equivoqué. El gateway es un plugin open source del CLI de Docker y corre sin problema sobre Docker Engine dentro de WSL2.
+Lo que más extrañé al pasar de Docker Desktop a Docker Engine fue el {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}}. Pensaba que solo venía con Desktop, que ya no uso (en mi [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/) cuento por qué). Y era justo lo que buscaba: que los servidores MCP de mis agentes corrieran en contenedores aislados, sin dejar el token de GitHub en texto plano en algún archivo de configuración. Para mi sorpresa, el gateway es un plugin open source del CLI de Docker y corre sin problema sobre Docker Engine dentro de WSL2.
 
 En el camino encontré varias guías con comandos que no funcionaban, así que aquí va lo que sí me funcionó: Claude Code conectado al gateway, con el token de GitHub saliendo de 1Password y sin que el agente pueda ver el resto de mis vaults. Lo probé con Docker Engine 29.10 y `docker mcp` v0.44.3.
 
