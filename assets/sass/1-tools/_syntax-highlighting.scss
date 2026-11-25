@@ -14,10 +14,23 @@
 .highlight {
     margin-bottom: 32px;
     background: var(--syntax-highlighting-background);
+    border-radius: $global-radius;
 }
 
 .chroma {
     color: #1f2328;
+
+    // Lines picked with hl_lines in a code fence, e.g. ```bash {hl_lines=[7]}
+    // Negative margin and matching padding stretch the highlight across the
+    // pre's 15px padding (2-base/_base.scss), so the bar sits at the edge of
+    // the code box and the text stays aligned with the unhighlighted lines.
+    .hl {
+        display: flex;
+        margin-inline: -15px;
+        padding-inline: 15px;
+        background-color: rgba(9, 105, 218, 0.12);
+        box-shadow: inset 3px 0 0 #0969da;
+    }
 
     .err {
         color: #f6f8fa;
@@ -123,6 +136,11 @@
 
 :root[dark] .chroma {
     color: #e6edf3;
+
+    .hl {
+        background-color: rgba(56, 139, 253, 0.18);
+        box-shadow: inset 3px 0 0 #388bfd;
+    }
 
     .err {
         color: #f85149;
@@ -262,6 +280,7 @@
 .code-block {
     position: relative;
     background: var(--syntax-highlighting-background);
+    border-radius: $global-radius;
 
     pre {
         padding-top: 32px;
