@@ -9,7 +9,7 @@ tags: [windows, wsl, ai-tools, security]
 
 What I missed most after moving from Docker Desktop to Docker Engine was Docker's {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}}. I assumed it only shipped with Desktop, which I no longer use (I explained why in my [1Password post](/blog/use-1password-in-windows-with-wsl2-dev-containers/)). And it was exactly what I wanted: my agents' MCP servers running in isolated containers, without my GitHub token sitting in plain text in some config file. To my surprise, the gateway is an open source plugin for the Docker CLI, and Docker Engine inside WSL2 runs it fine.
 
-A few guides I found had commands that didn't work for me, so this is the setup that did. Claude Code talks to the gateway, and the gateway gets the GitHub token from 1Password through an account that can't see the rest of my vaults. I tested it with Docker Engine 29.10 and `docker mcp` v0.44.3.
+A few guides I found had commands that didn't work for me, so this is the setup that did. Claude Code talks to the gateway, and the gateway gets the GitHub token from **1Password** through an account that can't see the rest of my vaults. I tested it with Docker Engine 29.10 and `docker mcp` v0.44.3.
 
 {{< figure-dynamic
     light-src="images/docker-mcp-gateway-architecture-light.svg"
@@ -27,7 +27,7 @@ A few guides I found had commands that didn't work for me, so this is the setup 
 
 ## Install the plugin
 
-The plugin is a single binary that goes in the Docker CLI plugins folder:
+The MCP Gateway plugin is a single binary that goes in the Docker CLI plugins folder:
 
 ```bash
 mkdir -p ~/.docker/cli-plugins
@@ -57,7 +57,7 @@ The Linux 1Password CLI can't talk to the 1Password app on Windows, so from WSL 
 (Get-Command op.exe).Source
 ```
 
-Convert that path to WSL format and keep it in a variable:
+Convert that path to WSL format and keep it in a variable (run this in WSL):
 
 ```bash
 OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
@@ -65,13 +65,13 @@ OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 echo "$OP"
 ```
 
-Write down what `echo` prints, the wrapper needs it. Keep this terminal open for the next section, or set `OP` again in a new one.
+Write down what the `echo` command prints, the wrapper needs it. Keep this terminal open for the next section, or set `OP` again in a new one.
 
 Windows programs called from WSL end their output lines with `\r\n`, which is why you'll see `tr -d '\r'` all over this post. They also can't see your Linux environment variables unless you list them in `WSLENV`.
 
 ## Keep the tokens away from your main vaults
 
-You could read the token with your normal `op` session, but the desktop app integration authorizes the CLI for your whole account. According to 1Password's {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}security model{{< /extlink >}}, that authorization carries over to sub-shells, so an agent running commands from that terminal could read anything in my account.
+You could read the token with your normal `op` session, but the desktop app integration authorizes the CLI for your whole account. According to 1Password's {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}security model{{< /extlink >}}, that authorization carries over to sub-shells, so an agent running commands from that terminal could read anything in my account if it runs `op.exe`.
 
 So I followed 1Password's {{< extlink href="https://www.1password.dev/sdks/ai-agent" >}}tutorial for AI agents{{< /extlink >}} instead, which comes down to a vault just for the agent and a service account that can only read it. Their {{< extlink href="https://www.1password.dev/get-started/secure-ai-access" >}}secure AI access{{< /extlink >}} guide adds that the secret should only reach the process that needs it and stay out of the model and any config file. Here that process is the GitHub server's container, and Claude Code never sees the token.
 
@@ -105,7 +105,7 @@ ID                            NAME
 xxxxxxxxxxxxxxxxxxxxxxxxxx    AI Agents
 ```
 
-Only AI Agents shows up.
+Only AI Agents should show up.
 
 {{< callout important >}}
 Without `WSLENV=...`, the same command listed every vault in my account. `op.exe` never got the token and quietly fell back to the desktop app integration. The `/w` makes the variable pass from WSL to Windows only.
@@ -115,7 +115,7 @@ Without `WSLENV=...`, the same command listed every vault in my account. `op.exe
 ID                            NAME
 xxxxxxxxxxxxxxxxxxxxxxxxxx    Private
 xxxxxxxxxxxxxxxxxxxxxxxxxx    AI Agents
-xxxxxxxxxxxxxxxxxxxxxxxxxx    Work
+xxxxxxxxxxxxxxxxxxxxxxxxxx    Family
 xxxxxxxxxxxxxxxxxxxxxxxxxx    Shared
 ```
 
@@ -212,7 +212,7 @@ docker mcp catalog server inspect mcp/docker-mcp-catalog brave | less
 
 The `secrets` field in the `inspect` output tells you which secrets the server expects. With or without secrets, adding a server means editing the wrapper.
 
-If it doesn't need a secret, just add it to the `--servers` default, separated by a comma. I tried it with DuckDuckGo's search server:
+If the server's container doesn't need a secret, just add it to the `--servers` default, separated by a comma. I tried it with DuckDuckGo's search server:
 
 ```bash
   --servers "${MCP_SERVERS:-github-official,duckduckgo}" \
@@ -245,7 +245,7 @@ Run `mcp-gateway --dry-run --verbose` again and you should see `BRAVE_API_KEY` m
 
 ## What this protects and what it doesn't
 
-The GitHub server runs with `no-new-privileges`, one CPU and 2 GB of memory. The token is passed by name (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), so it doesn't show up in the process list, and `--block-secrets` (on by default) blocks secrets in tool calls and responses. The token stays in memory and inside the container, so there's no copy in Claude Code's config, my dotfiles or a `.env` file.
+The GitHub server runs with `no-new-privileges`. The token is passed by name (`-e GITHUB_PERSONAL_ACCESS_TOKEN`), so it doesn't show up in the process list, and `--block-secrets` (on by default) blocks secrets in tool calls and responses. The token stays in memory and inside the container, so there's no copy in Claude Code's config, my dotfiles or a `.env` file.
 
 Anything running as my user can read the service account token file, Claude Code included. Claude Code can also run `docker`, and anyone with access to the Docker socket can `docker inspect` the container and read the GitHub token. `op.exe` with the desktop integration is still there too, guarded only by 1Password's approval prompt. Once the service account works, you can turn off **Integrate with 1Password CLI** in **Settings > Developer** if nothing else depends on it.
 
@@ -264,4 +264,4 @@ If something leaks, what's exposed is a fine-grained token that expires and read
 
 The service account lasts 90 days and the GitHub tokens last as long as you set, so give them a short expiry and rotate them now and then.
 
-To isolate the agent itself there's {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token entirely. I haven't tried either yet.
+To isolate the agent itself there's {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token entirely. I haven't tried either yet. Claude Code also has its own {{< extlink href="https://code.claude.com/docs/en/sandboxing" >}}sandbox{{< /extlink >}} for the commands it runs through Bash (bubblewrap on WSL2). It won't break this setup, because MCP servers run outside it. It's off by default, though, and even with it on, Bash can still read the token file until you add its path to `sandbox.filesystem.denyRead`.
