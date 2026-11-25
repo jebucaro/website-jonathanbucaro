@@ -2,10 +2,10 @@
 title: 'Corre Docker MCP Gateway en WSL2 sin Docker Desktop'
 slug: 'docker-mcp-gateway-wsl2-without-docker-desktop'
 date: 2026-11-22T10:00:00-06:00
-description: 'Corre el Docker MCP Gateway sobre Docker Engine en WSL2, lee los secretos desde un service account de 1Password de solo lectura y conéctalo a Claude Code.'
+description: 'Configura el Docker MCP Gateway sobre Docker Engine en WSL2, lee los secretos desde un service account de 1Password de solo lectura y conéctalo a Claude Code.'
 image: 'images/cover.png'
 draft: false
-tags: [windows, wsl, ai-tools, security]
+tags: [windows, wsl, ai-tools]
 ---
 
 Lo que más extrañé al pasar de Docker Desktop a Docker Engine fue el {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}}. Pensaba que solo venía con Desktop, el cual ya no uso (en mi [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/) cuento la razón). Y era justo lo que buscaba: que los servidores MCP de mis agentes corrieran en contenedores aislados, sin dejar el token de GitHub en texto plano en algún archivo de configuración. Para mi sorpresa, el gateway es un plugin open source del CLI de Docker y corre sin problema sobre Docker Engine dentro de WSL2.

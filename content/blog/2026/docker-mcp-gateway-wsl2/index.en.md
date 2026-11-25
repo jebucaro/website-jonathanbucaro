@@ -5,7 +5,7 @@ date: 2026-11-22T10:00:00-06:00
 description: 'Run the Docker MCP Gateway on Docker Engine in WSL2, read secrets from a read-only 1Password service account, and connect it to Claude Code.'
 image: 'images/cover.png'
 draft: false
-tags: [windows, wsl, ai-tools, security]
+tags: [windows, wsl, ai-tools]
 ---
 
 What I missed most after moving from Docker Desktop to Docker Engine was Docker's {{< extlink href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/get-started/" >}}MCP Gateway{{< /extlink >}}. I assumed it only shipped with Desktop, which I no longer use (I explained why in my [1Password post](/blog/use-1password-in-windows-with-wsl2-dev-containers/)). And it was exactly what I wanted: my agents' MCP servers running in isolated containers, without my GitHub token sitting in plain text in some config file. To my surprise, the gateway is an open source plugin for the Docker CLI, and Docker Engine inside WSL2 runs it fine.
