@@ -38,14 +38,6 @@ docker mcp version
 
 It should print `v0.44.3`. Check the {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}releases page{{< /extlink >}} for newer versions, and use `linux-arm64` if you're on ARM.
 
-Some `docker mcp` commands look for Docker Desktop and fail with "Docker Desktop is not running" even when the daemon is up. The project's README documents a variable that skips that check:
-
-```bash
-export DOCKER_MCP_IN_CONTAINER=1
-```
-
-Put it in your `~/.zshrc` or `~/.bashrc` if you want it in your terminal. The wrapper we'll write later sets it anyway.
-
 ## Pick a server to test with
 
 I tested with GitHub's official server because it needs both a secret and network access. Docker's catalog is an OCI image, so pull it and search for `github-official` (type `/github-official` in `less`):
@@ -160,6 +152,8 @@ exec docker mcp gateway run \
   --secrets <(printf 'github.personal_access_token=%s\n' "$GITHUB_TOKEN") \
   "$@"
 ```
+
+`DOCKER_MCP_IN_CONTAINER=1` tells the gateway it isn't running under Docker Desktop. Without it, `gateway run` starts no servers and lists 0 tools, also without an error.
 
 The gateway reads `--secrets` once at startup, so a process substitution is enough and the GitHub token never touches the disk. The script also unsets the service account token before starting the gateway, which keeps it away from the gateway and its containers. I added the `</dev/null` after my first try with Claude Code hung for 30 seconds and gave up, because `op.exe` was inheriting the stdin Claude Code uses to talk to the gateway and swallowed the first message.
 

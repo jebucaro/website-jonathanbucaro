@@ -38,14 +38,6 @@ docker mcp version
 
 Debería imprimir `v0.44.3`. Revisa la {{< extlink href="https://github.com/docker/mcp-gateway/releases" >}}página de releases{{< /extlink >}} por si hay algo más nuevo, y usa `linux-arm64` si estás en ARM.
 
-Algunos comandos de `docker mcp` buscan Docker Desktop y fallan con "Docker Desktop is not running" aunque el daemon esté corriendo. El README del proyecto documenta una variable para saltarse esa verificación:
-
-```bash
-export DOCKER_MCP_IN_CONTAINER=1
-```
-
-El wrapper que vamos a escribir más adelante ya la define, así que ponla en tu `~/.zshrc` o `~/.bashrc` solo si también la quieres en tu terminal.
-
 ## Escoge un servidor para probar
 
 Escogí el servidor oficial de GitHub porque necesita un secreto y también acceso a la red. El catálogo de Docker es una imagen OCI, así que descárgalo y busca `github-official` (escribe `/github-official` en `less`):
@@ -160,6 +152,8 @@ exec docker mcp gateway run \
   --secrets <(printf 'github.personal_access_token=%s\n' "$GITHUB_TOKEN") \
   "$@"
 ```
+
+`DOCKER_MCP_IN_CONTAINER=1` le avisa al gateway que no está corriendo con Docker Desktop. Sin esa variable, `gateway run` no arranca ningún servidor y lista 0 herramientas, también sin dar ningún error.
 
 El gateway lee lo que le pasas en `--secrets` una sola vez al arrancar, por eso funciona con una sustitución de procesos (process substitution) y el token de GitHub nunca se escribe en disco. Antes de arrancar el gateway, el script borra del entorno el token del service account, y así ni el gateway ni sus contenedores lo reciben. El `</dev/null` lo agregué después de mi primer intento con Claude Code, que se quedó esperando 30 segundos y falló porque `op.exe` heredaba el stdin que Claude Code usa para hablar con el gateway y se comía el primer mensaje.
 
