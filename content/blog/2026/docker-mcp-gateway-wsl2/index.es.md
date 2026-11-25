@@ -60,7 +60,7 @@ El CLI de 1Password para Linux no se puede comunicar con la app de 1Password en 
 
 Convierte esa ruta al formato de WSL y guárdala en una variable (ejecútalo desde WSL):
 
-```bash
+```bash {hl_lines=[1]}
 OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 "$OP" --version
 echo "$OP"
@@ -124,7 +124,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxx    Shared
 
 Los clientes MCP arrancan cada servidor ejecutando un comando directamente, sin pasar por un shell, así que el manejo de los secretos va en un script pequeño. Yo lo guardé como `~/.local/bin/mcp-gateway`. Cambia la ruta de `op.exe` por la tuya y ejecuta `chmod +x`:
 
-```bash
+```bash {hl_lines=[7]}
 #!/usr/bin/env bash
 # Docker MCP Gateway on WSL2 Docker Engine, no Docker Desktop.
 set -euo pipefail

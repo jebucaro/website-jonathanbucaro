@@ -60,7 +60,7 @@ The Linux 1Password CLI can't talk to the 1Password app on Windows, so from WSL 
 
 Convert that path to WSL format and keep it in a variable (run this in WSL):
 
-```bash
+```bash {hl_lines=[1]}
 OP="$(wslpath 'C:\Users\<you>\...\op.exe')"
 "$OP" --version
 echo "$OP"
@@ -124,7 +124,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxx    Shared
 
 MCP clients start each server by running a command directly, without a shell, so the secret handling goes in a small script. I saved it as `~/.local/bin/mcp-gateway`. Replace the `op.exe` path with yours and run `chmod +x` on it:
 
-```bash
+```bash {hl_lines=[7]}
 #!/usr/bin/env bash
 # Docker MCP Gateway on WSL2 Docker Engine, no Docker Desktop.
 set -euo pipefail
