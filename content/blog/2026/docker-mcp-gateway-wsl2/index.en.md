@@ -161,18 +161,18 @@ The gateway reads `--secrets` once at startup, so a process substitution is enou
 The gateway doesn't complain when it can't read a secrets file. It just starts without the secret, which is why the wrapper checks that the token isn't empty.
 {{< /callout >}}
 
-I also skip `--watch`. On a reload the gateway reads the secrets again from a stream that's already empty, so it comes back up without the token.
+I also skip `--watch`. `<(...)` is a pipe that looks like a file (something like `/dev/fd/63`), and it can only be read once. When `--watch` reloads the configuration, the gateway reads that path again, finds it empty and starts the servers without the token, again without a warning.
 
 Docker's docs configure servers through profiles (`docker mcp gateway run --profile <name>`), but they assume Docker Desktop. On Docker Engine, profiles read secrets from Docker's {{< extlink href="https://github.com/docker/secrets-engine" >}}Secrets Engine{{< /extlink >}}, which is still experimental there and needs D-Bus plus a keyring like GNOME Keyring. A WSL distro doesn't ship either by default, so it crashes, and the gateway won't take `--secrets` and `--profile` together anyway. That leaves `--servers`, which is what the wrapper uses.
 
 You do lose the gateway's dynamic tools (`mcp-find`, `mcp-add`, `code-mode`), which let the agent add servers from the catalog mid-conversation. I'm fine with that, I'd rather an agent holding my tokens stick to a fixed list.
 
-| Configuration                    | Result       | Why                                                         |
-| -------------------------------- | ------------ | ----------------------------------------------------------- |
-| `--servers` + `--secrets <(...)` | What I use   | The stream is read once at startup. No dynamic tools.       |
-| `--watch` + `--secrets <(...)`   | Avoid it     | On reload, the gateway reads a stream that's already empty. |
-| `--profile` + `--secrets`        | Doesn't work | The two flags can't be combined.                            |
-| `--profile` + Secrets Engine     | Not yet      | Still experimental on Docker Engine.                        |
+| Configuration                    | Result       | Why                                                                                             |
+| -------------------------------- | ------------ | ----------------------------------------------------------------------------------------------- |
+| `--servers` + `--secrets <(...)` | What I use   | The gateway reads the pipe once at startup, and that's all it needs. No dynamic tools.          |
+| `--watch` + `--secrets <(...)`   | Avoid it     | Each reload reads the pipe again, finds it empty and brings the servers back without the token. |
+| `--profile` + `--secrets`        | Doesn't work | The two flags can't be combined.                                                                |
+| `--profile` + Secrets Engine     | Not yet      | Still experimental on Docker Engine.                                                            |
 
 A dry run starts the server, lists its tools and exits:
 

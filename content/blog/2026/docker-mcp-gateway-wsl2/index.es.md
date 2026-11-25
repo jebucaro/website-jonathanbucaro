@@ -161,18 +161,18 @@ El gateway lee lo que le pasas en `--secrets` una sola vez al arrancar, por eso 
 Si el gateway no puede leer un archivo de secretos, no da ningún error y arranca sin el secreto. Por eso el wrapper revisa que el token no venga vacío.
 {{< /callout >}}
 
-Por lo mismo no uso el parámetro `--watch`. Al recargar, el gateway vuelve a leer los secretos de un stream que ya está vacío.
+Por lo mismo no uso el parámetro `--watch`. `<(...)` es un pipe que parece archivo (algo como `/dev/fd/63`) y solo se puede leer una vez. Cuando `--watch` recarga la configuración, el gateway vuelve a leer esa ruta, la encuentra vacía y arranca los servidores sin el token, otra vez sin avisar.
 
 La documentación de Docker configura los servidores con profiles (`docker mcp gateway run --profile <nombre>`), pero asume que tienes Docker Desktop. En Docker Engine, los profiles leen sus secretos del {{< extlink href="https://github.com/docker/secrets-engine" >}}Secrets Engine{{< /extlink >}} de Docker, que ahí todavía es experimental y necesita D-Bus y un keyring como GNOME Keyring. Una distro de WSL no trae ninguno de los dos por defecto, así que ahí se cae. Y aunque los tuviera, el gateway no acepta los parámetros `--secrets` y `--profile` juntos. Por eso el wrapper le pasa los servidores con `--servers`.
 
 Con `--servers` pierdes las dynamic tools del gateway (`mcp-find`, `mcp-add`, `code-mode`), que le permiten al agente agregar servidores del catálogo a media conversación. Como el agente tiene acceso a mis tokens, igual prefiero una lista fija.
 
-| Configuración                    | Resultado      | Por qué                                                       |
-| -------------------------------- | -------------- | ------------------------------------------------------------- |
-| `--servers` + `--secrets <(...)` | La que uso     | El stream se lee una sola vez al arrancar. Sin dynamic tools. |
-| `--watch` + `--secrets <(...)`   | Mejor evitarla | Al recargar, el gateway lee un stream que ya está vacío.      |
-| `--profile` + `--secrets`        | No funciona    | Los dos parámetros no se pueden combinar.                     |
-| `--profile` + Secrets Engine     | Todavía no     | Sigue siendo experimental en Docker Engine.                   |
+| Configuración                    | Resultado      | Por qué                                                                                        |
+| -------------------------------- | -------------- | ---------------------------------------------------------------------------------------------- |
+| `--servers` + `--secrets <(...)` | La que uso     | El gateway lee el pipe una sola vez al arrancar y con eso le basta. Sin dynamic tools.         |
+| `--watch` + `--secrets <(...)`   | Mejor evitarla | Cada recarga vuelve a leer el pipe, lo encuentra vacío y los servidores regresan sin el token. |
+| `--profile` + `--secrets`        | No funciona    | Los dos parámetros no se pueden combinar.                                                      |
+| `--profile` + Secrets Engine     | Todavía no     | Sigue siendo experimental en Docker Engine.                                                    |
 
 Un dry run arranca el servidor, lista sus herramientas y termina:
 
