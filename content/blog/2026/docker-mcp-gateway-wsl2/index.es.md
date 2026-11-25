@@ -303,6 +303,6 @@ Y el agente ni siquiera necesita ver el token para usarlo mal. Si lee un issue o
 
 Si algo se filtra, lo peor que sale es un token fine-grained que expira y acceso de lectura a un vault que solo tiene los tokens del agente. Hasta ahí llegan los permisos del token, y el parámetro `--tools` del gateway o el modo de solo lectura del servidor de GitHub los pueden recortar todavía más.
 
-1Password también recomienda usar tokens de corta duración y revisar qué lee el agente, y este setup no hace ninguna de las dos cosas por ti. El service account dura 90 días y los tokens de GitHub lo que tú les pongas, así que dales una expiración corta. Para lo otro está el {{< extlink href="https://support.1password.com/reports/" >}}reporte de uso del service account{{< /extlink >}}.
+El service account dura 90 días y los tokens de GitHub lo que tú les pongas, así que dales una expiración corta y rótalos de vez en cuando.
 
 Para aislar al agente está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, y el {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password parece una forma de quitar del todo el token del service account. Todavía no he probado ninguno de los dos.

@@ -303,6 +303,6 @@ If the agent reads an issue or README with hidden instructions (prompt injection
 
 If something leaks, what's exposed is a fine-grained token that expires and read access to a vault that only holds the agent's tokens. The token's permissions set the ceiling, and you can lower it with the gateway's `--tools` flag or the GitHub server's read-only mode.
 
-1Password also recommends short-lived tokens, and these aren't (the service account lasts 90 days and the GitHub tokens last as long as you set), so give them a short expiry. Nothing audits what the agent reads either, unless you check the {{< extlink href="https://support.1password.com/reports/" >}}service account usage report{{< /extlink >}} yourself.
+The service account lasts 90 days and the GitHub tokens last as long as you set, so give them a short expiry and rotate them now and then.
 
 To isolate the agent itself there's {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token entirely. I haven't tried either yet.
