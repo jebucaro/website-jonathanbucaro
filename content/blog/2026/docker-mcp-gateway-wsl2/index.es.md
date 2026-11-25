@@ -3,6 +3,7 @@ title: 'Corre Docker MCP Gateway en WSL2 sin Docker Desktop'
 slug: 'docker-mcp-gateway-wsl2-without-docker-desktop'
 date: 2026-11-22T10:00:00-06:00
 description: 'Corre el Docker MCP Gateway sobre Docker Engine en WSL2, lee los secretos desde un service account de 1Password de solo lectura y conéctalo a Claude Code.'
+image: 'images/cover.png'
 draft: false
 tags: [windows, wsl, ai-tools, security]
 ---
@@ -265,3 +266,7 @@ Si algo se filtra, lo peor que sale es un token fine-grained que expira y acceso
 El service account dura 90 días y los tokens de GitHub lo que tú les pongas, así que dales una expiración corta y rótalos de vez en cuando.
 
 Para aislar al agente está {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, y el {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} de 1Password parece una forma de quitar del todo el token del service account. Todavía no he probado ninguno de los dos. Claude Code también tiene su propio {{< extlink href="https://code.claude.com/docs/en/sandboxing" >}}sandbox{{< /extlink >}} para los comandos que corre con Bash (en WSL2 usa bubblewrap). No rompe esta configuración, porque los servidores MCP corren fuera de él. Eso sí, viene apagado por defecto, y aunque lo actives, Bash puede seguir leyendo el archivo del token hasta que agregues su ruta a `sandbox.filesystem.denyRead`.
+
+---
+
+Foto de {{< extlink href="https://unsplash.com/@nknezevic?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Nikola Knezevic{{< /extlink >}} en {{< extlink href="https://unsplash.com/photos/a-dark-tunnel-with-an-open-door-leading-to-a-grassy-field-Q3JcLtECTtE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}

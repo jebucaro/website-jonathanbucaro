@@ -3,6 +3,7 @@ title: 'Run Docker MCP Gateway in WSL2 without Docker Desktop'
 slug: 'docker-mcp-gateway-wsl2-without-docker-desktop'
 date: 2026-11-22T10:00:00-06:00
 description: 'Run the Docker MCP Gateway on Docker Engine in WSL2, read secrets from a read-only 1Password service account, and connect it to Claude Code.'
+image: 'images/cover.png'
 draft: false
 tags: [windows, wsl, ai-tools, security]
 ---
@@ -265,3 +266,7 @@ If something leaks, what's exposed is a fine-grained token that expires and read
 The service account lasts 90 days and the GitHub tokens last as long as you set, so give them a short expiry and rotate them now and then.
 
 To isolate the agent itself there's {{< extlink href="https://docs.docker.com/ai/sandboxes/" >}}Docker Sandboxes{{< /extlink >}}, and 1Password's {{< extlink href="https://1password.com/blog/introducing-1password-credential-broker" >}}Credential Broker{{< /extlink >}} looks like a way to drop the service account token entirely. I haven't tried either yet. Claude Code also has its own {{< extlink href="https://code.claude.com/docs/en/sandboxing" >}}sandbox{{< /extlink >}} for the commands it runs through Bash (bubblewrap on WSL2). It won't break this setup, because MCP servers run outside it. It's off by default, though, and even with it on, Bash can still read the token file until you add its path to `sandbox.filesystem.denyRead`.
+
+---
+
+Photo by {{< extlink href="https://unsplash.com/@nknezevic?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Nikola Knezevic{{< /extlink >}} on {{< extlink href="https://unsplash.com/photos/a-dark-tunnel-with-an-open-door-leading-to-a-grassy-field-Q3JcLtECTtE?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" >}}Unsplash{{< /extlink >}}
