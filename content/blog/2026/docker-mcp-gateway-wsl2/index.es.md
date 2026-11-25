@@ -69,7 +69,7 @@ Anota lo que imprime el `echo`, lo vas a necesitar en el wrapper. Deja esta term
 
 Los programas de Windows que llamas desde WSL terminan cada línea de su salida con `\r\n`, por eso los valores se limpian con `tr -d '\r'`. Tampoco ven tus variables de entorno de Linux, a menos que las agregues a `WSLENV`.
 
-## Dale al agente su propio vault
+## Separa los tokens de tus vaults principales
 
 Podrías leer el token con tu sesión normal de `op`, pero la integración con la app de escritorio le da al CLI acceso a toda tu cuenta. Según el {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}modelo de seguridad{{< /extlink >}} de 1Password, ese acceso también llega a los sub-shells, así que un agente que corre comandos desde esa terminal podría leer cualquier cosa de la cuenta.
 
@@ -242,47 +242,6 @@ Si necesita alguno, guarda primero la credencial en el vault AI Agents, léela c
 ```
 
 Vuelve a correr `mcp-gateway --dry-run --verbose` y deberías ver `BRAVE_API_KEY` enmascarado igual que el token de GitHub. Después reinicia Claude Code para que levante los servidores nuevos.
-
-## Usa el mismo vault para tus CLIs
-
-En el día a día, lo que más uso de GitHub es el CLI de `gh`. Lo tenía configurado con una función de zsh que leía el token de mi vault Private por medio de la app de escritorio, o sea, el mismo acceso a toda la cuenta que acababa de evitar con el gateway. En el [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/) ya había configurado `agent.toml` para que el agente SSH de 1Password solo ofreciera mi llave de firma. Ese archivo nada más cubre SSH. La función vieja usaba `op read`, que pasa por la integración del CLI y puede ver todos los vaults de la cuenta. Claude Code también corre `gh` a través de esa función, así que la pasé al service account.
-
-Creé un segundo token fine-grained para el CLI, lo guardé en AI Agents como **GitHub CLI** y agregué esto a `~/.zshenv`:
-
-```zsh
-# Read one item through the read-only "AI Agents" service account.
-_op_agent_read() {
-  local op_bin="${MCP_OP_EXE:-/mnt/c/path/to/op.exe}" sa
-  sa="$(<"$HOME/.config/mcp-gateway/op-service-account-token")" || return 1
-  OP_SERVICE_ACCOUNT_TOKEN="$sa" WSLENV="${WSLENV:+$WSLENV:}OP_SERVICE_ACCOUNT_TOKEN/w" \
-    "$op_bin" read "$1" </dev/null 2>/dev/null | tr -d '\r'
-}
-
-typeset -g _GH_TOKEN_CACHE=""
-gh() {
-  if [[ -z $GH_TOKEN && -z $_GH_TOKEN_CACHE ]]; then
-    _GH_TOKEN_CACHE="$(_op_agent_read 'op://AI Agents/GitHub CLI/credential')"
-    if [[ -z $_GH_TOKEN_CACHE ]]; then
-      print -u2 "gh: could not read 'GitHub CLI' from the AI Agents vault"
-      return 1
-    fi
-  fi
-  GH_TOKEN="${GH_TOKEN:-$_GH_TOKEN_CACHE}" command gh "$@"
-}
-```
-
-La puse en `.zshenv` porque `.zshrc` no se carga en las shells no interactivas, como las que abre Claude Code. El token queda en una variable sin exportar, así que solo `gh` lo recibe. Si la lectura falla, la función no se regresa a la app de escritorio. Y con un token aparte puedo darle al CLI permisos distintos a los del servidor MCP, o revocar uno sin romper el otro.
-
-En una terminal nueva, `gh auth status` debería mostrar que está usando el token:
-
-```text
-github.com
-  ✓ Logged in to github.com account <you> (GH_TOKEN)
-```
-
-Para otros CLIs es lo mismo, por ejemplo `npm() { NPM_TOKEN="$(_op_agent_read 'op://AI Agents/npm/credential')" command npm "$@" }`. Eso sí, el agente puede leer todo lo que hay en AI Agents, así que guarda ahí solo tokens que no te moleste que use.
-
-Con la app de escritorio, 1Password me pedía aprobación antes de entregar el token, y eso es lo que recomienda para los CLIs con sus shell plugins. Ahora el agente usa `gh` sin preguntarme, con los permisos que le di al token y nada más. Y ojo, comandos como `timeout gh` o `xargs gh` llaman al binario directamente, se saltan la función y corren sin token.
 
 ## Qué protege y qué no
 

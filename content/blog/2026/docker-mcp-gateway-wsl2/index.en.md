@@ -69,7 +69,7 @@ Write down what `echo` prints, the wrapper needs it. Keep this terminal open for
 
 Windows programs called from WSL end their output lines with `\r\n`, which is why you'll see `tr -d '\r'` all over this post. They also can't see your Linux environment variables unless you list them in `WSLENV`.
 
-## Give the agent its own vault
+## Keep the tokens away from your main vaults
 
 You could read the token with your normal `op` session, but the desktop app integration authorizes the CLI for your whole account. According to 1Password's {{< extlink href="https://www.1password.dev/cli/app-integration-security" >}}security model{{< /extlink >}}, that authorization carries over to sub-shells, so an agent running commands from that terminal could read anything in my account.
 
@@ -242,47 +242,6 @@ If it does, save the credential in the AI Agents vault first. Then read it with 
 ```
 
 Run `mcp-gateway --dry-run --verbose` again and you should see `BRAVE_API_KEY` masked like the GitHub token. Then restart Claude Code to pick up the new servers.
-
-## Use the same vault for your CLIs
-
-I use the `gh` CLI more than the GitHub MCP server. I had it wired to a zsh function that read the token from my Private vault through the desktop app, which is the same account-wide access I just avoided for the gateway. In the [1Password post](/blog/use-1password-in-windows-with-wsl2-dev-containers/) I'd already set up `agent.toml` so the 1Password SSH agent only offers my signing key. That file only covers SSH. The old function called `op read`, which goes through the CLI integration and can see every vault in the account. Claude Code runs `gh` through that function too, so I moved it to the service account.
-
-I created a second fine-grained token for the CLI, saved it in AI Agents as **GitHub CLI**, and added this to `~/.zshenv`:
-
-```zsh
-# Read one item through the read-only "AI Agents" service account.
-_op_agent_read() {
-  local op_bin="${MCP_OP_EXE:-/mnt/c/path/to/op.exe}" sa
-  sa="$(<"$HOME/.config/mcp-gateway/op-service-account-token")" || return 1
-  OP_SERVICE_ACCOUNT_TOKEN="$sa" WSLENV="${WSLENV:+$WSLENV:}OP_SERVICE_ACCOUNT_TOKEN/w" \
-    "$op_bin" read "$1" </dev/null 2>/dev/null | tr -d '\r'
-}
-
-typeset -g _GH_TOKEN_CACHE=""
-gh() {
-  if [[ -z $GH_TOKEN && -z $_GH_TOKEN_CACHE ]]; then
-    _GH_TOKEN_CACHE="$(_op_agent_read 'op://AI Agents/GitHub CLI/credential')"
-    if [[ -z $_GH_TOKEN_CACHE ]]; then
-      print -u2 "gh: could not read 'GitHub CLI' from the AI Agents vault"
-      return 1
-    fi
-  fi
-  GH_TOKEN="${GH_TOKEN:-$_GH_TOKEN_CACHE}" command gh "$@"
-}
-```
-
-It goes in `.zshenv` instead of `.zshrc` so non-interactive shells get it too, and those are the ones Claude Code opens. The token sits in a variable that isn't exported, so only `gh` receives it. If the read fails, the function errors out instead of falling back to the desktop app. With a separate token I can also give the CLI different permissions than the MCP server and revoke one without breaking the other.
-
-In a new terminal, `gh auth status` should show it's using the token:
-
-```text
-github.com
-  ✓ Logged in to github.com account <you> (GH_TOKEN)
-```
-
-Other CLIs follow the same pattern, for example `npm() { NPM_TOKEN="$(_op_agent_read 'op://AI Agents/npm/credential')" command npm "$@" }`. Just remember the agent can read anything in AI Agents, so only put tokens there that you're fine with it using.
-
-With the desktop app, 1Password asked me to approve before handing over the token, which is how 1Password recommends running CLIs through its shell plugins. Now the agent can use `gh` without asking me, and the token's permissions are the only limit. Commands like `timeout gh` or `xargs gh` also skip the function because they call the binary directly, so they run without a token.
 
 ## What this protects and what it doesn't
 
