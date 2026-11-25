@@ -245,7 +245,7 @@ Vuelve a correr `mcp-gateway --dry-run --verbose` y deberías ver `BRAVE_API_KEY
 
 ## Usa el mismo vault para tus CLIs
 
-En el día a día, lo que más uso de GitHub es el CLI de `gh`. Lo tenía configurado con una función de zsh que leía el token de mi vault Private por medio de la app de escritorio, o sea, el mismo acceso a toda la cuenta que acababa de evitar con el gateway. Claude Code también corre `gh` a través de esa función, así que la pasé al service account.
+En el día a día, lo que más uso de GitHub es el CLI de `gh`. Lo tenía configurado con una función de zsh que leía el token de mi vault Private por medio de la app de escritorio, o sea, el mismo acceso a toda la cuenta que acababa de evitar con el gateway. Mis llaves SSH ya estaban limitadas: con `agent.toml`, el agente SSH de 1Password solo ofrece mi llave de firma, como lo configuré en el [post de 1Password](/es/blog/use-1password-in-windows-with-wsl2-dev-containers/). Pero ese archivo solo aplica al agente SSH. `op read` pasa por la integración del CLI, que puede ver toda la cuenta. Claude Code también corre `gh` a través de esa función, así que la pasé al service account.
 
 Creé un segundo token fine-grained para el CLI, lo guardé en AI Agents como **GitHub CLI** y agregué esto a `~/.zshenv`:
 
