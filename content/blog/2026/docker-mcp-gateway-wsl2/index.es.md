@@ -78,7 +78,7 @@ En lugar de eso seguí el {{< extlink href="https://www.1password.dev/sdks/ai-ag
 Los service accounts vienen en todos los planes, y en 1Password, Families y Teams el límite es de 1,000 lecturas por hora. El wrapper hace una sola lectura cada vez que arranca.
 
 1. En la app de 1Password, crea un vault llamado **AI Agents**.
-2. Crea un {{< extlink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token" >}}fine-grained personal access token{{< /extlink >}} en GitHub, solo con los repositorios y permisos que quieres darle al agente (MCP). Guárdalo en ese vault como un **API Credential** llamado **GitHub PAT**.
+2. Crea un {{< extlink href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token" >}}fine-grained personal access token{{< /extlink >}} en GitHub, solo con los repositorios y permisos que necesita el servidor MCP de GitHub. El agente hereda ese mismo acceso por medio de las herramientas del servidor, así que lo que le des aquí es lo que el agente va a poder hacer. Guárdalo en ese vault como un **API Credential** llamado **GitHub PAT**.
 3. Crea el service account. Esta es la última vez que usas tu sesión normal de `op`:
 
 ```bash
